@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var mongoose = require('mongoose');
-var gameConf = require('../models/gameConf.js');
+var gameConf = require('../models/GameConf.js');
 var game = require('../game/game.js');
 
 /* GET /gameConf listing. */

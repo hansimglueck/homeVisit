@@ -2,23 +2,21 @@
  * Created by jeanbluer on 26.01.15.
  */
 
-function game() {
+function Game() {
     this.play = false;
     this.deckId = 0;
     this.stepId = 0;
-    this.decks;
-    this.io;
-    this.wss;
-    this.players = {};
+    this.decks = [];
+    this.wss = {};
     this.clients = [];
-    this.conf;
+    this.conf = {};
 }
 
-game.prototype = {
+Game.prototype = {
 
     initDb: function(){
         var g = this;
-        var gConf = require('../models/gameConf.js');
+        var gConf = require('../models/GameConf.js');
         gConf.findOne({role:'run'}, function (err, conf) {
             if (err) return next(err);
             g.conf = conf;
@@ -38,7 +36,7 @@ game.prototype = {
             clientId = g.clients.length;
             g.clients.push({socket: ws, role: "undefined"});
 
-            ws.on("message", function (data, flags) {
+            ws.on("message", function (data) {
                 g.wss.clients.forEach(function each(client) {
                     console.log("wss-client: "+client);
                 });
@@ -90,7 +88,6 @@ game.prototype = {
     },
 
     sendDeviceList: function() {
-        var g = this;
         var list = [];
         for (var i = 0; i < this.clients.length; i++) {
             if (this.clients[i]) list.push({id: i, role:this.clients[i].role });
@@ -283,13 +280,13 @@ game.prototype = {
                     voteOptions[i].result+=1;
                     if (voteOptions[i].result > voteOptions[bestOption].result) bestOption = i;
                 }
-            };
+            }
         });
         voteOptions.sort(function(a,b) {return b.result - a.result});
         var msg="RESULTS::-----------------::";
         var labels = [];
         var resData = [];
-        this.getItem().voteOptions.forEach(function(option, o){
+        this.getItem().voteOptions.forEach(function(option){
             msg += option.text + ": " + (option.result/voteCount*100).toFixed(1) + "% ("+option.result+"/"+voteCount+")"+ "::";
             labels.push(option.text + ": " + (option.result/voteCount*100).toFixed(1) + "%");
             resData.push(option.result/voteCount*100);
@@ -301,8 +298,8 @@ game.prototype = {
         return this.decks[this.deckId].items[this.stepId];
     }
 
-}
+};
 
-var gameObj= new game();
+var gameObj= new Game();
 
 module.exports = gameObj;
