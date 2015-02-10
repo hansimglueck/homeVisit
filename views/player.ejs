@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title><%= title %></title>
+    <!--<link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css"/>-->
+    <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
+    <link rel="stylesheet" href="stylesheets/responsive.min.css"/>
+    <link rel="stylesheet" href="stylesheets/app.css"/>
+    <link rel='stylesheet' href='/stylesheets/player.css'/>
+
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
+    <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
+    <!--    <script src="bower_components/d3/d3.js"></script>
+        <script src="bower_components/nvd3/build/nv.d3.js"></script>
+        <script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>  -->
+    <script src="bower_components/Chart.js/Chart.js"></script>
+    <script src="bower_components/angular-chart.js/dist/angular-chart.js"></script>
+
+    <script src="playerApp/playerApp.js"></script>
+    <script src="playerApp/controllers/playerControllers.js"></script>
+    <script src="playerApp/services/websocketServices.js"></script>
+
+</head>
+<body ng-app="playerApp" ng-controller="ctrl" ng-swipe-right='Ui.turnOn("uiSidebarLeft")'
+      ng-swipe-left='Ui.turnOff("uiSidebarLeft")'>
+
+<!-- Sidebars -->
+<div class="sidebar sidebar-left"><h2>MENU</h2></div>
+
+<div class="app">
+    <div class="navbar navbar-app navbar-absolute-top text-center red"><h1><%= title %> </h1></div>
+
+    <!-- App body -->
+    <div class='app-body scrollable'>
+
+        <div class='app-content text-center scrollable-content'>
+            DEBUG: {{type}}
+
+            <div class="section content" ng-switch="type">
+                <div ng-switch-when="result">
+                    <canvas id="base" class="chart chart-base ng-isolate-scope" chart-type="'Pie'" data="data"
+                            labels="labels"
+                            legend="true">
+                    </canvas>
+                </div>
+
+                <div ng-switch-when="card">
+                    <ul class="list-unstyled">
+                        <li ng-repeat="t in text track by $index">{{t}}</li>
+                    </ul>
+                </div>
+
+                <div ng-switch-when="vote">
+                    <ul class="list-unstyled">
+                        <li ng-repeat="t in text track by $index">{{t}}</li>
+                    </ul>
+                    <ul class="list-unstyled wide-list" ng-show="options != null && limit == 1">
+                        <li ng-repeat="opt in options track by $index">
+                            <button class="btn-lg" ng-click="vote($index)">{{opt.text}}</button>
+                        </li>
+                    </ul>
+
+                    <ul class="list-unstyled wide-list" ng-show="options != null && limit > 1">
+                        <li ng-repeat="opt in options track by $index">
+                            <input type="checkbox" ng-model="opt.checked" ng-change="checkChanged(opt)"
+                                   ng-disabled="checked==limit && !opt.checked"/>
+                            {{opt.text}}
+                        </li>
+                        <li>
+                            <button ng-click="vote()">VOTE</button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ~ .app -->
+
+<!-- Modals and Overlays -->
+<div ui-yield-to="modals"></div>
+
+</body>
+
+</html>

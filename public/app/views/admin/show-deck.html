@@ -1,0 +1,29 @@
+<div ng-controller="deckCtrl">
+    <ul class="list-unstyled">
+        <li>{{deck.description}}</li>
+        <li>Gesamtdauer: {{getTimeForDeck($index)}}</li>
+        <li style="text-align: right">
+            <a ng-click="deleteDeck($index)">Lösche Strang</a>
+        </li>
+    </ul>
+    <table class="table">
+        <tbody>
+        <tr>
+            <th>Nr</th>
+            <th>Typ</th>
+            <th>Trigger</th>
+            <th>Inhalt</th>
+            <th>Zeit</th>
+            <th></th>
+        </tr>
+        </tbody>
+        <tbody show-sequence-item></tbody>
+        <tbody>
+        <tr>
+            <td colspan="5">
+                <button class="btn" ng-click="addItem($index)">Neues Ereignis</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

@@ -1,0 +1,13 @@
+.device {
+    background-color: #b9def0;
+}
+
+ul#messages {
+    list-style: none;
+    padding: 1em;
+    margin-top: 1em;
+    width: 100%;
+    min-height: 6em;
+    max-height: 12em;
+    overflow: auto;
+}

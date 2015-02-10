@@ -1,0 +1,11 @@
+<div id="content">
+    <div id="text">{{text}}</div>
+    <ul id="options" ng-show="options != null">
+        <li ng-repeat="opt in options track by $index"><input type="checkbox" ng-model="opt.checked"/>
+            {{opt.text}}
+        </li>
+        <li>
+            <button ng-click="vote()">VOTE</button>
+        </li>
+    </ul>
+</div>

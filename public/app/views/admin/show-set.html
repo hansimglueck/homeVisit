@@ -1,0 +1,11 @@
+<div ng-controller="setCtrl">
+    <accordion class="list-unstyled">
+        <accordion-group ng-repeat="deck in decks | orderBy:'sid' track by $index"
+                         heading="Strang {{$index}}: {{ deck.title }}">
+            <show-deck></show-deck>
+        </accordion-group>
+        <accordion-group heading="Neuer Strang">
+            <edit-new-deck></edit-new-deck>
+        </accordion-group>
+    </accordion>
+</div>

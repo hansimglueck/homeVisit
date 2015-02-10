@@ -1,0 +1,21 @@
+<div>
+<form novalidate name="deckForm">
+    <table class="table">
+        <tr>
+            <td>Titel:</td>
+            <td><input type="text" ng-model="newDeck.title"/></td>
+        </tr>
+        <tr>
+            <td>Beschreibung:</td>
+            <td><textarea ng-model="newDeck.description" cols="40" rows="5"/></td>
+        </tr>
+        <tr>
+            <td>Import:</td>
+            <td><textarea ng-model="newDeck.import" cols="40" rows="5"/></td>
+        </tr>
+        <tr>
+            <td></td><td><button ng-click="addDeck()">Speichern</button></td>
+        </tr>
+    </table>
+</form>
+</div>

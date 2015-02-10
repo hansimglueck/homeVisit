@@ -1,0 +1,17 @@
+
+.content {
+    background-color: inherit;
+    padding-top: 30px;
+    font-size: 1.6em;
+}
+
+.wide-list li{
+    margin: 0.8em;
+}
+
+.pie-legend {
+    padding: 0;
+}
+.pie-legend li{
+    white-space: normal !important;
+}

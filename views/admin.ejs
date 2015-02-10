@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/master.css'/>
+    <link rel='stylesheet' href='bower_components/bootstrap/dist/css/bootstrap.css'/>
+    <link href="bower_components/angular-xeditable/dist/css/xeditable.css" rel="stylesheet"/>
+    <script src="javascripts/jquery.min.js"></script>
+    <script src="javascripts/jquery-ui.min.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="node_modules/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-xeditable/dist/js/xeditable.js"></script>
+    <script src="bower_components/angular-scroll-glue/src/scrollglue.js"></script>
+    <script src="bower_components/angular-filter/dist/angular-filter.min.js"></script>
+    <script src="javascripts/ui-bootstrap-tpls-0.9.0.min.js"></script>
+    <script src="app/app.js"></script>
+    <script src="app/controllers/adminControllers.js"></script>
+    <script src="app/controllers/masterControllers.js"></script>
+    <script src="app/directives/adminDirectives.js"></script>
+    <script src="app/directives/masterDirectives.js"></script>
+    <script src="app/directives/sortable.js"></script>
+    <script src="app/services/gameServices.js"></script>
+    <script src="app/services/webSocketServices.js"></script>
+
+</head>
+<body ng-app="homevisitAdmin">
+<div class="container">
+    <h1><%= title %></h1>
+
+    <div class="row">
+
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Playback</h3></div>
+                <div class="panel-body">
+                    <master-buttons></master-buttons>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Konfiguration</h3></div>
+                <game-conf></game-conf>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Device Manager</h3></div>
+                <show-device-list></show-device-list>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading"><h3 class="panel-title">Log</h3></div>
+                <log-display></log-display>
+            </div>
+        </div>
+        <div class="col-sm-6">
+         </div>
+        <div class="col-sm-6">
+         </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Stränge und Items</h3>
+                </div>
+                <div class="panel-body">
+                    <show-set></show-set>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,48 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.game-view ul {
+  list-style: none;
+}
+
+.deck-list {
+  padding: 0em;
+}
+
+.deck-list > li {
+  border: 1px solid #999999;
+  margin-bottom: 2em;
+  color: white;
+  background: #444444;
+}
+
+.deck-view table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.deck-view table th, td {
+  border: 1px solid #999999;
+  padding: 1em;
+}
+
+.deck-view table th {
+  background: none repeat scroll 0 0 #aaaaaa;
+  color: white;
+}
+
+.deck-view table td {
+  background: none repeat scroll 0 0 #eeeeee;
+  color: black;
+}
+
+.edit-deck table {
+  border-collapse: collapse;
+
+}
