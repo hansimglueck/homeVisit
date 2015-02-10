@@ -41,6 +41,7 @@ angular.module('masterControllers', [])
             if (typeof $scope.gameConf._id == "undefined") {
                 var gConf = new gameConf({role:'run', startDeckId:0, autostart:false, playerCnt:1, typeMapping:[]});
                 gConf.$save();
+                $scope.gameConf = gConf;
             } else
             gameConf.update({id: $scope.gameConf._id}, updatedGameConf, function(err) {});
 
