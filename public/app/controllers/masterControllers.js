@@ -38,6 +38,10 @@ angular.module('masterControllers', [])
         $scope.updateGameConf = function() {
             var updatedGameConf = angular.copy($scope.gameConf);
             delete updatedGameConf._id;   //sonst macht mongoDB auf dem raspi stunk
+            if (typeof $scope.gameConf._id == "undefined") {
+                var gConf = new gameConf({role:'run', startDeckId:0, autostart:false, playerCnt:1, typeMapping:[]});
+                gConf.$save();
+            } else
             gameConf.update({id: $scope.gameConf._id}, updatedGameConf, function(err) {});
 
         };
