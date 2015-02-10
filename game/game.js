@@ -18,8 +18,8 @@ Game.prototype = {
         var g = this;
         var gConf = require('../models/GameConf.js');
         gConf.findOne({role:'run'}, function (err, conf) {
-            if (err) return next(err);
             g.conf = conf;
+            if (typeof g.conf == "undefined") g.conf = {role:'run', startDeckId:0, autostart:false, playerCnt:1, typeMapping:[]};
             console.log("autostart="+g.conf.autostart);
         });
 
