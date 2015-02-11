@@ -9,10 +9,6 @@ var masterControllers = angular.module('masterControllers', [])
             Socket.emit({type:"playbackAction", data:cmd}, function() { console.log('play emitted'); });
         };
 
-        $scope.vote = function() {
-            Socket.emit({type:"game", msg:"vote", data: $scope.options});
-        };
-
     });
 
 masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemTypes, gameConf, $filter) {
@@ -85,14 +81,42 @@ masterControllers.controller('LogCtrl', function($scope, Socket){
     });
 
 masterControllers.controller('DeviceCtrl', function($scope, Socket, itemTypes) {
-        $scope.deviceList = [];
-        $scope.itemTypes = itemTypes;
-        $scope.isCollapsed = true;
-        Socket.on("DeviceList", function(event) {
-            $scope.deviceList = JSON.parse(event.data).data;
-            console.log("got device list: "+JSON.stringify($scope.deviceList));
-        });
-        //Socket.emit({type:"getDeviceList"});
+    $scope.deviceList = [];
+    $scope.itemTypes = itemTypes;
+    $scope.isCollapsed = true;
+    Socket.on("DeviceList", function(event) {
+        $scope.deviceList = JSON.parse(event.data).data;
+        console.log("got device list: "+JSON.stringify($scope.deviceList));
     });
+});
+
+masterControllers.controller('OsCtrl', function($scope, Socket) {
+    $scope.osInfo = {};
+    $scope.shutdown = function() {
+        if (!confirm("Wirklich Runterfahren???")) return;
+        if (!confirm("WIRKLICH RUNTERFAHREN??????????")) return;
+        Socket.emit({type:"os", data:"shutdown"}, function() { console.log('shutdown send'); });
+    };
+    $scope.requestOsInfo = function() {
+        Socket.emit({type:"os", data:"getInfo"}, function() { console.log('os info requested'); });
+    }
+    Socket.on("osinfo", function(event) {
+        $scope.osInfo = JSON.parse(event.data).data;
+        console.log("got os info: "+JSON.stringify($scope.osInfo));
+    });
+    $scope.printInterfaces = function() {
+        if (typeof $scope.osInfo.interfaces == "undefined") return "fghj";
+        var interfaces = "";
+        Object.keys($scope.osInfo.interfaces).forEach(function(i, name){
+            interfaces+=i+": ";
+            $scope.osInfo.interfaces[i].forEach(function(ver){
+                interfaces+=ver.address+" ";
+            });
+            interfaces+=" - ";
+        });
+        return interfaces;
+    }
+
+});
 
 

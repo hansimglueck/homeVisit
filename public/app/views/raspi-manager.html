@@ -1,0 +1,23 @@
+<div ng-controller="OsCtrl">
+    <ul class="list-unstyled">
+        <li>
+            System:  {{osInfo.hostname}} / {{osInfo.type}} {{osInfo.arch}}
+        </li>
+        <li>
+            Uptime:  {{osInfo.uptime}}
+        </li>
+        <li>
+            Memory:  {{osInfo.freemem}} / {{osInfo.totalmem}}
+        </li>
+        <li>
+            Load:  1min: {{osInfo.loadavg[0]}} - 5min: {{osInfo.loadavg[1]}} - 15min: {{osInfo.loadavg[2]}}
+        </li>
+        <li>
+            Interfaces:  {{printInterfaces()}}
+        </li>
+
+    </ul>
+<div class="buttons">
+    <button class="btn" ng-click="shutdown()">SHUTDOWN</button>
+</div>
+</div>

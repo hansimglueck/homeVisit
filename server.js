@@ -6,7 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var mongoose = require('mongoose');
-
+var exec = require('child_process').exec;
 
 mongoose.connect('mongodb://localhost/homeVisit', function(err) {
     if(err) {

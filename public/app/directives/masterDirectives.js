@@ -30,10 +30,18 @@ angular.module('masterDirectives', [])
             replace: 'true',
             templateUrl: 'app/views/master-content.html'
         };
-    }).directive('gameConf', function() {
+    })
+    .directive('gameConf', function() {
         return {
             restrict: 'AE',
             replace: 'true',
             templateUrl: 'app/views/game-conf.html'
         };
-    });
+    })
+.directive('raspiManager', function() {
+    return {
+        restrict: 'AE',
+        replace: 'true',
+        templateUrl: 'app/views/raspi-manager.html'
+    };
+});

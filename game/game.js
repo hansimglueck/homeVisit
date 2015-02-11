@@ -1,6 +1,8 @@
 /**
  * Created by jeanbluer on 26.01.15.
  */
+var exec = require('child_process').exec;
+var os = require('os');
 
 function Game() {
     this.play = false;
@@ -51,6 +53,19 @@ Game.prototype = {
                             ws.send(JSON.stringify({type:"registerConfirm"}));
                             if (!!g.lastPlayerMessage) ws.send(JSON.stringify({type: "display", data: g.lastPlayerMessage}));
                             g.sendDeviceList();
+                            g.sendOsInfo(ws);
+                            break;
+
+                        case "os":
+                            switch (msg.data) {
+                                case "shutdown":
+                                    exec("shutdown -h now", function (error, stdout, stderr);
+                                    //exec("android", function (error, stdout, stderr) {console.log("exec1")});
+                                    break;
+                                case "getInfo":
+                                    g.sendOsInfo(ws);
+                                     break;
+                            }
                             break;
 
                         case "playbackAction":
@@ -85,6 +100,20 @@ Game.prototype = {
         });
         console.log("websocket server created");
 
+    },
+
+    sendOsInfo: function(ws) {
+        var info = {
+            hostname: os.hostname(),
+            type: os.type(),
+            arch: os.arch(),
+            uptime: os.uptime(),
+            loadavg: os.loadavg(),
+            totalmem: os.totalmem(),
+            freemem: os.freemem(),
+            interfaces: os.networkInterfaces()
+        };
+        ws.send(JSON.stringify({type: "osinfo", data: info}));
     },
 
     sendDeviceList: function() {
