@@ -1,6 +1,6 @@
 var adminControllers = angular.module('adminControllers', [])
 
-adminControllers.controller('setCtrl', [function ($scope, setFactory) {
+adminControllers.controller('setCtrl', function ($scope, setFactory) {
         //$scope.decks = Game.query(function () {
         //    angular.forEach($scope.decks, function (deck, id) {
         //        deck.newItem = {type: "card"};
@@ -74,7 +74,7 @@ adminControllers.controller('setCtrl', [function ($scope, setFactory) {
                 }
             });
         }
-    }]);
+    });
 
 adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter) {
         $scope.types = itemTypes;
