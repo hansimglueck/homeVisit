@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('masterControllers', [])
+var masterControllers = angular.module('masterControllers', [])
     .controller('MasterPlaybackCtrl', function ($scope, Socket) {
         //$scope.options = null;
 
@@ -13,16 +13,17 @@ angular.module('masterControllers', [])
             Socket.emit({type:"game", msg:"vote", data: $scope.options});
         };
 
-    })
+    });
 
-    .controller('GameConfCtrl', function($scope, setFactory, itemTypes, gameConf, $filter) {
+masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemTypes, gameConf, $filter) {
+        //$scope.error = "kein Problem";
         $scope.decks = setFactory.decks;
         $scope.itemTypes = itemTypes;
         $scope.gameConf = gameConf.getRun(function() {
             console.log("getRunCallback!"+$scope.gameConf);
             if ($scope.gameConf.typeMapping.length != $scope.itemTypes.length) {
                 $scope.gameConf.typeMapping = [];
-                angular.forEach($scope.itemTypes, function(type, id) {
+                angular.forEach($scope.itemTypes, function(type) {
                     $scope.gameConf.typeMapping.push({type:type.value, devices:[]});
                 });
                 $scope.updateGameConf();
@@ -39,8 +40,14 @@ angular.module('masterControllers', [])
             var updatedGameConf = angular.copy($scope.gameConf);
             delete updatedGameConf._id;   //sonst macht mongoDB auf dem raspi stunk
             if (typeof $scope.gameConf._id == "undefined") {
-                var gConf = new gameConf({role:'run', startDeckId:0, autostart:false, playerCnt:1, typeMapping:[]});
-                gConf.$save();
+                var gConf = new gameConf({role:'run', startDeckId:null, autostart:false, playerCnt:1, typeMapping:[]});
+                gConf.$save(function success(){
+                    console.log("---success");},
+                    function error(err){
+                        console.log("---error: "+err);
+                        console.log(err);
+                        $scope.error = err.data;
+                    });
                 $scope.gameConf = gConf;
             } else
             gameConf.update({id: $scope.gameConf._id}, updatedGameConf, function(err) {});
@@ -60,9 +67,9 @@ angular.module('masterControllers', [])
         };
 
 
-    })
+    });
 
-    .controller('LogCtrl', function($scope, Socket){
+masterControllers.controller('LogCtrl', function($scope, Socket){
         $scope.messages = ["waiting..."];
         Socket.on('log', function(event) {
             var data = JSON.parse(event.data);
@@ -75,9 +82,9 @@ angular.module('masterControllers', [])
             else $scope.options = null;
         })
 
-    })
+    });
 
-    .controller('DeviceCtrl', function($scope, Socket, itemTypes) {
+masterControllers.controller('DeviceCtrl', function($scope, Socket, itemTypes) {
         $scope.deviceList = [];
         $scope.itemTypes = itemTypes;
         $scope.isCollapsed = true;

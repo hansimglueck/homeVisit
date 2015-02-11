@@ -1,4 +1,5 @@
 <ul class="list-group" ng-controller="GameConfCtrl">
+    <li class="list-group-item" ng-show="error">{{error}}</li>
     <li class="list-group-item">
         Autoplay: <a href="#" editable-checkbox="gameConf.autostart" e-title="Autoplay?"
                      onaftersave="updateGameConf()">

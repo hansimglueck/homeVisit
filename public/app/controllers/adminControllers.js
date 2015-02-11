@@ -1,6 +1,6 @@
-angular.module('adminControllers', [])
+var adminControllers = angular.module('adminControllers', [])
 
-    .controller('setCtrl', ['$scope', 'setFactory', function ($scope, setFactory) {
+adminControllers.controller('setCtrl', [function ($scope, setFactory) {
         //$scope.decks = Game.query(function () {
         //    angular.forEach($scope.decks, function (deck, id) {
         //        deck.newItem = {type: "card"};
@@ -74,9 +74,9 @@ angular.module('adminControllers', [])
                 }
             });
         }
-    }])
+    }]);
 
-    .controller('deckCtrl', function ($scope, itemTypes, $filter) {
+adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter) {
         $scope.types = itemTypes;
         $scope.trigger = [{text:"Go", value:"go"},{text:"Follow", value:"follow"}];
         $scope.showType = function (item) {
@@ -135,9 +135,9 @@ angular.module('adminControllers', [])
             var item = $scope.decks[deckId].items[index];
             $scope.updateDeck(deckId);
         };
-    })
+    });
 
-    .controller('itemCtrl', function ($scope) {
+adminControllers.controller('itemCtrl', function ($scope) {
         $scope.addVoteOption = function (deckId, id) {
             $scope.insertedOption = {
                 text: '',
