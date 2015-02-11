@@ -59,7 +59,7 @@ Game.prototype = {
                         case "os":
                             switch (msg.data) {
                                 case "shutdown":
-                                    exec("shutdown -h now", function (error, stdout, stderr);
+                                    exec("shutdown -h now", function (error, stdout, stderr){console.log("exec1")});
                                     //exec("android", function (error, stdout, stderr) {console.log("exec1")});
                                     break;
                                 case "getInfo":
