@@ -9,12 +9,12 @@ angular.module("playerControllers", [])
         $scope.player = {};
         $scope.$on('$viewContentLoaded', function(){
             console.log("$viewContentLoaded");
-            $scope.register();
+            //$scope.register();
         });
         $scope.register = function() {
             //register
             //Socket.emit({type: "register", data: {role:'player', sid:$scope.cookie}});
-            Socket.connect();
+            //Socket.connect();
         };
         $scope.vote = function (id) {
             console.log(id);

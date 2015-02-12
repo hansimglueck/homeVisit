@@ -59,8 +59,7 @@ app.use(session({
     secret: '1234',
     resave: false,
     saveUninitialized: true,
-    cookie: { httpOnly: false }
-
+    cookie: { httpOnly: false }    //damit angular drauf zugreifen kann
 }));
 
 app.use(function (req, res, next) {
@@ -114,9 +113,6 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
-
-
 
 /**
  * Listen on provided port, on all network interfaces.

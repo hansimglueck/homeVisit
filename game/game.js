@@ -90,6 +90,7 @@ Game.prototype = {
                                 prevClients[0].socket = ws;
                                 g.clients.splice(clientId, 1);
                                 clientId = prevClients[0].clientId;
+                                prevClients[0].connected = true;
                                 if (role == "player") player = g.players.filter(function (player) {
                                     return (player.clientId == clientId);
                                 })[0];
@@ -224,7 +225,7 @@ Game.prototype = {
     log: function (sid, message) {
         message = "Client " + sid + " - " + message;
         this.clients.forEach(function each(client) {
-            if (client.role == "master") client.socket.send(JSON.stringify({type: "log", data: message}));
+            if (client.role == "master" && client.connected) client.socket.send(JSON.stringify({type: "log", data: message}));
         });
         console.log("gesendet");
     },
@@ -298,7 +299,7 @@ Game.prototype = {
     msgDevicesByRole: function (role, type, message) {
         if (role === "player") this.lastPlayerMessage = message;
         this.clients.forEach(function each(client) {
-            if (client.role == role) client.socket.send(JSON.stringify({type: type, data: message}));
+            if (client.role == role && client.connected) client.socket.send(JSON.stringify({type: type, data: message}));
         });
     },
 
@@ -306,6 +307,7 @@ Game.prototype = {
         var self = this;
         ids.forEach(function (id) {
             var clientsWithId = self.clients.filter(function (c) {
+                if (c.connected == false) return false;
                 return (c.clientId == id);
             });
             //es dürfte nur einen geben...

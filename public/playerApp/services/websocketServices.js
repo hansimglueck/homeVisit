@@ -11,9 +11,9 @@ angular.module('WebsocketServices', []).
 
         var connect = function () {
             ws = new WebSocket('ws://' + host);
-            ws.onconnect = function () {
-                console.log("client connecting");
-            };
+            //ws.onconnect = function () {
+            //    console.log("client: connecting");
+            //};
             ws.onclose = function () {
                 console.log("client lost connection");
                 setTimeout(function () {
@@ -47,6 +47,7 @@ angular.module('WebsocketServices', []).
 
             };
         };
+        connect();
         return {
             connect: function() {connect()},
 
