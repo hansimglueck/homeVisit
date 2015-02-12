@@ -5,7 +5,8 @@ angular.module('playerApp', [
     'WebsocketServices',
     'mobile-angular-ui',
     'mobile-angular-ui.gestures',
-    'chart.js'
+    'chart.js',
+    'ngCookies'
 ]);
 
 

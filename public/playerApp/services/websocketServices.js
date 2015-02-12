@@ -2,11 +2,10 @@
  * Created by jeanbluer on 06.02.15.
  */
 angular.module('WebsocketServices', []).
-    factory('Socket', function ($rootScope) {
+    factory('Socket', function ($rootScope, $cookies) {
+        var sid = $cookies['connect.sid'];
         var ws;
-        var role = 'player';
         var onMessageCallbacks;
-        var registered = false;
         var host = location.host;
         onMessageCallbacks = [];
 
@@ -24,14 +23,8 @@ angular.module('WebsocketServices', []).
 
             ws.onopen = function () {
                 console.log("client: Socket has been opened!");
-                onMessageCallbacks.push({
-                    fn: function () {
-                        registered = true;
-                        console.log("registered");
-                    },
-                    eventName: "registerConfirm"
-                });
-                ws.send(JSON.stringify({type: "register", data: role}));
+                ws.send(JSON.stringify({type: "register", data: {role:'player', sid:sid}}));
+
             };
             ws.onmessage = function (event) {
                 console.log('onmessage: ' + event.data);
@@ -54,8 +47,9 @@ angular.module('WebsocketServices', []).
 
             };
         };
-        connect();
         return {
+            connect: function() {connect()},
+
             on: function (eventName, callback) {
                 onMessageCallbacks.push({
                     fn: callback,

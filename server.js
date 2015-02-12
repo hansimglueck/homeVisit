@@ -58,8 +58,26 @@ app.use(cookieParser());
 app.use(session({
     secret: '1234',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: true,
+    cookie: { httpOnly: false }
+
 }));
+
+app.use(function (req, res, next) {
+    var pid = req.session.pid;
+
+    if (!pid) {
+       // pid = req.session.cookies.connect.sid = {};
+    }
+
+    // get the url pathname
+    //console.log
+
+    // count the views
+    //views[pathname] = (views[pathname] || 0) + 1
+
+    next();
+})
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/decks', decks);

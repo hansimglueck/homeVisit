@@ -12,6 +12,7 @@
     <link rel='stylesheet' href='/stylesheets/player.css'/>
 
     <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
     <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
     <!--    <script src="bower_components/d3/d3.js"></script>
@@ -26,7 +27,7 @@
 
 </head>
 <body ng-app="playerApp" ng-controller="ctrl" ng-swipe-right='Ui.turnOn("uiSidebarLeft")'
-      ng-swipe-left='Ui.turnOff("uiSidebarLeft")'>
+      ng-swipe-left='Ui.turnOff("uiSidebarLeft")' ng-init="register()">
 
 <!-- Sidebars -->
 <div class="sidebar sidebar-left"><h2>MENU</h2></div>
@@ -38,7 +39,7 @@
     <div class='app-body scrollable'>
 
         <div class='app-content text-center scrollable-content'>
-            DEBUG: {{type}}
+            DEBUG: {{type}}, {{player}},
 
             <div class="section content" ng-switch="type">
                 <div ng-switch-when="result">
