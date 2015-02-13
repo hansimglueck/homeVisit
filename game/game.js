@@ -64,7 +64,9 @@ Game.prototype = {
                 });
 
                 console.log("websocket received a message from " + clientId + ": " + (data));
+                //var msg = (typeof data == "Object") ? JSON.parse(data) : data;
                 var msg = JSON.parse(data);
+                console.log (typeof data);
                 if (msg.type) {
                     switch (msg.type) {
                         case "register":
@@ -298,8 +300,12 @@ Game.prototype = {
 
     msgDevicesByRole: function (role, type, message) {
         if (role === "player") this.lastPlayerMessage = message;
+        var self = this;
         this.clients.forEach(function each(client) {
-            if (client.role == role && client.connected) client.socket.send(JSON.stringify({type: type, data: message}));
+            if (client.role == role && client.connected) {
+                client.socket.send(JSON.stringify({type: type, data: message}));
+                self.log(-1, "sent to client "+client.clientId+":"+JSON.stringify({type: type, data: message}))
+            }
         });
     },
 
