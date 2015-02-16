@@ -20,13 +20,11 @@
     </td>
 
     <td ng-show="item.type=='card'||'vote'">
-        <div ng-show="item.type=='vote'">Abstimmungsfrage:<br/></div>
         <!-- editable textarea -->
         <span editable-textarea="item.text" e-rows="7" e-cols="40" e-name="text1" e-form="rowform">
           {{ item.text || 'kein Text' }}
         </span>
         <div ng-show="item.type=='vote'">
-            Mögliche Stimmen: <br />
         <span editable-text="item.voteMulti" e-name="voteMulti" e-form="rowform">
           {{ item.voteMulti || '' }}
         </span>
@@ -39,7 +37,7 @@
         </div>
     </td>
 
-    <td ng-show="item.type=='sound'">Soundfile:
+    <td ng-show="item.type=='soundddd'">Soundfile:
     <!-- editable Text -->
         <span editable-text="item.file" e-name="file" e-form="rowform">
           {{ item.file || 'empty' }}

@@ -6,7 +6,8 @@ angular.module('playerApp', [
     'mobile-angular-ui',
     'mobile-angular-ui.gestures',
     'chart.js',
-    'ngCookies'
+    'ngCookies',
+    'playerAppServices'
 ]);
 
 

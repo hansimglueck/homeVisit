@@ -3,11 +3,18 @@
 var masterControllers = angular.module('masterControllers', [])
     .controller('MasterPlaybackCtrl', function ($scope, Socket) {
         //$scope.options = null;
+        $scope.stepId = -1;
 
         $scope.playback = function(cmd) {
             console.log("play clicked");
             Socket.emit({type:"playbackAction", data:cmd}, function() { console.log('play emitted'); });
         };
+
+        Socket.on("status", function(event) {
+            var status = JSON.parse(event.data).data;
+            $scope.stepId = status.stepId;
+            console.log("got status info: "+JSON.stringify(status));
+        });
 
     });
 

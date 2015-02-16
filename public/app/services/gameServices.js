@@ -15,7 +15,8 @@ gameServices.factory('Game', ['$resource', function($resource){
     return [
         { value: 'card', text: 'Karte' },
         { value: 'sound', text: 'Sound' },
-        { value: 'vote', text: 'Abstimmung' }
+        { value: 'vote', text: 'Abstimmung'},
+        { value: 'rating', text: 'Rating'}
     ]
 })
     .factory('gameConf', ['$resource', function($resource) {
@@ -52,7 +53,7 @@ gameServices.factory('Game', ['$resource', function($resource){
                 restfactory.decks.splice(index, 1);
             });
 
-        }
+        };
         return restfactory;
      }])
 ;

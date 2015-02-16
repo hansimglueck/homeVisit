@@ -15,3 +15,15 @@
 .pie-legend li{
     white-space: normal !important;
 }
+
+.row1 {
+    height: 50%;
+}
+.row2 {
+    height: 50%;
+}
+
+.navbarbtn {
+    height:50px;
+    padding: 12px;
+}

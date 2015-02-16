@@ -17,19 +17,22 @@ function Game() {
         ["rot", "gelb"],
         ["rot", "blau"],
         ["rot", "weiss"],
-        ["rot", "grün"],
+        ["rot", "gruen"],
         ["rot", "pink"],
         ["gelb", "blau"],
         ["gelb", "weiss"],
-        ["gelb", "grün"],
+        ["gelb", "gruen"],
         ["gelb", "pink"],
         ["blau", "weiss"],
-        ["blau", "grün"],
+        ["blau", "gruen"],
         ["blau", "pink"],
-        ["weiss", "grün"],
+        ["weiss", "gruen"],
         ["weiss", "pink"],
+        ["pink", "grün"],
         ["pink", "schwarz"]
     ];
+    this.rating = [];
+    this.avgRating = [];
 }
 
 Game.prototype = {
@@ -114,6 +117,7 @@ Game.prototype = {
                                 type: "display",
                                 data: g.lastPlayerMessage
                             }));
+                            //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));
                             g.sendDeviceList();
                             g.sendOsInfo(ws);
                             break;
@@ -144,6 +148,10 @@ Game.prototype = {
                             g.vote(clientId, msg.data);
                             break;
 
+                        case "rate":
+                            g.rate(clientId, msg.data);
+                            break;
+
                         default:
                             console.log("unknown message-type");
                             break;
@@ -164,6 +172,26 @@ Game.prototype = {
         });
         console.log("websocket server created");
 
+    },
+
+    rate: function (clientId, data) {
+        var playerId = data.playerId;
+        var rate = data.rate;
+        this.rating[playerId] = rate;
+        console.log("rate: " +this.rating);
+        this.calcAvgRate();
+        this.msgDevicesByRole('player', 'rates', {avgRating:this.avgRating});
+    },
+
+    calcAvgRate: function() {
+        var sum;
+        for (var j = 0; j < this.conf.playerCnt; j++){
+            sum = 0;
+            for (var i = 0; i < this.conf.playerCnt; i++) {
+                sum += this.rating[i][j];
+            }
+            this.avgRating[j] = Math.round(sum/this.conf.playerCnt);
+        }
     },
 
     sendOsInfo: function (ws) {
@@ -289,6 +317,7 @@ Game.prototype = {
         map.devices.forEach(function (dev) {
             self.msgDevicesByRole(dev, "display", content);
         });
+        self.msgDevicesByRole('master', 'status', {stepId: self.stepId});
 
         //checken, wie der nächste step getriggert wird
         if (this.stepId + 1 < this.decks[this.deckId].items.length) {
@@ -326,6 +355,14 @@ Game.prototype = {
         if (this.play == false) {
             var g = this;
             var Deck = require('../models/Deck.js');
+            for (var i = 0; i < this.conf.playerCnt; i++) {
+                this.rating[i] = [];
+                for (var j = 0; j < this.conf.playerCnt; j++) {
+                    this.rating[i][j] = 4;
+                }
+            }
+            this.calcAvgRate();
+
             Deck.find(function (err, decks) {
                 if (err) return next(err);
                 g.decks = decks;
@@ -340,6 +377,7 @@ Game.prototype = {
             });
             this.play = true;
             this.log(sid, "client" + sid + " started game");
+            this.msgDevicesByRole('player', 'rates', {avgRating:this.avgRating});
         } else {
             this.log(sid, "client" + sid + " already playing");
         }

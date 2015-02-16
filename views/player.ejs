@@ -24,6 +24,7 @@
     <script src="playerApp/playerApp.js"></script>
     <script src="playerApp/controllers/playerControllers.js"></script>
     <script src="playerApp/services/websocketServices.js"></script>
+    <script src="playerApp/services/playerAppServices.js"></script>
 
 </head>
 <body ng-app="playerApp" ng-controller="ctrl" ng-swipe-right='Ui.turnOn("uiSidebarLeft")'
@@ -33,13 +34,28 @@
 <div class="sidebar sidebar-left"><h2>MENU</h2></div>
 
 <div class="app">
-    <div class="navbar navbar-app navbar-absolute-top text-center red"><h1><%= title %> </h1></div>
+    <div class="navbar navbar-app navbar-absolute-top text-center red">
+        <div ng-style="{'height': '100px'}">
+            <div class="row1" ng-style="col1">
+                <h1><%= title %> </h1>
+            </div>
+            <div class="row2" ng-style="col2">
+                <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
+                    {{itemTypes[type]}}
+                </div>
+                <div class="btn-group pull-left"><div class="navbarbtn" ng-click="type='rating'">RATE</div></div>
+                <div class="btn-group pull-right"><div class="navbarbtn" ng-click="type='card'">HOME</div></div>
+            </div>
+        </div>
+    </div>
 
     <!-- App body -->
     <div class='app-body scrollable'>
 
         <div class='app-content text-center scrollable-content'>
-            DEBUG: {{type}}, {{player}}
+            <div ng-show="debug">
+                DEBUG: {{type}}, {{player}}, {{col1}}
+            </div>
 
             <div class="section content" ng-switch="type">
                 <div ng-switch-when="result">
@@ -53,6 +69,40 @@
                     <ul class="list-unstyled">
                         <li ng-repeat="t in text track by $index">{{t}}</li>
                     </ul>
+                </div>
+
+                <div ng-switch-when="rating" ng-controller="RatingController">
+                    <table class="table">
+                        <col width="40%">
+                        <col width="20%">
+                        <col width="20%">
+                        <col width="20%">
+                        <tr>
+                            <th>Player</th>
+                            <th colspan="3">Your Rating</th>
+                        </tr>
+                        <tr ng-repeat="rating in myRatings track by $index">
+                            <td>
+                                <div ng-style="{'height': '40px', 'width':'80px'}">
+                                    <div class="row1" ng-style="colors[playerColors[$index][0]]">
+                                    </div>
+                                    <div class="row2" ng-style="colors[playerColors[$index][1]]"></div>
+                                    <div ng-style="{'position':'relative', 'bottom':'35px'}">
+                                        {{moodys[avgRatings[$index]]}}
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <button ng-show="ratingActive" ng-disabled="rating>=8" ng-click="rate($index, 1)">+</button>
+                            </td>
+                            <td>
+                                <span>{{moodys[rating]}}</span>
+                            </td>
+                            <td>
+                                <button ng-show="ratingActive" ng-disabled="rating<=0" ng-click="rate($index, -1)">-</button>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
 
                 <div ng-switch-when="vote">
