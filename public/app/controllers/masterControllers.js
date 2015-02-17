@@ -3,7 +3,7 @@
 var masterControllers = angular.module('masterControllers', [])
     .controller('MasterPlaybackCtrl', function ($scope, Socket) {
         //$scope.options = null;
-        $scope.stepId = -1;
+        $scope.status = {stepId: -1, type:"nix"};
 
         $scope.playback = function(cmd) {
             console.log("play clicked");
@@ -12,7 +12,7 @@ var masterControllers = angular.module('masterControllers', [])
 
         Socket.on("status", function(event) {
             var status = JSON.parse(event.data).data;
-            $scope.stepId = status.stepId;
+            $scope.status = status;
             console.log("got status info: "+JSON.stringify(status));
         });
 

@@ -1,5 +1,5 @@
 angular.module("playerControllers", [])
-    .controller('ctrl', function ($scope, Socket, $cookies, colors, itemTypes) {
+    .controller('ctrl', function ($scope, Socket, $cookies, colors, itemTypes, playerColors) {
         $scope.debug = false;
         $scope.cookie = $cookies['connect.sid'];
         $scope.messages = ["waiting..."];
@@ -13,7 +13,27 @@ angular.module("playerControllers", [])
         $scope.colors = colors;
         $scope.type = "rating";
         $scope.itemTypes = itemTypes;
-        $scope.ratingActive = false;
+        $scope.ratingActive = true;
+        $scope.avgRatings = [];
+        $scope.playerColors = playerColors;
+        $scope.myRatings = [4,4,4,4,4,4,4,4,4,4,4,4,4,4,4];
+        $scope.moodys = ["C","CC","CCC","B","BB","BBB","A","AA","AAA"];
+        $scope.votelast = "vote";
+        $scope.rate = function(id,val) {
+            $scope.myRatings[id] += val;
+            Socket.emit({type: "rate", data: {rate: $scope.myRatings, playerId: $scope.player.playerId}});
+        };
+        Socket.on('registerConfirm', function() {
+            Socket.emit({type: "rate", data: {rate: $scope.myRatings, playerId: $scope.player.playerId}});
+        });
+
+        Socket.on('rates', function(event) {
+            var data = JSON.parse(event.data).data;
+            $scope.avgRatings = data.avgRating;
+            console.log("x");
+            console.log($scope.avgRatings);
+        })
+
         $scope.$on('$viewContentLoaded', function(){
             console.log("$viewContentLoaded");
             //$scope.register();
@@ -29,7 +49,7 @@ angular.module("playerControllers", [])
                 console.log("no");
                 $scope.options[id].checked = true;
             }
-            Socket.emit({type: "vote", data: $scope.options});
+            Socket.emit({type: "vote", data: $scope.options, playerId: $scope.player.playerId});
         };
 
         $scope.checkChanged = function (option) {
@@ -58,6 +78,8 @@ angular.module("playerControllers", [])
                     $scope.options = data.voteOptions;
                     $scope.limit = data.voteMulti;
                     $scope.checked = 0;
+                    $scope.votelast = "vote";
+
                 }
                 else $scope.options = null;
                 if (data.type == "result") {
@@ -65,8 +87,9 @@ angular.module("playerControllers", [])
                     $scope.text = "";
                     $scope.labels = data.labels;
                     $scope.data = data.data;
+                    $scope.votelast = "result";
                 }
-                if (data.type = "rating") {
+                if (data.type == "rating") {
                     $scope.type = 'rating';
                     if (data.text == "start") {
                         $scope.ratingActive = true;
@@ -78,6 +101,9 @@ angular.module("playerControllers", [])
 
             }
         });
+        $scope.toVote = function() {
+            $scope.type = $scope.votelast;
+        }
 
 
     }).
@@ -90,10 +116,14 @@ angular.module("playerControllers", [])
             $scope.myRatings[id] += val;
             Socket.emit({type: "rate", data: {rate: $scope.myRatings, playerId: $scope.player.playerId}});
         };
+        Socket.on('registerConfirm', function() {
+            Socket.emit({type: "rate", data: {rate: $scope.myRatings, playerId: $scope.player.playerId}});
+        });
 
         Socket.on('rates', function(event) {
             var data = JSON.parse(event.data).data;
             $scope.avgRatings = data.avgRating;
+            console.log("x");
             console.log($scope.avgRatings);
         })
 

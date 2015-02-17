@@ -57,114 +57,71 @@ Game.prototype = {
 
             console.info("websocket connection open");
 
-            var clientId;
-            clientId = g.clients.length;
-            g.clients.push({socket: ws, role: "undefined", clientId: clientId, connected: true});
+            //var clientId;
+            //clientId = g.clients.length;
+            //g.clients.push({socket: ws, role: "undefined", clientId: clientId, connected: true});
 
             ws.on("message", function (data) {
-                g.wss.clients.forEach(function each(client) {
-                    console.log("wss-client: " + client);
-                });
+                try {
+                    var clientId = ws.clientId;
+                    g.wss.clients.forEach(function each(client) {
+                        console.log("wss-client: " + client);
+                    });
 
-                console.log("websocket received a message from " + clientId + ": " + (data));
-                //var msg = (typeof data == "Object") ? JSON.parse(data) : data;
-                var msg = JSON.parse(data);
-                console.log (typeof data);
-                if (msg.type) {
-                    switch (msg.type) {
-                        case "register":
-                            var dd = (typeof msg.data == "Object") ? JSON.parse(msg.data) : msg.data;
-                            var role = "unknown";
-                            var sid = "unknown";
-                            var msgData = {};
-                            if (typeof dd == "string") role = dd;
-                            else {
-                                if (typeof dd.role != "undefined") role = dd.role;
-                                if (typeof dd.sid != "undefined") sid = dd.sid;
-                            }
-                            //schau mal, ob es schon einen client mit der sid gibt...
-                            //wenn nicht: neue player_id vergeben und im data senden
-                            //wenn ja: ws darein schreiben und ein "reconnected" im data senden
-                            var prevClients = g.clients.filter(function (client) {
-                                if (client.sid == "unknown") return false;
-                                return (sid == client.sid);
-                            });
-                            //es sollte nur max einen geben
-                            var player = {};
-                            if (prevClients.length > 0) {
-                                prevClients[0].socket = ws;
-                                g.clients.splice(clientId, 1);
-                                clientId = prevClients[0].clientId;
-                                prevClients[0].connected = true;
-                                if (role == "player") player = g.players.filter(function (player) {
-                                    return (player.clientId == clientId);
-                                })[0];
-                            } else {
-                                //first time registered
-                                if (role == "player") {
-                                    player = {
-                                        clientId: clientId,
-                                        playerId: g.players.length,
-                                        colors: g.colors.shift()
-                                    };
-                                    g.players.push(player);
+                    console.log("websocket received a message from " + clientId + ": " + (data));
+                    //var msg = (typeof data == "Object") ? JSON.parse(data) : data;
+                    var msg = JSON.parse(data);
+                    console.log(typeof data);
+                    if (msg.type) {
+                        switch (msg.type) {
+                            case "register":
+                                g.registerClient(msg, ws);
+                                break;
+
+                            case "os":
+                                switch (msg.data) {
+                                    case "shutdown":
+                                        exec("sudo shutdown -h now", function (error, stdout, stderr) {
+                                            console.log("exec1")
+                                        });
+                                        //exec("android", function (error, stdout, stderr) {console.log("exec1")});
+                                        break;
+                                    case "getInfo":
+                                        g.sendOsInfo(ws);
+                                        break;
                                 }
-                            }
-                            g.clients[clientId].role = role;
-                            g.clients[clientId].sid = sid;
-                            ws.send(JSON.stringify({type: "registerConfirm", data: player}));
-                            if (!!g.lastPlayerMessage && role == 'player') ws.send(JSON.stringify({
-                                type: "display",
-                                data: g.lastPlayerMessage
-                            }));
-                            //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));
-                            g.sendDeviceList();
-                            g.sendOsInfo(ws);
-                            break;
+                                break;
 
-                        case "os":
-                            switch (msg.data) {
-                                case "shutdown":
-                                    exec("sudo shutdown -h now", function (error, stdout, stderr) {
-                                        console.log("exec1")
-                                    });
-                                    //exec("android", function (error, stdout, stderr) {console.log("exec1")});
-                                    break;
-                                case "getInfo":
-                                    g.sendOsInfo(ws);
-                                    break;
-                            }
-                            break;
+                            case "playbackAction":
+                                g.trigger(clientId, msg.data);
+                                break;
 
-                        case "playbackAction":
-                            g.trigger(clientId, msg.data);
-                            break;
+                            case "getDeviceList":
+                                g.sendDeviceList();
+                                break;
 
-                        case "getDeviceList":
-                            g.sendDeviceList();
-                            break;
+                            case "vote":
+                                g.vote(clientId, msg);
+                                break;
 
-                        case "vote":
-                            g.vote(clientId, msg.data);
-                            break;
+                            case "rate":
+                                g.rate(clientId, msg.data);
+                                break;
 
-                        case "rate":
-                            g.rate(clientId, msg.data);
-                            break;
+                            default:
+                                console.log("unknown message-type");
+                                break;
 
-                        default:
-                            console.log("unknown message-type");
-                            break;
-
+                        }
                     }
+                }catch(err){
+                    console.log(err.message);
                 }
-
                 //ws.send(JSON.stringify({msg:{connectionId:userId}}));
-
-
             });
 
             ws.on("close", function () {
+                var clientId = ws.clientId;
                 console.log("websocket connection close");
                 g.clients[clientId].connected = false;
                 g.sendDeviceList();
@@ -174,23 +131,122 @@ Game.prototype = {
 
     },
 
+    registerClient: function(msg, ws) {
+        //var clientId;
+        //clientId = g.clients.length;
+        //g.clients.push({socket: ws, role: "undefined", clientId: clientId, connected: true});
+
+        //ein client registriert sich mit msg.data = {type: "register", data: {role:'player', sid:sid}}
+        //oder msg.data = {type: "register", data: role}
+        var dd = (typeof msg.data == "Object") ? JSON.parse(msg.data) : msg.data;
+        var role = "unknown";
+        var sid = "unknown";
+        if (typeof dd == "string") role = dd;
+        else {
+            if (typeof dd.role != "undefined") role = dd.role;
+            if (typeof dd.sid != "undefined") sid = dd.sid;
+        }
+        var client;
+        //schau mal, ob es schon einen client mit der sid gibt...
+        //wenn ja: ws darein schreiben und den dazugehörigen player im data senden
+        //wenn nicht: neuen client ins client-array pushen und für player neuen player anlegen und im data senden
+        var prevClients = this.clients.filter(function (client) {
+            if (client.sid == "unknown") return false;
+            return (sid == client.sid);
+        });
+        //es sollte nur max einen geben
+        if (prevClients.length > 0) {
+            client = prevClients[0];
+            //es gibt schon einen client mit dieser sid
+            client.socket = ws;
+            //g.clients.splice(clientId, 1);
+            //clientId = prevClients[0].clientId;
+            client.connected = true;
+        } else {
+            //first time registered
+            var clientId = this.clients.length;
+            client = {socket: ws, role: role, clientId: clientId, connected: true, sid: sid};
+            this.clients.push(client);
+        }
+        ws.clientId = client.clientId;
+
+        var player = {};        //der player, der zu diesem client gehört.
+        if (role == "player") {
+            //schau mal, ob es einen player gibt, der über diesen client gespielt hat
+            //wen ja, sende diesen player
+            //wenn nicht, schaue, ob noch ein platz frei ist und vergebe ihn
+            player = this.players.filter(function (pl) {
+                return (pl.client.clientId == client.clientId);
+            })[0];
+            if (typeof player == "undefined") {
+                //lege neuen player an, falls noch ein platz frei ist
+                player = this.seatPlayer();
+                if (typeof player != "undefined") player.client = client;
+                else {
+                    ws.send(JSON.stringify({type: "registerConfirm", data: {playerId:-1}}));
+                    ws.close();
+                    client.connected = false;
+                    return;
+                }
+            }
+        }
+        //g.clients[clientId].role = role;
+        //g.clients[clientId].sid = sid;
+        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
+        if (!!this.lastPlayerMessage && role == 'player') ws.send(JSON.stringify({
+            type: "display",
+            data: this.lastPlayerMessage
+        }));
+        //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));
+        this.sendDeviceList();
+        this.sendOsInfo(ws);
+
+    },
+
+    seatPlayer: function() {
+        //find available playerId:
+        //1. look for empty players
+        //2. check if there are disconnected players
+        var player;
+        var playerId = -1;
+        for (var i = this.conf.playerCnt - 1; i >= 0; i--) {
+            if (typeof this.players[i] == 'undefined') playerId = i;
+        }
+        if (playerId == -1) {
+            for (var i = this.conf.playerCnt - 1; i >= 0; i--) {
+                if (typeof this.players[i] != 'undefined') {
+                    if (!this.players[i].client.connected) playerId = i;
+                }
+            }
+        }
+        if (playerId != -1 && playerId<16) {
+            player = {
+                clientId: -1,
+                playerId: playerId,
+                colors: this.colors[playerId]
+            };
+            this.players[playerId] = player;
+        }
+        return player;
+    },
+
     rate: function (clientId, data) {
         var playerId = data.playerId;
         var rate = data.rate;
         this.rating[playerId] = rate;
-        console.log("rate: " +this.rating);
+        console.log("rate: " + this.rating);
         this.calcAvgRate();
-        this.msgDevicesByRole('player', 'rates', {avgRating:this.avgRating});
+        this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
     },
 
-    calcAvgRate: function() {
+    calcAvgRate: function () {
         var sum;
-        for (var j = 0; j < this.conf.playerCnt; j++){
+        for (var j = 0; j < this.rating.length; j++) {
             sum = 0;
-            for (var i = 0; i < this.conf.playerCnt; i++) {
+            for (var i = 0; i < this.rating.length; i++) {
                 sum += this.rating[i][j];
             }
-            this.avgRating[j] = Math.round(sum/this.conf.playerCnt);
+            this.avgRating[j] = Math.round(sum / this.conf.playerCnt);
         }
     },
 
@@ -213,8 +269,11 @@ Game.prototype = {
         for (var i = 0; i < this.clients.length; i++) {
             if (this.clients[i].connected) list.push({id: i, role: this.clients[i].role});
         }
-        this.clients.forEach(function(client) {
-            if (client.role == "master" && client.connected) client.socket.send(JSON.stringify({type: "DeviceList", data: list}));
+        this.clients.forEach(function (client) {
+            if (client.role == "master" && client.connected) client.socket.send(JSON.stringify({
+                type: "DeviceList",
+                data: list
+            }));
         });
     },
 
@@ -255,7 +314,10 @@ Game.prototype = {
     log: function (sid, message) {
         message = "Client " + sid + " - " + message;
         this.clients.forEach(function each(client) {
-            if (client.role == "master" && client.connected) client.socket.send(JSON.stringify({type: "log", data: message}));
+            if (client.role == "master" && client.connected) client.socket.send(JSON.stringify({
+                type: "log",
+                data: message
+            }));
         });
         console.log("gesendet");
     },
@@ -317,7 +379,7 @@ Game.prototype = {
         map.devices.forEach(function (dev) {
             self.msgDevicesByRole(dev, "display", content);
         });
-        self.msgDevicesByRole('master', 'status', {stepId: self.stepId});
+        self.msgDevicesByRole('master', 'status', {stepId: self.stepId, type: self.getItem().type});
 
         //checken, wie der nächste step getriggert wird
         if (this.stepId + 1 < this.decks[this.deckId].items.length) {
@@ -328,12 +390,12 @@ Game.prototype = {
     },
 
     msgDevicesByRole: function (role, type, message) {
-        if (role === "player") this.lastPlayerMessage = message;
+        if (role === "player" && type == "vote" || type =="card") this.lastPlayerMessage = message;
         var self = this;
         this.clients.forEach(function each(client) {
             if (client.role == role && client.connected) {
                 client.socket.send(JSON.stringify({type: type, data: message}));
-                self.log(-1, "sent to client "+client.clientId+":"+JSON.stringify({type: type, data: message}))
+                self.log(-1, "sent to client " + client.clientId + ":" + JSON.stringify({type: type, data: message}))
             }
         });
     },
@@ -377,7 +439,7 @@ Game.prototype = {
             });
             this.play = true;
             this.log(sid, "client" + sid + " started game");
-            this.msgDevicesByRole('player', 'rates', {avgRating:this.avgRating});
+            this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
         } else {
             this.log(sid, "client" + sid + " already playing");
         }
@@ -391,6 +453,8 @@ Game.prototype = {
     },
 
     vote: function (sid, data) {
+        var pid = data.playerId;
+        data = data.data;
         if (this.decks[this.deckId].items[this.stepId].type != "vote") {
             this.msgDeviceByIds([sid], "display", {"text": "There is no vote at the moment!"});
             return;
@@ -403,6 +467,7 @@ Game.prototype = {
         for (var i = 0; i < data.length; i++) {
             if (data[i].checked) msg += data[i].text + " ";
             this.getItem().votes[sid] = data;
+            this.getItem().votes[sid].multiplier = this.avgRating[pid];
         }
         this.log(sid, msg);
         this.msgDeviceByIds([sid], "display", {"text": msg});
@@ -419,7 +484,7 @@ Game.prototype = {
                 if (!voteOptions[i].result) voteOptions[i].result = 0;
                 if (votes[v][i].checked) {
                     voteCount++;
-                    voteOptions[i].result += 1;
+                    voteOptions[i].result += votes[v].multiplier;
                     if (voteOptions[i].result > voteOptions[bestOption].result) bestOption = i;
                 }
             }
