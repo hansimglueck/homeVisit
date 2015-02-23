@@ -89,6 +89,12 @@ Game.prototype = {
                                     case "getInfo":
                                         g.sendOsInfo(ws);
                                         break;
+                                    case "restartwlan1":
+                                        exec("/home/pi/homeVisit/shellscripts/wlan1_conf "+msg.para.ssid+" "+msg.para.passwd, function (error, stdout, stderr) {
+                                            console.log("exec1")
+                                        });
+                                        g.sendOsInfo(ws);
+                                        break;
                                 }
                                 break;
 

@@ -104,9 +104,12 @@ masterControllers.controller('OsCtrl', function($scope, Socket) {
         if (!confirm("WIRKLICH RUNTERFAHREN??????????")) return;
         Socket.emit({type:"os", data:"shutdown"}, function() { console.log('shutdown send'); });
     };
+    $scope.restartWlan1 = function() {
+        Socket.emit({type:"os", data:"restartwlan1", para:{ssid:$scope.wlanId, passwd:$scope.wlanPasswd}}, function() { console.log('restart-request sent'); });
+    };
     $scope.requestOsInfo = function() {
         Socket.emit({type:"os", data:"getInfo"}, function() { console.log('os info requested'); });
-    }
+    };
     Socket.on("osinfo", function(event) {
         $scope.osInfo = JSON.parse(event.data).data;
         console.log("got os info: "+JSON.stringify($scope.osInfo));

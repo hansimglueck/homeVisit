@@ -17,7 +17,10 @@
         </li>
 
     </ul>
-<div class="buttons">
-    <button class="btn" ng-click="shutdown()">SHUTDOWN</button>
-</div>
+    SSID: <input type="text" ng-model="wlanId" />
+    Passwort: <input type="password" ng-model="wlanPasswd" />
+    <div class="buttons">
+        <button class="btn" ng-click="shutdown()">SHUTDOWN</button>
+        <button class="btn" ng-click="restartWlan1()">RESTART WLAN</button>
+    </div>
 </div>
