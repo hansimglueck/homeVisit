@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
     <link rel="stylesheet" href="stylesheets/responsive.min.css"/>
     <link rel="stylesheet" href="stylesheets/app.css"/>
-    <link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-desktop.min.css">
     <link rel='stylesheet' href='/stylesheets/player.css'/>
 
     <script src="bower_components/angular/angular.js"></script>
@@ -29,42 +28,33 @@
     <script src="playerApp/services/playerAppServices.js"></script>
 
 </head>
-<body ng-app="playerApp" ng-swipe-right='Ui.turnOn("uiSidebarLeft")'
+<body ng-app="playerApp" ng-controller="ctrl" ng-swipe-right='Ui.turnOn("uiSidebarLeft")'
       ng-swipe-left='Ui.turnOff("uiSidebarLeft")' ng-init="register()">
 
 <!-- Sidebars -->
-<div class="sidebar sidebar-left" ng-controller="MenuController">
+<div class="sidebar sidebar-left">
     <div class="scrollable">
         <h1 class="scrollable-header app-name">Menu</h1>
         <div class="scrollable-content">
             <div class="list-group" ui-turn-off='uiSidebarLeft'>
-                <div class="list-group-item">{{status.server.connected ? "Connected to Server" : "Not Connected"}}</div>
-                <div class="list-group-item">
-                    {{status.player }}
-                </div>
-                <a class="list-group-item" ng-click="joinGame()" ng-show="status.player.playerId == -1">
-                    Not in the Game! Join.
-                </a>
-                <a class="list-group-item" ng-click="leaveGame()" ng-hide="status.player.playerId == -1">
-                    In the Game as Player {{status.player.playerId }}! Leave.
-                </a>
-                <a class="list-group-item" href="#/rating">Rating
+                <div class="list-group-item">{{status.connected ? "Connected to Server" : "Not Connected"}}</div>
+                <a class="list-group-item" href="#/link1">Link 1
                     <i class="fa fa-chevron-right pull-right"></i></a>
-                <a class="list-group-item" href="#/chat">Chat
+                <a class="list-group-item" href="#/link2">Link 2
                     <i class="fa fa-chevron-right pull-right"></i></a>
-                <a class="list-group-item" href="#/vote">Vote
+                <a class="list-group-item" href="#/link3">Link 3
                     <i class="fa fa-chevron-right pull-right"></i></a>
             </div>
         </div>
     </div>
 </div>
 <div class="app">
-    <div class="navbar navbar-app navbar-absolute-top text-center red" ng-controller="NavbarController">
+    <div class="navbar navbar-app navbar-absolute-top text-center red">
         <div ng-style="{'height': '100px'}">
-            <div class="row1" ng-style="col1()">
+            <div class="row1" ng-style="col1">
                 <h1><%= title %> </h1>
             </div>
-            <div class="row2" ng-style="col2()">{{status.player}}
+            <div class="row2" ng-style="col2">
                 <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
                     {{itemTypes[type]}}
                 </div>
@@ -94,7 +84,49 @@
             </div>
 
 
-            <div class="section content" ng-view>
+            <div class="section content" ng-switch="type">
+                <div ng-switch-when="result">
+                    <canvas id="base" class="chart chart-base ng-isolate-scope" chart-type="'Pie'" data="data"
+                            labels="labels"
+                            legend="true">
+                    </canvas>
+                </div>
+
+                <div ng-switch-when="card">
+                    <ul class="list-unstyled">
+                        <li ng-repeat="t in text track by $index">{{t}}</li>
+                    </ul>
+                </div>
+
+                <div ng-switch-when="home">
+                    EUROPA
+                </div>
+
+                </div>
+
+                <div ng-switch-when="vote">
+                    <ul class="list-unstyled">
+                        <li ng-repeat="t in text track by $index">{{t}}</li>
+                    </ul>
+                    <div ng-switch="limit > 1">
+                        <ul class="list-unstyled wide-list" ng-switch-when="false">
+                            <li ng-repeat="opt in options track by $index">
+                                <button class="btn-lg" ng-click="vote($index)">{{opt.text}}</button>
+                            </li>
+                        </ul>
+
+                        <ul class="list-unstyled wide-list" ng-switch-when="true">
+                            <li ng-repeat="opt in options track by $index">
+                                <input type="checkbox" ng-model="opt.checked" ng-change="checkChanged(opt)"
+                                       ng-disabled="checked==limit && !opt.checked"/>
+                                {{opt.text}}
+                            </li>
+                            <li>
+                                <button ng-click="vote()">VOTE</button>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -8,6 +8,8 @@ angular.module('WebsocketServices', []).
         var onMessageCallbacks;
         var host = location.host;
         onMessageCallbacks = [];
+        var connected = false;
+        var server = {connected: connected};
 
         var connect = function () {
             ws = new WebSocket('ws://' + host);
@@ -16,6 +18,8 @@ angular.module('WebsocketServices', []).
             //};
             ws.onclose = function () {
                 console.log("client lost connection");
+                server.connected = false;
+                $rootScope.$digest(); //damit das false auch ankommt...
                 setTimeout(function () {
                     connect();
                 }, 1000);
@@ -23,6 +27,8 @@ angular.module('WebsocketServices', []).
 
             ws.onopen = function () {
                 console.log("client: Socket has been opened!");
+                server.connected = true;
+                $rootScope.$digest(); //damit das true auch ankommt...
                 ws.send(JSON.stringify({type: "register", data: {role:'player', sid:sid}}));
 
             };
@@ -49,6 +55,11 @@ angular.module('WebsocketServices', []).
         };
         connect();
         return {
+            server:server,
+            connected: function() {
+                return connected;
+            },
+
             connect: function() {connect()},
 
             on: function (eventName, callback) {

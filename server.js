@@ -1,3 +1,4 @@
+var conf = require('./homevisitConf');
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
@@ -118,7 +119,7 @@ app.use(function(err, req, res, next) {
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(3000);
+server.listen(conf.port);
 //server.on('error', onError);
 //server.on('listening', onListening);
 

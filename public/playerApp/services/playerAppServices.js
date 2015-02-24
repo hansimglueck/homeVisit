@@ -29,11 +29,75 @@ angular.module('playerAppServices', [])
             ["pink", "schwarz"]
         ];
     })
-    .factory('itemTypes', function() {
+    .factory('itemTypes', function () {
         return {
             'card': 'Card',
             'vote': 'Vote',
             'rating': 'Rating',
             'result': 'Result'
         }
-    });
+    })
+    .factory('Status', function (Socket) {
+
+        var emptyPlayer = {playerId: -1, colors:["weiss","weiss"]};
+        var statusFactory = {};
+        statusFactory.player = emptyPlayer;
+        statusFactory.otherPlayers = [];
+        statusFactory.maxPlayers = 0;
+        statusFactory.server = Socket.server;
+
+        Socket.on('status', function (event) {
+            var data = JSON.parse(event.data).data;
+            if (data.player) {
+                statusFactory.player = data.player;
+                if (data.player.playerId == -1) statusFactory.player = emptyPlayer;
+            }
+            if (data.otherPlayers) statusFactory.otherPlayers = data.otherPlayers;
+            if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
+        });
+
+        statusFactory.connected = function () {
+            return Socket.connected();
+        };
+        statusFactory.joinGame = function () {
+            Socket.emit({type: "joinGame", data: {}});
+        };
+        statusFactory.leaveGame = function() {
+            Socket.emit({type: "leaveGame", data: {}});
+        };
+        return statusFactory;
+
+
+    })
+
+    .factory('Rating', function (Socket, Status) {
+        var myRatings = [];
+        var avgRatings = [];
+        var maxRating = 8;
+
+        Socket.on('rates', function (event) {
+            var data = JSON.parse(event.data).data;
+            avgRatings = data.avgRating;
+            console.log(avgRatings);
+        });
+
+        return {
+
+            rate: function (id, diff) {
+                myRatings[id] += diff;
+                Socket.emit({type: "rate", data: {rate: myRatings, playerId: Status.player.playerId}});
+            },
+            getMyRatings: function () {
+                if (Status.getMaxPlayers() != myRatings.length) {
+                    for (var i = 0; i < Status.getMaxPlayers(); i++) {
+                        myRatings[i] = myRatings[i] ? myRatings[i] : maxRating / 2;
+                    }
+                }
+                return myRatings;
+            },
+            getAvgRatings: function () {
+                return avgRatings;
+            }
+        }
+    })
+;

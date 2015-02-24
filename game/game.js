@@ -78,6 +78,14 @@ Game.prototype = {
                                 g.registerClient(msg, ws);
                                 break;
 
+                            case "joinGame":
+                                g.requestJoin(clientId, msg.data);
+                                break;
+
+                            case "leaveGame":
+                                g.leaveGame(clientId);
+                                break;
+
                             case "os":
                                 switch (msg.data) {
                                     case "shutdown":
@@ -90,10 +98,10 @@ Game.prototype = {
                                         g.sendOsInfo(ws);
                                         break;
                                     case "restartwlan1":
-                                        exec("/home/pi/homeVisit/shellscripts/wlan1_conf "+msg.para.ssid+" "+msg.para.passwd, function (error, stdout, stderr) {
-                                            console.log("exec1")
+                                        exec("/home/pi/homeVisit/shellscripts/wlan1_conf " + msg.para.ssid + " " + msg.para.passwd, function (error, stdout, stderr) {
+                                            console.log("exec1");
+                                            g.sendOsInfo(ws);
                                         });
-                                        g.sendOsInfo(ws);
                                         break;
                                 }
                                 break;
@@ -120,24 +128,28 @@ Game.prototype = {
 
                         }
                     }
-                }catch(err){
-                    console.log(err.message);
+                } catch (err) {
+                    console.log("ERRROR: " + err.stack);
                 }
                 //ws.send(JSON.stringify({msg:{connectionId:userId}}));
             });
 
             ws.on("close", function () {
-                var clientId = ws.clientId;
-                console.log("websocket connection close");
-                g.clients[clientId].connected = false;
-                g.sendDeviceList();
+                try {
+                    var clientId = ws.clientId;
+                    console.log("websocket connection close");
+                    g.clients[clientId].connected = false;
+                    g.sendDeviceList();
+                } catch (e) {
+                    console.log("ERROR: " + e.message)
+                }
             });
         });
         console.log("websocket server created");
 
     },
 
-    registerClient: function(msg, ws) {
+    registerClient: function (msg, ws) {
         //var clientId;
         //clientId = g.clients.length;
         //g.clients.push({socket: ws, role: "undefined", clientId: clientId, connected: true});
@@ -176,47 +188,101 @@ Game.prototype = {
         }
         ws.clientId = client.clientId;
 
-        var player = {};        //der player, der zu diesem client gehört.
-        if (role == "player") {
-            //schau mal, ob es einen player gibt, der über diesen client gespielt hat
-            //wen ja, sende diesen player
-            //wenn nicht, schaue, ob noch ein platz frei ist und vergebe ihn
-            player = this.players.filter(function (pl) {
-                return (pl.client.clientId == client.clientId);
-            })[0];
-            if (typeof player == "undefined") {
-                //lege neuen player an, falls noch ein platz frei ist
-                player = this.seatPlayer();
-                if (typeof player != "undefined") player.client = client;
-                else {
-                    ws.send(JSON.stringify({type: "registerConfirm", data: {playerId:-1}}));
-                    ws.close();
-                    client.connected = false;
-                    return;
-                }
-            }
-        }
         //g.clients[clientId].role = role;
         //g.clients[clientId].sid = sid;
-        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
-        if (!!this.lastPlayerMessage && role == 'player') ws.send(JSON.stringify({
-            type: "display",
-            data: this.lastPlayerMessage
-        }));
+        ws.send(JSON.stringify({type: "registerConfirm"}));
+//        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
         //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));
         this.sendDeviceList();
         this.sendOsInfo(ws);
-
     },
 
-    seatPlayer: function() {
+    getPlayerForClientId: function(clientId) {
+        var players = this.players.filter(function (pl) {
+            if (typeof pl == "undefined") return false;
+            if (pl.client == null) return false;
+            return (pl.client.clientId == clientId);
+        });
+        return (players.length > 0) ? players[0] : null;
+    },
+
+    leaveGame: function(clientId) {
+        var player = this.getPlayerForClientId(clientId);
+        player.client = null;
+        this.sendPlayerStatus();
+    },
+
+    requestJoin: function (clientId, msg) {
+        var client = this.clients[clientId];
+        var player;        //der player, der zu diesem client gehört.
+        //schau mal, ob es einen player gibt, der über diesen client gespielt hat
+        //wen ja, sende diesen player
+        //wenn nicht, schaue, ob noch ein platz frei ist und vergebe ihn
+        player = this.getPlayerForClientId(clientId);
+        if (player == null) {
+            //lege neuen player an, falls noch ein platz frei ist
+            player = this.seatPlayer(client);
+            if (player == null) {
+                //kein freier platz!
+                ws.send(JSON.stringify({
+                    type: "status",
+                    data: {player: {playerId: -1}, otherPlayers: this.getPlayerArray(), maxPlayers: this.conf.playerCnt}
+                }));
+                return;
+            } else {
+                if (!!this.lastPlayerMessage) client.socket.send(JSON.stringify({
+                    type: "display",
+                    data: this.lastPlayerMessage
+                }));
+            }
+        }
+        this.sendPlayerStatus();
+    },
+
+    sendPlayerStatus: function () {
+        var self = this;
+        var playerClients = this.clients.filter(function(cl){
+            return (cl.role == "player");
+        });
+        playerClients.forEach(function (cl) {
+            var pl = self.getPlayerForClientId(cl.clientId);
+            if (pl == null) pl = {playerId: -1};
+            if (cl.connected) cl.socket.send(JSON.stringify({
+                type: "status",
+                data: {
+                    player: {playerId: pl.playerId, colors: pl.colors},
+                    otherPlayers: self.getPlayerArray(),
+                    maxPlayers: self.conf.playerCnt
+                }
+            }));
+        })
+    },
+
+    getPlayerArray: function () {
+        var ret = [];
+        this.players.forEach(function (pl) {
+            ret.push({playerId: pl.playerId});
+        });
+        return ret;
+    },
+
+    seatPlayer: function (client) {
         //find available playerId:
         //1. look for empty players
-        //2. check if there are disconnected players
-        var player;
+        //2. check if there are unseated players (client == null)
+        //3. check if there are disconnected players
+        var player = null;
         var playerId = -1;
         for (var i = this.conf.playerCnt - 1; i >= 0; i--) {
             if (typeof this.players[i] == 'undefined') playerId = i;
+            else if (this.players[i].client == null) playerId = i;
+        }
+        if (playerId == -1) {
+            for (var i = this.conf.playerCnt - 1; i >= 0; i--) {
+                if (typeof this.players[i] != 'undefined') {
+                    if (this.players[i].client == null) playerId = i;
+                }
+            }
         }
         if (playerId == -1) {
             for (var i = this.conf.playerCnt - 1; i >= 0; i--) {
@@ -225,9 +291,10 @@ Game.prototype = {
                 }
             }
         }
-        if (playerId != -1 && playerId<16) {
+        if (playerId != -1 && playerId < 16) {
             player = {
-                clientId: -1,
+                client: client,
+                clientId: client.clientId,
                 playerId: playerId,
                 colors: this.colors[playerId]
             };
@@ -396,7 +463,7 @@ Game.prototype = {
     },
 
     msgDevicesByRole: function (role, type, message) {
-        if (role === "player" && type == "vote" || type =="card") this.lastPlayerMessage = message;
+        if (role === "player" && type == "vote" || type == "card") this.lastPlayerMessage = message;
         var self = this;
         this.clients.forEach(function each(client) {
             if (client.role == role && client.connected) {
