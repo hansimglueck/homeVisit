@@ -33,16 +33,17 @@ var server = require('http').createServer(app);
  * create game
  */
 
-var game = require('./game/game.js');
+//var game = require('./game/game.js');
 var db = mongoose.connection;
-db.once('open', function() { game.initDb() });
+//db.once('open', function() { game.initDb() });
 /**
  * create websocket
  */
 
 var WebSocketServer = require('ws').Server;
 var wss = new WebSocketServer({server: server});
-game.setSocketServer(wss);
+var wsManager = require('./game/wsManager.js');
+wsManager.setSocketServer(wss);
 
 
 
@@ -65,7 +66,8 @@ app.use(session({
 
 app.use(function (req, res, next) {
     var pid = req.session.pid;
-
+    //console.log("sid: "+req.sessionID);
+    wsManager.registerSID(req.sessionID);
     if (!pid) {
        // pid = req.session.cookies.connect.sid = {};
     }

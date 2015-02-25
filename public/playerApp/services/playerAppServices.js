@@ -119,6 +119,12 @@ angular.module('playerAppServices', [])
         statusFactory.ratingActive = true;
         statusFactory.joined = false;
         statusFactory.server = Socket.server;
+        statusFactory.clientId = -1;
+
+        Socket.on('registerConfirm', function (event) {
+            var data = JSON.parse(event.data).data;
+            if (typeof data != "undefined") statusFactory.clientId = data;
+        });
 
         Socket.on('status', function (event) {
             var data = JSON.parse(event.data).data;

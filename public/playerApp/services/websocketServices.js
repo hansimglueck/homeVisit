@@ -3,7 +3,7 @@
  */
 angular.module('WebsocketServices', []).
     factory('Socket', function ($rootScope, $cookies) {
-        var sid = $cookies['connect.sid'];
+        var sid = $cookies['connect.sid'].split(":")[1].split(".")[0];
         var ws;
         var onMessageCallbacks;
         var host = location.host;
