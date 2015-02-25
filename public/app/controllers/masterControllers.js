@@ -5,9 +5,9 @@ var masterControllers = angular.module('masterControllers', [])
         //$scope.options = null;
         $scope.status = {stepId: -1, type:"nix"};
 
-        $scope.playback = function(cmd) {
+        $scope.playback = function(cmd, param) {
             console.log("play clicked");
-            Socket.emit({type:"playbackAction", data:cmd}, function() { console.log('play emitted'); });
+            Socket.emit({type:"playbackAction", data:cmd, param:param}, function() { console.log('play emitted'); });
         };
 
         Socket.on("status", function(event) {

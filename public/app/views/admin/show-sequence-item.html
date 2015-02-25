@@ -5,30 +5,33 @@
 
     <td>
         <!-- editable type (select-local) -->
-        <span editable-select="item.type" e-name="type" e-form="rowform" e-ng-options="s.value as s.text for s in types">
+        <span editable-select="item.type" e-name="type" e-form="rowform"
+              e-ng-options="s.value as s.text for s in types">
           {{ showType(item) }}
         </span>
     </td>
 
     <td>
-        <span editable-select="item.trigger" e-name="trigger" e-form="rowform" e-ng-options="s.value as s.text for s in trigger">
+        <span editable-select="item.trigger" e-name="trigger" e-form="rowform"
+              e-ng-options="s.value as s.text for s in trigger">
           {{ showTrigger(item) }}
-        </span><br />
+        </span><br/>
         Wait: <span editable-text="item.wait" e-name="wait" e-form="rowform">
           {{ item.wait || '0' }}
         </span> Sek.
     </td>
 
-    <td ng-show="item.type=='card'||'vote'">
+    <td>
         <!-- editable textarea -->
         <span editable-textarea="item.text" e-rows="7" e-cols="40" e-name="text1" e-form="rowform">
           {{ item.text || 'kein Text' }}
         </span>
-        <div ng-show="item.type=='vote'">
+
+        <div ng-show="item.type=='vote' || item.type=='switch'">
         <span editable-text="item.voteMulti" e-name="voteMulti" e-form="rowform">
           {{ item.voteMulti || '' }}
         </span>
-            <br/> Abstimmungsoptionen:
+            <br/> Optionen:
             <table class="table">
                 <tbody show-vote-option>
                 </tbody>
@@ -38,7 +41,7 @@
     </td>
 
     <td ng-show="item.type=='soundddd'">Soundfile:
-    <!-- editable Text -->
+        <!-- editable Text -->
         <span editable-text="item.file" e-name="file" e-form="rowform">
           {{ item.file || 'empty' }}
         </span>
@@ -53,7 +56,8 @@
 
     <td style="white-space: nowrap">
         <!-- form -->
-        <form editable-form name="rowform" onaftersave="saveItem($parent.$index)" ng-show="rowform.$visible" class="form-buttons form-inline" shown="!item._id">
+        <form editable-form name="rowform" onaftersave="saveItem($parent.$index)" ng-show="rowform.$visible"
+              class="form-buttons form-inline" shown="!item._id">
             <button type="submit" ng-disabled="rowform.$waiting" class="btn btn-primary">
                 Speichern
             </button>
@@ -64,7 +68,7 @@
         <div class="buttons" ng-show="!rowform.$visible">
             <button class="btn btn-primary" ng-click="rowform.$show()">Bearbeiten</button>
             <button class="btn btn-danger" ng-click="deleteItem($parent.$index, $index)">Löschen</button>
-<!--            <button class="btn" ng-click="addItem($parent.$index, $index)">Einfügen</button> -->
+            <!--            <button class="btn" ng-click="addItem($parent.$index, $index)">Einfügen</button> -->
         </div>
     </td>
 </tr>

@@ -16,6 +16,7 @@ gameServices.factory('Game', ['$resource', function($resource){
         { value: 'card', text: 'Karte' },
         { value: 'sound', text: 'Sound' },
         { value: 'vote', text: 'Abstimmung'},
+        { value: 'switch', text: 'Switch'},
         { value: 'rating', text: 'Rating'}
     ]
 })

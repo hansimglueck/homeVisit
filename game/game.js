@@ -107,7 +107,7 @@ Game.prototype = {
                                 break;
 
                             case "playbackAction":
-                                g.trigger(clientId, msg.data);
+                                g.trigger(clientId, msg);
                                 break;
 
                             case "forceReload":
@@ -157,7 +157,7 @@ Game.prototype = {
 
     },
 
-    chat: function(clientId, data) {
+    chat: function (clientId, data) {
         var recId = this.players[data.recepient].clientId;
         this.msgDeviceByIds([recId], "chat", {playerId: data.sender, message: data.message});
 
@@ -211,7 +211,7 @@ Game.prototype = {
         if (role == "master") this.sendOsInfo(ws);
     },
 
-    getPlayerForClientId: function(clientId) {
+    getPlayerForClientId: function (clientId) {
         var players = this.players.filter(function (pl) {
             if (typeof pl == "undefined") return false;
             if (pl.client == null) return false;
@@ -220,7 +220,7 @@ Game.prototype = {
         return (players.length > 0) ? players[0] : null;
     },
 
-    leaveGame: function(clientId) {
+    leaveGame: function (clientId) {
         var player = this.getPlayerForClientId(clientId);
         player.client = null;
         this.sendPlayerStatus();
@@ -238,7 +238,11 @@ Game.prototype = {
             player = this.seatPlayer(client);
             if (player == null) {
                 //kein freier platz!
-                this.msgDeviceByIds([clientId],"status",{player: {playerId: -1}, otherPlayers: this.getPlayerArray(), maxPlayers: this.conf.playerCnt});
+                this.msgDeviceByIds([clientId], "status", {
+                    player: {playerId: -1},
+                    otherPlayers: this.getPlayerArray(),
+                    maxPlayers: this.conf.playerCnt
+                });
                 return;
             } else {
                 if (!!this.lastPlayerMessage) client.socket.send(JSON.stringify({
@@ -253,7 +257,7 @@ Game.prototype = {
 
     sendPlayerStatus: function () {
         var self = this;
-        var playerClients = this.clients.filter(function(cl){
+        var playerClients = this.clients.filter(function (cl) {
             return (cl.role == "player");
         });
         playerClients.forEach(function (cl) {
@@ -273,8 +277,8 @@ Game.prototype = {
     getPlayerArray: function () {
         var ret = [];
         this.players.forEach(function (pl) {
-            if (typeof pl != "undefined") ret.push({playerId: pl.playerId, colors:pl.colors});
-            else ret.push({playerId: -1, colors:["weiss", "weiss"]});
+            if (typeof pl != "undefined") ret.push({playerId: pl.playerId, colors: pl.colors});
+            else ret.push({playerId: -1, colors: ["weiss", "weiss"]});
         });
         return ret;
     },
@@ -334,9 +338,9 @@ Game.prototype = {
         for (var j = 0; j < this.rating.length; j++) {
             sum = 0;
             for (var i = 0; i < this.rating.length; i++) {
-                if (i!=j) sum += this.rating[i][j];
+                if (i != j) sum += this.rating[i][j];
             }
-            this.avgRating[j] = Math.round(sum / (this.conf.playerCnt-1));
+            this.avgRating[j] = Math.round(sum / (this.conf.playerCnt - 1));
         }
     },
 
@@ -368,8 +372,12 @@ Game.prototype = {
     },
 
     trigger: function (sid, msg) {
-        console.log("game.trigger: " + sid + ", " + msg);
-        switch (msg) {
+        var param = "";
+        if (msg.param) {
+            param = msg.param;
+        }
+        console.log("game.trigger: " + sid + ", " + msg.data + "with parameter:" + param);
+        switch (msg.data) {
             case "play":
                 console.log('play');
                 this.start(sid);
@@ -381,19 +389,19 @@ Game.prototype = {
 
             case "go":
                 console.log('go');
-                this.step(sid);
+                this.step(sid, param);
                 break;
 
             case "rego":
                 console.log('rego');
-                this.step(sid, this.stepId);
+                this.step(sid, param, this.stepId);
                 break;
 
             case "back":
                 console.log('back');
                 var id = this.stepId;
                 if (id > 0) id--;
-                this.step(sid, id);
+                this.step(sid, param, id);
                 break;
 
             default:
@@ -412,7 +420,7 @@ Game.prototype = {
         console.log("gesendet");
     },
 
-    step: function (sid, id) {
+    step: function (sid, param, id) {
         var msg = "";
 
         //autostart or deny
@@ -454,23 +462,39 @@ Game.prototype = {
         if (typeof wait === 'undefinded') wait = 0;
         var self = this;
         setTimeout(function () {
-            self.executeStep.call(self, sid, content)
+            self.executeStep.call(self, sid, content, param);
         }, wait);
     },
 
-    executeStep: function (sid, content) {
-
-        //an die konfigurierten default-devices senden
-        var map = this.conf.typeMapping.filter(function (tm) {
-            return (tm.type == content.type);
-        })[0];
-        if (map.devices.length == 0) this.log(sid, "keine Devices gefunden für " + content.type);
+    executeStep: function (sid, content, param) {
         var self = this;
-        map.devices.forEach(function (dev) {
-            self.msgDevicesByRole(dev, "display", content);
-        });
-        self.msgDevicesByRole('master', 'status', {stepId: self.stepId, type: self.getItem().type});
+        if (content.type == "switch") {
+            content.voteOptions.forEach(function (option) {
+                if (option.text == param) {
+                    self.decks.forEach(function (deck, id) {
+                        console.log(deck._id);
+                        console.log(option.followUp);
+                        if (String(deck._id) == String(option.followUp)) self.deckId = id;
+                        console.log(String(deck._id) == String(option.followUp));
+                    });
+                    //console.log(g.decks);
+                    self.step(sid, "", 0);
+                    return;
+                }
+                self.log(sid, "FollowUp nicht gefunden!!!")
+            });
+        } else {
+            //an die konfigurierten default-devices senden
+            var map = this.conf.typeMapping.filter(function (tm) {
+                return (tm.type == content.type);
+            })[0];
+            if (map.devices.length == 0) this.log(sid, "keine Devices gefunden für " + content.type);
+            map.devices.forEach(function (dev) {
+                self.msgDevicesByRole(dev, "display", content);
+            });
+            self.msgDevicesByRole('master', 'status', {stepId: self.stepId, type: self.getItem().type});
 
+        }
         //checken, wie der nächste step getriggert wird
         if (this.stepId + 1 < this.decks[this.deckId].items.length) {
             if (this.decks[this.deckId].items[this.stepId + 1].trigger == "follow") {
@@ -525,7 +549,7 @@ Game.prototype = {
                     console.log(String(deck._id) == String(g.conf.startDeckId));
                 });
                 //console.log(g.decks);
-                g.step(sid, 0);
+                g.step(sid, "", 0);
             });
             this.play = true;
             this.log(sid, "client" + sid + " started game");
@@ -574,7 +598,7 @@ Game.prototype = {
                 if (!voteOptions[i].result) voteOptions[i].result = 0;
                 if (!voteOptions[i].votes) voteOptions[i].votes = 0;
                 if (votes[v][i].checked) {
-                    voteCount+=votes[v].multiplier;
+                    voteCount += votes[v].multiplier;
                     voteOptions[i].result += votes[v].multiplier;
                     voteOptions[i].votes += 1;
                     if (voteOptions[i].result > voteOptions[bestOption].result) bestOption = i;
@@ -589,7 +613,7 @@ Game.prototype = {
         var resData = [];
         this.getItem().voteOptions.forEach(function (option) {
             //msg += option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% (" + option.result + "/" + voteCount + ")" + "::";
-            labels.push(option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% ("+option.votes+")");
+            labels.push(option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% (" + option.votes + ")");
             resData.push(option.result / voteCount * 100);
         });
         this.msgDevicesByRole('player', "display", {type: "result", text: msg, labels: labels, data: resData});
