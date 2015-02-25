@@ -25,6 +25,11 @@ WsManager.prototype = {
             //g.clients.push({socket: ws, role: "undefined", clientId: clientId, connected: true});
 
             ws.on("message", function (data) {
+                if (data == "ping") {
+                    console.log("ping");
+                    setTimeout(function() {ws.send("pong")},0);
+                    return;
+                }
                 try {
                     var clientId = ws.clientId;
                     self.wss.clients.forEach(function each(client) {

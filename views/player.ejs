@@ -17,6 +17,7 @@
     <script src="bower_components/angular-cookies/angular-cookies.js"></script>
     <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.min.js"></script>
     <script src="bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
+    <script src="bower_components/angular-socket-io/socket.js"></script>
     <!--    <script src="bower_components/d3/d3.js"></script>
         <script src="bower_components/nvd3/build/nv.d3.js"></script>
         <script src="bower_components/angularjs-nvd3-directives/dist/angularjs-nvd3-directives.js"></script>  -->
@@ -40,6 +41,7 @@
         <div class="scrollable-content">
             <div class="list-group" ui-turn-off='uiSidebarLeft'>
                 <div class="list-group-item">{{status.server.connected ? "Connected to Server as Client "+status.clientId : "Not Connected"}}</div>
+                <div class="list-group-item">PingPong = {{pingTime}}, {{pingCount}}</div>
                 <a class="list-group-item" ng-click="joinGame()" ng-show="status.player.playerId == -1">
                     Not in the Game! Join.
                 </a>

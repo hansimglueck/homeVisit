@@ -10,7 +10,22 @@ angular.module('WebsocketServices', []).
         onMessageCallbacks = [];
         var connected = false;
         var server = {connected: connected};
+        var pingTime = 0;
+        var pingCount = 0;
 
+        var ping = function() {
+            var d = new Date();
+            pingTime = d.getMilliseconds();
+            ws.send("ping");
+            pingCount++;
+            setTimeout(function(){ping()}, 2000);
+        };
+        var pong = function() {
+            var d = new Date();
+            console.log("pong: "+(d.getMilliseconds()-pingTime));
+            pingCount--;
+            $rootScope.$broadcast("pingpong", (d.getMilliseconds()-pingTime), pingCount);
+        };
         var connect = function () {
             ws = new WebSocket('ws://' + host);
             //ws.onconnect = function () {
@@ -31,9 +46,14 @@ angular.module('WebsocketServices', []).
                 server.connected = true;
                 $rootScope.$digest(); //damit das true auch ankommt...
                 ws.send(JSON.stringify({type: "register", data: {role:'player', sid:sid}}));
-
+                ping();
             };
+
             ws.onmessage = function (event) {
+                if (event.data == "pong") {
+                    pong();
+                    return;
+                }
                 console.log('onmessage: ' + event.data);
                 var message = JSON.parse(event.data);
                 var args = arguments;
@@ -50,13 +70,19 @@ angular.module('WebsocketServices', []).
                         }
                     }
                 }
-
-
+            };
+            ws.onerror = function(event) {
+                console.log("WS_ERROR!!!");
+                console.log(event);
             };
         };
         connect();
         return {
+
             server:server,
+            getPingPong: function() {
+                return pingTime;
+            },
             connected: function() {
                 return connected;
             },

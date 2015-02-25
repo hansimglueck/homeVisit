@@ -28,7 +28,15 @@ var app = express();
  */
 
 var server = require('http').createServer(app);
-
+//var server2 = require('http').createServer(app);
+//
+//var io = require('socket.io')(server2);
+//io.on('connection', function (socket) {
+//    socket.emit('news', { hello: 'world' });
+//    socket.on('my other event', function (data) {
+//        console.log(data);
+//    });
+//});
 /**
  * create game
  */
@@ -122,6 +130,7 @@ app.use(function(err, req, res, next) {
  */
 
 server.listen(conf.port);
+//server2.listen(3001);
 //server.on('error', onError);
 //server.on('listening', onListening);
 

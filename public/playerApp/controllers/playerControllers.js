@@ -72,8 +72,10 @@ angular.module("playerControllers", [])
             Socket.emit({type: "vote", data: $scope.home.options, playerId: $scope.status.player.playerId});
         };
     })
-    .controller('MenuController', function ($scope, Status, colors, playerColors) {
+    .controller('MenuController', function ($scope, Status, Socket) {
         $scope.status = Status;
+        $scope.socket = Socket;
+        $scope.pingpong = Socket.getPingPong();
         $scope.joinGame = function () {
             Status.joinGame();
         };
@@ -84,6 +86,12 @@ angular.module("playerControllers", [])
             window.location.reload();console.log('X')
 
         };
+        $scope.$on("pingpong", function(event, pingTime, pingCount) {
+            console.log(pingTime, pingCount);
+            $scope.pingTime = pingTime;
+            $scope.pingCount = pingCount;
+            $scope.$digest();
+        })
     })
 
     .controller('NavbarController', function ($scope, $location, Status, colors) {

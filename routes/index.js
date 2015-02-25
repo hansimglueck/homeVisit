@@ -22,6 +22,9 @@ router.get('/game', function(req, res, next) {
 router.get('/master', function(req, res, next) {
   res.render('master', { title: 'HomeVisit Master' });
 });
+router.get('/test', function(req, res, next) {
+  res.render('test', { title: 'TEST' });
+});
 
 
 
