@@ -122,6 +122,10 @@ Game.prototype = {
                                 g.rate(clientId, msg.data);
                                 break;
 
+                            case "chat":
+                                g.chat(clientId, msg.data);
+                                break;
+
                             default:
                                 console.log("unknown message-type");
                                 break;
@@ -146,6 +150,12 @@ Game.prototype = {
             });
         });
         console.log("websocket server created");
+
+    },
+
+    chat: function(clientId, data) {
+        var recId = this.players[data.recepient].clientId;
+        this.msgDeviceByIds([recId], "chat", {playerId: data.sender, message: data.message});
 
     },
 
@@ -312,6 +322,10 @@ Game.prototype = {
     },
 
     calcAvgRate: function () {
+        if (this.conf.playerCnt <= 1) {
+            this.avgRating[0] = 4;
+            return;
+        }
         var sum;
         for (var j = 0; j < this.rating.length; j++) {
             sum = 0;
@@ -554,9 +568,11 @@ Game.prototype = {
         Object.keys(votes).forEach(function (v) {
             for (var i = 0; i < voteOptions.length; i++) {
                 if (!voteOptions[i].result) voteOptions[i].result = 0;
+                if (!voteOptions[i].votes) voteOptions[i].votes = 0;
                 if (votes[v][i].checked) {
-                    voteCount++;
+                    voteCount+=votes[v].multiplier;
                     voteOptions[i].result += votes[v].multiplier;
+                    voteOptions[i].votes += 1;
                     if (voteOptions[i].result > voteOptions[bestOption].result) bestOption = i;
                 }
             }
@@ -564,12 +580,12 @@ Game.prototype = {
         voteOptions.sort(function (a, b) {
             return b.result - a.result
         });
-        var msg = "RESULTS::-----------------::";
+        var msg = this.getItem().text;
         var labels = [];
         var resData = [];
         this.getItem().voteOptions.forEach(function (option) {
-            msg += option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% (" + option.result + "/" + voteCount + ")" + "::";
-            labels.push(option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "%");
+            //msg += option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% (" + option.result + "/" + voteCount + ")" + "::";
+            labels.push(option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% ("+option.votes+")");
             resData.push(option.result / voteCount * 100);
         });
         this.msgDevicesByRole('player', "display", {type: "result", text: msg, labels: labels, data: resData});

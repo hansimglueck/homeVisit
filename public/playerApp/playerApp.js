@@ -13,6 +13,10 @@ angular.module('playerApp', [
     .config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider.
+                when('/home', {
+                    templateUrl: 'playerApp/partials/home.html',
+                    controller: 'HomeController'
+                }).
                 when('/rating', {
                     templateUrl: 'playerApp/partials/rating.html',
                     controller: 'RatingController'
@@ -26,7 +30,7 @@ angular.module('playerApp', [
                     controller: 'VoteController'
                 }).
                 otherwise({
-                    redirectTo: '/rating'
+                    redirectTo: '/home'
                 });
         }]);
 ;
