@@ -95,6 +95,9 @@ masterControllers.controller('DeviceCtrl', function($scope, Socket, itemTypes) {
         $scope.deviceList = JSON.parse(event.data).data;
         console.log("got device list: "+JSON.stringify($scope.deviceList));
     });
+    $scope.forceReload = function(role) {
+        Socket.emit({type:"forceReload", data:role}, function() { console.log('force reload of '+role); });
+    };
 });
 
 masterControllers.controller('OsCtrl', function($scope, Socket) {

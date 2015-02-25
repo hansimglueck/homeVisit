@@ -110,6 +110,10 @@ Game.prototype = {
                                 g.trigger(clientId, msg.data);
                                 break;
 
+                            case "forceReload":
+                                g.msgDevicesByRole(msg.data, "reload");
+                                break;
+
                             case "getDeviceList":
                                 g.sendDeviceList();
                                 break;

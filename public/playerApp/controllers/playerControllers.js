@@ -76,7 +76,11 @@ angular.module("playerControllers", [])
         };
         $scope.leaveGame = function () {
             Status.leaveGame();
-        }
+        };
+        $scope.reload = function() {
+            window.location.reload();console.log('X')
+
+        };
     })
 
     .controller('NavbarController', function ($scope, $location, Status, colors) {

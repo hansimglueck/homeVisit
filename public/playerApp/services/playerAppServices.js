@@ -116,6 +116,17 @@ angular.module('playerAppServices', [])
             if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
         });
 
+        Socket.on('reload', function() {
+            window.location.reload();
+            console.log('X')
+        });
+
+
+        statusFactory.reload = function() {
+            window.location.reload();
+            console.log('X')
+        };
+
         statusFactory.connected = function () {
             return Socket.connected();
         };

@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
     <meta name="mobile-web-app-capable" content="yes">
-    <title><%= title %></title>
+    <title><%= title %>fff</title>
     <!--<link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css"/>-->
     <link rel="stylesheet" href="bower_components/angular-chart.js/dist/angular-chart.css">
     <link rel="stylesheet" href="stylesheets/responsive.min.css"/>
@@ -39,9 +39,6 @@
         <div class="scrollable-content">
             <div class="list-group" ui-turn-off='uiSidebarLeft'>
                 <div class="list-group-item">{{status.server.connected ? "Connected to Server" : "Not Connected"}}</div>
-                <div class="list-group-item">
-                    {{status.player }}
-                </div>
                 <a class="list-group-item" ng-click="joinGame()" ng-show="status.player.playerId == -1">
                     Not in the Game! Join.
                 </a>
@@ -56,6 +53,9 @@
                     <i class="fa fa-chevron-right pull-right"></i></a>
                 <a class="list-group-item" href="#/home">Home
                     <i class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" ng-click="reload()">
+                    Reload
+                </a>
             </div>
         </div>
     </div>
