@@ -14,6 +14,9 @@ angular.module('WebsocketServices', []).
         var pingCount = 0;
 
         var ping = function() {
+            if (pingCount > 0) {
+                $rootScope.$broadcast("pingpong", 2222, pingCount);
+            }
             var d = new Date();
             pingTime = d.getMilliseconds();
             ws.send("ping");
