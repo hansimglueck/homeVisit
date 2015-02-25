@@ -23,50 +23,53 @@ angular.module("playerControllers", [])
 
 
     })
-    .controller('HomeController', function ($scope, $location, Status, Socket) {
+    .controller('HomeController', function ($scope, $location, Status, Home, Socket) {
         $scope.status = Status;
-        Socket.on('display', function (event) {
-            var data = JSON.parse(event.data).data;
-            console.log("new display: " + data.type);
-            $location.path('/home');
-            if (!!data.text) $scope.text = data.text.split("::");
-            $scope.type = "card";
-            $scope.labels = [];
-            $scope.data = [];
-            if (data.type == "vote") {
-                $scope.type = "vote";
-                $scope.options = data.voteOptions;
-                $scope.limit = data.voteMulti;
-                $scope.checked = 0;
-                $scope.votelast = "vote";
-
-            }
-            else $scope.options = null;
-            if (data.type == "result") {
-                $scope.type = "result";
-                //$scope.text = "";
-                $scope.labels = data.labels;
-                $scope.data = data.data;
-                $scope.votelast = "result";
-            }
-            if (data.type == "rating") {
-                $scope.type = 'rating';
-                if (data.text == "start") {
-                    $scope.ratingActive = true;
-                }
-                if (data.text == "stop") {
-                    $scope.ratingActive = false;
-                }
-            }
-
-        })
+        $scope.home = Home;
+        $scope.text = $scope.home.text;
+        $scope.type = $scope.home.type;
+        //Socket.on('display', function (event) {
+        //    var data = JSON.parse(event.data).data;
+        //    console.log("new display: " + data.type);
+        //    $location.path('/home');
+        //    if (!!data.text) $scope.text = data.text.split("::");
+        //    $scope.type = "card";
+        //    $scope.labels = [];
+        //    $scope.data = [];
+        //    if (data.type == "vote") {
+        //        $scope.type = "vote";
+        //        $scope.options = data.voteOptions;
+        //        $scope.limit = data.voteMulti;
+        //        $scope.checked = 0;
+        //        $scope.votelast = "vote";
+        //
+        //    }
+        //    else $scope.options = null;
+        //    if (data.type == "result") {
+        //        $scope.type = "result";
+        //        //$scope.text = "";
+        //        $scope.labels = data.labels;
+        //        $scope.data = data.data;
+        //        $scope.votelast = "result";
+        //    }
+        //    if (data.type == "rating") {
+        //        $scope.type = 'rating';
+        //        if (data.text == "start") {
+        //            $scope.ratingActive = true;
+        //        }
+        //        if (data.text == "stop") {
+        //            $scope.ratingActive = false;
+        //        }
+        //    }
+        //
+        //})
         $scope.vote = function (id) {
             console.log(id);
             if (id != undefined) {
                 console.log("no");
-                $scope.options[id].checked = true;
+                $scope.home.options[id].checked = true;
             }
-            Socket.emit({type: "vote", data: $scope.options, playerId: $scope.status.player.playerId});
+            Socket.emit({type: "vote", data: $scope.home.options, playerId: $scope.status.player.playerId});
         };
     })
     .controller('MenuController', function ($scope, Status, colors, playerColors) {

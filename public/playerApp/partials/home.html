@@ -1,15 +1,16 @@
-<div class="section content" ng-switch="type">
+<not-joined  ng-hide="status.joined"></not-joined>
+<div class="section content" ng-switch="home.type" ng-show="status.joined">
     <div ng-switch-when="result">
-        {{text[0]}}
-        <canvas id="base" class="chart chart-base ng-isolate-scope" chart-type="'Pie'" data="data"
-                labels="labels"
+        {{home.text[0]}}
+        <canvas id="base" class="chart chart-base ng-isolate-scope" chart-type="'Pie'" data="home.data"
+                labels="home.labels"
                 legend="true">
         </canvas>
     </div>
 
     <div ng-switch-when="card">
         <ul class="list-unstyled">
-            <li ng-repeat="t in text track by $index">{{t}}</li>
+            <li ng-repeat="t in home.text track by $index">{{t}}</li>
         </ul>
     </div>
 
@@ -20,17 +21,17 @@
 
     <div ng-switch-when="vote">
         <ul class="list-unstyled">
-            <li ng-repeat="t in text track by $index">{{t}}</li>
+            <li ng-repeat="t in home.text track by $index">{{t}}</li>
         </ul>
-        <div ng-switch="limit > 1">
+        <div ng-switch="home.limit > 1">
             <ul class="list-unstyled wide-list" ng-switch-when="false">
-                <li ng-repeat="opt in options track by $index">
+                <li ng-repeat="opt in home.options track by $index">
                     <button class="btn-lg" ng-click="vote($index)">{{opt.text}}</button>
                 </li>
             </ul>
 
             <ul class="list-unstyled wide-list" ng-switch-when="true">
-                <li ng-repeat="opt in options track by $index">
+                <li ng-repeat="opt in home.options track by $index">
                     <input type="checkbox" ng-model="opt.checked" ng-change="checkChanged(opt)"
                            ng-disabled="checked==limit && !opt.checked"/>
                     {{opt.text}}

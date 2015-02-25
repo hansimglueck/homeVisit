@@ -8,7 +8,8 @@ angular.module('playerApp', [
     'mobile-angular-ui.gestures',
     'chart.js',
     'ngCookies',
-    'playerAppServices'
+    'playerAppServices',
+    'playerAppDirectives'
 ])
     .config(['$routeProvider',
         function ($routeProvider) {

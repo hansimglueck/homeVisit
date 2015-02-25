@@ -40,17 +40,34 @@ angular.module('playerAppServices', [])
     .factory('Home', function (Socket, $location) {
         var homeFactory = {};
         homeFactory.displayData = {};
+        homeFactory.type = "card";
+        homeFactory.labels = [];
+        homeFactory.options = null;
 
         Socket.on('display', function (event) {
             var data = JSON.parse(event.data).data;
             console.log("new display: " + data.type);
+            homeFactory.type = "card";
+            homeFactory.labels = [];
+            homeFactory.options = null;
             if (data) {
+                if (!!data.text) homeFactory.text = data.text.split("::");
                 homeFactory.displayData = data;
                 if (data.type) {
                     switch (data.type) {
                         case "vote":
+                            homeFactory.type = "vote";
+                            homeFactory.options = data.voteOptions;
+                            homeFactory.limit = data.voteMulti;
+                            homeFactory.checked = 0;
+                            homeFactory.votelast = "vote";
                             break;
                         case "result":
+                            homeFactory.type = "result";
+                            //homeFactory.text = "";
+                            homeFactory.labels = data.labels;
+                            homeFactory.data = data.data;
+                            homeFactory.votelast = "result";
                             break;
                         case "card":
                             break;

@@ -1,5 +1,6 @@
 <div>
-<ul class="list-group">
+<not-joined  ng-hide="status.joined"></not-joined>
+<ul class="list-group" ng-show="status.joined">
     <li class="list-group-item" ng-repeat="player in status.otherPlayers | filter:isOtherPlayer track by $index">
         <div ng-style="{'height': '40px', 'width':'80px', 'float':'left'}">
             <div class="row1" ng-style="colors[playerColors[player.playerId][0]]">

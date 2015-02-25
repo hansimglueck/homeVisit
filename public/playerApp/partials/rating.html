@@ -1,4 +1,5 @@
-<div>
+<not-joined  ng-hide="status.joined"></not-joined>
+<div ng-show="status.joined">
     <div class="section"> You are rated: <strong>{{moodys[rating.avgRatings[status.player.playerId]]}} </strong></div>
     <table class="table">
         <col width="40%">
