@@ -64,7 +64,7 @@
             <div class="row1" ng-style="col1()">
                 <h1><%= title %> </h1>
             </div>
-            <div class="row2" ng-style="col2()">{{status.player}}
+            <div class="row2" ng-style="col2()">
                 <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
                     {{itemTypes[type]}}
                 </div>
@@ -74,8 +74,11 @@
                     </div>
                 </div>
                 <div class="btn-group pull-right">
-                    <div class="navbarbtn" ng-click="type='rating'"><i class="fa fa-comment"></i>RATE</div>
-<!--                    <div class="navbarbtn" ng-click="toVote()">VOTE</div>  -->
+                    <div class="navbarbtn" ng-click="go('/rating')">
+                        <i class="fa fa-star"></i></div>
+                    <div class="navbarbtn" ng-click="go('/chat')">
+                        <i class="fa fa-comment"></i></div>
+ <!--                    <div class="navbarbtn" ng-click="toVote()">VOTE</div>  -->
                 </div>
             </div>
         </div>

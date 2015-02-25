@@ -20,6 +20,7 @@ angular.module('WebsocketServices', []).
                 console.log("client lost connection");
                 server.connected = false;
                 $rootScope.$digest(); //damit das false auch ankommt...
+                $rootScope.$broadcast("disconnected");
                 setTimeout(function () {
                     connect();
                 }, 1000);

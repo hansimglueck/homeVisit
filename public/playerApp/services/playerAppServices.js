@@ -39,18 +39,23 @@ angular.module('playerAppServices', [])
     })
     .factory('Status', function (Socket) {
 
-        var emptyPlayer = {playerId: -1, colors:["weiss","weiss"]};
+        var emptyPlayer = {playerId: -1, colors: ["weiss", "weiss"]};
         var statusFactory = {};
         statusFactory.player = emptyPlayer;
         statusFactory.otherPlayers = [];
         statusFactory.maxPlayers = 0;
+        statusFactory.ratingActive = true;
+        statusFactory.joined = false;
         statusFactory.server = Socket.server;
 
         Socket.on('status', function (event) {
             var data = JSON.parse(event.data).data;
             if (data.player) {
                 statusFactory.player = data.player;
-                if (data.player.playerId == -1) statusFactory.player = emptyPlayer;
+                if (data.player.playerId == -1) {
+                    statusFactory.player = emptyPlayer;
+                    statusFactory.joined = false;
+                } else statusFactory.joined = true;
             }
             if (data.otherPlayers) statusFactory.otherPlayers = data.otherPlayers;
             if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
@@ -62,8 +67,12 @@ angular.module('playerAppServices', [])
         statusFactory.joinGame = function () {
             Socket.emit({type: "joinGame", data: {}});
         };
-        statusFactory.leaveGame = function() {
+        statusFactory.leaveGame = function () {
             Socket.emit({type: "leaveGame", data: {}});
+        };
+        statusFactory.resetPlayer = function() {
+            statusFactory.player = emptyPlayer;
+            statusFactory.joined = false;
         };
         return statusFactory;
 
@@ -71,33 +80,36 @@ angular.module('playerAppServices', [])
     })
 
     .factory('Rating', function (Socket, Status) {
-        var myRatings = [];
-        var avgRatings = [];
-        var maxRating = 8;
+
+        var ratingFactory = {};
+        ratingFactory.myRatings = [];
+        ratingFactory.avgRatings = [];
+        ratingFactory.maxRating = 8;
 
         Socket.on('rates', function (event) {
             var data = JSON.parse(event.data).data;
-            avgRatings = data.avgRating;
-            console.log(avgRatings);
+            ratingFactory.avgRatings = data.avgRating;
+            console.log(ratingFactory.avgRatings);
         });
 
-        return {
+        ratingFactory.rate = function (id, diff) {
+            ratingFactory.myRatings[id] += diff;
+            Socket.emit({type: "rate", data: {rate: ratingFactory.myRatings, playerId: Status.player.playerId}});
+        };
 
-            rate: function (id, diff) {
-                myRatings[id] += diff;
-                Socket.emit({type: "rate", data: {rate: myRatings, playerId: Status.player.playerId}});
-            },
-            getMyRatings: function () {
-                if (Status.getMaxPlayers() != myRatings.length) {
-                    for (var i = 0; i < Status.getMaxPlayers(); i++) {
-                        myRatings[i] = myRatings[i] ? myRatings[i] : maxRating / 2;
-                    }
-                }
-                return myRatings;
-            },
-            getAvgRatings: function () {
-                return avgRatings;
+        ratingFactory.fillMyRatings = function() {
+            for (var i = 0; i < Status.maxPlayers; i++) {
+                ratingFactory.myRatings[i] = ratingFactory.myRatings[i] ? ratingFactory.myRatings[i] : ratingFactory.maxRating / 2;
             }
-        }
+        };
+
+        ratingFactory.getMyRatings = function () {
+            return ratingFactory.myRatings;
+        };
+        ratingFactory.getAvgRatings = function () {
+            return ratingFactory.avgRatings;
+        };
+
+        return ratingFactory;
     })
 ;

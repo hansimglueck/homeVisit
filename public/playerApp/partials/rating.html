@@ -1,4 +1,5 @@
 <div>
+    <div class="section"> You are rated: <strong>{{moodys[rating.avgRatings[status.player.playerId]]}} </strong></div>
     <table class="table">
         <col width="40%">
         <col width="20%">
@@ -8,29 +9,30 @@
             <th>Player</th>
             <th colspan="3">Your Rating</th>
         </tr>
-        <tr ng-repeat="rating in avgRatings track by $index">
+        <tr ng-repeat="player in status.otherPlayers | filter:isOtherPlayer track by $index">
             <td>
                 <div ng-style="{'height': '40px', 'width':'80px'}">
-                    <div class="row1" ng-style="colors[playerColors[$index][0]]">
+                    <div class="row1" ng-style="colors[playerColors[player.playerId][0]]">
                     </div>
-                    <div class="row2" ng-style="colors[playerColors[$index][1]]"></div>
+                    <div class="row2" ng-style="colors[playerColors[player.playerId][1]]"></div>
                     <div ng-style="{'font-weight':'bold', 'position':'relative', 'bottom':'35px'}">
-                        {{moodys[avgRatings[$index]]}}
+                        {{moodys[rating.avgRatings[player.playerId]]}}
                     </div>
                 </div>
             </td>
             <td>
-                <button ng-show="ratingActive" ng-disabled="myRatings[$index]>=8"
-                        ng-click="rate($index, 1)">+
+                <button ng-show="status.ratingActive && status.joined" ng-disabled="myRatings[player.playerId]>=8"
+                        ng-click="rate(player.playerId, 1)">+
                 </button>
             </td>
             <td>
-                <span>{{moodys[myRatings[$index]]}}</span>
+                <span ng-show="status.joined">{{moodys[myRatings[player.playerId]]}}</span>
             </td>
             <td>
-                <button ng-show="ratingActive" ng-disabled="myRatings[$index]<=0"
-                        ng-click="rate($index, -1)">-
+                <button ng-show="status.ratingActive && status.joined" ng-disabled="myRatings[player.playerId]<=0"
+                        ng-click="rate(player.playerId, -1)">-
                 </button>
             </td>
         </tr>
     </table>
+</div>

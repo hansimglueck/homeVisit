@@ -101,10 +101,16 @@ angular.module("playerControllers", [])
         }
     })
 
-    .controller('NavbarController', function ($scope, Status, colors) {
+    .controller('NavbarController', function ($scope, $location, Status, colors) {
         $scope.status = Status;
         $scope.col1 = function() { return colors[$scope.status.player.colors[0]]; };
         $scope.col2 = function() { return colors[$scope.status.player.colors[1]]; };
+        $scope.$on("disconnected", function() {
+            $scope.status.resetPlayer();
+        });
+        $scope.go = function ( path ) {
+            $location.path( path );
+        };
 
     })
 
@@ -114,17 +120,35 @@ angular.module("playerControllers", [])
     .controller('ChatController', function ($scope, Socket, colors, playerColors) {
 
     })
-    .controller('RatingController', function ($scope, Socket, colors, playerColors) {
+    .controller('RatingController', function ($scope, Status, Rating, colors, playerColors) {
+        $scope.status = Status;
+        $scope.rating = Rating;
         $scope.colors = colors;
+        $scope.myRatings = Rating.myRatings;
+        $scope.avgRatings = $scope.rating.avgRatings;
         $scope.playerColors = playerColors;
-        $scope.myRatings = [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4];
         $scope.moodys = ["C", "CC", "CCC", "B", "BB", "BBB", "A", "AA", "AAA"];
-        $scope.rate = function (id, val) {
-            $scope.myRatings[id] += val;
+        $scope.isOtherPlayer = function(player) {
+            //console.log(player);
+            if (player.playerId == -1) return false;
+            if (player.playerId == $scope.status.player.playerId) return false;
+            return true;
         };
-        //Socket.on('registerConfirm', function () {
-        //    Socket.emit({type: "rate", data: {rate: $scope.myRatings, playerId: $scope.player.playerId}});
-        //});
+        $scope.rate = function (id, val) {
+            $scope.rating.rate(id, val);
+        };
+        $scope.$watch(
+            function(scope){
+                return scope.status.maxPlayers},
+            function (){
+                $scope.rating.fillMyRatings();
+            });
+        $scope.$watch(
+            function(scope){
+                return scope.status.joined},
+            function (newVal){
+                if (newVal) $scope.rating.rate(0,0);
+            });
 
-    })
+    });
 

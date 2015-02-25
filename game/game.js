@@ -194,7 +194,7 @@ Game.prototype = {
 //        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
         //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));
         this.sendDeviceList();
-        this.sendOsInfo(ws);
+        if (role == "master") this.sendOsInfo(ws);
     },
 
     getPlayerForClientId: function(clientId) {
@@ -224,10 +224,7 @@ Game.prototype = {
             player = this.seatPlayer(client);
             if (player == null) {
                 //kein freier platz!
-                ws.send(JSON.stringify({
-                    type: "status",
-                    data: {player: {playerId: -1}, otherPlayers: this.getPlayerArray(), maxPlayers: this.conf.playerCnt}
-                }));
+                this.msgDeviceByIds([clientId],"status",{player: {playerId: -1}, otherPlayers: this.getPlayerArray(), maxPlayers: this.conf.playerCnt});
                 return;
             } else {
                 if (!!this.lastPlayerMessage) client.socket.send(JSON.stringify({
@@ -237,6 +234,7 @@ Game.prototype = {
             }
         }
         this.sendPlayerStatus();
+        //this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
     },
 
     sendPlayerStatus: function () {
@@ -261,7 +259,8 @@ Game.prototype = {
     getPlayerArray: function () {
         var ret = [];
         this.players.forEach(function (pl) {
-            ret.push({playerId: pl.playerId});
+            if (typeof pl != "undefined") ret.push({playerId: pl.playerId, colors:pl.colors});
+            else ret.push({playerId: -1, colors:["weiss", "weiss"]});
         });
         return ret;
     },
@@ -317,9 +316,9 @@ Game.prototype = {
         for (var j = 0; j < this.rating.length; j++) {
             sum = 0;
             for (var i = 0; i < this.rating.length; i++) {
-                sum += this.rating[i][j];
+                if (i!=j) sum += this.rating[i][j];
             }
-            this.avgRating[j] = Math.round(sum / this.conf.playerCnt);
+            this.avgRating[j] = Math.round(sum / (this.conf.playerCnt-1));
         }
     },
 
