@@ -125,6 +125,7 @@ angular.module('playerAppServices', [])
         Socket.on('registerConfirm', function (event) {
             var data = JSON.parse(event.data).data;
             if (typeof data != "undefined") statusFactory.clientId = data;
+            statusFactory.joinGame();
         });
 
         Socket.on('status', function (event) {
