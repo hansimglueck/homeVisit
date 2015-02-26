@@ -154,7 +154,7 @@ Game.prototype = {
         //checken, wie der nächste step getriggert wird
         if (this.stepId + 1 < this.decks[this.deckId].items.length) {
             if (this.decks[this.deckId].items[this.stepId + 1].trigger == "follow") {
-                this.step(sid);
+                this.step();
             }
         }
     },
