@@ -12,10 +12,13 @@ angular.module('WebsocketServices', []).
         var server = {connected: connected};
         var pingTime = 0;
         var pingCount = 0;
+        var pingTimeouts = 0;
 
         var ping = function() {
             if (pingCount > 0) {
-                $rootScope.$broadcast("pingpong", 2222, pingCount);
+                pingTimeouts++;
+                pingCount = 0;
+                $rootScope.$broadcast("pingpong", 2222, pingCount, pingTimeouts);
             }
             var d = new Date();
             pingTime = d.getMilliseconds();
@@ -25,7 +28,7 @@ angular.module('WebsocketServices', []).
         };
         var pong = function() {
             var d = new Date();
-            console.log("pong: "+(d.getMilliseconds()-pingTime));
+            //console.log("pong: "+(d.getMilliseconds()-pingTime));
             pingCount--;
             $rootScope.$broadcast("pingpong", (d.getMilliseconds()-pingTime), pingCount);
         };

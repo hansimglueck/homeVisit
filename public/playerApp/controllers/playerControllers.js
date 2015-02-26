@@ -86,10 +86,11 @@ angular.module("playerControllers", [])
             window.location.reload();console.log('X')
 
         };
-        $scope.$on("pingpong", function(event, pingTime, pingCount) {
-            console.log(pingTime, pingCount);
+        $scope.$on("pingpong", function(event, pingTime, pingCount, pingTimeouts) {
+            //console.log(pingTime, pingCount);
             $scope.pingTime = pingTime;
             $scope.pingCount = pingCount;
+            $scope.pingTimeouts = pingTimeouts;
             $scope.$digest();
         })
     })
@@ -123,7 +124,7 @@ angular.module("playerControllers", [])
         $scope.data.newMessage = "";
         $scope.isOtherPlayer = function (player) {
             //console.log(player);
-            if (player.playerId == -1) return false;
+            if (!player.joined) return false;
             if (player.playerId == $scope.status.player.playerId) return false;
             return true;
         };
@@ -143,7 +144,7 @@ angular.module("playerControllers", [])
         $scope.moodys = ["C", "CC", "CCC", "B", "BB", "BBB", "A", "AA", "AAA"];
         $scope.isOtherPlayer = function (player) {
             //console.log(player);
-            if (player.playerId == -1) return false;
+            if (!player.joined) return false;
             if (player.playerId == $scope.status.player.playerId) return false;
             return true;
         };
@@ -155,6 +156,7 @@ angular.module("playerControllers", [])
                 return scope.status.maxPlayers
             },
             function () {
+                console.log("fill");
                 $scope.rating.fillMyRatings();
             });
         $scope.$watch(
@@ -162,6 +164,9 @@ angular.module("playerControllers", [])
                 return scope.status.joined
             },
             function (newVal) {
+                console.log("x");
+                console.log($scope.status.rating);
+                $scope.rating.setMyRatings($scope.status.rating);
                 if (newVal) $scope.rating.rate(0, 0);
             });
 

@@ -53,6 +53,9 @@ var wss = new WebSocketServer({server: server});
 var wsManager = require('./game/wsManager.js');
 wsManager.setSocketServer(wss);
 
+var playerManager = require('./game/playerManager.js');
+wsManager.onRole("player", playerManager, playerManager.playerMessage);
+
 
 
 // view engine setup

@@ -120,6 +120,7 @@ angular.module('playerAppServices', [])
         statusFactory.joined = false;
         statusFactory.server = Socket.server;
         statusFactory.clientId = -1;
+        statusFactory.rating = [];
 
         Socket.on('registerConfirm', function (event) {
             var data = JSON.parse(event.data).data;
@@ -128,15 +129,20 @@ angular.module('playerAppServices', [])
 
         Socket.on('status', function (event) {
             var data = JSON.parse(event.data).data;
+            console.log(data);
+            if (data.otherPlayers) statusFactory.otherPlayers = data.otherPlayers;
+            if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
+        });
+        Socket.on('joined', function (event) {
+            var data = JSON.parse(event.data).data;
             if (data.player) {
                 statusFactory.player = data.player;
-                if (data.player.playerId == -1) {
+                statusFactory.rating = data.rating;
+                if (!data.player.joined) {
                     statusFactory.player = emptyPlayer;
                     statusFactory.joined = false;
                 } else statusFactory.joined = true;
             }
-            if (data.otherPlayers) statusFactory.otherPlayers = data.otherPlayers;
-            if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
         });
 
         Socket.on('reload', function() {
@@ -189,6 +195,11 @@ angular.module('playerAppServices', [])
         ratingFactory.fillMyRatings = function () {
             for (var i = 0; i < Status.maxPlayers; i++) {
                 ratingFactory.myRatings[i] = ratingFactory.myRatings[i] ? ratingFactory.myRatings[i] : ratingFactory.maxRating / 2;
+            }
+        };
+        ratingFactory.setMyRatings = function(rates) {
+            for (var i = 0; i < rates.length; i++) {
+                ratingFactory.myRatings[i] = rates[i];
             }
         };
 

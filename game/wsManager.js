@@ -4,12 +4,20 @@ function WsManager() {
     this.wss = {};
     this.clients = [];
     this.sids = [];
+    this.roleCallbacks = [];
 
 }
 
 WsManager.prototype = {
     registerSID: function(sid) {
         if (this.sids.indexOf(sid) == -1) this.sids.push(sid);
+    },
+    onRole: function(role, self, callback) {
+        this.roleCallbacks.push({
+            fn: callback,
+            role: role,
+            self: self
+        });
     },
     setSocketServer: function (wss) {
         this.wss = wss;
@@ -26,20 +34,19 @@ WsManager.prototype = {
 
             ws.on("message", function (data) {
                 if (data == "ping") {
-                    console.log("ping");
-                    setTimeout(function() {ws.send("pong")},0);
+                    //console.log("ping");
+                    ws.send("pong");
+                    //setTimeout(function() {ws.send("pong")},0);
                     return;
                 }
                 try {
                     var clientId = ws.clientId;
-                    self.wss.clients.forEach(function each(client) {
-                        //console.log("wss-client: " + client);
-                    });
 
                     console.log("websocket received a message from " + clientId + ": " + (data));
                     //var msg = (typeof data == "Object") ? JSON.parse(data) : data;
                     var msg = JSON.parse(data);
                     //console.log(typeof data);
+
                     if (msg.type) {
                         switch (msg.type) {
                             case "register":
@@ -104,7 +111,9 @@ WsManager.prototype = {
                                 break;
 
                         }
+                        self.applyRoleCallbacks(ws, msg);
                     }
+
                 } catch (err) {
                     console.log("ERRROR: " + err.stack);
                 }
@@ -125,6 +134,15 @@ WsManager.prototype = {
         console.log("websocket server created");
 
     },
+
+    applyRoleCallbacks: function(ws, msg) {
+        this.roleCallbacks.forEach(function(cb){
+            if (cb.role == ws.role) {
+                cb.fn.call(cb.self, ws.clientId, msg);
+            }
+        })
+    },
+
     registerClient: function (msg, ws) {
         //var clientId;
         //clientId = g.clients.length;
@@ -175,6 +193,7 @@ WsManager.prototype = {
         //g.clients[clientId].role = role;
         //g.clients[clientId].sid = sid;
         ws.send(JSON.stringify({type: "registerConfirm", data:client.clientId}));
+        ws.role = role;
 //        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
         //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));
         this.sendDeviceList();
@@ -186,7 +205,7 @@ WsManager.prototype = {
         this.clients.forEach(function each(client) {
             if (client.role == role && client.connected) {
                 client.socket.send(JSON.stringify({type: type, data: message}));
-                self.log(-1, "sent to client " + client.clientId + ":" + JSON.stringify({type: type, data: message}))
+                //self.log(-1, "sent to client " + client.clientId + ":" + JSON.stringify({type: type, data: message}))
             }
         });
     },
