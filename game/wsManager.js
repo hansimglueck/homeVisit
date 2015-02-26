@@ -53,13 +53,6 @@ WsManager.prototype = {
                                 self.registerClient(msg, ws);
                                 break;
 
-                            case "joinGame":
-                                //self.requestJoin(clientId, msg.data);
-                                break;
-
-                            case "leaveGame":
-                                //self.leaveGame(clientId);
-                                break;
 
                             case "os":
                                 return;
@@ -92,18 +85,6 @@ WsManager.prototype = {
 
                             case "getDeviceList":
                                 //self.sendDeviceList();
-                                break;
-
-                            case "vote":
-                                //self.vote(clientId, msg);
-                                break;
-
-                            case "rate":
-                                //self.rate(clientId, msg.data);
-                                break;
-
-                            case "chat":
-                                //self.chat(clientId, msg.data);
                                 break;
 
                             default:

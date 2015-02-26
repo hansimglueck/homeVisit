@@ -15,10 +15,13 @@
                 {{message[1]}}
             </li>
             <li class="">
-                <input type="text" ng-model="data.newMessage[player.playerId]" />
-                <button ng-click="chat(player.playerId)">send</button>
+                <form ng-submit="chat(player.playerId)">
+                    <input type="text" id="{{'text'+$index}}" ng-model="data.newMessage[player.playerId]" ng-click="scrollToItem('text'+$index)"/>
+                    <input type="submit" id="submit" value="send" />
+                </form>
             </li>
         </ul>
     </li>
 </ul>
+    <div ng-style="{'height':'300px'}"></div>
 </div>

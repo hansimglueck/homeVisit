@@ -82,7 +82,10 @@
                     <div class="navbarbtn" ng-click="go('/rating')">
                         <i class="fa fa-star"></i></div>
                     <div class="navbarbtn" ng-click="go('/chat')">
-                        <i class="fa fa-comment"></i></div>
+                        <i class="fa fa-comment"></i>
+                        <span ng-show="newMessages>0" ng-style="{'color':'red', 'font-size':'0.6em', 'font-weight':'bold', 'position':'relative', 'right':'20px', 'bottom':'3px'}">
+                            {{newMessages}}</span>
+                    </div>
  <!--                    <div class="navbarbtn" ng-click="toVote()">VOTE</div>  -->
                 </div>
             </div>

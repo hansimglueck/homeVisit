@@ -95,8 +95,12 @@ angular.module("playerControllers", [])
         })
     })
 
-    .controller('NavbarController', function ($scope, $location, Status, colors) {
+    .controller('NavbarController', function ($scope, $location, Status, Rating, Chat, colors) {
         $scope.status = Status;
+        $scope.chat = Chat;
+        $scope.rating = Rating;
+        $scope.newMessages = 0;
+        $scope.$on("newChatMessage", function(event, count){$scope.newMessages=count});
         $scope.col1 = function () {
             return colors[$scope.status.player.colors[0]];
         };
@@ -115,8 +119,9 @@ angular.module("playerControllers", [])
     .controller('VoteController', function ($scope, Socket, colors, playerColors) {
 
     })
-    .controller('ChatController', function ($scope, Status, Chat, colors, playerColors) {
+    .controller('ChatController', function ($scope, Status, Chat, colors, playerColors, $location, $anchorScroll) {
         $scope.messages = Chat.messages;
+        $scope.chat = Chat;
         $scope.status = Status;
         $scope.colors = colors;
         $scope.playerColors = playerColors;
@@ -131,7 +136,16 @@ angular.module("playerControllers", [])
         $scope.chat = function(pid) {
             Chat.chat(pid, $scope.data.newMessage[pid]);
             $scope.data.newMessage[pid] = "";
-        }
+        };
+        $scope.$on('$viewContentLoaded', function() {
+            //console.log("chat: viewContentLoaded");
+            Chat.messagesRead();
+        });
+        $scope.scrollToItem = function (itemName){
+            //now scroll to it.
+            $location.hash(itemName);
+            $anchorScroll();
+        };
 
     })
     .controller('RatingController', function ($scope, Status, Rating, colors, playerColors) {

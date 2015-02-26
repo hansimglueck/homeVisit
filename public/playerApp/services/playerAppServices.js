@@ -212,17 +212,20 @@ angular.module('playerAppServices', [])
 
         return ratingFactory;
     })
-    .factory('Chat', function (Socket, Status) {
+    .factory('Chat', function ($rootScope, Socket, Status) {
 
         var chatFactory = {};
         chatFactory.messages = [[[0,"hallo"],[1,"wie gehts?"]],[[0,"hallo"],[1,"wie gehts?"]]];
         chatFactory.messages = [];
+        chatFactory.newCnt = 0;
 
         Socket.on('chat', function (event) {
             var data = JSON.parse(event.data).data;
             var playerId = data.playerId;
             if (typeof chatFactory.messages[playerId] == "undefined") chatFactory.messages[playerId] = [];
             chatFactory.messages[playerId].push([1,data.message]);
+            chatFactory.newCnt++;
+            $rootScope.$broadcast("newChatMessage", chatFactory.newCnt);
         });
 
         chatFactory.chat = function(pid, msg) {
@@ -231,6 +234,10 @@ angular.module('playerAppServices', [])
             chatFactory.messages[pid].push([0,msg]);
         };
 
+        chatFactory.messagesRead = function() {
+            chatFactory.newCnt = 0;
+            $rootScope.$broadcast("newChatMessage", chatFactory.newCnt);
+        };
         return chatFactory;
     })
 ;
