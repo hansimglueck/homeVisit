@@ -38,14 +38,11 @@ var server = require('http').createServer(app);
 //    });
 //});
 /**
- * create game
  */
 
-//var game = require('./game/game.js');
-var db = mongoose.connection;
-//db.once('open', function() { game.initDb() });
 /**
- * create websocket
+ * ///////////////////////////////////////////////////
+ * create game
  */
 
 var WebSocketServer = require('ws').Server;
@@ -56,7 +53,20 @@ wsManager.setSocketServer(wss);
 var playerManager = require('./game/playerManager.js');
 wsManager.onRole("player", playerManager, playerManager.playerMessage);
 
+var game = require('./game/game.js');
+wsManager.onRole("master", game, game.trigger);
+wsManager.onRole("button", game, game.trigger);
 
+var raspiTools = require('./game/raspiTools.js');
+wsManager.onRole("master", raspiTools, raspiTools.newMessage);
+
+var db = mongoose.connection;
+db.once('open', function() { game.initDb() });
+
+
+/**
+ * /////////////////////////////////////////////
+ */
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

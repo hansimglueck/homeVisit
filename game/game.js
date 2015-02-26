@@ -2,6 +2,9 @@
  * Created by jeanbluer on 26.01.15.
  */
 var exec = require('child_process').exec;
+var wsManager = require('./wsManager.js');
+var playerManager = require('./playerManager.js');
+
 
 function Game() {
     this.play = false;
@@ -24,66 +27,60 @@ Game.prototype = {
 
     },
 
-    trigger: function (sid, msg) {
+    trigger: function (clientId, msg) {
         var param = "";
         if (msg.param) {
             param = msg.param;
         }
-        console.log("game.trigger: " + sid + ", " + msg.data + "with parameter:" + param);
+        console.log("game.trigger: " + msg.data + " with parameter: " + param);
         switch (msg.data) {
             case "play":
                 console.log('play');
-                this.start(sid);
+                this.start();
                 break;
 
             case "stop":
-                this.stop(sid);
+                this.stop();
                 break;
 
             case "go":
                 console.log('go');
-                this.step(sid, param);
+                this.step(param);
                 break;
 
             case "rego":
                 console.log('rego');
-                this.step(sid, param, this.stepId);
+                this.step(param, this.stepId);
                 break;
 
             case "back":
                 console.log('back');
                 var id = this.stepId;
                 if (id > 0) id--;
-                this.step(sid, param, id);
+                this.step(param, id);
                 break;
 
             default:
-                this.log("game received unknown command: " + msg);
+                this.log("game received unknown command: " + msg.type);
         }
     },
 
-    log: function (sid, message) {
-        message = "Client " + sid + " - " + message;
-        this.clients.forEach(function each(client) {
-            if (client.role == "master" && client.connected) client.socket.send(JSON.stringify({
-                type: "log",
-                data: message
-            }));
-        });
-        console.log("gesendet");
+    log: function (message) {
+        message = "GAME: "+message;
+        wsManager.msgDevicesByRole("master", "log", message);
     },
 
-    step: function (sid, param, id) {
+    step: function (param, id) {
         var msg = "";
 
         //autostart or deny
         if (this.play == false) {
             if (this.conf.autostart) {
-                this.start(sid);
+                this.start();
                 return;
             }
             else msg += "we are not playing!";
-            this.log(sid, msg);
+            this.log(msg);
             return;
         }
 
@@ -104,48 +101,54 @@ Game.prototype = {
             voteMulti: this.getItem().voteMulti
         };
 
-        //die eingehenden votes werden in einem objekt des aktuellen items gespeichert
-        if (content.type == "vote") this.getItem().votes = {};
-
         //log-nachricht
-        msg += " stepped to " + this.stepId + " (" + content.type + ")";
-        this.log(sid, msg, content);
+        msg += " stepped to " + this.deckId + "/"+this.stepId + " (" + content.type + ")";
+        this.log(msg);
 
         var wait = parseInt(this.getItem().wait) * 1000;
         if (typeof wait === 'undefinded') wait = 0;
         var self = this;
         setTimeout(function () {
-            self.executeStep.call(self, sid, content, param);
+            self.executeStep.call(self, content, param);
         }, wait);
     },
 
-    executeStep: function (sid, content, param) {
+    executeStep: function (content, param) {
         var self = this;
         if (content.type == "switch") {
-            content.voteOptions.forEach(function (option) {
+            var option;
+            for (var i = 0; i < content.voteOptions.length; i++) {
+                option = content.voteOptions[i];
                 if (option.text == param) {
                     self.decks.forEach(function (deck, id) {
-                        console.log(deck._id);
-                        console.log(option.followUp);
-                        if (String(deck._id) == String(option.followUp)) self.deckId = id;
-                        console.log(String(deck._id) == String(option.followUp));
+                        //console.log(deck._id);
+                        //console.log(option.followUp);
+                        //console.log(String(deck._id) == String(option.followUp));
+                        if (String(deck._id) == String(option.followUp)) {
+                            self.deckId = id;
+                            self.log("switched to deck "+self.deckId);
+                        }
                     });
-                    //console.log(g.decks);
-                    self.step(sid, "", 0);
+                    self.step("", 0);
                     return;
                 }
-                self.log(sid, "FollowUp nicht gefunden!!!")
-            });
+            }
+        self.log("FollowUp nicht gefunden!!!");
         } else {
             //an die konfigurierten default-devices senden
             var map = this.conf.typeMapping.filter(function (tm) {
                 return (tm.type == content.type);
             })[0];
-            if (map.devices.length == 0) this.log(sid, "keine Devices gefunden für " + content.type);
+            if (map.devices.length == 0) this.log("keine Devices gefunden für " + content.type);
             map.devices.forEach(function (dev) {
-                self.msgDevicesByRole(dev, "display", content);
+                if (dev == "player") {
+                    playerManager.addItem(content);
+                    return;
+                }
+                self.log("sending to "+dev+": "+content.text);
+                wsManager.msgDevicesByRole(dev, "display", content);
             });
-            self.msgDevicesByRole('master', 'status', {stepId: self.stepId, type: self.getItem().type});
+            wsManager.msgDevicesByRole('master', 'status', {stepId: self.stepId, type: self.getItem().type});
 
         }
         //checken, wie der nächste step getriggert wird
@@ -156,18 +159,11 @@ Game.prototype = {
         }
     },
 
-    start: function (sid) {
+    start: function () {
         console.log(this.conf);
         if (this.play == false) {
             var g = this;
             var Deck = require('../models/Deck.js');
-            for (var i = 0; i < this.conf.playerCnt; i++) {
-                this.rating[i] = [];
-                for (var j = 0; j < this.conf.playerCnt; j++) {
-                    this.rating[i][j] = 4;
-                }
-            }
-            this.calcAvgRate();
 
             Deck.find(function (err, decks) {
                 if (err) return next(err);
@@ -179,74 +175,20 @@ Game.prototype = {
                     console.log(String(deck._id) == String(g.conf.startDeckId));
                 });
                 //console.log(g.decks);
-                g.step(sid, "", 0);
+                g.step("", 0);
             });
             this.play = true;
-            this.log(sid, "client" + sid + " started game");
-            this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
+            this.log("client started game");
+            wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
         } else {
-            this.log(sid, "client" + sid + " already playing");
+            this.log("already playing");
         }
     },
 
-    stop: function (sid) {
+    stop: function () {
         this.play = false;
-        //this.players = {};
-        this.stepId = 0;
-        this.log(sid, "client" + sid + " stopped game");
-    },
-
-    vote: function (sid, data) {
-        var pid = data.playerId;
-        data = data.data;
-        if (this.decks[this.deckId].items[this.stepId].type != "vote") {
-            this.msgDeviceByIds([sid], "display", {"text": "There is no vote at the moment!"});
-            return;
-        }
-        if (this.getItem().votes[sid]) {
-            this.msgDeviceByIds([sid], "display", {"text": "You already voted in this Poll!"});
-        }
-        console.log("vote=" + data);
-        var msg = "You voted: ";
-        for (var i = 0; i < data.length; i++) {
-            if (data[i].checked) msg += data[i].text + " ";
-            this.getItem().votes[sid] = data;
-            this.getItem().votes[sid].multiplier = this.avgRating[pid];
-        }
-        this.log(sid, msg);
-        this.msgDeviceByIds([sid], "display", {"text": msg});
-        if (Object.keys(this.getItem().votes).length >= this.conf.playerCnt) this.voteComplete();
-    },
-
-    voteComplete: function () {
-        var votes = this.getItem().votes;
-        var voteOptions = this.getItem().voteOptions;
-        var voteCount = 0;
-        var bestOption = 0;
-        Object.keys(votes).forEach(function (v) {
-            for (var i = 0; i < voteOptions.length; i++) {
-                if (!voteOptions[i].result) voteOptions[i].result = 0;
-                if (!voteOptions[i].votes) voteOptions[i].votes = 0;
-                if (votes[v][i].checked) {
-                    voteCount += votes[v].multiplier;
-                    voteOptions[i].result += votes[v].multiplier;
-                    voteOptions[i].votes += 1;
-                    if (voteOptions[i].result > voteOptions[bestOption].result) bestOption = i;
-                }
-            }
-        });
-        voteOptions.sort(function (a, b) {
-            return b.result - a.result
-        });
-        var msg = this.getItem().text;
-        var labels = [];
-        var resData = [];
-        this.getItem().voteOptions.forEach(function (option) {
-            //msg += option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% (" + option.result + "/" + voteCount + ")" + "::";
-            labels.push(option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% (" + option.votes + ")");
-            resData.push(option.result / voteCount * 100);
-        });
-        this.msgDevicesByRole('player', "display", {type: "result", text: msg, labels: labels, data: resData});
+         this.stepId = 0;
+        this.log("stopped game");
     },
 
     getItem: function () {

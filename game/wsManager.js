@@ -53,32 +53,6 @@ WsManager.prototype = {
                                 self.registerClient(msg, ws);
                                 break;
 
-
-                            case "os":
-                                return;
-                                switch (msg.data) {
-                                    case "shutdown":
-                                        exec("sudo shutdown -h now", function (error, stdout, stderr) {
-                                            console.log("exec1")
-                                        });
-                                        //exec("android", function (error, stdout, stderr) {console.log("exec1")});
-                                        break;
-                                    case "getInfo":
-                                        self.sendOsInfo(ws);
-                                        break;
-                                    case "restartwlan1":
-                                        exec("/home/pi/homeVisit/shellscripts/wlan1_conf " + msg.para.ssid + " " + msg.para.passwd, function (error, stdout, stderr) {
-                                            console.log("exec1");
-                                            self.sendOsInfo(ws);
-                                        });
-                                        break;
-                                }
-                                break;
-
-                            case "playbackAction":
-                                //self.trigger(clientId, msg);
-                                break;
-
                             case "forceReload":
                                 //self.msgDevicesByRole(msg.data, "reload");
                                 break;

@@ -23,7 +23,7 @@ angular.module("playerControllers", [])
 
 
     })
-    .controller('HomeController', function ($scope, $location, Status, Home, Socket) {
+    .controller('HomeController', function ($scope, $location, Status, Home, Rating, Socket) {
         $scope.status = Status;
         $scope.home = Home;
         $scope.text = $scope.home.text;
@@ -69,7 +69,7 @@ angular.module("playerControllers", [])
                 console.log("no");
                 $scope.home.options[id].checked = true;
             }
-            Socket.emit({type: "vote", data: $scope.home.options, playerId: $scope.status.player.playerId});
+            Socket.emit({type: "vote", data: $scope.home.options, playerId: $scope.status.player.playerId, voteId: $scope.home.voteId});
         };
     })
     .controller('MenuController', function ($scope, Status, Socket) {
@@ -95,7 +95,7 @@ angular.module("playerControllers", [])
         })
     })
 
-    .controller('NavbarController', function ($scope, $location, Status, Rating, Chat, colors) {
+    .controller('NavbarController', function ($scope, $location, Status, Rating, Chat, Home, colors) {
         $scope.status = Status;
         $scope.chat = Chat;
         $scope.rating = Rating;
@@ -145,6 +145,7 @@ angular.module("playerControllers", [])
             //now scroll to it.
             $location.hash(itemName);
             $anchorScroll();
+            $location.hash();
         };
 
     })

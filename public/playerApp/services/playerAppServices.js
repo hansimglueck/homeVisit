@@ -43,6 +43,7 @@ angular.module('playerAppServices', [])
         homeFactory.type = "card";
         homeFactory.labels = [];
         homeFactory.options = null;
+        homeFactory.voteId = -1;
 
         Socket.on('display', function (event) {
             var data = JSON.parse(event.data).data;
@@ -61,6 +62,7 @@ angular.module('playerAppServices', [])
                             homeFactory.limit = data.voteMulti;
                             homeFactory.checked = 0;
                             homeFactory.votelast = "vote";
+                            homeFactory.voteId = data.voteId;
                             break;
                         case "result":
                             homeFactory.type = "result";
@@ -75,37 +77,7 @@ angular.module('playerAppServices', [])
                     $location.path('/home');
 
                 }
-                //if (!!data.text) $scope.text = data.text.split("::");
-                //$scope.type = "card";
-                //$scope.labels = [];
-                //$scope.data = [];
-                //if (data.type == "vote") {
-                //    $scope.type = "vote";
-                //    $scope.options = data.voteOptions;
-                //    $scope.limit = data.voteMulti;
-                //    $scope.checked = 0;
-                //    $scope.votelast = "vote";
-                //
-                //}
-                //else $scope.options = null;
-                //if (data.type == "result") {
-                //    $scope.type = "result";
-                //    $scope.text = "";
-                //    $scope.labels = data.labels;
-                //    $scope.data = data.data;
-                //    $scope.votelast = "result";
-                //}
-                //if (data.type == "rating") {
-                //    $scope.type = 'rating';
-                //    if (data.text == "start") {
-                //        $scope.ratingActive = true;
-                //    }
-                //    if (data.text == "stop") {
-                //        $scope.ratingActive = false;
-                //    }
-                //}
-                //
-            }
+             }
         });
         return homeFactory;
     })

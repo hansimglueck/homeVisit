@@ -25,6 +25,8 @@ PlayerManager = function () {
         playerCnt: 15
     }
     this.joinedPlayers = 0;
+    this.voteItems = [];
+    this.cardItems = [];
 
 };
 
@@ -37,11 +39,18 @@ PlayerManager.prototype = {
                 joined: false
             });
             this.rating[i] = [];
+            this.avgRating[i] = 4;
             for (var j = 0; j < this.colors.length; j++) {
                 this.rating[i][j] = 4;
             }
         }
+        //this.calcAvgRate();
         console.log();
+    },
+
+    log: function (message) {
+        message = "PMANAGER: "+message;
+        wsManager.msgDevicesByRole("master", "log", message);
     },
 
     playerMessage: function (clientId, msg) {
@@ -55,7 +64,7 @@ PlayerManager.prototype = {
                 break;
 
             case "vote":
-                //this.vote(clientId, msg);
+                this.vote(clientId, msg);
                 break;
 
             case "rate":
@@ -73,6 +82,52 @@ PlayerManager.prototype = {
         }
 
     },
+
+    addItem: function(item) {
+        if (!item.type) {
+            this.log("cannot process item (no type)!");
+            return;
+        }
+        switch (item.type) {
+            case "vote":
+                this.sendVote(this.voteItems.push(item)-1);
+                break;
+
+            case "card":
+                this.cardItems.push(item);
+                this.sendCard(this.cardItems.push(item)-1);
+                break;
+
+            default:
+                break;
+
+        }
+    },
+
+    sendCard: function(cardId) {
+        var cardItem = this.cardItems[cardId];
+        var content = {
+            type: cardItem.type,
+            text: cardItem.text
+        };
+
+        wsManager.msgDevicesByRole("player", "display", content);
+
+    },
+
+    sendVote: function(voteId) {
+        var voteItem = this.voteItems[voteId];
+        voteItem.votes = [];
+        var content = {
+            voteId: voteId,
+            type: voteItem.type,
+            text: voteItem.text,
+            voteOptions: voteItem.voteOptions,
+            voteMulti: voteItem.voteMulti
+        };
+        wsManager.msgDevicesByRole("player", "display", content);
+    },
+
 
     chat: function (clientId, data) {
         var recId = this.players[data.recepient].clientId;
@@ -160,8 +215,7 @@ PlayerManager.prototype = {
             }
         }
         return playerId;
-    }
-    ,
+    },
 
     rate: function (clientId, data) {
         var playerId = data.playerId;
@@ -170,8 +224,7 @@ PlayerManager.prototype = {
         console.log("rate: " + this.rating);
         this.calcAvgRate();
         wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
-    }
-    ,
+    },
 
     calcAvgRate: function () {
         if (this.conf.playerCnt <= 1) {
@@ -190,6 +243,79 @@ PlayerManager.prototype = {
             }
             this.avgRating[j] = Math.round(sum /cnt);
         }
+    },
+
+    vote: function (clientId, data) {
+        //die eingehenden votes werden in einem objekt des aktuellen items gespeichert
+        //if (content.type == "vote") this.getItem().votes = {};
+        var playerId = data.playerId;
+        var voteId = data.voteId;
+        var voteItem = this.voteItems[voteId];
+        console.log("Got Vote for "+voteId+" from Player "+playerId);
+        var dd = data.data;
+        if (this.voteItems.length == 0) {
+            wsManager.msgDeviceByIds([clientId], "display", {"text": "There is no vote at the moment!"});
+            return;
+        }
+        if (typeof voteItem == "undefined") {
+            wsManager.msgDeviceByIds([clientId], "display", {"text": "This vote doesn't exist!"});
+            return;
+        }
+        if (voteItem.votes[playerId]) {
+            wsManager.msgDeviceByIds([clientId], "display", {"text": "You already voted in this Poll!"});
+        }
+        console.log("vote=" + dd);
+        var msg = "You voted: ";
+        for (var i = 0; i < dd.length; i++) {
+            if (dd[i].checked) msg += dd[i].text + " ";
+        }
+        voteItem.votes[playerId] = dd;
+        voteItem.votes[playerId].multiplier = this.avgRating[playerId];
+        this.log("Player "+playerId+": "+msg);
+        wsManager.msgDeviceByIds([clientId], "display", {"text": msg});
+        //voteComplete soll aufgerufen werden, wenn alle player mit joined = true gevoted haben...
+        var missingVotes = 0;
+        for (var i = 0; i<this.players.length; i++){
+            if (this.players[i].joined) {
+                if (typeof voteItem.votes[i] == "undefined") missingVotes++;
+            }
+        }
+        if (missingVotes == 0) this.voteComplete(voteId);
+    },
+
+    voteComplete: function (voteId) {
+        var voteItem = this.voteItems[voteId];
+        var votes = voteItem.votes;
+        var voteOptions = voteItem.voteOptions;
+        var voteCount = 0;
+        var bestOption = 0;
+        for (var i = 0; i < votes.length; i++) {
+            if (typeof votes[i] != "undefined") {
+                for (var j = 0; j < voteOptions.length; j++) {
+                    if (!voteOptions[j].result) voteOptions[j].result = 0;
+                    if (!voteOptions[j].votes) voteOptions[j].votes = 0;
+                    if (votes[i][j].checked) {
+                        voteCount += votes[i].multiplier;
+                        voteOptions[j].result += votes[i].multiplier;
+                        voteOptions[j].votes += 1;
+                        if (voteOptions[j].result > voteOptions[bestOption].result) bestOption = j;
+                    }
+                }
+
+            }
+        }
+        voteOptions.sort(function (a, b) {
+            return b.result - a.result
+        });
+        var msg = voteItem.text;
+        var labels = [];
+        var resData = [];
+        voteItem.voteOptions.forEach(function (option) {
+            //msg += option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% (" + option.result + "/" + voteCount + ")" + "::";
+            labels.push(option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% (" + option.votes + ")");
+            resData.push(option.result / voteCount * 100);
+        });
+        wsManager.msgDevicesByRole('player', "display", {type: "result", text: msg, labels: labels, data: resData});
     }
 
 
