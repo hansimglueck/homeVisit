@@ -101,11 +101,24 @@ masterControllers.controller('DeviceCtrl', function($scope, Socket, itemTypes) {
 });
 
 masterControllers.controller('OsCtrl', function($scope, Socket) {
+    $scope.collapsed = {
+        db: true,
+        wlan1: true,
+        osInfo: true,
+        server: true
+    };
     $scope.osInfo = {};
-    $scope.shutdown = function() {
+    $scope.dbStatus = {};
+    $scope.socket = Socket;
+    $scope.restartServer = function() {
+        if (!confirm("Wirklich Server neu starten?")) return;
+        Socket.emit({type:"os", data:"restartServer"}, function() { console.log('restart-request sent'); });
+    };
+    $scope.shutdown = function(reboot) {
         if (!confirm("Wirklich Runterfahren???")) return;
         if (!confirm("WIRKLICH RUNTERFAHREN??????????")) return;
-        Socket.emit({type:"os", data:"shutdown"}, function() { console.log('shutdown send'); });
+        var d = reboot ? "reboot" : "shutdwon";
+        Socket.emit({type:"os", data:d}, function() { console.log('shutdown send'); });
     };
     $scope.restartWlan1 = function() {
         Socket.emit({type:"os", data:"restartwlan1", para:{ssid:$scope.wlanId, passwd:$scope.wlanPasswd}}, function() { console.log('restart-request sent'); });
@@ -113,14 +126,25 @@ masterControllers.controller('OsCtrl', function($scope, Socket) {
     $scope.requestOsInfo = function() {
         Socket.emit({type:"os", data:"getInfo"}, function() { console.log('os info requested'); });
     };
+    $scope.dbAction = function(action) {
+        if (!confirm("Wirklich DB:"+action+"?")) return;
+        Socket.emit({type:"database", data:action}, function() { console.log('db action requested: '+action); });
+    };
     Socket.on("osinfo", function(event) {
         $scope.osInfo = JSON.parse(event.data).data;
         console.log("got os info: "+JSON.stringify($scope.osInfo));
     });
-    $scope.printInterfaces = function() {
+    Socket.on("dbStatus", function(event) {
+        $scope.dbStatus = JSON.parse(event.data).data;
+        console.log("got dbStatus: "+JSON.stringify($scope.dbStatus));
+    });
+    $scope.printInterfaces = function(iname) {
         if (typeof $scope.osInfo.interfaces == "undefined") return "fghj";
         var interfaces = "";
         Object.keys($scope.osInfo.interfaces).forEach(function(i, name){
+            if (iname) {
+                if (i.indexOf(iname)==-1) return;
+            }
             interfaces+=i+": ";
             $scope.osInfo.interfaces[i].forEach(function(ver){
                 interfaces+=ver.address+" ";

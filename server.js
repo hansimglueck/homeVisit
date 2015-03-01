@@ -13,6 +13,12 @@ mongoose.connect('mongodb://localhost/homeVisit', function(err) {
     if(err) {
         console.log('db-connection error', err);
     } else {
+        db.on('close', function () {
+            console.log('Error...close');
+        });
+        db.on('error', function() {
+            console.log("ERROR error");
+        })
         console.log('db-connection successful');
      }
 });

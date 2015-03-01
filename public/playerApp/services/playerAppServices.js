@@ -146,7 +146,6 @@ angular.module('playerAppServices', [])
 
 
     })
-
     .factory('Rating', function (Socket, Status) {
 
         var ratingFactory = {};
@@ -156,7 +155,19 @@ angular.module('playerAppServices', [])
 
         Socket.on('rates', function (event) {
             var data = JSON.parse(event.data).data;
-            ratingFactory.avgRatings = data.avgRating;
+            ratingFactory.avgRatings = data.avgRatings;
+            console.log(ratingFactory.avgRatings);
+        });
+
+        Socket.on('status', function(event) {
+            var data = JSON.parse(event.data).data;
+            for (var i = 0; i < data.playerRatings.length; i++) {
+                ratingFactory.myRatings[i] = data.playerRatings[i];
+            }
+            console.log(data.avgRatings);
+            for (var i = 0; i < data.avgRatings.length; i++) {
+                ratingFactory.avgRatings[i] = data.avgRatings[i];
+            }
             console.log(ratingFactory.avgRatings);
         });
 
@@ -190,13 +201,16 @@ angular.module('playerAppServices', [])
         var chatFactory = {};
         chatFactory.messages = [[[0,"hallo"],[1,"wie gehts?"]],[[0,"hallo"],[1,"wie gehts?"]]];
         chatFactory.messages = [];
+        chatFactory.newCntPerPlayer = [];
         chatFactory.newCnt = 0;
 
         Socket.on('chat', function (event) {
             var data = JSON.parse(event.data).data;
             var playerId = data.playerId;
             if (typeof chatFactory.messages[playerId] == "undefined") chatFactory.messages[playerId] = [];
-            chatFactory.messages[playerId].push([1,data.message]);
+            chatFactory.messages[playerId].unshift([1,data.message]);
+            if (typeof chatFactory.newCntPerPlayer[playerId] == "undefined") chatFactory.newCntPerPlayer[playerId] = 1;
+            else  chatFactory.newCntPerPlayer[playerId]++;
             chatFactory.newCnt++;
             $rootScope.$broadcast("newChatMessage", chatFactory.newCnt);
         });
@@ -204,11 +218,14 @@ angular.module('playerAppServices', [])
         chatFactory.chat = function(pid, msg) {
             Socket.emit({type: "chat", data:{sender: Status.player.playerId, recepient: pid, message: msg}});
             if (typeof chatFactory.messages[pid] == "undefined") chatFactory.messages[pid] = [];
-            chatFactory.messages[pid].push([0,msg]);
+            chatFactory.messages[pid].unshift([0,msg]);
         };
 
-        chatFactory.messagesRead = function() {
-            chatFactory.newCnt = 0;
+        chatFactory.messagesRead = function(playerId) {
+            console.log("gelesen");
+            chatFactory.newCnt -= chatFactory.newCntPerPlayer[playerId];
+            chatFactory.newCntPerPlayer[playerId] = 0;
+            //da newCnt ein einzelner wert ist, muss ich den broadcasten. die arraywerte im perplayer-array werden automatisch gebindet...
             $rootScope.$broadcast("newChatMessage", chatFactory.newCnt);
         };
         return chatFactory;

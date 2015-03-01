@@ -80,10 +80,10 @@
                 </div>
                 <div class="btn-group pull-right">
                     <div class="navbarbtn" ng-click="go('/rating')">
-                        <i class="fa fa-star"></i></div>
+                        <i class="fa fa-star bigger"></i></div>
                     <div class="navbarbtn" ng-click="go('/chat')">
-                        <i class="fa fa-comment"></i>
-                        <span ng-show="newMessages>0" ng-style="{'color':'red', 'font-size':'0.6em', 'font-weight':'bold', 'position':'relative', 'right':'20px', 'bottom':'3px'}">
+                        <i class="fa fa-comment bigger"></i>
+                        <span class="badge badge-notification" ng-show="newMessages>0">
                             {{newMessages}}</span>
                     </div>
  <!--                    <div class="navbarbtn" ng-click="toVote()">VOTE</div>  -->
@@ -105,7 +105,7 @@
             </div>
 
 
-            <div class="section content" ng-view>
+            <div class="content" ng-view>
             </div>
         </div>
     </div>

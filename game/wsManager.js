@@ -93,7 +93,11 @@ WsManager.prototype = {
     applyRoleCallbacks: function(ws, msg) {
         this.roleCallbacks.forEach(function(cb){
             if (cb.role == ws.role) {
-                cb.fn.call(cb.self, ws.clientId, msg);
+                try {
+                    cb.fn.call(cb.self, ws.clientId, msg);
+                } catch (e) {
+                    console.log("ERROR in wsManager.applyRoleCallback: "+ e.stack);
+                }
             }
         })
     },
@@ -152,7 +156,9 @@ WsManager.prototype = {
 //        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
         //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));
         this.sendDeviceList();
-        if (role == "master") this.sendOsInfo(ws);
+        if (role == "master") {
+            this.sendOsInfo(ws);
+        }
     },
     msgDevicesByRole: function (role, type, message) {
         if (role === "player" && type == "vote" || type == "card") this.lastPlayerMessage = message;

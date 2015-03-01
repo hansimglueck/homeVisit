@@ -32,7 +32,7 @@ function Game() {
         ["pink", "schwarz"]
     ];
     this.rating = [];
-    this.avgRating = [];
+    this.avgRatings = [];
 }
 
 Game.prototype = {
@@ -326,12 +326,12 @@ Game.prototype = {
         this.rating[playerId] = rate;
         console.log("rate: " + this.rating);
         this.calcAvgRate();
-        this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
+        this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRatings});
     },
 
     calcAvgRate: function () {
         if (this.conf.playerCnt <= 1) {
-            this.avgRating[0] = 4;
+            this.avgRatings[0] = 4;
             return;
         }
         var sum;
@@ -340,7 +340,7 @@ Game.prototype = {
             for (var i = 0; i < this.rating.length; i++) {
                 if (i != j) sum += this.rating[i][j];
             }
-            this.avgRating[j] = Math.round(sum / (this.conf.playerCnt - 1));
+            this.avgRatings[j] = Math.round(sum / (this.conf.playerCnt - 1));
         }
     },
 
@@ -553,7 +553,7 @@ Game.prototype = {
             });
             this.play = true;
             this.log(sid, "client" + sid + " started game");
-            this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
+            this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRatings});
         } else {
             this.log(sid, "client" + sid + " already playing");
         }
@@ -581,7 +581,7 @@ Game.prototype = {
         for (var i = 0; i < data.length; i++) {
             if (data[i].checked) msg += data[i].text + " ";
             this.getItem().votes[sid] = data;
-            this.getItem().votes[sid].multiplier = this.avgRating[pid];
+            this.getItem().votes[sid].multiplier = this.avgRatings[pid];
         }
         this.log(sid, msg);
         this.msgDeviceByIds([sid], "display", {"text": msg});

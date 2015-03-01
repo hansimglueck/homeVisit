@@ -28,51 +28,54 @@ Game.prototype = {
     },
 
     trigger: function (clientId, msg) {
-        var param = "";
-        if (msg.param) {
-            param = msg.param;
-        }
-        console.log("game.trigger: " + msg.data + " with parameter: " + param);
-        switch (msg.data) {
-            case "play":
-                console.log('play');
-                this.start();
-                break;
+        try {
+            var param = "";
+            if (msg.param) {
+                param = msg.param;
+            }
+            console.log("game.trigger: " + msg.data + " with parameter: " + param);
+            switch (msg.data) {
+                case "play":
+                    console.log('play');
+                    this.start();
+                    break;
 
-            case "stop":
-                this.stop();
-                break;
+                case "stop":
+                    this.stop();
+                    break;
 
-            case "go":
-                console.log('go');
-                this.step(param);
-                break;
+                case "go":
+                    console.log('go');
+                    this.step(param);
+                    break;
 
-            case "rego":
-                console.log('rego');
-                this.step(param, this.stepId);
-                break;
+                case "rego":
+                    console.log('rego');
+                    this.step(param, this.stepId);
+                    break;
 
-            case "back":
-                console.log('back');
-                var id = this.stepId;
-                if (id > 0) id--;
-                this.step(param, id);
-                break;
+                case "back":
+                    console.log('back');
+                    var id = this.stepId;
+                    if (id > 0) id--;
+                    this.step(param, id);
+                    break;
 
-            default:
-                this.log("game received unknown command: " + msg.type);
+                default:
+                    console.log("game received unknown command: " + msg.type);
+            }
+        } catch (e) {
+            console.log("ERROR in game.trigger! " + e.stack);
         }
     },
 
     log: function (message) {
-        message = "GAME: "+message;
+        message = "GAME: " + message;
         wsManager.msgDevicesByRole("master", "log", message);
     },
 
     step: function (param, id) {
         var msg = "";
-
         //autostart or deny
         if (this.play == false) {
             if (this.conf.autostart) {
@@ -93,16 +96,18 @@ Game.prototype = {
             msg += ": no more items - ";
         }
 
+        var item = this.getItem();
         //objekt mit den relevanten daten zum senden vorbereiten
         var content = {
-            type: this.getItem().type,
-            text: this.getItem().text,
-            voteOptions: this.getItem().voteOptions,
-            voteMulti: this.getItem().voteMulti
+            type: item.type,
+            text: item.text,
+            voteOptions: JSON.parse(JSON.stringify(item.voteOptions)),
+            voteMulti: item.voteMulti,
+            ratedVote: item.flags ? item.flags[0] : true
         };
 
         //log-nachricht
-        msg += " stepped to " + this.deckId + "/"+this.stepId + " (" + content.type + ")";
+        msg += " stepped to " + this.deckId + "/" + this.stepId + " (" + content.type + ")";
         this.log(msg);
 
         var wait = parseInt(this.getItem().wait) * 1000;
@@ -126,14 +131,14 @@ Game.prototype = {
                         //console.log(String(deck._id) == String(option.followUp));
                         if (String(deck._id) == String(option.followUp)) {
                             self.deckId = id;
-                            self.log("switched to deck "+self.deckId);
+                            self.log("switched to deck " + self.deckId);
                         }
                     });
                     self.step("", 0);
                     return;
                 }
             }
-        self.log("FollowUp nicht gefunden!!!");
+            self.log("FollowUp nicht gefunden!!!");
         } else {
             //an die konfigurierten default-devices senden
             var map = this.conf.typeMapping.filter(function (tm) {
@@ -145,7 +150,7 @@ Game.prototype = {
                     playerManager.addItem(content);
                     return;
                 }
-                self.log("sending to "+dev+": "+content.text);
+                self.log("sending to " + dev + ": " + content.text);
                 wsManager.msgDevicesByRole(dev, "display", content);
             });
             wsManager.msgDevicesByRole('master', 'status', {stepId: self.stepId, type: self.getItem().type});
@@ -179,7 +184,7 @@ Game.prototype = {
             });
             this.play = true;
             this.log("client started game");
-            wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
+            //wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRatings});
         } else {
             this.log("already playing");
         }
@@ -187,7 +192,7 @@ Game.prototype = {
 
     stop: function () {
         this.play = false;
-         this.stepId = 0;
+        this.stepId = 0;
         this.log("stopped game");
     },
 

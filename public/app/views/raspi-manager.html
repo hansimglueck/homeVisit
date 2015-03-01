@@ -1,26 +1,63 @@
-<div ng-controller="OsCtrl">
-    <ul class="list-unstyled">
-        <li>
-            System:  {{osInfo.hostname}} / {{osInfo.type}} {{osInfo.arch}}
-        </li>
-        <li>
-            Uptime:  {{osInfo.uptime}}
-        </li>
-        <li>
-            Memory:  {{osInfo.freemem}} / {{osInfo.totalmem}}
-        </li>
-        <li>
-            Load:  1min: {{osInfo.loadavg[0]}} - 5min: {{osInfo.loadavg[1]}} - 15min: {{osInfo.loadavg[2]}}
-        </li>
-        <li>
-            Interfaces:  {{printInterfaces()}}
-        </li>
+<ul class="list-group" ng-controller="OsCtrl">
+    <li class="list-group-item" ng-click="collapsed.server = !collapsed.server"  ng-class="{ 'text-danger': !socket.getConnState(), bubble: !dbStatus.socket.getConnState() }">
+        Server: {{socket.getConnState() ? "connected" : "not connected"}}
+        <i class="pull-right glyphicon"
+           ng-class="{'glyphicon-chevron-down': !collapsed.server, 'glyphicon-chevron-right': collapsed.server}"></i>
+        <ul class="list-group" collapse="collapsed.server">
+            <li class="list-group-item"></li>
+            <li class="list-group-item buttons">
+                <button class="btn" ng-click="restartServer()">RESTART SERVER</button>
+            </li>
+        </ul>
+    </li>
+    <li class="list-group-item" ng-click="collapsed.osInfo = !collapsed.osInfo">
+        OS Info for {{osInfo.hostname}}
+        <i class="pull-right glyphicon"
+           ng-class="{'glyphicon-chevron-down': !collapsed.osInfo, 'glyphicon-chevron-right': collapsed.osInfo}"></i>
+        <ul class="list-unstyled" collapse="collapsed.osInfo">
+            <li>
+                System: {{osInfo.hostname}} / {{osInfo.type}} {{osInfo.arch}}
+            </li>
+            <li>
+                Uptime: {{osInfo.uptime}}
+            </li>
+            <li>
+                Memory: {{osInfo.freemem}} / {{osInfo.totalmem}}
+            </li>
+            <li>
+                Load: 1min: {{osInfo.loadavg[0]}} - 5min: {{osInfo.loadavg[1]}} - 15min: {{osInfo.loadavg[2]}}
+            </li>
+            <li>
+                Interfaces: {{printInterfaces()}}
+            </li>
+        </ul>
+    <li class="list-group-item" ng-click="collapsed.wlan1 = !collapsed.wlan1">
+        WLAN: {{printInterfaces('wlan1')}}
+        <i class="pull-right glyphicon"
+           ng-class="{'glyphicon-chevron-down': !collapsed.wlan1, 'glyphicon-chevron-right': collapsed.wlan1}"></i>
+        <ul class="list-group" collapse="collapsed.wlan1">
+            <li class="list-group-item">SSID: <input type="text" ng-model="wlanId"/></li>
+            <li class="list-group-item">Passwort: <input type="password" ng-model="wlanPasswd"/></li>
+            <li class="list-group-item buttons">
+                <button class="btn" ng-click="restartWlan1()">RESTART WLAN</button>
+            </li>
+        </ul>
+    </li>
+    <li class="list-group-item" ng-click="collapsed.db = !collapsed.db"  ng-class="{ 'text-danger': !dbStatus.connected, bubble: !dbStatus.connected }">
+        DB: {{dbStatus.connected ? "connected" : "not connected"}}
+        <i class="pull-right glyphicon"
+           ng-class="{'glyphicon-chevron-down': !collapsed.db, 'glyphicon-chevron-right': collapsed.db}"></i>
+        <ul class="list-group" collapse="collapsed.db">
+            <li class="list-group-item"></li>
+            <li class="list-group-item buttons">
+                <button class="btn" ng-click="dbAction('connect')">CONNECT DB</button>
+                <button class="btn" ng-click="dbAction('repair')">REPAIR DB</button>
+            </li>
+        </ul>
+    </li>
+    <li class="list-group-item buttons panel-body">
+        <button class="btn" ng-click="shutdown(false)">SHUTDOWN</button>
+        <button class="btn" ng-click="shutdown(true)">REBOOT</button>
+    </li>
 
-    </ul>
-    SSID: <input type="text" ng-model="wlanId" />
-    Passwort: <input type="password" ng-model="wlanPasswd" />
-    <div class="buttons">
-        <button class="btn" ng-click="shutdown()">SHUTDOWN</button>
-        <button class="btn" ng-click="restartWlan1()">RESTART WLAN</button>
-    </div>
-</div>
+</ul>

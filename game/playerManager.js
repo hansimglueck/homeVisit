@@ -20,7 +20,7 @@ PlayerManager = function () {
         ["pink", "schwarz"]
     ];
     this.rating = [];
-    this.avgRating = [];
+    this.avgRatings = [];
     this.conf = {
         playerCnt: 15
     }
@@ -39,7 +39,7 @@ PlayerManager.prototype = {
                 joined: false
             });
             this.rating[i] = [];
-            this.avgRating[i] = 4;
+            this.avgRatings[i] = 4;
             for (var j = 0; j < this.colors.length; j++) {
                 this.rating[i][j] = 4;
             }
@@ -49,62 +49,70 @@ PlayerManager.prototype = {
     },
 
     log: function (message) {
-        message = "PMANAGER: "+message;
+        message = "PMANAGER: " + message;
         wsManager.msgDevicesByRole("master", "log", message);
     },
 
     playerMessage: function (clientId, msg) {
-        if (typeof msg != "undefined") switch (msg.type) {
-            case "joinGame":
-                this.requestJoin(clientId, msg.data);
-                break;
+        try {
+            if (typeof msg != "undefined") switch (msg.type) {
+                case "joinGame":
+                    this.requestJoin(clientId, msg.data);
+                    break;
 
-            case "leaveGame":
-                this.leaveGame(clientId);
-                break;
+                case "leaveGame":
+                    this.leaveGame(clientId);
+                    break;
 
-            case "vote":
-                this.vote(clientId, msg);
-                break;
+                case "vote":
+                    this.vote(clientId, msg);
+                    break;
 
-            case "rate":
-                this.rate(clientId, msg.data);
-                break;
+                case "rate":
+                    this.rate(clientId, msg.data);
+                    break;
 
-            case "chat":
-                this.chat(clientId, msg.data);
-                break;
+                case "chat":
+                    this.chat(clientId, msg.data);
+                    break;
 
-            default:
-                console.log("unknown message-type");
-                break;
+                default:
+                    console.log("unknown message-type");
+                    break;
 
-        }
-
-    },
-
-    addItem: function(item) {
-        if (!item.type) {
-            this.log("cannot process item (no type)!");
-            return;
-        }
-        switch (item.type) {
-            case "vote":
-                this.sendVote(this.voteItems.push(item)-1);
-                break;
-
-            case "card":
-                this.cardItems.push(item);
-                this.sendCard(this.cardItems.push(item)-1);
-                break;
-
-            default:
-                break;
-
+            }
+        } catch (e) {
+            console.log("ERROR in playerManager.newMessage! " + e.stack);
         }
     },
 
-    sendCard: function(cardId) {
+    addItem: function (item) {
+        try {
+            if (!item.type) {
+                this.log("cannot process item (no type)!");
+                return;
+            }
+
+            switch (item.type) {
+                case "vote":
+                    this.sendVote(this.voteItems.push(item) - 1);
+                    break;
+
+                case "card":
+                    //this.cardItems.push(item);
+                    this.sendCard(this.cardItems.push(item) - 1);
+                    break;
+
+                default:
+                    break;
+
+            }
+        } catch (e) {
+            console.log("ERROR in playerManager.addItem! " + e.stack);
+        }
+    },
+
+    sendCard: function (cardId) {
         var cardItem = this.cardItems[cardId];
         var content = {
             type: cardItem.type,
@@ -115,7 +123,7 @@ PlayerManager.prototype = {
 
     },
 
-    sendVote: function(voteId) {
+    sendVote: function (voteId) {
         var voteItem = this.voteItems[voteId];
         voteItem.votes = [];
         var content = {
@@ -123,7 +131,8 @@ PlayerManager.prototype = {
             type: voteItem.type,
             text: voteItem.text,
             voteOptions: voteItem.voteOptions,
-            voteMulti: voteItem.voteMulti
+            voteMulti: voteItem.voteMulti,
+            ratedVote: voteItem.ratedVote
         };
         wsManager.msgDevicesByRole("player", "display", content);
     },
@@ -177,7 +186,6 @@ PlayerManager.prototype = {
     },
 
     sendPlayerStatus: function (playerId) {
-
         wsManager.msgDeviceByIds([this.players[playerId].clientId], "joined", {
             player: {
                 playerId: playerId,
@@ -187,8 +195,10 @@ PlayerManager.prototype = {
             rating: this.rating[playerId]
         });
         var msg = {
-                otherPlayers: this.getPlayerArray(),
-                maxPlayers: this.conf.playerCnt
+            otherPlayers: this.getPlayerArray(),
+            maxPlayers: this.conf.playerCnt,
+            playerRatings: this.rating[playerId],
+            avgRatings: this.avgRatings
         };
         wsManager.msgDevicesByRole("player", "status", msg);
     },
@@ -223,15 +233,15 @@ PlayerManager.prototype = {
         this.rating[playerId] = rate;
         console.log("rate: " + this.rating);
         this.calcAvgRate();
-        wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
+        wsManager.msgDevicesByRole('player', 'rates', {avgRatings: this.avgRatings});
     },
 
     calcAvgRate: function () {
         if (this.conf.playerCnt <= 1) {
-            this.avgRating[0] = 4;
+            this.avgRatings[0] = 4;
             return;
         }
-        var sum,cnt;
+        var sum, cnt;
         for (var j = 0; j < this.rating.length; j++) {
             sum = 0;
             cnt = 0;
@@ -241,7 +251,7 @@ PlayerManager.prototype = {
                     cnt++;
                 }
             }
-            this.avgRating[j] = Math.round(sum /cnt);
+            this.avgRatings[j] = Math.round(sum / cnt);
         }
     },
 
@@ -251,7 +261,7 @@ PlayerManager.prototype = {
         var playerId = data.playerId;
         var voteId = data.voteId;
         var voteItem = this.voteItems[voteId];
-        console.log("Got Vote for "+voteId+" from Player "+playerId);
+        console.log("Got Vote for " + voteId + " from Player " + playerId);
         var dd = data.data;
         if (this.voteItems.length == 0) {
             wsManager.msgDeviceByIds([clientId], "display", {"text": "There is no vote at the moment!"});
@@ -270,12 +280,14 @@ PlayerManager.prototype = {
             if (dd[i].checked) msg += dd[i].text + " ";
         }
         voteItem.votes[playerId] = dd;
-        voteItem.votes[playerId].multiplier = this.avgRating[playerId];
-        this.log("Player "+playerId+": "+msg);
+        voteItem.votes[playerId].multiplier = this.avgRatings[playerId];
+        if (!voteItem.ratedVote) voteItem.votes[playerId].multiplier = 1;
+        this.log("Player " + playerId + ": " + msg);
+        console.log("multiplier="+voteItem.votes[playerId].multiplier);
         wsManager.msgDeviceByIds([clientId], "display", {"text": msg});
         //voteComplete soll aufgerufen werden, wenn alle player mit joined = true gevoted haben...
         var missingVotes = 0;
-        for (var i = 0; i<this.players.length; i++){
+        for (var i = 0; i < this.players.length; i++) {
             if (this.players[i].joined) {
                 if (typeof voteItem.votes[i] == "undefined") missingVotes++;
             }

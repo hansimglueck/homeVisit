@@ -9,6 +9,7 @@ angular.module('WebsocketServices', []).
         var registered = false;
         var host = location.host;
         onMessageCallbacks = [];
+        var connected = false;
 
         var connect = function () {
             ws = new WebSocket('ws://' + host);
@@ -17,6 +18,8 @@ angular.module('WebsocketServices', []).
             };
             ws.onclose = function () {
                 console.log("client lost connection");
+                connected = false;
+                $rootScope.$digest();
                 setTimeout(function () {
                     connect();
                 }, 1000);
@@ -26,6 +29,7 @@ angular.module('WebsocketServices', []).
                 console.log("client: Socket has been opened!");
                 onMessageCallbacks.push({
                     fn: function () {
+                        connected = true;
                         registered = true;
                         console.log("registered");
                     },
@@ -56,6 +60,9 @@ angular.module('WebsocketServices', []).
         };
         connect();
         return {
+            getConnState: function() {
+                return connected;
+            },
             on: function (eventName, callback) {
                 onMessageCallbacks.push({
                     fn: callback,

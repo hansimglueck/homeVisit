@@ -69,7 +69,12 @@ angular.module("playerControllers", [])
                 console.log("no");
                 $scope.home.options[id].checked = true;
             }
-            Socket.emit({type: "vote", data: $scope.home.options, playerId: $scope.status.player.playerId, voteId: $scope.home.voteId});
+            Socket.emit({
+                type: "vote",
+                data: $scope.home.options,
+                playerId: $scope.status.player.playerId,
+                voteId: $scope.home.voteId
+            });
         };
     })
     .controller('MenuController', function ($scope, Status, Socket) {
@@ -82,11 +87,12 @@ angular.module("playerControllers", [])
         $scope.leaveGame = function () {
             Status.leaveGame();
         };
-        $scope.reload = function() {
-            window.location.reload();console.log('X')
+        $scope.reload = function () {
+            window.location.reload();
+            console.log('X')
 
         };
-        $scope.$on("pingpong", function(event, pingTime, pingCount, pingTimeouts) {
+        $scope.$on("pingpong", function (event, pingTime, pingCount, pingTimeouts) {
             //console.log(pingTime, pingCount);
             $scope.pingTime = pingTime;
             $scope.pingCount = pingCount;
@@ -100,7 +106,9 @@ angular.module("playerControllers", [])
         $scope.chat = Chat;
         $scope.rating = Rating;
         $scope.newMessages = 0;
-        $scope.$on("newChatMessage", function(event, count){$scope.newMessages=count});
+        $scope.$on("newChatMessage", function (event, count) {
+            $scope.newMessages = count
+        });
         $scope.col1 = function () {
             return colors[$scope.status.player.colors[0]];
         };
@@ -119,35 +127,37 @@ angular.module("playerControllers", [])
     .controller('VoteController', function ($scope, Socket, colors, playerColors) {
 
     })
-    .controller('ChatController', function ($scope, Status, Chat, colors, playerColors, $location, $anchorScroll) {
-        $scope.messages = Chat.messages;
+    .controller('ChatController', function ($scope, Status, Chat, colors, playerColors, $location, $anchorScroll, $routeParams) {
         $scope.chat = Chat;
+        $scope.newCntPerPlayer = Chat.newCntPerPlayer;
         $scope.status = Status;
+        $scope.$routeParams = $routeParams;
         $scope.colors = colors;
         $scope.playerColors = playerColors;
-        $scope.data = {};
-        $scope.data.newMessage = "";
-        $scope.isOtherPlayer = function (player) {
-            //console.log(player);
-            if (!player.joined) return false;
-            if (player.playerId == $scope.status.player.playerId) return false;
-            return true;
-        };
-        $scope.chat = function(pid) {
-            Chat.chat(pid, $scope.data.newMessage[pid]);
-            $scope.data.newMessage[pid] = "";
-        };
-        $scope.$on('$viewContentLoaded', function() {
-            //console.log("chat: viewContentLoaded");
-            Chat.messagesRead();
-        });
-        $scope.scrollToItem = function (itemName){
+        $scope.scrollToItem = function (itemName) {
             //now scroll to it.
             $location.hash(itemName);
             $anchorScroll();
             $location.hash();
         };
 
+    })
+    .controller('PlayerChatController', function($scope, Status, Chat, colors, playerColors, $routeParams){
+        $scope.status = Status;
+        $scope.$routeParams = $routeParams;
+        $scope.colors = colors;
+        $scope.playerColors = playerColors;
+        $scope.messages = Chat.messages;
+        $scope.data = {};
+        $scope.data.newMessage = "";
+        $scope.$on('$viewContentLoaded', function (event) {
+            console.log(event);
+            Chat.messagesRead($scope.$routeParams.playerId);
+        });
+        $scope.chat = function (pid) {
+            Chat.chat(pid, $scope.data.newMessage[pid]);
+            $scope.data.newMessage[pid] = "";
+        };
     })
     .controller('RatingController', function ($scope, Status, Rating, colors, playerColors) {
         $scope.status = Status;
@@ -157,33 +167,36 @@ angular.module("playerControllers", [])
         $scope.avgRatings = $scope.rating.avgRatings;
         $scope.playerColors = playerColors;
         $scope.moodys = ["C", "CC", "CCC", "B", "BB", "BBB", "A", "AA", "AAA"];
-        $scope.isOtherPlayer = function (player) {
-            //console.log(player);
-            if (!player.joined) return false;
-            if (player.playerId == $scope.status.player.playerId) return false;
-            return true;
-        };
         $scope.rate = function (id, val) {
             $scope.rating.rate(id, val);
         };
-        $scope.$watch(
-            function (scope) {
-                return scope.status.maxPlayers
-            },
-            function () {
-                console.log("fill");
-                $scope.rating.fillMyRatings();
+        //$scope.$watch(
+        //    function (scope) {
+        //        return scope.status.maxPlayers
+        //    },
+        //    function () {
+        //        console.log("fill");
+        //        $scope.rating.fillMyRatings();
+        //    });
+        //$scope.$watch(
+        //    function (scope) {
+        //        return scope.status.joined
+        //    },
+        //    function (newVal) {
+        //        console.log("x");
+        //        console.log($scope.status.rating);
+        //        $scope.rating.setMyRatings($scope.status.rating);
+        //        if (newVal) $scope.rating.rate(0, 0);
+        //    });
+
+    })
+    .filter('isOtherPlayerThan', function () {
+        return function (players,self) {
+            return players.filter(function(p){
+                if (!p.joined) return false;
+                return p.playerId != self.playerId;
             });
-        $scope.$watch(
-            function (scope) {
-                return scope.status.joined
-            },
-            function (newVal) {
-                console.log("x");
-                console.log($scope.status.rating);
-                $scope.rating.setMyRatings($scope.status.rating);
-                if (newVal) $scope.rating.rate(0, 0);
-            });
+        }
 
     });
 

@@ -28,8 +28,12 @@
         </span>
 
         <div ng-show="item.type=='vote' || item.type=='switch'">
-        <span editable-text="item.voteMulti" e-name="voteMulti" e-form="rowform">
+        Anzahl Stimmen:<span editable-text="item.voteMulti" e-name="voteMulti" e-form="rowform">
           {{ item.voteMulti || '' }}
+        </span>
+            <br/>
+        mit Rating: <span editable-checkbox="item.flags[0]" e-name="voteFlag" e-form="rowform">
+          {{ item.flags[0] || 'nein' }}
         </span>
             <br/> Optionen:
             <table class="table">

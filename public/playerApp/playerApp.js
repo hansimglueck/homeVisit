@@ -26,6 +26,10 @@ angular.module('playerApp', [
                     templateUrl: 'playerApp/partials/chat.html',
                     controller: 'ChatController'
                 }).
+                when('/chat/:playerId', {
+                    templateUrl: 'playerApp/partials/playerChat.html',
+                    controller: 'PlayerChatController'
+                }).
                 when('/vote', {
                     templateUrl: 'playerApp/partials/vote.html',
                     controller: 'VoteController'
