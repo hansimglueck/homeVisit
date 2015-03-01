@@ -14,6 +14,7 @@ RaspiTools.prototype = {
                 case "os":
                     switch (msg.data) {
                         case "shutdown":
+                            console.log("shutdown!!!");
                             exec("sudo shutdown -h now", function (error, stdout, stderr) {
                             });
                             break;
