@@ -117,7 +117,7 @@ masterControllers.controller('OsCtrl', function($scope, Socket) {
     $scope.shutdown = function(reboot) {
         if (!confirm("Wirklich Runterfahren???")) return;
         if (!confirm("WIRKLICH RUNTERFAHREN??????????")) return;
-        var d = reboot ? "reboot" : "shutdwon";
+        var d = reboot ? "reboot" : "shutdown";
         Socket.emit({type:"os", data:d}, function() { console.log('shutdown send'); });
     };
     $scope.restartWlan1 = function() {
