@@ -51,6 +51,8 @@ RaspiTools.prototype = {
                             });
                             break;
                         case "repair":
+                            exec("/home/pi/homeVisit/shellscripts/repair_db", function (error, stdout, stderr) {
+                            });
                             break;
 
                         default:
