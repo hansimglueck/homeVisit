@@ -23,7 +23,8 @@ RaspiTools.prototype = {
                             });
                             break;
                         case "restartServer":
-                            exec("/home/pi/homeVisit/shellscripts/restart_homevisit", function (error, stdout, stderr) {
+                            console.log("restarting server");
+                            exec("sudo /home/pi/homeVisit/shellscripts/restart_homevisit", function (error, stdout, stderr) {
                             });
                             break;
                         case "getInfo":
