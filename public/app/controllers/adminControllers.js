@@ -36,10 +36,22 @@ adminControllers.controller('setCtrl', function ($scope, setFactory) {
             });
 
         };
-
+        $scope.duplicateDeck = function(deckId) {
+            var newName = prompt("Neuer Name?");
+            var dupDeck = angular.copy($scope.decks[deckId]);
+            delete dupDeck._id;
+            dupDeck.title = newName;
+            setFactory.addDeck(dupDeck, function (ret) {
+                console.log("cb: "+ret);
+                $scope.decks.push(ret);
+            });
+        };
         $scope.deleteDeck = function (index) {
             if (!confirm("Wirklich Löschen???")) return;
             setFactory.deleteDeck(index);
+        };
+        $scope.renameDeck = function(deckId) {
+            var newName = prompt("Neuer Name?");
         };
 
         $scope.textToItems = function (text) {
@@ -56,7 +68,7 @@ adminControllers.controller('setCtrl', function ($scope, setFactory) {
             var time = 0;
             angular.forEach($scope.decks[deckId].items, function (item, id) {
                 time += parseInt(item.time) || 0;
-            })
+            });
             return time;
         };
 

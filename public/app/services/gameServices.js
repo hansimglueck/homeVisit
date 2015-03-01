@@ -35,6 +35,9 @@ gameServices.factory('Game', ['$resource', function($resource){
         restfactory.addDeck = function(newDeck, callback){
             var deck = new resource(newDeck);
             deck.$save(callback);
+        };
+
+        restfactory.duplicateDeck =function(deckId) {
 
         };
 
