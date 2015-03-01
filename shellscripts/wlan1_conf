@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sudo sed -i.bak 's/^\(.*ssid=.\).*\(\x22\)/\1'${1}'\2/' /etc/wpa_supplicant/wpa_supplicant.conf
+sudo sed -i.bak 's/^\(.*psk=.\).*\(\x22\)/\1'${2}'\2/' /etc/wpa_supplicant/wpa_supplicant.conf
+sudo ifdown wlan1
+sudo ifup wlan1
+
+exit 0

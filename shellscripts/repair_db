@@ -1,0 +1,8 @@
+#!/bin/bash
+
+sudo /etc/init.d/mongod stop
+sudo mongod --dbpath /var/lib/mongodb/ --repair
+sudo chown -R mongodb:nogroup /var/lib/mongodb/
+sudo /etc/init.d/mongod start
+
+exit 0
