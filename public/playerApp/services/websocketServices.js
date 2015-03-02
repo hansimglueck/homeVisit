@@ -22,6 +22,7 @@ angular.module('WebsocketServices', []).
                 if (pingTimeouts > 1) {
                     ws.close();
                     closed();
+                    return;
                 }
             }
             var d = new Date();
