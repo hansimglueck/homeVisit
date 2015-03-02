@@ -92,6 +92,10 @@ angular.module("playerControllers", [])
             console.log('X')
 
         };
+        $scope.$on("disconnected", function () {
+            console.log("MenuController got 'disconnected'");
+            $scope.status.resetPlayer();
+        });
         $scope.$on("pingpong", function (event, pingTime, pingCount, pingTimeouts) {
             //console.log(pingTime, pingCount);
             $scope.pingTime = pingTime;
