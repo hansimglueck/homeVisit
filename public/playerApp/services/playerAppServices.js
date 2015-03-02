@@ -81,7 +81,7 @@ angular.module('playerAppServices', [])
         });
         return homeFactory;
     })
-    .factory('Status', function (Socket, $location) {
+    .factory('Status', function ($rootScope, Socket, $location) {
 
         var emptyPlayer = {playerId: -1, colors: ["weiss", "weiss"]};
         var statusFactory = {};
@@ -141,6 +141,7 @@ angular.module('playerAppServices', [])
         statusFactory.resetPlayer = function () {
             statusFactory.player = emptyPlayer;
             statusFactory.joined = false;
+            $rootScope.$digest();
         };
         return statusFactory;
 
