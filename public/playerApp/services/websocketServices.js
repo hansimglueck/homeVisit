@@ -19,7 +19,10 @@ angular.module('WebsocketServices', []).
                 pingTimeouts++;
                 //pingCount = 0;
                 $rootScope.$broadcast("pingpong", 2222, pingCount, pingTimeouts);
-                if (pingTimeouts > 1) ws.close();
+                if (pingTimeouts > 1) {
+                    ws.close();
+                    closed();
+                }
             }
             var d = new Date();
             pingTime = d.getMilliseconds();
@@ -33,19 +36,24 @@ angular.module('WebsocketServices', []).
             pingCount--;
             $rootScope.$broadcast("pingpong", (d.getMilliseconds()-pingTime), pingCount, pingTimeouts);
         };
+
+        var closed = function() {
+            console.log("client lost connection");
+            server.connected = false;
+            $rootScope.$digest(); //damit das false auch ankommt...
+            $rootScope.$broadcast("disconnected");
+            setTimeout(function () {
+                connect();
+            }, 1000);
+        };
+
         var connect = function () {
             ws = new WebSocket('ws://' + host);
             //ws.onconnect = function () {
             //    console.log("client: connecting");
             //};
             ws.onclose = function () {
-                console.log("client lost connection");
-                server.connected = false;
-                $rootScope.$digest(); //damit das false auch ankommt...
-                $rootScope.$broadcast("disconnected");
-                setTimeout(function () {
-                    connect();
-                }, 1000);
+                closed();
             };
 
             ws.onopen = function () {
