@@ -22,6 +22,9 @@ angular.module('WebsocketServices', []).
                 if (pingTimeouts > 1) {
                     ws.close();
                     closed();
+                    pingTime = 0;
+                    pingCount = 0;
+                    pingTimeouts = 0;
                     return;
                 }
             }
