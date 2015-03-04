@@ -2,6 +2,7 @@
     <h3 class="modal-title">Bewege Item</h3>
 </div>
 <div class="modal-body">
+    Wähle Ziel aus (wo es dahinter soll).<br />
     <select
             ng-init="result.newDeckId=deckId"
             data-ng-attr-size={{decks.length+1}}
@@ -10,16 +11,14 @@
     </select>
     <select
             ng-init="result.newItemId=itemId"
-            data-ng-attr-size={{decks[result.newDeckId].items.length+1}}
+            data-ng-attr-size={{deckChoice.items.length+1}}
             ng-model="result.newItemId"
             ng-options="item._id as id+') '+item.text.substr(0,50) for (id,item) in deckChoice.items">
 
     </select>
 </div>
-MOVE!! {{deckId}}/{{itemId}}
-TO {{result.newDeckId}}/{{result.newItemId}}
-:: {{getDeckById[result.newDeckId]._id}}
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="ok()">OK</button>
+    <button class="btn btn-primary" ng-click="move()">Move</button>
+    <button class="btn btn-primary" ng-click="copy()">Copy</button>
     <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
 </div>

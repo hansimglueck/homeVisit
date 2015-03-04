@@ -22,6 +22,43 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
         console.log("decks changed. new length:" + $scope.decks.length);
         $scope.activateDeck($scope.decks[2]._id);
     });
+    $scope.getDeckById = function(id) {
+        console.log("trying to find deck with "+id);
+        var deckArr = $scope.decks.filter(function(deck){
+            return (deck._id == id);
+        });
+        return (deckArr.length > 0) ? deckArr[0] : null;
+    };
+    $scope.getItemById = function(did, id) {
+        console.log("trying to find item with "+id);
+        var deckArr = $scope.decks.filter(function(deck){
+            return (deck._id == did);
+        });
+        var deck = (deckArr.length > 0) ? deckArr[0] : null;
+        var item = null;
+        var itemArr = [];
+        if (deck != null) itemArr = deck.items.filter(function(i) {
+            return (i._id == id);
+        });
+        return (itemArr.length > 0) ? itemArr[0] : null;
+    };
+    $scope.getDeckId = function(deckId) {
+        var ret = -1;
+        for (var i = 0; i < $scope.decks.length; i++){
+            if ($scope.decks[i]._id == deckId) ret = i;
+        }
+        return ret;
+    };
+    $scope.getItemId = function(deckId, id) {
+        console.log("getItem-id for"+deckId+","+id);
+        var deck = $scope.getDeckById(deckId);
+        console.log(deck);
+        var ret = -1;
+        for (var i = 0; i < deck.items.length; i++){
+            if (deck.items[i]._id == id) ret = i;
+        }
+        return ret;
+    };
     $scope.activateDeck = function (deckId) {
         //now scroll to it.
         $scope.activeDeck.id = deckId;
@@ -151,16 +188,15 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
     };
 
     $scope.moveItem = function (deckId, itemId) {
-        var xDeckId = -1;
-        if ($scope.decks[deckId]) xDeckId = $scope.decks[deckId]._id;
         if ($scope.decks[deckId]) itemId = $scope.decks[deckId].items[itemId]._id;
+        if ($scope.decks[deckId]) deckId = $scope.decks[deckId]._id;
         var modalInstance = $modal.open({
             templateUrl: 'app/views/admin/move-item.html',
             controller: 'MoveItemController',
             size: 'sm',
             resolve: {
                 deckId: function () {
-                    return xDeckId;
+                    return deckId;
                 },
                 itemId: function () {
                     return itemId;
@@ -173,8 +209,20 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
 
         modalInstance.result.then(function (result) {
             console.log("Move " + deckId + "/" + itemId + " to " + result.newDeckId + "/" + result.newItemId);
-            $scope.activeDeck.id = result.newDeckId;
-            $scope.activateDeck(result.newDeckId);
+            var newItem = angular.copy($scope.getItemById(deckId, itemId));
+            delete newItem._id;
+            //$scope.activeDeck.id = result.newDeckId;
+            //$scope.activateDeck(result.newDeckId);
+            var destDeck = $scope.getDeckById(result.newDeckId);
+            var insertId = $scope.getItemId(result.newDeckId, result.newItemId);
+            console.log(destDeck);
+            destDeck.items.splice(insertId+1, 0, newItem);
+            $scope.updateDeck($scope.getDeckId(result.newDeckId));
+            console.log(result.copy);
+            if (!result.copy) {
+                console.log("delete:"+$scope.getDeckId(deckId)+","+$scope.getItemId(deckId,itemId));
+                $scope.deleteItem($scope.getDeckId(deckId),$scope.getItemId(deckId,itemId));
+            }
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
         });
@@ -215,7 +263,10 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
             newDeckId: deckId,
             newItemId: itemId
         };
-        $scope.deckChoice = $scope.getDeckById($scope.result.newDeckId);
+        $scope.$watch('result.newDeckId', function(oldVal, newVal){
+            $scope.deckChoice = $scope.getDeckById($scope.result.newDeckId);
+        });
+
         $scope.getDeckById = function(id) {
             console.log("trying to find deck with "+id);
             var deckArr = $scope.decks.filter(function(deck){
@@ -223,7 +274,12 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
             });
             return (deckArr.length > 0) ? deckArr[0] : null;
         };
-        $scope.ok = function () {
+        $scope.move = function () {
+            $scope.result.copy = false;
+            $modalInstance.close($scope.result);
+        };
+        $scope.copy = function () {
+            $scope.result.copy = true;
             $modalInstance.close($scope.result);
         };
 
