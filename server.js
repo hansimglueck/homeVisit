@@ -93,22 +93,12 @@ app.use(session({
 
 app.use(function (req, res, next) {
     var pid = req.session.pid;
-    //console.log("sid: "+req.sessionID);
     wsManager.registerSID(req.sessionID);
-    if (!pid) {
-       // pid = req.session.cookies.connect.sid = {};
-    }
-
-    // get the url pathname
-    //console.log
-
-    // count the views
-    //views[pathname] = (views[pathname] || 0) + 1
-
     next();
-})
+});
 
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, 'public/playerApp/www')));
 app.use('/decks', decks);
 app.use('/gameConf', gameConfs);
 app.use('/', routes);

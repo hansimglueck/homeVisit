@@ -39,13 +39,15 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemTy
             }
             return selected.length ? selected[0].title : 'Not set';
         };
-        $scope.updateGameConf = function() {
+        $scope.updateGameConf = function(data) {
             var updatedGameConf = angular.copy($scope.gameConf);
+            angular.extend(updatedGameConf, data);
             delete updatedGameConf._id;   //sonst macht mongoDB auf dem raspi stunk
             if (typeof $scope.gameConf._id == "undefined") {
                 var gConf = new gameConf({role:'run', startDeckId:null, autostart:false, playerCnt:1, typeMapping:[]});
-                gConf.$save(function success(){
-                    console.log("---success");},
+                gConf.$save(function success(saved){
+                        console.log("---success");
+                    },
                     function error(err){
                         console.log("---error: "+err);
                         console.log(err);
@@ -53,10 +55,18 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemTy
                     });
                 $scope.gameConf = gConf;
             } else
-            gameConf.update({id: $scope.gameConf._id}, updatedGameConf, function(err) {});
+            var ret = gameConf.update({id: $scope.gameConf._id}, updatedGameConf, function success(data) {
+                //console.log("success");
+                //console.log(data);
+            }, function error(data){
+                //alert(data);
+                //console.log("error");
+                //console.log(data);
+            });
+            //console.log(ret.$promise);
 
+            return ret.$promise;
         };
-
         $scope.addDeviceToType = function(id) {
             var t = $scope.gameConf.typeMapping[id];
             $scope.gameConf.typeMapping[id].devices.push("");
@@ -65,8 +75,9 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemTy
 
         $scope.removeDeviceFromType = function(typeId, devId) {
             if (!confirm("Wirklich Löschen???")) return;
-            $scope.gameConf.typeMapping[typeId].devices.splice(devId,1);
-            $scope.updateGameConf();
+            var updatedTypeMapping = angular.copy($scope.gameConf.typeMapping);
+            updatedTypeMapping[typeId].devices.splice(devId,1);
+            $scope.updateGameConf({typeMapping: updatedTypeMapping}).then(function(x) {$scope.gameConf.typeMapping[typeId].devices.splice(devId,1);});
         };
 
 

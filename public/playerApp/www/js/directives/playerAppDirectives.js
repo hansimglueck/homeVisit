@@ -4,6 +4,6 @@ angular.module('playerAppDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'playerApp/views/not-joined.html'
+            templateUrl: 'views/not-joined.html'
         };
     });

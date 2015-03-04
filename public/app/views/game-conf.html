@@ -14,7 +14,7 @@
     <li class="list-group-item">
         Startdeck:
     <span editable-select="gameConf.startDeckId" e-ng-options="s._id as s.title for s in decks"
-          onaftersave="updateGameConf()">
+          onaftersave="updateGameConf({startDeckId:$data})">
           {{ showDeck(gameConf) }}
     </span>
     </li>
@@ -31,7 +31,7 @@
                             <form editable-form name="deviceFrm" shown="device == ''">
                         <span class="device">
                             <span ng-click="deviceFrm.$show()" e-form="deviceFrm" editable-text="type.devices[$index]"
-                                  onbeforesave="" onaftersave="updateGameConf($parent.$parent.$index)">
+                                  onbeforesave="" onaftersave="updateGameConf()">
                                 {{ device }}
                             </span>
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"

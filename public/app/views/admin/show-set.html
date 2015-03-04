@@ -1,11 +1,17 @@
-<div ng-controller="setCtrl">
+<div ng-controller="setCtrl" id="set">
     <accordion class="list-unstyled">
-        <accordion-group ng-repeat="deck in decks | orderBy:'sid' track by $index"
-                         heading="Strang {{$index}}: {{ deck.title }}">
+        <accordion-group ng-repeat="deck in decks track by $index"
+                         heading="Strang {{$index}}: {{ deck.title }}"
+                         is-open="deck._id==activeDeck.id"
+                         id="{{'deck'+decks[$index]._id}}"
+                >
             <show-deck></show-deck>
         </accordion-group>
         <accordion-group heading="Neuer Strang">
             <edit-new-deck></edit-new-deck>
+        </accordion-group>
+        <accordion-group heading="Import JSON">
+            <import-json></import-json>
         </accordion-group>
     </accordion>
 </div>

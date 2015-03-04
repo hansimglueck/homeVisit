@@ -43,4 +43,12 @@ angular.module('adminDirectives', [])
         };
     })
 
+    .directive('importJson', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/import-json.html'
+        };
+    })
+
 ;

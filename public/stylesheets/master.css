@@ -11,3 +11,7 @@ ul#messages {
     max-height: 12em;
     overflow: auto;
 }
+
+#spacer {
+    height:1000px;
+}

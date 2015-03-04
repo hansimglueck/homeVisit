@@ -3,10 +3,12 @@
  */
 angular.module('WebsocketServices', []).
     factory('Socket', function ($rootScope, $cookies) {
-        var sid = $cookies['connect.sid'].split(":")[1].split(".")[0];
+        var sid = "";
+        //var sid = $cookies['connect.sid'].split(":")[1].split(".")[0];
         var ws;
         var onMessageCallbacks;
-        var host = location.host;
+        //var host = location.host;
+        var host = "192.168.178.21:3000";
         onMessageCallbacks = [];
         var connected = false;
         var server = {connected: connected};
@@ -64,7 +66,7 @@ angular.module('WebsocketServices', []).
                 console.log("client: Socket has been opened!");
                 server.connected = true;
                 $rootScope.$digest(); //damit das true auch ankommt...
-                ws.send(JSON.stringify({type: "register", data: {role:'player', sid:sid}}));
+                ws.send(JSON.stringify({type: "register", data: {role:'player'}}));//, sid:sid}}));
                 ping();
             };
 

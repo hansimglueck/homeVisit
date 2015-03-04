@@ -15,23 +15,23 @@ angular.module('playerApp', [
         function ($routeProvider) {
             $routeProvider.
                 when('/home', {
-                    templateUrl: 'playerApp/partials/home.html',
+                    templateUrl: 'partials/home.html',
                     controller: 'HomeController'
                 }).
                 when('/rating', {
-                    templateUrl: 'playerApp/partials/rating.html',
+                    templateUrl: 'partials/rating.html',
                     controller: 'RatingController'
                 }).
                 when('/chat', {
-                    templateUrl: 'playerApp/partials/chat.html',
+                    templateUrl: 'partials/chat.html',
                     controller: 'ChatController'
                 }).
                 when('/chat/:playerId', {
-                    templateUrl: 'playerApp/partials/playerChat.html',
+                    templateUrl: 'partials/playerChat.html',
                     controller: 'PlayerChatController'
                 }).
                 when('/vote', {
-                    templateUrl: 'playerApp/partials/vote.html',
+                    templateUrl: 'partials/vote.html',
                     controller: 'VoteController'
                 }).
                 otherwise({

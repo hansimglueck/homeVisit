@@ -88,7 +88,7 @@ angular.module("playerControllers", [])
             Status.leaveGame();
         };
         $scope.reload = function () {
-            window.location.reload();
+            //window.location.reload();
             console.log('X')
 
         };
