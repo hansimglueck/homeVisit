@@ -3,70 +3,106 @@
  */
 angular.module('WebsocketServices', []).
     factory('Socket', function ($rootScope, $cookies) {
-        var sid = "";
+        var sid = "x";
         //var sid = $cookies['connect.sid'].split(":")[1].split(".")[0];
         var ws;
         var onMessageCallbacks;
         //var host = location.host;
-        var host = "192.168.178.21:3000";
+        var host = "192.168.70.106:3000";
         onMessageCallbacks = [];
         var connected = false;
         var server = {connected: connected};
-        var pingTime = 0;
-        var pingCount = 0;
-        var pingTimeouts = 0;
 
-        var ping = function() {
-            if (pingCount > 0) {
-                pingTimeouts++;
-                //pingCount = 0;
-                $rootScope.$broadcast("pingpong", 2222, pingCount, pingTimeouts);
-                if (pingTimeouts > 1) {
+        var responseDelay = 1000;
+        var checkDelay = 2000;
+        var lastPong = 0;
+        var timeouts = 0;
+        var maxTimeouts = 10;
+        var waitingForPong = false;
+
+        var ping = function () {
+            if (!server.connected) {
+                console.log("ping: disconnected! stopping pingpong");
+                return;
+            }
+            console.log("ping");
+            try {ws.send("ping");}catch(e){console.log("ws.sed ERRROR!");}
+            waitingForPong = true;
+            setTimeout(function() {checkPong($rootScope)}, checkDelay);
+        };
+
+        var pong = function() {
+            if (!waitingForPong) return;
+            waitingForPong = false;
+            //console.log("pong0: lastPong="+lastPong);
+            var d = new Date();
+            var now = d.getTime();
+            console.log("pong: now-lastPong="+(now-lastPong));
+            lastPong = now;
+            timeouts = 0;
+            //console.log("pong1: lastPong="+lastPong);
+            setTimeout(function(){ping()}, responseDelay);
+        };
+
+        var checkPong = function(scope) {
+            //console.log("checkPong: lastPong="+lastPong);
+            var d = new Date();
+            var now = d.getTime();
+            if (now - lastPong > checkDelay) {
+                timeouts++;
+                console.log("checkPong Timeout - "+(now - lastPong)+" timeouts="+timeouts);
+                scope.$broadcast("pingpong", (now - lastPong), timeouts);
+                if (timeouts > maxTimeouts) {
+                    console.log("CLOSE!");
                     ws.close();
-                    closed();
-                    pingTime = 0;
-                    pingCount = 0;
-                    pingTimeouts = 0;
+                    closed(false);
                     return;
                 }
+                ping();
+            } else {
+                scope.$broadcast("pingpong", (now - lastPong), timeouts);
+                console.log("checkPong: OK - "+(now - lastPong));
             }
-            var d = new Date();
-            pingTime = d.getMilliseconds();
-            ws.send("ping");
-            pingCount++;
-            setTimeout(function(){ping()}, 2000);
-        };
-        var pong = function() {
-            var d = new Date();
-            //console.log("pong: "+(d.getMilliseconds()-pingTime));
-            pingCount--;
-            $rootScope.$broadcast("pingpong", (d.getMilliseconds()-pingTime), pingCount, pingTimeouts);
         };
 
-        var closed = function() {
-            console.log("client lost connection");
+
+
+        var closed = function(really) {
+            var d = new Date();
+            var now = d.getTime();
+            console.log("client lost connection "+(now-lastPong));
             server.connected = false;
             $rootScope.$digest(); //damit das false auch ankommt...
             $rootScope.$broadcast("disconnected");
-            setTimeout(function () {
+            if (really) setTimeout(function () {
                 connect();
             }, 1000);
         };
 
         var connect = function () {
+            console.log("trying new ws!");
             ws = new WebSocket('ws://' + host);
             //ws.onconnect = function () {
             //    console.log("client: connecting");
             //};
             ws.onclose = function () {
-                closed();
+                console.log("ws.onclose!!");
+                closed(true);
             };
 
             ws.onopen = function () {
                 console.log("client: Socket has been opened!");
                 server.connected = true;
                 $rootScope.$digest(); //damit das true auch ankommt...
-                ws.send(JSON.stringify({type: "register", data: {role:'player'}}));//, sid:sid}}));
+                ws.send(JSON.stringify({type: "register", data: {role:'player', sid:sid}}));
+                onMessageCallbacks.push({
+                    fn: function (event) {
+                        var data = JSON.parse(event.data).sid;
+                        if (typeof sid != "undefined") sid = data;
+                        console.log("registerConfirm got sid: "+sid)
+                    },
+                    eventName: "registerConfirm"
+                });
                 ping();
             };
 
@@ -102,7 +138,7 @@ angular.module('WebsocketServices', []).
 
             server:server,
             getPingPong: function() {
-                return pingTime;
+                //return pingTime;
             },
             connected: function() {
                 return connected;

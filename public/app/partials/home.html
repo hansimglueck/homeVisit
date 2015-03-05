@@ -21,6 +21,10 @@
             <div class="panel-heading"><h3 class="panel-title">Device Manager</h3></div>
             <show-device-list></show-device-list>
         </div>
+        <div class="panel panel-default" ng-controller="PlayerCtrl">
+            <div class="panel-heading" ng-click="isCollapsed = !isCollapsed"><h3 class="panel-title">Player</h3></div>
+            <player-list></player-list>
+        </div>
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title">Log</h3></div>
             <log-display></log-display>

@@ -93,7 +93,7 @@ app.use(session({
 
 app.use(function (req, res, next) {
     var pid = req.session.pid;
-    wsManager.registerSID(req.sessionID);
+    //wsManager.registerSID(req.sessionID);
     next();
 });
 

@@ -9,10 +9,10 @@ function WsManager() {
 }
 
 WsManager.prototype = {
-    registerSID: function(sid) {
+    registerSID: function (sid) {
         if (this.sids.indexOf(sid) == -1) this.sids.push(sid);
     },
-    onRole: function(role, self, callback) {
+    onRole: function (role, self, callback) {
         this.roleCallbacks.push({
             fn: callback,
             role: role,
@@ -32,11 +32,101 @@ WsManager.prototype = {
             //clientId = g.clients.length;
             //g.clients.push({socket: ws, role: "undefined", clientId: clientId, connected: true});
 
+            var responseDelay = 1000;
+            var checkDelay = 2000;
+            var lastPing = 0;
+            var timeouts = 0;
+            var maxTimeouts = 10;
+            var waitingForPing = true;
+
+            ws.pongg = function () {
+                try {
+                    if (ws.readyState != 1) {
+                        console.log("pong: disconnected! stopping pingpong");
+                        return;
+                    }
+                    console.log("pong");
+                    console.log("pong: wss.clients.length: " + self.wss.clients.length);
+                    console.log("pong: ws.id=" + ws._ultron.id);
+                    try {
+                        ws.send("pong")
+                    } catch (e) {
+                        console.log("Error in PONG send!")
+                    }
+                    ;
+                    waitingForPing = true;
+                    var that = this;
+                    setTimeout(function () {
+                        that.checkPing()
+                    }, checkDelay);
+                } catch (e) {
+                    console.log("pongg ERROR")
+                }
+            };
+
+            ws.pingg = function () {
+                try {
+                    if (!waitingForPing) return;
+                    waitingForPing = false;
+                    //console.log("pong0: lastPong="+lastPong);
+                    var d = new Date();
+                    var now = d.getTime();
+                    console.log("ping: now-lastPing=" + (now - lastPing));
+                    console.log("ping: ws.id=" + ws._ultron.id);
+                    lastPing = now;
+                    timeouts = 0;
+                    //console.log("pong1: lastPong="+lastPong);
+                    var that = this;
+                    setTimeout(function () {
+                        that.pongg()
+                    }, responseDelay);
+                } catch (e) {
+                    console.log("pingg ERROR")
+                }
+            };
+
+            ws.checkPing = function () {
+                try {
+                    //console.log("checkPong: lastPong="+lastPong);
+                    var d = new Date();
+                    var now = d.getTime();
+                    if (now - lastPing > checkDelay) {
+                        timeouts++;
+                        console.log("checkPing Timeout - " + (now - lastPing) + " timeouts=" + timeouts);
+                        console.log("ckeckPing ws.id=" + ws._ultron.id);
+                        if (timeouts > maxTimeouts) {
+                            console.log("checkPing CLOSE!");
+                            ws.close();
+                            ws.cloosed(false);
+                            return;
+                        }
+                        ws.pongg();
+                    } else console.log("checkPing: OK - " + (now - lastPing));
+                    console.log("checkPing ws.id=" + ws._ultron.id);
+                } catch (e) {
+                    console.log("checkPing ERROR")
+                }
+            };
+
+            ws.cloosed = function (really) {
+                try {
+                    var clientId = ws.clientId;
+                    var d = new Date();
+                    var now = d.getTime();
+                    console.log("closed: websocket connection closed " + (now - lastPing));
+                    console.log("closed: ws.id=" + ws._ultron.id);
+                    self.clients[clientId].connected = false;
+                    self.applyRoleCallbacks(ws, {type: "disconnected"});
+                    self.sendDeviceList();
+                } catch (e) {
+                    console.log("ERROR: " + e.message)
+                }
+
+            };
+
             ws.on("message", function (data) {
                 if (data == "ping") {
-                    //console.log("ping");
-                    ws.send("pong");
-                    //setTimeout(function() {ws.send("pong")},0);
+                    ws.pingg();
                     return;
                 }
                 try {
@@ -74,29 +164,26 @@ WsManager.prototype = {
                 }
                 //ws.send(JSON.stringify({msg:{connectionId:userId}}));
             });
+            ws.on("error", function () {
+                console.log("websocket error!");
+            });
 
             ws.on("close", function () {
-                try {
-                    var clientId = ws.clientId;
-                    console.log("websocket connection close");
-                    self.clients[clientId].connected = false;
-                    self.sendDeviceList();
-                } catch (e) {
-                    console.log("ERROR: " + e.message)
-                }
+                console.log("ws.onClose!");
+                ws.cloosed(true);
             });
         });
         console.log("websocket server created");
 
     },
 
-    applyRoleCallbacks: function(ws, msg) {
-        this.roleCallbacks.forEach(function(cb){
+    applyRoleCallbacks: function (ws, msg) {
+        this.roleCallbacks.forEach(function (cb) {
             if (cb.role == ws.role) {
                 try {
                     cb.fn.call(cb.self, ws.clientId, msg);
                 } catch (e) {
-                    console.log("ERROR in wsManager.applyRoleCallback: "+ e.stack);
+                    console.log("ERROR in wsManager.applyRoleCallback: " + e.stack);
                 }
             }
         })
@@ -109,6 +196,9 @@ WsManager.prototype = {
 
         //ein client registriert sich mit msg.data = {type: "register", data: {role:'player', sid:sid}}
         //oder msg.data = {type: "register", data: role}
+        //1.Fall: gucke, ob du sid schon kennst, dann entsprechend den client raussuchen und sid zurückschicken
+        //  wenn nicht: sid generieren, in array stecken, und rausschicken
+        //2.Fall: nix machen
         var dd = (typeof msg.data == "Object") ? JSON.parse(msg.data) : msg.data;
         var role = "unknown";
         var sid = "NN";
@@ -117,20 +207,22 @@ WsManager.prototype = {
             if (typeof dd.role != "undefined") role = dd.role;
             if (typeof dd.sid != "undefined") sid = dd.sid;
         }
-        console.log("ws-sid: "+sid);
-        if (this.sids.indexOf(sid) == -1 && sid !="NN") {
-            sid = "unknown";
-            ws.send(JSON.stringify({type: "reload"}));
-            return;
+        console.log("ws-sid: " + sid);
+        if (this.sids.indexOf(sid) == -1 && sid != "NN") {
+            var hat = require('hat');
+            sid = hat();
+            this.registerSID(sid);
+            //ws.send(JSON.stringify({type: "reload"}));
+            //return;
         }
         console.log(this.sids);
-        console.log("ws-sid: "+sid);
+        console.log("ws-sid: " + sid);
         var client;
         //schau mal, ob es schon einen client mit der sid gibt...
         //wenn ja: ws darein schreiben und den dazugehörigen player im data senden
         //wenn nicht: neuen client ins client-array pushen und für player neuen player anlegen und im data senden
         var prevClients = this.clients.filter(function (client) {
-            if (client.sid == "NN" || client.sid =="unknown") return false;
+            if (client.sid == "NN" || client.sid == "unknown") return false;
             return (sid == client.sid);
         });
         //es sollte nur max einen geben
@@ -151,7 +243,7 @@ WsManager.prototype = {
 
         //g.clients[clientId].role = role;
         //g.clients[clientId].sid = sid;
-        ws.send(JSON.stringify({type: "registerConfirm", data:client.clientId}));
+        ws.send(JSON.stringify({type: "registerConfirm", data: client.clientId, sid: sid}));
         ws.role = role;
 //        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
         //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));

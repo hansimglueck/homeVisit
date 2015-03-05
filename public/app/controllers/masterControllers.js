@@ -10,7 +10,7 @@ var masterControllers = angular.module('masterControllers', [])
             Socket.emit({type:"playbackAction", data:cmd, param:param}, function() { console.log('play emitted'); });
         };
 
-        Socket.on("status", function(event) {
+        Socket.on("playBackStatus", function(event) {
             var status = JSON.parse(event.data).data;
             $scope.status = status;
             console.log("got status info: "+JSON.stringify(status));
@@ -109,6 +109,16 @@ masterControllers.controller('DeviceCtrl', function($scope, Socket, itemTypes) {
     $scope.forceReload = function(role) {
         Socket.emit({type:"forceReload", data:role}, function() { console.log('force reload of '+role); });
     };
+});
+
+masterControllers.controller('PlayerCtrl', function($scope, Socket) {
+    $scope.playerList = [];
+    $scope.ratings = [];
+    Socket.on("status", function(event) {
+        $scope.playerList = JSON.parse(event.data).data.otherPlayers;
+        $scope.ratings = JSON.parse(event.data).data.avgRatings;
+        console.log("got player list: "+JSON.stringify($scope.playerList));
+    });
 });
 
 masterControllers.controller('OsCtrl', function($scope, Socket) {

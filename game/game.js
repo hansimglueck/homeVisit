@@ -153,7 +153,7 @@ Game.prototype = {
                 self.log("sending to " + dev + ": " + content.text);
                 wsManager.msgDevicesByRole(dev, "display", content);
             });
-            wsManager.msgDevicesByRole('master', 'status', {stepId: self.stepId, type: self.getItem().type});
+            wsManager.msgDevicesByRole('master', 'playBackStatus', {stepId: self.stepId, type: self.getItem().type});
 
         }
         //checken, wie der nächste step getriggert wird

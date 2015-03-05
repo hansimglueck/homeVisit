@@ -229,7 +229,7 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
 
     };
 
-    $scope.addItem = function (deckId) {
+    $scope.addItem = function (deckId, itemId) {
         $scope.inserted = {
             wait: 0,
             trigger: 'go',
@@ -238,7 +238,8 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
             time: '',
             voteMulti: 1
         };
-        $scope.decks[deckId].items.push($scope.inserted);
+        if (typeof itemId == "undefined") $scope.decks[deckId].items.push($scope.inserted);
+        else $scope.decks[deckId].items.splice(itemId+1, 0, $scope.inserted);
         //angular.forEach($scope.decks[deckId].items, function(item,id) {
         //    console.log(id+" "+item._id);
         //})

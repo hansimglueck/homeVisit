@@ -76,6 +76,10 @@ PlayerManager.prototype = {
                     this.chat(clientId, msg.data);
                     break;
 
+                case "disconnected":
+                    this.leaveGame(clientId);
+                    break;
+
                 default:
                     console.log("unknown message-type");
                     break;
@@ -201,6 +205,7 @@ PlayerManager.prototype = {
             avgRatings: this.avgRatings
         };
         wsManager.msgDevicesByRole("player", "status", msg);
+        wsManager.msgDevicesByRole("master", "status", msg);
     },
 
     getPlayerArray: function () {

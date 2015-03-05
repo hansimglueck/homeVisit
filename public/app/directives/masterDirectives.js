@@ -38,10 +38,17 @@ angular.module('masterDirectives', [])
             templateUrl: 'app/views/game-conf.html'
         };
     })
-.directive('raspiManager', function() {
-    return {
-        restrict: 'AE',
-        replace: 'true',
-        templateUrl: 'app/views/raspi-manager.html'
-    };
-});
+    .directive('raspiManager', function() {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/raspi-manager.html'
+        };
+    })
+    .directive('playerList', function() {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/player-list.html'
+        };
+    });
