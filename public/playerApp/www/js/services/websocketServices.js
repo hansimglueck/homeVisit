@@ -8,7 +8,7 @@ angular.module('WebsocketServices', []).
         var ws;
         var onMessageCallbacks;
         //var host = location.host;
-        var host = "192.168.70.106:3000";
+        var host = "home.visit.eu";
         onMessageCallbacks = [];
         var connected = false;
         var server = {connected: connected};
