@@ -4,7 +4,7 @@ var router = express.Router();
 /* GET home page. */
 
 router.get('/', function(req, res, next) {
-  res.sendFile('playerApp/www/index.html', { root: "./public"  });
+  res.sendFile('playerApp/www/index.html', { root: __dirname +"/../public"  });
   //if (req.session.userName) {
   //  res.render('player', { title: 'HomeVisit Player', sess: req.session.userName });
   //} else {
@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/admin', function(req, res, next) {
-  res.sendFile('app/index.html', { root: "./public"  });
+  res.sendFile('app/index.html', { root: __dirname +"/../public"  });
 });
 
 router.get('/game', function(req, res, next) {
