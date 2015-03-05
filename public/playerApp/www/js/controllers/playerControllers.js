@@ -97,7 +97,7 @@ angular.module("playerControllers", [])
             $scope.status.resetPlayer();
         });
         $scope.$on("pingpong", function (event, pongTime, pingTimeouts) {
-            console.log("pingpong: "+pongTime+", "+ pingTimeouts);
+            //console.log("pingpong: "+pongTime+", "+ pingTimeouts);
             $scope.pingTime = pongTime;
             $scope.pingTimeouts = pingTimeouts;
             $scope.$digest();

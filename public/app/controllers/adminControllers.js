@@ -250,6 +250,8 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
     };
 
     $scope.deleteItem = function (deckId, index) {
+        if (!confirm("Wirklich Löschen???")) return;
+
         $scope.decks[deckId].items.splice(index, 1);
         var item = $scope.decks[deckId].items[index];
         $scope.updateDeck(deckId);

@@ -40,19 +40,19 @@
             <div class="list-group" ui-turn-off='uiSidebarLeft'>
                 <div class="list-group-item">{{status.server.connected ? "Connected to Server as Client "+status.clientId : "Not Connected"}}</div>
                 <div class="list-group-item">PingPong = {{pingTime}}, {{pingCount}},{{pingTimeouts}}</div>
+                <!--
                 <a class="list-group-item" ng-click="joinGame()" ng-show="status.player.playerId == -1">
                     Not in the Game! Join.
                 </a>
                 <a class="list-group-item" ng-click="leaveGame()" ng-hide="status.player.playerId == -1">
                     In the Game as Player {{status.player.playerId }}! Leave.
                 </a>
+                --->
                 <a class="list-group-item" href="#/rating">Rating
                     <i class="fa fa-chevron-right pull-right"></i></a>
                 <a class="list-group-item" href="#/chat">Chat
                     <i class="fa fa-chevron-right pull-right"></i></a>
-                <a class="list-group-item" href="#/vote">Vote
-                    <i class="fa fa-chevron-right pull-right"></i></a>
-                <a class="list-group-item" href="#/home">Home
+                <a class="list-group-item" href="#/home">Vote
                     <i class="fa fa-chevron-right pull-right"></i></a>
                 <a class="list-group-item" ng-click="reload()">
                     Reload
@@ -77,6 +77,8 @@
                     </div>
                 </div>
                 <div class="btn-group pull-right">
+                    <div class="navbarbtn" ng-click="go('/home')">
+                        <i class="fa fa-check-square-o bigger"></i></div>
                     <div class="navbarbtn" ng-click="go('/rating')">
                         <i class="fa fa-star bigger"></i></div>
                     <div class="navbarbtn" ng-click="go('/chat')">

@@ -45,9 +45,9 @@ WsManager.prototype = {
                         console.log("pong: disconnected! stopping pingpong");
                         return;
                     }
-                    console.log("pong");
-                    console.log("pong: wss.clients.length: " + self.wss.clients.length);
-                    console.log("pong: ws.id=" + ws._ultron.id);
+                    //console.log("pong");
+                    //console.log("pong: wss.clients.length: " + self.wss.clients.length);
+                    //console.log("pong: ws.id=" + ws._ultron.id);
                     try {
                         ws.send("pong")
                     } catch (e) {
@@ -71,8 +71,8 @@ WsManager.prototype = {
                     //console.log("pong0: lastPong="+lastPong);
                     var d = new Date();
                     var now = d.getTime();
-                    console.log("ping: now-lastPing=" + (now - lastPing));
-                    console.log("ping: ws.id=" + ws._ultron.id);
+                    //console.log("ping: now-lastPing=" + (now - lastPing));
+                    //console.log("ping: ws.id=" + ws._ultron.id);
                     lastPing = now;
                     timeouts = 0;
                     //console.log("pong1: lastPong="+lastPong);
@@ -81,7 +81,7 @@ WsManager.prototype = {
                         that.pongg()
                     }, responseDelay);
                 } catch (e) {
-                    console.log("pingg ERROR")
+                    //console.log("pingg ERROR")
                 }
             };
 
@@ -92,17 +92,17 @@ WsManager.prototype = {
                     var now = d.getTime();
                     if (now - lastPing > checkDelay) {
                         timeouts++;
-                        console.log("checkPing Timeout - " + (now - lastPing) + " timeouts=" + timeouts);
-                        console.log("ckeckPing ws.id=" + ws._ultron.id);
+                        //console.log("checkPing Timeout - " + (now - lastPing) + " timeouts=" + timeouts);
+                        //console.log("ckeckPing ws.id=" + ws._ultron.id);
                         if (timeouts > maxTimeouts) {
-                            console.log("checkPing CLOSE!");
+                            //console.log("checkPing CLOSE!");
                             ws.close();
                             ws.cloosed(false);
                             return;
                         }
                         ws.pongg();
-                    } else console.log("checkPing: OK - " + (now - lastPing));
-                    console.log("checkPing ws.id=" + ws._ultron.id);
+                    } //else console.log("checkPing: OK - " + (now - lastPing));
+                    //console.log("checkPing ws.id=" + ws._ultron.id);
                 } catch (e) {
                     console.log("checkPing ERROR")
                 }

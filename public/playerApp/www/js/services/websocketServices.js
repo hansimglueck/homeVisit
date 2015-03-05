@@ -22,10 +22,10 @@ angular.module('WebsocketServices', []).
 
         var ping = function () {
             if (!server.connected) {
-                console.log("ping: disconnected! stopping pingpong");
+                //console.log("ping: disconnected! stopping pingpong");
                 return;
             }
-            console.log("ping");
+            //console.log("ping");
             try {ws.send("ping");}catch(e){console.log("ws.sed ERRROR!");}
             waitingForPong = true;
             setTimeout(function() {checkPong($rootScope)}, checkDelay);
@@ -34,13 +34,11 @@ angular.module('WebsocketServices', []).
         var pong = function() {
             if (!waitingForPong) return;
             waitingForPong = false;
-            //console.log("pong0: lastPong="+lastPong);
             var d = new Date();
             var now = d.getTime();
-            console.log("pong: now-lastPong="+(now-lastPong));
+            //console.log("pong: now-lastPong="+(now-lastPong));
             lastPong = now;
             timeouts = 0;
-            //console.log("pong1: lastPong="+lastPong);
             setTimeout(function(){ping()}, responseDelay);
         };
 
@@ -50,7 +48,7 @@ angular.module('WebsocketServices', []).
             var now = d.getTime();
             if (now - lastPong > checkDelay) {
                 timeouts++;
-                console.log("checkPong Timeout - "+(now - lastPong)+" timeouts="+timeouts);
+                //console.log("checkPong Timeout - "+(now - lastPong)+" timeouts="+timeouts);
                 scope.$broadcast("pingpong", (now - lastPong), timeouts);
                 if (timeouts > maxTimeouts) {
                     console.log("CLOSE!");
@@ -61,7 +59,7 @@ angular.module('WebsocketServices', []).
                 ping();
             } else {
                 scope.$broadcast("pingpong", (now - lastPong), timeouts);
-                console.log("checkPong: OK - "+(now - lastPong));
+                //console.log("checkPong: OK - "+(now - lastPong));
             }
         };
 
