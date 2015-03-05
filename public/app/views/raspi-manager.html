@@ -31,8 +31,8 @@
                 Interfaces: {{printInterfaces()}}
             </li>
         </ul>
-    <li class="list-group-item" ng-click="collapsed.wlan1 = !collapsed.wlan1">
-        WLAN: {{printInterfaces('wlan1')}}
+    <li class="list-group-item">
+        <div ng-click="collapsed.wlan1 = !collapsed.wlan1">WLAN: {{printInterfaces('wlan1')}}</div>
         <i class="pull-right glyphicon"
            ng-class="{'glyphicon-chevron-down': !collapsed.wlan1, 'glyphicon-chevron-right': collapsed.wlan1}"></i>
         <ul class="list-group" collapse="collapsed.wlan1">
