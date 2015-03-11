@@ -3,41 +3,70 @@
 
     <td>{{ $index }}</td>
 
+    <!-- item.type - für alle items -->
     <td>
-        <!-- editable type (select-local) -->
-        <span editable-select="deck.items[$index].type" e-name="type"
+        <span editable-select="item.type" e-name="type"
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in types">
           {{ showType(item) }}
         </span>
     </td>
 
+    <!-- item.trigger + .wait - für alle items -->
     <td>
         <span editable-select="item.trigger" e-name="trigger"
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in trigger">
           {{ showTrigger(item) }}
         </span><br/>
-        Wait: <span editable-text="item.wait" e-name="wait"  onaftersave="saveItem()">
+        Wait: <span editable-text="item.wait" e-name="wait" onaftersave="saveItem()">
           {{ item.wait || '0' }}
         </span> Sek.
     </td>
 
+    <!-- haupt teil - für alle items von optionen aus der factory
+        card: text
+        vote: text + mit/ohne rating + anzahl optionen + optionen (ohne followup)
+        switch: nur optionen (mit followUp)
+        results: text als select
+        sound: text (filename)
+    -->
     <td>
-        <!-- editable textarea -->
-        <span editable-textarea="item.text" e-rows="7" e-cols="40" e-name="text" onaftersave="saveItem()">
+        <span editable-textarea="item.text"
+              e-rows="7" e-cols="40" e-name="text"
+              onaftersave="saveItem()"
+              ng-hide="item.type == 'results' || item.type == 'switch'">
           {{ item.text || 'kein Text' }}
         </span>
 
-        <div ng-show="item.type=='vote' || item.type=='switch'">
-        Anzahl Stimmen:<span editable-text="item.voteMulti" e-name="voteMulti"  onaftersave="saveItem()">
-          {{ item.voteMulti || '' }}
+        <span editable-select="item.text" e-name="text"
+              onaftersave="saveItem()"
+              e-ng-options="s.value as s.text for s in resultTypes"
+              ng-show="item.type=='results'">
+          {{ showResultType(item) }}
         </span>
-            <br/>
-        mit Rating: <span editable-checkbox="item.flags[0]" e-name="voteFlag"  onaftersave="saveItem()">
+
+        <div ng-show="item.type=='vote' && item.options[0] == 'customMultipleOptions'">
+            Anzahl Stimmen:<span editable-text="item.voteMulti" e-name="voteMulti" onaftersave="saveItem()">
+          {{ item.voteMulti || '1' }}
+        </span>
+        </div>
+        <div ng-show="item.type=='vote'">
+            Art:
+        <span editable-select="item.opts[0]" e-name="voteType"
+              onaftersave="saveItem()"
+              e-ng-options="s.value as s.text for s in voteTypes"
+                >
+          {{ showVoteType(item) }}
+        </span>
+        </div>
+        <div>
+            mit Rating: <span editable-checkbox="item.flags[0]" e-name="voteFlag" onaftersave="saveItem()" ng-show="item.type=='vote'">
           {{ item.flags[0] || 'nein' }}
         </span>
-            <br/> Optionen:
+        </div>
+        <div ng-show="(item.type=='vote' && item.opts[0] == 'customOptions') || item.type=='switch'">
+            Optionen:
             <table class="table">
                 <tbody show-vote-option>
                 </tbody>
@@ -46,19 +75,13 @@
         </div>
     </td>
 
-    <td ng-show="item.type=='soundddd'">Soundfile:
-        <!-- editable Text -->
-        <span editable-text="item.file" e-name="file">
-          {{ item.file || 'empty' }}
-        </span>
-    </td>
-<!--
-    <td>
-        <span editable-text="item.time" e-name="time">
-          {{ item.time || '' }}
-        </span>
-    </td>
--->
+    <!--
+        <td>
+            <span editable-text="item.time" e-name="time">
+              {{ item.time || '' }}
+            </span>
+        </td>
+    -->
     <td style="white-space: nowrap">
         <div class="buttons">
             <button class="btn btn-sm btn-danger" ng-click="deleteItem($parent.$index, $index)">Löschen</button>
@@ -66,6 +89,6 @@
             <button class="btn btn-sm btn-primary" ng-click="addItem($parent.$index, $index)">Einfügen</button>
             <!--            <button class="btn" ng-click="addItem($parent.$index, $index)">Einfügen</button> -->
         </div>
-     </td>
+    </td>
 </tr>
 </tbody>

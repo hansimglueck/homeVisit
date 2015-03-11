@@ -40,7 +40,7 @@ angular.module('playerAppServices', [])
     .factory('Home', function (Socket, $location) {
         var homeFactory = {};
         homeFactory.displayData = {};
-        homeFactory.type = "card";
+        homeFactory.type = "result";
         homeFactory.labels = [];
         homeFactory.options = null;
         homeFactory.voteId = -1;
@@ -63,15 +63,21 @@ angular.module('playerAppServices', [])
                             homeFactory.checked = 0;
                             homeFactory.votelast = "vote";
                             homeFactory.voteId = data.voteId;
+                            homeFactory.voteType = data.voteType;
                             break;
                         case "result":
                             homeFactory.type = "result";
-                            //homeFactory.text = "";
+                            homeFactory.chartType = data.chartType;
                             homeFactory.labels = data.labels;
-                            homeFactory.data = data.data;
+                            homeFactory.chartType == 'Pie' ? homeFactory.data = data.data : homeFactory.data = [data.data];
                             homeFactory.votelast = "result";
+                            console.log(homeFactory.chartType);
                             break;
                         case "card":
+                            break;
+                        case "seatOrder":
+                            $location.path('/rating');
+                            return;
                             break;
                     }
                     $location.path('/home');
@@ -160,11 +166,15 @@ angular.module('playerAppServices', [])
             console.log(ratingFactory.avgRatings);
         });
 
+        Socket.on('joined', function(event) {
+            var data = JSON.parse(event.data).data;
+            for (var i = 0; i < data.rating.length; i++) {
+                ratingFactory.myRatings[i] = data.rating[i];
+            }
+        });
+
         Socket.on('status', function(event) {
             var data = JSON.parse(event.data).data;
-            for (var i = 0; i < data.playerRatings.length; i++) {
-                ratingFactory.myRatings[i] = data.playerRatings[i];
-            }
             console.log(data.avgRatings);
             for (var i = 0; i < data.avgRatings.length; i++) {
                 ratingFactory.avgRatings[i] = data.avgRatings[i];

@@ -20,6 +20,7 @@ var SequenceItemSchema   = new mongoose.Schema({
     time: Number,
     file: String,
     flags: [Boolean],
+    opts: [String],
     voteOptions: [VoteOptionSchema],
     comments: [String],
     voteMulti: Number

@@ -20,7 +20,7 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
     $scope.name = "set";
     $scope.$on('decksLoaded', function () {
         console.log("decks changed. new length:" + $scope.decks.length);
-        $scope.activateDeck($scope.decks[2]._id);
+        $scope.activateDeck($scope.decks[0]._id);
     });
     $scope.getDeckById = function(id) {
         console.log("trying to find deck with "+id);
@@ -102,6 +102,12 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
         var newName = prompt("Neuer Name?");
         var dupDeck = angular.copy($scope.decks[deckId]);
         delete dupDeck._id;
+        dupDeck.items.forEach(function(item){
+            delete item._id;
+            item.voteOptions.forEach(function(opt){
+                delete opt._id;
+            })
+        });
         dupDeck.title = newName;
         setFactory.addDeck(dupDeck, function (ret) {
             console.log("cb: " + ret);
@@ -115,7 +121,6 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
     $scope.renameDeck = function (deckId) {
         var newName = prompt("Neuer Name?");
     };
-
     $scope.textToItems = function (text) {
         var textArray = text.split("\n\n");
         var itemArray = [];
@@ -125,7 +130,6 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
         });
         return itemArray;
     };
-
     $scope.getTimeForDeck = function (deckId) {
         var time = 0;
         angular.forEach($scope.decks[deckId].items, function (item, id) {
@@ -133,7 +137,6 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
         });
         return time;
     };
-
     $scope.updateDeck = function (deckId) {
         var updatedDeck = angular.copy($scope.decks[deckId]);
         return setFactory.updateDeck(deckId, updatedDeck);
@@ -150,17 +153,9 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
     }
 });
 
-adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $modal) {
+adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
     $scope.name = "deck";
-    $scope.types = itemTypes;
     $scope.trigger = [{text: "Go", value: "go"}, {text: "Follow", value: "follow"}];
-    $scope.showType = function (item) {
-        var selected = [];
-        if (item.type) {
-            selected = $filter('filter')($scope.types, {value: item.type}, true);
-        }
-        return selected.length ? selected[0].text : 'Not set';
-    };
     $scope.showTrigger = function (item) {
         var selected = [];
         if (item.trigger) {
@@ -168,7 +163,6 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
         }
         return selected.length ? selected[0].text : 'Not set';
     };
-
     $scope.showFollowUp = function (option) {
         var selected = [];
         if (option.followUp) {
@@ -186,7 +180,6 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
             $scope.updateDeck(deckId);
         }
     };
-
     $scope.moveItem = function (deckId, itemId) {
         if ($scope.decks[deckId]) itemId = $scope.decks[deckId].items[itemId]._id;
         if ($scope.decks[deckId]) deckId = $scope.decks[deckId]._id;
@@ -211,8 +204,9 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
             console.log("Move " + deckId + "/" + itemId + " to " + result.newDeckId + "/" + result.newItemId);
             var newItem = angular.copy($scope.getItemById(deckId, itemId));
             delete newItem._id;
-            //$scope.activeDeck.id = result.newDeckId;
-            //$scope.activateDeck(result.newDeckId);
+            newItem.voteOptions.forEach(function(opt){
+                delete opt._id;
+            });
             var destDeck = $scope.getDeckById(result.newDeckId);
             var insertId = $scope.getItemId(result.newDeckId, result.newItemId);
             console.log(destDeck);
@@ -228,7 +222,6 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
         });
 
     };
-
     $scope.addItem = function (deckId, itemId) {
         $scope.inserted = {
             wait: 0,
@@ -240,15 +233,11 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
         };
         if (typeof itemId == "undefined") $scope.decks[deckId].items.push($scope.inserted);
         else $scope.decks[deckId].items.splice(itemId+1, 0, $scope.inserted);
-        //angular.forEach($scope.decks[deckId].items, function(item,id) {
-        //    console.log(id+" "+item._id);
-        //})
     };
     $scope.saveItem = function () {
         console.log("save item for deck " + $scope.$index);
         return $scope.updateDeck($scope.$index);
     };
-
     $scope.deleteItem = function (deckId, index) {
         if (!confirm("Wirklich Löschen???")) return;
 
@@ -269,7 +258,6 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
         $scope.$watch('result.newDeckId', function(oldVal, newVal){
             $scope.deckChoice = $scope.getDeckById($scope.result.newDeckId);
         });
-
         $scope.getDeckById = function(id) {
             console.log("trying to find deck with "+id);
             var deckArr = $scope.decks.filter(function(deck){
@@ -285,7 +273,6 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
             $scope.result.copy = true;
             $modalInstance.close($scope.result);
         };
-
         $scope.cancel = function () {
             $modalInstance.dismiss('cancel');
         };
@@ -293,7 +280,33 @@ adminControllers.controller('deckCtrl', function ($scope, itemTypes, $filter, $m
     });
 
 
-adminControllers.controller('itemCtrl', function ($scope) {
+adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, resultTypes, voteTypes) {
+    $scope.voteTypes = voteTypes;
+    $scope.resultTypes = resultTypes;
+    $scope.types = itemTypes;
+    $scope.showType = function (item) {
+        var selected = [];
+        if (item.type) {
+            selected = $filter('filter')($scope.types, {value: item.type}, true);
+        }
+        return selected.length ? selected[0].text : 'Not set';
+    };
+    $scope.showResultType = function (item) {
+        var selected = [];
+        if (item.text) {
+            selected = $filter('filter')($scope.resultTypes, {value: item.text}, true);
+        }
+        return selected.length ? selected[0].text : 'Not set';
+    };
+
+    $scope.showVoteType = function (item) {
+        var selected = [];
+        if (item.opts) if (item.opts[0]) {
+            selected = $filter('filter')($scope.voteTypes, {value: item.opts[0]}, true);
+        }
+        return selected.length ? selected[0].text : 'Not set';
+    };
+
     $scope.addVoteOption = function (deckId, id) {
         $scope.insertedOption = {
             text: '',
@@ -302,17 +315,14 @@ adminControllers.controller('itemCtrl', function ($scope) {
         if (!$scope.decks[deckId].items[id].voteOptions) $scope.decks[deckId].items[id].voteOptions = [];
         $scope.decks[deckId].items[id].voteOptions.push($scope.insertedOption);
     };
-
     $scope.saveVoteOption = function () {
         console.log($scope.$parent.$index);
         return $scope.updateDeck($scope.$parent.$parent.$index);
     };
-
     $scope.deleteVoteOption = function (deckId, id, i) {
         $scope.decks[deckId].items[id].voteOptions.splice(i, 1);
         $scope.updateDeck(deckId);
     };
-
     $scope.newVoteOption = function (deckId, id) {
         console.log($scope.decks[deckId].items[id].voteOptions);
         if (!$scope.decks[deckId].items[id].voteOptions) $scope.decks[deckId].items[id].voteOptions = [];

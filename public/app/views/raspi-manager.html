@@ -32,9 +32,9 @@
             </li>
         </ul>
     <li class="list-group-item">
-        <div ng-click="collapsed.wlan1 = !collapsed.wlan1">WLAN: {{printInterfaces('wlan1')}}</div>
+        <div ng-click="collapsed.wlan1 = !collapsed.wlan1">WLAN: {{printInterfaces('wlan1')}}
         <i class="pull-right glyphicon"
-           ng-class="{'glyphicon-chevron-down': !collapsed.wlan1, 'glyphicon-chevron-right': collapsed.wlan1}"></i>
+           ng-class="{'glyphicon-chevron-down': !collapsed.wlan1, 'glyphicon-chevron-right': collapsed.wlan1}"></i></div>
         <ul class="list-group" collapse="collapsed.wlan1">
             <li class="list-group-item">SSID: <input type="text" ng-model="wlanId"/></li>
             <li class="list-group-item">Passwort: <input type="password" ng-model="wlanPasswd"/></li>

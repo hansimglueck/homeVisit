@@ -7,8 +7,9 @@ angular.module('WebsocketServices', []).
         //var sid = $cookies['connect.sid'].split(":")[1].split(".")[0];
         var ws;
         var onMessageCallbacks;
-        //var host = location.host;
-        var host = "home.visit.eu";
+        //TODO: switch by type cordova/webapp
+        var host = location.host;
+        //var host = "home.visit.eu";
         onMessageCallbacks = [];
         var connected = false;
         var server = {connected: connected};

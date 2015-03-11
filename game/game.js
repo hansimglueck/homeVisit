@@ -101,9 +101,10 @@ Game.prototype = {
         var content = {
             type: item.type,
             text: item.text,
-            voteOptions: JSON.parse(JSON.stringify(item.voteOptions)),
+            voteOptions: JSON.parse(JSON.stringify(item.voteOptions)),   //=deep clone
+            options: item.opts,
             voteMulti: item.voteMulti,
-            ratedVote: item.flags ? item.flags[0] : true
+            flags: item.flags
         };
 
         //log-nachricht

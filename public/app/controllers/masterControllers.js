@@ -80,7 +80,9 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemTy
             $scope.updateGameConf({typeMapping: updatedTypeMapping}).then(function(x) {$scope.gameConf.typeMapping[typeId].devices.splice(devId,1);});
         };
 
-
+        $scope.resetGameConf = function() {
+            gameConf.delete({id:$scope.gameConf._id});
+        };
     });
 
 masterControllers.controller('LogCtrl', function($scope, Socket){

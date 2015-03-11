@@ -12,21 +12,31 @@ gameServices.factory('Game', ['$resource', function ($resource) {
     //    query: {method:'GET', params:{}, isArray:true}
     //});
 }])
-    .factory('itemTypes', function () {
-        return [
-            {value: 'card', text: 'Karte'},
-            {value: 'sound', text: 'Sound'},
-            {value: 'vote', text: 'Abstimmung'},
-            {value: 'switch', text: 'Switch'},
-            {value: 'rating', text: 'Rating'}
-        ]
-    })
+    .value('itemTypes', [
+        {value: 'card', text: 'Karte'},
+        {value: 'sound', text: 'Sound'},
+        {value: 'vote', text: 'Abstimmung'},
+        {value: 'switch', text: 'Switch'},
+        {value: 'results', text: 'Results'}
+    ]
+)
+    .value('resultTypes', [
+        {value: 'Pie', text: 'Tortendiagramm'},
+        {value: 'Bar', text: 'Balkendiagramm'},
+        {value: 'Line', text: 'Kurve'},
+        {value: 'seatOrder', text: 'Sitzordnung'}
+    ])
+    .value('voteTypes', [
+        {value: 'customOptions', text: 'eine der Optionen hier'},
+        {value: 'customMultipleOptions', text: 'mehrere der Optionen hier'},
+        {value: 'playerChoice', text: 'Spielerwahl'}
+    ])
     .factory('gameConf', ['$resource', function ($resource) {
         return $resource('/gameConf/:id', null, {
             'update': {
                 method: 'PUT',
                 interceptor: {
-                    responseError: function(data) {
+                    responseError: function (data) {
                         return "ERROR";
                     }
                 }
@@ -39,7 +49,7 @@ gameServices.factory('Game', ['$resource', function ($resource) {
             'update': {
                 method: 'PUT',
                 interceptor: {
-                    responseError: function(data) {
+                    responseError: function (data) {
                         console.log("error");
                         console.log(data);
                         return "ERROR";
@@ -48,7 +58,9 @@ gameServices.factory('Game', ['$resource', function ($resource) {
             }
         });
         var restfactory = {};
-        restfactory.decks = resource.query(null, function(){$rootScope.$broadcast("decksLoaded")});
+        restfactory.decks = resource.query(null, function () {
+            $rootScope.$broadcast("decksLoaded")
+        });
 
         restfactory.addDeck = function (newDeck, callback) {
             var deck = new resource(newDeck);

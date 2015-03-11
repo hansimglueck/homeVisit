@@ -27,7 +27,7 @@ PlayerManager = function () {
     this.joinedPlayers = 0;
     this.voteItems = [];
     this.cardItems = [];
-
+    this.resultItems = [];
 };
 
 PlayerManager.prototype = {
@@ -36,7 +36,8 @@ PlayerManager.prototype = {
             this.players.push({
                 clientId: -1,
                 colors: this.colors[i],
-                joined: false
+                joined: false,
+                seat: -1,
             });
             this.rating[i] = [];
             this.avgRatings[i] = 4;
@@ -47,12 +48,10 @@ PlayerManager.prototype = {
         //this.calcAvgRate();
         console.log();
     },
-
     log: function (message) {
         message = "PMANAGER: " + message;
         wsManager.msgDevicesByRole("master", "log", message);
     },
-
     playerMessage: function (clientId, msg) {
         try {
             if (typeof msg != "undefined") switch (msg.type) {
@@ -89,7 +88,11 @@ PlayerManager.prototype = {
             console.log("ERROR in playerManager.newMessage! " + e.stack);
         }
     },
-
+    masterMessage: function (clientId, msg) {
+        if (msg.type == "register") {
+            this.sendPlayerStatus(-1);
+        }
+    },
     addItem: function (item) {
         try {
             if (!item.type) {
@@ -107,6 +110,10 @@ PlayerManager.prototype = {
                     this.sendCard(this.cardItems.push(item) - 1);
                     break;
 
+                case "results":
+                    this.results(this.resultItems.push(item) - 1);
+                    break;
+
                 default:
                     break;
 
@@ -115,7 +122,6 @@ PlayerManager.prototype = {
             console.log("ERROR in playerManager.addItem! " + e.stack);
         }
     },
-
     sendCard: function (cardId) {
         var cardItem = this.cardItems[cardId];
         var content = {
@@ -126,28 +132,29 @@ PlayerManager.prototype = {
         wsManager.msgDevicesByRole("player", "display", content);
 
     },
-
     sendVote: function (voteId) {
         var voteItem = this.voteItems[voteId];
         voteItem.votes = [];
+        voteItem.ratedVote = voteItem.flags ? voteItem.flags[0] : true;
+        if (voteItem.options[0] == "playerChoice") {
+            voteItem.voteOptions = this.getPlayerArray();
+        }
         var content = {
             voteId: voteId,
             type: voteItem.type,
             text: voteItem.text,
             voteOptions: voteItem.voteOptions,
             voteMulti: voteItem.voteMulti,
-            ratedVote: voteItem.ratedVote
+            ratedVote: voteItem.ratedVote,
+            voteType: voteItem.options[0]
         };
         wsManager.msgDevicesByRole("player", "display", content);
     },
-
-
     chat: function (clientId, data) {
         var recId = this.players[data.recepient].clientId;
         wsManager.msgDeviceByIds([recId], "chat", {playerId: data.sender, message: data.message});
 
     },
-
     getPlayerIdForClientId: function (clientId) {
         var playerId = -1;
         for (var i = 0; i < this.players.length; i++) {
@@ -155,13 +162,11 @@ PlayerManager.prototype = {
         }
         return playerId;
     },
-
     leaveGame: function (clientId) {
         var playerId = this.getPlayerIdForClientId(clientId);
         this.players[playerId].joined = false;
         this.sendPlayerStatus(playerId);
     },
-
     requestJoin: function (clientId, msg) {
         //var client = this.clients[clientId];
         var playerId;        //der player, der zu diesem client gehört.
@@ -188,34 +193,31 @@ PlayerManager.prototype = {
         this.sendPlayerStatus(playerId);
         //this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
     },
-
     sendPlayerStatus: function (playerId) {
-        wsManager.msgDeviceByIds([this.players[playerId].clientId], "joined", {
+        if (this.players[playerId]) wsManager.msgDeviceByIds([this.players[playerId].clientId], "joined", {
             player: {
                 playerId: playerId,
                 joined: this.players[playerId].joined,
-                colors: this.players[playerId].colors
+                colors: this.players[playerId].colors,
+                seat: this.players[playerId].seat
             },
             rating: this.rating[playerId]
         });
         var msg = {
             otherPlayers: this.getPlayerArray(),
             maxPlayers: this.conf.playerCnt,
-            playerRatings: this.rating[playerId],
             avgRatings: this.avgRatings
         };
         wsManager.msgDevicesByRole("player", "status", msg);
         wsManager.msgDevicesByRole("master", "status", msg);
     },
-
     getPlayerArray: function () {
         var ret = [];
         for (var i = 0; i < this.players.length; i++) {
-            ret.push({joined: this.players[i].joined, playerId: i, colors: this.players[i].colors});
+            ret.push({joined: this.players[i].joined, playerId: i, colors: this.players[i].colors, seat: this.players[i].seat});
         }
         return ret;
     },
-
     seatPlayer: function (clientId) {
         //find available playerId:
         //1. check if there are unseated players (clientId == -1)
@@ -231,7 +233,6 @@ PlayerManager.prototype = {
         }
         return playerId;
     },
-
     rate: function (clientId, data) {
         var playerId = data.playerId;
         var rate = data.rate;
@@ -240,7 +241,6 @@ PlayerManager.prototype = {
         this.calcAvgRate();
         wsManager.msgDevicesByRole('player', 'rates', {avgRatings: this.avgRatings});
     },
-
     calcAvgRate: function () {
         if (this.conf.playerCnt <= 1) {
             this.avgRatings[0] = 4;
@@ -259,7 +259,6 @@ PlayerManager.prototype = {
             this.avgRatings[j] = Math.round(sum / cnt);
         }
     },
-
     vote: function (clientId, data) {
         //die eingehenden votes werden in einem objekt des aktuellen items gespeichert
         //if (content.type == "vote") this.getItem().votes = {};
@@ -282,13 +281,14 @@ PlayerManager.prototype = {
         console.log("vote=" + dd);
         var msg = "You voted: ";
         for (var i = 0; i < dd.length; i++) {
+            if (!dd[i].text) dd[i].text = dd[i].playerId;       //wenn das playerArray als VoteOPtions ausgegeben wurde
             if (dd[i].checked) msg += dd[i].text + " ";
         }
         voteItem.votes[playerId] = dd;
         voteItem.votes[playerId].multiplier = this.avgRatings[playerId];
         if (!voteItem.ratedVote) voteItem.votes[playerId].multiplier = 1;
         this.log("Player " + playerId + ": " + msg);
-        console.log("multiplier="+voteItem.votes[playerId].multiplier);
+        console.log("multiplier=" + voteItem.votes[playerId].multiplier);
         wsManager.msgDeviceByIds([clientId], "display", {"text": msg});
         //voteComplete soll aufgerufen werden, wenn alle player mit joined = true gevoted haben...
         var missingVotes = 0;
@@ -297,14 +297,13 @@ PlayerManager.prototype = {
                 if (typeof voteItem.votes[i] == "undefined") missingVotes++;
             }
         }
-        if (missingVotes == 0) this.voteComplete(voteId);
+        if (missingVotes == 0) this.calcVoteAvg(voteId);
     },
-
-    voteComplete: function (voteId) {
+    calcVoteAvg: function (voteId) {
         var voteItem = this.voteItems[voteId];
         var votes = voteItem.votes;
         var voteOptions = voteItem.voteOptions;
-        var voteCount = 0;
+        voteItem.voteCount = 0;
         var bestOption = 0;
         for (var i = 0; i < votes.length; i++) {
             if (typeof votes[i] != "undefined") {
@@ -312,32 +311,90 @@ PlayerManager.prototype = {
                     if (!voteOptions[j].result) voteOptions[j].result = 0;
                     if (!voteOptions[j].votes) voteOptions[j].votes = 0;
                     if (votes[i][j].checked) {
-                        voteCount += votes[i].multiplier;
+                        voteItem.voteCount += votes[i].multiplier;
                         voteOptions[j].result += votes[i].multiplier;
                         voteOptions[j].votes += 1;
                         if (voteOptions[j].result > voteOptions[bestOption].result) bestOption = j;
                     }
                 }
-
             }
         }
         voteOptions.sort(function (a, b) {
             return b.result - a.result
         });
+        var game = require('./game.js');
+        game.trigger(-1, {data: 'go'});
+//        this.sendVoteResults(voteId);
+    },
+    results: function (resultId) {
+        var newestVoteId = this.voteItems.length - 1;
+        var resultItem = this.resultItems[resultId];
+        switch (resultItem.text) {
+            case 'seatOrder':
+                this.findSeatOrder(newestVoteId);
+                break;
+
+            default:
+                this.sendVoteResults(newestVoteId, resultItem.text);
+                break;
+        }
+    },
+    findSeatOrder: function (voteId) {
+
+        var voteItem = this.voteItems[voteId];
+        var problems = [];
+        var self = this;
+
+        function getCheckedPlayer(voteOptions) {
+            return voteOptions.filter(function(voteOption, id) {
+                voteOption.player = id;
+                return voteOption.checked;
+            }).map(function(voteOption) {
+                return voteOption.player;
+            })[0];
+        }
+
+        var answers = voteItem.votes.map(function(vote) {
+            return getCheckedPlayer(vote);
+        });
+        var order = [];
+        var next = 0;
+        var ok = true;
+        for (var i = 0; i < answers.length; i++) {
+            if (order.indexOf(next) != -1) {
+                ok = false;
+                break;
+            }
+            order.push(next);
+            this.players[i].seat = next;
+            next = answers[next];
+        }
+        if (!ok) console.log("Answers are not yielding an Order!");
+        this.sendPlayerStatus(-1);
+        wsManager.msgDevicesByRole('player', "display", {
+            type: "seatOrder"
+         });
+    },
+
+    sendVoteResults: function (voteId, displayType) {
+        var voteItem = this.voteItems[voteId];
         var msg = voteItem.text;
         var labels = [];
         var resData = [];
         voteItem.voteOptions.forEach(function (option) {
-            //msg += option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% (" + option.result + "/" + voteCount + ")" + "::";
-            labels.push(option.text + ": " + (option.result / voteCount * 100).toFixed(1) + "% (" + option.votes + ")");
-            resData.push(option.result / voteCount * 100);
+            labels.push(option.text + ": " + (option.result / voteItem.voteCount * 100).toFixed(1) + "% (" + option.votes + ")");
+            resData.push(option.result / voteItem.voteCount * 100);
         });
-        wsManager.msgDevicesByRole('player', "display", {type: "result", text: msg, labels: labels, data: resData});
+        wsManager.msgDevicesByRole('player', "display", {
+            type: "result",
+            chartType: displayType,
+            text: msg,
+            labels: labels,
+            data: resData
+        });
     }
+};
 
-
-}
-;
 var playerManagerObj = new PlayerManager();
 playerManagerObj.init();
 

@@ -58,6 +58,7 @@ wsManager.setSocketServer(wss);
 
 var playerManager = require('./game/playerManager.js');
 wsManager.onRole("player", playerManager, playerManager.playerMessage);
+wsManager.onRole("master", playerManager, playerManager.masterMessage);
 
 var game = require('./game/game.js');
 wsManager.onRole("master", game, game.trigger);

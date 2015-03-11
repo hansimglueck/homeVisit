@@ -1,7 +1,7 @@
 <tbody>
     <tr>
         <th>Option</th>
-        <th>Folge</th>
+        <th ng-show="item.type == 'switch'">Folge</th>
         <th></th>
     </tr>
     <tr  ng-repeat="voteOption in item.voteOptions track by $index">
@@ -10,8 +10,11 @@
                   {{ voteOption.text || 'empty' }}
             </span>
         </td>
-        <td>
-            <span editable-select="voteOption.followUp" e-name="followUp" e-ng-options="s._id as s.title for s in decks">
+        <td ng-show="item.type == 'switch'">
+            <span editable-select="voteOption.followUp"
+                  e-name="followUp"
+                  e-ng-options="s._id as s.title for s in decks"
+                  >
               {{ showFollowUp(voteOption) }}
             </span>
         </td>

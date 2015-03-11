@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='/stylesheets/emulator.css'/>
+    <script src="/javascripts/jquery.min.js"></script>
+    <title>Emulator</title>
+</head>
+<body>
+<script>
+    var frameCnt = 0;
+    document.body.onload = function () {
+        console.log("---------------------------");
+        var frames = $('.playerAppFrame');
+        for (var i = 0; i < frames.length; i++) {
+            console.error(Math.floor(i / 8));
+            $(frames[i]).css('left', (i % 8) * -155);
+            $(frames[i]).css('top', (Math.floor(i / 8)) * -235);
+        }
+    };
+    function changeFrameCnt(x) {
+        frameCnt += x;
+        $('#frameCount').text(frameCnt);
+        if (x == 1) {
+            $('#wrapper').append("<div id='frame"+(frameCnt-1)+"' class='playerAppDiv'>" +
+            "<div><button onclick='reloadFrame("+(frameCnt-1)+")'>reload</button><button onclick='closeFrame("+(frameCnt-1)+")'>close</button></div> " +
+            "<iframe class='playerAppFrame' src='http://localhost:3000'></iframe>" +
+            "</div>");
+        }
+        if (x == -1)  $($('.playerAppDiv')[frameCnt-1]).remove();
+        correctCss();
+    }
+    function reloadFrame(i) {
+        $( '#frame'+i +'> iframe').attr( 'src', function ( i, val ) { return val; });
+    }
+    function closeFrame(i) {
+        $( '#frame'+i).remove();
+        correctCss();
+    }
+    function correctCss() {
+        var frames = $('.playerAppDiv');
+        for (var i = 0; i < frames.length; i++) {
+            console.error(Math.floor(i / 8));
+            $(frames[i]).css('left', (i % 8) * -155);
+
+            $(frames[i]).css('top', (Math.floor(i / 8)) * -235);
+        }
+    }
+</script>
+<h1>EMULATOR</h1>
+<div id="steuerung">
+    <button onclick="changeFrameCnt(1)">+</button>
+    <button onclick="changeFrameCnt(-1)">-</button>
+    <span id="frameCount"></span> Frames
+</div>
+
+<div id="wrapper">
+
+</div>
+</body>
+</html>
