@@ -9,7 +9,9 @@
 <body>
 <script>
     var frameCnt = 0;
+    var host = 'http://home.visit.eu';
     document.body.onload = function () {
+        $('#url').val(host);
         console.log("---------------------------");
         var frames = $('.playerAppFrame');
         for (var i = 0; i < frames.length; i++) {
@@ -19,12 +21,14 @@
         }
     };
     function changeFrameCnt(x) {
+        host = $('#url').val();
+        console.log(host);
         frameCnt += x;
         $('#frameCount').text(frameCnt);
         if (x == 1) {
             $('#wrapper').append("<div id='frame"+(frameCnt-1)+"' class='playerAppDiv'>" +
             "<div><button onclick='reloadFrame("+(frameCnt-1)+")'>reload</button><button onclick='closeFrame("+(frameCnt-1)+")'>close</button></div> " +
-            "<iframe class='playerAppFrame' src='http://localhost:3000'></iframe>" +
+            "<iframe class='playerAppFrame' src='"+host+"'></iframe>" +
             "</div>");
         }
         if (x == -1)  $($('.playerAppDiv')[frameCnt-1]).remove();
@@ -40,15 +44,15 @@
     function correctCss() {
         var frames = $('.playerAppDiv');
         for (var i = 0; i < frames.length; i++) {
-            console.error(Math.floor(i / 8));
+            //console.error(Math.floor(i / 8));
             $(frames[i]).css('left', (i % 8) * -155);
-
             $(frames[i]).css('top', (Math.floor(i / 8)) * -235);
         }
     }
 </script>
 <h1>EMULATOR</h1>
 <div id="steuerung">
+    <input id="url" type="text" />
     <button onclick="changeFrameCnt(1)">+</button>
     <button onclick="changeFrameCnt(-1)">-</button>
     <span id="frameCount"></span> Frames
