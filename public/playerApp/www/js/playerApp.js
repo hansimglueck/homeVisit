@@ -30,9 +30,9 @@ angular.module('playerApp', [
                     templateUrl: 'partials/playerChat.html',
                     controller: 'PlayerChatController'
                 }).
-                when('/vote', {
-                    templateUrl: 'partials/vote.html',
-                    controller: 'VoteController'
+                 when('/europe', {
+                    templateUrl: 'partials/europe.html',
+                    controller: 'EuropeController'
                 }).
                 otherwise({
                     redirectTo: '/home'

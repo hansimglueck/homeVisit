@@ -92,8 +92,12 @@ angular.module("playerControllers", [])
         };
 
     })
-    .controller('VoteController', function ($scope, Socket, colors, playerColors) {
-
+    .controller('EuropeController', function ($scope, europeSvgData) {
+        $scope.europeSVG = europeSvgData;
+        $scope.select = function(i) {
+            console.log("select "+i);
+            $scope.europeSVG[i].selected ^= true;
+        }
     })
     .controller('ChatController', function ($scope, Status, Chat, colors, playerColors, $location, $anchorScroll, $routeParams) {
         $scope.chat = Chat;
