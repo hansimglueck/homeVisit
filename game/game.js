@@ -144,7 +144,7 @@ Game.prototype = {
         } else {
             //an die konfigurierten default-devices senden
             var map = {};
-            if (content.device == "default") map = this.conf.typeMapping.filter(function (tm) {
+            if (content.device == "default" || typeof content.device == "undefined") map = this.conf.typeMapping.filter(function (tm) {
                 return (tm.type == content.type);
             })[0];
             else {
