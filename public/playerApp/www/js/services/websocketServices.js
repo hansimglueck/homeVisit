@@ -74,7 +74,7 @@ angular.module('WebsocketServices', []).
             $rootScope.$digest(); //damit das false auch ankommt...
             $rootScope.$broadcast("disconnected");
             if (really) setTimeout(function () {
-                //connect();
+                connect();
             }, 1000);
         };
 
