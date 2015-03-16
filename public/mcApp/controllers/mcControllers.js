@@ -10,7 +10,7 @@ angular.module("mcControllers", [])
                 case "alarm":
                     break;
             }
-            Socket.emit({type: "forward", recipient: {role:"button", name:"gruen"}, data: {type:"button_led", content:{cmd: val, param: param}}},
+            Socket.emit({type: "forward", recipient: {role:"button", name:"gruen"}, data: {type:"button_led", content:{command: val, param: param}}},
                 function() { console.log('mc command emitted'); });
         };
     })
