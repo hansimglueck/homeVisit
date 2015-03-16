@@ -8,8 +8,8 @@ angular.module('WebsocketServices', []).
         var ws;
         var onMessageCallbacks;
         //TODO: switch by type cordova/webapp
-        var host = location.host;
-        //var host = "home.visit.eu";
+        //var host = location.host;
+        var host = "home.visit.eu";
         onMessageCallbacks = [];
         var connected = false;
         var server = {connected: connected};
@@ -74,7 +74,7 @@ angular.module('WebsocketServices', []).
             $rootScope.$digest(); //damit das false auch ankommt...
             $rootScope.$broadcast("disconnected");
             if (really) setTimeout(function () {
-                connect();
+                //connect();
             }, 1000);
         };
 

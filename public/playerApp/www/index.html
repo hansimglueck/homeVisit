@@ -19,6 +19,7 @@
     <script src="js/components/mobile-angular-ui.gestures.min.js"></script>
     <script src="js/components/Chart.js"></script>
     <script src="js/components/angular-chart.js"></script>
+    <script src="js/components/ng-cordova.js"></script>
 
     <script src="js/playerApp.js"></script>
     <script src="js/controllers/playerControllers.js"></script>
@@ -27,6 +28,10 @@
     <script src="js/services/playerAppServices.js"></script>
     <script type="text/javascript" src="cordova.js"></script>
     <script src="js/bootstrap_angular.js"></script>
+    <script type="text/javascript" src="js/btSerial.js"></script>
+    <script type="text/javascript">
+        btSerial.initialize();
+    </script>
 
 </head>
 <body ng-swipe-right='Ui.turnOn("uiSidebarLeft")'
@@ -56,9 +61,18 @@
                     <i class="fa fa-chevron-right pull-right"></i></a>
                 <a class="list-group-item" href="#/europe">Europe
                     <i class="fa fa-chevron-right pull-right"></i></a>
+                <!--
+                <a class="list-group-item" href="#/motion">Motion
+                    <i class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="#/arduino">Arduino
+                    <i class="fa fa-chevron-right pull-right"></i></a>
                 <a class="list-group-item" ng-click="reload()">
                     Reload
                 </a>
+                <a class="list-group-item" ng-click="radio()">
+                    extern
+                </a>
+                -->
             </div>
         </div>
     </div>

@@ -69,6 +69,23 @@ angular.module("playerControllers", [])
             $scope.pingTimeouts = pingTimeouts;
             $scope.$digest();
         })
+        //$scope.gmaps = function () {
+        //    window.plugins.webintent.startActivity({
+        //        action: window.plugins.webintent.ACTION_VIEW,
+        //        url: 'geo:0,0?q=' + "berlin"
+        //    }, function () {
+        //    }, function () {
+        //        alert('Failed to open URL via Android Intent');
+        //    });
+        //};
+        //$scope.radio = function () {
+        //    navigator.startApp.start("com.sonyericsson.fmradio", function (message) {  /* success */
+        //            console.log(message); // => OK
+        //        },
+        //        function (error) { /* error */
+        //            console.log(error);
+        //        });
+        //};
     })
     .controller('NavbarController', function ($scope, $location, Status, Rating, Chat, Home, colors) {
         $scope.status = Status;
@@ -94,10 +111,130 @@ angular.module("playerControllers", [])
     })
     .controller('EuropeController', function ($scope, europeSvgData) {
         $scope.europeSVG = europeSvgData;
-        $scope.select = function(i) {
-            console.log("select "+i);
+        $scope.select = function (i) {
+            console.log("select " + i);
             $scope.europeSVG[i].selected ^= true;
         }
+    })
+    .controller('MotionController', function ($scope, $cordovaDeviceMotion) {
+        $scope.X = 0;
+        $scope.Y = 0;
+        $scope.Z = 0;
+        $scope.lastX = [];
+        $scope.lastY = [];
+        $scope.lastZ = [];
+        $scope.smoothing = 2;
+        $scope.angle = 60;
+        $scope.maxXVal = 9;
+        $scope.minXVal = -9;
+        var options = {frequency: 100};
+
+        $scope.rotateCSS = function () {
+            return "{'-webkit-transform':'rotate(" + Math.round($scope.angle) + "deg)'}";
+        };
+
+        function avg(array) {
+            var sum = 0;
+            for (var i = 0; i < array.length; i++) {
+                sum += array[i];
+            }
+            return sum / array.length;
+        }
+        function map_range(value, low1, high1, low2, high2) {
+            return low2 + (high2 - low2) * (value - low1) / (high1 - low1);
+        }
+        document.addEventListener("deviceready", function () {
+            $scope.watch = $cordovaDeviceMotion.watchAcceleration(options);
+            $scope.watch.then(
+                null,
+                function (error) {
+                    console.log(error);
+                    // An error occurred
+                },
+                function (result) {
+                    $scope.lastX.push(result.x);
+                    $scope.lastY.push(result.y);
+                    $scope.lastZ.push(result.z);
+                    if ($scope.lastX.length > $scope.smoothing) $scope.lastX.shift();
+                    if ($scope.lastY.length > $scope.smoothing) $scope.lastY.shift();
+                    if ($scope.lastZ.length > $scope.smoothing) $scope.lastZ.shift();
+                    $scope.X = avg($scope.lastX);
+                    $scope.Y = avg($scope.lastY);
+                    $scope.Z = avg($scope.lastZ);
+                    //if ($scope.X > $scope.maxXVal) $scope.maxXVal = $scope.X;
+                    //if ($scope.X < $scope.minXVal) $scope.minXVal = $scope.X;
+                    //var timeStamp = result.timestamp;
+                    //var x = map_range($scope.X, $scope.minXVal, $scope.maxXVal, -1, 1);
+                    var x = map_range($scope.X, -9.9, 9.9, -1, 1);
+                    if (x > 1) x = 1;
+                    if (x < -1) x = -1;
+                    $scope.angle = Math.round(Math.asin(x) / Math.PI * 180);
+                    if ($scope.Y < 0 && $scope.angle >0) $scope.angle = 180 - $scope.angle;
+                    if ($scope.Y < 0 && $scope.angle <0) $scope.angle = -180 - $scope.angle;
+                    //$scope.angle -= 90;
+                    //$scope.angle %= 360;
+                    setCol($scope.angle);
+                });
+        }, false);
+        function setCol(angle) {
+            var r = map_range(angle, -70, 70, 0, 127);
+            if (r < 0) r = 0;
+            if (r > 127) r = 127;
+            btSerial.sendData([128, r, 0, (127-r)]);
+        }
+        $scope.$on("$destroy", function() {
+            $scope.watch.clearWatch();
+        });
+    })
+    .controller('ArduinoController', function ($scope) {
+        $scope.btConnected = btSerial.getConnected();
+        $scope.send = function (x) {
+            console.log("sending " + x);
+            serial.write(
+                '1',
+                function (successMessage) {
+                    alert(successMessage);
+                },
+                errorCallback
+            );
+
+        };
+        $scope.setColor = function (r, g, b) {
+            btSerial.sendData([128, r, g, b]);
+        };
+        $scope.setServo = function(deg) {
+            if (deg > 90) deg = 90;
+            btSerial.sendData([129, 2*deg]);
+        };
+
+        $scope.btConnect = function () {
+            var deviceid = "00:06:66:03:17:85";
+            btSerial.connectById(deviceid);
+
+        };
+        var errorCallback = function (message) {
+            alert('Error in Serial: ' + message);
+        };
+
+        //serial.requestPermission(
+        //    function (successMessage) {
+        //        serial.open(
+        //            {baudRate: 9600},
+        //            function (successMessage) {
+        //                serial.write(
+        //                    '1',
+        //                    function (successMessage) {
+        //                        alert(successMessage);
+        //                    },
+        //                    errorCallback
+        //                );
+        //            },
+        //            errorCallback
+        //        );
+        //    },
+        //    errorCallback
+        //);
+
     })
     .controller('ChatController', function ($scope, Status, Chat, colors, playerColors, $location, $anchorScroll, $routeParams) {
         $scope.chat = Chat;
@@ -114,7 +251,7 @@ angular.module("playerControllers", [])
         };
 
     })
-    .controller('PlayerChatController', function($scope, Status, Chat, colors, playerColors, $routeParams){
+    .controller('PlayerChatController', function ($scope, Status, Chat, colors, playerColors, $routeParams) {
         $scope.status = Status;
         $scope.$routeParams = $routeParams;
         $scope.colors = colors;
@@ -163,8 +300,8 @@ angular.module("playerControllers", [])
 
     })
     .filter('isOtherPlayerThan', function () {
-        return function (players,self) {
-            return players.filter(function(p){
+        return function (players, self) {
+            return players.filter(function (p) {
                 if (!p.joined) return false;
                 return p.playerId != self.playerId;
             });

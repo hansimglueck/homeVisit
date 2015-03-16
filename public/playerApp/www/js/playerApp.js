@@ -9,7 +9,8 @@ angular.module('playerApp', [
     'chart.js',
     'ngCookies',
     'playerAppServices',
-    'playerAppDirectives'
+    'playerAppDirectives',
+    'ngCordova'
 ])
     .config(['$routeProvider',
         function ($routeProvider) {
@@ -30,9 +31,17 @@ angular.module('playerApp', [
                     templateUrl: 'partials/playerChat.html',
                     controller: 'PlayerChatController'
                 }).
-                 when('/europe', {
+                when('/europe', {
                     templateUrl: 'partials/europe.html',
                     controller: 'EuropeController'
+                }).
+                when('/motion', {
+                    templateUrl: 'partials/motion.html',
+                    controller: 'MotionController'
+                }).
+                when('/arduino', {
+                    templateUrl: 'partials/arduino.html',
+                    controller: 'ArduinoController'
                 }).
                 otherwise({
                     redirectTo: '/home'
