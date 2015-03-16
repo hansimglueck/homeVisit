@@ -2,7 +2,7 @@
  * Created by jeanbluer on 06.02.15.
  */
 angular.module('WebsocketServices', []).
-    factory('Socket', function ($rootScope, $cookies) {
+    factory('Socket', function ($rootScope) {
         var sid = "x";
         //var sid = $cookies['connect.sid'].split(":")[1].split(".")[0];
         var ws;
@@ -93,7 +93,7 @@ angular.module('WebsocketServices', []).
                 console.log("client: Socket has been opened!");
                 server.connected = true;
                 $rootScope.$digest(); //damit das true auch ankommt...
-                ws.send(JSON.stringify({type: "register", data: {role:'player', sid:sid}}));
+                ws.send(JSON.stringify({type: "register", data: {role:'MC', sid:sid}}));
                 onMessageCallbacks.push({
                     fn: function (event) {
                         var data = JSON.parse(event.data).sid;

@@ -12,10 +12,6 @@ angular.module("playerControllers", [])
         $scope.itemTypes = itemTypes;
         $scope.votelast = "vote";
 
-        $scope.checkChanged = function (option) {
-            if (option.checked) $scope.checked++;
-            else $scope.checked--;
-        };
 
         $scope.toVote = function () {
             $scope.type = $scope.votelast;
@@ -30,6 +26,12 @@ angular.module("playerControllers", [])
         $scope.home = Home;
         $scope.text = $scope.home.text;
         $scope.type = $scope.home.type;
+        $scope.limit = 1;
+        $scope.checked = 0;
+        $scope.checkChanged = function (option) {
+            if (option.checked) $scope.checked++;
+            else $scope.checked--;
+        };
         $scope.vote = function (id) {
             console.log(id);
             if (id != undefined) {

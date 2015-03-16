@@ -24,8 +24,8 @@
         <ul class="list-unstyled">
             <li ng-repeat="t in home.text track by $index">{{t}}</li>
         </ul>
-        <div ng-switch="home.voteType">
-            <div ng-switch-when="customOptions" ng-switch="home.limit > 1">
+        <div>
+            <div ng-if="['customOptions', 'customMultipleOptions'].indexOf(home.voteType) != -1" ng-switch="home.limit > 1">
                 <ul class="list-unstyled wide-list" ng-switch-when="false">
                     <li ng-repeat="opt in home.options track by $index">
                         <button class="btn-lg" ng-click="vote($index)">{{opt.text}}</button>
@@ -43,7 +43,7 @@
                     </li>
                 </ul>
             </div>
-            <div ng-switch-when="playerChoice">
+            <div ng-if="home.voteType == 'playerChoice'">
                 <div class="col-xs-4 player-grid-item"
                      ng-repeat="player in home.options | isOtherPlayerThan:status.player track by $index">
                     <div ng-style="{'height': '40px'}" ng-click="vote(player.playerId)">

@@ -16,6 +16,10 @@ router.get('/admin', function(req, res, next) {
   res.sendFile('app/index.html', { root: __dirname +"/../public"  });
 });
 
+router.get('/mc', function(req, res, next) {
+  res.sendFile('mcApp/index.html', { root: __dirname +"/../public"  });
+});
+
 router.get('/game', function(req, res, next) {
   res.render('game', { title: 'HomeVisit' });
 });

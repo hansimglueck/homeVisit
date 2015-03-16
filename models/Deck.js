@@ -5,6 +5,7 @@ var mongoose = require('mongoose');
 
 var VoteOptionSchema = new mongoose.Schema({
     text: String,
+    value: String,
     followUp: String,
     checked: Boolean
 });
@@ -23,7 +24,8 @@ var SequenceItemSchema   = new mongoose.Schema({
     opts: [String],
     voteOptions: [VoteOptionSchema],
     comments: [String],
-    voteMulti: Number
+    voteMulti: Number,
+    device: String
 });
 
 var DeckSchema   = new mongoose.Schema({

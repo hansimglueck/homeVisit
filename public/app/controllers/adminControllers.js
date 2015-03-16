@@ -229,7 +229,8 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
             type: 'card',
             text: '',
             time: '',
-            voteMulti: 1
+            voteMulti: 1,
+            device: "default"
         };
         if (typeof itemId == "undefined") $scope.decks[deckId].items.push($scope.inserted);
         else $scope.decks[deckId].items.splice(itemId+1, 0, $scope.inserted);

@@ -104,7 +104,8 @@ Game.prototype = {
             voteOptions: JSON.parse(JSON.stringify(item.voteOptions)),   //=deep clone
             options: item.opts,
             voteMulti: item.voteMulti,
-            flags: item.flags
+            flags: item.flags,
+            device: item.device
         };
 
         //log-nachricht
@@ -142,9 +143,13 @@ Game.prototype = {
             self.log("FollowUp nicht gefunden!!!");
         } else {
             //an die konfigurierten default-devices senden
-            var map = this.conf.typeMapping.filter(function (tm) {
+            var map = {};
+            if (content.device == "default") map = this.conf.typeMapping.filter(function (tm) {
                 return (tm.type == content.type);
             })[0];
+            else {
+                map.devices = content.device.split(",");
+            }
             if (map.devices.length == 0) this.log("keine Devices gefunden für " + content.type);
             map.devices.forEach(function (dev) {
                 if (dev == "player") {

@@ -9,6 +9,11 @@
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in types">
           {{ showType(item) }}
+        </span> <br /><br />Mapped:<br />
+        <span editable-text="item.device" e-name="device"
+              onaftersave="saveItem()"
+              e-ng-options="s.value as s.text for s in types">
+          {{ item.device ? item.device : "default"}}
         </span>
     </td>
 
@@ -46,7 +51,7 @@
           {{ showResultType(item) }}
         </span>
 
-        <div ng-show="item.type=='vote' && item.options[0] == 'customMultipleOptions'">
+        <div ng-show="item.type=='vote' && item.opts[0] == 'customMultipleOptions'">
             Anzahl Stimmen:<span editable-text="item.voteMulti" e-name="voteMulti" onaftersave="saveItem()">
           {{ item.voteMulti || '1' }}
         </span>
@@ -60,12 +65,12 @@
           {{ showVoteType(item) }}
         </span>
         </div>
-        <div>
-            mit Rating: <span editable-checkbox="item.flags[0]" e-name="voteFlag" onaftersave="saveItem()" ng-show="item.type=='vote'">
+        <div ng-show="item.type=='vote'">
+            mit Rating: <span editable-checkbox="item.flags[0]" e-name="voteFlag" onaftersave="saveItem()">
           {{ item.flags[0] || 'nein' }}
         </span>
         </div>
-        <div ng-show="(item.type=='vote' && item.opts[0] == 'customOptions') || item.type=='switch'">
+        <div ng-show="(item.type=='vote' && (item.opts[0] == 'customOptions' || item.opts[0] == 'customMultipleOptions')) || item.type=='switch'">
             Optionen:
             <table class="table">
                 <tbody show-vote-option>

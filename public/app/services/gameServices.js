@@ -58,7 +58,14 @@ gameServices.factory('Game', ['$resource', function ($resource) {
             }
         });
         var restfactory = {};
-        restfactory.decks = resource.query(null, function () {
+        restfactory.decks = resource.query(null, function (data) {
+            console.log("setfactory.query: "+data);
+            console.log(data);
+            data.forEach(function(deck){
+                deck.items.forEach(function(item) {
+                    if (typeof item.device == "undefined") item.device = "default";
+                })
+            });
             $rootScope.$broadcast("decksLoaded")
         });
 

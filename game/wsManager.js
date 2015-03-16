@@ -143,6 +143,10 @@ WsManager.prototype = {
                                 self.registerClient(msg, ws);
                                 break;
 
+                            case "forward":
+                                self.forwardMessage(msg);
+                                break;
+
                             case "forceReload":
                                 //self.msgDevicesByRole(msg.data, "reload");
                                 break;
@@ -177,6 +181,10 @@ WsManager.prototype = {
 
     },
 
+    forwardMessage: function(msg) {
+        this.msgDevicesByRoleAndName(msg.recipient.role, msg.recipient.name, msg.data.type, msg.data.content);
+    },
+
     applyRoleCallbacks: function (ws, msg) {
         this.roleCallbacks.forEach(function (cb) {
             if (cb.role == ws.role) {
@@ -202,10 +210,12 @@ WsManager.prototype = {
         var dd = (typeof msg.data == "Object") ? JSON.parse(msg.data) : msg.data;
         var role = "unknown";
         var sid = "NN";
+        var name = "NN";
         if (typeof dd == "string") role = dd;
         else {
             if (typeof dd.role != "undefined") role = dd.role;
             if (typeof dd.sid != "undefined") sid = dd.sid;
+            if (typeof dd.name != "undefined") name = dd.name;
         }
         console.log("ws-sid: " + sid);
         if (this.sids.indexOf(sid) == -1 && sid != "NN") {
@@ -236,7 +246,7 @@ WsManager.prototype = {
         } else {
             //first time registered
             var clientId = this.clients.length;
-            client = {socket: ws, role: role, clientId: clientId, connected: true, sid: sid};
+            client = {socket: ws, role: role, clientId: clientId, connected: true, sid: sid, name: name};
             this.clients.push(client);
         }
         ws.clientId = client.clientId;
@@ -251,6 +261,14 @@ WsManager.prototype = {
         if (role == "master") {
             this.sendOsInfo(ws);
         }
+    },
+
+    msgDevicesByRoleAndName: function(role, name, type, message) {
+        this.clients.forEach(function each(client) {
+            if (client.role == role && client.connected && client.name == "name") {
+                client.socket.send(JSON.stringify({type: type, data: message}));
+            }
+        });
     },
     msgDevicesByRole: function (role, type, message) {
         if (role === "player" && type == "vote" || type == "card") this.lastPlayerMessage = message;
