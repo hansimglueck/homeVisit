@@ -265,7 +265,7 @@ WsManager.prototype = {
 
     msgDevicesByRoleAndName: function(role, name, type, message) {
         this.clients.forEach(function each(client) {
-            if (client.role == role && client.connected && client.name == "name") {
+            if (client.role == role && client.connected && client.name == name) {
                 client.socket.send(JSON.stringify({type: type, data: message}));
             }
         });
