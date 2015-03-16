@@ -31,7 +31,7 @@
                         <button class="btn-lg" ng-click="vote($index)">{{opt.text}}</button>
                     </li>
                 </ul>
-
+{{limit}}
                 <ul class="list-unstyled wide-list" ng-switch-when="true">
                     <li ng-repeat="opt in home.options track by $index">
                         <input type="checkbox" ng-model="opt.checked" ng-change="checkChanged(opt)"

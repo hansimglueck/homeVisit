@@ -26,7 +26,7 @@ angular.module("playerControllers", [])
         $scope.home = Home;
         $scope.text = $scope.home.text;
         $scope.type = $scope.home.type;
-        $scope.limit = 1;
+        $scope.limit = $scope.home.limit;
         $scope.checked = 0;
         $scope.checkChanged = function (option) {
             if (option.checked) $scope.checked++;
