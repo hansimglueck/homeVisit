@@ -222,7 +222,7 @@ WsManager.prototype = {
             if (typeof dd.sid != "undefined") sid = dd.sid;
             if (typeof dd.name != "undefined") name = dd.name;
         }
-        console.log("ws-sid: " + sid);
+        //console.log("ws-sid: " + sid);
         if (this.sids.indexOf(sid) == -1 && sid != "NN") {
             var hat = require('hat');
             sid = hat();
