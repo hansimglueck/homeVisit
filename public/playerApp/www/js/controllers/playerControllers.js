@@ -26,7 +26,7 @@ angular.module("playerControllers", [])
         $scope.home = Home;
         $scope.text = $scope.home.text;
         $scope.type = $scope.home.type;
-        $scope.limit = $scope.home.limit;
+        $scope.limit = Home.limit;
         $scope.checked = 0;
         $scope.sound = ngAudio.load("sounds/tiny-01.mp3");
         $scope.sound.play();
@@ -116,11 +116,9 @@ angular.module("playerControllers", [])
     })
     .controller('EuropeController', function ($scope, europeSvgData) {
         $scope.europeSVG = europeSvgData;
-        var arr = [];
-        $scope.europeSVG.filter(function(a){return [null, "eu europe", "europe"].indexOf(a.class) == -1}).forEach(function(c){
-            arr.push({id: c.id, class: c.class});
+        $scope.europeSVG.forEach(function(c){
+            if (c.id =="im") c.selected=true;
         });
-        console.log(JSON.stringify(arr));
         $scope.select = function (i) {
             console.log("select " + i);
             $scope.europeSVG[i].selected ^= true;

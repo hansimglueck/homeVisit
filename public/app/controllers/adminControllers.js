@@ -281,14 +281,22 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
     });
 
 
-adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, resultTypes, voteTypes) {
+adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, resultTypes, voteTypes, languages) {
     $scope.voteTypes = voteTypes;
     $scope.resultTypes = resultTypes;
     $scope.types = itemTypes;
+    $scope.languages = languages;
     $scope.showType = function (item) {
         var selected = [];
         if (item.type) {
             selected = $filter('filter')($scope.types, {value: item.type}, true);
+        }
+        return selected.length ? selected[0].text : 'Not set';
+    };
+    $scope.showLanguage = function (item) {
+        var selected = [];
+        if (item.opts) if (item.opts[1]) {
+            selected = $filter('filter')($scope.languages, {value: item.opts[1]}, true);
         }
         return selected.length ? selected[0].text : 'Not set';
     };

@@ -91,4 +91,12 @@ angular.module('adminDirectives', [])
         };
     })
 
+    .directive('showCmdContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-cmd-content.html'
+        };
+    })
+
 ;

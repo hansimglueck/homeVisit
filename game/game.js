@@ -97,17 +97,30 @@ Game.prototype = {
         }
 
         var item = this.getItem();
-        //objekt mit den relevanten daten zum senden vorbereiten
-        var content = {
-            type: item.type,
-            text: item.text,
-            voteOptions: JSON.parse(JSON.stringify(item.voteOptions)),   //=deep clone
-            options: item.opts,
-            voteMulti: item.voteMulti,
-            flags: item.flags,
-            device: item.device
-        };
 
+        //objekt mit den relevanten daten zum senden vorbereiten
+        var content;
+        switch (item.type) {
+            case "cmd":
+                content = {
+                    type: item.type,
+                    command: item.text,
+                    param: item.opts[0],
+                    device: item.device
+                };
+                break;
+            default:
+                content = {
+                    type: item.type,
+                    text: item.text,
+                    voteOptions: JSON.parse(JSON.stringify(item.voteOptions)),   //=deep clone
+                    options: item.opts,
+                    voteMulti: item.voteMulti,
+                    flags: item.flags,
+                    device: item.device
+                };
+                break;
+        }
         //log-nachricht
         msg += " stepped to " + this.deckId + "/" + this.stepId + " (" + content.type + ")";
         this.log(msg);
@@ -147,16 +160,21 @@ Game.prototype = {
             if (content.device == "default" || typeof content.device == "undefined") map = this.conf.typeMapping.filter(function (tm) {
                 return (tm.type == content.type);
             })[0];
+            //oder an die speziell gewünschten devices senden
             else {
                 map.devices = content.device.split(",");
             }
             if (map.devices.length == 0) this.log("keine Devices gefunden für " + content.type);
             map.devices.forEach(function (dev) {
+                self.log("sending to " + dev + ": " + content.text);
                 if (dev == "player") {
                     playerManager.addItem(content);
                     return;
                 }
-                self.log("sending to " + dev + ": " + content.text);
+                //ist ein spezieller device-name angegeben?
+                if (dev.indexOf(':') != -1) {
+                    wsManager.msgDevicesByRoleAndName(dev.split(':')[0], dev.split(':')[1], "display", content);
+                }
                 wsManager.msgDevicesByRole(dev, "display", content);
             });
             wsManager.msgDevicesByRole('master', 'playBackStatus', {stepId: self.stepId, type: self.getItem().type});

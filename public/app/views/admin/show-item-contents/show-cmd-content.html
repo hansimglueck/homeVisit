@@ -1,0 +1,22 @@
+<table>
+    <tr>
+        <td class="text-right">command = </td>
+        <td>
+    <span editable-text="item.text"
+          e-rows="7" e-cols="40" e-name="text"
+          onaftersave="saveItem()">
+          {{ item.text || 'not Set' }}
+        </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-right">param = </td>
+        <td>
+    <span editable-text="item.opts[0]"
+          e-rows="7" e-cols="40" e-name="param"
+          onaftersave="saveItem()">
+          {{ item.opts[0] || 'not Set' }}
+        </span>
+        </td>
+    </tr>
+</table>

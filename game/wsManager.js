@@ -230,8 +230,8 @@ WsManager.prototype = {
             //ws.send(JSON.stringify({type: "reload"}));
             //return;
         }
-        console.log(this.sids);
-        console.log("ws-sid: " + sid);
+        //console.log(this.sids);
+        //console.log("ws-sid: " + sid);
         var client;
         //schau mal, ob es schon einen client mit der sid gibt...
         //wenn ja: ws darein schreiben und den dazugehörigen player im data senden

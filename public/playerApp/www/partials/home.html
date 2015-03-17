@@ -20,12 +20,12 @@
     </div>
 
 
-    <div ng-switch-when="vote">xyz
+    <div ng-switch-when="vote">
         <ul class="list-unstyled">
             <li ng-repeat="t in home.text track by $index">{{t}}</li>
         </ul>
         <div>
-            <div ng-if="['customOptions', 'customMultipleOptions'].indexOf(home.voteType) != -1" ng-switch="home.limit > 1">
+            <div ng-if="['customOptions', 'customMultipleOptions', 'countryChoice'].indexOf(home.voteType) != -1" ng-switch="home.limit > 1">
                 <ul class="list-unstyled wide-list" ng-switch-when="false">
                     <li ng-repeat="opt in home.options track by $index">
                         <button class="btn-lg" ng-click="vote($index)">{{opt.text}}</button>
@@ -33,9 +33,9 @@
                 </ul>
                 <ul class="list-unstyled wide-list" ng-switch-when="true">
                     <li ng-repeat="opt in home.options track by $index">
-                        <input type="checkbox" ng-model="opt.checked" ng-change="checkChanged(opt)"
-                               ng-disabled="checked==limit && !opt.checked"/>
-                        {{opt.text}}
+                        <input type="checkbox" id="{{opt.val}}" ng-model="opt.checked" ng-change="checkChanged(opt)"
+                               ng-disabled="checked>=home.limit && !opt.checked" />
+                        <label for="{{opt.val}}">{{opt.text}}</label>
                     </li>
                     <li>
                         <button ng-click="vote()">VOTE</button>

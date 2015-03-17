@@ -1,35 +1,60 @@
-<div>
-
+<table>
+    <tr>
+        <td>Text:</td>
+        <td>
 <span editable-textarea="item.text"
       e-rows="7" e-cols="40" e-name="text"
       onaftersave="saveItem()">
           {{ item.text || 'kein Text' }}
         </span>
-<div ng-show="item.opts[0] == 'customMultipleOptions'">
-    Anzahl Stimmen:<span editable-text="item.voteMulti" e-name="voteMulti" onaftersave="saveItem()">
+        </td>
+    </tr>
+    <tr ng-show="item.opts[0] == 'customMultipleOptions'">
+        <td>Anzahl Stimmen:</td>
+        <td>
+    <span editable-text="item.voteMulti" e-name="voteMulti" onaftersave="saveItem()">
           {{ item.voteMulti || '1' }}
         </span>
-</div>
-<div>
-    Art:
+        </td>
+    </tr>
+    <tr>
+        <td>Art:</td>
+        <td>
         <span editable-select="item.opts[0]" e-name="voteType"
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in voteTypes"
                 >
           {{ showVoteType(item) }}
         </span>
-</div>
-<div>
-    mit Rating: <span editable-checkbox="item.flags[0]" e-name="voteFlag" onaftersave="saveItem()">
+        </td>
+    </tr>
+    <tr ng-show="item.opts[0]=='countryChoice'">
+        <td>Sprache:</td>
+        <td>
+        <span editable-select="item.opts[1]" e-name="language"
+              onaftersave="saveItem()"
+              e-ng-options="s.value as s.text for s in languages"
+                >
+          {{ showLanguage(item) }}
+        </span>
+        </td>
+    </tr>
+    <tr>
+        <td>mit Rating:</td>
+        <td><span editable-checkbox="item.flags[0]" e-name="voteFlag" onaftersave="saveItem()">
           {{ item.flags[0] || 'nein' }}
         </span>
-</div>
-<div ng-show="(item.opts[0] == 'customOptions' || item.opts[0] == 'customMultipleOptions')">
-    Optionen:
-    <table class="table">
-        <tbody show-vote-option>
-        </tbody>
-    </table>
-    <button class="btn" ng-click="addVoteOption($parent.$index, $index)">Neue Option</button>
-</div>
-</div>
+        </td>
+    </tr>
+    <tr ng-show="(item.opts[0] == 'customOptions' || item.opts[0] == 'customMultipleOptions')">
+        <td>Optionen:</td>
+        <td>
+            <table class="table">
+                <tbody show-vote-option>
+                </tbody>
+            </table>
+
+            <button class="btn" ng-click="addVoteOption($parent.$index, $index)">Neue Option</button>
+        </td>
+    </tr>
+</table>

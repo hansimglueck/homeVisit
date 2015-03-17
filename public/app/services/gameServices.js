@@ -16,8 +16,9 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         {value: 'card', text: 'Karte'},
         {value: 'sound', text: 'Sound'},
         {value: 'vote', text: 'Abstimmung'},
+        {value: 'results', text: 'Results'},
         {value: 'switch', text: 'Switch'},
-        {value: 'results', text: 'Results'}
+        {value: 'cmd', text: 'Kommando'}
     ]
 )
     .value('resultTypes', [
@@ -31,6 +32,10 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         {value: 'customMultipleOptions', text: 'mehrere der Optionen hier'},
         {value: 'playerChoice', text: 'Spielerwahl'},
         {value: 'countryChoice', text: 'Länderwahl'}
+    ])
+    .value('languages', [
+        {value: 'de', text: 'Deutsch'},
+        {value: 'en', text: 'Englisch'}
     ])
     .factory('gameConf', ['$resource', function ($resource) {
         return $resource('/gameConf/:id', null, {
