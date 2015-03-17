@@ -10,7 +10,8 @@ angular.module('playerApp', [
     'ngCookies',
     'playerAppServices',
     'playerAppDirectives',
-    'ngCordova'
+    'ngCordova',
+    'ngAudio'
 ])
     .config(['$routeProvider',
         function ($routeProvider) {

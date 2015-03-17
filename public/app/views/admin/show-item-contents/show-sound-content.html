@@ -1,0 +1,9 @@
+<div>
+    <span editable-textarea="item.text"
+          e-rows="7" e-cols="40" e-name="text"
+          onaftersave="saveItem()">
+          {{ item.text || 'kein Text' }}
+        </span>
+
+    <js-tree ng-hide="true" tree-events="select_node:nodeSelected" tree-ajax="/fileBrowser"></js-tree>
+</div>

@@ -1,0 +1,5 @@
+<span editable-select="item.text" e-name="text"
+      onaftersave="saveItem()"
+      e-ng-options="s.value as s.text for s in resultTypes">
+          {{ showResultType(item) }}
+        </span>

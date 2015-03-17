@@ -29,7 +29,8 @@ gameServices.factory('Game', ['$resource', function ($resource) {
     .value('voteTypes', [
         {value: 'customOptions', text: 'eine der Optionen hier'},
         {value: 'customMultipleOptions', text: 'mehrere der Optionen hier'},
-        {value: 'playerChoice', text: 'Spielerwahl'}
+        {value: 'playerChoice', text: 'Spielerwahl'},
+        {value: 'countryChoice', text: 'Länderwahl'}
     ])
     .factory('gameConf', ['$resource', function ($resource) {
         return $resource('/gameConf/:id', null, {

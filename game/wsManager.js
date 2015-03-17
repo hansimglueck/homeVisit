@@ -182,7 +182,12 @@ WsManager.prototype = {
     },
 
     forwardMessage: function(msg) {
-        this.msgDevicesByRoleAndName(msg.recipient.role, msg.recipient.name, msg.data.type, msg.data.content);
+        var recipient;
+        if (typeof msg.recipient != "undefined") recipient = msg.recipient;
+        if (typeof msg.param != "undefined") recipient = msg.param;
+        if (typeof recipient == "undefined") return;
+
+        this.msgDevicesByRoleAndName(recipient.role, recipient.name, msg.data.type, msg.data.content);
     },
 
     applyRoleCallbacks: function (ws, msg) {

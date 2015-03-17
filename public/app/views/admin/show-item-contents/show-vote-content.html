@@ -1,0 +1,35 @@
+<div>
+
+<span editable-textarea="item.text"
+      e-rows="7" e-cols="40" e-name="text"
+      onaftersave="saveItem()">
+          {{ item.text || 'kein Text' }}
+        </span>
+<div ng-show="item.opts[0] == 'customMultipleOptions'">
+    Anzahl Stimmen:<span editable-text="item.voteMulti" e-name="voteMulti" onaftersave="saveItem()">
+          {{ item.voteMulti || '1' }}
+        </span>
+</div>
+<div>
+    Art:
+        <span editable-select="item.opts[0]" e-name="voteType"
+              onaftersave="saveItem()"
+              e-ng-options="s.value as s.text for s in voteTypes"
+                >
+          {{ showVoteType(item) }}
+        </span>
+</div>
+<div>
+    mit Rating: <span editable-checkbox="item.flags[0]" e-name="voteFlag" onaftersave="saveItem()">
+          {{ item.flags[0] || 'nein' }}
+        </span>
+</div>
+<div ng-show="(item.opts[0] == 'customOptions' || item.opts[0] == 'customMultipleOptions')">
+    Optionen:
+    <table class="table">
+        <tbody show-vote-option>
+        </tbody>
+    </table>
+    <button class="btn" ng-click="addVoteOption($parent.$index, $index)">Neue Option</button>
+</div>
+</div>

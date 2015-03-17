@@ -36,48 +36,12 @@
         results: text als select
         sound: text (filename)
     -->
-    <td>
-        <span editable-textarea="item.text"
-              e-rows="7" e-cols="40" e-name="text"
-              onaftersave="saveItem()"
-              ng-hide="item.type == 'results' || item.type == 'switch'">
-          {{ item.text || 'kein Text' }}
-        </span>
-
-        <span editable-select="item.text" e-name="text"
-              onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in resultTypes"
-              ng-show="item.type=='results'">
-          {{ showResultType(item) }}
-        </span>
-
-        <div ng-show="item.type=='vote' && item.opts[0] == 'customMultipleOptions'">
-            Anzahl Stimmen:<span editable-text="item.voteMulti" e-name="voteMulti" onaftersave="saveItem()">
-          {{ item.voteMulti || '1' }}
-        </span>
-        </div>
-        <div ng-show="item.type=='vote'">
-            Art:
-        <span editable-select="item.opts[0]" e-name="voteType"
-              onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in voteTypes"
-                >
-          {{ showVoteType(item) }}
-        </span>
-        </div>
-        <div ng-show="item.type=='vote'">
-            mit Rating: <span editable-checkbox="item.flags[0]" e-name="voteFlag" onaftersave="saveItem()">
-          {{ item.flags[0] || 'nein' }}
-        </span>
-        </div>
-        <div ng-show="(item.type=='vote' && (item.opts[0] == 'customOptions' || item.opts[0] == 'customMultipleOptions')) || item.type=='switch'">
-            Optionen:
-            <table class="table">
-                <tbody show-vote-option>
-                </tbody>
-            </table>
-            <button class="btn" ng-click="addVoteOption($parent.$index, $index)">Neue Option</button>
-        </div>
+    <td ng-switch="item.type">
+        <div show-vote-content ng-switch-when="vote"></div>
+        <div show-switch-content ng-switch-when="switch"></div>
+        <div show-results-content ng-switch-when="results"></div>
+        <div show-sound-content ng-switch-when="sound"></div>
+        <div show-card-content ng-switch-default></div>
     </td>
 
     <!--

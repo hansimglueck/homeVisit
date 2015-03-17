@@ -19,7 +19,7 @@ angular.module("playerControllers", [])
 
 
     })
-    .controller('HomeController', function ($scope, $location, Status, Home, Rating, Socket, colors, playerColors) {
+    .controller('HomeController', function ($scope, $location, Status, Home, Rating, Socket, colors, playerColors, ngAudio) {
         $scope.colors = colors;
         $scope.playerColors = playerColors;
         $scope.status = Status;
@@ -28,6 +28,9 @@ angular.module("playerControllers", [])
         $scope.type = $scope.home.type;
         $scope.limit = $scope.home.limit;
         $scope.checked = 0;
+        $scope.sound = ngAudio.load("sounds/tiny-01.mp3");
+        $scope.sound.play();
+
         $scope.checkChanged = function (option) {
             if (option.checked) $scope.checked++;
             else $scope.checked--;
@@ -113,6 +116,11 @@ angular.module("playerControllers", [])
     })
     .controller('EuropeController', function ($scope, europeSvgData) {
         $scope.europeSVG = europeSvgData;
+        var arr = [];
+        $scope.europeSVG.filter(function(a){return [null, "eu europe", "europe"].indexOf(a.class) == -1}).forEach(function(c){
+            arr.push({id: c.id, class: c.class});
+        });
+        console.log(JSON.stringify(arr));
         $scope.select = function (i) {
             console.log("select " + i);
             $scope.europeSVG[i].selected ^= true;

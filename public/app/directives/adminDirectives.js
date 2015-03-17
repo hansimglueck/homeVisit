@@ -51,4 +51,44 @@ angular.module('adminDirectives', [])
         };
     })
 
+    .directive('showCardContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-card-content.html'
+        };
+    })
+
+    .directive('showVoteContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-vote-content.html'
+        };
+    })
+
+    .directive('showSwitchContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-switch-content.html'
+        };
+    })
+
+    .directive('showResultsContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-results-content.html'
+        };
+    })
+
+    .directive('showSoundContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-sound-content.html'
+        };
+    })
+
 ;

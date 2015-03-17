@@ -139,6 +139,9 @@ PlayerManager.prototype = {
         if (voteItem.options[0] == "playerChoice") {
             voteItem.voteOptions = this.getPlayerArray();
         }
+        if (voteItem.options[0] == "countryChoice") {
+            voteItem.voteOptions = this.getPlayerArray();
+        }
         var content = {
             voteId: voteId,
             type: voteItem.type,

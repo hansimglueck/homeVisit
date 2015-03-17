@@ -13,7 +13,8 @@ var app = angular.module('homevisitAdmin', [
     'xeditable',
     'luegg.directives',
     'angular.filter',
-    'ngRoute'
+    'ngRoute',
+    'jsTree.directive'
 ])
 .config(function ($routeProvider, $anchorScrollProvider) {
 //        $locationProvider.html5Mode(true);

@@ -26,6 +26,7 @@ mongoose.connect('mongodb://localhost/homeVisit', function(err) {
 var routes = require('./routes/index');
 var decks = require('./routes/decks');
 var gameConfs = require('./routes/gameConf');
+var fileBrowser = require('./routes/fileBrowser');
 
 var app = express();
 
@@ -102,6 +103,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public/playerApp/www')));
 app.use('/decks', decks);
 app.use('/gameConf', gameConfs);
+app.use('/fileBrowser', fileBrowser);
 app.use('/', routes);
 
 // catch 404 and forward to error handler
