@@ -331,7 +331,7 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
         if (type == "playerDirect") {
             $scope.deck.items[itemId].voteOptions = [];
             for (var i = 0; i < 15; i++) {
-                $scope.deck.items[itemId].voteOptions.push({text:'',value:'card'});
+                $scope.deck.items[itemId].voteOptions.push({text:'/info/denanot.html',value:'browser'});
             }
         }
     }

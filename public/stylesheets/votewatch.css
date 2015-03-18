@@ -22,6 +22,9 @@ body.no_image
     background:none;
 }
 
+.mep ul {
+    padding:0;
+}
 table {
 
     font-family: 'Open Sans', sans-serif;
@@ -1533,7 +1536,6 @@ div.content div.mep .country {
 
     padding-left: 5px;
     display: inline;
-    float: right;
 
 }
 div.content div.mep .it_big {
@@ -2527,9 +2529,6 @@ div.vr_abstentions {
 }
 .grid.active {
     background: #d5dbe6 url('../images/icon_tabs_table_selected.png') no-repeat 4px center;
-}
-.chart {
-    background: white url('../images/icon_tabs_bars_default.png') no-repeat 4px center;
 }
 .chart.selected {
     background: #d5dbe6 url('../images/icon_tabs_bars_selected.png') no-repeat 4px center;
@@ -8331,8 +8330,7 @@ td.div_tabled_info
 {
     padding:5px;
     border:1px solid #e0e0e0;
-    float:left;
-    width:24%;
+    width:100%;
 }
 
 .mep_page_image img
@@ -8342,7 +8340,7 @@ td.div_tabled_info
 }
 .mep_page_next_image_content
 {
-    width:73%;
+    width:100%;
     float:right;
 }
 

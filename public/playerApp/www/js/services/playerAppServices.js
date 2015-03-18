@@ -60,12 +60,12 @@ angular.module('playerAppServices', [])
                     switch (data.type) {
                         case "vote":
                             homeFactory.type = "vote";
+                            homeFactory.voteType = data.voteType;
                             homeFactory.options = data.voteOptions;
-                            homeFactory.limit = data.voteMulti;
+                            homeFactory.limit = (homeFactory.voteType == "customOptions") ? 1 : data.voteMulti;
                             homeFactory.checked = 0;
                             homeFactory.votelast = "vote";
                             homeFactory.voteId = data.voteId;
-                            homeFactory.voteType = data.voteType;
                             homeFactory.checked = 0;
                             break;
                         case "result":
@@ -78,6 +78,9 @@ angular.module('playerAppServices', [])
                             console.log(homeFactory.displayType);
                             break;
                         case "card":
+                            break;
+                        case "browser":
+                            homeFactory.type = "browser";
                             break;
                         case "seatOrder":
                             $location.path('/rating');

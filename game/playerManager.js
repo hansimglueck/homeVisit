@@ -349,6 +349,7 @@ PlayerManager.prototype = {
 //        this.sendVoteResults(voteId);
     },
     results: function (resultId) {
+        console.log("preparing result "+resultId);
         var newestVoteId = this.voteItems.length - 1;
         var resultItem = this.resultItems[resultId];
         switch (resultItem.text) {

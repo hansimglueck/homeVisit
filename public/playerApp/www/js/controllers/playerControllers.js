@@ -274,6 +274,11 @@ angular.module("playerControllers", [])
         //);
 
     })
+    .controller('InfoController', function ($scope) {
+        $scope.template = {
+            url: "/info/denanot.html"
+        }
+    })
     .controller('ChatController', function ($scope, Status, Chat, colors, playerColors, $location, $anchorScroll, $routeParams) {
         $scope.chat = Chat;
         $scope.newCntPerPlayer = Chat.newCntPerPlayer;

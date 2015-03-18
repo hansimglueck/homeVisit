@@ -44,6 +44,10 @@ angular.module('playerApp', [
                     templateUrl: 'partials/arduino.html',
                     controller: 'ArduinoController'
                 }).
+                when('/info', {
+                    templateUrl: 'partials/info.html',
+                    controller: 'InfoController'
+                }).
                 otherwise({
                     redirectTo: '/home'
                 });
