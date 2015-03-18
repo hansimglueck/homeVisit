@@ -18,14 +18,20 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         {value: 'vote', text: 'Abstimmung'},
         {value: 'results', text: 'Results'},
         {value: 'switch', text: 'Switch'},
-        {value: 'cmd', text: 'Kommando'}
-    ]
-)
+        {value: 'cmd', text: 'Kommando'},
+        {value: 'playerDirect', text:'Player Direkt'}
+    ])
     .value('resultTypes', [
         {value: 'Pie', text: 'Tortendiagramm'},
         {value: 'Bar', text: 'Balkendiagramm'},
         {value: 'Line', text: 'Kurve'},
-        {value: 'seatOrder', text: 'Sitzordnung'}
+        {value: 'seatOrder', text: 'Sitzordnung'},
+        {value: 'europeMap', text: 'Europakarte'}
+    ])
+    .value('resultColors', [
+        {value: 0, text: 'Rot'},
+        {value: 1, text: 'Grün'},
+        {value: 2, text: 'Blau'}
     ])
     .value('voteTypes', [
         {value: 'customOptions', text: 'eine der Optionen hier'},

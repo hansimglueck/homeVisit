@@ -19,7 +19,11 @@ angular.module("playerControllers", [])
 
 
     })
-    .controller('HomeController', function ($scope, $location, Status, Home, Rating, Socket, colors, playerColors, ngAudio) {
+    .controller('HomeController', function ($scope, $location, Status, Home, Rating, Socket, colors, playerColors, ngAudio, europeSvgData) {
+        $scope.europeSVG = europeSvgData;
+        $scope.europeSVG.forEach(function(c){
+            c.rgb = [96,96,96];
+        });
         $scope.colors = colors;
         $scope.playerColors = playerColors;
         $scope.status = Status;
@@ -27,13 +31,29 @@ angular.module("playerControllers", [])
         $scope.text = $scope.home.text;
         $scope.type = $scope.home.type;
         $scope.limit = Home.limit;
-        $scope.checked = 0;
+        $scope.checked = $scope.home.checked;
         $scope.sound = ngAudio.load("sounds/tiny-01.mp3");
         $scope.sound.play();
 
+        $scope.getPathCSS = function(id) {
+            var grey = 200;
+            //console.log("get css for "+id);
+            var x = $scope.home.data.filter(function(a){return a.id == id});
+            if (x.length == 0) return "{'fill':'rgb(200,200,200)'}";
+            var sat = x[0].val/100;
+            var col0 = Math.round(grey - grey*sat);
+            var col1 = Math.round(grey + (255-grey)*sat);
+            var rgb = [col0,col0,col0];
+            rgb[$scope.home.resultColor] = col1;
+            var ret = "{'fill':'rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")'}";
+            //console.log(ret);
+            //ret = "{'fill':'red'}";
+            return ret;
+        };
         $scope.checkChanged = function (option) {
-            if (option.checked) $scope.checked++;
-            else $scope.checked--;
+            if (option.checked) $scope.home.checked++;
+            else $scope.home.checked--;
+            console.log("now "+$scope.home.checked+" checked. home.limit="+$scope.home.limit);
         };
         $scope.vote = function (id) {
             console.log(id);
@@ -117,11 +137,18 @@ angular.module("playerControllers", [])
     .controller('EuropeController', function ($scope, europeSvgData) {
         $scope.europeSVG = europeSvgData;
         $scope.europeSVG.forEach(function(c){
-            if (c.id =="im") c.selected=true;
+            c.rgb = [96,96,96];
         });
         $scope.select = function (i) {
             console.log("select " + i);
-            $scope.europeSVG[i].selected ^= true;
+            $scope.europeSVG[i].rgb[0] += 8;
+
+            if ($scope.europeSVG[i].rgb[0] > 255)  $scope.europeSVG[i].rgb[0] -= (255-96);
+            //$scope.europeSVG[i].selected ^= true;
+            if ($scope.europeSVG[i].selected) {
+                $scope.europeSVG[i].rgb = [255,0,0];
+            }
+            //else $scope.europeSVG[i].rgb = [100,100,100];
         }
     })
     .controller('MotionController', function ($scope, $cordovaDeviceMotion) {

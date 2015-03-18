@@ -246,7 +246,7 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
         var item = $scope.decks[deckId].items[index];
         $scope.updateDeck(deckId);
     };
-})
+ })
     .controller('MoveItemController', function ($scope, $modalInstance, deckId, itemId, decks) {
         $scope.name = "moveI";
         $scope.deckId = deckId;
@@ -281,11 +281,12 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
     });
 
 
-adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, resultTypes, voteTypes, languages) {
+adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, resultTypes, voteTypes, languages, resultColors) {
     $scope.voteTypes = voteTypes;
     $scope.resultTypes = resultTypes;
     $scope.types = itemTypes;
     $scope.languages = languages;
+    $scope.resultColors = resultColors;
     $scope.showType = function (item) {
         var selected = [];
         if (item.type) {
@@ -297,6 +298,13 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
         var selected = [];
         if (item.opts) if (item.opts[1]) {
             selected = $filter('filter')($scope.languages, {value: item.opts[1]}, true);
+        }
+        return selected.length ? selected[0].text : 'Not set';
+    };
+    $scope.showResultColor = function (item) {
+        var selected = [];
+        if (item.opts) if (item.opts[0]) {
+            selected = $filter('filter')($scope.resultColors, {value: item.opts[0]}, true);
         }
         return selected.length ? selected[0].text : 'Not set';
     };
@@ -315,14 +323,26 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
         }
         return selected.length ? selected[0].text : 'Not set';
     };
+    $scope.prepareItem = function(type, itemId) {
+        console.log("Prepare for "+type);
+        console.log($scope.deck);
+        console.log(itemId);
+        if (type == "playerDirect") {
+            $scope.deck.items[itemId].voteOptions = [];
+            for (var i = 0; i < 15; i++) {
+                $scope.deck.items[itemId].voteOptions.push({text:'',value:'card'});
+            }
+        }
+    }
 
     $scope.addVoteOption = function (deckId, id) {
         $scope.insertedOption = {
             text: '',
+            value:'',
             followUp: ''
         };
-        if (!$scope.decks[deckId].items[id].voteOptions) $scope.decks[deckId].items[id].voteOptions = [];
-        $scope.decks[deckId].items[id].voteOptions.push($scope.insertedOption);
+        if (!$scope.deck.items[id].voteOptions) $scope.deck.items[id].voteOptions = [];
+        $scope.deck.items[id].voteOptions.push($scope.insertedOption);
     };
     $scope.saveVoteOption = function () {
         console.log($scope.$parent.$index);

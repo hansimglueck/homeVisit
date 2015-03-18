@@ -9,7 +9,7 @@
         </span>
         </td>
     </tr>
-    <tr ng-show="item.opts[0] == 'customMultipleOptions'">
+    <tr ng-show="item.opts[0] == 'customMultipleOptions' || item.opts[0]=='countryChoice'">
         <td>Anzahl Stimmen:</td>
         <td>
     <span editable-text="item.voteMulti" e-name="voteMulti" onaftersave="saveItem()">

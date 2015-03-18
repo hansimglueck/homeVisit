@@ -28,6 +28,7 @@ PlayerManager = function () {
     this.joinedPlayers = 0;
     this.voteItems = [];
     this.cardItems = [];
+    this.directItems = [];
     this.resultItems = [];
 };
 
@@ -115,6 +116,10 @@ PlayerManager.prototype = {
                     this.results(this.resultItems.push(item) - 1);
                     break;
 
+                case "playerDirect":
+                    this.direct(this.directItems.push(item) - 1);
+                    break;
+
                 default:
                     break;
 
@@ -123,15 +128,21 @@ PlayerManager.prototype = {
             console.log("ERROR in playerManager.addItem! " + e.stack);
         }
     },
+    direct: function(directId) {
+        var directItem = this.directItems[directId];
+        var self = this;
+        directItem.voteOptions.forEach(function(opt, id){
+            var recId = self.players[id].clientId;
+            wsManager.msgDeviceByIds([recId], "display", {type: opt.value, text: opt.text});
+        })
+    },
     sendCard: function (cardId) {
         var cardItem = this.cardItems[cardId];
         var content = {
             type: cardItem.type,
             text: cardItem.text
         };
-
         wsManager.msgDevicesByRole("player", "display", content);
-
     },
     sendVote: function (voteId) {
         var voteItem = this.voteItems[voteId];
@@ -329,6 +340,7 @@ PlayerManager.prototype = {
                 }
             }
         }
+        voteItem.maxCount = voteOptions[bestOption].result;
         voteOptions.sort(function (a, b) {
             return b.result - a.result
         });
@@ -345,7 +357,7 @@ PlayerManager.prototype = {
                 break;
 
             default:
-                this.sendVoteResults(newestVoteId, resultItem.text);
+                this.sendVoteResults(newestVoteId, resultItem);
                 break;
         }
     },
@@ -386,21 +398,25 @@ PlayerManager.prototype = {
          });
     },
 
-    sendVoteResults: function (voteId, displayType) {
+    sendVoteResults: function (voteId, resultItem) {
+        var displayType = resultItem.text;
         var voteItem = this.voteItems[voteId];
         var msg = voteItem.text;
         var labels = [];
         var resData = [];
+        console.log("maxVoteCount="+voteItem.maxCount);
         voteItem.voteOptions.forEach(function (option) {
             labels.push(option.text + ": " + (option.result / voteItem.voteCount * 100).toFixed(1) + "% (" + option.votes + ")");
-            resData.push(option.result / voteItem.voteCount * 100);
+            if (displayType == "europeMap") resData.push({id: option.val , val: option.result / voteItem.maxCount * 100});
+            else resData.push(option.result / voteItem.voteCount * 100);
         });
         wsManager.msgDevicesByRole('player', "display", {
             type: "result",
-            chartType: displayType,
+            displayType: displayType,
             text: msg,
             labels: labels,
-            data: resData
+            data: resData,
+            resultColor: resultItem.options[0]
         });
     }
 };

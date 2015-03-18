@@ -6,6 +6,7 @@
     <!-- item.type - für alle items -->
     <td>
         <span editable-select="item.type" e-name="type"
+              onbeforesave="prepareItem($data, $index)"
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in types">
           {{ showType(item) }}
@@ -42,6 +43,7 @@
         <div show-results-content ng-switch-when="results"></div>
         <div show-sound-content ng-switch-when="sound"></div>
         <div show-cmd-content ng-switch-when="cmd"></div>
+        <div show-player-direct-content ng-switch-when="playerDirect"></div>
         <div show-card-content ng-switch-default></div>
     </td>
 

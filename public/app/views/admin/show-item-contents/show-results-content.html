@@ -1,5 +1,22 @@
+<table>
+    <tr>
+        <td>Darstellung:</td>
+        <td>
 <span editable-select="item.text" e-name="text"
       onaftersave="saveItem()"
       e-ng-options="s.value as s.text for s in resultTypes">
           {{ showResultType(item) }}
         </span>
+        </td>
+    </tr>
+    <tr ng-show="item.text=='europeMap'">
+        <td>Farbe:</td>
+        <td>
+<span editable-select="item.opts[0]" e-name="col"
+      onaftersave="saveItem()"
+      e-ng-options="s.value as s.text for s in resultColors">
+          {{ showResultColor(item) }}
+        </span>
+        </td>
+    </tr>
+</table>

@@ -99,4 +99,12 @@ angular.module('adminDirectives', [])
         };
     })
 
+    .directive('showPlayerDirectContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-player-direct-content.html'
+        };
+    })
+
 ;
