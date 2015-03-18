@@ -4,13 +4,16 @@ angular.module("mcControllers", [])
             console.log("play clicked");
             Socket.emit({type:"playbackAction", data:cmd, param:param}, function() { console.log('play emitted'); });
         };
-        $scope.mcCommand = function(val) {
+        $scope.alarmGruen = function(val) {
             var param = 0;
-            switch (val) {
-                case "alarm":
-                    break;
-            }
             Socket.emit({type: "forward", recipient: {role:"button", name:"gruen"}, data: {type:"button_led", content:{command: val, param: param}}},
+                function() { console.log('mc command emitted'); });
+        };
+        $scope.alarmGruenUndRot = function(val) {
+            var param = 0;
+            Socket.emit({type: "forward", recipient: {role:"button", name:"gruen"}, data: {type:"button_led", content:{command: val, param: param}}},
+                function() { console.log('mc command emitted'); });
+            Socket.emit({type: "forward", recipient: {role:"button", name:"rot"}, data: {type:"button_led", content:{command: val, param: param}}},
                 function() { console.log('mc command emitted'); });
         };
     })
