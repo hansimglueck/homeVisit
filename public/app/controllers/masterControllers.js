@@ -3,6 +3,7 @@
 var masterControllers = angular.module('masterControllers', [])
     .controller('MasterPlaybackCtrl', function ($scope, Socket) {
         //$scope.options = null;
+        $scope.goto = 0;
         $scope.status = {stepId: -1, type:"nix"};
 
         $scope.playback = function(cmd, param) {

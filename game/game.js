@@ -54,6 +54,11 @@ Game.prototype = {
                     this.step(param, this.stepId);
                     break;
 
+                case "goto":
+                    console.log('goto');
+                    this.step(0, param);
+                    break;
+
                 case "back":
                     console.log('back');
                     var id = this.stepId;
