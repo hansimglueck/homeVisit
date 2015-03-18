@@ -56,7 +56,7 @@ Game.prototype = {
 
                 case "goto":
                     console.log('goto');
-                    this.step(0, param);
+                    this.step(0, parseInt(param));
                     break;
 
                 case "back":
@@ -94,7 +94,7 @@ Game.prototype = {
 
         //step one up or to a specific step-nr
         this.stepId = (typeof id !== 'undefined') ? id : this.stepId += 1;
-
+        console.log("stepId="+this.stepId);
         //restart at step 0 when at the end
         if (this.stepId >= this.decks[this.deckId].items.length) {
             this.stepId = 0;
