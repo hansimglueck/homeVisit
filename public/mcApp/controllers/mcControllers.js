@@ -11,6 +11,7 @@ angular.module("mcControllers", [])
         };
         $scope.alarmGruenUndRot = function(val) {
             var param = 0;
+            var val = alarm;
             Socket.emit({type: "forward", recipient: {role:"button", name:"gruen"}, data: {type:"button_led", content:{command: val, param: param}}},
                 function() { console.log('mc command emitted'); });
             Socket.emit({type: "forward", recipient: {role:"button", name:"rot"}, data: {type:"button_led", content:{command: val, param: param}}},
