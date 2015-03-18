@@ -38,6 +38,9 @@ angular.module("playerControllers", [])
             console.log("play sound");
             $scope.sound.play();
         };
+        $scope.$watch('home.type', function(newVal, oldVal) {
+            if (newVal == "vote") $scope.playSound();
+        });
         $scope.getPathCSS = function(id) {
             var grey = 200;
             //console.log("get css for "+id);
