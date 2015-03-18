@@ -164,6 +164,7 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
         return selected.length ? selected[0].text : 'Not set';
     };
     $scope.showFollowUp = function (option) {
+        //console.log("showFollowUp");
         var selected = [];
         if (option.followUp) {
             selected = $filter('filter')($scope.decks, {_id: option.followUp}, true);

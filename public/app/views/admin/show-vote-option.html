@@ -14,6 +14,7 @@
             <span editable-select="voteOption.followUp"
                   e-name="followUp"
                   e-ng-options="s._id as s.title for s in decks"
+                  onaftersave="saveVoteOption()"
                   >
               {{ showFollowUp(voteOption) }}
             </span>

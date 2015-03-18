@@ -1,4 +1,5 @@
 <not-joined ng-hide="status.joined"></not-joined>
+<button ng-click="playSound()">sound</button>
 <div class="section content" ng-switch="home.type" ng-show="status.joined">
     <div ng-switch-when="result">
         <div ng-if="home.displayType == 'europeMap'">

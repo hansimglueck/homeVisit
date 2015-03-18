@@ -34,7 +34,10 @@ angular.module("playerControllers", [])
         $scope.checked = $scope.home.checked;
         $scope.sound = ngAudio.load("sounds/tiny-01.mp3");
         $scope.sound.play();
-
+        $scope.playSound = function() {
+            console.log("play sound");
+            $scope.sound.play();
+        };
         $scope.getPathCSS = function(id) {
             var grey = 200;
             //console.log("get css for "+id);
