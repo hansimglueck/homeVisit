@@ -33,7 +33,7 @@ angular.module("playerControllers", [])
         $scope.limit = Home.limit;
         $scope.checked = $scope.home.checked;
         $scope.sound = ngAudio.load("sounds/tiny-01.mp3");
-        $scope.sound.play();
+        //$scope.sound.play();
         $scope.playSound = function() {
             console.log("play sound");
             $scope.sound.play();
@@ -41,20 +41,18 @@ angular.module("playerControllers", [])
         $scope.$watch('home.type', function(newVal, oldVal) {
             if (newVal == "vote") $scope.playSound();
         });
-        $scope.getPathCSS = function(id) {
+        $scope.getPathCSS = function(index) {
+            var id = $scope.europeSVG[index].id;
             var grey = 200;
             //console.log("get css for "+id);
             var x = $scope.home.data.filter(function(a){return a.id == id});
-            if (x.length == 0) return "{'fill':'rgb(200,200,200)'}";
+            if (x.length == 0) return "rgb(200,200,200)";
             var sat = x[0].val/100;
             var col0 = Math.round(grey - grey*sat);
             var col1 = Math.round(grey + (255-grey)*sat);
             var rgb = [col0,col0,col0];
             rgb[$scope.home.resultColor] = col1;
-            var ret = "{'fill':'rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")'}";
-            //console.log(ret);
-            //ret = "{'fill':'red'}";
-            return ret;
+            return "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
         };
         $scope.checkChanged = function (option) {
             if (option.checked) $scope.home.checked++;
@@ -142,20 +140,20 @@ angular.module("playerControllers", [])
     })
     .controller('EuropeController', function ($scope, europeSvgData) {
         $scope.europeSVG = europeSvgData;
+        $scope.black = true;
         $scope.europeSVG.forEach(function(c){
             c.rgb = [96,96,96];
         });
         $scope.select = function (i) {
             console.log("select " + i);
-            $scope.europeSVG[i].rgb[0] += 8;
-
-            if ($scope.europeSVG[i].rgb[0] > 255)  $scope.europeSVG[i].rgb[0] -= (255-96);
-            //$scope.europeSVG[i].selected ^= true;
-            if ($scope.europeSVG[i].selected) {
-                $scope.europeSVG[i].rgb = [255,0,0];
-            }
-            //else $scope.europeSVG[i].rgb = [100,100,100];
-        }
+            if (typeof $scope.europeSVG[i].selected == "undefined") $scope.europeSVG[i].selected = false;
+            $scope.europeSVG[i].selected ^= true;
+        };
+        $scope.getPathCSS = function(id) {
+            var x = $scope.europeSVG[id];
+            if (x.selected) return "rgb(0,200,0)";
+            else return "rgb(200,200,200)";
+        };
     })
     .controller('MotionController', function ($scope, $cordovaDeviceMotion) {
         $scope.X = 0;

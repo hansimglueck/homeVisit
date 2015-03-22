@@ -29,9 +29,9 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         {value: 'europeMap', text: 'Europakarte'}
     ])
     .value('resultColors', [
-        {value: 0, text: 'Rot'},
-        {value: 1, text: 'Grün'},
-        {value: 2, text: 'Blau'}
+        {value: '0', text: 'Rot'},
+        {value: '1', text: 'Grün'},
+        {value: '2', text: 'Blau'}
     ])
     .value('voteTypes', [
         {value: 'customOptions', text: 'eine der Optionen hier'},
