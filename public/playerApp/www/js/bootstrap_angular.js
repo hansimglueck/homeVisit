@@ -10,7 +10,8 @@ function bootstrapAngular() {
 
 // This is my preferred Cordova detection method, as it doesn't require updating.
 if (document.URL.indexOf( 'http://' ) === -1
-    && document.URL.indexOf( 'https://' ) === -1) {
+    && document.URL.indexOf( 'https://' ) === -1
+    && document.URL.indexOf( 'file://' ) === -1) {
     console.log("URL: Running in Cordova/PhoneGap");
     document.addEventListener("deviceready", bootstrapAngular, false);
 } else {

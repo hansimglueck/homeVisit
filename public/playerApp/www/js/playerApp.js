@@ -3,6 +3,7 @@
 angular.module('playerApp', [
     'ngRoute',
     'playerControllers',
+    'gameControllers',
     'WebsocketServices',
     'mobile-angular-ui',
     'mobile-angular-ui.gestures',
@@ -47,6 +48,10 @@ angular.module('playerApp', [
                 when('/info', {
                     templateUrl: 'partials/info.html',
                     controller: 'InfoController'
+                }).
+                when('/test', {
+                    templateUrl: 'partials/test.html',
+                    controller: 'TestController'
                 }).
                 otherwise({
                     redirectTo: '/home'
