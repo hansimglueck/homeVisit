@@ -39,7 +39,8 @@ angular.module("playerControllers", [])
             $scope.sound.play();
         };
         $scope.$watch('home.type', function(newVal, oldVal) {
-            if (newVal == "vote") $scope.playSound();
+            console.log(oldVal+"->"+newVal);
+            if (oldVal !="vote" && newVal == "vote") $scope.playSound();
         });
         $scope.getPathCSS = function(index) {
             var id = $scope.europeSVG[index].id;
