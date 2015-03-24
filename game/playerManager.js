@@ -1,5 +1,6 @@
 var wsManager = require('./wsManager.js');
 
+
 PlayerManager = function () {
     this.players = [];
     /*
@@ -182,7 +183,7 @@ PlayerManager.prototype = {
                 clientId: -1,
                 colors: this.colors[i],
                 joined: false,
-                seat: -1,
+                seat: this.players.length,
                 score: 0,
                 rank: -1,
                 timeScore: 0,
@@ -256,7 +257,7 @@ PlayerManager.prototype = {
         }
         count--;
         this.players[playerId].inventory[data.itemId].count = count;
-        switch (data.itemId) {
+        switch (parseInt(data.itemId)) {
             case 0:
                 this.players[data.recipient].score += 10;
                 break;
@@ -269,6 +270,7 @@ PlayerManager.prototype = {
         }
         this.sendInventory(playerId);
         this.sendPlayerStatus(-1);
+
     },
     sendInventory: function (playerId) {
         if (this.players[playerId]) wsManager.msgDeviceByIds([this.players[playerId].clientId], "inventory", this.players[playerId].inventory);
@@ -301,6 +303,10 @@ PlayerManager.prototype = {
 
                 case "playerDirect":
                     this.direct(this.directItems.push(item) - 1);
+                    break;
+
+                case "eval":
+                    this.eval(item.text);
                     break;
 
                 default:
@@ -417,6 +423,7 @@ PlayerManager.prototype = {
             });
             this.sendInventory(playerId);
         }
+        this.calcRanking();
         var msg = {
             otherPlayers: this.getPlayerArray(),
             maxPlayers: this.conf.playerCnt,
@@ -424,6 +431,13 @@ PlayerManager.prototype = {
         };
         wsManager.msgDevicesByRole("player", "status", msg);
         wsManager.msgDevicesByRole("master", "status", msg);
+    },
+    calcRanking: function() {
+        var self = this;
+        var ranking = this.players.map(function(p,id) {return {playerId: id, score:p.score}}).sort(function(a,b){return a.score-b.score});
+        ranking.forEach(function(rank, id){
+            self.players[rank.playerId].rank = id+1;
+        });
     },
     getPlayerArray: function () {
         var ret = [];
@@ -507,7 +521,8 @@ PlayerManager.prototype = {
             if (dd[i].checked) msg += dd[i].text + " ";
         }
         voteItem.votes[playerId] = dd;
-        voteItem.votes[playerId].multiplier = this.avgRatings[playerId];
+        voteItem.votes[playerId].multiplier = this.players.filter(function(p){return p.joined}).length - this.players[playerId].rank + 1;
+//        voteItem.votes[playerId].multiplier = this.avgRatings[playerId];
         if (!voteItem.ratedVote) voteItem.votes[playerId].multiplier = 1;
         this.log("Player " + playerId + ": " + msg);
         console.log("multiplier=" + voteItem.votes[playerId].multiplier);
@@ -545,7 +560,7 @@ PlayerManager.prototype = {
             }
         }
         voteItem.maxCount = voteOptions[bestOption].result;
-        voteOptions[bestOption].best = true;
+        voteItem.bestOption = bestOption;
         voteOptions.sort(function (a, b) {
             return b.result - a.result
         });
@@ -561,11 +576,11 @@ PlayerManager.prototype = {
         var resultItem = this.resultItems[resultId];
         switch (resultItem.options[1]) {
             case "optionScore":
-                this.score("correct", newestVoteId);
+                this.calcScore("correct", newestVoteId);
                 break;
 
             case "majorityScore":
-                this.score("majority", newestVoteId);
+                this.calcScore("majority", newestVoteId);
                 break;
 
             default:
@@ -582,12 +597,14 @@ PlayerManager.prototype = {
         }
     },
 
-    score: function (type, voteId) {
+    calcScore: function (type, voteId) {
         var voteItem = this.voteItems[voteId];
+        var voteOptions = voteItem.voteOptions;
         var self = this;
         voteItem.votes.forEach(function (vote, id) {
             var score = 0;
-            vote.filter(function (opt) {
+            vote.filter(function (opt,id) {
+                    opt.id = id;
                     return opt.checked;
                 })
                 .forEach(function (checked) {
@@ -595,12 +612,16 @@ PlayerManager.prototype = {
                         if (checked.flags[0]) score++;
                         else score--;
                     } else if (type == "majority") {
-                        if (checked.best) score++;
+                        if (checked.id == voteItem.bestOption) score++;
                         else score--;
                     }
                 });
             self.players[id].score += score;
         });
+        this.sendPlayerStatus(-1);
+    },
+    score: function(playerId, score) {
+        this.players.playerId.score += score;
         this.sendPlayerStatus(-1);
     },
     findSeatOrder: function (voteId) {
@@ -652,7 +673,7 @@ PlayerManager.prototype = {
             return b.text
         });
         if (rightAnswer.length > 0) {
-            if (typeof rightAnswer[0] != "undefined") msg += "::" + "Right Answer: " + rightAnswer[0];
+            if (typeof rightAnswer[0] != "undefined") msg += "::::" + "Right Answer: " + rightAnswer[0];
         }
         console.log("maxVoteCount=" + voteItem.maxCount);
         if (displayType == "numberStats") {
@@ -675,8 +696,16 @@ PlayerManager.prototype = {
             data: resData,
             resultColor: resultItem.options[0]
         });
+        if (!resultItem.flags[0]) return;
+        var game = require('./game.js');
+        game.trigger(-1, {data: 'go', param: voteItem.bestOption});
+    },
+
+    eval: function(code) {
+        console.log("Eval: "+code);
+        eval(code);
     }
-};
+}
 
 var playerManagerObj = new PlayerManager();
 playerManagerObj.init();

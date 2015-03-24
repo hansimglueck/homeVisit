@@ -19,7 +19,8 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         {value: 'results', text: 'Results'},
         {value: 'switch', text: 'Switch'},
         {value: 'cmd', text: 'Kommando'},
-        {value: 'playerDirect', text:'Player Direkt'}
+        {value: 'playerDirect', text:'Player Direkt'},
+        {value: 'eval', text:'eval'}
     ])
     .value('resultColors', [
         {value: '0', text: 'Rot'},

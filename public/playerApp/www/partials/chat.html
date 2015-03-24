@@ -1,6 +1,8 @@
 <not-joined ng-hide="status.joined"></not-joined>
 CHAT
 <div ng-show="status.joined">
+<player-display goto="'chat'" players="status.otherPlayers" colors="colors"></player-display>
+    <!--
     <div class="player-grid">
         <div class="col-xs-4 player-grid-item" ng-repeat="player in status.otherPlayers | isOtherPlayerThan:status.player track by $index">
             <a href="#/chat/{{player.playerId}}">
@@ -15,6 +17,7 @@ CHAT
             </a>
         </div>
     </div>
+    -->
 </div>
 
 

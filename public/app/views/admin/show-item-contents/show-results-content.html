@@ -19,6 +19,15 @@
         </span>
         </td>
     </tr>
+    <tr>
+        <td>Auto-Go:</td>
+        <td>
+        <span editable-checkbox="item.flags[0]" e-name="autoGo" onaftersave="saveItem()">
+          {{ item.flags[0] || 'nein' }}
+        </span>
+
+        </td>
+    </tr>
     <tr ng-show="item.text=='europeMap'">
         <td>Farbe:</td>
         <td>

@@ -14,4 +14,16 @@ angular.module('playerAppDirectives', [])
             replace: 'true',
             templateUrl: 'views/europe.html'
         };
+    })
+    .directive('playerDisplay', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            scope: {
+                goto: '=',
+                players: '=',
+                colors: '='
+            },
+            templateUrl: 'views/player-display.html'
+        };
     });
