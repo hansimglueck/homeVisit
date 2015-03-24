@@ -33,6 +33,9 @@ angular.module("playerControllers", [])
         $scope.limit = Home.limit;
         $scope.checked = $scope.home.checked;
         $scope.sound = ngAudio.load("sounds/tiny-01.mp3");
+        $scope.data = {
+            voteNumber: 0
+        };
         //$scope.sound.play();
         $scope.playSound = function() {
             console.log("play sound");
@@ -61,10 +64,15 @@ angular.module("playerControllers", [])
             console.log("now "+$scope.home.checked+" checked. home.limit="+$scope.home.limit);
         };
         $scope.vote = function (id) {
+            console.log("Zahl="+$scope.data.voteNumber);
             console.log(id);
             if (id != undefined) {
                 console.log("no");
                 $scope.home.options[id].checked = true;
+                if ($scope.home.voteType=="enterNumber") {
+                    $scope.home.options[id].val = $scope.data.voteNumber;
+                    $scope.home.options[id].text = $scope.data.voteNumber;
+                }
             }
             Socket.emit({
                 type: "vote",
@@ -137,7 +145,9 @@ angular.module("playerControllers", [])
         $scope.go = function (path) {
             $location.path(path);
         };
-
+        $scope.$watch('status.player.score', function(newVal,oldVal){
+            console.log("Player"+$scope.status.player.playerId+"-Score: "+oldVal+"->"+newVal);
+        })
     })
     .controller('EuropeController', function ($scope, europeSvgData) {
         $scope.europeSVG = europeSvgData;

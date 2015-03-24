@@ -13,6 +13,17 @@ angular.module('playerAppServices', [])
     })
     .factory('playerColors', function () {
         return [
+            ["pink", "schwarz"],
+            ["gelb", "gruen"],
+            ["rot", "blau"],
+            ["gelb", "pink"],
+            ["rot", "gruen"],
+            ["blau", "pink"],
+            ["rot", "gelb"],
+            ["gelb", "blau"]
+        ];
+/*
+        return [
             ["rot", "gelb"],
             ["rot", "blau"],
             ["rot", "weiss"],
@@ -29,6 +40,7 @@ angular.module('playerAppServices', [])
             ["weiss", "pink"],
             ["pink", "schwarz"]
         ];
+ */
     })
     .factory('itemTypes', function () {
         return {
@@ -116,8 +128,18 @@ angular.module('playerAppServices', [])
         Socket.on('status', function (event) {
             var data = JSON.parse(event.data).data;
             console.log(data);
-            if (data.otherPlayers) statusFactory.otherPlayers = data.otherPlayers;
+            if (data.otherPlayers) {
+                statusFactory.otherPlayers = data.otherPlayers;
+                statusFactory.player.score = data.otherPlayers[statusFactory.player.playerId].score;
+                statusFactory.player.rank = data.otherPlayers[statusFactory.player.playerId].rank;
+                statusFactory.player.timeRank = data.otherPlayers[statusFactory.player.playerId].timeRank;
+            }
             if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
+        });
+        Socket.on('inventory', function (event) {
+            var data = JSON.parse(event.data).data;
+            console.log(data);
+            if (data) statusFactory.inventory = data;
         });
         Socket.on('joined', function (event) {
             var data = JSON.parse(event.data).data;
@@ -234,7 +256,7 @@ angular.module('playerAppServices', [])
         });
 
         chatFactory.chat = function(pid, msg) {
-            Socket.emit({type: "chat", data:{sender: Status.player.playerId, recepient: pid, message: msg}});
+            Socket.emit({type: "chat", data:{sender: Status.player.playerId, recipient: pid, message: msg}});
             if (typeof chatFactory.messages[pid] == "undefined") chatFactory.messages[pid] = [];
             chatFactory.messages[pid].unshift([0,msg]);
         };

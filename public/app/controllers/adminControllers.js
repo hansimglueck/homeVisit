@@ -282,7 +282,8 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
     });
 
 
-adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, resultTypes, voteTypes, languages, resultColors) {
+adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, resultTypes, voteTypes, languages, resultColors, scoreTypes) {
+    $scope.scoreTypes = scoreTypes;
     $scope.voteTypes = voteTypes;
     $scope.resultTypes = resultTypes;
     $scope.types = itemTypes;
@@ -324,6 +325,13 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
         }
         return selected.length ? selected[0].text : 'Not set';
     };
+    $scope.showScoreType = function (item) {
+        var selected = [];
+        if (item.opts) if (item.opts[1]) {
+            selected = $filter('filter')($scope.scoreTypes, {value: item.opts[1]}, true);
+        }
+        return selected.length ? selected[0].text : 'Not set';
+    };
     $scope.prepareItem = function(type, itemId) {
         console.log("Prepare for "+type);
         console.log($scope.deck);
@@ -334,13 +342,15 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
                 $scope.deck.items[itemId].voteOptions.push({text:'/info/denanot.html',value:'browser'});
             }
         }
-    }
+    };
 
     $scope.addVoteOption = function (deckId, id) {
         $scope.insertedOption = {
             text: '',
             value:'',
-            followUp: ''
+            followUp: '',
+            score: 0,
+            flags: [false]
         };
         if (!$scope.deck.items[id].voteOptions) $scope.deck.items[id].voteOptions = [];
         $scope.deck.items[id].voteOptions.push($scope.insertedOption);

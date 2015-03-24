@@ -49,9 +49,13 @@ angular.module('playerApp', [
                     templateUrl: 'partials/info.html',
                     controller: 'InfoController'
                 }).
-                when('/test', {
-                    templateUrl: 'partials/test.html',
-                    controller: 'TestController'
+                when('/score', {
+                    templateUrl: 'partials/score.html',
+                    controller: 'ScoreController'
+                }).
+                when('/score/donate/:itemId', {
+                    templateUrl: 'partials/donate.html',
+                    controller: 'DonationController'
                 }).
                 otherwise({
                     redirectTo: '/home'

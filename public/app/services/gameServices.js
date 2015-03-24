@@ -21,13 +21,6 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         {value: 'cmd', text: 'Kommando'},
         {value: 'playerDirect', text:'Player Direkt'}
     ])
-    .value('resultTypes', [
-        {value: 'Pie', text: 'Tortendiagramm'},
-        {value: 'Bar', text: 'Balkendiagramm'},
-        {value: 'Line', text: 'Kurve'},
-        {value: 'seatOrder', text: 'Sitzordnung'},
-        {value: 'europeMap', text: 'Europakarte'}
-    ])
     .value('resultColors', [
         {value: '0', text: 'Rot'},
         {value: '1', text: 'Grün'},
@@ -37,11 +30,25 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         {value: 'customOptions', text: 'eine der Optionen hier'},
         {value: 'customMultipleOptions', text: 'mehrere der Optionen hier'},
         {value: 'playerChoice', text: 'Spielerwahl'},
-        {value: 'countryChoice', text: 'Länderwahl'}
+        {value: 'countryChoice', text: 'Länderwahl'},
+        {value: 'enterNumber', text: 'Zahleingabe'}
+    ])
+    .value('resultTypes', [
+        {value: 'Pie', text: 'Tortendiagramm'},
+        {value: 'Bar', text: 'Balkendiagramm'},
+        {value: 'Line', text: 'Kurve'},
+        {value: 'seatOrder', text: 'Sitzordnung'},
+        {value: 'europeMap', text: 'Europakarte'},
+        {value: 'numberStats', text: 'Numerische Auswertung'}
     ])
     .value('languages', [
         {value: 'de', text: 'Deutsch'},
         {value: 'en', text: 'Englisch'}
+    ])
+    .value('scoreTypes', [
+        {value: 'noScore', text: 'Kein Score'},
+        {value: 'optionScore', text: 'Nach Antwort'},
+        {value: 'majorityScore', text: 'Nach Mehrheit'}
     ])
     .factory('gameConf', ['$resource', function ($resource) {
         return $resource('/gameConf/:id', null, {

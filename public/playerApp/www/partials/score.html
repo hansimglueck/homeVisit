@@ -1,0 +1,8 @@
+{{test}}<br />
+Inventory: {{status.inventory}} <br />
+<!--klicken auf diesen a öffnet die seite unter partials/donate.html mit dem Controller DonationController
+- die 0 (oder was auch immer) steht dort als itemId zur verfügung-->
+<a href="#/score/donate/0">+</a>
+
+
+<div ng-repeat="player in status.otherPlayers">Spieler{{player.playerId}} hat Punkte: {{player.score}}</div>

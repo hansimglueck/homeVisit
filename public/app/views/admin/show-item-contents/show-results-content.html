@@ -9,6 +9,16 @@
         </span>
         </td>
     </tr>
+    <tr>
+        <td>Score:</td>
+        <td>
+<span editable-select="item.opts[1]" e-name="scoreType"
+      onaftersave="saveItem()"
+      e-ng-options="s.value as s.text for s in scoreTypes">
+          {{ showScoreType(item) }}
+        </span>
+        </td>
+    </tr>
     <tr ng-show="item.text=='europeMap'">
         <td>Farbe:</td>
         <td>

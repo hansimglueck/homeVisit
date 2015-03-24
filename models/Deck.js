@@ -7,6 +7,8 @@ var VoteOptionSchema = new mongoose.Schema({
     text: String,
     value: String,
     followUp: String,
+    score: Number,
+    flags: [Boolean],
     checked: Boolean
 });
 

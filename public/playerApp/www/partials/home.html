@@ -5,9 +5,24 @@
             <div class="overlayText">{{home.text[0]}}</div>
             <europe-map></europe-map>
         </div>
-        <div ng-if="home.displayType != 'europeMap'">
-            {{home.text[0]}}
-            <canvas id="base" class="chart chart-base" chart-type="home.displayType" data="home.data"
+        <ul class="list-unstyled" ng-if="home.displayType == 'numberStats'">
+            <li>
+                <ul class="list-unstyled">
+                    <li ng-repeat="t in home.text track by $index">{{t}}</li>
+                </ul>
+            </li>
+            <li>
+                Gesamt: {{home.data[0]}}
+            </li>
+            <li>
+                Durchschnitt: {{home.data[1]}}
+            </li>
+        </ul>
+        <div ng-if="['europeMap','numberStats'].indexOf(home.displayType) == -1">
+            <ul class="list-unstyled">
+                <li ng-repeat="t in home.text track by $index">{{t}}</li>
+            </ul>
+           <canvas id="base" class="chart chart-base" chart-type="home.displayType" data="home.data"
                     labels="home.labels"
                     legend="true"
                     width="290px" height="280px">
@@ -58,6 +73,10 @@
                         <div class="row2" ng-style="colors[playerColors[player.playerId][1]]"></div>
                     </div>
                 </div>
+            </div>
+            <div ng-if="home.voteType == 'enterNumber'">
+                <input type="text" ng-model="data.voteNumber"/>
+                <button class="btn-lg" ng-click="vote(0)">Submit</button>
             </div>
 
         </div>
