@@ -102,3 +102,12 @@
 #de {
     fill: red;
 }
+
+.chart {
+    width: 200px;
+    margin: auto;
+}
+
+.red {
+    color: red;
+}

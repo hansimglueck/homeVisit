@@ -22,11 +22,13 @@
             <ul class="list-unstyled">
                 <li ng-repeat="t in home.text track by $index">{{t}}</li>
             </ul>
-           <canvas id="base" class="chart chart-base" chart-type="home.displayType" data="home.data"
-                    labels="home.labels"
-                    legend="true"
-                    width="290px" height="280px">
-            </canvas>
+            <div class="chart">
+                <canvas id="base" class="chart chart-base" chart-type="home.displayType" data="home.data"
+                        labels="home.labels"
+                        legend="true"
+                        width="100" height="100">
+                </canvas>
+            </div>
         </div>
     </div>
 
@@ -44,6 +46,7 @@
     <div ng-switch-when="vote">
         <ul class="list-unstyled">
             <li ng-repeat="t in home.text track by $index">{{t}}</li>
+            <li ng-if="home.ratedVote" class="red">Dein Ranking macht Stimmgewicht!</li>
         </ul>
         <div>
             <div ng-if="['customOptions', 'customMultipleOptions', 'countryChoice'].indexOf(home.voteType) != -1"
@@ -84,7 +87,7 @@
 
     <div ng-switch-when="browser">
         <div class="mep">
-        <div ng-include="home.text"></div>
+            <div ng-include="home.text"></div>
         </div>
     </div>
 </div>

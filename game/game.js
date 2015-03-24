@@ -30,7 +30,7 @@ Game.prototype = {
     trigger: function (clientId, msg) {
         try {
             var param = "";
-            if (msg.param) {
+            if (typeof msg.param != "undefined") {
                 param = msg.param;
             }
             console.log("game.trigger: " + msg.data + " with parameter: " + param);
@@ -174,6 +174,7 @@ Game.prototype = {
                 self.log("sending to " + dev + ": " + content.text);
                 if (dev == "player") {
                     playerManager.addItem(content);
+                    //TODO: nach player-step ist ja garkein follow möglich :.(
                     return;
                 }
                 //ist ein spezieller device-name angegeben?

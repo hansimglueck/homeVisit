@@ -1,8 +1,6 @@
-An wen soll {{itemId}} denn gehen?
-
 <div class="player-grid">
-    <div class="col-xs-6 player-grid-item" ng-repeat="player in getPlayersOrdered() track by $index">
-        <a href="" ng-click="donate(player.playerId,itemId)">
+    <div class="col-xs-6 player-grid-item" ng-repeat="player in players track by $index">
+        <a href="#/{{goto}}/{{player.playerId}}">
             <div ng-style="{'height': '40px'}">
                 <div class="row1" ng-style="colors[player.colors[0]]">
                 </div>

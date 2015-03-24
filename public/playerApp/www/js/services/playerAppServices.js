@@ -20,7 +20,8 @@ angular.module('playerAppServices', [])
             ["rot", "gruen"],
             ["blau", "pink"],
             ["rot", "gelb"],
-            ["gelb", "blau"]
+            ["gelb", "blau"],
+            ["gruen", "weiss"]
         ];
 /*
         return [
@@ -79,6 +80,7 @@ angular.module('playerAppServices', [])
                             homeFactory.votelast = "vote";
                             homeFactory.voteId = data.voteId;
                             homeFactory.checked = 0;
+                            homeFactory.ratedVote = data.ratedVote;
                             break;
                         case "result":
                             homeFactory.displayType = data.displayType;
