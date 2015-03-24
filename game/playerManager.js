@@ -189,8 +189,16 @@ PlayerManager.prototype = {
                 timeScore: 0,
                 timeRank: -1,
                 inventory: [
-                    {id: 0, count: 10, name: "plus"},
-                    {id: 1, count: 5, name: "minus"}
+                    {type: 0, name: "plus"},
+                    {type: 0, name: "plus"},
+                    {type: 0, name: "plus"},
+                    {type: 0, name: "plus"},
+                    {type: 0, name: "plus"},
+                    {type: 1, name: "minus"},
+                    {type: 1, name: "minus"},
+                    {type: 1, name: "minus"},
+                    {type: 1, name: "minus"},
+                    {type: 1, name: "minus"}
                 ]
             });
             this.rating[i] = [];
@@ -250,19 +258,20 @@ PlayerManager.prototype = {
     donate: function (clientId, data) {
         var playerId = this.getPlayerIdForClientId(clientId);
         console.log("Donation-Action from " + playerId + ": giving item" + data.itemId + " to " + data.recipient);
-        var count = this.players[playerId].inventory[data.itemId].count;
+        var items = this.players[playerId].inventory.filter(function(item, id){ item.id = id; return item.type == data.itemId});
+        var count = items.length;
         if (count <= 0) {
             console.log("not in stock!!!");
             return;
         }
         count--;
-        this.players[playerId].inventory[data.itemId].count = count;
+        delete this.players[playerId].inventory[items[0].id];
         switch (parseInt(data.itemId)) {
             case 0:
-                this.players[data.recipient].score += 10;
+                this.players[data.recipient].score += 1;
                 break;
             case 1:
-                this.players[data.recipient].score -= 10;
+                this.players[data.recipient].score -= 1;
                 break;
             default:
                 console.log("unknown inventory item");
