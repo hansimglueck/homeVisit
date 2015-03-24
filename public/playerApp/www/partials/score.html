@@ -1,8 +1,50 @@
-{{test}}<br />
-Inventory: {{status.inventory}} <br />
+
+<div id="score_barometer" ng-style="{'height': getBaroHeight()}">
+    <div id="baro_vert_line" ng-style="{'height': getBaroHeight()}"></div>
+    <!--<div id="baro_top_line"></div>-->
+    <!--<div id="baro_bottom_line" ng-style="{'top': getBaroHeight()}"></div>-->
+    
+    <div class="baro_others_line" ng-repeat="player in status.otherPlayers track by $index" ng-style="{'top': getLinePos($index)}">
+        <div class="score_label">
+            {{player.score}}
+        </div>
+    </div>
+    
+    <div class="baro_my_line" ng-style="{'top': getMyLinePos()}">
+        <div class="my_score_label_top" ng-controller="NavbarController" ng-style="col1()"></div>
+        <div class="my_score_label_bottom" ng-controller="NavbarController" ng-style="col2()"></div>
+        <div class="my_score_label">
+            {{status.player.score}}
+        </div>
+    </div>
+    
+    <div id="baro_positive" ng-style="{'height': getPosHeight()}"></div>
+    <div id="baro_negative" ng-style="{'height': getBaroHeight()}"></div>
+    
+</div>
+
+<div id="score_stats">
+    <p class="score_stats_entry">
+        Platz: {{status.player.rank}}<br />
+        Punkte: {{status.player.score}}<br />
+        <!--ID: {{status.player.playerId}}<br />-->
+        Inventory: {{status.inventory}}
+    </p>
+</div>
+
+
+
+
+<!--
+
+Inventory: {{status}} <br />
+-->
 <!--klicken auf diesen a öffnet die seite unter partials/donate.html mit dem Controller DonationController
 - die 0 (oder was auch immer) steht dort als itemId zur verfügung-->
+
+<!--
 <a href="#/score/donate/0">+</a>
 
 
 <div ng-repeat="player in status.otherPlayers">Spieler{{player.playerId}} hat Punkte: {{player.score}}</div>
+-->

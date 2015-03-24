@@ -1,0 +1,122 @@
+#score_barometer {
+    /*background: #fff;*/
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    width: 70px;
+    min-height: 1px;
+}
+
+#baro_positive {
+    background: #629820;
+    position: absolute;
+    top: 0px;
+    left: 12px;
+    width: 5px;
+    min-height: 1px;
+    z-index: -1;
+}
+
+#baro_negative {
+    background: #DD3629;
+    position: absolute;
+    top: 0px;
+    left: 12px;
+    width: 5px;
+    min-height: 1px;
+    z-index: -2;
+}
+
+#baro_vert_line {
+    background: #333;
+    position: absolute;
+    top: 0px;
+    left: 10px;
+    width: 2px;
+    min-height: 1px;
+    z-index: -3;
+}
+
+#baro_top_line {
+    background: #333;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 50px;
+    height: 2px;
+    min-height: 1px;
+}
+
+#baro_bottom_line {
+    background: #333;
+    position: absolute;
+    left: 0px;
+    width: 50px;
+    height: 2px;
+    min-height: 1px;
+}
+
+.baro_others_line {
+    background: #AAA;
+    position: absolute;
+    left: 0px;
+    width: 40px;
+    height: 2px;
+    min-height: 1px;
+}
+
+.baro_my_line {
+    background: #555;
+    position: absolute;
+    left: 0px;
+    width: 40px;
+    height: 2px;
+    min-height: 1px;
+}
+
+.score_label {
+    background: #AAA;
+    position: absolute;
+    left: 40px;
+    top: -14px;
+    color: #fff;
+    padding: 1px 7px 1px 7px;
+    font-size: 0.8em;
+}
+
+.my_score_label {
+    background: #555;
+    position: absolute;
+    left: 40px;
+    top: -14px;
+    color: #fff;
+    padding: 1px 7px 1px 7px;
+    font-size: 0.8em;
+}
+
+.my_score_label_top {
+    position: absolute;
+    height: 11px;
+    width: 60px;
+    top: -14px;
+    left: 40px;
+}
+.my_score_label_bottom {
+    position: absolute;
+    height: 10px;
+    width: 60px;
+    top: -3px;
+    left: 40px;
+}
+
+#score_stats {
+    position: relative;
+    top: 15px;
+    left: 150px;
+    text-align: left;
+    width: 160px;
+}
+
+.score_stats_entry {
+    line-height: 30px;
+}
