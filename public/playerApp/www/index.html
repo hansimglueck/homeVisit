@@ -56,16 +56,16 @@
                 <a class="list-group-item" ng-click="leaveGame()" ng-hide="status.player.playerId == -1">
                     In the Game as Player {{status.player.playerId }}! Leave.
                 </a>
-                --->
                 <a class="list-group-item" href="#/rating">Rating
                     <i class="fa fa-chevron-right pull-right"></i></a>
                 <a class="list-group-item" href="#/chat">Chat
                     <i class="fa fa-chevron-right pull-right"></i></a>
+                <a class="list-group-item" href="#/info">Info
+                    <i class="fa fa-chevron-right pull-right"></i></a>
+                --->
                 <a class="list-group-item" href="#/home">Vote
                     <i class="fa fa-chevron-right pull-right"></i></a>
                 <a class="list-group-item" href="#/europe">Europe
-                    <i class="fa fa-chevron-right pull-right"></i></a>
-                <a class="list-group-item" href="#/info">Info
                     <i class="fa fa-chevron-right pull-right"></i></a>
                 <a class="list-group-item" href="#/score">Score
                     <i class="fa fa-chevron-right pull-right"></i></a>
@@ -105,11 +105,13 @@
                         <i class="fa fa-check-square-o bigger"></i></div>
                     <div class="navbarbtn" ng-click="go('/score')">
                         <i class="fa fa-star bigger"></i></div>
+                    <!--
                     <div class="navbarbtn" ng-click="go('/chat')">
                         <i class="fa fa-comment bigger"></i>
                         <span class="badge badge-notification" ng-show="newMessages>0">
                             {{newMessages}}</span>
                     </div>
+                    -->
                     <!--                    <div class="navbarbtn" ng-click="toVote()">VOTE</div>  -->
                 </div>
             </div>

@@ -78,8 +78,8 @@
                 </div>
             </div>
             <div ng-if="home.voteType == 'enterNumber'">
-                <input type="text" ng-model="data.voteNumber"/>
-                <button class="btn-lg" ng-click="vote(0)">Submit</button>
+                <form ng-submit="vote(0)">
+                <input type="text" ng-model="data.voteNumber"/></form>
             </div>
 
         </div>
