@@ -30,7 +30,7 @@ angular.module("gameControllers", [])
         $scope.status = Status;
         //$scope.color = "green";
         
-        $scope.baromaterHeight = 330;
+        $scope.baromaterHeight = 310;
         $scope.getBaroHeight = function() {
             return $scope.baromaterHeight.toString() + "px";
         }
