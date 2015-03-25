@@ -100,7 +100,7 @@ angular.module("playerControllers", [])
             console.log(id); var text = "";
             if (id != undefined) {
                 text = $scope.home.options[id].text;
-                if ($scope.home.voteType=="enterNumber") text = id;
+                if ($scope.home.voteType=="enterNumber") text = $scope.data.voteNumber;
                 if (!confirm("Vote for: "+text)) return;
                 console.log("no");
                 $scope.home.options[id].checked = true;
