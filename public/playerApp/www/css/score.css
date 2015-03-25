@@ -112,11 +112,32 @@
 #score_stats {
     position: relative;
     top: 15px;
-    left: 150px;
+    left: 190px;
     text-align: left;
-    width: 160px;
+    width: 120px;
 }
 
 .score_stats_entry {
     line-height: 30px;
+}
+
+#score_inventory {
+    position: relative;
+    top: 15px;
+    left: 190px;
+    text-align: left;
+    width: 100px;
+}
+
+.score_inv_plus {
+    position: absolute;
+    width: 50px;
+}
+.score_inv_minus {
+    position: absolute;
+    width: 50px;
+    left: 55px;
+}
+.score_inv_entry {
+    padding: 0px 2px 2px 0px;
 }

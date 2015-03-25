@@ -28,8 +28,27 @@
         Platz: {{status.player.rank}}<br />
         Punkte: {{status.player.score}}<br />
         <!--ID: {{status.player.playerId}}<br />-->
-        Inventory: {{status.inventory}}
     </p>
+</div>
+
+<div id="score_inventory">
+    <div class="score_inv_plus">
+        <div ng-repeat="item in status.inventory | filter:{type: 0} track by $index" ng-style="{}">
+            <a href="#/score/donate/0">
+                <i class="fa fa-plus-circle fa-3x score_inv_entry" ng-style="{'color': '#629820'}"></i>
+            </a>
+        </div>
+    </div>
+     <div class="score_inv_minus">
+        <div ng-repeat="item in status.inventory | filter:{type: 1} track by $index" ng-style="{}">
+            <a href="#/score/donate/1">
+                <i class="fa fa-minus-circle fa-3x score_inv_entry" ng-style="{'color': '#DD3629'}"></i>
+            </a>
+        </div>
+    </div>
+
+        
+    <!--Inventory: {{status.inventory}}<br />-->
 </div>
 
 
