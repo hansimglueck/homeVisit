@@ -1,5 +1,5 @@
 <tbody ui-sortable="sortOptions" ng-model="deck.items" id="{{ 'sort-table-'+ $index }}" ng-controller="itemCtrl">
-<tr ng-repeat="item in deck.items track by $index">
+<tr ng-repeat="item in deck.items track by $index" ng-style="item.comments[0]=='markiert' ? {'background': '#FFDDDD'} : {}">
 
     <td>{{ $index }}</td>
 
@@ -58,7 +58,8 @@
         <div class="buttons">
             <button class="btn btn-sm btn-danger" ng-click="deleteItem($parent.$index, $index)">Löschen</button>
             <button class="btn btn-sm btn-primary" ng-click="moveItem($parent.$index, $index)">Bewege</button>
-            <button class="btn btn-sm btn-primary" ng-click="addItem($parent.$index, $index)">Einfügen</button>
+            <button class="btn btn-sm btn-primary" ng-click="addItem($parent.$index, $index)">Einfügen</button><br />
+            <button class="btn btn-sm btn-primary" ng-click="toggleMarker($parent.$index, $index)">Mark</button>
             <!--            <button class="btn" ng-click="addItem($parent.$index, $index)">Einfügen</button> -->
         </div>
     </td>

@@ -247,6 +247,13 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
         var item = $scope.decks[deckId].items[index];
         $scope.updateDeck(deckId);
     };
+    $scope.toggleMarker = function(deckId, index) {
+        var item = $scope.decks[deckId].items[index];
+        if (typeof item.comments[0] == "undefined") item.comments[0] = "frei";
+        if (item.comments[0] == "frei") item.comments[0] = "markiert";
+        else item.comments[0] = "frei";
+        $scope.updateDeck(deckId);
+    };
  })
     .controller('MoveItemController', function ($scope, $modalInstance, deckId, itemId, decks) {
         $scope.name = "moveI";
