@@ -36,6 +36,8 @@ angular.module("gameControllers", [])
         }
         
         $scope.getLinePos = function(index) {
+            $scope.minScore = $scope.status.otherPlayers[0].score;
+            $scope.maxScore = $scope.status.otherPlayers[0].score;
             for (var i = 0; i < $scope.status.otherPlayers.length; i++) {
                 if ($scope.status.otherPlayers[i].score < $scope.minScore) {
                     $scope.minScore = $scope.status.otherPlayers[i].score;
