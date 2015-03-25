@@ -258,14 +258,17 @@ PlayerManager.prototype = {
     donate: function (clientId, data) {
         var playerId = this.getPlayerIdForClientId(clientId);
         console.log("Donation-Action from " + playerId + ": giving item" + data.itemId + " to " + data.recipient);
-        var items = this.players[playerId].inventory.filter(function(item, id){ item.id = id; return item.type == data.itemId});
+        var items = this.players[playerId].inventory.filter(function (item, id) {
+            item.id = id;
+            return item.type == data.itemId
+        });
         var count = items.length;
         if (count <= 0) {
             console.log("not in stock!!!");
             return;
         }
         count--;
-        this.players[playerId].inventory.splice(items[0].id,1);
+        this.players[playerId].inventory.splice(items[0].id, 1);
         switch (parseInt(data.itemId)) {
             case 0:
                 this.players[data.recipient].score += 1;
@@ -441,11 +444,15 @@ PlayerManager.prototype = {
         wsManager.msgDevicesByRole("player", "status", msg);
         wsManager.msgDevicesByRole("master", "status", msg);
     },
-    calcRanking: function() {
+    calcRanking: function () {
         var self = this;
-        var ranking = this.players.map(function(p,id) {return {playerId: id, score:p.score}}).sort(function(a,b){return a.score-b.score});
-        ranking.forEach(function(rank, id){
-            self.players[rank.playerId].rank = id+1;
+        var ranking = this.players.map(function (p, id) {
+            return {playerId: id, score: (p.joined ? p.score : -1000)}
+        }).sort(function (a, b) {
+            return a.score - b.score;
+        });
+        ranking.forEach(function (rank, id) {
+            self.players[rank.playerId].rank = id + 1;
         });
     },
     getPlayerArray: function () {
@@ -530,7 +537,9 @@ PlayerManager.prototype = {
             if (dd[i].checked) msg += dd[i].text + " ";
         }
         voteItem.votes[playerId] = dd;
-        voteItem.votes[playerId].multiplier = this.players.filter(function(p){return p.joined}).length - this.players[playerId].rank + 1;
+        voteItem.votes[playerId].multiplier = this.players.filter(function (p) {
+            return p.joined
+        }).length - this.players[playerId].rank + 1;
 //        voteItem.votes[playerId].multiplier = this.avgRatings[playerId];
         if (!voteItem.ratedVote) voteItem.votes[playerId].multiplier = 1;
         this.log("Player " + playerId + ": " + msg);
@@ -612,10 +621,10 @@ PlayerManager.prototype = {
         var self = this;
         voteItem.votes.forEach(function (vote, id) {
             var score = 0;
-            vote.filter(function (opt,id) {
-                    opt.id = id;
-                    return opt.checked;
-                })
+            vote.filter(function (opt, id) {
+                opt.id = id;
+                return opt.checked;
+            })
                 .forEach(function (checked) {
                     if (type == "correct") {
                         if (checked.flags[0]) score++;
@@ -629,7 +638,7 @@ PlayerManager.prototype = {
         });
         this.sendPlayerStatus(-1);
     },
-    score: function(playerId, score) {
+    score: function (playerId, score) {
         this.players.playerId.score += score;
         this.sendPlayerStatus(-1);
     },
@@ -710,9 +719,12 @@ PlayerManager.prototype = {
         game.trigger(-1, {data: 'go', param: voteItem.bestOption});
     },
 
-    eval: function(code) {
-        console.log("Eval: "+code);
+    eval: function (code) {
+        console.log("Eval: " + code);
         eval(code);
+    },
+    getCheckedVotes: function (voteId) {
+        //soll ein array
     }
 }
 
