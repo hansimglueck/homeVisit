@@ -141,3 +141,8 @@
 .score_inv_entry {
     padding: 0px 2px 2px 0px;
 }
+
+.donate_question {
+    font-size: 1.2em;
+    padding: 10px;
+}

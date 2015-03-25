@@ -75,8 +75,8 @@ angular.module("gameControllers", [])
         $scope.colors = colors;
         $scope.itemId = $routeParams.itemId;
         $scope.status = Status;
-        $scope.donate = function(playerId, itemId) {
-            if (!confirm("Wirklich an Spieler "+playerId+ "geben?")) return;
+        $scope.donate = function(playerId, playerColors, itemId) {
+            if (!confirm("Wirklich an Spieler "+ playerColors[0] + "-" + playerColors[1] + " geben?")) return;
             console.log("Donate it!");
             Socket.emit({
                 type: "donation",
@@ -85,7 +85,17 @@ angular.module("gameControllers", [])
             });
             $location.url("/score");
         };
-
+        
+        $scope.textForItemId = function(id) {
+            var text = "";
+            if (id == 0) {
+                text = "PLUS";
+            } else {
+                text = "MINUS";
+            }
+            return text;
+        }
+        
         $scope.getPlayersOrdered = function() {
             var players = $scope.status.otherPlayers.filter(function(p){return p.joined;});
             var ordered = [];
