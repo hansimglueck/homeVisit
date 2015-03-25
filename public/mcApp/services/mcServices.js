@@ -34,10 +34,7 @@ angular.module('mcServices', [])
             console.log(data);
             if (data.otherPlayers) {
                 statusFactory.otherPlayers = data.otherPlayers;
-                statusFactory.player.score = data.otherPlayers[statusFactory.player.playerId].score;
-                statusFactory.player.rank = data.otherPlayers[statusFactory.player.playerId].rank;
-                statusFactory.player.timeRank = data.otherPlayers[statusFactory.player.playerId].timeRank;
-            }
+             }
             if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
         });
         Socket.on('inventory', function (event) {

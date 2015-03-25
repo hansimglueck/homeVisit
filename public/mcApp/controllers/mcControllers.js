@@ -34,7 +34,53 @@ angular.module("mcControllers", [])
     .controller('NavbarController', function ($scope, Socket) {
 
     })
-    .controller('HomeController', function ($scope, Socket) {
+    .controller('HomeController', function ($scope, Socket, Status, colors) {
+        $scope.colors = colors;
+        $scope.status = Status;
+        $scope.getPlayersOrdered = function() {
+            if (Status.otherPlayers.length == 0) return;
+            var players = $scope.status.otherPlayers.filter(function(p){return p.joined;});
+            var ordered = [];
+            var mySeat = players.map(function(p,id){return {id:id, playerId: p.playerId}}).filter(function(pp){return pp.playerId == 0})[0].id;
+            var oppositeSeat = (mySeat + Math.floor(players.length/2))%players.length;
+            var seat;
+            var p = null;
+            for (var i = 0; i < players.length; i++) {
+                if (i%2 == 1) {
+                    //rechts rum
+                    seat = oppositeSeat + Math.ceil(i/2);
+                } else {
+                    //links rum
+                    seat = oppositeSeat - Math.floor(i/2);
+                }
+                seat += players.length;
+                seat %= players.length;
+                p = getPlayerForSeat(seat);
+                if (p!= null) if(p.playerId != Status.player.playerId) ordered.push(p);
+            }
+
+            return ordered;
+        };
+        function getPlayerForSeat(id) {
+            var arr = $scope.status.otherPlayers.filter(function(p){return p.joined});
+            if (arr.length > 0) return arr[id];
+            else return null;
+        }
+
+    })
+
+    .controller('PlayerController', function ($scope, Socket, Status, colors, $routeParams, $location) {
+        $scope.playerId = $routeParams.playerId;
+        $scope.colors = colors;
+        $scope.status = Status;
+        $scope.score = function(playerId, score) {
+            console.log("score "+score);
+            score = parseInt(score);
+            Socket.emit({type: "score", data: {playerId:playerId, score:score}},
+                function() { console.log('mc command emitted'); });
+
+            $location.url("/home");
+        }
 
     })
 

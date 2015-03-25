@@ -1,0 +1,4 @@
+<h1>Punkte für Spieler {{status.otherPlayers[playerId].colors[0]}}/{{status.otherPlayers[playerId].colors[1]}}</h1>
+<ul class="list-unstyled">
+<li class="list-group-item" ng-repeat="sc in ['+5','+4','+3','+2','+1','-1','-2','-3','-4','-5']"><button ng-click="score(playerId, sc)">{{sc}}</button><br /></li>
+</ul>

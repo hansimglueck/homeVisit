@@ -292,6 +292,14 @@ PlayerManager.prototype = {
             this.sendPlayerStatus(-1);
         }
     },
+    mcMessage: function (clientId, msg) {
+        if (msg.type == "register") {
+            this.sendPlayerStatus(-1);
+        }
+        if (msg.type == "score") {
+            this.score(msg.data.playerId,msg.data.score);
+        }
+    },
     addItem: function (item) {
         try {
             if (!item.type) {
@@ -443,7 +451,7 @@ PlayerManager.prototype = {
         };
         wsManager.msgDevicesByRole("player", "status", msg);
         wsManager.msgDevicesByRole("master", "status", msg);
-        wsManager.msgDevicesByRole("mc", "status", msg);
+        wsManager.msgDevicesByRole("MC", "status", msg);
     },
     calcRanking: function () {
         var self = this;
@@ -650,7 +658,7 @@ PlayerManager.prototype = {
         this.sendPlayerStatus(-1);
     },
     score: function (playerId, score) {
-        this.players.playerId.score += score;
+        this.players[playerId].score += score;
         this.sendPlayerStatus(-1);
     },
     findSeatOrder: function (voteId) {
