@@ -65,6 +65,7 @@ wsManager.onRole("MC", playerManager, playerManager.mcMessage);
 var game = require('./game/game.js');
 wsManager.onRole("master", game, game.trigger);
 wsManager.onRole("button", game, game.trigger);
+wsManager.onRole("MC", game, game.trigger);
 
 var raspiTools = require('./game/raspiTools.js');
 wsManager.onRole("master", raspiTools, raspiTools.newMessage);
