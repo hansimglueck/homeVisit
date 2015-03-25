@@ -265,7 +265,7 @@ PlayerManager.prototype = {
             return;
         }
         count--;
-        delete this.players[playerId].inventory[items[0].id];
+        this.players[playerId].inventory.splice(items[0].id,1);
         switch (parseInt(data.itemId)) {
             case 0:
                 this.players[data.recipient].score += 1;
