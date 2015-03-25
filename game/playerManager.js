@@ -443,13 +443,14 @@ PlayerManager.prototype = {
         };
         wsManager.msgDevicesByRole("player", "status", msg);
         wsManager.msgDevicesByRole("master", "status", msg);
+        wsManager.msgDevicesByRole("mc", "status", msg);
     },
     calcRanking: function () {
         var self = this;
         var ranking = this.players.map(function (p, id) {
             return {playerId: id, score: (p.joined ? p.score : -1000)}
         }).sort(function (a, b) {
-            return a.score - b.score;
+            return b.score - a.score;
         });
         ranking.forEach(function (rank, id) {
             self.players[rank.playerId].rank = id + 1;
@@ -537,13 +538,14 @@ PlayerManager.prototype = {
             if (dd[i].checked) msg += dd[i].text + " ";
         }
         voteItem.votes[playerId] = dd;
-        voteItem.votes[playerId].multiplier = this.players.filter(function (p) {
+        if (typeof voteItem.multiplier == "undefined") voteItem.multiplier = [];
+        voteItem.multiplier[playerId] = this.players.filter(function (p) {
             return p.joined
         }).length - this.players[playerId].rank + 1;
 //        voteItem.votes[playerId].multiplier = this.avgRatings[playerId];
-        if (!voteItem.ratedVote) voteItem.votes[playerId].multiplier = 1;
+        if (!voteItem.ratedVote) voteItem.multiplier[playerId] = 1;
         this.log("Player " + playerId + ": " + msg);
-        console.log("multiplier=" + voteItem.votes[playerId].multiplier);
+        console.log("multiplier=" + voteItem.multiplier[playerId]);
         wsManager.msgDeviceByIds([clientId], "display", {"text": msg});
         //voteComplete soll aufgerufen werden, wenn alle player mit joined = true gevoted haben...
         var missingVotes = 0;
@@ -562,17 +564,26 @@ PlayerManager.prototype = {
         var voteOptions = voteItem.voteOptions;
         voteItem.voteCount = 0;
         var bestOption = 0;
+        //TODO: besserer check nach minVal/maxVal
+        voteItem.minVal = 1000000;
+        voteItem.maxVal = 0;
         for (var i = 0; i < votes.length; i++) {
             if (typeof votes[i] != "undefined") {
                 for (var j = 0; j < voteOptions.length; j++) {
                     if (!voteOptions[j].result) voteOptions[j].result = 0;
                     if (!voteOptions[j].votes) voteOptions[j].votes = 0;
                     if (votes[i][j].checked) {
-                        voteItem.voteCount += votes[i].multiplier;
-                        if (voteItem.options[0] == "enterNumber") voteOptions[j].result += parseInt(votes[i][j].val);
-                        else voteOptions[j].result += votes[i].multiplier;
+                        voteItem.voteCount += voteItem.multiplier[i]; //votes[i].multiplier;
+                        if (voteItem.options[0] == "enterNumber") {
+                            voteOptions[j].result += parseFloat(votes[i][j].val);
+                            if (parseFloat(votes[i][j].val) < voteItem.minVal) voteItem.minVal = parseFloat(votes[i][j].val);
+                            if (parseFloat(votes[i][j].val) > voteItem.maxVal) voteItem.maxVal = parseFloat(votes[i][j].val);
+                        }
+                        else {
+                            voteOptions[j].result += voteItem.multiplier[i];
+                            if (voteOptions[j].result > voteOptions[bestOption].result) bestOption = j;
+                        }
                         voteOptions[j].votes += 1;
-                        if (voteOptions[j].result > voteOptions[bestOption].result) bestOption = j;
                     }
                 }
             }
@@ -696,7 +707,7 @@ PlayerManager.prototype = {
         console.log("maxVoteCount=" + voteItem.maxCount);
         if (displayType == "numberStats") {
             //send stats as array: [sum, avg]
-            resData = [voteItem.voteOptions[0].result, voteItem.voteOptions[0].result / voteItem.voteCount];
+            resData = [voteItem.voteOptions[0].result, voteItem.voteOptions[0].result / voteItem.voteCount, voteItem.minVal, voteItem.maxVal];
         }
         else voteItem.voteOptions.forEach(function (option) {
             labels.push(option.text + ": " + (option.result / voteItem.voteCount * 100).toFixed(1) + "% (" + option.votes + ")");
@@ -706,6 +717,7 @@ PlayerManager.prototype = {
             });
             else resData.push(option.result / voteItem.voteCount * 100);
         });
+        resultItem.data = resData;
         wsManager.msgDevicesByRole('player', "display", {
             type: "result",
             displayType: displayType,
@@ -724,9 +736,25 @@ PlayerManager.prototype = {
         eval(code);
     },
     getCheckedVotes: function (voteId) {
-        //soll ein array
+        //soll ein array geben mit id=playerId und inhalt array of checked Item-ids
+        return this.voteItems[voteId].votes.map(function(vote){
+            return vote.filter(function(opt,id){
+                opt.id = id;
+                return opt.checked;
+            }).map(function(v){return v.id});
+        });
+    },
+    getVoteNumbers: function(voteId) {
+        return this.voteItems[voteId].votes.map(function(vote){
+            return vote.filter(function(opt,id){
+                return opt.checked;
+            }).map(function(v){return parseInt(v.val)});
+        });
+    },
+    getResultStats: function(resultId) {
+        return this.resultItems[resultId].data;
     }
-}
+};
 
 var playerManagerObj = new PlayerManager();
 playerManagerObj.init();

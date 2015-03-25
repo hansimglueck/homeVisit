@@ -1,19 +1,19 @@
 angular.module("mcControllers", [])
-    .controller('HomeController', function ($scope, Socket) {
+    .controller('AlarmController', function ($scope, Socket) {
         $scope.playback = function(cmd, param) {
             console.log("play clicked");
             Socket.emit({type:"playbackAction", data:cmd, param:param}, function() { console.log('play emitted'); });
         };
         $scope.alarmGruen = function() {
             var param = 0;
-            Socket.emit({type: "forward", recipient: {role:"button", name:"gruen"}, data: {type:"button_led", content:{command: 'alarm', param: param}}},
+            Socket.emit({type: "forward", recipient: {role:"button", name:"gruen"}, data: {type:"display", content:{command: 'alarm', param: param}}},
                 function() { console.log('mc command emitted'); });
         };
         $scope.alarmGruenUndRot = function() {
             var param = 0;
-            Socket.emit({type: "forward", recipient: {role:"button", name:"gruen"}, data: {type:"button_led", content:{command: 'alarm', param: param}}},
+            Socket.emit({type: "forward", recipient: {role:"button", name:"gruen"}, data: {type:"display", content:{command: 'alarm', param: param}}},
                 function() { console.log('mc command emitted'); });
-            Socket.emit({type: "forward", recipient: {role:"button", name:"rot"}, data: {type:"button_led", content:{command: 'alarm', param: param}}},
+            Socket.emit({type: "forward", recipient: {role:"button", name:"rot"}, data: {type:"display", content:{command: 'alarm', param: param}}},
                 function() { console.log('mc command emitted'); });
         };
     })
@@ -34,5 +34,9 @@ angular.module("mcControllers", [])
     .controller('NavbarController', function ($scope, Socket) {
 
     })
+    .controller('HomeController', function ($scope, Socket) {
+
+    })
+
 ;
 

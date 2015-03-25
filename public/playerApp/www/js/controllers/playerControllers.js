@@ -93,6 +93,9 @@ angular.module("playerControllers", [])
             console.log("now "+$scope.home.checked+" checked. home.limit="+$scope.home.limit);
         };
         $scope.vote = function (id) {
+            console.log(Home.voteType);
+            console.log(parseInt($scope.data.voteNumber));
+            if (Home.voteType=="enterNumber" && (isNaN(parseFloat($scope.data.voteNumber)) || $scope.data.voteNumber.indexOf(",")!=-1)) return;
             console.log("Zahl="+$scope.data.voteNumber);
             console.log(id);
             if (id != undefined) {

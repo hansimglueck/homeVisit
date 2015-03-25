@@ -1,21 +1,14 @@
-<div class="list-group">
-    <div class="list-group-item">
-        <button class="btn" ng-click="alarmGruen()">ALARM</button>
-    </div>
-    <div class="list-group-item">
-        <button class="btn" ng-click="alarmGruenUndRot()">ALARM BEIDE</button>
-    </div>
-
-    <div class="list-group-item">
-        <button class="btn" ng-click="playback('go','0')">GO</button>
-    </div>
-    <div class="list-group-item">
-        <button class="btn" ng-click="playback('go','1')">GO 2</button>
-    </div>
-    <div class="list-group-item">
-        <button class="btn" ng-click="playback('rego')">REGO</button>
-    </div>
-    <div class="list-group-item">
-        <button class="btn" ng-click="playback('back')">BACK</button>
+<div class="player-grid">
+    <div class="col-xs-6 player-grid-item" ng-repeat="player in getPlayersOrdered() track by $index">
+        <a href="" ng-click="donate(player.playerId,itemId)">
+            <div ng-style="{'height': '40px'}">
+                <div class="row1" ng-style="colors[player.colors[0]]">
+                </div>
+                <div class="row2" ng-style="colors[player.colors[1]]">
+                </div>
+                        <span class="badge badge-flag-notification" ng-show="newCntPerPlayer[player.playerId]>0">
+                            {{ newCntPerPlayer[player.playerId] }}</span>
+            </div>
+        </a>
     </div>
 </div>

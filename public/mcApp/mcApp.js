@@ -9,6 +9,10 @@ angular.module('mcApp', [
     .config(['$routeProvider',
         function ($routeProvider) {
             $routeProvider.
+                when('/alarm', {
+                    templateUrl: '/mcApp/partials/alarm.html',
+                    controller: 'AlarmController'
+                }).
                 when('/home', {
                     templateUrl: '/mcApp/partials/home.html',
                     controller: 'HomeController'
