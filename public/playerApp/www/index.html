@@ -114,6 +114,9 @@
                 </div>
             </div>
         </div>
+        <ul class="scoreAlert">
+            <li ng-repeat="a in alerts track by $index" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">{{a}}</li>
+        </ul>
     </div>
 
     <!-- App body -->

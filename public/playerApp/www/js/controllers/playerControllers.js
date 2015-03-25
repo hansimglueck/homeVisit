@@ -158,11 +158,12 @@ angular.module("playerControllers", [])
         //        });
         //};
     })
-    .controller('NavbarController', function ($scope, $location, Status, Rating, Chat, Home, colors) {
+    .controller('NavbarController', function ($scope, $location, Status, Rating, Chat, Home, colors, $timeout) {
         $scope.status = Status;
         $scope.chat = Chat;
         $scope.rating = Rating;
         $scope.newMessages = 0;
+        $scope.alerts = [];
         $scope.$on("newChatMessage", function (event, count) {
             $scope.newMessages = count
         });
@@ -180,7 +181,17 @@ angular.module("playerControllers", [])
         };
         $scope.$watch('status.player.score', function(newVal,oldVal){
             console.log("Player"+$scope.status.player.playerId+"-Score: "+oldVal+"->"+newVal);
-        })
+            var score = newVal-oldVal;
+            if(isNaN(score)) return;
+            if (score < 0) score = ""+score;
+            if (score > 0) score = "+"+score;
+
+            $scope.addAlert(score);
+        });
+        $scope.addAlert = function(alert) {
+            $scope.alerts.push(alert);
+            $timeout(function(){$scope.alerts = []},2000);
+        }
     })
     .controller('EuropeController', function ($scope, europeSvgData) {
         $scope.europeSVG = europeSvgData;
