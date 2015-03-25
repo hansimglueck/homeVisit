@@ -97,9 +97,11 @@ angular.module("playerControllers", [])
             //console.log(parseInt($scope.data.voteNumber));
             if (Home.voteType=="enterNumber" && (isNaN(parseFloat($scope.data.voteNumber)) || $scope.data.voteNumber.indexOf(",")!=-1)) return;
             //console.log("Zahl="+$scope.data.voteNumber);
-            console.log(id);
+            console.log(id); var text = "";
             if (id != undefined) {
-                if (!confirm("Vote for: "+$scope.home.options[id].text)) return;
+                text = $scope.home.options[id].text;
+                if ($scope.home.voteType=="enterNumber") text = id;
+                if (!confirm("Vote for: "+text)) return;
                 console.log("no");
                 $scope.home.options[id].checked = true;
                 if ($scope.home.voteType=="enterNumber") {
