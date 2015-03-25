@@ -41,7 +41,7 @@ angular.module("mcControllers", [])
             if (Status.otherPlayers.length == 0) return;
             var players = $scope.status.otherPlayers.filter(function(p){return p.joined;});
             var ordered = [];
-            var mySeat = players.map(function(p,id){return {id:id, playerId: p.playerId}}).filter(function(pp){return pp.playerId == 0})[0].id;
+            var mySeat = 0;//players.map(function(p,id){return {id:id, playerId: p.playerId}}).filter(function(pp){return pp.playerId == 0})[0].id;
             var oppositeSeat = (mySeat + Math.floor(players.length/2))%players.length;
             var seat;
             var p = null;
