@@ -8,15 +8,27 @@
         <li style="text-align: right">
             <a ng-click="duplicateDeck($index)">Dupliziere Strang</a>
         </li>
+        <li style="text-align: right">
+            <a ng-click="exportCSV($index)">Export CSV</a>
+        </li>
     </ul>
-    <table class="table">
+    <table class="table deck-table">
+<!--
+        <colgroup>
+        <col width="5%">
+        <col width="10%">
+        <col width="10%">
+        <col width="65%">
+        <col width="10%">
+        </colgroup>
+        -->
         <tbody>
         <tr>
             <th>Nr</th>
             <th>Typ</th>
             <th>Trigger</th>
             <th>Inhalt</th>
-            <th></th>
+            <th>Action</th>
         </tr>
         </tbody>
         <tbody show-sequence-item></tbody>

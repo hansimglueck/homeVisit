@@ -11,8 +11,9 @@ var masterControllers = angular.module('masterControllers', [])
             Socket.emit({type:"playbackAction", data:cmd, param:param}, function() { console.log('play emitted'); });
         };
 
-        Socket.on("playBackStatus", function(event) {
-            var status = JSON.parse(event.data).data;
+        Socket.on("playBackStatus", function(message) {
+            console.log("callback got "+message);
+            var status = message.data;
             $scope.status = status;
             console.log("got status info: "+JSON.stringify(status));
         });
@@ -88,8 +89,7 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemTy
 
 masterControllers.controller('LogCtrl', function($scope, Socket){
         $scope.messages = ["waiting..."];
-        Socket.on('log', function(event) {
-            var data = JSON.parse(event.data);
+        Socket.on('log', function(data) {
             console.log("new log-message: "+data.data);
             $scope.messages.push(data.data);
             if (data.content) {
@@ -105,8 +105,8 @@ masterControllers.controller('DeviceCtrl', function($scope, Socket, itemTypes) {
     $scope.deviceList = [];
     $scope.itemTypes = itemTypes;
     $scope.isCollapsed = true;
-    Socket.on("DeviceList", function(event) {
-        $scope.deviceList = JSON.parse(event.data).data;
+    Socket.on("DeviceList", function(message) {
+        $scope.deviceList = message.data;
         console.log("got device list: "+JSON.stringify($scope.deviceList));
     });
     $scope.forceReload = function(role) {
@@ -117,9 +117,9 @@ masterControllers.controller('DeviceCtrl', function($scope, Socket, itemTypes) {
 masterControllers.controller('PlayerCtrl', function($scope, Socket) {
     $scope.playerList = [];
     $scope.ratings = [];
-    Socket.on("status", function(event) {
-        $scope.playerList = JSON.parse(event.data).data.otherPlayers;
-        $scope.ratings = JSON.parse(event.data).data.avgRatings;
+    Socket.on("status", function(message) {
+        $scope.playerList = message.data.otherPlayers;
+        $scope.ratings = message.data.avgRatings;
         console.log("got player list: "+JSON.stringify($scope.playerList));
     });
 });
@@ -154,12 +154,12 @@ masterControllers.controller('OsCtrl', function($scope, Socket) {
         if (!confirm("Wirklich DB:"+action+"?")) return;
         Socket.emit({type:"database", data:action}, function() { console.log('db action requested: '+action); });
     };
-    Socket.on("osinfo", function(event) {
-        $scope.osInfo = JSON.parse(event.data).data;
+    Socket.on("osinfo", function(message) {
+        $scope.osInfo = message.data;
         console.log("got os info: "+JSON.stringify($scope.osInfo));
     });
-    Socket.on("dbStatus", function(event) {
-        $scope.dbStatus = JSON.parse(event.data).data;
+    Socket.on("dbStatus", function(message) {
+        $scope.dbStatus = message.data;
         console.log("got dbStatus: "+JSON.stringify($scope.dbStatus));
     });
     $scope.printInterfaces = function(iname) {

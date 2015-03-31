@@ -4,8 +4,7 @@ angular.module('mcApp', [
     'ngRoute',
     'mcControllers',
     'WebsocketServices',
-    'mcServices',
-    'mobile-angular-ui'
+    'mcServices'
 ])
     .config(['$routeProvider',
         function ($routeProvider) {

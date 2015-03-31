@@ -7464,8 +7464,6 @@ a.list-group-item .icon.pull-right {
 }
 .navbar-app {
   min-height: 100px;
-  border-color: #cccccc;
-  background: #777777;
   border-width: 1px;
   border-style: solid;
   color: #ffffff;

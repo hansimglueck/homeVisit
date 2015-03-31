@@ -15,3 +15,11 @@ ul#messages {
 #spacer {
     height:1000px;
 }
+.deck-table-row > *:nth-child(1) { width:30px; }
+.deck-table-row > *:nth-child(2) { width:80px; }
+.deck-table-row > *:nth-child(3) { width:80px; }
+.deck-table-row > *:nth-child(5) { width:100px; }
+
+.direct-item {
+    width: 100%;
+}

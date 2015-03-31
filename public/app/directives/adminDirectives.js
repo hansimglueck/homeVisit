@@ -107,4 +107,20 @@ angular.module('adminDirectives', [])
         };
     })
 
+    .directive('showEvalContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-eval-content.html'
+        };
+    })
+
+    .directive('directItem', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-direct-item.html'
+        };
+    })
+
 ;

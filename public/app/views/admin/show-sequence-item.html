@@ -1,5 +1,6 @@
 <tbody ui-sortable="sortOptions" ng-model="deck.items" id="{{ 'sort-table-'+ $index }}" ng-controller="itemCtrl">
-<tr ng-repeat="item in deck.items track by $index" ng-style="item.comments[0]=='markiert' ? {'background': '#FFDDDD'} : {}">
+<tr class="deck-table-row" ng-repeat="item in deck.items track by $index"
+    ng-style="item.comments[0]=='markiert' ? {'background': '#FFDDDD'} : {}">
 
     <td>{{ $index }}</td>
 
@@ -10,7 +11,7 @@
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in types">
           {{ showType(item) }}
-        </span> <br /><br />Mapped:<br />
+        </span> <br/><br/>Mapped:<br/>
         <span editable-text="item.device" e-name="device"
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in types">
@@ -44,6 +45,7 @@
         <div show-sound-content ng-switch-when="sound"></div>
         <div show-cmd-content ng-switch-when="cmd"></div>
         <div show-player-direct-content ng-switch-when="playerDirect"></div>
+        <div show-eval-content ng-switch-when="eval"></div>
         <div show-card-content ng-switch-default></div>
     </td>
 
@@ -56,10 +58,19 @@
     -->
     <td style="white-space: nowrap">
         <div class="buttons">
-            <button class="btn btn-sm btn-danger" ng-click="deleteItem($parent.$index, $index)">Löschen</button>
-            <button class="btn btn-sm btn-primary" ng-click="moveItem($parent.$index, $index)">Bewege</button>
-            <button class="btn btn-sm btn-primary" ng-click="addItem($parent.$index, $index)">Einfügen</button><br />
-            <button class="btn btn-sm btn-primary" ng-click="toggleMarker($parent.$index, $index)">Mark</button>
+            <p>
+                <button class="btn btn-sm btn-danger" ng-click="deleteItem($parent.$index, $index)"><span
+                        class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                <button class="btn btn-sm btn-primary" ng-click="moveItem($parent.$index, $index)"><span
+                        class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
+            </p>
+            <p>
+                <button class="btn btn-sm btn-primary" ng-click="addItem($parent.$index, $index)"><span
+                        class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
+                <button class="btn btn-sm btn-primary" ng-click="toggleMarker($parent.$index, $index)"><span
+                        class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></button>
+            </p>
+
             <!--            <button class="btn" ng-click="addItem($parent.$index, $index)">Einfügen</button> -->
         </div>
     </td>

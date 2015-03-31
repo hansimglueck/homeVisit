@@ -1,6 +1,6 @@
 var adminControllers = angular.module('adminControllers', [])
 
-adminControllers.controller('HomeController', function($scope) {
+adminControllers.controller('HomeController', function ($scope) {
     $scope.name = "homE";
 });
 
@@ -22,39 +22,39 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
         console.log("decks changed. new length:" + $scope.decks.length);
         $scope.activateDeck($scope.decks[0]._id);
     });
-    $scope.getDeckById = function(id) {
-        console.log("trying to find deck with "+id);
-        var deckArr = $scope.decks.filter(function(deck){
+    $scope.getDeckById = function (id) {
+        console.log("trying to find deck with " + id);
+        var deckArr = $scope.decks.filter(function (deck) {
             return (deck._id == id);
         });
         return (deckArr.length > 0) ? deckArr[0] : null;
     };
-    $scope.getItemById = function(did, id) {
-        console.log("trying to find item with "+id);
-        var deckArr = $scope.decks.filter(function(deck){
+    $scope.getItemById = function (did, id) {
+        console.log("trying to find item with " + id);
+        var deckArr = $scope.decks.filter(function (deck) {
             return (deck._id == did);
         });
         var deck = (deckArr.length > 0) ? deckArr[0] : null;
         var item = null;
         var itemArr = [];
-        if (deck != null) itemArr = deck.items.filter(function(i) {
+        if (deck != null) itemArr = deck.items.filter(function (i) {
             return (i._id == id);
         });
         return (itemArr.length > 0) ? itemArr[0] : null;
     };
-    $scope.getDeckId = function(deckId) {
+    $scope.getDeckId = function (deckId) {
         var ret = -1;
-        for (var i = 0; i < $scope.decks.length; i++){
+        for (var i = 0; i < $scope.decks.length; i++) {
             if ($scope.decks[i]._id == deckId) ret = i;
         }
         return ret;
     };
-    $scope.getItemId = function(deckId, id) {
-        console.log("getItem-id for"+deckId+","+id);
+    $scope.getItemId = function (deckId, id) {
+        console.log("getItem-id for" + deckId + "," + id);
         var deck = $scope.getDeckById(deckId);
         console.log(deck);
         var ret = -1;
-        for (var i = 0; i < deck.items.length; i++){
+        for (var i = 0; i < deck.items.length; i++) {
             if (deck.items[i]._id == id) ret = i;
         }
         return ret;
@@ -102,9 +102,9 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
         var newName = prompt("Neuer Name?");
         var dupDeck = angular.copy($scope.decks[deckId]);
         delete dupDeck._id;
-        dupDeck.items.forEach(function(item){
+        dupDeck.items.forEach(function (item) {
             delete item._id;
-            item.voteOptions.forEach(function(opt){
+            item.voteOptions.forEach(function (opt) {
                 delete opt._id;
             })
         });
@@ -150,6 +150,43 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
                 $scope.error = err;
             }
         });
+    };
+    $scope.exportCSV = function (id) {
+        var csv = "";
+        $scope.decks[id].items.forEach(function (item) {
+            var type = "";
+            var text = "";
+            var comment = item.comments[1] || "";
+            switch (item.type) {
+                case "card":
+                    type = "Karte";
+                    text = item.text;
+                    break;
+                case "vote":
+                    type = "Abstimmung";
+                    text = item.text;
+                    break;
+                case "sound":
+                    type = "Sound";
+                    text = item.text;
+                    break;
+                case "eval":
+                    type = "Sonstige";
+                    text = "Besondere Berechnung...";
+                    break;
+                default:
+                    type = "skip";
+                    break;
+            }
+            if (type == "skip") return;
+            csv += [type, '"' + text + '"', '"' + comment + '"'].join(",");
+            csv += ",";
+            csv += item.voteOptions.map(function (opt) {
+                return opt.text
+            }).join("::");
+            csv += "\n";
+        });
+        console.log(csv);
     }
 });
 
@@ -205,18 +242,18 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
             console.log("Move " + deckId + "/" + itemId + " to " + result.newDeckId + "/" + result.newItemId);
             var newItem = angular.copy($scope.getItemById(deckId, itemId));
             delete newItem._id;
-            newItem.voteOptions.forEach(function(opt){
+            newItem.voteOptions.forEach(function (opt) {
                 delete opt._id;
             });
             var destDeck = $scope.getDeckById(result.newDeckId);
             var insertId = $scope.getItemId(result.newDeckId, result.newItemId);
             console.log(destDeck);
-            destDeck.items.splice(insertId+1, 0, newItem);
+            destDeck.items.splice(insertId + 1, 0, newItem);
             $scope.updateDeck($scope.getDeckId(result.newDeckId));
             console.log(result.copy);
             if (!result.copy) {
-                console.log("delete:"+$scope.getDeckId(deckId)+","+$scope.getItemId(deckId,itemId));
-                $scope.deleteItem($scope.getDeckId(deckId),$scope.getItemId(deckId,itemId));
+                console.log("delete:" + $scope.getDeckId(deckId) + "," + $scope.getItemId(deckId, itemId));
+                $scope.deleteItem($scope.getDeckId(deckId), $scope.getItemId(deckId, itemId));
             }
         }, function () {
             console.log('Modal dismissed at: ' + new Date());
@@ -234,7 +271,7 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
             device: "default"
         };
         if (typeof itemId == "undefined") $scope.decks[deckId].items.push($scope.inserted);
-        else $scope.decks[deckId].items.splice(itemId+1, 0, $scope.inserted);
+        else $scope.decks[deckId].items.splice(itemId + 1, 0, $scope.inserted);
     };
     $scope.saveItem = function () {
         console.log("save item for deck " + $scope.$index);
@@ -247,14 +284,14 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
         var item = $scope.decks[deckId].items[index];
         $scope.updateDeck(deckId);
     };
-    $scope.toggleMarker = function(deckId, index) {
+    $scope.toggleMarker = function (deckId, index) {
         var item = $scope.decks[deckId].items[index];
         if (typeof item.comments[0] == "undefined") item.comments[0] = "frei";
         if (item.comments[0] == "frei") item.comments[0] = "markiert";
         else item.comments[0] = "frei";
         $scope.updateDeck(deckId);
     };
- })
+})
     .controller('MoveItemController', function ($scope, $modalInstance, deckId, itemId, decks) {
         $scope.name = "moveI";
         $scope.deckId = deckId;
@@ -264,12 +301,12 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
             newDeckId: deckId,
             newItemId: itemId
         };
-        $scope.$watch('result.newDeckId', function(oldVal, newVal){
+        $scope.$watch('result.newDeckId', function (oldVal, newVal) {
             $scope.deckChoice = $scope.getDeckById($scope.result.newDeckId);
         });
-        $scope.getDeckById = function(id) {
-            console.log("trying to find deck with "+id);
-            var deckArr = $scope.decks.filter(function(deck){
+        $scope.getDeckById = function (id) {
+            console.log("trying to find deck with " + id);
+            var deckArr = $scope.decks.filter(function (deck) {
                 return (deck._id == id);
             });
             return (deckArr.length > 0) ? deckArr[0] : null;
@@ -339,14 +376,14 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
         }
         return selected.length ? selected[0].text : 'Not set';
     };
-    $scope.prepareItem = function(type, itemId) {
-        console.log("Prepare for "+type);
+    $scope.prepareItem = function (type, itemId) {
+        console.log("Prepare for " + type);
         console.log($scope.deck);
         console.log(itemId);
         if (type == "playerDirect") {
             $scope.deck.items[itemId].voteOptions = [];
             for (var i = 0; i < 15; i++) {
-                $scope.deck.items[itemId].voteOptions.push({text:'/info/denanot.html',value:'browser'});
+                $scope.deck.items[itemId].voteOptions.push({text: '/info/denanot.html', value: 'browser'});
             }
         }
     };
@@ -354,7 +391,7 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
     $scope.addVoteOption = function (deckId, id) {
         $scope.insertedOption = {
             text: '',
-            value:'',
+            value: '',
             followUp: '',
             score: 0,
             flags: [false]
@@ -392,6 +429,24 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
             delete importDeck._id;
             $scope.setNewDeck(importDeck);
             $scope.addDeck();
+        }
+
+    })
+    .controller('directItemCtrl', function ($scope, itemTypes, $filter, Socket) {
+        $scope.item = {
+            type: "card",
+            text: ""
+        };
+        $scope.types = itemTypes;
+        $scope.showType = function (item) {
+            var selected = [];
+            if (item.type) {
+                selected = $filter('filter')($scope.types, {value: item.type}, true);
+            }
+            return selected.length ? selected[0].text : 'Not set';
+        };
+        $scope.executeItem = function() {
+            Socket.emit({type:"directItem", data:$scope.item}, function() { console.log('directItem emitted'); });
         }
 
     });

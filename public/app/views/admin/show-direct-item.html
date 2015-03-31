@@ -1,0 +1,46 @@
+<table class="direct-item" ng-controller="directItemCtrl">
+    <colgroup>
+        <col width="10%">
+        <col width="80%">
+    </colgroup>
+<tr>
+    <!-- item.type - für alle items -->
+    <td>
+        <span editable-select="item.type" e-name="type"
+              e-ng-options="s.value as s.text for s in types">
+          {{ showType(item) }}
+        </span> <br/><br/>Mapped:<br/>
+        <span editable-text="item.device" e-name="device"
+              onaftersave="saveItem()"
+              e-ng-options="s.value as s.text for s in types">
+          {{ item.device ? item.device : "default"}}
+        </span>
+    </td>
+
+    <!-- haupt teil - für alle items von optionen aus der factory
+        card: text
+        vote: text + mit/ohne rating + anzahl optionen + optionen (ohne followup)
+        switch: nur optionen (mit followUp)
+        results: text als select
+        sound: text (filename)
+    -->
+    <td ng-switch="item.type">
+        <div show-vote-content ng-switch-when="vote"></div>
+        <div show-switch-content ng-switch-when="switch"></div>
+        <div show-results-content ng-switch-when="results"></div>
+        <div show-sound-content ng-switch-when="sound"></div>
+        <div show-cmd-content ng-switch-when="cmd"></div>
+        <div show-player-direct-content ng-switch-when="playerDirect"></div>
+        <div show-eval-content ng-switch-when="eval"></div>
+        <div show-card-content ng-switch-default></div>
+    </td>
+
+    <td style="white-space: nowrap">
+        <div class="buttons">
+            <p>
+                <button class="btn btn-sm" ng-click="executeItem($parent.$index, $index)">go</button>
+            </p>
+        </div>
+    </td>
+</tr>
+</table>

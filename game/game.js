@@ -74,6 +74,10 @@ Game.prototype = {
         }
     },
 
+    directItem: function(clientId, msg) {
+        this.mapItemToDevice(msg.data);
+    },
+
     log: function (message) {
         message = "GAME: " + message;
         wsManager.msgDevicesByRole("master", "log", message);
@@ -115,19 +119,22 @@ Game.prototype = {
                 };
                 break;
             default:
+                /*  hab ich aus irgendeinem grund mal einzeln übertragen...
                 content = {
                     type: item.type,
                     text: item.text,
                     voteOptions: JSON.parse(JSON.stringify(item.voteOptions)),   //=deep clone
-                    options: item.opts,
+                    opts: item.opts,
                     voteMulti: item.voteMulti,
                     flags: item.flags,
                     device: item.device
                 };
+                */
+                content = JSON.parse(JSON.stringify(item));   //=deep clone
                 break;
         }
         //log-nachricht
-        msg += " stepped to " + this.deckId + "/" + this.stepId + " (" + content.type + ")";
+        msg += " stepping to " + this.deckId + "/" + this.stepId + " (" + content.type + ")";
         this.log(msg);
 
         var wait = parseInt(this.getItem().wait) * 1000;
@@ -139,16 +146,29 @@ Game.prototype = {
     },
 
     executeStep: function (content, param) {
+        this.mapItemToDevice(content,param);
+
+        //der master soll mitkriegen, welcher step gerade ausgeführt wird
+        this.sendPlaybackStatus();
+
+        //checken, wie der nächste step getriggert wird
+        if (this.stepId + 1 < this.decks[this.deckId].items.length) {
+            if (this.decks[this.deckId].items[this.stepId + 1].trigger == "follow") {
+                this.step();
+            }
+        }
+    },
+
+    mapItemToDevice: function(content, param) {
         var self = this;
         if (content.type == "switch") {
+            //ein switch hat die möglichen folgen in den voteOptions gespeichert...
+            //und wählt nach param aus, welche folge er anfährt
             var option;
             for (var i = 0; i < content.voteOptions.length; i++) {
                 option = content.voteOptions[i];
                 if (option.text == param) {
                     self.decks.forEach(function (deck, id) {
-                        //console.log(deck._id);
-                        //console.log(option.followUp);
-                        //console.log(String(deck._id) == String(option.followUp));
                         if (String(deck._id) == String(option.followUp)) {
                             self.deckId = id;
                             self.log("switched to deck " + self.deckId);
@@ -159,7 +179,8 @@ Game.prototype = {
                 }
             }
             self.log("FollowUp nicht gefunden!!!");
-        } else {
+        }
+        else {
             //an die konfigurierten default-devices senden
             var map = {};
             if (content.device == "default" || typeof content.device == "undefined") map = this.conf.typeMapping.filter(function (tm) {
@@ -172,26 +193,21 @@ Game.prototype = {
             if (map.devices.length == 0) this.log("keine Devices gefunden für " + content.type);
             map.devices.forEach(function (dev) {
                 self.log("sending to " + dev + ": " + content.text);
+                //statt device player wird der playerManager verwendet
                 if (dev == "player") {
                     playerManager.addItem(content);
                     //TODO: nach player-step ist ja garkein follow möglich :.(
                     return;
                 }
-                //ist ein spezieller device-name angegeben?
+                //ist ein spezieller device-name angegeben? ZB für die buttons: button:red
                 if (dev.indexOf(':') != -1) {
                     wsManager.msgDevicesByRoleAndName(dev.split(':')[0], dev.split(':')[1], "display", content);
+                    return;
                 }
                 wsManager.msgDevicesByRole(dev, "display", content);
             });
-            wsManager.msgDevicesByRole('master', 'playBackStatus', {stepId: self.stepId, type: self.getItem().type});
+        }
 
-        }
-        //checken, wie der nächste step getriggert wird
-        if (this.stepId + 1 < this.decks[this.deckId].items.length) {
-            if (this.decks[this.deckId].items[this.stepId + 1].trigger == "follow") {
-                this.step();
-            }
-        }
     },
 
     start: function () {
@@ -222,12 +238,18 @@ Game.prototype = {
 
     stop: function () {
         this.play = false;
-        this.stepId = 0;
+        this.stepId = -1;
         this.log("stopped game");
+        this.sendPlaybackStatus();
     },
 
     getItem: function () {
+        if (this.stepId == -1) return null;
         return this.decks[this.deckId].items[this.stepId];
+    },
+
+    sendPlaybackStatus: function() {
+        wsManager.msgDevicesByRole('master', 'playBackStatus', {stepId: this.stepId, type: this.getItem() ? this.getItem().type : ""});
     }
 
 };

@@ -9,8 +9,11 @@
     <link rel='stylesheet' href='/stylesheets/votewatch.css'/>
     <link rel="stylesheet" href="css/angular-chart.css">
     <link rel="stylesheet" href="css/responsive.min.css"/>
+    <!--
     <link rel="stylesheet" href="css/app.css"/>
     <link rel="stylesheet" href="css/mobile-angular-ui-desktop.min.css">
+    -->
+    <link rel="stylesheet" href="css/mobile-angular-ui-base.min.css">
     <link rel='stylesheet' href='css/player.css'/>
     <link rel='stylesheet' href='css/score.css'/>
 
@@ -23,10 +26,12 @@
     <script src="js/components/angular-chart.js"></script>
     <script src="js/components/ng-cordova.js"></script>
     <script src="js/components/angular.audio.js"></script>
+    <script src="js/components/angular-animate.js"></script>
 
     <script src="js/playerApp.js"></script>
     <script src="js/controllers/playerControllers.js"></script>
     <script src="js/controllers/gameControllers.js"></script>
+    <script src="js/controllers/fxControllers.js"></script>
     <script src="js/directives/playerAppDirectives.js"></script>
     <script src="js/services/websocketServices.js"></script>
     <script src="js/services/playerAppServices.js"></script>
@@ -39,15 +44,19 @@
 
 </head>
 <body ng-swipe-right='Ui.turnOn("uiSidebarLeft")'
-      ng-swipe-left='Ui.turnOff("uiSidebarLeft")' ng-init="register()">
+      ng-swipe-left='Ui.turnOff("uiSidebarLeft")'
+        ng-controller="MainController">
 
 <!-- Sidebars -->
 <div class="sidebar sidebar-left" ng-controller="MenuController">
     <div class="scrollable">
         <h1 class="scrollable-header app-name">Menu</h1>
+
         <div class="scrollable-content">
             <div class="list-group" ui-turn-off='uiSidebarLeft'>
-                <div class="list-group-item">{{status.server.connected ? "Connected to Server as Client "+status.clientId : "Not Connected"}}</div>
+                <div class="list-group-item">{{status.server.connected ? "Connected to Server as Client
+                    "+status.clientId : "Not Connected"}}
+                </div>
                 <div class="list-group-item">PingPong = {{pingTime}}, {{pingCount}},{{pingTimeouts}}</div>
                 <!--
                 <a class="list-group-item" ng-click="joinGame()" ng-show="status.player.playerId == -1">
@@ -85,15 +94,12 @@
         </div>
     </div>
 </div>
-<div class="app">
-    <div class="navbar navbar-app navbar-absolute-top text-center red" ng-controller="NavbarController">
-        <div ng-style="{'height': '100px'}">
-            <div class="row1" ng-style="col1()">
-                <h1>HomeVisit</h1>
-            </div>
-            <div class="row2" ng-style="col2()">
+<div class="app-border" ng-style="col1border()">
+<div class="app" ng-style="col2border()">
+    <div class="navbar navbar-app navbar-absolute-top text-center" ng-controller="NavbarController">
+        <div>
+             <div>
                 <div class="navbar-brand navbar-brand-center" ui-yield-to="title">
-                    {{itemTypes[type]}}
                 </div>
                 <div class="btn-group pull-left">
                     <div ui-toggle="uiSidebarLeft" class="navbarbtn sidebar-toggle">
@@ -106,6 +112,10 @@
                     <div class="navbarbtn" ng-click="go('/score')">
                         <i class="fa fa-star bigger"></i></div>
                     <!--
+                    <div class="navbarbtn" ng-click="playSound(1)">
+                        <i class="fa fa-star"></i></div>
+                    <div class="navbarbtn" ng-click="startCountdown(10)">
+                        <i class="fa fa-star"></i></div>
                     <div class="navbarbtn" ng-click="go('/chat')">
                         <i class="fa fa-comment bigger"></i>
                         <span class="badge badge-notification" ng-show="newMessages>0">
@@ -116,9 +126,28 @@
                 </div>
             </div>
         </div>
-        <ul class="scoreAlert">
-            <li ng-repeat="a in alerts track by $index" ng-animate="{enter: 'animate-enter', leave: 'animate-leave'}">{{a}}</li>
-        </ul>
+    </div>
+    <div id="animation-overlay" ng-controller="overlayController">
+        <div class="animation-element score-alert score-up-animate green" ng-repeat="a in fx.posAlerts track by $index">
+            <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x semi-transparent"></i>
+                <i class="fa fa-stack-1x">{{a}}</i>
+            </span>
+        </div>
+        <div class="animation-element score-alert score-down-animate red" ng-repeat="a in fx.negAlerts track by $index">
+                       <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x semi-transparent"></i>
+                <i class="fa fa-stack-1x">{{a}}</i>
+            </span>
+
+        </div>
+        <div class="animation-element countdown countdown-animate red" ng-if="fx.countdown.display">
+                       <span class="fa-stack">
+                <i class="fa fa-certificate fa-stack-2x countdown-background"></i>
+                <i class="fa fa-stack-1x fa-inverse countdown-counter">{{fx.countdown.count}}</i>
+            </span>
+
+        </div>
     </div>
 
     <!-- App body -->
@@ -138,6 +167,7 @@
             </div>
         </div>
     </div>
+</div>
 </div>
 <!-- ~ .app -->
 

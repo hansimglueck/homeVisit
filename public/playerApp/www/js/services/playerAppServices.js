@@ -11,6 +11,18 @@ angular.module('playerAppServices', [])
             schwarz: {'background-color': '#000000', 'color': '#BBBBBB'}
         }
     })
+    .factory('borderColors', function () {
+        var width = "5px";
+        return {
+            rot: {'border': width+' solid #FF0000'},
+            gelb: {'border': width+' solid #FFFF00'},
+            blau: {'border': width+' solid #0000FF'},
+            weiss: {'border': width+' solid #FFFFFF'},
+            gruen: {'border': width+' solid #00FF00'},
+            pink: {'border': width+' solid #FF88FF'},
+            schwarz: {'border': width+' solid #000000'}
+        }
+    })
     .factory('playerColors', function () {
         return [
             ["pink", "schwarz"],
@@ -59,6 +71,7 @@ angular.module('playerAppServices', [])
         homeFactory.options = null;
         homeFactory.voteId = -1;
         homeFactory.checked = 0;
+        homeFactory.showGo = true;
 
         Socket.on('display', function (event) {
             var data = JSON.parse(event.data).data;
@@ -68,6 +81,7 @@ angular.module('playerAppServices', [])
             homeFactory.options = null;
             if (data) {
                 if (!!data.text) homeFactory.text = data.text.split("::");
+                if (typeof data.showGo != "undefined") homeFactory.showGo = data.showGo;
                 homeFactory.displayData = data;
                 if (data.type) {
                     switch (data.type) {
@@ -271,5 +285,51 @@ angular.module('playerAppServices', [])
             $rootScope.$broadcast("newChatMessage", chatFactory.newCnt);
         };
         return chatFactory;
+    })
+    .factory('fxService', function ($timeout, $interval, ngAudio){
+        var fxService = {};
+        fxService.sound = [];
+        fxService.sound[0] = ngAudio.load("sounds/tiny-01.mp3");    //vote incoming
+        fxService.sound[1] = ngAudio.load("sounds/smashing.mp3");   //scoreDown
+        fxService.sound[2] = ngAudio.load("sounds/glass.mp3");      //scoreUp
+        fxService.posAlerts = [];
+        fxService.negAlerts = [];
+        fxService.countdown = {
+            display: false,
+            count: -1
+        };
+        fxService.scoreAlert = function(score) {
+            console.log("FX-Service got score: "+score);
+            if(isNaN(score)) return;
+            if (score < 0) {
+                score = ""+score;
+                fxService.playSound(1);
+                fxService.negAlerts.push(score);
+                $timeout(function(){console.log("timeout");fxService.negAlerts.pop()},2000);
+            }
+            if (score > 0) {
+                console.log(">");
+                score = "+"+score;
+                fxService.playSound(2);
+                fxService.posAlerts.push(score);
+                $timeout(function(){console.log("timeout");fxService.posAlerts.pop();},2000);
+            }
+        };
+        fxService.startCountdown = function(val, cb) {
+            fxService.countdown.count = val+1;
+            $interval(function(){
+                fxService.countdown.count--;
+                fxService.countdown.display=true;
+                console.log("count down to "+fxService.countdown.count);
+                $timeout(function(){
+                    fxService.countdown.display=false;
+                },300);
+                if (cb && fxService.countdown.count==0) cb.apply();
+            },1000, val+1);
+        };
+        fxService.playSound = function(id) {
+            fxService.sound[id].play();
+        };
+        return fxService;
     })
 ;

@@ -49,7 +49,7 @@ angular.module('WebsocketServices', []).
                     if (eventName) {
                         if (angular.isString(eventName) && message.type === eventName) {
                             $rootScope.$apply(function () {
-                                currentCallback.fn.apply(ws, args);
+                                currentCallback.fn.call(ws, message);
                             });
                         }
                     }

@@ -5,6 +5,7 @@ function WsManager() {
     this.clients = [];
     this.sids = [];
     this.roleCallbacks = [];
+    this.typeCallbacks = [];
 
 }
 
@@ -18,6 +19,13 @@ WsManager.prototype = {
             role: role,
             self: self
         });
+    },
+    onType: function(type, self, callback) {
+       this.typeCallbacks.push({
+           fn: callback,
+           type: type,
+           self: self
+       });
     },
     setSocketServer: function (wss) {
         this.wss = wss;
@@ -161,6 +169,7 @@ WsManager.prototype = {
 
                         }
                         self.applyRoleCallbacks(ws, msg);
+                        self.applyTypeCallbacks(ws, msg);
                     }
 
                 } catch (err) {
@@ -197,6 +206,17 @@ WsManager.prototype = {
                     cb.fn.call(cb.self, ws.clientId, msg);
                 } catch (e) {
                     console.log("ERROR in wsManager.applyRoleCallback: " + e.stack);
+                }
+            }
+        })
+    },
+    applyTypeCallbacks: function (ws, msg) {
+        this.typeCallbacks.forEach(function (cb) {
+            if (cb.type == msg.type) {
+                try {
+                    cb.fn.call(cb.self, ws.clientId, msg);
+                } catch (e) {
+                    console.log("ERROR in wsManager.applyTypeCallback: " + e.stack);
                 }
             }
         })

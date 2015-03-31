@@ -214,6 +214,7 @@ PlayerManager.prototype = {
         message = "PMANAGER: " + message;
         wsManager.msgDevicesByRole("master", "log", message);
     },
+    // callback-funktion für alle eingehenden role=player-nachrichten
     playerMessage: function (clientId, msg) {
         try {
             if (typeof msg != "undefined") switch (msg.type) {
@@ -254,6 +255,15 @@ PlayerManager.prototype = {
             console.log("ERROR in playerManager.newMessage! " + e.stack);
         }
     },
+    // Zum Verteilen von allgemeinen Szenen an alle Player.
+    // diese funktion bemüht den wsManager und sichert die letzte Message zum Ausliefern bei Client-Reload
+    broadcastMessage: function(type, data) {
+        wsManager.msgDevicesByRole("player", type, data);
+    },
+    // Zum Benachrichtigen einzelner Player
+    sendMessage: function(playerId, type, data){
+        wsManager.msgDeviceByIds([this.players[playerId].clientId], type, data);
+    },
     //donation-msg-data: data.recipient (playerId), data.itemType
     donate: function (clientId, data) {
         var playerId = this.getPlayerIdForClientId(clientId);
@@ -285,7 +295,7 @@ PlayerManager.prototype = {
 
     },
     sendInventory: function (playerId) {
-        if (this.players[playerId]) wsManager.msgDeviceByIds([this.players[playerId].clientId], "inventory", this.players[playerId].inventory);
+        if (this.players[playerId]) this.sendMessage(playerId, "inventory", this.players[playerId].inventory);
     },
     masterMessage: function (clientId, msg) {
         if (msg.type == "register") {
@@ -341,8 +351,7 @@ PlayerManager.prototype = {
         var directItem = this.directItems[directId];
         var self = this;
         directItem.voteOptions.forEach(function (opt, id) {
-            var recId = self.players[id].clientId;
-            wsManager.msgDeviceByIds([recId], "display", {type: opt.value, text: opt.text});
+            self.sendMessage(id, "display", {type: opt.value, text: opt.text});
         })
     },
     sendCard: function (cardId) {
@@ -351,20 +360,20 @@ PlayerManager.prototype = {
             type: cardItem.type,
             text: cardItem.text
         };
-        wsManager.msgDevicesByRole("player", "display", content);
+        this.broadcastMessage("display", content);
     },
     sendVote: function (voteId) {
         var voteItem = this.voteItems[voteId];
         voteItem.votes = [];
         voteItem.ratedVote = voteItem.flags ? voteItem.flags[0] : true;
-        if (voteItem.options[0] == "playerChoice") {
+        if (voteItem.opts[0] == "playerChoice") {
             voteItem.voteOptions = this.getPlayerArray();
         }
-        if (voteItem.options[0] == "enterNumber") {
+        if (voteItem.opts[0] == "enterNumber") {
             voteItem.voteOptions = [{val: 0, checked: false}];
         }
-        if (voteItem.options[0] == "countryChoice") {
-            var lang = voteItem.options[1];
+        if (voteItem.opts[0] == "countryChoice") {
+            var lang = voteItem.opts[1];
             voteItem.voteOptions = this.getEUcountries().map(function (c) {
                 return {val: c.id, text: c[lang]}
             });
@@ -376,9 +385,9 @@ PlayerManager.prototype = {
             voteOptions: voteItem.voteOptions,
             voteMulti: voteItem.voteMulti,
             ratedVote: voteItem.ratedVote,
-            voteType: voteItem.options[0]
+            voteType: voteItem.opts[0]
         };
-        wsManager.msgDevicesByRole("player", "display", content);
+        this.broadcastMessage("display", content);
     },
     getEUcountries: function () {
         return this.europeCountries.filter(function (c) {
@@ -387,7 +396,7 @@ PlayerManager.prototype = {
     },
     chat: function (clientId, data) {
         var recId = this.players[data.recipient].clientId;
-        wsManager.msgDeviceByIds([recId], "chat", {playerId: data.sender, message: data.message});
+        this.sendMessage(data.recipient, "chat", {playerId: data.sender, message: data.message});
 
     },
     getPlayerIdForClientId: function (clientId) {
@@ -419,6 +428,7 @@ PlayerManager.prototype = {
             });
             return;
         }
+
         if (!!this.lastPlayerMessage) client.socket.send(JSON.stringify({
             type: "display",
             data: this.lastPlayerMessage
@@ -430,7 +440,7 @@ PlayerManager.prototype = {
     },
     sendPlayerStatus: function (playerId) {
         if (this.players[playerId]) {
-            wsManager.msgDeviceByIds([this.players[playerId].clientId], "joined", {
+            this.sendMessage(playerId, "joined", {
                 player: {
                     playerId: playerId,
                     joined: this.players[playerId].joined,
@@ -449,7 +459,7 @@ PlayerManager.prototype = {
             maxPlayers: this.conf.playerCnt,
             avgRatings: this.avgRatings
         };
-        wsManager.msgDevicesByRole("player", "status", msg);
+        this.broadcastMessage("status", msg);
         wsManager.msgDevicesByRole("master", "status", msg);
         wsManager.msgDevicesByRole("MC", "status", msg);
     },
@@ -500,7 +510,7 @@ PlayerManager.prototype = {
         this.rating[playerId] = rate;
         console.log("rate: " + this.rating);
         this.calcAvgRate();
-        wsManager.msgDevicesByRole('player', 'rates', {avgRatings: this.avgRatings});
+        this.broadcastMessage('rates', {avgRatings: this.avgRatings});
     },
     calcAvgRate: function () {
         if (this.conf.playerCnt <= 1) {
@@ -529,15 +539,15 @@ PlayerManager.prototype = {
         console.log("Got Vote for " + voteId + " from Player " + playerId);
         var dd = data.data;
         if (this.voteItems.length == 0) {
-            wsManager.msgDeviceByIds([clientId], "display", {"text": "There is no vote at the moment!"});
+            this.sendMessage(playerId, "display", {"text": "There is no vote at the moment!"});
             return;
         }
         if (typeof voteItem == "undefined") {
-            wsManager.msgDeviceByIds([clientId], "display", {"text": "This vote doesn't exist!"});
+            this.sendMessage(playerId, "display", {"text": "This vote doesn't exist!"});
             return;
         }
         if (voteItem.votes[playerId]) {
-            wsManager.msgDeviceByIds([clientId], "display", {"text": "You already voted in this Poll!"});
+            this.sendMessage(playerId, "display", {"text": "You already voted in this Poll!"});
         }
         console.log("vote=" + dd);
         var msg = "You voted: ";
@@ -554,7 +564,7 @@ PlayerManager.prototype = {
         if (!voteItem.ratedVote) voteItem.multiplier[playerId] = 1;
         this.log("Player " + playerId + ": " + msg);
         console.log("multiplier=" + voteItem.multiplier[playerId]);
-        wsManager.msgDeviceByIds([clientId], "display", {"text": msg});
+        this.sendMessage(playerId, "display", {"text": msg});
         //voteComplete soll aufgerufen werden, wenn alle player mit joined = true gevoted haben...
         var missingVotes = 0;
         for (var i = 0; i < this.players.length; i++) {
@@ -582,7 +592,7 @@ PlayerManager.prototype = {
                     if (!voteOptions[j].votes) voteOptions[j].votes = 0;
                     if (votes[i][j].checked) {
                         voteItem.voteCount += voteItem.multiplier[i]; //votes[i].multiplier;
-                        if (voteItem.options[0] == "enterNumber") {
+                        if (voteItem.opts[0] == "enterNumber") {
                             voteOptions[j].result += parseFloat(votes[i][j].val);
                             if (parseFloat(votes[i][j].val) < voteItem.minVal) voteItem.minVal = parseFloat(votes[i][j].val);
                             if (parseFloat(votes[i][j].val) > voteItem.maxVal) voteItem.maxVal = parseFloat(votes[i][j].val);
@@ -611,7 +621,7 @@ PlayerManager.prototype = {
         console.log("preparing result " + resultId);
         var newestVoteId = this.voteItems.length - 1;
         var resultItem = this.resultItems[resultId];
-        switch (resultItem.options[1]) {
+        switch (resultItem.opts[1]) {
             case "optionScore":
                 this.calcScore("correct", newestVoteId);
                 break;
@@ -693,7 +703,7 @@ PlayerManager.prototype = {
         }
         if (!ok) console.log("Answers are not yielding an Order!");
         this.sendPlayerStatus(-1);
-        wsManager.msgDevicesByRole('player', "display", {
+        this.broadcastMessage("display", {
             type: "seatOrder"
         });
     },
@@ -726,13 +736,13 @@ PlayerManager.prototype = {
             else resData.push(option.result / voteItem.voteCount * 100);
         });
         resultItem.data = resData;
-        wsManager.msgDevicesByRole('player', "display", {
+        this.broadcastMessage("display", {
             type: "result",
             displayType: displayType,
             text: msg,
             labels: labels,
             data: resData,
-            resultColor: resultItem.options[0]
+            resultColor: resultItem.opts[0]
         });
         if (!resultItem.flags[0]) return;
         var game = require('./game.js');

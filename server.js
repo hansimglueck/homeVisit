@@ -18,7 +18,7 @@ mongoose.connect('mongodb://localhost/homeVisit', function(err) {
         });
         db.on('error', function() {
             console.log("ERROR error");
-        })
+        });
         console.log('db-connection successful');
      }
 });
@@ -63,9 +63,8 @@ wsManager.onRole("master", playerManager, playerManager.masterMessage);
 wsManager.onRole("MC", playerManager, playerManager.mcMessage);
 
 var game = require('./game/game.js');
-wsManager.onRole("master", game, game.trigger);
-wsManager.onRole("button", game, game.trigger);
-wsManager.onRole("MC", game, game.trigger);
+wsManager.onType("playbackAction", game, game.trigger);
+wsManager.onType("directItem", game, game.directItem);
 
 var raspiTools = require('./game/raspiTools.js');
 wsManager.onRole("master", raspiTools, raspiTools.newMessage);
@@ -103,6 +102,8 @@ app.use(function (req, res, next) {
 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public/playerApp/www')));
+app.use(express.static(path.join(__dirname, '../homeVisitMC/app')));
+app.use(express.static(path.join(__dirname, '../homeVisitMC')));
 app.use('/decks', decks);
 app.use('/gameConf', gameConfs);
 app.use('/fileBrowser', fileBrowser);

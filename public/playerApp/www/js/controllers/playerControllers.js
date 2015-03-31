@@ -1,22 +1,20 @@
 angular.module("playerControllers", [])
-    .controller('ctrl', function ($scope, Socket, $cookies, colors, itemTypes, playerColors) {
-        $scope.debug = false;
-        $scope.cookie = $cookies['connect.sid'];
-        $scope.messages = ["waiting..."];
-        $scope.text = [".oO"];
-        $scope.options = null;
-        $scope.limit = 1;
-        $scope.checked = 0;
-        $scope.player = {};
-        $scope.type = "rating";
-        $scope.itemTypes = itemTypes;
-        $scope.votelast = "vote";
+    .controller('MainController', function ($scope, colors, borderColors, Status) {
+        $scope.status = Status;
 
 
-        $scope.toVote = function () {
-            $scope.type = $scope.votelast;
-        }
-
+        $scope.col1 = function () {
+            return colors[$scope.status.player.colors[0]];
+        };
+        $scope.col2 = function () {
+            return colors[$scope.status.player.colors[1]];
+        };
+        $scope.col1border = function () {
+            return borderColors[$scope.status.player.colors[0]];
+        };
+        $scope.col2border = function () {
+            return borderColors[$scope.status.player.colors[1]];
+        };
 
     })
     .controller('HomeController', function ($scope, $location, Status, Home, Rating, Socket, colors, playerColors, ngAudio, europeSvgData) {
@@ -116,6 +114,9 @@ angular.module("playerControllers", [])
                 voteId: $scope.home.voteId
             });
         };
+        $scope.go = function() {
+            Socket.emit({type:"playbackAction", data:"go"}, function() { console.log('go emitted'); });
+       }
     })
     .controller('MenuController', function ($scope, Status, Socket) {
         $scope.status = Status;
@@ -160,40 +161,31 @@ angular.module("playerControllers", [])
         //        });
         //};
     })
-    .controller('NavbarController', function ($scope, $location, Status, Rating, Chat, Home, colors, $timeout) {
+    .controller('NavbarController', function ($scope, $location, Status, Rating, Chat, Home, colors, fxService) {
         $scope.status = Status;
         $scope.chat = Chat;
         $scope.rating = Rating;
         $scope.newMessages = 0;
-        $scope.alerts = [];
+        $scope.test = "test aus navbar controller";
         $scope.$on("newChatMessage", function (event, count) {
             $scope.newMessages = count
         });
-        $scope.col1 = function () {
-            return colors[$scope.status.player.colors[0]];
-        };
-        $scope.col2 = function () {
-            return colors[$scope.status.player.colors[1]];
-        };
         $scope.$on("disconnected", function () {
             $scope.status.resetPlayer();
         });
         $scope.go = function (path) {
             $location.path(path);
         };
-        $scope.$watch('status.player.score', function(newVal,oldVal){
-            console.log("Player"+$scope.status.player.playerId+"-Score: "+oldVal+"->"+newVal);
-            var score = newVal-oldVal;
-            if(isNaN(score)) return;
-            if (score < 0) score = ""+score;
-            if (score > 0) score = "+"+score;
-
-            $scope.addAlert(score);
-        });
-        $scope.addAlert = function(alert) {
-            $scope.alerts.push(alert);
-            $timeout(function(){$scope.alerts = []},2000);
+        $scope.startCountdown = function(val) {
+            fxService.startCountdown(val, cb);
+        };
+        function cb() {
+            alert($scope.test);
         }
+        $scope.playSound = function() {
+            fxService.playSound();
+        }
+
     })
     .controller('EuropeController', function ($scope, europeSvgData) {
         $scope.europeSVG = europeSvgData;
@@ -407,6 +399,5 @@ angular.module("playerControllers", [])
                 return p.playerId != self.playerId;
             });
         }
-
     });
 

@@ -24,9 +24,11 @@
 <div class="sidebar sidebar-left" ng-controller="MenuController">
     <div class="scrollable">
         <h1 class="scrollable-header app-name">Menu</h1>
+
         <div class="scrollable-content">
             <div class="list-group" ui-turn-off='uiSidebarLeft'>
-                <div class="list-group-item">{{status.server.connected ? "Connected to Server as Client "+status.clientId : "Not Connected"}}</div>
+                <div class="list-group-item">{{status.server.connected ? "Connected to Server as Client"+status.clientId : "Not Connected"}}
+                </div>
                 <div class="list-group-item">PingPong = {{pingTime}}, {{pingCount}},{{pingTimeouts}}</div>
                 <a class="list-group-item" href="#/home">Home
                     <a class="list-group-item" href="#/alarm">Alarm
@@ -42,12 +44,12 @@
                 <h1>MC in da HOME</h1>
             </div>
             <div class="row2">
-               <div class="btn-group pull-left">
+                <div class="btn-group pull-left">
                     <div ui-toggle="uiSidebarLeft" class="navbarbtn sidebar-toggle">
                         <i class="fa fa-bars"></i> Menu
                     </div>
                 </div>
-             </div>
+            </div>
         </div>
     </div>
 

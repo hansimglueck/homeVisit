@@ -12,7 +12,9 @@ angular.module('playerApp', [
     'playerAppServices',
     'playerAppDirectives',
     'ngCordova',
-    'ngAudio'
+    'ngAnimate',
+    'ngAudio',
+    'fxControllers'
 ])
     .config(['$routeProvider',
         function ($routeProvider) {

@@ -1,4 +1,5 @@
 <not-joined ng-hide="status.joined"></not-joined>
+<div class="playback-control" ng-if="home.showGo"><button class="btn-lg" ng-click="go()">Weiter</button></div>
 <div class="section content" ng-switch="home.type" ng-show="status.joined">
     <div ng-switch-when="result">
         <div ng-if="home.displayType == 'europeMap'">
@@ -41,7 +42,6 @@
     <div ng-switch-when="home">
         EUROPA
     </div>
-
 
     <div ng-switch-when="vote">
         <ul class="list-unstyled">

@@ -2,15 +2,11 @@
 @import "bootstrap/less/variables.less";
 
 // Bootstrap Overrides
-@brand-primary: #696667;
+@brand-primary: #007aff;
 @brand-success: #4cd964;
 @brand-warning: #fc0;
 @brand-danger: #ff3b30;
 @brand-info: #34aadc;
-
-@body-bg: @gray-lighter;
-@font-size-base:          14px;
-
 
 @headings-font-family:    @font-family-base;
 @headings-font-weight:    normal;
@@ -19,8 +15,8 @@
 @badge-font-weight:       normal;
 @close-font-weight:       normal;
 
-@navbar-default-color:                     #FFFFFF;
-@navbar-default-bg: @gray-light;
+@navbar-default-color:                     @brand-primary;
+@navbar-default-bg:                        #f7f7f7;
 @navbar-default-link-color:                @brand-primary;
 @navbar-default-link-hover-color:          darken(@brand-primary, 5%);
 @navbar-default-link-active-color:         lighten(@brand-primary, 5%);
@@ -39,7 +35,7 @@
 @page-header-margin-top: 10px;
 
 // App
-@app-bg: @body-bg;
+@app-bg: @gray-light;
 @zindex-app: 2;
 @zindex-app-search: 1029;
 @app-shadow: 0 0 4px rgba(0,0,0,0.4);
@@ -59,7 +55,7 @@
 
 // Navbars
 @btn-icon-only-font-size: 22px;
-@navbar-app-height: 100px;
+@navbar-app-height: 50px;
 
 // Overlays
 @overlay-margin: -5px -5px -5px -5px;
@@ -81,12 +77,11 @@
 @panel-title-line-height: @line-height-computed * 2;
 @panel-default-panel-heading-padding: 0 0 10px 0;
 @panel-default-panel-body-padding: 15px;
-@panel-bg: none;
 
 // Sidebars
 @sidebar-width: 300px;
-@sidebar-width-xs: @screen-xs-min - 80;
-@sidebar-width-sm: @screen-sm-min - 160;
+@sidebar-width-xs: @screen-xs-min - 40;
+@sidebar-width-sm: @screen-sm-min - 80;
 @sidebar-width-md: 300px;
 @sidebar-width-lg: 320px;
 @sidebar-left-width: @sidebar-width;
@@ -111,6 +106,6 @@
 @zindex-sidebar-header: 10;
 @sidebar-header-padding: 0 10px;
 @sidebar-header-color: #fff;
-@sidebar-background: @brand-primary;
+@sidebar-background: @gray;
 @sidebar-left-background: @sidebar-background;
 @sidebar-right-background: @sidebar-background;
