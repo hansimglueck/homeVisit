@@ -4,8 +4,6 @@
 var exec = require('child_process').exec;
 var wsManager = require('./wsManager.js');
 var playerManager = require('./playerManager.js');
-var OptionPoll = require('./polls/OptionPoll');
-var NumberPoll = require('./polls/NumberPoll');
 
 
 function Game() {
@@ -145,7 +143,7 @@ function Game() {
         de: "",
         "class": "cet"
     }, {"id": "ru-kaliningrad", en: "", de: "", "class": "europe ru"}, {"id": "me", en: "", de: "", "class": "cet"}];
-    this.polls = [];
+
 }
 
 Game.prototype = {
@@ -241,11 +239,6 @@ Game.prototype = {
 
         var item = this.getItem();
 
-        //log-nachricht
-        msg += " stepping to " + this.deckId + "/" + this.stepId + " (" + item.type + ")";
-        this.log(msg);
-
-
         //objekt mit den relevanten daten zum senden vorbereiten
         var content;
         switch (item.type) {
@@ -257,18 +250,6 @@ Game.prototype = {
                     device: item.device
                 };
                 break;
-            case "vote":
-                this.polls.push(this.preparePoll(item));
-                content = JSON.parse(JSON.stringify(item));   //=deep clone
-                content.poll = this.polls[this.polls.length-1];
-                break;
-            case "results":
-                content = item;
-                content.data = this.polls[this.polls.length-1].getResult();
-                console.log("item for result:");
-                console.log(content);
-                break;
-
             default:
                 /*  hab ich aus irgendeinem grund mal einzeln übertragen...
                 content = {
@@ -284,39 +265,16 @@ Game.prototype = {
                 content = JSON.parse(JSON.stringify(item));   //=deep clone
                 break;
         }
+        //log-nachricht
+        msg += " stepping to " + this.deckId + "/" + this.stepId + " (" + content.type + ")";
+        this.log(msg);
+
         var wait = parseInt(this.getItem().wait) * 1000;
         if (typeof wait === 'undefinded') wait = 0;
         var self = this;
         setTimeout(function () {
             self.executeStep.call(self, content, param);
         }, wait);
-    },
-
-    preparePoll: function(item) {
-        var poll;
-        switch (item.opts[0]) {
-            case "customOptions":
-            case "customMultipleOptions":
-                item.voteOptions.forEach(function(opt,id){opt.value = id;});
-                poll = new OptionPoll(item);
-                break;
-            case "playerChoice":
-            case "countryChoice":
-                var lang = item.opts[2];
-                item.voteOptions = this.getEUcountries().map(function (c) {
-                    return {value: c.id, text: c[lang]}
-                });
-                poll = new OptionPoll(item);
-                break;
-
-            case "enterNumber":
-                poll = new NumberPoll(item);
-                break;
-            default:
-                break;
-        }
-        poll.onFinish(this, function() {this.trigger(-1,{data: 'go'})});
-        return poll;
     },
 
     executeStep: function (item, param) {
@@ -394,10 +352,10 @@ Game.prototype = {
                 if (err) return next(err);
                 g.decks = decks;
                 g.decks.forEach(function (deck, id) {
-                    //console.log(deck._id);
-                    //console.log(g.conf.startDeckId);
+                    console.log(deck._id);
+                    console.log(g.conf.startDeckId);
                     if (String(deck._id) == String(g.conf.startDeckId)) g.deckId = id;
-                    //console.log(String(deck._id) == String(g.conf.startDeckId));
+                    console.log(String(deck._id) == String(g.conf.startDeckId));
                 });
                 //console.log(g.decks);
                 g.step("", 0);
@@ -424,12 +382,7 @@ Game.prototype = {
 
     sendPlaybackStatus: function() {
         wsManager.msgDevicesByRole('master', 'playBackStatus', {stepId: this.stepId, type: this.getItem() ? this.getItem().type : ""});
-    },
-    getEUcountries: function () {
-        return this.europeCountries.filter(function (c) {
-            return c.class == "eu europe";
-        });
-    },
+    }
 
 };
 

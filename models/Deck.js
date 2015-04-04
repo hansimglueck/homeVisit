@@ -41,3 +41,10 @@ var DeckSchema   = new mongoose.Schema({
 
 // Export the Mongoose model
 module.exports = mongoose.model('deck', DeckSchema);
+
+/*
+Vote-Item:
+opts[0]: voteType
+opts[1]: percent needed to auto-complete
+opts[2]: language (für generierte Optionen, zB countryChoice)
+ */

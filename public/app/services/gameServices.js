@@ -40,7 +40,8 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         {value: 'Line', text: 'Kurve'},
         {value: 'seatOrder', text: 'Sitzordnung'},
         {value: 'europeMap', text: 'Europakarte'},
-        {value: 'numberStats', text: 'Numerische Auswertung'}
+        {value: 'numberStats', text: 'Numerische Auswertung'},
+        {value: 'alarmOnMajority', text: 'Alarm bei Mehrheit'}
     ])
     .value('languages', [
         {value: 'de', text: 'Deutsch'},

@@ -9,6 +9,26 @@
         </span>
         </td>
     </tr>
+    <tr>
+        <td>Zeit:</td>
+        <td>
+<span editable-textarea="item.time"
+      e-rows="1" e-cols="4" e-name="time"
+      onaftersave="saveItem()">
+          {{ item.time || 'not set' }}
+        </span>
+        </td>
+    </tr>
+    <tr>
+        <td>Nötige Stimmen:</td>
+        <td>
+<span editable-textarea="item.opts[1]"
+      e-rows="1" e-cols="4" e-name="complete"
+      onaftersave="saveItem()">
+          {{ item.opts[1] || 'not set' }}%
+        </span>
+        </td>
+    </tr>
     <tr ng-show="item.opts[0] == 'customMultipleOptions' || item.opts[0]=='countryChoice'">
         <td>Anzahl Stimmen:</td>
         <td>
@@ -31,7 +51,7 @@
     <tr ng-show="item.opts[0]=='countryChoice'">
         <td>Sprache:</td>
         <td>
-        <span editable-select="item.opts[1]" e-name="language"
+        <span editable-select="item.opts[2]" e-name="language"
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in languages"
                 >

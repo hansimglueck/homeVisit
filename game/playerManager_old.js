@@ -175,7 +175,6 @@ PlayerManager = function () {
     this.directItems = [];
     this.resultItems = [];
     this.onTurn = 0;
-    this.polls = {};
 };
 
 PlayerManager.prototype = {
@@ -329,27 +328,50 @@ PlayerManager.prototype = {
 
     },
     vote: function (clientId, data) {
+        //die eingehenden votes werden in einem array des aktuellen items gespeichert
+        //if (content.type == "vote") this.getItem().votes = {};
         var playerId = data.playerId;
-        var pollId = data.pollId;
-        console.log("Got Vote for " + pollId + " from Player " + playerId);
-
-        var poll = this.polls[pollId];
-        if (typeof poll == "undefined") {
-            this.sendMessage(playerId, "display", {"text": "This poll doesn't exist!"});
+        var voteId = data.voteId;
+        var voteItem = this.voteItems[voteId];
+        console.log("Got Vote for " + voteId + " from Player " + playerId);
+        var dd = data.data;
+        if (this.voteItems.length == 0) {
+            this.sendMessage(playerId, "display", {"text": "There is no vote at the moment!"});
             return;
         }
-
-        var choice = data.choice;
-        var vote = {choice: choice, playerId: playerId};
-        vote.multiplier = this.players.filter(function (p) { return p.joined; }).length - this.players[playerId].rank + 1;
-//        vote.multiplier = this.avgRatings[playerId];
-
-        if (!poll.vote(vote)) return;
-
-        var msg = "You voted: "+data.text;
-        if (poll.isWeighted()) msg += " with a weight of "+vote.multiplier;
+        if (typeof voteItem == "undefined") {
+            this.sendMessage(playerId, "display", {"text": "This vote doesn't exist!"});
+            return;
+        }
+        if (voteItem.votes[playerId]) {
+            this.sendMessage(playerId, "display", {"text": "You already voted in this Poll!"});
+        }
+        var msg = "You voted: ";
+        for (var i = 0; i < dd.length; i++) {
+            if (typeof dd[i].text == "undefined") dd[i].text = dd[i].playerId;       //wenn das playerArray als VoteOPtions ausgegeben wurde
+            if (dd[i].checked) msg += dd[i].text + " ";
+        }
+        voteItem.votes[playerId] = dd;
+        if (typeof voteItem.multiplier == "undefined") voteItem.multiplier = [];
+        voteItem.multiplier[playerId] = this.players.filter(function (p) { return p.joined; }).length - this.players[playerId].rank + 1;
+//        voteItem.votes[playerId].multiplier = this.avgRatings[playerId];
+        if (!voteItem.ratedVote) voteItem.multiplier[playerId] = 1;
         this.log("Player " + playerId + ": " + msg);
+        console.log("multiplier=" + voteItem.multiplier[playerId]);
         this.sendMessage(playerId, "display", {"text": msg});
+        //voteComplete soll aufgerufen werden, wenn genug player mit joined = true gevoted haben...
+        //opts[1] trägt die nötige Prozentzahl der abgegebenen Stimmen. (not set/default = 100%)
+        var missingVotes = 0;
+        var joinedPlayers = this.players.filter(function(player){return player.joined}).length;
+        var neededVotes = joinedPlayers;
+        if (typeof voteItem.opts[1] != "undefined") Math.ceil(joinedPlayers*voteItem.opts[1]/100);
+
+        for (var i = 0; i < this.players.length; i++) {
+            if (this.players[i].joined) {
+                if (typeof voteItem.votes[i] == "undefined") missingVotes++;
+            }
+        }
+        if (missingVotes <= joinedPlayers-neededVotes) this.calcVoteAvg(voteId);
     },
     rate: function (clientId, data) {
         var playerId = data.playerId;
@@ -386,15 +408,13 @@ PlayerManager.prototype = {
             }
             switch (item.type) {
                 case "vote":
-                    this.polls[item.poll.id] = item.poll;
-                    item.poll.setMaxVotes(this.players.filter(function(player){return player.joined}).length);
-                    this.deliverMessage(item.device, "display", item.poll.getWsContent());
+                    this.sendVote(this.voteItems.push(item) - 1);
                     break;
                 case "card":
-                    this.deliverMessage(item.device, "display", {type:item.type, text: item.text});
+                    this.sendCard(this.cardItems.push(item) - 1);
                     break;
                 case "results":
-                    this.results(item);
+                    this.results(this.resultItems.push(item) - 1);
                     break;
                 case "playerDirect":
                     this.direct(this.directItems.push(item) - 1);
@@ -406,21 +426,57 @@ PlayerManager.prototype = {
                     break;
             }
         } catch (e) {
-            //TODO: einen schönen weg finden, um solche Errors nach möglichkeit im admin-log zu zeigen
+            //TODO: einen schönen weg finden, um solche rrors nach möglichkeit im admin-log zu zeigen
             console.log("ERROR in playerManager.addItem! " + e.stack);
         }
     },
-    results: function (resultItem) {
-        //console.log("preparing result " + resultId);
-        //var newestVoteId = this.voteItems.length - 1;
-        //var resultItem = this.resultItems[resultId];
+    sendCard: function (cardId) {
+        var cardItem = this.cardItems[cardId];
+        var content = {
+            type: cardItem.type,
+            text: cardItem.text
+        };
+        this.deliverMessage(cardItem.device, "display", content);
+     },
+    sendVote: function (voteId) {
+        var voteItem = this.voteItems[voteId];
+        voteItem.votes = [];
+        voteItem.ratedVote = voteItem.flags ? voteItem.flags[0] : true;
+        if (voteItem.opts[0] == "playerChoice") {
+            voteItem.voteOptions = this.getPlayerArray();
+        }
+        if (voteItem.opts[0] == "enterNumber") {
+            voteItem.voteOptions = [{val: 0, checked: false}];
+        }
+        if (voteItem.opts[0] == "countryChoice") {
+            var lang = voteItem.opts[2];
+            voteItem.voteOptions = this.getEUcountries().map(function (c) {
+                return {val: c.id, text: c[lang]}
+            });
+        }
+        var content = {
+            voteId: voteId,
+            type: voteItem.type,
+            text: voteItem.text,
+            voteOptions: voteItem.voteOptions,
+            voteMulti: voteItem.voteMulti,
+            ratedVote: voteItem.ratedVote,
+            voteType: voteItem.opts[0],
+            time: voteItem.time
+        };
+        this.deliverMessage(voteItem.device, "display", content);
+    },
+    results: function (resultId) {
+        console.log("preparing result " + resultId);
+        var newestVoteId = this.voteItems.length - 1;
+        var resultItem = this.resultItems[resultId];
         switch (resultItem.opts[1]) {
             case "optionScore":
-                //this.calcScore("correct", newestVoteId);
+                this.calcScore("correct", newestVoteId);
                 break;
 
             case "majorityScore":
-                //this.calcScore("majority", newestVoteId);
+                this.calcScore("majority", newestVoteId);
                 break;
 
             default:
@@ -432,51 +488,9 @@ PlayerManager.prototype = {
                 break;
 
             default:
-                this.sendVoteResults(resultItem);
+                this.sendVoteResults(newestVoteId, resultItem);
                 break;
         }
-    },
-    sendVoteResults: function (resultItem) {
-        var displayType = resultItem.text;
-        var result = resultItem.data;
-        var msg = result.text;
-        var labels = [];
-        var resData = [];
-        var rightAnswer = [];
-        if (result.voteOptions) rightAnswer = result.voteOptions.filter(function (a) {
-            return (a.flags) ? a.flags[0] : false
-        }).map(function (b) {
-            return b.text
-        });
-        //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
-        if (rightAnswer.length > 0) {
-            if (typeof rightAnswer[0] != "undefined") msg += "::::" + "Right Answer: " + rightAnswer[0];
-        }
-        //console.log("maxVoteCount=" + voteItem.maxCount);
-        if (displayType == "numberStats") {
-            //send stats as array: [sum, avg]
-            resData = [result.sum, result.average, result.minVal, result.maxVal];
-        }
-        else result.voteOptions.forEach(function (option) {
-            labels.push(option.text + ": " + option.percent + "% (" + option.votes + ")");
-            if (displayType == "europeMap") resData.push({
-                id: option.value,
-                val: option.percent
-            });
-            else resData.push(option.result);
-        });
-        //resultItem.data = resData;
-        this.deliverMessage(resultItem.device, "display", {
-            type: "result",
-            displayType: displayType,
-            text: msg,
-            labels: labels,
-            data: resData,
-            resultColor: resultItem.opts[0]
-        });
-        if (!resultItem.flags[0]) return;
-        var game = require('./game.js');
-        game.trigger(-1, {data: 'go', param: result.voteOptions[0].id});
     },
     direct: function (directId) {
         var directItem = this.directItems[directId];
@@ -523,6 +537,46 @@ PlayerManager.prototype = {
         if (!ok) console.log("Answers are not yielding an Order!");
         this.sendPlayerStatus(-1);
         this.broadcastMessage("display", { type: "seatOrder"});
+    },
+    sendVoteResults: function (voteId, resultItem) {
+        var displayType = resultItem.text;
+        var voteItem = this.voteItems[voteId];
+        var msg = voteItem.text;
+        var labels = [];
+        var resData = [];
+        var rightAnswer = voteItem.voteOptions.filter(function (a) {
+            return (a.flags) ? a.flags[0] : false
+        }).map(function (b) {
+            return b.text
+        });
+        if (rightAnswer.length > 0) {
+            if (typeof rightAnswer[0] != "undefined") msg += "::::" + "Right Answer: " + rightAnswer[0];
+        }
+        console.log("maxVoteCount=" + voteItem.maxCount);
+        if (displayType == "numberStats") {
+            //send stats as array: [sum, avg]
+            resData = [voteItem.voteOptions[0].result, voteItem.voteOptions[0].result / voteItem.voteCount, voteItem.minVal, voteItem.maxVal];
+        }
+        else voteItem.voteOptions.forEach(function (option) {
+            labels.push(option.text + ": " + (option.result / voteItem.voteCount * 100).toFixed(1) + "% (" + option.votes + ")");
+            if (displayType == "europeMap") resData.push({
+                id: option.val,
+                val: option.result / voteItem.maxCount * 100
+            });
+            else resData.push(option.result / voteItem.voteCount * 100);
+        });
+        resultItem.data = resData;
+        this.deliverMessage(resultItem.device, "display", {
+            type: "result",
+            displayType: displayType,
+            text: msg,
+            labels: labels,
+            data: resData,
+            resultColor: resultItem.opts[0]
+        });
+        if (!resultItem.flags[0]) return;
+        var game = require('./game.js');
+        game.trigger(-1, {data: 'go', param: voteItem.bestOption});
     },
 
     //schau mal, ob im ziel-device ein spezial steckt (zB player:next)
@@ -580,6 +634,11 @@ PlayerManager.prototype = {
         this.broadcastMessage("status", msg);
         wsManager.msgDevicesByRole("master", "status", msg);
         wsManager.msgDevicesByRole("MC", "status", msg);
+    },
+    getEUcountries: function () {
+        return this.europeCountries.filter(function (c) {
+            return c.class == "eu europe";
+        });
     },
     getPlayerIdForClientId: function (clientId) {
         var playerId = -1;

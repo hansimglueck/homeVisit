@@ -14,7 +14,8 @@ angular.module('playerApp', [
     'ngCordova',
     'ngAnimate',
     'ngAudio',
-    'fxControllers'
+    'fxControllers',
+    'europeSVG'
 ])
     .config(['$routeProvider',
         function ($routeProvider) {
@@ -63,6 +64,6 @@ angular.module('playerApp', [
                     redirectTo: '/home'
                 });
         }]);
-;
+
 
 

@@ -43,7 +43,7 @@
         EUROPA
     </div>
 
-    <div ng-switch-when="vote">
+    <div ng-switch-when="vote">POLL
         <ul class="list-unstyled">
             <li ng-repeat="t in home.text track by $index">{{t}}</li>
             <li ng-if="home.ratedVote" class="red">Dein Ranking macht Stimmgewicht!</li>
@@ -79,7 +79,7 @@
             </div>
             <div ng-if="home.voteType == 'enterNumber'">
                 <form ng-submit="vote(0)">
-                <input type="text" ng-model="data.voteNumber"/></form>
+                <input type="text" ng-model="home.options[0].value"/></form>
             </div>
 
         </div>

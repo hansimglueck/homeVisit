@@ -342,8 +342,8 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
     };
     $scope.showLanguage = function (item) {
         var selected = [];
-        if (item.opts) if (item.opts[1]) {
-            selected = $filter('filter')($scope.languages, {value: item.opts[1]}, true);
+        if (item.opts) if (item.opts[2]) {
+            selected = $filter('filter')($scope.languages, {value: item.opts[2]}, true);
         }
         return selected.length ? selected[0].text : 'Not set';
     };
@@ -394,7 +394,8 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
             value: '',
             followUp: '',
             score: 0,
-            flags: [false]
+            flags: [false],
+            time: 60
         };
         if (!$scope.deck.items[id].voteOptions) $scope.deck.items[id].voteOptions = [];
         $scope.deck.items[id].voteOptions.push($scope.insertedOption);

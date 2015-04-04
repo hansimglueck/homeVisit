@@ -63,7 +63,6 @@ angular.module("playerControllers", [])
             animationEasing : "easeOutQuart",
             onAnimationComplete : null
         };
-        //$scope.sound.play();
         $scope.playSound = function() {
             console.log("play sound");
             $scope.sound.play();
@@ -91,28 +90,19 @@ angular.module("playerControllers", [])
             console.log("now "+$scope.home.checked+" checked. home.limit="+$scope.home.limit);
         };
         $scope.vote = function (id) {
-            console.log(Home.voteType);
-            //console.log(parseInt($scope.data.voteNumber));
-            if (Home.voteType=="enterNumber" && (isNaN(parseFloat($scope.data.voteNumber)) || $scope.data.voteNumber.indexOf(",")!=-1)) return;
-            //console.log("Zahl="+$scope.data.voteNumber);
-            console.log(id); var text = "";
+            if (Home.voteType=="enterNumber" && (isNaN($scope.home.options[id].value) || $scope.home.options[id].value.indexOf(",")!=-1)) return;
+            var text = "";
+            //bei multiple-choice werden die checked direkt in der homeFactory gesetzt... und die funktion hier wird ohne argument aufgerufen
             if (id != undefined) {
                 text = $scope.home.options[id].text;
-                if ($scope.home.voteType=="enterNumber") text = $scope.data.voteNumber;
-                if (!confirm("Vote for: "+text)) return;
-                console.log("no");
                 $scope.home.options[id].checked = true;
+                if ($scope.home.voteType=="enterNumber") text = $scope.home.options[id].value;
+                if (!confirm("Vote for: "+text)) return;
                 if ($scope.home.voteType=="enterNumber") {
-                    $scope.home.options[id].val = $scope.data.voteNumber;
-                    $scope.home.options[id].text = $scope.data.voteNumber;
+                    $scope.home.options[id].text = $scope.home.options[id].value;
                 }
             }
-            Socket.emit({
-                type: "vote",
-                data: $scope.home.options,
-                playerId: $scope.status.player.playerId,
-                voteId: $scope.home.voteId
-            });
+            $scope.home.vote();
         };
         $scope.go = function() {
             Socket.emit({type:"playbackAction", data:"go"}, function() { console.log('go emitted'); });
@@ -182,8 +172,8 @@ angular.module("playerControllers", [])
         function cb() {
             alert($scope.test);
         }
-        $scope.playSound = function() {
-            fxService.playSound();
+        $scope.playSound = function(id) {
+            fxService.playSound(id);
         }
 
     })

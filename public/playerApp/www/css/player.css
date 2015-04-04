@@ -99,7 +99,8 @@
 
 .europeMap {
     position: fixed;
-    top: 100px;
+    top: 50px;
+    left: 0px;
     z-index: 100;
     height:100%;
     width: 100%;
