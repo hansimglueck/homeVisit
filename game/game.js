@@ -4,8 +4,11 @@
 var exec = require('child_process').exec;
 var wsManager = require('./wsManager.js');
 var playerManager = require('./playerManager.js');
+var SequenceItem = require('./items/SequenceItem');
 var OptionPoll = require('./polls/OptionPoll');
 var NumberPoll = require('./polls/NumberPoll');
+var mongoConnection = require('../mongoConnection');
+var ObjectID = require('mongodb').ObjectID;
 
 
 function Game() {
@@ -146,19 +149,26 @@ function Game() {
         "class": "cet"
     }, {"id": "ru-kaliningrad", en: "", de: "", "class": "europe ru"}, {"id": "me", en: "", de: "", "class": "cet"}];
     this.polls = [];
+    this.sequence = null;
 }
 
 Game.prototype = {
 
     initDb: function () {
         var g = this;
-        var gConf = require('../models/GameConf.js');
-        gConf.findOne({role: 'run'}, function (err, conf) {
-            g.conf = conf;
-            if (conf == null) g.conf = {role: 'run', startDeckId: 0, autostart: false, playerCnt: 1, typeMapping: []};
-            console.log("autostart=" + g.conf.autostart);
+        mongoConnection(function (db) {
+            db.collection('gameconfs').find({role: 'run'}).toArray(function (err, conf) {
+                g.conf = conf[0];
+                if (conf.length == 0) g.conf = {
+                    role: 'run',
+                    startDeckId: 0,
+                    autostart: false,
+                    playerCnt: 1,
+                    typeMapping: []
+                };
+                console.log("autostart=" + g.conf.autostart);
+            });
         });
-
     },
 
     trigger: function (clientId, msg) {
@@ -208,7 +218,7 @@ Game.prototype = {
         }
     },
 
-    directItem: function(clientId, msg) {
+    directItem: function (clientId, msg) {
         this.mapItemToDevice(msg.data);
     },
 
@@ -232,7 +242,7 @@ Game.prototype = {
 
         //step one up or to a specific step-nr
         this.stepId = (typeof id !== 'undefined') ? id : this.stepId += 1;
-        console.log("stepId="+this.stepId);
+        console.log("stepId=" + this.stepId);
         //restart at step 0 when at the end
         if (this.stepId >= this.decks[this.deckId].items.length) {
             this.stepId = 0;
@@ -260,27 +270,27 @@ Game.prototype = {
             case "vote":
                 this.polls.push(this.preparePoll(item));
                 content = JSON.parse(JSON.stringify(item));   //=deep clone
-                content.poll = this.polls[this.polls.length-1];
+                content.poll = this.polls[this.polls.length - 1];
                 break;
             case "results":
                 content = item;
-                content.data = this.polls[this.polls.length-1].getResult();
+                content.data = this.polls[this.polls.length - 1].getResult();
                 console.log("item for result:");
                 console.log(content);
                 break;
 
             default:
                 /*  hab ich aus irgendeinem grund mal einzeln übertragen...
-                content = {
-                    type: item.type,
-                    text: item.text,
-                    voteOptions: JSON.parse(JSON.stringify(item.voteOptions)),   //=deep clone
-                    opts: item.opts,
-                    voteMulti: item.voteMulti,
-                    flags: item.flags,
-                    device: item.device
-                };
-                */
+                 content = {
+                 type: item.type,
+                 text: item.text,
+                 voteOptions: JSON.parse(JSON.stringify(item.voteOptions)),   //=deep clone
+                 opts: item.opts,
+                 voteMulti: item.voteMulti,
+                 flags: item.flags,
+                 device: item.device
+                 };
+                 */
                 content = JSON.parse(JSON.stringify(item));   //=deep clone
                 break;
         }
@@ -292,12 +302,14 @@ Game.prototype = {
         }, wait);
     },
 
-    preparePoll: function(item) {
+    preparePoll: function (item) {
         var poll;
         switch (item.opts[0]) {
             case "customOptions":
             case "customMultipleOptions":
-                item.voteOptions.forEach(function(opt,id){opt.value = id;});
+                item.voteOptions.forEach(function (opt, id) {
+                    opt.value = id;
+                });
                 poll = new OptionPoll(item);
                 break;
             case "playerChoice":
@@ -315,12 +327,14 @@ Game.prototype = {
             default:
                 break;
         }
-        poll.onFinish(this, function() {this.trigger(-1,{data: 'go'})});
+        poll.onFinish(this, function () {
+            this.trigger(-1, {data: 'go'})
+        });
         return poll;
     },
 
     executeStep: function (item, param) {
-        this.mapItemToDevice(item,param);
+        this.mapItemToDevice(item, param);
 
         //der master soll mitkriegen, welcher step gerade ausgeführt wird
         this.sendPlaybackStatus();
@@ -333,7 +347,7 @@ Game.prototype = {
         }
     },
 
-    mapItemToDevice: function(item, param) {
+    mapItemToDevice: function (item, param) {
         var self = this;
         if (item.type == "switch") {
             //ein switch hat die möglichen folgen in den voteOptions gespeichert...
@@ -381,32 +395,35 @@ Game.prototype = {
                 wsManager.msgDevicesByRole(dev, "display", item);
             });
         }
-
     },
 
     start: function () {
         console.log(this.conf);
         if (this.play == false) {
             var g = this;
-            var Deck = require('../models/Deck.js');
-
-            Deck.find(function (err, decks) {
-                if (err) return next(err);
-                g.decks = decks;
-                g.decks.forEach(function (deck, id) {
-                    //console.log(deck._id);
-                    //console.log(g.conf.startDeckId);
-                    if (String(deck._id) == String(g.conf.startDeckId)) g.deckId = id;
-                    //console.log(String(deck._id) == String(g.conf.startDeckId));
+            mongoConnection(function (db) {
+                db.collection('decks').find({}).toArray(function (err, decks) {
+                    if (err) return next(err);
+                    g.decks = decks;
+                    g.decks.forEach(function (deck, id) {
+                        if (String(deck._id) == String(g.conf.startDeckId)) g.deckId = id;
+                    });
+                    //g.prepareSequence();
+                    g.step("", 0);
                 });
-                //console.log(g.decks);
-                g.step("", 0);
             });
             this.play = true;
             this.log("client started game");
             //wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRatings});
         } else {
             this.log("already playing");
+        }
+    },
+    prepareSequence: function() {
+        var deck = this.decks[this.deckId];
+        this.sequence = new SequenceItem({type:"card", title:"Step Null!"});
+        for (var i = 0; i < deck.items.length; i++) {
+            this.sequence.appendItem(new SequenceItem(deck.items[i],i));
         }
     },
 
@@ -422,8 +439,11 @@ Game.prototype = {
         return this.decks[this.deckId].items[this.stepId];
     },
 
-    sendPlaybackStatus: function() {
-        wsManager.msgDevicesByRole('master', 'playBackStatus', {stepId: this.stepId, type: this.getItem() ? this.getItem().type : ""});
+    sendPlaybackStatus: function () {
+        wsManager.msgDevicesByRole('master', 'playBackStatus', {
+            stepId: this.stepId,
+            type: this.getItem() ? this.getItem().type : ""
+        });
     },
     getEUcountries: function () {
         return this.europeCountries.filter(function (c) {

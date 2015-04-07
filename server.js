@@ -6,9 +6,12 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var mongoose = require('mongoose');
+var mongoConnection = require('./mongoConnection');
+//var mongoose = require('mongoose');
 var exec = require('child_process').exec;
 
+
+/*
 mongoose.connect('mongodb://localhost/homeVisit', function(err) {
     if(err) {
         console.log('db-connection error', err);
@@ -22,6 +25,8 @@ mongoose.connect('mongodb://localhost/homeVisit', function(err) {
         console.log('db-connection successful');
      }
 });
+*/
+
 
 var routes = require('./routes/index');
 var decks = require('./routes/decks');
@@ -35,15 +40,7 @@ var app = express();
  */
 
 var server = require('http').createServer(app);
-//var server2 = require('http').createServer(app);
-//
-//var io = require('socket.io')(server2);
-//io.on('connection', function (socket) {
-//    socket.emit('news', { hello: 'world' });
-//    socket.on('my other event', function (data) {
-//        console.log(data);
-//    });
-//});
+
 /**
  */
 
@@ -69,8 +66,14 @@ wsManager.onType("directItem", game, game.directItem);
 var raspiTools = require('./game/raspiTools.js');
 wsManager.onRole("master", raspiTools, raspiTools.newMessage);
 
+/*
 var db = mongoose.connection;
 db.once('open', function() { game.initDb() });
+ */
+mongoConnection(function (db) {
+    console.log("Database connection established");
+    game.initDb();
+});
 
 
 /**
@@ -149,4 +152,4 @@ server.listen(conf.port);
 //server.on('error', onError);
 //server.on('listening', onListening);
 
-//module.exports = app;
+//module.exports.app = app;

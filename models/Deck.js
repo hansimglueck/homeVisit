@@ -27,6 +27,7 @@ var SequenceItemSchema   = new mongoose.Schema({
     voteOptions: [VoteOptionSchema],
     comments: [String],
     voteMulti: Number,
+    inlineDecks: [[SequenceItemSchema]],
     device: String
 });
 

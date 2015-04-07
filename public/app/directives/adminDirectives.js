@@ -74,6 +74,20 @@ angular.module('adminDirectives', [])
             templateUrl: 'app/views/admin/show-item-contents/show-switch-content.html'
         };
     })
+    .directive('showInlineSwitchContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-inline-switch-content.html'
+        };
+    })
+    .directive('showInlineSwitchOption', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-inline-switch-option.html'
+        };
+    })
 
     .directive('showResultsContent', function () {
         return {

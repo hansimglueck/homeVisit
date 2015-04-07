@@ -18,6 +18,7 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         {value: 'vote', text: 'Abstimmung'},
         {value: 'results', text: 'Results'},
         {value: 'switch', text: 'Switch'},
+        {value: 'inlineSwitch', text:'Inline Switch'},
         {value: 'cmd', text: 'Kommando'},
         {value: 'playerDirect', text:'Player Direkt'},
         {value: 'eval', text:'eval'}
@@ -99,10 +100,11 @@ gameServices.factory('Game', ['$resource', function ($resource) {
 
         };
 
-        restfactory.updateDeck = function (deckId, updatedDeck) {
+        restfactory.updateDeck = function (updatedDeck) {
+            var id = updatedDeck._id;
             delete updatedDeck._id;   //sonst macht mongoDB auf dem raspi stunk
             console.log(updatedDeck);
-            return resource.update({id: restfactory.decks[deckId]._id}, updatedDeck, function (err) {
+            return resource.update({id: id}, updatedDeck, function (err) {
                 if (err) {
                 }
             }).$promise;

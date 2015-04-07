@@ -1,0 +1,22 @@
+<tbody>
+    <tr>
+        <th>Option</th>
+        <th ng-show="item.type == 'inlineSwitch'">Strang</th>
+        <th></th>
+    </tr>
+    <tr  ng-repeat="deck in item.inlineDecks track by $index">
+        <td>
+            {{$index}}
+        </td>
+        <td>
+            <!--
+            <show-deck></show-deck>
+            -->
+        </td>
+        <td style="white-space: nowrap">
+            <div class="buttons">
+                <button class="btn btn-sm btn-danger" ng-click="deleteVoteOption($parent.$parent.$index, $parent.$index, $index)">Löschen</button>
+            </div>
+        </td>
+    </tr>
+</tbody>

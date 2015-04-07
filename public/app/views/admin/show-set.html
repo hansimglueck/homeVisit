@@ -3,9 +3,11 @@
         <accordion-group ng-repeat="deck in decks track by $index"
                          heading="Strang {{$index}}: {{ deck.title }}"
                          is-open="deck._id==activeDeck.id"
-                         id="{{'deck'+decks[$index]._id}}"
-                >
+                         id="{{'deck'+decks[$index]._id}}">
+            <div ng-include="'app/views/admin/show-deck.html'"></div>
+            <!--
             <show-deck></show-deck>
+            -->
         </accordion-group>
         <accordion-group heading="Neuer Strang">
             <edit-new-deck></edit-new-deck>

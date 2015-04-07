@@ -1,0 +1,25 @@
+<div>
+    Optionen:
+    <table class="table">
+        <tr>
+            <th>Nr</th>
+            <th>Strang</th>
+            <th></th>
+        </tr>
+        <tr class="option-table-row" ng-repeat="deck in item.inlineDecks track by $index">
+            <td>
+                {{$index}}
+            </td>
+            <td>
+                <div ng-include="'app/views/admin/show-deck.html'"></div>
+            </td>
+            <td style="white-space: nowrap">
+                <div class="buttons">
+                    <button class="btn btn-sm btn-danger" ng-click="deleteInlineDeck($index)"><span
+                            class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <button class="btn" ng-click="addInlineSwitchOption($index)">Neue Option</button>
+</div>

@@ -414,7 +414,7 @@ PlayerManager.prototype = {
         //console.log("preparing result " + resultId);
         //var newestVoteId = this.voteItems.length - 1;
         //var resultItem = this.resultItems[resultId];
-        switch (resultItem.opts[1]) {
+        if (resultItem.opts) switch (resultItem.opts[1]) {
             case "optionScore":
                 //this.calcScore("correct", newestVoteId);
                 break;
@@ -472,7 +472,7 @@ PlayerManager.prototype = {
             text: msg,
             labels: labels,
             data: resData,
-            resultColor: resultItem.opts[0]
+            resultColor: resultItem.opts ? resultItem.opts[0] : ""
         });
         if (!resultItem.flags[0]) return;
         var game = require('./game.js');

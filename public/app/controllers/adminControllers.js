@@ -14,7 +14,7 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
     $scope.activeDeck = {};
     $scope.activeDeck.id = 0;
     $scope.decks = setFactory.decks;
-    $scope.newDeck = {};
+    $scope.newDeck = {items:[]};
 
     $scope.error = "Null Problemo!";
     $scope.name = "set";
@@ -85,17 +85,10 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
             $scope.newDeck.items = $scope.textToItems($scope.newDeck.import);
         }
         setFactory.addDeck($scope.newDeck, function (ret) {
-            console.log("cb: " + ret);
-            $scope.decks.push(ret);
-            $scope.newDeck = {}; // clear textbox
-        });
-        return;
-        var deck = new Game($scope.newDeck);
-
-        deck.$save(function (ret) {
+            console.log("ret=");
             console.log(ret);
-            $scope.decks.push(deck);
-            $scope.newDeck = {}; // clear textbox
+            $scope.decks.push(ret);
+            $scope.newDeck = {items:[]}; // clear textbox
         });
     };
     $scope.duplicateDeck = function (deckId) {
@@ -130,16 +123,9 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
         });
         return itemArray;
     };
-    $scope.getTimeForDeck = function (deckId) {
-        var time = 0;
-        angular.forEach($scope.decks[deckId].items, function (item, id) {
-            time += parseInt(item.time) || 0;
-        });
-        return time;
-    };
-    $scope.updateDeck = function (deckId) {
-        var updatedDeck = angular.copy($scope.decks[deckId]);
-        return setFactory.updateDeck(deckId, updatedDeck);
+    $scope.updateDeck = function (deck) {
+        var updatedDeck = angular.copy(deck);
+        return setFactory.updateDeck(updatedDeck);
     };
     $scope.updateDeckOld = function (deckId) {
         var updatedDeck = angular.copy($scope.decks[deckId]);
@@ -192,6 +178,7 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
 
 adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
     $scope.name = "deck";
+
     $scope.trigger = [{text: "Go", value: "go"}, {text: "Follow", value: "follow"}];
     $scope.showTrigger = function (item) {
         var selected = [];
@@ -215,7 +202,7 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
         stop: function (event, ui) {
             var x = ui.item.context.parentElement.id.split("-");
             var deckId = x[2];
-            $scope.updateDeck(deckId);
+            $scope.updateDeck($scope.deck);
         }
     };
     $scope.moveItem = function (deckId, itemId) {
@@ -249,7 +236,7 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
             var insertId = $scope.getItemId(result.newDeckId, result.newItemId);
             console.log(destDeck);
             destDeck.items.splice(insertId + 1, 0, newItem);
-            $scope.updateDeck($scope.getDeckId(result.newDeckId));
+            $scope.updateDeck(destDeck);
             console.log(result.copy);
             if (!result.copy) {
                 console.log("delete:" + $scope.getDeckId(deckId) + "," + $scope.getItemId(deckId, itemId));
@@ -260,7 +247,7 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
         });
 
     };
-    $scope.addItem = function (deckId, itemId) {
+    $scope.addItem = function (itemId) {
         $scope.inserted = {
             wait: 0,
             trigger: 'go',
@@ -270,26 +257,44 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
             voteMulti: 1,
             device: "default"
         };
-        if (typeof itemId == "undefined") $scope.decks[deckId].items.push($scope.inserted);
-        else $scope.decks[deckId].items.splice(itemId + 1, 0, $scope.inserted);
+        if (typeof itemId == "undefined") $scope.deck.items.push($scope.inserted);
+        else $scope.deck.items.splice(itemId + 1, 0, $scope.inserted);
     };
     $scope.saveItem = function () {
+        if ($scope.deck.inline) {
+            $scope.$parent.saveItem();
+            return;
+        }
         console.log("save item for deck " + $scope.$index);
-        return $scope.updateDeck($scope.$index);
+        return $scope.updateDeck($scope.deck);
     };
     $scope.deleteItem = function (deckId, index) {
         if (!confirm("Wirklich Löschen???")) return;
 
-        $scope.decks[deckId].items.splice(index, 1);
-        var item = $scope.decks[deckId].items[index];
-        $scope.updateDeck(deckId);
+        $scope.deck.items.splice(index, 1);
+        var item = $scope.deck.items[index];
+        $scope.updateDeck($scope.deck);
+    };
+    $scope.updateDeck = function(deck) {
+        if ($scope.deck.inline) {
+            $scope.$parent.saveItem();
+        }
+        else {
+            $scope.$parent.updateDeck(deck);
+        }
     };
     $scope.toggleMarker = function (deckId, index) {
-        var item = $scope.decks[deckId].items[index];
-        if (typeof item.comments[0] == "undefined") item.comments[0] = "frei";
-        if (item.comments[0] == "frei") item.comments[0] = "markiert";
-        else item.comments[0] = "frei";
-        $scope.updateDeck(deckId);
+        var item = $scope.deck.items[index];
+        if (typeof item.highlight == "undefined") item.highlight = false;
+        item.highlight ^= true;
+        $scope.saveItem();
+    };
+    $scope.getTimeForDeck = function () {
+        var time = 0;
+        angular.forEach($scope.deck.items, function (item, id) {
+            time += parseInt(item.time) || 0;
+        });
+        return time;
     };
 })
     .controller('MoveItemController', function ($scope, $modalInstance, deckId, itemId, decks) {
@@ -388,7 +393,7 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
         }
     };
 
-    $scope.addVoteOption = function (deckId, id) {
+    $scope.addVoteOption = function (id) {
         $scope.insertedOption = {
             text: '',
             value: '',
@@ -400,13 +405,22 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
         if (!$scope.deck.items[id].voteOptions) $scope.deck.items[id].voteOptions = [];
         $scope.deck.items[id].voteOptions.push($scope.insertedOption);
     };
+    $scope.addInlineSwitchOption = function (id) {
+        $scope.insertedInlineDeck = {title:'inline', description:'inline-strang', items:[], inline: true};
+        if (!$scope.deck.items[id].inlineDecks) $scope.deck.items[id].inlineDecks = [];
+        $scope.deck.items[id].inlineDecks.push($scope.insertedInlineDeck);
+    };
+    $scope.deleteInlineDeck = function(id) {
+        $scope.item.inlineDecks.splice(id, 1);
+        $scope.updateDeck($scope.deck);
+    };
     $scope.saveVoteOption = function () {
         console.log($scope.$parent.$index);
-        return $scope.updateDeck($scope.$parent.$parent.$index);
+        return $scope.updateDeck($scope.deck);
     };
     $scope.deleteVoteOption = function (deckId, id, i) {
-        $scope.decks[deckId].items[id].voteOptions.splice(i, 1);
-        $scope.updateDeck(deckId);
+        $scope.deck.items[id].voteOptions.splice(i, 1);
+        $scope.updateDeck($scope.deck);
     };
     $scope.newVoteOption = function (deckId, id) {
         console.log($scope.decks[deckId].items[id].voteOptions);

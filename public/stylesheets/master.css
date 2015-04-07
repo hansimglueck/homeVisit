@@ -16,9 +16,12 @@ ul#messages {
     height:1000px;
 }
 .deck-table-row > *:nth-child(1) { width:30px; }
-.deck-table-row > *:nth-child(2) { width:80px; }
-.deck-table-row > *:nth-child(3) { width:80px; }
-.deck-table-row > *:nth-child(5) { width:100px; }
+.deck-table-row > *:nth-child(2) { width:70px; }
+.deck-table-row > *:nth-child(3) { width:70px; }
+.deck-table-row > *:nth-child(5) { width:70px; }
+
+.option-table-row > *:nth-child(1) { width:30px; }
+.option-table-row > *:nth-child(3) { width:50px; }
 
 .direct-item {
     width: 100%;

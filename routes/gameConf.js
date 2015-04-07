@@ -1,59 +1,49 @@
 var express = require('express');
 var router = express.Router();
-
-var mongoose = require('mongoose');
-var gameConf = require('../models/GameConf.js');
+var mongoConnection = require('../mongoConnection');
 var game = require('../game/game.js');
+var ObjectID = require('mongodb').ObjectID;
 
 /* GET /gameConf listing. */
-router.get('/', function(req, res, next) {
-  gameConf.find(function (err, post) {
-    if (err) return next(err);
-    res.json(post);
+
+router.get('/', function (req, res, next) {
+  mongoConnection(function (db) {
+    db.collection('gameconfs').find({}).sort({_id: 1}).toArray(function (err, result) {
+      if (err) return next(err);
+      res.json(result);
+    });
   });
 });
-
 router.get('/run', function(req, res, next) {
-  gameConf.findOne({role:'run'}, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
+  mongoConnection(function (db) {
+    db.collection('gameconfs').find({role:'run'}).toArray(function (err, result) {
+      if (err) return next(err);
+      res.json(result[0]);
+    });
   });
 });
 
 /* POST /gameConf */
-router.post('/', function(req, res, next) {
-  gameConf.create(req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
-});
-
-/* GET /gameConf/id */
-router.get('/:id', function(req, res, next) {
-  gameConf.findById(req.params.id, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
+router.post('/', function (req, res, next) {
+  mongoConnection(function (db) {
+    db.collection('gameconfs').insertOne(req.body, function (err, result) {
+      if (err) return next(err);
+      res.json(result);
+    });
   });
 });
 
 /* PUT /gameConf/:id */
-router.put('/:id', function(req, res, next) {
-  gameConf.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
-    if (err) {
-      console.log("autch: "+err);
-      return next(err);
-    }
-    game.initDb();
-    res.json(post);
+
+router.put('/:id', function (req, res, next) {
+  mongoConnection(function (db) {
+    db.collection('gameconfs').updateOne({"_id": ObjectID(req.params.id)}, req.body, function (err, result) {
+      if (err) return next(err);
+      game.initDb();
+      res.json(result);
+    })
   });
 });
 
-/* DELETE /gameConf/:id */
-router.delete('/:id', function(req, res, next) {
-  gameConf.findByIdAndRemove(req.params.id, req.body, function (err, post) {
-    if (err) return next(err);
-    res.json(post);
-  });
-});
 
 module.exports = router;

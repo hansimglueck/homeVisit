@@ -1,6 +1,7 @@
 var exec = require('child_process').exec;
 var os = require('os');
-var mongoose = require('mongoose');
+//var mongoose = require('mongoose');
+var mongoConnection = require('../mongoConnection');
 var wsManager = require('./wsManager.js');
 
 function RaspiTools() {
@@ -79,8 +80,8 @@ RaspiTools.prototype = {
     },
 
     sendDbStatus: function() {
-        var db = mongoose.connection;
-        var connected = db.readyState;
+        //var db = mongoose.connection;
+        var connected = mongoConnection();
 
         //var gConf = require('../models/GameConf.js');
         //gConf.findOne(function (err, conf) {
@@ -96,6 +97,9 @@ RaspiTools.prototype = {
 };
 
 var raspiToolsObj = new RaspiTools();
+
+//TODO finde raus, wenn die datenbank-verbindung abbricht - jetzt mit native mongodb-modul...
+/*
 var db = mongoose.connection;
 db.on('open', function () {
     raspiToolsObj.sendDbStatus();
@@ -112,6 +116,7 @@ db.on('disconnected', function() {
 db.on('error', function() {
     raspiToolsObj.sendDbStatus();
 });
+ */
 
 
 module.exports = raspiToolsObj;

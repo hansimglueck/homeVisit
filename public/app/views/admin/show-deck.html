@@ -1,7 +1,7 @@
 <div ng-controller="deckCtrl">
-    <ul class="list-unstyled">
+    <ul class="list-unstyled" ng-hide="deck.inline">
         <li>{{deck.description}}</li>
-        <li>Gesamtdauer: {{getTimeForDeck($index)}}</li>
+        <li>Gesamtdauer: {{getTimeForDeck()}}</li>
         <li style="text-align: right">
             <a ng-click="deleteDeck($index)">Lösche Strang</a>
         </li>
@@ -13,15 +13,15 @@
         </li>
     </ul>
     <table class="table deck-table">
-<!--
-        <colgroup>
-        <col width="5%">
-        <col width="10%">
-        <col width="10%">
-        <col width="65%">
-        <col width="10%">
-        </colgroup>
-        -->
+        <!--
+                <colgroup>
+                <col width="5%">
+                <col width="10%">
+                <col width="10%">
+                <col width="65%">
+                <col width="10%">
+                </colgroup>
+                -->
         <tbody>
         <tr>
             <th>Nr</th>
@@ -31,11 +31,14 @@
             <th>Action</th>
         </tr>
         </tbody>
-        <tbody show-sequence-item></tbody>
+        <tbody ui-sortable="sortOptions" ng-model="deck.items" id="{{ 'sort-table-'+ $index }}">
+        <tr ng-repeat="item in deck.items track by $index" show-sequence-item>
+        </tr>
+        </tbody>
         <tbody>
         <tr>
             <td colspan="5">
-                <button class="btn" ng-click="addItem($index)">Neues Ereignis</button>
+                <button class="btn" ng-click="addItem()">Neues Ereignis</button>
             </td>
         </tr>
         </tbody>

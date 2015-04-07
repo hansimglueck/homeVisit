@@ -1,6 +1,6 @@
-<tbody ui-sortable="sortOptions" ng-model="deck.items" id="{{ 'sort-table-'+ $index }}" ng-controller="itemCtrl">
-<tr class="deck-table-row" ng-repeat="item in deck.items track by $index"
-    ng-style="item.comments[0]=='markiert' ? {'background': '#FFDDDD'} : {}">
+<tr class="deck-table-row"
+    ng-style="item.highlight ? {'background': '#FFDDDD'} : {}"
+    ng-controller="itemCtrl">
 
     <td>{{ $index }}</td>
 
@@ -26,7 +26,7 @@
               e-ng-options="s.value as s.text for s in trigger">
           {{ showTrigger(item) }}
         </span><br/>
-        Wait: <span editable-text="item.wait" e-name="wait" onaftersave="saveItem()">
+        Wait: <br/><span editable-text="item.wait" e-name="wait" onaftersave="saveItem()">
           {{ item.wait || '0' }}
         </span> Sek.
     </td>
@@ -41,6 +41,7 @@
     <td ng-switch="item.type">
         <div show-vote-content ng-switch-when="vote"></div>
         <div show-switch-content ng-switch-when="switch"></div>
+        <div show-inline-switch-content ng-switch-when="inlineSwitch"></div>
         <div show-results-content ng-switch-when="results"></div>
         <div show-sound-content ng-switch-when="sound"></div>
         <div show-cmd-content ng-switch-when="cmd"></div>
@@ -65,7 +66,7 @@
                         class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
             </p>
             <p>
-                <button class="btn btn-sm btn-primary" ng-click="addItem($parent.$index, $index)"><span
+                <button class="btn btn-sm btn-primary" ng-click="addItem($index)"><span
                         class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
                 <button class="btn btn-sm btn-primary" ng-click="toggleMarker($parent.$index, $index)"><span
                         class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></button>
@@ -75,4 +76,3 @@
         </div>
     </td>
 </tr>
-</tbody>
