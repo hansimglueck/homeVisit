@@ -1,0 +1,27 @@
+<div>
+<not-joined  ng-hide="status.joined"></not-joined>
+<ul class="list-group" ng-show="status.joined">
+    <li class="list-group-item" ng-repeat="player in status.otherPlayers | filter:isOtherPlayer track by $index">
+        <div ng-style="{'height': '40px', 'width':'80px', 'float':'left'}">
+            <div class="row1" ng-style="colors[playerColors[player.playerId][0]]">
+            </div>
+            <div class="row2" ng-style="colors[playerColors[player.playerId][1]]"></div>
+            <div ng-style="{'font-weight':'bold', 'position':'relative', 'bottom':'35px'}">
+                {{player.playerId}}
+            </div>
+        </div>
+        <ul class="list-unstyled">
+            <li class="" ng-style="(message[0]==0) ? {'font-style':'italic'} : {}" ng-repeat="message in messages[player.playerId] track by $index">
+                {{message[1]}}
+            </li>
+            <li class="">
+                <form ng-submit="chat(player.playerId)">
+                    <input type="text" id="{{'text'+$index}}" ng-model="data.newMessage[player.playerId]" ng-click="scrollToItem('text'+$index)"/>
+                    <input type="submit" id="submit" value="send" />
+                </form>
+            </li>
+        </ul>
+    </li>
+</ul>
+    <div ng-style="{'height':'300px'}"></div>
+</div>
