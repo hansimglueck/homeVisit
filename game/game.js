@@ -106,10 +106,10 @@ Game.prototype = {
             self.sequence.step(param, id);
         });
         else {
-            console.log(this.sequence);
             if (!this.sequence.step(param, id)) {
-                this.sequence.reset();
-                this.sequence.step(param, id);
+                this.start(function () {
+                    self.sequence.step(param, id);
+                });
             }
         }
         return;
