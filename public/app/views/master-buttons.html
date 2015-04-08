@@ -2,8 +2,7 @@
     <div ng-hide="status.stepId < 0">Aktueller Step: {{status.stepId}} ({{status.type}})</div>
     <div ng-show="status.stepId < 0">Game stopped</div>
     <div>
-        <button class="btn" ng-click="playback('play')">PLAY</button>
-        <button class="btn" ng-click="playback('stop')">STOP</button>
+        <button class="btn" ng-click="playback('restart')">RESTART</button>
         <button class="btn" ng-click="playback('go','0')">GO</button>
         <button class="btn" ng-click="playback('go','1')">GO 2</button>
         <button class="btn" ng-click="playback('rego')">REGO</button>

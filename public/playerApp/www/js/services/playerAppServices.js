@@ -87,6 +87,11 @@ angular.module('playerAppServices', [])
         };
 
         homeFactory.vote = function() {
+            homeFactory.voteChoiceText = homeFactory.options.filter(function(opt){return opt.checked}).map(function(opt){return opt.text});
+            homeFactory.voteChoice = homeFactory.options.filter(function(opt){return opt.checked}).map(function(opt){return opt.value});
+            $location.path("/voteConfirm");
+        };
+        homeFactory.confirmVote = function() {
             if (homeFactory.timeout) {
                 console.log("cancel timeout!");
                 $timeout.cancel(homeFactory.timeout);
@@ -94,12 +99,12 @@ angular.module('playerAppServices', [])
             fxService.cancelCountdown();
             Socket.emit({
                 type: "vote",
-                choice: homeFactory.options.filter(function(opt){return opt.checked}).map(function(opt){return opt.value}),
-                text: homeFactory.options.filter(function(opt){return opt.checked}).map(function(opt){return opt.text}),
+                choice: homeFactory.voteChoice,
+                text: homeFactory.voteChoiceText,
                 playerId: Status.player.playerId,
                 pollId: homeFactory.pollId
             });
-
+            $location.path("/voteFinished");
         };
 
         Socket.on('display', function (event) {
@@ -127,6 +132,8 @@ angular.module('playerAppServices', [])
                             homeFactory.ratedVote = data.ratedVote;
                             homeFactory.time = parseInt(data.time);
                             homeFactory.timedVote();
+                            $location.path("/vote");
+                            return;
                             break;
                         case "result":
                             homeFactory.displayType = data.displayType;

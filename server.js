@@ -11,6 +11,7 @@ var mongoConnection = require('./mongoConnection');
 var exec = require('child_process').exec;
 
 
+
 /*
 mongoose.connect('mongodb://localhost/homeVisit', function(err) {
     if(err) {
@@ -70,8 +71,11 @@ wsManager.onRole("master", raspiTools, raspiTools.newMessage);
 var db = mongoose.connection;
 db.once('open', function() { game.initDb() });
  */
+var gameConf = require('./game/gameConf.js');
+
 mongoConnection(function (db) {
     console.log("Database connection established");
+    gameConf.syncFromDb();
     game.initDb();
 });
 

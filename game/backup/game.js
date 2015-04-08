@@ -49,10 +49,6 @@ Game.prototype = {
             }
             console.log("game.trigger: " + msg.data + " with parameter: " + param);
             switch (msg.data) {
-                case "restart":
-                    this.start();
-                    break;
-
                 case "play":
                     console.log('play');
                     this.start();
@@ -63,6 +59,7 @@ Game.prototype = {
                     break;
 
                 case "go":
+                    console.log('go');
                     this.step(param);
                     break;
 
@@ -101,17 +98,7 @@ Game.prototype = {
     },
 
     step: function (param, id) {
-        var self = this;
-        if (this.sequence == null) this.start(function () {
-            self.sequence.step(param, id);
-        });
-        else {
-            console.log(this.sequence);
-            if (!this.sequence.step(param, id)) {
-                this.sequence.reset();
-                this.sequence.step(param, id);
-            }
-        }
+        this.sequence.step();
         return;
         var msg = "";
         //autostart or deny
@@ -135,6 +122,10 @@ Game.prototype = {
         }
 
         var item = this.getItem();
+
+        //log-nachricht
+        msg += " stepping to " + this.deckId + "/" + this.stepId + " (" + item.type + ")";
+        this.log(msg);
 
 
         //objekt mit den relevanten daten zum senden vorbereiten
@@ -214,6 +205,20 @@ Game.prototype = {
         return poll;
     },
 
+    executeStep: function (item, param) {
+        this.mapItemToDevice(item, param);
+
+        //der master soll mitkriegen, welcher step gerade ausgeführt wird
+        this.sendPlaybackStatus();
+
+        //checken, wie der nächste step getriggert wird
+        if (this.stepId + 1 < this.decks[this.deckId].items.length) {
+            if (this.decks[this.deckId].items[this.stepId + 1].trigger == "follow") {
+                this.step();
+            }
+        }
+    },
+
     mapItemToDevice: function (item, param) {
         var self = this;
         if (item.type == "switch") {
@@ -264,35 +269,34 @@ Game.prototype = {
         }
     },
 
-    start: function (callback) {
-        //console.log(this.conf);
-        var g = this;
-        mongoConnection(function (db) {
-            db.collection('decks').find({}).toArray(function (err, decks) {
-                if (err) return next(err);
-                g.decks = decks;
-                g.decks.forEach(function (deck, id) {
-                    if (String(deck._id) == String(g.conf.startDeckId)) g.deckId = id;
+    start: function () {
+        console.log(this.conf);
+        if (this.play == false) {
+            var g = this;
+            mongoConnection(function (db) {
+                db.collection('decks').find({}).toArray(function (err, decks) {
+                    if (err) return next(err);
+                    g.decks = decks;
+                    g.decks.forEach(function (deck, id) {
+                        if (String(deck._id) == String(g.conf.startDeckId)) g.deckId = id;
+                    });
+                    g.prepareSequence();
+                    g.sequence.step();
+                    //g.step("", 0);
                 });
-                g.prepareSequence();
-                //g.sequence.step();
-                //g.step("", 0);
-                if (callback) callback();
             });
-        });
-        this.log("client started game");
-        //wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRatings});
+            this.play = true;
+            this.log("client started game");
+            //wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRatings});
+        } else {
+            this.log("already playing");
+        }
     },
-    loadDecks: function(callback) {
-
-    },
-
-    prepareSequence: function () {
+    prepareSequence: function() {
         var deck = this.decks[this.deckId];
-        this.sequence = null;
+        this.sequence = new SequenceItem({type:"card", title:"Step Null!"});
         for (var i = 0; i < deck.items.length; i++) {
-            if (this.sequence == null) this.sequence = new SequenceItem(deck.items[i], i);
-            else this.sequence.appendItem(new SequenceItem(deck.items[i], i));
+            this.sequence.appendItem(new SequenceItem(deck.items[i],i));
         }
     },
 

@@ -254,7 +254,6 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
             type: 'card',
             text: '',
             time: '',
-            voteMulti: 1,
             device: "default"
         };
         if (typeof itemId == "undefined") $scope.deck.items.push($scope.inserted);
@@ -331,7 +330,8 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
     });
 
 
-adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, resultTypes, voteTypes, languages, resultColors, scoreTypes) {
+adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, resultTypes, voteTypes, languages, resultColors, scoreTypes, sourceTypes) {
+    $scope.sourceTypes = sourceTypes;
     $scope.scoreTypes = scoreTypes;
     $scope.voteTypes = voteTypes;
     $scope.resultTypes = resultTypes;
@@ -347,37 +347,44 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
     };
     $scope.showLanguage = function (item) {
         var selected = [];
-        if (item.opts) if (item.opts[2]) {
-            selected = $filter('filter')($scope.languages, {value: item.opts[2]}, true);
+        if (item.language) {
+            selected = $filter('filter')($scope.languages, {value: item.language}, true);
         }
         return selected.length ? selected[0].text : 'Not set';
     };
     $scope.showResultColor = function (item) {
         var selected = [];
-        if (item.opts) if (item.opts[0]) {
-            selected = $filter('filter')($scope.resultColors, {value: item.opts[0]}, true);
+        if (item.color) {
+            selected = $filter('filter')($scope.resultColors, {value: item.color}, true);
         }
         return selected.length ? selected[0].text : 'Not set';
     };
     $scope.showResultType = function (item) {
         var selected = [];
-        if (item.text) {
-            selected = $filter('filter')($scope.resultTypes, {value: item.text}, true);
+        if (item.displayType) {
+            selected = $filter('filter')($scope.resultTypes, {value: item.displayType}, true);
         }
         return selected.length ? selected[0].text : 'Not set';
     };
 
     $scope.showVoteType = function (item) {
         var selected = [];
-        if (item.opts) if (item.opts[0]) {
-            selected = $filter('filter')($scope.voteTypes, {value: item.opts[0]}, true);
+        if (item.voteType) {
+            selected = $filter('filter')($scope.voteTypes, {value: item.voteType}, true);
         }
         return selected.length ? selected[0].text : 'Not set';
     };
     $scope.showScoreType = function (item) {
         var selected = [];
-        if (item.opts) if (item.opts[1]) {
-            selected = $filter('filter')($scope.scoreTypes, {value: item.opts[1]}, true);
+        if (item.scoreType) {
+            selected = $filter('filter')($scope.scoreTypes, {value: item.scoreType}, true);
+        }
+        return selected.length ? selected[0].text : 'Not set';
+    };
+    $scope.showSourceType = function (item) {
+        var selected = [];
+        if (item.sourceType) {
+            selected = $filter('filter')($scope.sourceTypes, {value: item.sourceType}, true);
         }
         return selected.length ? selected[0].text : 'Not set';
     };
@@ -397,10 +404,7 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
         $scope.insertedOption = {
             text: '',
             value: '',
-            followUp: '',
-            score: 0,
-            flags: [false],
-            time: 60
+            flags: [false]
         };
         if (!$scope.deck.items[id].voteOptions) $scope.deck.items[id].voteOptions = [];
         $scope.deck.items[id].voteOptions.push($scope.insertedOption);

@@ -53,6 +53,10 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         {value: 'optionScore', text: 'Nach Antwort'},
         {value: 'majorityScore', text: 'Nach Mehrheit'}
     ])
+    .value('sourceTypes', [
+        {value: 'previousStep', text: 'Vorhergehender Step'},
+        {value: 'positivePlayerScore', text: 'Scores grösser Null'}
+    ])
     .factory('gameConf', ['$resource', function ($resource) {
         return $resource('/gameConf/:id', null, {
             'update': {

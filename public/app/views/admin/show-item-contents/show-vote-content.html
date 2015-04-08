@@ -22,14 +22,14 @@
     <tr>
         <td>Nötige Stimmen:</td>
         <td>
-<span editable-textarea="item.opts[1]"
-      e-rows="1" e-cols="4" e-name="complete"
+<span editable-textarea="item.percentsForFinish"
+      e-rows="1" e-cols="4" e-name="percentsForFinish"
       onaftersave="saveItem()">
-          {{ item.opts[1] || 'not set' }}%
+          {{ item.percentsForFinish || 'not set' }}%
         </span>
         </td>
     </tr>
-    <tr ng-show="item.opts[0] == 'customMultipleOptions' || item.opts[0]=='countryChoice'">
+    <tr ng-show="item.voteType == 'customMultipleOptions' || item.voteType=='countryChoice'">
         <td>Anzahl Stimmen:</td>
         <td>
     <span editable-text="item.voteMulti" e-name="voteMulti" onaftersave="saveItem()">
@@ -40,7 +40,7 @@
     <tr>
         <td>Art:</td>
         <td>
-        <span editable-select="item.opts[0]" e-name="voteType"
+        <span editable-select="item.voteType" e-name="voteType"
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in voteTypes"
                 >
@@ -48,10 +48,10 @@
         </span>
         </td>
     </tr>
-    <tr ng-show="item.opts[0]=='countryChoice'">
+    <tr ng-show="item.voteType=='countryChoice'">
         <td>Sprache:</td>
         <td>
-        <span editable-select="item.opts[2]" e-name="language"
+        <span editable-select="item.language" e-name="language"
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in languages"
                 >
@@ -61,12 +61,12 @@
     </tr>
     <tr>
         <td>mit Rating:</td>
-        <td><span editable-checkbox="item.flags[0]" e-name="voteFlag" onaftersave="saveItem()">
-          {{ item.flags[0] || 'nein' }}
+        <td><span editable-checkbox="item.ratedVote" e-name="voteFlag" onaftersave="saveItem()">
+          {{ item.ratedVote || 'nein' }}
         </span>
         </td>
     </tr>
-    <tr ng-show="(item.opts[0] == 'customOptions' || item.opts[0] == 'customMultipleOptions')">
+    <tr ng-show="(item.voteType == 'customOptions' || item.voteType == 'customMultipleOptions')">
         <td>Optionen:</td>
         <td>
             <table class="table">

@@ -56,6 +56,18 @@ angular.module('playerApp', [
                     templateUrl: 'partials/score.html',
                     controller: 'ScoreController'
                 }).
+                when('/vote', {
+                    templateUrl: 'partials/vote.html',
+                    controller: 'VoteController'
+                }).
+                when('/voteConfirm', {
+                    templateUrl: 'partials/voteConfirm.html',
+                    controller: 'VoteController'
+                }).
+                when('/voteFinished', {
+                    templateUrl: 'partials/voteFinished.html',
+                    controller: 'VoteController'
+                }).
                 when('/score/donate/:itemId', {
                     templateUrl: 'partials/donate.html',
                     controller: 'DonationController'

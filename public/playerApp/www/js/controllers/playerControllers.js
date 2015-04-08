@@ -67,10 +67,12 @@ angular.module("playerControllers", [])
             console.log("play sound");
             $scope.sound.play();
         };
+        /*
         $scope.$watch('home.type', function(newVal, oldVal) {
             console.log(oldVal+"->"+newVal);
             if (oldVal !="vote" && newVal == "vote") $scope.playSound();
         });
+        */
         $scope.getPathCSS = function(index) {
             var id = $scope.europeSVG[index].id;
             var grey = 200;
@@ -84,6 +86,12 @@ angular.module("playerControllers", [])
             rgb[$scope.home.resultColor] = col1;
             return "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
         };
+         $scope.go = function() {
+            Socket.emit({type:"playbackAction", data:"go"}, function() { console.log('go emitted'); });
+       }
+    })
+    .controller('VoteController', function($scope, Home, $location) {
+        $scope.home = Home;
         $scope.checkChanged = function (option) {
             if (option.checked) $scope.home.checked++;
             else $scope.home.checked--;
@@ -97,16 +105,22 @@ angular.module("playerControllers", [])
                 text = $scope.home.options[id].text;
                 $scope.home.options[id].checked = true;
                 if ($scope.home.voteType=="enterNumber") text = $scope.home.options[id].value;
-                if (!confirm("Vote for: "+text)) return;
+                //if (!confirm("Vote for: "+text)) return;
                 if ($scope.home.voteType=="enterNumber") {
                     $scope.home.options[id].text = $scope.home.options[id].value;
                 }
             }
             $scope.home.vote();
         };
-        $scope.go = function() {
-            Socket.emit({type:"playbackAction", data:"go"}, function() { console.log('go emitted'); });
-       }
+        $scope.confirmVote = function() {
+            $scope.home.confirmVote();
+        };
+        $scope.cancelVote = function() {
+            $scope.home.options.forEach(function(opt){opt.checked=false});
+            $scope.home.checked = 0;
+            $location.path("/vote");
+        }
+
     })
     .controller('MenuController', function ($scope, Status, Socket) {
         $scope.status = Status;

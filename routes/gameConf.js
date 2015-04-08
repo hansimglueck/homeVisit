@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var mongoConnection = require('../mongoConnection');
 var game = require('../game/game.js');
+var gameConf = require('../game/gameConf.js');
 var ObjectID = require('mongodb').ObjectID;
 
 /* GET /gameConf listing. */
@@ -40,6 +41,7 @@ router.put('/:id', function (req, res, next) {
     db.collection('gameconfs').updateOne({"_id": ObjectID(req.params.id)}, req.body, function (err, result) {
       if (err) return next(err);
       game.initDb();
+      gameConf.syncFromDb();
       res.json(result);
     })
   });
