@@ -218,28 +218,21 @@ SequenceItem.prototype = {
                 content = {
                     type: this.type,
                     command: this.text,
-                    param: this.opts[0],
+                    param: this.param,
                     device: this.device
                 };
                 break;
             case "vote":
-                this.poll = this.preparePoll();
-                this.polls.push(this.poll);
-                content = JSON.parse(JSON.stringify(this));   //=deep clone
-                content.poll = this.polls[this.polls.length - 1];
+                content = this.poll.getWsContent();
                 break;
             case "results":
-                content = item;
-                content.data = this.polls[this.polls.length - 1].getResult();
-                console.log("item for result:");
-                console.log(content);
+                content.data = this.data;
                 break;
             default:
                 content = {
-                    type: item.type,
-                    text: item.text
+                    type: this.type,
+                    text: this.text
                 };
-                //content = JSON.parse(JSON.stringify(item));   //=deep clone
                 break;
         }
         return content;
