@@ -212,7 +212,7 @@ SequenceItem.prototype = {
     },
     getWsContent: function () {
         //objekt mit den relevanten daten zum senden vorbereiten
-        var content;
+        var content = {};
         switch (this.type) {
             case "cmd":
                 content = {
