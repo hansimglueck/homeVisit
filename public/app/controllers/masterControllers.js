@@ -26,6 +26,7 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemTy
         $scope.itemTypes = itemTypes;
         $scope.gameConf = gameConf.getRun(function() {
             console.log("getRunCallback!"+$scope.gameConf);
+            if (!$scope.gameConf.typeMapping) $scope.gameConf.typeMapping = [];
             if ($scope.gameConf.typeMapping.length != $scope.itemTypes.length) {
                 $scope.gameConf.typeMapping = [];
                 angular.forEach($scope.itemTypes, function(type) {
@@ -42,6 +43,8 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemTy
             return selected.length ? selected[0].title : 'Not set';
         };
         $scope.updateGameConf = function(data) {
+            console.log("updateGameConf");
+            console.log(data);
             var updatedGameConf = angular.copy($scope.gameConf);
             angular.extend(updatedGameConf, data);
             delete updatedGameConf._id;   //sonst macht mongoDB auf dem raspi stunk

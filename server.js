@@ -76,7 +76,7 @@ var gameConf = require('./game/gameConf.js');
 mongoConnection(function (db) {
     console.log("Database connection established");
     gameConf.syncFromDb();
-    game.initDb();
+    //game.initDb();
 });
 
 

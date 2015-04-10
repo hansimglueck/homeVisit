@@ -40,7 +40,6 @@ router.put('/:id', function (req, res, next) {
   mongoConnection(function (db) {
     db.collection('gameconfs').updateOne({"_id": ObjectID(req.params.id)}, req.body, function (err, result) {
       if (err) return next(err);
-      game.initDb();
       gameConf.syncFromDb();
       res.json(result);
     })

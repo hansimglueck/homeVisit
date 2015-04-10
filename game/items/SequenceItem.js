@@ -196,6 +196,8 @@ SequenceItem.prototype = {
         map.devices.forEach(function (dev) {
             self.log("sending to " + dev + ": " + self.text);
             //statt device player wird der playerManager verwendet
+            //dieser bekommt das ganze item-objekt
+            //alle anderen devices bekommen nur, getWsContent()
             //es kann auch zB player:next geben...
             if (dev.indexOf("player") == 0) {
                 playerManager.addItem(self);

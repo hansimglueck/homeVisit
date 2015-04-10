@@ -1,16 +1,20 @@
 <ul class="list-group" ng-controller="GameConfCtrl">
-    <li class="list-group-item" ng-show="error">{{error}} <button ng-click="resetGameConf()">Reset</button></li>
-    <li class="list-group-item">
-        Autoplay: <a href="#" editable-checkbox="gameConf.autostart" e-title="Autoplay?"
-                     onaftersave="updateGameConf()">
-        {{ gameConf.autostart && "On" || "Off" }}
-    </a>
-    </li>
-    <li class="list-group-item">
-        <span editable-text="gameConf.playerCnt" e-name="playerCnt" onaftersave="updateGameConf()">
-          {{ gameConf.playerCnt || '0' }}
-        </span>Player
-    </li>
+    <!--
+        <li class="list-group-item" ng-show="error">{{error}}
+            <button ng-click="resetGameConf()">Reset</button>
+        </li>
+        <li class="list-group-item">
+            Autoplay: <a href="#" editable-checkbox="gameConf.autostart" e-title="Autoplay?"
+                         onaftersave="updateGameConf()">
+            {{ gameConf.autostart && "On" || "Off" }}
+        </a>
+        </li>
+        <li class="list-group-item">
+            <span editable-text="gameConf.playerCnt" e-name="playerCnt" onaftersave="updateGameConf()">
+              {{ gameConf.playerCnt || '0' }}
+            </span>Player
+        </li>
+        -->
     <li class="list-group-item">
         Startdeck:
     <span editable-select="gameConf.startDeckId" e-ng-options="s._id as s.title for s in decks"
@@ -22,15 +26,15 @@
         <div>
             <div><h5>Default-Mapping:</h5></div>
             <ul class="list-group">
-                <li class="list-group-item" ng-repeat="type in gameConf.typeMapping track by $index">
+                <li class="list-group-item" ng-repeat="type in itemTypes track by $index" ng-show="type.mappable">
                     <ul class="list-inline">
                         <li>
-                            {{type.type}}:
+                            {{type.value}}:
                         </li>
-                        <li ng-repeat="device in type.devices track by $index">
+                        <li ng-repeat="device in gameConf.typeMapping[$index].devices track by $index">
                             <form editable-form name="deviceFrm" shown="device == ''">
                         <span class="device">
-                            <span ng-click="deviceFrm.$show()" e-form="deviceFrm" editable-text="type.devices[$index]"
+                            <span ng-click="deviceFrm.$show()" e-form="deviceFrm" editable-text="gameConf.typeMapping[$parent.$index].devices[$index]"
                                   onbeforesave="" onaftersave="updateGameConf()">
                                 {{ device }}
                             </span>

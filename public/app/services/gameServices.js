@@ -13,15 +13,14 @@ gameServices.factory('Game', ['$resource', function ($resource) {
     //});
 }])
     .value('itemTypes', [
-        {value: 'card', text: 'Karte'},
-        {value: 'sound', text: 'Sound'},
-        {value: 'vote', text: 'Abstimmung'},
-        {value: 'results', text: 'Results'},
-        {value: 'switch', text: 'Switch'},
-        {value: 'inlineSwitch', text:'Inline Switch'},
-        {value: 'cmd', text: 'Kommando'},
-        {value: 'playerDirect', text:'Player Direkt'},
-        {value: 'eval', text:'eval'}
+        {value: 'card', text: 'Karte', mappable: true},
+        {value: 'sound', text: 'Sound', mappable: true},
+        {value: 'vote', text: 'Abstimmung', mappable: true},
+        {value: 'results', text: 'Results', mappable: true},
+        {value: 'switch', text: 'Switch', mappable: false},
+        {value: 'inlineSwitch', text:'Inline Switch', mappable: false},
+        {value: 'cmd', text: 'Kommando', mappable: true},
+        {value: 'eval', text:'eval', mappable: true}
     ])
     .value('resultColors', [
         {value: '0', text: 'Rot'},
