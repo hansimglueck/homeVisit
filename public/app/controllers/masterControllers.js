@@ -17,13 +17,17 @@ var masterControllers = angular.module('masterControllers', [])
             $scope.status = status;
             console.log("got status info: "+JSON.stringify(status));
         });
+        $scope.alert = function() {
+            console.log("Alarm clicked");
+            Socket.emit({type:"alert"}, function() { console.log('Alarm emitted'); });
+        }
 
     });
 
-masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemTypes, gameConf, $filter) {
+masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOptions, gameConf, $filter) {
         //$scope.error = "kein Problem";
         $scope.decks = setFactory.decks;
-        $scope.itemTypes = itemTypes;
+        $scope.itemTypes = itemOptions.type;
         $scope.gameConf = gameConf.getRun(function() {
             console.log("getRunCallback!"+$scope.gameConf);
             if (!$scope.gameConf.typeMapping) $scope.gameConf.typeMapping = [];
@@ -104,9 +108,9 @@ masterControllers.controller('LogCtrl', function($scope, Socket){
 
     });
 
-masterControllers.controller('DeviceCtrl', function($scope, Socket, itemTypes) {
+masterControllers.controller('DeviceCtrl', function($scope, Socket, itemOptions) {
     $scope.deviceList = [];
-    $scope.itemTypes = itemTypes;
+    $scope.itemTypes = itemOptions.type;
     $scope.isCollapsed = true;
     Socket.on("DeviceList", function(message) {
         $scope.deviceList = message.data;

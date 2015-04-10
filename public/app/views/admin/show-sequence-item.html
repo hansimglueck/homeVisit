@@ -9,8 +9,8 @@
         <span editable-select="item.type" e-name="type"
               onbeforesave="prepareItem($data, $index)"
               onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in types">
-          {{ showType(item) }}
+              e-ng-options="s.value as s.text for s in itemOptions.type">
+          {{ showTextForValue(item, "type") }}
         </span> <br/><br/>Mapped:<br/>
         <span editable-text="item.device" e-name="device"
               onaftersave="saveItem()"
@@ -23,8 +23,8 @@
     <td>
         <span editable-select="item.trigger" e-name="trigger"
               onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in trigger">
-          {{ showTrigger(item) }}
+              e-ng-options="s.value as s.text for s in itemOptions.trigger">
+          {{ showTextForValue(item, "trigger") }}
         </span><br/>
         Wait: <br/><span editable-text="item.wait" e-name="wait" onaftersave="saveItem()">
           {{ item.wait || '0' }}
@@ -47,6 +47,7 @@
         <div show-cmd-content ng-switch-when="cmd"></div>
         <div show-player-direct-content ng-switch-when="playerDirect"></div>
         <div show-eval-content ng-switch-when="eval"></div>
+        <div show-config-content ng-switch-when="config"></div>
         <div show-card-content ng-switch-default></div>
     </td>
 

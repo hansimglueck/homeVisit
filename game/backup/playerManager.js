@@ -441,7 +441,7 @@ PlayerManager.prototype = {
         }
     },
     sendVoteResults: function (resultItem) {
-        var displayType = resultItem.displayType;
+        var displayType = resultItem.resultType;
         var result = resultItem.data;
         var msg = result.text;
         var labels = [];
@@ -457,13 +457,13 @@ PlayerManager.prototype = {
             if (typeof rightAnswer[0] != "undefined") msg += "::::" + "Right Answer: " + rightAnswer[0];
         }
         //console.log("maxVoteCount=" + voteItem.maxCount);
-        if (displayType == "numberStats") {
+        if (resultType == "numberStats") {
             //send stats as array: [sum, avg]
             resData = [result.sum, result.average, result.minVal, result.maxVal];
         }
         else result.voteOptions.forEach(function (option) {
             labels.push(option.text + ": " + option.percent + "% (" + option.votes + ")");
-            if (displayType == "europeMap") resData.push({
+            if (resultType == "europeMap") resData.push({
                 id: option.value,
                 val: option.percent
             });
@@ -472,7 +472,7 @@ PlayerManager.prototype = {
         //resultItem.data = resData;
         this.deliverMessage(resultItem.device, "display", {
             type: "result",
-            displayType: displayType,
+            resultType: resultType,
             text: msg,
             labels: labels,
             data: resData,

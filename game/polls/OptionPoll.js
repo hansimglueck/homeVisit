@@ -21,9 +21,11 @@ OptionPoll.prototype.evalVote = function (vote) {
     var self = this;
     if (typeof vote.multiplier == "undefined" || !this.ratedVote) vote.multiplier = 1;
     vote.choice.forEach(function (ch) {
-        var option = self.voteOptions.filter(function(opt){return opt.value == ch})[0];
-        option.result += vote.multiplier;
-        option.votes += 1;
+        var option = self.voteOptions.filter(function(opt){return opt.value == ch});
+        if (option.length>0) {
+            option[0].result += vote.multiplier;
+            option[0].votes += 1;
+        }
     });
 };
 OptionPoll.prototype.getResult = function () {
@@ -32,7 +34,8 @@ OptionPoll.prototype.getResult = function () {
     return {
         text: this.text,
         voteOptions: this.voteOptions.sort(function(a,b){return b.result- a.result}),
-        votes: this.votes
+        votes: this.votes,
+        complete: !this.open
     }
 };
 

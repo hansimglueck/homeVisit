@@ -42,9 +42,9 @@
         <td>
         <span editable-select="item.voteType" e-name="voteType"
               onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in voteTypes"
+              e-ng-options="s.value as s.text for s in itemOptions.voteType"
                 >
-          {{ showVoteType(item) }}
+          {{ showTextForValue(item, "voteType") }}
         </span>
         </td>
     </tr>
@@ -53,9 +53,9 @@
         <td>
         <span editable-select="item.language" e-name="language"
               onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in languages"
+              e-ng-options="s.value as s.text for s in itemOptions.language"
                 >
-          {{ showLanguage(item) }}
+          {{ showTextForValue(item, "language") }}
         </span>
         </td>
     </tr>

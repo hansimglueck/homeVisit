@@ -29,6 +29,10 @@ Poll.prototype = {
     init: function () {
         this.prepareWsContent();
     },
+    log: function (message, ws) {
+        console.log("Poll.log: " + message);
+        if (ws) wsManager.msgDevicesByRole("master", "log", message);
+    },
     //Stimmen annehmen, direkt auswerten
     vote: function (vote) {
         if (typeof vote == "undefined") return false;
@@ -47,7 +51,10 @@ Poll.prototype = {
         return true;
     },
     checkVoteValid: function (vote) {
-        return !!(vote.hasOwnProperty("playerId") && vote.hasOwnProperty("choice"));
+        var ret = !!(vote.hasOwnProperty("playerId") && vote.hasOwnProperty("choice"));
+        if (!ret) this.log("got invalid vote");
+        else this.log("got valid vote");
+        return ret;
     },
     //Stimme auswerten
     evalVote: function () {

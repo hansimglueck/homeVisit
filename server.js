@@ -62,6 +62,7 @@ wsManager.onRole("MC", playerManager, playerManager.mcMessage);
 
 var game = require('./game/game.js');
 wsManager.onType("playbackAction", game, game.trigger);
+wsManager.onType("alert", game, game.alert);
 wsManager.onType("directItem", game, game.directItem);
 
 var raspiTools = require('./game/raspiTools.js');

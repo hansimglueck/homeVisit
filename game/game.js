@@ -3,6 +3,7 @@
  */
 var exec = require('child_process').exec;
 var wsManager = require('./wsManager.js');
+var playerManager = require('./playerManager.js');
 var SequenceItem = require('./items/SequenceItem.js');
 var mongoConnection = require('../mongoConnection.js');
 var gameConf = require('./gameConf');
@@ -66,6 +67,15 @@ Game.prototype = {
         } catch (e) {
             console.log("ERROR in game.trigger! " + e.stack);
         }
+    },
+    alert: function(clientId, msg) {
+        var recipients = gameConf.getOption("alertRecipients").split(",");
+        recipients.forEach(function(recipient){
+            var role = recipient.split(":")[0];
+            var name = recipient.split(":")[1];
+            if (role != "player") wsManager.msgDevicesByRoleAndName(role, name, "display", {type:"alert"});
+            else playerManager.deliverMessage(recipient, "display", {type:"alert"});
+        })
     },
 
     log: function (message) {

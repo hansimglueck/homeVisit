@@ -1,7 +1,8 @@
 var mongoConnection = require('../mongoConnection');
 
 function GameConf() {
-    this.conf = {};
+    this.conf = {};         //fixe Kongiguration wie startDeck, typeMapping
+    this.options = {};      //veränderliche optionen wie alertRecipients
 }
 
 GameConf.prototype = {
@@ -21,6 +22,13 @@ GameConf.prototype = {
                 console.log("autostart=" + self.conf.autostart);
             });
         });
+    },
+    setOption: function(field, value) {
+        this.options[field] = value;
+    },
+    getOption: function(field) {
+        if (typeof this.options[field] != "undefined") return this.options[field];
+        else return false;
     }
 };
 

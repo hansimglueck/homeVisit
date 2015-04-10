@@ -179,14 +179,6 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
 adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
     $scope.name = "deck";
 
-    $scope.trigger = [{text: "Go", value: "go"}, {text: "Follow", value: "follow"}];
-    $scope.showTrigger = function (item) {
-        var selected = [];
-        if (item.trigger) {
-            selected = $filter('filter')($scope.trigger, {value: item.trigger}, true);
-        }
-        return selected.length ? selected[0].text : 'Not set';
-    };
     $scope.showFollowUp = function (option) {
         //console.log("showFollowUp");
         var selected = [];
@@ -330,61 +322,12 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
     });
 
 
-adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, resultTypes, voteTypes, languages, resultColors, scoreTypes, sourceTypes) {
-    $scope.sourceTypes = sourceTypes;
-    $scope.scoreTypes = scoreTypes;
-    $scope.voteTypes = voteTypes;
-    $scope.resultTypes = resultTypes;
-    $scope.types = itemTypes;
-    $scope.languages = languages;
-    $scope.resultColors = resultColors;
-    $scope.showType = function (item) {
+adminControllers.controller('itemCtrl', function ($scope, $filter, itemOptions) {
+    $scope.itemOptions = itemOptions;
+    $scope.showTextForValue = function (item, option) {
         var selected = [];
-        if (item.type) {
-            selected = $filter('filter')($scope.types, {value: item.type}, true);
-        }
-        return selected.length ? selected[0].text : 'Not set';
-    };
-    $scope.showLanguage = function (item) {
-        var selected = [];
-        if (item.language) {
-            selected = $filter('filter')($scope.languages, {value: item.language}, true);
-        }
-        return selected.length ? selected[0].text : 'Not set';
-    };
-    $scope.showResultColor = function (item) {
-        var selected = [];
-        if (item.color) {
-            selected = $filter('filter')($scope.resultColors, {value: item.color}, true);
-        }
-        return selected.length ? selected[0].text : 'Not set';
-    };
-    $scope.showResultType = function (item) {
-        var selected = [];
-        if (item.displayType) {
-            selected = $filter('filter')($scope.resultTypes, {value: item.displayType}, true);
-        }
-        return selected.length ? selected[0].text : 'Not set';
-    };
-
-    $scope.showVoteType = function (item) {
-        var selected = [];
-        if (item.voteType) {
-            selected = $filter('filter')($scope.voteTypes, {value: item.voteType}, true);
-        }
-        return selected.length ? selected[0].text : 'Not set';
-    };
-    $scope.showScoreType = function (item) {
-        var selected = [];
-        if (item.scoreType) {
-            selected = $filter('filter')($scope.scoreTypes, {value: item.scoreType}, true);
-        }
-        return selected.length ? selected[0].text : 'Not set';
-    };
-    $scope.showSourceType = function (item) {
-        var selected = [];
-        if (item.sourceType) {
-            selected = $filter('filter')($scope.sourceTypes, {value: item.sourceType}, true);
+        if (item[option]) {
+            selected = $filter('filter')($scope.itemOptions[option], {value: item[option]}, true);
         }
         return selected.length ? selected[0].text : 'Not set';
     };
@@ -451,16 +394,16 @@ adminControllers.controller('itemCtrl', function ($scope, itemTypes, $filter, re
         }
 
     })
-    .controller('directItemCtrl', function ($scope, itemTypes, $filter, Socket) {
+    .controller('directItemCtrl', function ($scope, itemOptions, $filter, Socket) {
         $scope.item = {
             type: "card",
             text: ""
         };
-        $scope.types = itemTypes;
-        $scope.showType = function (item) {
+        $scope.types = itemOptions.types;
+        $scope.showTextForValue = function (item, option) {
             var selected = [];
-            if (item.type) {
-                selected = $filter('filter')($scope.types, {value: item.type}, true);
+            if (item[option]) {
+                selected = $filter('filter')($scope.itemOptions[option], {value: item[option]}, true);
             }
             return selected.length ? selected[0].text : 'Not set';
         };

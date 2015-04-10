@@ -2,11 +2,11 @@
 <div class="playback-control" ng-if="home.showGo"><button class="btn-lg" ng-click="go()">Weiter</button></div>
 <div class="section content" ng-switch="home.type" ng-show="status.joined">
     <div ng-switch-when="result">
-        <div ng-if="home.displayType == 'europeMap'">
+        <div ng-if="home.resultType == 'europeMap'">
             <div class="overlayText">{{home.text[0]}}</div>
             <europe-map></europe-map>
         </div>
-        <ul class="list-unstyled" ng-if="home.displayType == 'numberStats'">
+        <ul class="list-unstyled" ng-if="home.resultType == 'numberStats'">
             <li>
                 <ul class="list-unstyled">
                     <li ng-repeat="t in home.text track by $index">{{t}}</li>
@@ -19,12 +19,12 @@
                 Durchschnitt: {{home.data[1]}}
             </li>
         </ul>
-        <div ng-if="['europeMap','numberStats'].indexOf(home.displayType) == -1">
+        <div ng-if="['europeMap','numberStats'].indexOf(home.resultType) == -1">
             <ul class="list-unstyled">
                 <li ng-repeat="t in home.text track by $index">{{t}}</li>
             </ul>
             <div class="chart">
-                <canvas id="base" class="chart chart-base" chart-type="home.displayType" data="home.data"
+                <canvas id="base" class="chart chart-base" chart-type="home.resultType" data="home.data"
                         labels="home.labels"
                         legend="true"
                         width="100" height="100">

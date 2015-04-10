@@ -341,10 +341,10 @@ PlayerManager.prototype = {
 
         var choice = data.choice;
         var vote = {choice: choice, playerId: playerId};
-        vote.multiplier = this.players.filter(function (p) { return p.joined; }).length - this.players[playerId].rank + 1;
+        data.multiplier = this.players.filter(function (p) { return p.joined; }).length - this.players[playerId].rank + 1;
 //        vote.multiplier = this.avgRatings[playerId];
 
-        poll.vote(vote);
+        poll.vote(data);
 
         /*
         TODO: falls diese infos gesendet werden sollen, müssten dieses VOR poll.vote() ausgeführt werden.
@@ -441,29 +441,20 @@ PlayerManager.prototype = {
         }
     },
     sendVoteResults: function (resultItem) {
-        var displayType = resultItem.displayType;
+        var resultType = resultItem.resultType;
         var result = resultItem.data;
         var msg = result.text;
         var labels = [];
         var resData = [];
-        var rightAnswer = [];
-        if (result.voteOptions) rightAnswer = result.voteOptions.filter(function (a) {
-            return (a.flags) ? a.flags[0] : false
-        }).map(function (b) {
-            return b.text
-        });
         //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
-        if (rightAnswer.length > 0) {
-            if (typeof rightAnswer[0] != "undefined") msg += "::::" + "Right Answer: " + rightAnswer[0];
-        }
         //console.log("maxVoteCount=" + voteItem.maxCount);
-        if (displayType == "numberStats") {
+        if (resultType == "numberStats") {
             //send stats as array: [sum, avg]
             resData = [result.sum, result.average, result.minVal, result.maxVal];
         }
         else result.voteOptions.forEach(function (option) {
             labels.push(option.text + ": " + option.percent + "% (" + option.votes + ")");
-            if (displayType == "europeMap") resData.push({
+            if (resultType == "europeMap") resData.push({
                 id: option.value,
                 val: option.percent
             });
@@ -472,17 +463,12 @@ PlayerManager.prototype = {
         //resultItem.data = resData;
         this.deliverMessage(resultItem.device, "display", {
             type: "result",
-            displayType: displayType,
+            resultType: resultType,
             text: msg,
             labels: labels,
             data: resData,
             resultColor: resultItem.opts ? resultItem.opts[0] : ""
         });
-        /*
-        if (!resultItem.flags[0]) return;
-        var game = require('./game.js');
-        game.trigger(-1, {data: 'go', param: result.voteOptions[0].id});
-        */
     },
     direct: function (directId) {
         var directItem = this.directItems[directId];
@@ -539,13 +525,13 @@ PlayerManager.prototype = {
         switch (specialPlayer) {
             case "next":
                 // wir hoffen, dass die websocket-nachrichten in richtiger sequenz durchs netz flitzen....
-                this.broadcastMessage("display", {type: "black"});
+                this.broadcastMessage(type, {type: "black"});
                 this.advanceTurn(1);
                 this.sendMessage(this.onTurn, type, content);
                 break;
             case "all":
             default:
-                this.broadcastMessage("display", content);
+                this.broadcastMessage(type, content);
                 break;
         }
     },

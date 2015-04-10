@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <td class="text-right">Config-Option : </td>
+        <td>
+    <span editable-select="item.configField" e-name="configField"
+          onaftersave="saveItem()"
+          e-ng-options="s.value as s.text for s in itemOptions.configField"
+            >
+          {{ showTextForValue(item, "configField") }}
+        </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-right">Wert = </td>
+        <td>
+    <span editable-text="item.value"
+          e-rows="7" e-cols="40" e-name="value"
+          onaftersave="saveItem()">
+          {{ item.value || 'not Set' }}
+        </span>
+        </td>
+    </tr>
+</table>

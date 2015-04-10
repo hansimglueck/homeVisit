@@ -4,18 +4,18 @@
         <td>
 <span editable-select="item.sourceType" e-name="sourceType"
       onaftersave="saveItem()"
-      e-ng-options="s.value as s.text for s in sourceTypes">
-          {{ showSourceType(item) }}
+      e-ng-options="s.value as s.text for s in itemOptions.sourceType">
+          {{ showTextForValue(item, "sourceType") }}
         </span>
         </td>
     </tr>
     <tr>
         <td>Darstellung:</td>
         <td>
-<span editable-select="item.displayType" e-name="displayType"
+<span editable-select="item.resultType" e-name="resultType"
       onaftersave="saveItem()"
-      e-ng-options="s.value as s.text for s in resultTypes">
-          {{ showResultType(item) }}
+      e-ng-options="s.value as s.text for s in itemOptions.resultType">
+          {{ showTextForValue(item, "resultType") }}
         </span>
         </td>
     </tr>
@@ -24,8 +24,8 @@
         <td>
 <span editable-select="item.scoreType" e-name="scoreType"
       onaftersave="saveItem()"
-      e-ng-options="s.value as s.text for s in scoreTypes">
-          {{ showScoreType(item) }}
+      e-ng-options="s.value as s.text for s in itemOptions.scoreType">
+          {{ showTextForValue(item, "scoreType") }}
         </span>
         </td>
     </tr>
@@ -43,8 +43,8 @@
         <td>
 <span editable-select="item.color" e-name="color"
       onaftersave="saveItem()"
-      e-ng-options="s.value as s.text for s in resultColors">
-          {{ showResultColor(item) }}
+      e-ng-options="s.value as s.text for s in itemOptions.color">
+          {{ showTextForValue(item, "color") }}
         </span>
         </td>
     </tr>

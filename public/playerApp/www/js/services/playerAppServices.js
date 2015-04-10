@@ -77,11 +77,11 @@ angular.module('playerAppServices', [])
             //TODO: wenn eine nummer-eingabe-abstimmung läuft sollte die eingegebene nummer, wenn auch noch nicht gesendet, verwendet werden
             if (homeFactory.time == 0) return;
             if (homeFactory.time < 10) {
-                fxService.startCountdown(homeFactory.time, homeFactory.vote);
+                fxService.startCountdown(homeFactory.time, homeFactory.confirmVote);
             }
             else {
                 homeFactory.timeout = $timeout(function(){
-                    fxService.startCountdown(10, homeFactory.vote);
+                    fxService.startCountdown(10, homeFactory.confirmVote);
                 }, (homeFactory.time-10)*1000);
              }
         };
@@ -92,6 +92,8 @@ angular.module('playerAppServices', [])
             $location.path("/voteConfirm");
         };
         homeFactory.confirmVote = function() {
+            if (typeof homeFactory.voteChoice == "undefined") homeFactory.voteChoice = [];
+            console.log(homeFactory.voteChoice);
             if (homeFactory.timeout) {
                 console.log("cancel timeout!");
                 $timeout.cancel(homeFactory.timeout);
@@ -132,17 +134,18 @@ angular.module('playerAppServices', [])
                             homeFactory.ratedVote = data.ratedVote;
                             homeFactory.time = parseInt(data.time);
                             homeFactory.timedVote();
+                            fxService.playSound(0);
                             $location.path("/vote");
                             return;
                             break;
                         case "result":
-                            homeFactory.displayType = data.displayType;
+                            homeFactory.resultType = data.resultType;
                             homeFactory.labels = data.labels;
-                            (homeFactory.displayType == 'Bar' || homeFactory.displayType == 'Line') ? homeFactory.data = [data.data] : homeFactory.data = data.data;
+                            (homeFactory.resultType == 'Bar' || homeFactory.resultType == 'Line') ? homeFactory.data = [data.data] : homeFactory.data = data.data;
                             homeFactory.votelast = "result";
                             homeFactory.type = "result";
                             homeFactory.resultColor = data.resultColor;
-                            console.log(homeFactory.displayType);
+                            console.log(homeFactory.resultType);
                             break;
                         case "card":
                             break;
@@ -155,6 +158,10 @@ angular.module('playerAppServices', [])
                             break;
                         case "black":
                             $location.path('/score');
+                            return;
+                            break;
+                        case "alert":
+                            fxService.playSound(0);
                             return;
                             break;
                     }

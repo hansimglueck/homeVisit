@@ -39,7 +39,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'app/views/admin/show-vote-option.html'
+            templateUrl: 'app/views/admin/show-item-contents/show-vote-option.html'
         };
     })
 
@@ -94,6 +94,13 @@ angular.module('adminDirectives', [])
             restrict: 'AE',
             replace: 'true',
             templateUrl: 'app/views/admin/show-item-contents/show-results-content.html'
+        };
+    })
+    .directive('showConfigContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-config-content.html'
         };
     })
 

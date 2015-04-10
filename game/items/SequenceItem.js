@@ -41,16 +41,23 @@ var playerManager = require('../playerManager.js');
  item.type = "result"
  item.text:      Text
  item.dataSource: welche Daten sollen verwendet werden? previousStep/positivePlayerScore
- item.displayType: In welcher Form sollen Ergebnisse dargestellt werden? Pie/Bar/Line/seatOrder/europeMap/numberStats
- die Darstellung obliegt dem Zieldevice
+ item.resultType: In welcher Form sollen Ergebnisse dargestellt werden? Pie/Bar/Line/seatOrder/europeMap/numberStats
+                die Darstellung obliegt dem Zieldevice
  item.scoreType: noScore/optionScore/majorityScore - für results von votes sollen die player gescort werden
  item.autoGo:    soll direkt der nächste step getriggert werden (zB für switch nach result)
+                - der value der besten Option wird als param mitgegeben, wenn die poll nicht mehr open ist, sonst -1
+ item.color:    in welcher Farbe werden die Ergebnisse (bei map-Darstellung) angezeigt
+
 
  item.type = "switch"
  item.options:   array of {value, followUp: deck-id}
 
  item.type = "inlineSwitch"
  item.inlineDecks:   array of decks
+
+ item.type = "config"
+ item.configField:  name des konfigurierbaren Wertes (zB alertRecipients)
+ item.value:        Wert des Wertes
 
  */
 
@@ -128,6 +135,8 @@ SequenceItem.prototype = {
         this.done = true;
         switch (this.type) {
             case "switch":
+                //TODO: der switch muss wohl wieder implementiert werden, wenns komplexer werden soll
+                //ähnlich wie inline-switch, nur dass das deck vom game geholt werden muss...
                 break;
             case "inlineSwitch":
                 this.log("looking for deck for option " + this.param);
@@ -152,21 +161,62 @@ SequenceItem.prototype = {
                 this.mapToDevice();
                 break;
             case "results":
-                this.log(this.sourceType);
+                //der score wird hier ermittelt, da das result ja auch zB an den printer geschickt werden könnte, dann käme playerManager.result() garnicht dran
+                this.data = {};
                 switch (this.sourceType) {
                     case "previousStep":
                         this.data = this.previous.getData();
-                        this.mapToDevice();
                         break;
                     case "positivePlayerScore":
                         break;
-                     default:
+                    default:
                         break;
                 }
+                switch (this.scoreType) {
+                    case "optionScore":
+                        //checke, welche votes eine option mit .correctAnswer in der choice haben
+                        //und verteile +1 für jede korrekte choice, -1 für die anderen
+                        var correct = this.data.voteOptions.filter(function (opt) {
+                            return opt.correctAnswer
+                        }).map(function (opt) {
+                            return opt.value
+                        });
+                        var score;
+                        this.data.votes.forEach(function (vote) {
+                            score = -1;
+                            vote.choice.forEach(function (ch) {
+                                if (correct.indexOf(ch) != -1) score = 1;
+                            });
+                            playerManager.score(vote.playerId, score);
+                        });
+                        break;
+                    case "majorityScore":
+                        //checke, welche votes die voteOption[0] der results (sortiert) in der choice haben
+                        //und verteile +1 dafür, -1 für die anderen
+                        //TODO: bei zwei gleichguten Antworten wird nur eine berücksichtigt...
+                        var best = this.data.voteOptions[0].value;
+                        var score;
+                        this.data.votes.forEach(function (vote) {
+                            score = -1;
+                            vote.choice.forEach(function (ch) {
+                                if (best == ch) score = 1;
+                            });
+                            playerManager.score(vote.playerId, score);
+                        });
+                        break;
+
+                    case "noScore":
+                    default:
+                        break;
+                }
+                this.mapToDevice();
                 if (this.autoGo) {
                     //führe nächsten step aus mit param = value der bestOption
-                    this.step(this.data.voteOptions[0].value);
+                    this.step(this.data.complete ? this.data.voteOptions[0].value : -1);
                 }
+                break;
+            case "config":
+                gameConf.setOption(this.configField, this.value);
                 break;
             default:
                 this.mapToDevice();

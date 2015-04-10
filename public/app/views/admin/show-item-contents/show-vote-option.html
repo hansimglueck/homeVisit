@@ -12,25 +12,18 @@
                   {{ voteOption.text || 'empty' }}
             </span>
         </td>
-        <td ng-show="item.type == 'vote'"><span editable-checkbox="voteOption.flags[0]" e-name="correctFlag" onaftersave="saveVoteOption()">
-          {{ voteOption.flags[0] ? 'x':'-' }}
+        <td ng-show="item.type == 'vote'"><span editable-checkbox="voteOption.correctAnswer" e-name="correctAnswer" onaftersave="saveVoteOption()">
+          {{ voteOption.correctAnswer ? 'x':'-' }}
         </span>
         </td>
+        <!--
         <td ng-show="item.type == 'vote'">
             <span editable-number="voteOption.score" e-name="score" onaftersave="saveVoteOption()">
                   {{ voteOption.score || 'empty' }}
             </span>
         </td>
-        <td ng-show="item.type == 'switch'">
-            <span editable-select="voteOption.followUp"
-                  e-name="followUp"
-                  e-ng-options="s._id as s.title for s in decks"
-                  onaftersave="saveVoteOption()"
-                  >
-              {{ showFollowUp(voteOption) }}
-            </span>
-        </td>
-        <td style="white-space: nowrap">
+        -->
+         <td style="white-space: nowrap">
             <div class="buttons">
                 <button class="btn btn-sm btn-danger" ng-click="deleteVoteOption($parent.$parent.$index, $parent.$index, $index)">Löschen</button>
             </div>
