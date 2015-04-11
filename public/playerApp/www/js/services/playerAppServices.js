@@ -138,15 +138,33 @@ angular.module('playerAppServices', [])
                             $location.path("/vote");
                             return;
                             break;
-                        case "result":
-                            homeFactory.resultType = data.resultType;
-                            homeFactory.labels = data.labels;
-                            (homeFactory.resultType == 'Bar' || homeFactory.resultType == 'Line') ? homeFactory.data = [data.data] : homeFactory.data = data.data;
+                        case "results":
+                            var resultType = data.resultType;
+                            var result = data.data;
+                            var msg = data.text;
+
+                            var labels = [];
+                            var resData = [];
+                            //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
+                            if (resultType == "numberStats") {
+                                //send stats as array: [sum, avg]
+                                resData = [result.sum, result.average, result.minVal, result.maxVal];
+                            }
+                            else result.voteOptions.forEach(function (option) {
+                                labels.push(option.text + ": " + option.percent + "% (" + option.votes + ")");
+                                if (resultType == "europeMap") resData.push({
+                                    id: option.value,
+                                    val: option.percent
+                                });
+                                else resData.push(option.result);
+                            });
+                            homeFactory.resultType = resultType;
+                            (homeFactory.resultType == 'Bar' || homeFactory.resultType == 'Line') ? homeFactory.data = [resData] : homeFactory.data = resData;
+                            homeFactory.labels = labels;
                             homeFactory.votelast = "result";
                             homeFactory.type = "result";
                             homeFactory.resultColor = data.resultColor;
-                            console.log(homeFactory.resultType);
-                            break;
+                             break;
                         case "card":
                             break;
                         case "browser":

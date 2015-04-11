@@ -392,13 +392,14 @@ PlayerManager.prototype = {
                 case "vote":
                     this.polls[item.poll.id] = item.poll;
                     item.poll.setMaxVotes(this.players.filter(function(player){return player.joined}).length);
-                    this.deliverMessage(item.device, "display", item.poll.getWsContent());
+                    this.deliverMessage(item.device, "display", item.getWsContent());
                     break;
                 case "card":
-                    this.deliverMessage(item.device, "display", {type:item.type, text: item.text});
+                    this.deliverMessage(item.device, "display", item.getWsContent());
                     break;
                 case "results":
-                    this.results(item);
+                    this.deliverMessage(item.device, "display", item.getWsContent());
+                    //this.results(item);
                     break;
                 case "playerDirect":
                     this.direct(this.directItems.push(item) - 1);

@@ -42,10 +42,10 @@ var playerManager = require('../playerManager.js');
  item.text:      Text
  item.dataSource: welche Daten sollen verwendet werden? previousStep/positivePlayerScore
  item.resultType: In welcher Form sollen Ergebnisse dargestellt werden? Pie/Bar/Line/seatOrder/europeMap/numberStats
-                die Darstellung obliegt dem Zieldevice
+ die Darstellung obliegt dem Zieldevice
  item.scoreType: noScore/optionScore/majorityScore - für results von votes sollen die player gescort werden
  item.autoGo:    soll direkt der nächste step getriggert werden (zB für switch nach result)
-                - der value der besten Option wird als param mitgegeben, wenn die poll nicht mehr open ist, sonst -1
+ - der value der besten Option wird als param mitgegeben, wenn die poll nicht mehr open ist, sonst -1
  item.color:    in welcher Farbe werden die Ergebnisse (bei map-Darstellung) angezeigt
 
 
@@ -168,6 +168,22 @@ SequenceItem.prototype = {
                         this.data = this.previous.getData();
                         break;
                     case "positivePlayerScore":
+                        var posScoreArr = playerManager.players.filter(function (player, id) {
+                            player.playerId = id;
+                            return player.score > 0;
+                        });
+                        var sum = posScoreArr.reduce(function (prev, curr) {
+                            return prev + curr.score
+                        }, 0);
+                        this.data.voteOptions = posScoreArr.map(function (player) {
+                            return {
+                                value: player.playerId,
+                                result: player.score,
+                                votes: player.score,
+                                text: player.playerId,
+                                percent: (player.score / sum * 100).toFixed(1)
+                            }
+                        });
                         break;
                     default:
                         break;
@@ -278,7 +294,15 @@ SequenceItem.prototype = {
                 content = this.poll.getWsContent();
                 break;
             case "results":
-                content.data = this.data;
+                content = {
+                    data: {
+                        voteOptions: this.data.voteOptions
+                    },
+                    type: this.type,
+                    text: this.data.text,
+                    resultType: this.resultType,
+                    color: this.color
+                };
                 break;
             default:
                 content = {

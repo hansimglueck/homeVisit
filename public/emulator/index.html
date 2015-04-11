@@ -46,8 +46,8 @@
         var frames = $('.playerAppDiv');
         for (var i = 0; i < frames.length; i++) {
             //console.error(Math.floor(i / 8));
-            $(frames[i]).css('left', (i % 8) * -155);
-            $(frames[i]).css('top', (Math.floor(i / 8)) * -235);
+            $(frames[i]).css('left', (i % 3) * -400);
+            $(frames[i]).css('top', (Math.floor(i / 3)) * -235);
         }
     }
 </script>
