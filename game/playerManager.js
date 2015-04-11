@@ -284,13 +284,10 @@ PlayerManager.prototype = {
             return;
         }
 
-        if (!!this.lastPlayerMessage) client.socket.send(JSON.stringify({
-            type: "display",
-            data: this.lastPlayerMessage
-        }));
         this.players[playerId].clientId = clientId;
         this.players[playerId].joined = true;
         this.sendPlayerStatus(playerId);
+        if (!!this.players[playerId].lastDisplayMessage) wsManager.msgDeviceByIds([clientId], "display", this.players[playerId].lastDisplayMessage);
         //this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
     },
     // donation-msg-data: data.recipient (playerId), data.itemType
@@ -549,10 +546,14 @@ PlayerManager.prototype = {
     // diese funktion bemüht den wsManager und sichert die letzte Message zum Ausliefern bei Client-Reload
     broadcastMessage: function (type, data) {
         wsManager.msgDevicesByRole("player", type, data);
+        if (type === "display") this.players.forEach(function(player){
+            player.lastDisplayMessage = data;
+        });
     },
     // Zum Benachrichtigen einzelner Player
     sendMessage: function (playerId, type, data) {
         wsManager.msgDeviceByIds([this.players[playerId].clientId], type, data);
+        if (type === "display") this.players.lastDisplayMessage = data;
     },
 
     sendInventory: function (playerId) {
