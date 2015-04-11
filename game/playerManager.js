@@ -522,6 +522,7 @@ PlayerManager.prototype = {
     //hier steckt auch die logik des weiterschaltens
     deliverMessage: function(device, type, content) {
         var specialPlayer = device.split(":")[1];
+        var self = this;
         if (typeof specialPlayer == "undefined") specialPlayer = "all";
         switch (specialPlayer) {
             case "next":
@@ -529,6 +530,14 @@ PlayerManager.prototype = {
                 this.broadcastMessage(type, {type: "black"});
                 this.advanceTurn(1);
                 this.sendMessage(this.onTurn, type, content);
+                break;
+            case "act":
+                this.sendMessage(this.onTurn, type, content);
+                break;
+            case "allButAct":
+                this.players.forEach(function(player,id){
+                    if (id != self.onTurn) self.sendMessage(id, type, content);
+                });
                 break;
             case "all":
             default:
