@@ -42,23 +42,18 @@ Game.prototype = {
                     break;
 
                 case "rego":
-                    //TODO: rego in sequenceItem-Objekt realisieren
                     console.log('rego');
-                    //this.step(param, this.stepId);
+                    if (this.sequence !== null) this.sequence.restep();
                     break;
 
                 case "goto":
-                    //TODO: goto in sequenceItem realisieren
                     console.log('goto');
-                    //this.step(0, parseInt(param));
+                    if (this.sequence !== null) this.sequence.stepToId(0, parseInt(param));
                     break;
 
                 case "back":
-                    //TODO: goto in sequenceItem realisieren
                     console.log('back');
-                    var id = this.stepId;
-                    if (id > 0) id--;
-                    //this.step(param, id);
+                    if (this.sequence !== null) this.sequence.back(param);
                     break;
 
                 default:

@@ -114,9 +114,8 @@ SequenceItem.prototype = {
     getNext: function () {
         return this.next;
     },
-    //falls nötig, kann dem step etwas data mitgegeben werden - zB die id eines go-buttons
-    //TODO: ausserdem eine spezielle id eines auszuführenden steps. alle vorherigen steps werden dann auf done = true gesetzt
-    step: function (param, id) {
+    //falls nötig, kann dem step etwas param mitgegeben werden - zB die id eines go-buttons
+    step: function (param) {
         if (!this.done) {
             this.param = param;
             var self = this;
@@ -127,8 +126,32 @@ SequenceItem.prototype = {
             }, this.wait * 1000);
             return true;
         }
-        else if (this.next != null) return this.next.step(param, id);
+        else if (this.next !== null) return this.next.step(param);
         return false;
+    },
+    //und die ziel-step-id (die wird dann auf jedenfall angefahren, auch wenn schon done)
+    stepToId: function (param, id) {
+        this.log("stepping to nr " + id);
+        if (id === this.id) {
+            this.reset();
+            this.step(param)
+        }
+        else if (this.next !== null) {
+            this.done = true;
+            this.next.stepToId(param, id);
+        }
+    },
+    restep: function () {
+        if (this.next === null || !this.next.done && this.done) {
+            this.reset();
+            this.step();
+        } else if (this.next !== null) this.next.restep();
+    },
+    back: function () {
+        if (this.next === null || !this.next.done && this.done) {
+            if (this.previous !== null) this.previous.reset();
+            if (this.previous !== null) this.previous.step();
+        } else if (this.next !== null) this.next.back();
     },
     execute: function () {
         this.log("executing step " + this.id + ": " + this.type, true);
@@ -233,6 +256,9 @@ SequenceItem.prototype = {
                 break;
             case "config":
                 gameConf.setOption(this.configField, this.value);
+                break;
+            case "dummy":
+                if (this.next !== null) this.next.step(this.param);
                 break;
             default:
                 this.mapToDevice();
