@@ -17,7 +17,6 @@ function Game() {
     this.conf = {};
     this.polls = [];
     this.sequence = null;
-    this.alertState = 0;    //0: Alarmstufe off,  1: Alarmstufe an, 2: Alarmstufe blink
 }
 
 Game.prototype = {
@@ -39,10 +38,6 @@ Game.prototype = {
                     break;
 
                 case "go":
-                    if (this.alertState != 0) {
-                        this.alertState = 2;
-                        this.alert();
-                    }
                     this.step(param);
                     break;
 
@@ -69,9 +64,6 @@ Game.prototype = {
         }
     },
     alert: function(clientId, msg) {
-        this.alertState += 1;
-        this.alertState %= 2;
-        var self = this;
         var recipients = gameConf.getOption("alertRecipients").split(",");
         recipients.forEach(function(recipient){
             var role = recipient.split(":")[0];

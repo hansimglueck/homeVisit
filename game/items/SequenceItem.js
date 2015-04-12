@@ -313,7 +313,7 @@ SequenceItem.prototype = {
                 content = {
                     type: this.type,
                     command: this.text,
-                    param: this.parameter,
+                    param: this.param,
                     device: this.device
                 };
                 break;
