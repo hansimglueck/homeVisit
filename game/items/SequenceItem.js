@@ -312,7 +312,7 @@ SequenceItem.prototype = {
                 content = {
                     type: this.type,
                     command: this.text,
-                    param: this.param,
+                    param: this.parameter,
                     device: this.device
                 };
                 break;
@@ -380,7 +380,7 @@ SequenceItem.prototype = {
             stepId: this.id,
             type: this.type
         });
-    },
+    }
 
 };
 module.exports = SequenceItem;
