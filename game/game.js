@@ -39,7 +39,10 @@ Game.prototype = {
                     break;
 
                 case "go":
-                    this.alertState = 0;
+                    if (this.alertState != 0) {
+                        this.alertState = 2;
+                        this.alert();
+                    }
                     this.step(param);
                     break;
 
