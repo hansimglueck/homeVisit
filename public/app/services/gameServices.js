@@ -18,11 +18,13 @@ gameServices.factory('Game', ['$resource', function ($resource) {
             {value: 'sound', text: 'Sound', mappable: true},
             {value: 'vote', text: 'Abstimmung', mappable: true},
             {value: 'results', text: 'Results', mappable: true},
+            {value: 'trade', text: 'Handel', mappable: true},
             {value: 'switch', text: 'Switch', mappable: false},
             {value: 'inlineSwitch', text: 'Inline Switch', mappable: false},
             {value: 'cmd', text: 'Kommando', mappable: true},
             {value: 'config', text: 'Konfiguartion', mappable: false},
-            {value: 'eval', text: 'eval', mappable: true}
+            {value: 'eval', text: 'eval', mappable: true},
+            {value: 'dummy', text: 'Dummy', mappable: false}
         ],
         'color': [
             {value: '0', text: 'Rot'},
@@ -60,6 +62,9 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         trigger: [{text: "Go", value: "go"}, {text: "Follow", value: "follow"}],
         configField: [
             {value: 'alertRecipients', text: 'alertRecipients'}
+        ],
+        tradeType: [
+            {text: "partner", value: "Partner"}
         ]
     })
     .factory('gameConf', ['$resource', function ($resource) {

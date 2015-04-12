@@ -20,6 +20,7 @@ var playerManager = require('../playerManager.js');
  item.trigger:   "follow"/"go" - soll der step ausgeführt werden nach einem "go" oder automatisch?
  item.wait:      Zeit in Sekunden nach trigger, bevor der Step ausgeführt wird
  item.comment:   Freifeld für Kommentare
+ item.highlight: 1 für highlight in der Darstellung
 
  item.type = "card"
  item.text:      Der Darzustellende Text

@@ -12,7 +12,7 @@
     <tr>
         <td>Zeit:</td>
         <td>
-<span editable-textarea="item.time"
+<span editable-text="item.time"
       e-rows="1" e-cols="4" e-name="time"
       onaftersave="saveItem()">
           {{ item.time || 'not set' }}
@@ -22,7 +22,7 @@
     <tr>
         <td>Nötige Stimmen:</td>
         <td>
-<span editable-textarea="item.percentsForFinish"
+<span editable-text="item.percentsForFinish"
       e-rows="1" e-cols="4" e-name="percentsForFinish"
       onaftersave="saveItem()">
           {{ item.percentsForFinish || 'not set' }}%

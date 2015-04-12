@@ -11,12 +11,14 @@
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in itemOptions.type">
           {{ showTextForValue(item, "type") }}
-        </span> <br/><br/>Mapped:<br/>
+        </span> <br/><br/>
+        <div ng-show="itemOptions[item.type].mappable">Mapped:<br/>
         <span editable-text="item.device" e-name="device"
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in types">
           {{ item.device ? item.device : "default"}}
         </span>
+        </div>
     </td>
 
     <!-- item.trigger + .wait - für alle items -->
