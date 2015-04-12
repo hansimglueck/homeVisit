@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var conf = require('./homevisitConf');
 var express = require('express');
 var path = require('path');
