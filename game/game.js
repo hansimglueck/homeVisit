@@ -17,6 +17,7 @@ function Game() {
     this.conf = {};
     this.polls = [];
     this.sequence = null;
+    this.alertState = 2;    //0: Alarmstufe an, 1: Alarmstufe blink, 2: Alarmstufe off
 }
 
 Game.prototype = {
@@ -38,6 +39,7 @@ Game.prototype = {
                     break;
 
                 case "go":
+                    this.alertState = 2;
                     this.step(param);
                     break;
 
@@ -64,12 +66,15 @@ Game.prototype = {
         }
     },
     alert: function(clientId, msg) {
+        this.alertState += 1;
+        this.alertState %= 2;
+        var self = this;
         var recipients = gameConf.getOption("alertRecipients").split(",");
         recipients.forEach(function(recipient){
             var role = recipient.split(":")[0];
             var name = recipient.split(":")[1];
-            if (role != "player") wsManager.msgDevicesByRoleAndName(role, name, "display", {type:"alert"});
-            else playerManager.deliverMessage(recipient, "display", {type:"alert"});
+            if (role != "player") wsManager.msgDevicesByRoleAndName(role, name, "display", {type:"alert", param:self.alertState});
+            else playerManager.deliverMessage(recipient, "display", {type:"alert", param:self.alertState});
         })
     },
 
@@ -132,7 +137,7 @@ Game.prototype = {
             stepId: this.stepId,
             type: this.getItem() ? this.getItem().type : ""
         });
-    },
+    }
  };
 
 var gameObj = new Game();
