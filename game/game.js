@@ -17,7 +17,7 @@ function Game() {
     this.conf = {};
     this.polls = [];
     this.sequence = null;
-    this.alertState = 2;    //0: Alarmstufe an, 1: Alarmstufe blink, 2: Alarmstufe off
+    this.alertState = 0;    //0: Alarmstufe off,  1: Alarmstufe an, 2: Alarmstufe blink
 }
 
 Game.prototype = {
@@ -39,7 +39,7 @@ Game.prototype = {
                     break;
 
                 case "go":
-                    this.alertState = 2;
+                    this.alertState = 0;
                     this.step(param);
                     break;
 
