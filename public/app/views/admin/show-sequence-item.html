@@ -51,6 +51,15 @@
         <div show-card-content ng-switch-default></div>
     </td>
 
+    <!-- comment -->
+    <td>
+      <span editable-textarea="item.comment"
+           e-rows="7" e-cols="30" e-name="comment"
+           onaftersave="saveItem()">
+        {{ item.comment || 'Kein Kommentar!' }}
+      </span>
+    </td>
+
     <!--
         <td>
             <span editable-text="item.time" e-name="time">
