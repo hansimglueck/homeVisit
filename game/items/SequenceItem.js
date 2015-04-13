@@ -50,6 +50,8 @@ var playerManager = require('../playerManager.js');
  - der value der besten Option wird als param mitgegeben, wenn die poll nicht mehr open ist, sonst -1
  item.color:    in welcher Farbe werden die Ergebnisse (bei map-Darstellung) angezeigt
 
+ item.type = "rating"
+ ... TODO: DOKU!
 
  item.type = "switch"
  item.options:   array of {value, followUp: deck-id}

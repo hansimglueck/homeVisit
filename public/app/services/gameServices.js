@@ -23,6 +23,7 @@ gameServices.factory('Game', ['$resource', function ($resource) {
             {value: 'inlineSwitch', text: 'Inline Switch', mappable: false},
             {value: 'cmd', text: 'Kommando', mappable: true},
             {value: 'config', text: 'Konfiguartion', mappable: false},
+            {value: 'rating', text: 'Bewertung', mappable: true},
             {value: 'eval', text: 'eval', mappable: true},
             {value: 'dummy', text: 'Dummy', mappable: false}
         ],
@@ -37,6 +38,10 @@ gameServices.factory('Game', ['$resource', function ($resource) {
             {value: 'playerChoice', text: 'Spielerwahl'},
             {value: 'countryChoice', text: 'Länderwahl'},
             {value: 'enterNumber', text: 'Zahleingabe'}
+        ],
+        'ratingType': [
+            {value: 'allTeams', text: 'alle Teams'},
+            {value: 'oneTeam', text: 'einzelnes Team'}
         ],
         'resultType': [
             {value: 'Pie', text: 'Tortendiagramm'},

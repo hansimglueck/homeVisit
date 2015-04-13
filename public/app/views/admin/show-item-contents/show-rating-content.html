@@ -1,0 +1,23 @@
+<table>
+    <tr>
+        <td>Text:</td>
+        <td>
+            <span editable-textarea="item.text"
+                  e-rows="7" e-cols="40" e-name="text"
+                  onaftersave="saveItem()">
+                {{ item.text || 'kein Text' }}
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>Art:</td>
+        <td>
+            <span editable-select="item.ratingType" e-name="ratingType"
+                  onaftersave="saveItem()"
+                  e-ng-options="s.value as s.text for s in itemOptions.ratingType"
+                  >
+                {{ showTextForValue(item, "ratingType") }}
+            </span>
+        </td>
+    </tr>
+</table>
