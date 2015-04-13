@@ -1,4 +1,12 @@
 
+<div id="score_stats">
+    <p class="score_stats_entry">
+        Rank: {{status.player.rank}}<br />
+        Pts: {{status.player.score}}<br />
+        <!--ID: {{status.player.playerId}}<br />-->
+    </p>
+</div>
+
 <div id="score_barometer" ng-style="{'height': getBaroHeight()}">
     <div id="baro_vert_line" ng-style="{'height': getBaroHeight()}"></div>
     <!--<div id="baro_top_line"></div>-->
@@ -12,7 +20,7 @@
     
     <div class="baro_my_line" ng-style="{'top': getMyLinePos()}">
         <div class="my_score_label_top" ng-controller="NavbarController" ng-style="col1()"></div>
-        <div class="my_score_label_bottom" ng-controller="NavbarController" ng-style="col2()"></div>
+        <!--<div class="my_score_label_bottom" ng-controller="NavbarController" ng-style="col2()"></div>-->
         <div class="my_score_label">
             {{status.player.score}}
         </div>
@@ -23,33 +31,25 @@
     
 </div>
 
-<div id="score_stats">
-    <p class="score_stats_entry">
-        Platz: {{status.player.rank}}<br />
-        Punkte: {{status.player.score}}<br />
-        <!--ID: {{status.player.playerId}}<br />-->
-    </p>
-</div>
-
-<div id="score_inventory">
-    <div class="score_inv_plus">
-        <div ng-repeat="item in status.inventory | filter:{type: 0} track by $index" ng-style="{}">
-            <a href="#/score/donate/0">
-                <i class="fa fa-plus-circle fa-3x score_inv_entry" ng-style="{'color': '#629820'}"></i>
-            </a>
-        </div>
-    </div>
-     <div class="score_inv_minus">
-        <div ng-repeat="item in status.inventory | filter:{type: 1} track by $index" ng-style="{}">
-            <a href="#/score/donate/1">
-                <i class="fa fa-minus-circle fa-3x score_inv_entry" ng-style="{'color': '#DD3629'}"></i>
-            </a>
-        </div>
-    </div>
-
-        
-    <!--Inventory: {{status.inventory}}<br />-->
-</div>
+<!--<div id="score_inventory">-->
+<!--    <div class="score_inv_plus">-->
+<!--        <div ng-repeat="item in status.inventory | filter:{type: 0} track by $index" ng-style="{}">-->
+<!--            <a href="#/score/donate/0">-->
+<!--                <i class="fa fa-plus-circle fa-3x score_inv_entry" ng-style="{'color': '#629820'}"></i>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--     <div class="score_inv_minus">-->
+<!--        <div ng-repeat="item in status.inventory | filter:{type: 1} track by $index" ng-style="{}">-->
+<!--            <a href="#/score/donate/1">-->
+<!--                <i class="fa fa-minus-circle fa-3x score_inv_entry" ng-style="{'color': '#DD3629'}"></i>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--    </div>-->
+<!---->
+<!--        -->
+<!--    <!--Inventory: {{status.inventory}}<br />-->
+<!--</div>-->
 
 
 

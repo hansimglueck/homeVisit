@@ -89,6 +89,7 @@ angular.module("playerControllers", [])
          $scope.go = function() {
             Socket.emit({type:"playbackAction", data:"go"}, function() { console.log('go emitted'); });
        }
+       
     })
     .controller('VoteController', function($scope, Home, $location) {
         $scope.home = Home;

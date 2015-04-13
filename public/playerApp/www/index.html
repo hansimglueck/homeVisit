@@ -96,7 +96,7 @@
         </div>
     </div>
 </div>
-<div class="app-border" ng-style="col1border()">
+<!--<div class="app-border" ng-style="col1border()">-->
 <div class="app" ng-style="col2border()">
     <div class="navbar navbar-app navbar-absolute-top text-center" ng-controller="NavbarController">
         <div>
@@ -155,8 +155,44 @@
     </div>
 
     <!-- App body -->
+    
+    <div id="score_stats">
+        <p class="score_stats_entry">
+            Rank: {{status.player.rank}}<br />
+            Pts: {{status.player.score}}<br />
+            <!--ID: {{status.player.playerId}}<br />-->
+        </p>
+    </div>
+    
+    
+    
+    <div id="score_barometer" ng-style="{'height': getBaroHeight()}" ng-controller="ScoreController">
+        <div id="baro_vert_line" ng-style="{'height': getBaroHeight()}"></div>
+        <!--<div id="baro_top_line"></div>-->
+        <!--<div id="baro_bottom_line" ng-style="{'top': getBaroHeight()}"></div>-->
+        
+        <div class="baro_others_line" ng-repeat="player in status.otherPlayers track by $index" ng-style="{'top': getLinePos($index)}">
+            <div class="score_label">
+                {{player.score}}
+            </div>
+        </div>
+        
+        <div class="baro_my_line" ng-style="{'top': getMyLinePos()}">
+            <div class="my_score_label_top" ng-controller="NavbarController" ng-style="col1()"></div>
+            <!--<div class="my_score_label_bottom" ng-controller="NavbarController" ng-style="col2()"></div>-->
+            <div class="my_score_label">
+                {{status.player.score}}
+            </div>
+        </div>
+        
+        <div id="baro_positive" ng-style="{'height': getPosHeight()}"></div>
+        <div id="baro_negative" ng-style="{'height': getBaroHeight()}"></div>
+        
+    </div>
+    
+    
     <div class='app-body scrollable'>
-
+    
         <div class='app-content text-center scrollable-content'>
             <div ng-show="debug">
                 DEBUG: {{type}}, {{player}}, {{col1}}, {{avgRating}}
@@ -172,7 +208,7 @@
         </div>
     </div>
 </div>
-</div>
+<!--</div>-->
 <!-- ~ .app -->
 
 <!-- Modals and Overlays -->

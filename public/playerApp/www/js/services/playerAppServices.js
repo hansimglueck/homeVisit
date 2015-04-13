@@ -1,6 +1,17 @@
 angular.module('playerAppServices', [])
     .factory('colors', function () {
         return {
+            rot: {'background-color': '#9e0000', 'color': '#BBBBBB'},
+            hellblau: {'background-color': '#2883c3', 'color': '#555555'},
+            dunkelblau: {'background-color': '#0c3669', 'color': '#BBBBBB'},
+            orange: {'background-color': '#f78500', 'color': '#555555'},
+            gelb: {'background-color': '#ffd800', 'color': '#555555'},
+            gruen: {'background-color': '#c4df0d', 'color': '#555555'},
+            lila: {'background-color': '#b27de4', 'color': '#555555'},
+            weiss: {'background-color': '#9f9f9f', 'color': '#555555'}
+        }
+        /*
+        return {
             rot: {'background-color': '#FF0000', 'color': '#555555'},
             gelb: {'background-color': '#FFFF00', 'color': '#555555'},
             blau: {'background-color': '#0000FF', 'color': '#BBBBBB'},
@@ -9,9 +20,21 @@ angular.module('playerAppServices', [])
             pink: {'background-color': '#FF88FF', 'color': '#555555'},
             schwarz: {'background-color': '#000000', 'color': '#BBBBBB'}
         }
+        */
     })
     .factory('borderColors', function () {
         var width = "5px";
+        return {
+            rot: {'border': width + ' solid #9e0000'},
+            hellblau: {'border': width + ' solid #2883c3'},
+            dunkelblau: {'border': width + ' solid #0c3669'},
+            orange: {'border': width + ' solid #f78500'},
+            gelb: {'border': width + ' solid #ffd800'},
+            gruen: {'border': width + ' solid #c4df0d'},
+            lila: {'border': width + ' solid #b27de4'},
+            weiss: {'border': width + ' solid #9f9f9f'}
+        }
+        /*
         return {
             rot: {'border': width + ' solid #FF0000'},
             gelb: {'border': width + ' solid #FFFF00'},
@@ -21,8 +44,21 @@ angular.module('playerAppServices', [])
             pink: {'border': width + ' solid #FF88FF'},
             schwarz: {'border': width + ' solid #000000'}
         }
+        */
     })
     .factory('playerColors', function () {
+        return [
+            ["rot", "rot"],
+            ["hellblau", "hellblau"],
+            ["dunkelblau", "dunkelblau"],
+            ["orange", "orange"],
+            ["gelb", "gelb"],
+            ["gruen", "gruen"],
+            ["lila", "lila"],
+            ["weiss", "weiss"],
+        ];
+        
+        /*
         return [
             ["pink", "schwarz"],
             ["gelb", "gruen"],
@@ -34,7 +70,7 @@ angular.module('playerAppServices', [])
             ["gelb", "blau"],
             ["gruen", "weiss"]
         ];
-        /*
+        
          return [
          ["rot", "gelb"],
          ["rot", "blau"],

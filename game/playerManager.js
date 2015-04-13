@@ -21,7 +21,7 @@ PlayerManager = function () {
      ["weiss", "pink"],
      ["pink", "schwarz"]
      ];
-     */
+     
     this.colors = [
         ["pink", "schwarz"],
         ["gelb", "gruen"],
@@ -32,7 +32,18 @@ PlayerManager = function () {
         ["rot", "gelb"],
         ["gelb", "blau"]
     ];
-
+    */
+    this.colors = [
+        ["rot", "rot"],
+        ["hellblau", "hellblau"],
+        ["dunkelblau", "dunkelblau"],
+        ["orange", "orange"],
+        ["gelb", "gelb"],
+        ["gruen", "gruen"],
+        ["lila", "lila"],
+        ["weiss", "weiss"]
+    ];
+    
     this.rating = [];
     this.avgRatings = [];
     this.conf = {
