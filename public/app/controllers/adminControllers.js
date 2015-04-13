@@ -331,6 +331,13 @@ adminControllers.controller('itemCtrl', function ($scope, $filter, itemOptions) 
         }
         return selected.length ? selected[0].text : 'Not set';
     };
+    $scope.isMappable = function(option) {
+        var selected = [];
+        if ($scope.item.type) {
+            selected = $filter('filter')($scope.itemOptions.type, {value: $scope.item.type}, true);
+        }
+        return selected.length ? selected[0].mappable : false;
+    };
     $scope.prepareItem = function (type, itemId) {
         console.log("Prepare for " + type);
         console.log($scope.deck);

@@ -200,6 +200,7 @@ SequenceItem.prototype = {
                         var sum = posScoreArr.reduce(function (prev, curr) {
                             return prev + curr.score
                         }, 0);
+                        this.data.text="Die Verteilung des Kuchens";
                         this.data.voteOptions = posScoreArr.map(function (player) {
                             return {
                                 value: player.playerId,

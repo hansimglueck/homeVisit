@@ -2,7 +2,7 @@
     <accordion class="list-unstyled">
         <accordion-group ng-repeat="deck in decks track by $index"
                          heading="Strang {{$index}}: {{ deck.title }}"
-                         is-open="deck._id==activeDeck.id"
+                         is-open=""
                          id="{{'deck'+decks[$index]._id}}">
             <div ng-include="'app/views/admin/show-deck.html'"></div>
             <!--

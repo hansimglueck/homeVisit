@@ -4,6 +4,22 @@
     #padding-top: 30px;
     font-size: 1.2em;
 }
+.chart-container {
+    #width: 800px
+}
+.chart2,
+.left-pane {
+    width: 300px;
+    float: left;
+    padding: 10px;
+}
+
+.pie-legend,
+.right-pane {
+    width: 400px;
+    float: left;
+    padding: 10px;
+}
 
 .app-border {
     width: 100%;
@@ -44,6 +60,11 @@
 }
 .bigger {
     font-size: 1.5em;
+}
+
+.player-icon {
+    width: 100px;
+    height: 50px;
 }
 .player-grid {
     padding-top: 10px;
@@ -115,7 +136,7 @@
     fill: red;
 }
 
-.chart {
+.chart-xx {
     width: 200px;
     margin: auto;
 }

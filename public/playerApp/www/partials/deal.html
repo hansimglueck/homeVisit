@@ -1,0 +1,69 @@
+<div>DEAL for {{subject}}</div>
+
+<div id="deal-overview" class="left-pane">
+    <table class="list-unstyled">
+        <tr ng-repeat="deal in deals" ng-click="openDeal(deal)">
+            <td>{{deal.subject}}</td>
+            <td>mit Spieler {{deal.player1Id}}</td>
+            <td>{{getDealStateText(deal)}}</td>
+        </tr>
+        <tr>
+            <td>
+                <button ng-click="addDeal()">New Deal</button>
+            </td>
+        </tr>
+    </table>
+</div>
+
+<div id="deal-details" class="right-pane" ng-controller="DealDetailsController">
+    <h1>Deal-Details</h1>
+
+    <div ng-if="active.deal !== null">
+    <div ng-switch="active.deal.subject === null">
+        <div ng-switch-when="true">
+            choose subject
+        </div>
+        <div ng-switch-default>
+            {{active.deal.subject}}
+            <div ng-switch="active.deal.player1Id === null">
+                <div ng-switch-when="true">
+                    choose team:
+                    <ul class="list-inline list-unstyled">
+                        <li ng-repeat="player in status.getOtherPlayers()" ng-click="choosePlayerForDeal(player)">
+                            <player-icon id="player.playerId"></player-icon>
+                        </li>
+                    </ul>
+                </div>
+                <div ng-switch-default>{{active.deal.player1Id}}
+
+                    <div ng-switch="getMyDealState(active.deal)<3">
+                        <div ng-switch-when="true">
+                            <ul class="list-unstyled">
+                                <li ng-repeat="message in active.deal.messages track by $index">
+                                    {{message.value}},{{getMessageText(message)}}
+                                </li>
+                            </ul>
+                            <div ng-if="getMyDealState(active.deal)===1">We are waiting for a reply.</div>
+                            <div ng-if="getMyDealState(active.deal)===2">
+                                <button ng-click="sendMessageForDeal('deny')">Deny</button>
+                                <button ng-click="sendMessageForDeal('confirm')">Confirm</button>
+                            </div>
+                            <div ng-if="getMyDealState(active.deal)===0 || getMyDealState(active.deal)===2">
+                                <button ng-click="decreaseValue()">-</button>
+                                Points
+                                <button ng-click="increaseValue()">+</button>
+                                <br/>
+                                <button ng-click="sendMessageForDeal('request')">{{getRequestMessage(message)}}</button>
+                            </div>
+                        </div>
+                        <div ng-switch-when="false">
+                            <div ng-if="getMyDealState(active.deal)===3">This Deal is ACTIVE.</div>
+                            <div ng-if="getMyDealState(active.deal)===4">This Deal was DENIED.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

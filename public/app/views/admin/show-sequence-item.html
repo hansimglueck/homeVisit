@@ -12,7 +12,7 @@
               e-ng-options="s.value as s.text for s in itemOptions.type">
           {{ showTextForValue(item, "type") }}
         </span> <br/><br/>
-        <div ng-show="itemOptions[item.type].mappable">Mapped:<br/>
+        <div ng-show="isMappable()">Mapped:<br/>
         <span editable-text="item.device" e-name="device"
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in types">
@@ -50,6 +50,7 @@
         <div show-player-direct-content ng-switch-when="playerDirect"></div>
         <div show-eval-content ng-switch-when="eval"></div>
         <div show-config-content ng-switch-when="config"></div>
+        <div show-trade-content ng-switch-when="trade"></div>
         <div show-card-content ng-switch-default></div>
     </td>
 

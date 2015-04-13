@@ -15,7 +15,8 @@ angular.module('playerApp', [
     'ngAnimate',
     'ngAudio',
     'fxControllers',
-    'europeSVG'
+    'europeSVG',
+    'uuid'
 ])
     .config(['$routeProvider',
         function ($routeProvider) {
@@ -56,6 +57,10 @@ angular.module('playerApp', [
                     templateUrl: 'partials/score.html',
                     controller: 'ScoreController'
                 }).
+                when('/score/donate/:itemId', {
+                    templateUrl: 'partials/donate.html',
+                    controller: 'DonationController'
+                }).
                 when('/vote', {
                     templateUrl: 'partials/vote.html',
                     controller: 'VoteController'
@@ -68,9 +73,17 @@ angular.module('playerApp', [
                     templateUrl: 'partials/voteFinished.html',
                     controller: 'VoteController'
                 }).
-                when('/score/donate/:itemId', {
-                    templateUrl: 'partials/donate.html',
-                    controller: 'DonationController'
+                when('/deal', {
+                    templateUrl: 'partials/deal.html',
+                    controller: 'DealsController'
+                }).
+                when('/deal/:subject', {
+                    templateUrl: 'partials/deal.html',
+                    controller: 'DealsController'
+                }).
+                when('/deal/new/:subject', {
+                    templateUrl: 'partials/deal.html',
+                    controller: 'DealsController'
                 }).
                 otherwise({
                     redirectTo: '/home'

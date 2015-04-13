@@ -1,41 +1,45 @@
-<div>POLL
-    <ul class="list-unstyled">
-        <li ng-repeat="t in home.text track by $index">{{t}}</li>
-        <li ng-if="home.ratedVote" class="red">Dein Ranking macht Stimmgewicht!</li>
-    </ul>
-    <div>
-        <div ng-if="['customOptions', 'customMultipleOptions', 'countryChoice'].indexOf(home.voteType) != -1"
-             ng-switch="home.limit > 1">
-            <ul class="list-unstyled wide-list" ng-switch-when="false">
-                <li ng-repeat="opt in home.options track by $index">
-                    <button class="btn-lg" ng-click="vote($index)">{{opt.text}}</button>
-                </li>
-            </ul>
-            <ul class="list-unstyled wide-list" ng-switch-when="true">
-                <li>
-                    <button ng-click="vote()">VOTE</button>
-                </li>
-                <li ng-repeat="opt in home.options track by $index">
-                    <input type="checkbox" id="{{opt.val}}" ng-model="opt.checked" ng-change="checkChanged(opt)"
-                           ng-disabled="home.checked>=home.limit && !opt.checked"/>
-                    <label for="{{opt.val}}">{{opt.text}}</label>
-                </li>
-            </ul>
-        </div>
-        <div ng-if="home.voteType == 'playerChoice'">
-            <div class="col-xs-4 player-grid-item"
-                 ng-repeat="player in home.options | isOtherPlayerThan:status.player track by $index">
-                <div ng-style="{'height': '40px'}" ng-click="vote(player.playerId)">
-                    <div class="row1" ng-style="colors[playerColors[player.playerId][0]]">
+<div>
+    <div class="left-pane">
+        <ul class="list-unstyled">
+            <li ng-repeat="t in home.text track by $index">{{t}}</li>
+            <li ng-if="home.ratedVote" class="red">Dein Ranking macht Stimmgewicht!</li>
+        </ul>
+    </div>
+    <div class="right-pane">
+        <div>
+            <div ng-if="['customOptions', 'customMultipleOptions', 'countryChoice'].indexOf(home.voteType) != -1"
+                 ng-switch="home.limit > 1">
+                <ul class="list-unstyled wide-list" ng-switch-when="false">
+                    <li ng-repeat="opt in home.options track by $index">
+                        <button class="btn-lg" ng-click="vote($index)">{{opt.text}}</button>
+                    </li>
+                </ul>
+                <ul class="list-unstyled wide-list" ng-switch-when="true">
+                    <li>
+                        <button ng-click="vote()">VOTE</button>
+                    </li>
+                    <li ng-repeat="opt in home.options track by $index">
+                        <input type="checkbox" id="{{opt.val}}" ng-model="opt.checked" ng-change="checkChanged(opt)"
+                               ng-disabled="home.checked>=home.limit && !opt.checked"/>
+                        <label for="{{opt.val}}">{{opt.text}}</label>
+                    </li>
+                </ul>
+            </div>
+            <div ng-if="home.voteType == 'playerChoice'">
+                <div class="col-xs-4 player-grid-item"
+                     ng-repeat="player in home.options | isOtherPlayerThan:status.player track by $index">
+                    <div ng-style="{'height': '40px'}" ng-click="vote(player.playerId)">
+                        <div class="row1" ng-style="colors[playerColors[player.playerId][0]]">
+                        </div>
+                        <div class="row2" ng-style="colors[playerColors[player.playerId][1]]"></div>
                     </div>
-                    <div class="row2" ng-style="colors[playerColors[player.playerId][1]]"></div>
                 </div>
             </div>
-        </div>
-        <div ng-if="home.voteType == 'enterNumber'">
-            <form ng-submit="vote(0)">
-                <input type="text" ng-model="home.options[0].value"/></form>
-        </div>
+            <div ng-if="home.voteType == 'enterNumber'">
+                <form ng-submit="vote(0)">
+                    <input type="text" ng-model="home.options[0].value"/></form>
+            </div>
 
+        </div>
     </div>
 </div>

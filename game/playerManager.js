@@ -176,6 +176,7 @@ PlayerManager = function () {
     this.resultItems = [];
     this.onTurn = 0;
     this.polls = {};
+    this.deals = {};
 };
 
 PlayerManager.prototype = {
@@ -241,6 +242,10 @@ PlayerManager.prototype = {
 
                 case "chat":
                     this.chat(clientId, msg.data);
+                    break;
+
+                case "deal":
+                    this.deal(clientId, msg.data);
                     break;
 
                 case "disconnected":
@@ -359,6 +364,24 @@ PlayerManager.prototype = {
         console.log("rate: " + this.rating);
         this.calcAvgRate();
         this.broadcastMessage('rates', {avgRatings: this.avgRatings});
+    },
+    //deals werden immer komplett versendet mit unique .id
+    //wenn es den deal noch nicht gibt im deal-array, dann füge ihn ein, sonst update ihn.
+    //je nach state an .playerId0 oder .playerId1 schicken
+    deal: function(clientId, deal) {
+        this.deals[deal.id] = deal;
+        switch (deal.state) {
+            case 1:
+                this.sendMessage(deal.player1Id, "deal", deal);
+                break;
+            case 2:
+                this.sendMessage(deal.player0Id, "deal", deal);
+                break;
+            default:
+                this.sendMessage(deal.player0Id, "deal", deal);
+                this.sendMessage(deal.player1Id, "deal", deal);
+                break;
+        }
     },
 
     // callback-funktion für master-messages - bloss damit der master beim registrieren den status gesendet bekommen kann

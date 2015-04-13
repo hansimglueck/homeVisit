@@ -26,4 +26,18 @@ angular.module('playerAppDirectives', [])
             },
             templateUrl: 'views/player-display.html'
         };
+    })
+    .directive('playerIcon', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            scope: {
+                playerId: '=id'
+            },
+            controller: function($scope, playerColors, colors) {
+                $scope.playerColors = playerColors;
+                $scope.colors = colors;
+            },
+            templateUrl: 'views/player-icon.html'
+        };
     });

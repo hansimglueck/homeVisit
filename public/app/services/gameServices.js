@@ -18,7 +18,7 @@ gameServices.factory('Game', ['$resource', function ($resource) {
             {value: 'sound', text: 'Sound', mappable: true},
             {value: 'vote', text: 'Abstimmung', mappable: true},
             {value: 'results', text: 'Results', mappable: true},
-            {value: 'trade', text: 'Handel', mappable: true},
+            {value: 'deal', text: 'Deal', mappable: true},
             {value: 'switch', text: 'Switch', mappable: false},
             {value: 'inlineSwitch', text: 'Inline Switch', mappable: false},
             {value: 'cmd', text: 'Kommando', mappable: true},

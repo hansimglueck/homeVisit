@@ -66,6 +66,13 @@ angular.module('adminDirectives', [])
             templateUrl: 'app/views/admin/show-item-contents/show-vote-content.html'
         };
     })
+    .directive('showTradeContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'app/views/admin/show-item-contents/show-trade-content.html'
+        };
+    })
 
     .directive('showSwitchContent', function () {
         return {
