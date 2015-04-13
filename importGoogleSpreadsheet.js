@@ -25,7 +25,7 @@ function insertDeck(seqItems) {
     mongoConnection(function(db) {
         var decks = db.collection('decks');
         decks.insert({
-            title: 'spreadsheet',
+            title: 'Spreadsheet import ' + (new Date().toGMTString()),
             items: seqItems
         });
         db.close();
@@ -44,7 +44,7 @@ function parseCsv(csvData) {
                     // sequenceItem
                     var item = {
                         text: row.text,
-                        wait: row.wait
+                        wait: row.wait || 0
                     };
 
                     // type
@@ -81,10 +81,24 @@ function parseCsv(csvData) {
                         item.trigger = 'go';
                     else if (row.trigger === 'Follow')
                         item.trigger = 'follow';
-                    else if (item.type !== 'dummy')
-                        throw('Unknown trigger: ' + row.trigger);
+                    else
+                        item.trigger = 'go';
 
                     seqItems.push(item);
+
+                    // abstimmungen folgen immer ein result item
+                    if (item.type === 'vote') {
+                        seqItems.push({
+                            'wait' : 0,
+                            'trigger' : 'go',
+                            'type' : 'results',
+                            'device' : 'default',
+                            'sourceType' : 'previousStep',
+                            'resultType' : 'Pie',
+                            'scoreType' : 'noScore',
+                            'autoGo' : false
+                        });
+                    }
                 }
                 ++rowIndex;
             });
