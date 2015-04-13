@@ -324,6 +324,15 @@ SequenceItem.prototype = {
             case "vote":
                 content = this.poll.getWsContent();
                 break;
+            case "rating":
+                content = {
+                    type: this.type,
+                    ratingType: this.ratingType,
+                    posNeg: this.posNeg,
+                    bestWorst: this.bestWorst,
+                    text: this.text
+                };
+                break;
             case "results":
                 content = {
                     data: {

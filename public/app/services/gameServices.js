@@ -43,6 +43,14 @@ gameServices.factory('Game', ['$resource', function ($resource) {
             {value: 'allTeams', text: 'alle Teams'},
             {value: 'oneTeam', text: 'einzelnes Team'}
         ],
+        'posNeg': [
+            {value: '+1', text: '+1'},
+            {value: '-1', text: '-1'}
+        ],
+        'bestWorst': [
+            {value: 'best', text: 'bestes'},
+            {value: 'worst', text: 'schlechtestes'}
+        ],
         'resultType': [
             {value: 'Pie', text: 'Tortendiagramm'},
             {value: 'Bar', text: 'Balkendiagramm'},

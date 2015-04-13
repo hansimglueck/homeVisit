@@ -427,6 +427,10 @@ PlayerManager.prototype = {
                 case "eval":
                     this.eval(item.text);
                     break;
+                case "rating":
+                    console.log('->RATING<- ', item.device, item.getWsContent());
+                    this.deliverMessage(item.device, "display", item.getWsContent());
+                    break;
                 default:
                     break;
             }

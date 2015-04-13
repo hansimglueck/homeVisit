@@ -369,32 +369,10 @@ angular.module("playerControllers", [])
         $scope.status = Status;
         $scope.rating = Rating;
         $scope.colors = colors;
-        $scope.myRatings = Rating.myRatings;
-        $scope.avgRatings = $scope.rating.avgRatings;
         $scope.playerColors = playerColors;
-        $scope.moodys = ["C", "CC", "CCC", "B", "BB", "BBB", "A", "AA", "AAA"];
         $scope.rate = function (id, val) {
             $scope.rating.rate(id, val);
         };
-        //$scope.$watch(
-        //    function (scope) {
-        //        return scope.status.maxPlayers
-        //    },
-        //    function () {
-        //        console.log("fill");
-        //        $scope.rating.fillMyRatings();
-        //    });
-        //$scope.$watch(
-        //    function (scope) {
-        //        return scope.status.joined
-        //    },
-        //    function (newVal) {
-        //        console.log("x");
-        //        console.log($scope.status.rating);
-        //        $scope.rating.setMyRatings($scope.status.rating);
-        //        if (newVal) $scope.rating.rate(0, 0);
-        //    });
-
     })
     .filter('isOtherPlayerThan', function () {
         return function (players, self) {
