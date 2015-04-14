@@ -311,7 +311,8 @@ SequenceItem.prototype = {
                 wsManager.msgDevicesByRoleAndName(dev.split(':')[0], dev.split(':')[1], "display", self.getWsContent());
                 return;
             }
-            wsManager.msgDevicesByRole(dev, "display", self.getWsContent());
+            var c = self.getWsContent();
+            wsManager.msgDevicesByRole(dev, "display", c);
         });
 
     },
