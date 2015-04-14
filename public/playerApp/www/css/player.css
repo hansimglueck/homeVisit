@@ -16,6 +16,7 @@
 .navbar {
     background: #d3d3d3;
     color: black;
+    display: none;
 }
 .app {
     background: transparent !important;
