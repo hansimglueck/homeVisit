@@ -1,6 +1,14 @@
 #!/usr/bin/env node
 
+// default settings laden
 var conf = require('./homevisitConf');
+
+// lokale settings laden
+try {
+    conf = require('./homevisitConf.local');
+    console.log('Verwende lokale Konfiguration homevisitConf.local');
+} catch (err) {}
+
 var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');

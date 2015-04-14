@@ -23,7 +23,9 @@ build/Release
 .lock-wscript
 
 .idea
-homevisitConf
+
+# lokale settings
+homevisitConf.local.js
 
 # common stuff
 .DS_Store
