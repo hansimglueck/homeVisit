@@ -32,7 +32,7 @@ angular.module('playerAppDirectives', [])
             restrict: 'AE',
             replace: 'true',
             scope: {
-                playerId: '=id'
+                playerId: '=pid'
             },
             controller: function($scope, playerColors, colors) {
                 $scope.playerColors = playerColors;

@@ -21,7 +21,7 @@ PlayerManager = function () {
      ["weiss", "pink"],
      ["pink", "schwarz"]
      ];
-     
+
     this.colors = [
         ["pink", "schwarz"],
         ["gelb", "gruen"],
@@ -43,7 +43,7 @@ PlayerManager = function () {
         ["lila", "lila"],
         ["weiss", "weiss"]
     ];
-    
+
     this.rating = [];
     this.avgRatings = [];
     this.conf = {
@@ -198,11 +198,13 @@ PlayerManager.prototype = {
                 clientId: -1,
                 colors: this.colors[i],
                 joined: false,
+                busy: false,
                 seat: this.players.length,
                 score: 0,
                 rank: -1,
                 timeScore: 0,
                 timeRank: -1,
+                deals: {},
                 inventory: [
                     {type: 0, name: "plus"},
                     {type: 0, name: "plus"},
@@ -381,18 +383,27 @@ PlayerManager.prototype = {
     //je nach state an .playerId0 oder .playerId1 schicken
     deal: function(clientId, deal) {
         this.deals[deal.id] = deal;
+        this.players[deal.player0Id].deals[deal.id] = deal;
+        this.players[deal.player1Id].deals[deal.id] = deal;
         switch (deal.state) {
             case 1:
                 this.sendMessage(deal.player1Id, "deal", deal);
+                this.players[deal.player0Id].busy = true;
+                this.players[deal.player1Id].busy = true;
                 break;
             case 2:
                 this.sendMessage(deal.player0Id, "deal", deal);
+                this.players[deal.player0Id].busy = true;
+                this.players[deal.player1Id].busy = true;
                 break;
             default:
                 this.sendMessage(deal.player0Id, "deal", deal);
                 this.sendMessage(deal.player1Id, "deal", deal);
+                this.players[deal.player0Id].busy = false;
+                this.players[deal.player1Id].busy = false;
                 break;
         }
+        this.sendPlayerStatus(-1);
     },
 
     // callback-funktion für master-messages - bloss damit der master beim registrieren den status gesendet bekommen kann
@@ -440,6 +451,9 @@ PlayerManager.prototype = {
                     break;
                 case "rating":
                     console.log('->RATING<- ', item.device, item.getWsContent());
+                    this.deliverMessage(item.device, "display", item.getWsContent());
+                    break;
+                case "deal":
                     this.deliverMessage(item.device, "display", item.getWsContent());
                     break;
                 default:
@@ -611,6 +625,7 @@ PlayerManager.prototype = {
                 rating: this.rating[playerId]
             });
             this.sendInventory(playerId);
+            if (this.players[playerId]) this.sendMessage(playerId, "dealStatus", this.players[playerId].deals);
         }
         this.calcRanking();
         var msg = {
@@ -665,6 +680,24 @@ PlayerManager.prototype = {
     },
     score: function (playerId, score) {
         this.players[playerId].score += score;
+        var deals = [];
+        for (var deal in this.deals) if (this.deals.hasOwnProperty(deal)) deals.push(this.deals[deal]);
+
+        var self = this;
+        if (deals.length > 0) {
+            deals.forEach(function(deal) {
+                var otherPlayerId = deal.player0Id;
+                if (otherPlayerId == playerId) otherPlayerId = deal.player1Id;
+                while (self.players[playerId].score - self.players[otherPlayerId].score > 4) {
+                    self.players[playerId].score--;
+                    self.players[otherPlayerId].score++;
+                }
+                while (self.players[otherPlayerId].score - self.players[playerId].score > 4) {
+                    self.players[playerId].score++;
+                    self.players[otherPlayerId].score--;
+                }
+            })
+        }
         this.sendPlayerStatus(-1);
     },
     getPlayerArray: function () {
@@ -672,6 +705,7 @@ PlayerManager.prototype = {
         for (var i = 0; i < this.players.length; i++) {
             ret.push({
                 joined: this.players[i].joined,
+                busy: this.players[i].busy,
                 playerId: i,
                 colors: this.players[i].colors,
                 seat: this.players[i].seat,

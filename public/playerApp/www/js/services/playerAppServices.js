@@ -57,7 +57,7 @@ angular.module('playerAppServices', [])
             ["lila", "lila"],
             ["weiss", "weiss"],
         ];
-        
+
         /*
         return [
             ["pink", "schwarz"],
@@ -70,7 +70,7 @@ angular.module('playerAppServices', [])
             ["gelb", "blau"],
             ["gruen", "weiss"]
         ];
-        
+
          return [
          ["rot", "gelb"],
          ["rot", "blau"],
@@ -98,7 +98,7 @@ angular.module('playerAppServices', [])
             'result': 'Result'
         }
     })
-    .factory('Home', function (Socket, $location, fxService, Status, $timeout) {
+    .factory('Home', function (Socket, $location, fxService, Status, $timeout, DealFactory) {
         var homeFactory = {};
         homeFactory.displayData = {};
         homeFactory.type = "vote";
@@ -227,6 +227,11 @@ angular.module('playerAppServices', [])
                             $location.path('/score');
                             return;
                             break;
+                        case "deal":
+                            if (DealFactory.active.deal === null || DealFactory.active.deal.state ==null || DealFactory.active.deal.state>2) DealFactory.addDeal("insurance");
+                            $location.path('/deal');
+                            return;
+                            break;
                         case "alert":
                             fxService.playSound(0);
                             return;
@@ -315,6 +320,12 @@ angular.module('playerAppServices', [])
             return statusFactory.otherPlayers.filter(function (player) {
                 return player.joined && player.playerId !== statusFactory.player.playerId;
             })
+        };
+        statusFactory.getAvailablePlayers = function () {
+            return statusFactory.otherPlayers.filter(function (player) {
+                return !player.busy && player.joined && player.playerId !== statusFactory.player.playerId;
+            })
+
         };
         return statusFactory;
 
@@ -459,26 +470,49 @@ angular.module('playerAppServices', [])
                 dealFactory.deals[deal.id].messages = deal.messages;
             }
             else dealFactory.deals[deal.id] = deal;
+            if (dealFactory.active.deal === null || dealFactory.active.deal.state === 0 || dealFactory.active.deal.state > 2) dealFactory.active.deal = deal;
+        });
+        Socket.on('dealStatus', function(event) {
+            var deals = JSON.parse(event.data).data;
+            for (var dealId in deals) if (deals.hasOwnProperty(dealId)) {
+                if (dealFactory.deals.hasOwnProperty(dealId)) {
+                    dealFactory.deals[dealId].state = deals[dealId].state;
+                    dealFactory.deals[dealId].messages = deals[dealId].messages;
+                }
+                else dealFactory.deals[dealId] = deals[dealId];
+                if (deals[dealId].state <= 2) {
+                    console.log("set activ.deal");
+                    dealFactory.active.deal = deals[dealId];
+                }
+            }
         });
         dealFactory.addDeal = function (subject) {
             var added = angular.copy(newDeal);
             added.subject = subject;
             added.state = 0;
             added.id = rfc4122.v4();
+            added.player0Id = Status.player.playerId;
             dealFactory.deals[added.id] = added;
             dealFactory.active.deal = added;
         };
+        dealFactory.deleteDeal = function(deal) {
+            console.log("delete deal "+deal.id);
+            delete dealFactory.deals[deal.id];
+            dealFactory.active.deal = null;
+        };
         dealFactory.sendMessage = function (type, value) {
-            dealFactory.active.deal.messages.push({playerId: Status.player.playerId, type: type, value: value});
-            if (type === "confirm") dealFactory.active.deal.state = 3;
-            if (type === "deny") dealFactory.active.deal.state = 4;
-            if (dealFactory.active.deal.state === 0 || dealFactory.active.deal.state === 2) {
-                dealFactory.active.deal.state = 1;
+            var deal = dealFactory.active.deal;
+            if (type !== "deny") if (deal.messages.length > 0) if (value == deal.messages[deal.messages.length-1].value) type = "confirm";
+            deal.messages.push({playerId: Status.player.playerId, type: type, value: value});
+            if (type === "confirm") deal.state = 3;
+            if (type === "deny") deal.state = 4;
+            if (deal.state === 0 || deal.state === 2) {
+                deal.state = 1;
             }
-            else if (dealFactory.active.deal.state === 1) {
-                dealFactory.active.deal.state = 2;
+            else if (deal.state === 1) {
+                deal.state = 2;
             }
-            Socket.emit({type: "deal", data: dealFactory.active.deal});
+            Socket.emit({type: "deal", data: deal});
         };
         dealFactory.getMyDealState = function (deal) {
             if (deal === null) return 0;

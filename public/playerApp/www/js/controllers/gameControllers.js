@@ -132,8 +132,13 @@ angular.module("gameControllers", [])
             console.log(deal);
             DealFactory.active.deal = deal;
         };
-        $scope.addDeal = function () {
-            DealFactory.addDeal($scope.subject);
+        $scope.addDeal = function (subject) {
+            if (typeof subject === "undefined") subject = $scope.subject;
+            DealFactory.addDeal(subject);
+        };
+        $scope.deleteDeal = function(deal) {
+            DealFactory.deleteDeal(deal);
+            $scope.addDeal("insurance");
         };
         $scope.getMyDealState = function (deal) {
             return DealFactory.getMyDealState(deal);
@@ -172,6 +177,7 @@ angular.module("gameControllers", [])
             if (balance > 0) {
                 ret += " I want " + balance + " points.";
             }
+            if (balance === 0) ret+=" For 0 points."
             return ret;
         };
         function getBalance(value, x) {
@@ -183,8 +189,6 @@ angular.module("gameControllers", [])
 
         $scope.getMessageText = function (message) {
             var ret = "";
-            if (message.playerId == Status.player.playerId) ret = "Us: ";
-            else ret = "Them: ";
             switch (message.type) {
                 case "request":
                     ret += $scope.getRequestMessage(message);

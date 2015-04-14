@@ -3,13 +3,13 @@
 }
 
 .playerAppFrame {
-    width: 854px;
-    height: 480px;
+    width: 326px;
+    height: 555px;
     border: 0;
 }
 .playerAppDiv{
     position: relative;
-    transform: scale(0.5);
+    transform: scale(0.7);
     transform-origin: 0 0;
     float:left;
 }

@@ -2,7 +2,7 @@ var mongoConnection = require('../mongoConnection');
 
 function GameConf() {
     this.conf = {};         //fixe Kongiguration wie startDeck, typeMapping
-    this.options = {alertRecipients: "button"};      //veränderliche optionen wie alertRecipients
+    this.options = {alertRecipients: "button:gruen,digits"};      //veränderliche optionen wie alertRecipients
 }
 
 GameConf.prototype = {

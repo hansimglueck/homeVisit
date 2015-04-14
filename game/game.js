@@ -66,9 +66,8 @@ Game.prototype = {
     alert: function(clientId, msg) {
         var recipients = gameConf.getOption("alertRecipients").split(",");
         recipients.forEach(function(recipient){
-            recipient = recipient.trim();
-            var role = recipient.split(":")[0].trim();
-            var name = recipient.split(":")[1].trim();
+            var role = recipient.split(":")[0];
+            var name = recipient.split(":")[1];
             if (role != "player") wsManager.msgDevicesByRoleAndName(role, name, "display", {type:"alert"});
             else playerManager.deliverMessage(recipient, "display", {type:"alert"});
         })

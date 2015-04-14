@@ -7,19 +7,6 @@
 .chart-container {
     #width: 800px
 }
-.chart2,
-.left-pane {
-    width: 300px;
-    float: left;
-    padding: 10px;
-}
-
-.pie-legend,
-.right-pane {
-    width: 400px;
-    float: left;
-    padding: 10px;
-}
 
 .app-border {
     width: 100%;
@@ -51,7 +38,10 @@
 .pie-legend li {
     white-space: normal !important;
 }
-
+.btn {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
 .navbarbtn {
     height: 50px;
     padding: 12px;
@@ -65,6 +55,22 @@
 .player-icon {
     width: 100px;
     height: 50px;
+    margin-top: 15px;
+    display: inline-block;
+}
+.player-icon-med {
+    width: 80px;
+    height: 40px;
+    margin-top: 5px;
+    margin-right: 5px;
+    display: inline-block;
+}
+.player-icon-xs {
+    width: 40px;
+    height: 20px;
+    margin-top: 5px;
+    margin-right: 5px;
+    display: inline-block;
 }
 .player-grid {
     padding-top: 10px;

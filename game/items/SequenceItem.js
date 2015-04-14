@@ -187,6 +187,9 @@ SequenceItem.prototype = {
                 this.setupPoll();
                 this.mapToDevice();
                 break;
+            case "deal":
+                this.mapToDevice();
+                break;
             case "results":
                 //der score wird hier ermittelt, da das result ja auch zB an den printer geschickt werden könnte, dann käme playerManager.result() garnicht dran
                 this.data = {};
@@ -289,7 +292,10 @@ SequenceItem.prototype = {
         else {
             map.devices = this.device.split(",");
         }
-        if (map.devices.length == 0) this.log("keine Devices gefunden für " + this.type, true);
+        if (typeof map === "undefined" || map.devices.length == 0) {
+            this.log("keine Devices gefunden für " + this.type, true);
+            return;
+        }
         map.devices.forEach(function (dev) {
             self.log("sending to " + dev + ": " + self.text);
             //statt device player wird der playerManager verwendet
