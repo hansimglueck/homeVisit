@@ -55,8 +55,7 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOp
             if (typeof $scope.gameConf._id == "undefined") {
                 var gConf = new gameConf({role:'run', startDeckId:null, autostart:false, playerCnt:1, typeMapping:[]});
                 gConf.$save(function success(saved){
-                        console.log("---success");
-                    },
+                        console.log("---success");                    },
                     function error(err){
                         console.log("---error: "+err);
                         console.log(err);
@@ -124,6 +123,10 @@ masterControllers.controller('DeviceCtrl', function($scope, Socket, itemOptions)
 masterControllers.controller('PlayerCtrl', function($scope, Socket) {
     $scope.playerList = [];
     $scope.ratings = [];
+    $scope.rate = function(playerId, value) {
+        console.log("rate clicked", playerId, value);
+        Socket.emit({type:"rateAction", param:value}, function() { console.log('rated!'); });
+    };
     Socket.on("status", function(message) {
         $scope.playerList = message.data.otherPlayers;
         $scope.ratings = message.data.avgRatings;

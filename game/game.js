@@ -30,6 +30,11 @@ Game.prototype = {
             }
             console.log("game.trigger: " + msg.data + " with parameter: " + param);
             switch (msg.data) {
+                case "rate":
+                    playerManager.players[param.playerId].score = playerManager.players[param.playerId].score + param.value;
+                    playerManager.sendPlayerStatus(param.playerId);
+                    break;
+
                 case "restart":
                     this.start();
                     break;

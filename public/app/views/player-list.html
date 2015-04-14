@@ -5,12 +5,19 @@
         <th>PlayerId</th>
         <th>Joined</th>
         <th>Rating</th>
+        <th>Score</th>
+        <th>Punkte ändern</th>
     </tr>
     <tr ng-repeat="player  in playerList track by $index" ng-click="isCollapsed = !isCollapsed">
 
         <td>{{player.playerId}}</td>
         <td>{{player.joined ? "Joined" : "Off"}}</td>
         <td>{{ratings[$index]}}</td>
+        <td>{{player.score}}</td>
+        <td>
+            <button class="btn" ng-click="playback('rate', { playerId: player.playerId, value: -1})">-1</button>
+            <button class="btn" ng-click="playback('rate', { playerId: player.playerId, value: +1})">+1</button>
+        </td>
     </tr>
 </table>
 </div>
