@@ -1,0 +1,74 @@
+body {
+  padding: 0;
+}
+
+.navbar {
+  margin-bottom: 0px;
+}
+
+.app-content {
+  position: relative;
+  height: 650px;
+  width: 1280px;
+}
+
+.player,
+.dummy {
+  border-radius: 10px;
+  position: absolute;
+  border: solid 1px;
+  width: 150px;
+  height: 150px;
+}
+
+.dimm {
+  color: #9c9c9c;
+}
+
+.table-display {
+  border-radius: 10px;
+  position:absolute;
+  top: 170px;
+  left:180px;
+  width: 920px;
+  height: 310px;
+  border: solid 1px;
+  font-size: 1.5em;
+  overflow: scroll;
+}
+
+.finger {
+  background: lightgray;
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  margin-top: 5px;
+  position: relative;
+  left: -10px;
+  border-radius: 5px;
+  vertical-align: middle;
+  font-size: 30px;}
+
+.binary {
+  background: lightgray;
+  height: 80px;
+  width: 55px;
+  text-align: center;
+  margin-top: 10px;
+  position: relative;
+  left: -15px;
+  border-radius: 5px;
+  vertical-align: middle;
+  font-size: 40px;
+  margin-right: 10px;
+}
+.selectedRow {
+  background: lightgray;
+}
+.selectedFinger {
+  background: red;
+}
+
+.unknownAnswer {
+  background-color: aquamarine;
+}

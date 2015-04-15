@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div class="dummy" ng-repeat="dummy in dummies track by $index"
+         ng-style="{'top':dummy.top, 'left':dummy.left}"
+         ng-class="{unknownAnswer: unanswered($index)}">
+        <ul class="list-group list-unstyled">
+            <li class="list-group-item">{{dummy.name}}</li>
+            <li ng-if="polls[selectedRow].type=='fingers'" class="">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div ng-click="selectAnswer($index,0)" class="finger"
+                                 ng-class="{selectedFinger:polls[selectedRow].answers[$index]==0}">0
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div ng-click="selectAnswer($index,1)" class="finger"
+                                 ng-class="{selectedFinger:polls[selectedRow].answers[$index]==1}">1
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div ng-click="selectAnswer($index,2)" class="finger"
+                                 ng-class="{selectedFinger:polls[selectedRow].answers[$index]==2}">2
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-4">
+                            <div ng-click="selectAnswer($index,3)" class="finger"
+                                 ng-class="{selectedFinger:polls[selectedRow].answers[$index]==3}">3
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div ng-click="selectAnswer($index,4)" class="finger"
+                                 ng-class="{selectedFinger:polls[selectedRow].answers[$index]==4}">4
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                            <div ng-click="selectAnswer($index,5)" class="finger"
+                                 ng-class="{selectedFinger:polls[selectedRow].answers[$index]==5}">5
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+            <li ng-if="polls[selectedRow].type=='binary'" class="">
+                <div class="container-fluid">
+                    <div class="col-xs-6">
+                        <div ng-click="selectAnswer($index,1)" class="binary"
+                             ng-class="{selectedFinger:polls[selectedRow].answers[$index]==1}">+
+                        </div>
+                    </div>
+                    <div class="col-xs-6">
+                        <div ng-click="selectAnswer($index,0)" class="binary"
+                             ng-class="{selectedFinger:polls[selectedRow].answers[$index]==0}">-
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <div class="table-display">
+        <table class="table table-bordered">
+            <tr>
+                <th>Spieler</th>
+                <th ng-repeat="dummy in dummies track by $index">{{$index}}</th>
+            </tr>
+            <tr ng-click="selectRow($index)" ng-class="{selectedRow: $index==selectedRow}"
+                ng-repeat="poll in polls track by $index">
+                <td>{{poll.question}}</td>
+                <td ng-repeat="answer in poll.answers track by $index">
+                    <div ng-if="poll.type=='binary'">{{showPlusMinus(answer)}}</div>
+                    <div ng-if="poll.type=='fingers'">{{answer}}</div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
