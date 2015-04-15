@@ -11,7 +11,6 @@ angular.module('playerApp', [
     'ngCookies',
     'playerAppServices',
     'playerAppDirectives',
-    'ngCordova',
     'ngAnimate',
     'ngAudio',
     'fxControllers',

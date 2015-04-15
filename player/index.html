@@ -5,17 +5,11 @@
     <meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimal-ui">
     <meta name="mobile-web-app-capable" content="yes">
     <title>HomeVisitApp</title>
-    <!--<link rel="stylesheet" href="bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css"/>-->
-    <link rel='stylesheet' href='/stylesheets/votewatch.css'/>
     <link rel="stylesheet" href="css/angular-chart.css">
     <link rel="stylesheet" href="css/responsive.min.css"/>
-    <!--
-    <link rel="stylesheet" href="css/app.css"/>
-    <link rel="stylesheet" href="css/mobile-angular-ui-desktop.min.css">
-    -->
     <link rel="stylesheet" href="css/mobile-angular-ui-base.min.css">
-    <link rel='stylesheet' href='css/player.css'/>
-    <link rel='stylesheet' href='css/score.css'/>
+    <link rel="stylesheet" href="css/player.css"/>
+    <link rel="stylesheet" href="css/score.css"/>
 
     <script src="js/components/angular.js"></script>
     <script src="js/components/angular-route.js"></script>
@@ -24,7 +18,6 @@
     <script src="js/components/mobile-angular-ui.gestures.min.js"></script>
     <script src="js/components/Chart.js"></script>
     <script src="js/components/angular-chart.js"></script>
-    <script src="js/components/ng-cordova.js"></script>
     <script src="js/components/angular.audio.js"></script>
     <script src="js/components/angular-animate.js"></script>
     <script src="js/components/angular-uuid-service.min.js"></script>
@@ -37,13 +30,6 @@
     <script src="js/services/websocketServices.js"></script>
     <script src="js/services/playerAppServices.js"></script>
     <script src="js/services/europeSVG.js"></script>
-    <script type="text/javascript" src="cordova.js"></script>
-    <script src="js/bootstrap_angular.js"></script>
-    <script type="text/javascript" src="js/btSerial.js"></script>
-    <script type="text/javascript">
-        //btSerial.initialize();
-    </script>
-
 </head>
 <body ng-swipe-right='Ui.turnOn("uiSidebarLeft")'
       ng-swipe-left='Ui.turnOff("uiSidebarLeft")'
@@ -115,18 +101,6 @@
                         <i class="fa fa-star bigger"></i></div>
                     <div class="navbarbtn" ng-click="go('/deal/xyz')">
                         <i class="fa fa-arrows-h bigger"></i></div>
-                    <!--
-                        <div class="navbarbtn" ng-click="playSound(1)">
-                        <i class="fa fa-star"></i></div>
-                    <div class="navbarbtn" ng-click="startCountdown(10)">
-                        <i class="fa fa-star"></i></div>
-                    <div class="navbarbtn" ng-click="go('/chat')">
-                        <i class="fa fa-comment bigger"></i>
-                        <span class="badge badge-notification" ng-show="newMessages>0">
-                            {{newMessages}}</span>
-                    </div>
-                    -->
-                    <!--                    <div class="navbarbtn" ng-click="toVote()">VOTE</div>  -->
                 </div>
             </div>
         </div>
@@ -214,6 +188,10 @@
 <!-- Modals and Overlays -->
 <div ui-yield-to="modals"></div>
 
+<script>
+angular.element(document).ready(function() {
+    angular.bootstrap(document.querySelector('body'), ['playerApp']);
+});
+</script>
 </body>
-
 </html>

@@ -81,7 +81,7 @@ app.use('/decks', require('./routes/decks'));
 app.use('/gameConf', require('./routes/gameConf'));
 
 // app routes
-app.use('/', require('./routes/apps'));
+app.use('/', require('./routes/main'));
 
 // error handling
 
