@@ -10,17 +10,6 @@ angular.module('playerAppServices', [])
             lila: {'background-color': '#b27de4', 'color': '#555555'},
             weiss: {'background-color': '#9f9f9f', 'color': '#555555'}
         }
-        /*
-        return {
-            rot: {'background-color': '#FF0000', 'color': '#555555'},
-            gelb: {'background-color': '#FFFF00', 'color': '#555555'},
-            blau: {'background-color': '#0000FF', 'color': '#BBBBBB'},
-            weiss: {'background-color': '#FFFFFF', 'color': '#555555'},
-            gruen: {'background-color': '#00FF00', 'color': '#555555'},
-            pink: {'background-color': '#FF88FF', 'color': '#555555'},
-            schwarz: {'background-color': '#000000', 'color': '#BBBBBB'}
-        }
-        */
     })
     .factory('borderColors', function () {
         var width = "5px";
@@ -34,18 +23,7 @@ angular.module('playerAppServices', [])
             lila: {'border': width + ' solid #b27de4'},
             weiss: {'border': width + ' solid #9f9f9f'}
         }
-        /*
-        return {
-            rot: {'border': width + ' solid #FF0000'},
-            gelb: {'border': width + ' solid #FFFF00'},
-            blau: {'border': width + ' solid #0000FF'},
-            weiss: {'border': width + ' solid #FFFFFF'},
-            gruen: {'border': width + ' solid #00FF00'},
-            pink: {'border': width + ' solid #FF88FF'},
-            schwarz: {'border': width + ' solid #000000'}
-        }
-        */
-    })
+     })
     .factory('playerColors', function () {
         return [
             ["rot", "rot"],
@@ -57,38 +35,6 @@ angular.module('playerAppServices', [])
             ["lila", "lila"],
             ["weiss", "weiss"],
         ];
-
-        /*
-        return [
-            ["pink", "schwarz"],
-            ["gelb", "gruen"],
-            ["rot", "blau"],
-            ["gelb", "pink"],
-            ["rot", "gruen"],
-            ["blau", "pink"],
-            ["rot", "gelb"],
-            ["gelb", "blau"],
-            ["gruen", "weiss"]
-        ];
-
-         return [
-         ["rot", "gelb"],
-         ["rot", "blau"],
-         ["rot", "weiss"],
-         ["rot", "gruen"],
-         ["rot", "pink"],
-         ["gelb", "blau"],
-         ["gelb", "weiss"],
-         ["gelb", "gruen"],
-         ["gelb", "pink"],
-         ["blau", "weiss"],
-         ["blau", "gruen"],
-         ["blau", "pink"],
-         ["weiss", "gruen"],
-         ["weiss", "pink"],
-         ["pink", "schwarz"]
-         ];
-         */
     })
     .factory('itemTypes', function () {
         return {
