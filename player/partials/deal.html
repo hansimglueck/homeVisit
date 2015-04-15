@@ -72,10 +72,8 @@
 
                                     </ul>
                                 </div>
-                                <div>
-                                    <li ng-hide="getMyDealState(active.deal)===2">
-                                        <button class="btn-lg" ng-click="cancelDeal(active.deal)">Cancel</button>
-                                    </li>
+                                <div ng-hide="getMyDealState(active.deal)===2">
+                                    <button class="btn-lg" ng-click="cancelDeal(active.deal)">Cancel</button>
                                 </div>
                                 <div ng-if="getMyDealState(active.deal)===0 || getMyDealState(active.deal)===2">
                                 </div>
