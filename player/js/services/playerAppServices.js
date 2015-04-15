@@ -36,14 +36,6 @@ angular.module('playerAppServices', [])
             ["weiss", "weiss"],
         ];
     })
-    .factory('itemTypes', function () {
-        return {
-            'card': 'Card',
-            'vote': 'Vote',
-            'rating': 'Rating',
-            'result': 'Result'
-        }
-    })
     .factory('Home', function (Socket, $location, fxService, Status, $timeout, DealFactory) {
         var homeFactory = {};
         homeFactory.displayData = {};
@@ -67,7 +59,6 @@ angular.module('playerAppServices', [])
                 }, (homeFactory.time - 10) * 1000);
             }
         };
-
         homeFactory.vote = function () {
             homeFactory.voteChoiceText = homeFactory.options.filter(function (opt) {
                 return opt.checked
@@ -293,40 +284,6 @@ angular.module('playerAppServices', [])
         };
 
         return ratingFactory;
-    })
-    .factory('Chat', function ($rootScope, Socket, Status) {
-
-        var chatFactory = {};
-        chatFactory.messages = [[[0, "hallo"], [1, "wie gehts?"]], [[0, "hallo"], [1, "wie gehts?"]]];
-        chatFactory.messages = [];
-        chatFactory.newCntPerPlayer = [];
-        chatFactory.newCnt = 0;
-
-        Socket.on('chat', function (event) {
-            var data = JSON.parse(event.data).data;
-            var playerId = data.playerId;
-            if (typeof chatFactory.messages[playerId] == "undefined") chatFactory.messages[playerId] = [];
-            chatFactory.messages[playerId].unshift([1, data.message]);
-            if (typeof chatFactory.newCntPerPlayer[playerId] == "undefined") chatFactory.newCntPerPlayer[playerId] = 1;
-            else  chatFactory.newCntPerPlayer[playerId]++;
-            chatFactory.newCnt++;
-            $rootScope.$broadcast("newChatMessage", chatFactory.newCnt);
-        });
-
-        chatFactory.chat = function (pid, msg) {
-            Socket.emit({type: "chat", data: {sender: Status.player.playerId, recipient: pid, message: msg}});
-            if (typeof chatFactory.messages[pid] == "undefined") chatFactory.messages[pid] = [];
-            chatFactory.messages[pid].unshift([0, msg]);
-        };
-
-        chatFactory.messagesRead = function (playerId) {
-            console.log("gelesen");
-            chatFactory.newCnt -= chatFactory.newCntPerPlayer[playerId];
-            chatFactory.newCntPerPlayer[playerId] = 0;
-            //da newCnt ein einzelner wert ist, muss ich den broadcasten. die arraywerte im perplayer-array werden automatisch gebindet...
-            $rootScope.$broadcast("newChatMessage", chatFactory.newCnt);
-        };
-        return chatFactory;
     })
     .factory('fxService', function ($timeout, $interval, ngAudio) {
         var fxService = {};
