@@ -1,7 +1,7 @@
 var exec = require('child_process').exec;
 var os = require('os');
 //var mongoose = require('mongoose');
-var mongoConnection = require('../mongoConnection');
+var mongoConnection = require('../server/mongoConnection');
 var wsManager = require('./wsManager.js');
 
 function RaspiTools() {

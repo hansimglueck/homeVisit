@@ -1,4 +1,4 @@
-var mongoConnection = require('../mongoConnection');
+var mongoConnection = require('../server/mongoConnection');
 
 function GameConf() {
     this.conf = {};         //fixe Kongiguration wie startDeck, typeMapping

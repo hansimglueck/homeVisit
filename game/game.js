@@ -5,7 +5,7 @@ var exec = require('child_process').exec;
 var wsManager = require('./wsManager.js');
 var playerManager = require('./playerManager.js');
 var SequenceItem = require('./items/SequenceItem.js');
-var mongoConnection = require('../mongoConnection.js');
+var mongoConnection = require('../server/mongoConnection.js');
 var gameConf = require('./gameConf');
 
 
