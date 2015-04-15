@@ -13,7 +13,11 @@ router.get('/player', function(req, res, next) {
 });
 
 router.get('/mc', function(req, res, next) {
-  res.sendFile('mc/index.html', { root: __dirname +"/../public"  });
+    res.sendFile('mc/index.html', { root: __dirname +"/../public"  });
+});
+
+router.get('/emulator', function(req, res, next) {
+    res.render('emulator');
 });
 
 module.exports = router;
