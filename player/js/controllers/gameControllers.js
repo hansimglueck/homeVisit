@@ -74,22 +74,28 @@ angular.module("gameControllers", [])
             return ($scope.baromaterHeight - $scope.linePosFromScore(0)).toString() + "px";
         }
     })
-    .controller('DealsController', function ($scope, DealFactory, $routeParams) {
+    .controller('DealsController', function ($scope, DealFactory, $routeParams, Status) {
         $scope.subject = $routeParams.subject || null;
         $scope.deals = DealFactory.deals;
+        if (DealFactory.active.deal == null) DealFactory.addDeal($scope.subject || "xyz");
         $scope.dealStates = ["just opened", "waiting for answer", "have to reply", "confirmed", "denied"];
         $scope.newDeal = {subject: "alliance", playerId: 0, state: 0, messages: []};
+        $scope.message = {
+            value: 0,
+            playerId: Status.player.playerId
+        };
 
         $scope.openDeal = function (deal) {
             console.log(deal);
             DealFactory.active.deal = deal;
         };
         $scope.addDeal = function (subject) {
+            $scope.message.value = 0;
             if (typeof subject === "undefined") subject = $scope.subject;
             DealFactory.addDeal(subject);
         };
-        $scope.deleteDeal = function(deal) {
-            DealFactory.deleteDeal(deal);
+        $scope.cancelDeal = function(deal) {
+            DealFactory.cancelDeal(deal);
             $scope.addDeal("insurance");
         };
         $scope.getMyDealState = function (deal) {
@@ -102,10 +108,6 @@ angular.module("gameControllers", [])
     .controller('DealDetailsController', function ($scope, DealFactory, $routeParams, Status) {
         $scope.active = DealFactory.active;
         $scope.status = Status;
-        $scope.message = {
-            value: 0,
-            playerId: Status.player.playerId
-        };
         $scope.choosePlayerForDeal = function (player) {
             DealFactory.active.deal.player1Id = player.playerId;
         };
@@ -121,15 +123,15 @@ angular.module("gameControllers", [])
             var me = (message.playerId == Status.player.playerId);
             var first = (Status.player.playerId == DealFactory.active.deal.player0Id);
 
-            var ret = "I like to deal " + DealFactory.active.deal.subject + " with you.";
+            var ret = ["I like to deal " + DealFactory.active.deal.subject + " with you!"];
             var balance = getBalance(value, me^!first);
             if (balance < 0) {
-                ret += " I offer " + (-1) * balance + " points.";
+                ret.push(" I offer " + (-1) * balance + " points.");
             }
             if (balance > 0) {
-                ret += " I want " + balance + " points.";
+                ret.push(" I want " + balance + " points.");
             }
-            if (balance === 0) ret+=" For 0 points."
+            if (balance === 0) ret.push(" For 0 points.");
             return ret;
         };
         function getBalance(value, x) {

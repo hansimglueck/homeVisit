@@ -134,9 +134,8 @@ angular.module("playerControllers", [])
             $scope.$digest();
         })
     })
-    .controller('NavbarController', function ($scope, $location, Status, Rating, Chat, Home, colors, fxService) {
+    .controller('NavbarController', function ($scope, $location, Status, Rating, Home, colors, fxService) {
         $scope.status = Status;
-        $scope.chat = Chat;
         $scope.rating = Rating;
         $scope.newMessages = 0;
         $scope.test = "test aus navbar controller";

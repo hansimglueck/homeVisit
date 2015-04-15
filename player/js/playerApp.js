@@ -56,10 +56,6 @@ angular.module('playerApp', [
                     templateUrl: 'partials/deal.html',
                     controller: 'DealsController'
                 }).
-                when('/deal/new/:subject', {
-                    templateUrl: 'partials/deal.html',
-                    controller: 'DealsController'
-                }).
                 otherwise({
                     redirectTo: '/home'
                 });

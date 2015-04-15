@@ -356,7 +356,8 @@ angular.module('playerAppServices', [])
             player0Id: Status.player.playerId,
             player1Id: null,
             state: null,
-            messages: []
+            messages: [],
+            maxMessages: 2
         };
         dealFactory.active = {
             deal: null
@@ -397,6 +398,11 @@ angular.module('playerAppServices', [])
             added.player0Id = Status.player.playerId;
             dealFactory.deals[added.id] = added;
             dealFactory.active.deal = added;
+        };
+        dealFactory.cancelDeal = function(deal) {
+            console.log("cancelling deal with status "+deal.state);
+            if (deal.state > 0) dealFactory.sendMessage("deny");
+            dealFactory.deleteDeal(deal);
         };
         dealFactory.deleteDeal = function(deal) {
             console.log("delete deal "+deal.id);
