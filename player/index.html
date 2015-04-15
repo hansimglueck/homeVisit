@@ -11,16 +11,16 @@
     <link rel="stylesheet" href="css/player.css"/>
     <link rel="stylesheet" href="css/score.css"/>
 
-    <script src="js/components/angular.js"></script>
-    <script src="js/components/angular-route.js"></script>
-    <script src="js/components/angular-cookies.js"></script>
-    <script src="js/components/mobile-angular-ui.min.js"></script>
-    <script src="js/components/mobile-angular-ui.gestures.min.js"></script>
-    <script src="js/components/Chart.js"></script>
-    <script src="js/components/angular-chart.js"></script>
-    <script src="js/components/angular.audio.js"></script>
-    <script src="js/components/angular-animate.js"></script>
-    <script src="js/components/angular-uuid-service.min.js"></script>
+    <script src="/bower_components/angular/angular.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
+    <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
+    <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
+    <script src="/bower_components/Chart.js/Chart.js"></script>
+    <script src="/bower_components/angular-chart.js/angular-chart.js"></script>
+    <script src="/bower_components/angular-audio/app/angular.audio.js"></script>
+    <script src="/bower_components/angular-animate/angular-animate.js"></script>
+    <script src="/bower_components/angular-uuid-service/angular-uuid-service.js"></script>
 
     <script src="js/playerApp.js"></script>
     <script src="js/controllers/playerControllers.js"></script>
@@ -182,12 +182,8 @@
         </div>
     </div>
 </div>
-<!--</div>-->
-<!-- ~ .app -->
 
-<!-- Modals and Overlays -->
 <div ui-yield-to="modals"></div>
-
 <script>
 angular.element(document).ready(function() {
     angular.bootstrap(document.querySelector('body'), ['playerApp']);
