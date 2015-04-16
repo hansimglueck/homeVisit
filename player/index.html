@@ -32,7 +32,8 @@
 </head>
 <body ng-swipe-right='Ui.turnOn("uiSidebarLeft")'
       ng-swipe-left='Ui.turnOff("uiSidebarLeft")'
-      ng-controller="MainController">
+      ng-controller="MainController"
+      ng-app="playerApp">
 
 <!-- Sidebars -->
 <div class="sidebar sidebar-left" ng-controller="MenuController">
@@ -154,10 +155,5 @@
 <!-- ~ .app -->
 
 <div ui-yield-to="modals"></div>
-<script>
-angular.element(document).ready(function() {
-    angular.bootstrap(document.querySelector('body'), ['playerApp']);
-});
-</script>
 </body>
 </html>
