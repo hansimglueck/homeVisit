@@ -7,14 +7,14 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-set.html'
+            templateUrl: 'views/admin/show-set.html'
         };
     })
     .directive('showDeck', function () {
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-deck.html'
+            templateUrl: 'views/admin/show-deck.html'
         };
     })
 
@@ -22,7 +22,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/edit-new-deck.html'
+            templateUrl: 'views/admin/edit-new-deck.html'
         };
     })
 
@@ -30,7 +30,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-sequence-item.html'
+            templateUrl: 'views/admin/show-sequence-item.html'
         };
     })
 
@@ -39,7 +39,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-vote-option.html'
+            templateUrl: 'views/admin/show-item-contents/show-vote-option.html'
         };
     })
 
@@ -47,7 +47,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/import-json.html'
+            templateUrl: 'views/admin/import-json.html'
         };
     })
 
@@ -55,7 +55,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-card-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-card-content.html'
         };
     })
 
@@ -63,14 +63,14 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-vote-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-vote-content.html'
         };
     })
     .directive('showTradeContent', function () {
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-trade-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-trade-content.html'
         };
     })
 
@@ -78,21 +78,21 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-switch-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-switch-content.html'
         };
     })
     .directive('showInlineSwitchContent', function () {
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-inline-switch-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-inline-switch-content.html'
         };
     })
     .directive('showInlineSwitchOption', function () {
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-inline-switch-option.html'
+            templateUrl: 'views/admin/show-item-contents/show-inline-switch-option.html'
         };
     })
 
@@ -100,14 +100,14 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-results-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-results-content.html'
         };
     })
     .directive('showConfigContent', function () {
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-config-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-config-content.html'
         };
     })
 
@@ -115,7 +115,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-sound-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-sound-content.html'
         };
     })
 
@@ -123,7 +123,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-cmd-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-cmd-content.html'
         };
     })
 
@@ -131,7 +131,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-player-direct-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-player-direct-content.html'
         };
     })
 
@@ -139,7 +139,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-eval-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-eval-content.html'
         };
     })
 
@@ -147,7 +147,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-item-contents/show-rating-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-rating-content.html'
         };
     })
 
@@ -155,7 +155,7 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'admin/views/admin/show-direct-item.html'
+            templateUrl: 'views/admin/show-direct-item.html'
         };
     })
 

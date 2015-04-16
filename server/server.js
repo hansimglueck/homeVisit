@@ -115,4 +115,6 @@ app.use(function(err, req, res, next) {
 });
 
 // tschacka!
-server.listen(conf.port);
+server.listen(conf.port, function() {
+    console.log('Listening on port ' + conf.port);
+});
