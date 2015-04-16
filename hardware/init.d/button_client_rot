@@ -1,0 +1,68 @@
+#!/bin/bash
+### BEGIN INIT INFO
+# Provides:          /home/pi/homeVisit/hardware/button_client.py_rot
+# Required-Start:    $remote_fs $syslog
+# Required-Stop:     $remote_fs $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+### END INIT INFO
+#
+# initd a node app
+# Based on a script posted by https://gist.github.com/jinze at https://gist.github.com/3748766
+#
+
+# Source function library.
+. /lib/lsb/init-functions
+
+homeVisitRoot="/home/pi/homeVisit"
+homeVisitLogDir="${homeVisitRoot}/logs"
+pidFile="${homeVisitRoot}/button_client_rot.pid"
+logFile="${homeVisitLogDir}/button_client_rot.log"
+
+script="/home/pi/homeVisit/hardware/button_client.py"
+foreverApp="forever"
+
+start() {
+    echo "Starting $script"
+    mkdir -p "${homeVisitLogDir}"
+    $foreverApp start --pidFile $pidFile -l $logFile -a -c /usr/bin/python $script 24 1 27 rot
+    RETVAL=$?
+}
+
+restart() {
+    echo -n "Restarting $script"
+    $foreverApp restart $script
+    RETVAL=$?
+}
+
+stop() {
+    echo -n "Shutting down $script"
+    $foreverApp stop $script
+    RETVAL=$?
+}
+
+status() {
+    echo -n "Status $script"
+    $foreverApp list
+    RETVAL=$?
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    status)
+        status
+        ;;
+    restart)
+        restart
+        ;;
+    *)
+        echo "Usage:  {start|stop|status|restart}"
+        exit 1
+        ;;
+esac
+exit $RETVAL
