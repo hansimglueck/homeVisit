@@ -165,8 +165,9 @@ angular.module('playerAppServices', [])
                             return;
                             break;
                         case "deal":
-                            if (DealFactory.active.deal === null || DealFactory.active.deal.state == null || DealFactory.active.deal.state > 2) DealFactory.addDeal("insurance");
-                            $location.path('/deal');
+                            var dealType = "";
+                            if (typeof data.dealType !== "undefined") dealType = data.dealType;
+                            $location.path('/deals/new/'+dealType);
                             return;
                             break;
                         case "alert":

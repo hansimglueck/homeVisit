@@ -76,8 +76,8 @@ gameServices.factory('Game', ['$resource', function ($resource) {
         configField: [
             {value: 'alertRecipients', text: 'alertRecipients'}
         ],
-        tradeType: [
-            {text: "partner", value: "Partner"}
+        dealType: [
+            {value: "insurance", text: "Partner"}
         ]
     })
     .factory('gameConf', ['$resource', function ($resource) {
