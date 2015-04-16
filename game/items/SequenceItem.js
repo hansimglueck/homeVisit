@@ -167,6 +167,8 @@ SequenceItem.prototype = {
                 break;
             case "inlineSwitch":
                 this.log("looking for deck for option " + this.param);
+                if (typeof this.inlineDecks === "undefined")
+                    break;
                 var deck = this.inlineDecks[this.param];
                 if (typeof deck == "undefined") {
                     this.log("no matching option found", true);
