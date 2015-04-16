@@ -1,46 +1,26 @@
 {
-  "name": "HomeVisitApp",
+  "name": "HomeVisit",
   "version": "0.0.1",
   "homepage": "https://github.com/hansimglueck/homeVisit",
-  "moduleType": [
-    "globals"
-  ],
-  "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components",
-    "test",
-    "tests"
-  ],
-  "dependencies": {
-    "angular-audio": "~1.4.1",
-    "angular-chart.js": "~0.5.1",
-    "angular-cookies": "~1.3.13",
-    "angular-filter": "~0.5.2",
-    "angular-resource": "~1.3.15",
-    "angular-route": "~1.3.13",
-    "angular-scroll-glue": "~2.0.3",
-    "angular-socket-io": "~0.7.0",
-    "angular-strap": "~2.1.6",
-    "angular-websocket": "~1.0.8",
-    "angular-xeditable": "~0.1.8",
-    "d3": "~3.5.4",
-    "jstree-directive": "~0.1.5",
-    "mobile-angular-ui": "~1.2.0-beta.11",
-    "mobile-angular-ui_mod": "mobile-angular-ui#~1.2.0-beta.11",
-    "ng-chartjs": "~0.0.5",
-    "ng-websocket": "~0.2.1",
-    "ngCordova": "~0.1.12-alpha",
-    "nvd3": "~1.7.1",
-    "jstree": "~3.1.0",
-    "jquery-ui": "~1.11.4",
-    "angular-ui-bootstrap": "~0.12.1",
-    "angular-bootstrap": "~0.12.1",
-    "angular-uuid-service": "~0.1.0",
-    "angular-touch": "~1.3.15"
-  },
   "resolutions": {
-    "angular": "1.3.15",
-    "d3": "~3.5.4"
+    "angular": "1.3.15"
+  },
+  "dependencies": {
+    "angular-uuid-service": "~0.1.0",
+    "angular": "~1.3.15",
+    "angular-audio": "~1.6.2",
+    "angular-chart.js": "~0.6.0",
+    "angular-websocket": "~1.0.9",
+    "angular-animate": "~1.3.15",
+    "mobile-angular-ui": "~1.2.0-beta.11",
+    "angular-route": "~1.3.15",
+    "angular-cookies": "~1.3.15",
+    "bootstrap": "~3.3.4",
+    "angular-filter": "~0.5.4",
+    "angular-xeditable": "~0.1.9",
+    "jquery-ui": "~1.11.4",
+    "angular-resource": "~1.3.15",
+    "angular-scroll-glue": "~2.0.5",
+    "angular-bootstrap": "~0.12.1"
   }
 }

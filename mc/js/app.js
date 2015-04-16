@@ -13,7 +13,6 @@ angular
     'ngAnimate',
     'ngResource',
     'ngRoute',
-    'ngTouch',
     'WebsocketServices',
     'playerAppServices'
   ])
