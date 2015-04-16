@@ -4,6 +4,7 @@ angular.module('playerApp', [
     'ngRoute',
     'playerControllers',
     'gameControllers',
+    'dealControllers',
     'WebsocketServices',
     'mobile-angular-ui',
     'mobile-angular-ui.gestures',
@@ -48,13 +49,25 @@ angular.module('playerApp', [
                     templateUrl: 'partials/voteFinished.html',
                     controller: 'VoteController'
                 }).
-                when('/deal', {
-                    templateUrl: 'partials/deal.html',
+                when('/deals', {
+                    templateUrl: 'partials/deals/deal.html',
                     controller: 'DealsController'
                 }).
-                when('/deal/:subject', {
-                    templateUrl: 'partials/deal.html',
-                    controller: 'DealsController'
+                when('/deals/new', {
+                    templateUrl: 'partials/deals/deal.chooseSubject.html',
+                    controller: 'ChooseDealSubjectController'
+                }).
+                when('/deals/new/:subject', {
+                    templateUrl: 'partials/deals/deal.choosePlayer.html',
+                    controller: 'ChooseDealPlayerController'
+                }).
+                when('/deals/new/:subject/:playerId', {
+                    templateUrl: 'partials/deals/deal.new.html',
+                    controller: 'NewDealController'
+                }).
+                when('/deals/:id', {
+                    templateUrl: 'partials/deals/deal.details.html',
+                    controller: 'DealDetailsController'
                 }).
                 otherwise({
                     redirectTo: '/home'

@@ -1,0 +1,6 @@
+<h3>Choose Player to deal {{subject}} with:</h3>
+<ul class="list-inline list-unstyled">
+    <li ng-repeat="player in status.availablePlayers">
+        <a href="#/deals/new/{{subject}}/{{player.playerId}}"><player-icon pid="player.playerId"></player-icon></a>
+    </li>
+</ul>

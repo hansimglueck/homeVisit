@@ -5,9 +5,18 @@
     font-size: 1.2em;
 }
 .chart-container {
-    #width: 800px
+    width: 200px
+}
+.pie-legend {
+    padding: 0;
+    position: relative;
+    left: 200px;
+    top: -200px;
 }
 
+.pie-legend li {
+    white-space: normal !important;
+}
 .app-border {
     width: 100%;
     height:100%;
@@ -32,13 +41,7 @@
     margin: 0.8em;
 }
 
-.pie-legend {
-    padding: 0;
-}
 
-.pie-legend li {
-    white-space: normal !important;
-}
 .btn {
     margin-top: 5px;
     margin-bottom: 5px;

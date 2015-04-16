@@ -1,0 +1,16 @@
+<div id="deal-overview" class="left-pane">
+    <table class="list-unstyled">
+        <tr ng-repeat="deal in deals">
+
+            <td><a href="#/deals/{{deal.id}}">{{deal.subject}}</a></td>
+            <td>mit Spieler {{deal.player1Id}}</td>
+            <td>{{getDealStateText(deal)}}</td>
+        </tr>
+        <tr>
+            <td>
+                <a class="button" href="#/deals/new">New Deal</a>
+            </td>
+        </tr>
+    </table>
+</div>
+

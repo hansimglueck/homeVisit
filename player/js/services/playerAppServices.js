@@ -23,7 +23,7 @@ angular.module('playerAppServices', [])
             lila: {'border': width + ' solid #b27de4'},
             weiss: {'border': width + ' solid #9f9f9f'}
         }
-     })
+    })
     .factory('playerColors', function () {
         return [
             ["rot", "rot"],
@@ -165,7 +165,7 @@ angular.module('playerAppServices', [])
                             return;
                             break;
                         case "deal":
-                            if (DealFactory.active.deal === null || DealFactory.active.deal.state ==null || DealFactory.active.deal.state>2) DealFactory.addDeal("insurance");
+                            if (DealFactory.active.deal === null || DealFactory.active.deal.state == null || DealFactory.active.deal.state > 2) DealFactory.addDeal("insurance");
                             $location.path('/deal');
                             return;
                             break;
@@ -194,6 +194,9 @@ angular.module('playerAppServices', [])
         statusFactory.clientId = -1;
         statusFactory.rating = [];
 
+        //diese eigenschaft wird hier geführt, da sie im view benötigt wird und sonst im digest-cycle immerwieder neu berrechnet werden muss...
+        statusFactory.availablePlayers = [];
+
         Socket.on('registerConfirm', function (event) {
             var data = JSON.parse(event.data).data;
             if (typeof data != "undefined") statusFactory.clientId = data;
@@ -208,6 +211,7 @@ angular.module('playerAppServices', [])
                 statusFactory.player.score = data.otherPlayers[statusFactory.player.playerId].score;
                 statusFactory.player.rank = data.otherPlayers[statusFactory.player.playerId].rank;
                 statusFactory.player.timeRank = data.otherPlayers[statusFactory.player.playerId].timeRank;
+                statusFactory.availablePlayers = statusFactory.getOtherPlayers();
             }
             if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
         });
@@ -233,12 +237,10 @@ angular.module('playerAppServices', [])
             console.log('X')
         });
 
-
         statusFactory.reload = function () {
             window.location.reload();
             console.log('X')
         };
-
         statusFactory.connected = function () {
             return Socket.connected();
         };
@@ -259,10 +261,10 @@ angular.module('playerAppServices', [])
             })
         };
         statusFactory.getAvailablePlayers = function () {
+            //console.log("x");
             return statusFactory.otherPlayers.filter(function (player) {
                 return !player.busy && player.joined && player.playerId !== statusFactory.player.playerId;
             })
-
         };
         return statusFactory;
 
@@ -277,7 +279,7 @@ angular.module('playerAppServices', [])
             // Socket.emit({type: "rate", data: {rate: ratingFactory.myRatings, playerId: Status.player.playerId}});
         };
 
-        ratingFactory.posNeg = function(event) {
+        ratingFactory.posNeg = function (event) {
             console.log('CALLED!');
             var data = JSON.parse(event.data).data;
             if (data) statusFactory.ttest = 'blabla';
@@ -348,25 +350,10 @@ angular.module('playerAppServices', [])
         };
         return fxService;
     })
-    .factory('DealFactory', function (Socket, Status, rfc4122) {
+    .factory('DealFactory', function (Socket, Status, rfc4122, $location) {
+        // deal.states entspricht ["just opened", "waiting for answer", "have to reply", "confirmed", "denied"]
         var dealFactory = {};
-        var newDeal = {
-            id: null,
-            subject: null,
-            player0Id: Status.player.playerId,
-            player1Id: null,
-            state: null,
-            messages: [],
-            maxMessages: 2
-        };
-        dealFactory.active = {
-            deal: null
-        };
-        dealFactory.deals = {
-            ab: {subject: "alliance", player0Id: Status.player.playerId, player1Id: 1, state: 0, messages: []},
-            fg: {subject: "alliance", player0Id: Status.player.playerId, player1Id: 1, state: 1, messages: []},
-            ft: {subject: "versicherung", player0Id: Status.player.playerId, player1Id: 1, state: 0, messages: []}
-        };
+        dealFactory.deals = {};
         Socket.on('deal', function (event) {
             var deal = JSON.parse(event.data).data;
             if (dealFactory.deals.hasOwnProperty(deal.id)) {
@@ -374,10 +361,12 @@ angular.module('playerAppServices', [])
                 dealFactory.deals[deal.id].messages = deal.messages;
             }
             else dealFactory.deals[deal.id] = deal;
-            if (dealFactory.active.deal === null || dealFactory.active.deal.state === 0 || dealFactory.active.deal.state > 2) dealFactory.active.deal = deal;
+            $location.path("/deals/" + deal.id);
         });
-        Socket.on('dealStatus', function(event) {
+        Socket.on('dealStatus', function (event) {
+            console.log("dealStatus coming in");
             var deals = JSON.parse(event.data).data;
+            var activeDealId = -1;
             for (var dealId in deals) if (deals.hasOwnProperty(dealId)) {
                 if (dealFactory.deals.hasOwnProperty(dealId)) {
                     dealFactory.deals[dealId].state = deals[dealId].state;
@@ -385,36 +374,48 @@ angular.module('playerAppServices', [])
                 }
                 else dealFactory.deals[dealId] = deals[dealId];
                 if (deals[dealId].state <= 2) {
-                    console.log("set activ.deal");
-                    dealFactory.active.deal = deals[dealId];
+                    console.log("set activDeal");
+                    activeDealId = dealId;
                 }
             }
+            if (activeDealId != -1) $location.path("/deals/" + activeDealId);
         });
-        dealFactory.addDeal = function (subject) {
-            var added = angular.copy(newDeal);
-            added.subject = subject;
-            added.state = 0;
-            added.id = rfc4122.v4();
-            added.player0Id = Status.player.playerId;
+
+        dealFactory.addDeal = function (subject, player1Id) {
+            console.log("new Deal");
+            var added = {
+                id: rfc4122.v4(),
+                subject: subject,
+                player0Id: Status.player.playerId,
+                player1Id: player1Id,
+                state: 0,
+                messages: [],
+                maxMessages: 2
+            };
             dealFactory.deals[added.id] = added;
-            dealFactory.active.deal = added;
+            return added.id;
         };
-        dealFactory.cancelDeal = function(deal) {
-            console.log("cancelling deal with status "+deal.state);
-            if (deal.state > 0) dealFactory.sendMessage("deny");
-            dealFactory.deleteDeal(deal);
-        };
-        dealFactory.deleteDeal = function(deal) {
-            console.log("delete deal "+deal.id);
+        dealFactory.deleteDeal = function (deal) {
+            console.log("delete deal " + deal.id);
             delete dealFactory.deals[deal.id];
-            dealFactory.active.deal = null;
+            $location.path("/deals/new");
         };
-        dealFactory.sendMessage = function (type, value) {
-            var deal = dealFactory.active.deal;
-            if (type !== "deny") if (deal.messages.length > 0) if (value == deal.messages[deal.messages.length-1].value) type = "confirm";
-            deal.messages.push({playerId: Status.player.playerId, type: type, value: value});
-            if (type === "confirm") deal.state = 3;
-            if (type === "deny") deal.state = 4;
+        dealFactory.sendMessage = function (deal, message) {
+            //wenn gecancelled wird: deal löschen ODER wenn er schon state > 0 auch eine deny-message machen
+            if (message.type === "cancel") {
+                if (deal.state === 0) {
+                    dealFactory.deleteDeal(deal);
+                    return;
+                }
+                else message.type = "deny";
+            }
+
+            //wenn der value einer request-message gleich dem value der letzten message im deal ist, wird ein confirm daraus gemacht
+            if (message.type === "request") if (deal.messages.length > 0) if (message.value == deal.messages[deal.messages.length - 1].value) message.type = "confirm";
+
+            deal.messages.push({playerId: Status.player.playerId, type: message.type, value: message.value});
+            if (message.type === "confirm") deal.state = 3;
+            if (message.type === "deny") deal.state = 4;
             if (deal.state === 0 || deal.state === 2) {
                 deal.state = 1;
             }
@@ -423,12 +424,13 @@ angular.module('playerAppServices', [])
             }
             Socket.emit({type: "deal", data: deal});
         };
+
         dealFactory.getMyDealState = function (deal) {
             if (deal === null) return 0;
             var myState = deal.state;
-            if (deal.player1Id === Status.player.playerId) {
-                if (deal.state === 1) myState = 2;
-                if (deal.state === 2) myState = 1;
+            if (deal.player1Id == Status.player.playerId) {
+                if (deal.state == 1) myState = 2;
+                if (deal.state == 2) myState = 1;
             }
             return myState;
         };

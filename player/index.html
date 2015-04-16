@@ -24,6 +24,7 @@
     <script src="js/playerApp.js"></script>
     <script src="js/controllers/playerControllers.js"></script>
     <script src="js/controllers/gameControllers.js"></script>
+    <script src="js/controllers/dealControllers.js"></script>
     <script src="js/controllers/fxControllers.js"></script>
     <script src="js/directives/playerAppDirectives.js"></script>
     <script src="js/services/websocketServices.js"></script>
@@ -105,7 +106,7 @@
     </div>
 
     <!-- App body -->
-
+<!--
     <div id="score_stats">
         <p class="score_stats_entry">
             Rank: {{status.player.rank}}<br/>
@@ -116,9 +117,10 @@
 
     <div id="score_barometer" ng-style="{'height': getBaroHeight()}" ng-controller="ScoreController">
         <div id="baro_vert_line" ng-style="{'height': getBaroHeight()}"></div>
-        <!--<div id="baro_top_line"></div>-->
+-->
+    <!--<div id="baro_top_line"></div>-->
         <!--<div id="baro_bottom_line" ng-style="{'top': getBaroHeight()}"></div>-->
-
+<!--
         <div class="baro_others_line" ng-repeat="player in status.otherPlayers track by $index"
              ng-style="{'top': getLinePos($index)}">
             <div class="score_label">
@@ -128,8 +130,8 @@
 
         <div class="baro_my_line" ng-style="{'top': getMyLinePos()}">
             <div class="my_score_label_top" ng-style="myColor()"></div>
-            <!--<div class="my_score_label_bottom" ng-controller="NavbarController" ng-style="col2()"></div>-->
-            <div class="my_score_label">
+ -->           <!--<div class="my_score_label_bottom" ng-controller="NavbarController" ng-style="col2()"></div>-->
+ <!--           <div class="my_score_label">
                 {{status.player.score}}
             </div>
         </div>
@@ -137,7 +139,7 @@
         <div id="baro_positive" ng-style="{'height': getPosHeight()}"></div>
         <div id="baro_negative" ng-style="{'height': getBaroHeight()}"></div>
     </div>
-    <div class='app-body scrollable'>
+ -->   <div class='app-body scrollable'>
 
         <div class='app-content text-center scrollable-content'>
             <div ng-show="debug">
