@@ -17,8 +17,8 @@
         <td>{{player.score}}</td>
         <td>{{player.colors}}</td>
         <td>
-            <button class="btn" ng-click="playback('rate', { playerId: player.playerId, value: -1})">-1</button>
-            <button class="btn" ng-click="playback('rate', { playerId: player.playerId, value: +1})">+1</button>
+            <button class="btn btn-danger" ng-click="playback('rate', { playerId: player.playerId, value: -1})">-1</button>
+            <button class="btn btn-success" ng-click="playback('rate', { playerId: player.playerId, value: +1})">+1</button>
         </td>
     </tr>
 </table>

@@ -166,6 +166,9 @@ masterControllers.controller('OsCtrl', function($scope, Socket) {
     };
     Socket.on("osinfo", function(message) {
         $scope.osInfo = message.data;
+        // $scope.osInfo = {
+            
+        // };
         console.log("got os info: "+JSON.stringify($scope.osInfo));
     });
     Socket.on("dbStatus", function(message) {

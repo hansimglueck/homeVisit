@@ -6,7 +6,7 @@
         <ul class="list-group" collapse="collapsed.server">
             <li class="list-group-item"></li>
             <li class="list-group-item buttons">
-                <button class="btn" ng-click="restartServer()">RESTART SERVER</button>
+                <button class="btn btn-danger" ng-click="restartServer()">RESTART SERVER</button>
             </li>
         </ul>
     </li>
@@ -16,19 +16,48 @@
            ng-class="{'glyphicon-chevron-down': !collapsed.osInfo, 'glyphicon-chevron-right': collapsed.osInfo}"></i>
         <ul class="list-unstyled" collapse="collapsed.osInfo">
             <li>
-                System: {{osInfo.hostname}} / {{osInfo.type}} {{osInfo.arch}}
-            </li>
-            <li>
-                Uptime: {{osInfo.uptime}}
-            </li>
-            <li>
-                Memory: {{osInfo.freemem}} / {{osInfo.totalmem}}
-            </li>
-            <li>
-                Load: 1min: {{osInfo.loadavg[0]}} - 5min: {{osInfo.loadavg[1]}} - 15min: {{osInfo.loadavg[2]}}
-            </li>
-            <li>
-                Interfaces: {{printInterfaces()}}
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>System</td>
+                            <td><samp>{{osInfo.hostname}} / {{osInfo.type}} {{osInfo.arch}}</samp></td>
+                        </tr>
+                        <tr>
+                            <td>Uptime</td>
+                            <td>{{osInfo.uptime / 60 | number: 0}} min</td>
+                        </tr>
+                        <tr>
+                            <td>Memory</td>
+                            <td>{{ osInfo.freemem/(1024*1024) | number: 2 }} MiB (free)</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>{{ osInfo.totalmem/(1024*1024) | number: 2 }} MiB (total)</td>
+                        </tr>
+                        <tr>
+                            <td>Load</td>
+                            <td>1min: {{osInfo.loadavg[0] | number: 2 }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>5min: {{osInfo.loadavg[1] | number: 2 }}</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>15min: {{osInfo.loadavg[2] | number: 2 }}</td>
+                        </tr>
+                        <tr>
+                            <td>Interfaces</td>
+                            <td>{{printInterfaces()}}</td>
+                        </tr>
+                    </tbody>
+                </table>
             </li>
         </ul>
     <li class="list-group-item">
@@ -36,10 +65,15 @@
         <i class="pull-right glyphicon"
            ng-class="{'glyphicon-chevron-down': !collapsed.wlan1, 'glyphicon-chevron-right': collapsed.wlan1}"></i></div>
         <ul class="list-group" collapse="collapsed.wlan1">
-            <li class="list-group-item">SSID: <input type="text" ng-model="wlanId"/></li>
-            <li class="list-group-item">Passwort: <input type="password" ng-model="wlanPasswd"/></li>
+            <li class="list-group-item">
+                <label for="raspi-wlan-ssid">SSID</label>
+                <input type="text" class="form-control" id="raspi-wlan-ssid" ng-model="wlanId">
+            <li class="list-group-item">
+                <label for="raspi-wlan-pwd">Passwort</label>
+                <input type="password" class="form-control" id="raspi-wlan-pwd" ng-model="wlanPasswd"/>
+            </li>
             <li class="list-group-item buttons">
-                <button class="btn" ng-click="restartWlan1()">RESTART WLAN</button>
+                <button class="btn btn-danger" ng-click="restartWlan1()">RESTART WLAN</button>
             </li>
         </ul>
     </li>
@@ -50,14 +84,14 @@
         <ul class="list-group" collapse="collapsed.db">
             <li class="list-group-item"></li>
             <li class="list-group-item buttons">
-                <button class="btn" ng-click="dbAction('connect')">CONNECT DB</button>
-                <button class="btn" ng-click="dbAction('repair')">REPAIR DB</button>
+                <button class="btn btn-primary" ng-click="dbAction('connect')">CONNECT DB</button>
+                <button class="btn btn-info" ng-click="dbAction('repair')">REPAIR DB</button>
             </li>
         </ul>
     </li>
     <li class="list-group-item buttons panel-body">
-        <button class="btn" ng-click="shutdown(false)">SHUTDOWN</button>
-        <button class="btn" ng-click="shutdown(true)">REBOOT</button>
+        <button class="btn btn-danger" ng-click="shutdown(false)">SHUTDOWN</button>
+        <button class="btn btn-warning" ng-click="shutdown(true)">REBOOT</button>
     </li>
 
 </ul>
