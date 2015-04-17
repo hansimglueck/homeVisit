@@ -52,4 +52,100 @@ angular.module('mcAppServices', [])
         return statusFactory;
 
     })
+    .factory('Polls', function () {
+        var pollFactory = {};
+        pollFactory.polls = [
+            {
+                question: "Wer am Tisch lebt auch in dieser Gegend?",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Wer an diesem Tisch war einmal Klassensprecher?",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Wer war oder ist Parteimitglied? ",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Und wer engagiert sich in einem Verein?",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Wer am Tisch hat eine Arbeit, von der er oder sie leben kann?",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Wer hat einen Konflikt schon mal körperlich ausgetragen?",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Wer hat eine Nationalflagge bei sich zu Hause?",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Wer hat eine Europaflagge bei sich zu Hause?",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Wer hat im Ausland schon mal bewusst seine nationale Herkunft verleugnet?",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Wer fühlt sich mehr als Europäer denn als Bürger seines Landes?",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Wer findet die Runde hier grundsätzlich vertrauenswürdig?",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Wer hat Angst vor der Zukunft?",
+                type: 'binary',
+                answers: new Array(14)
+            },
+            {
+                question: "Meine Solidaritätsbereitschaft",
+                type: 'fingers',
+                answers: new Array(14)
+            },
+            {
+                question: "Mein diplomatisches Geschick",
+                type: 'fingers',
+                answers: new Array(14)
+            },
+            {
+                question: "Meine Verschwiegenheit",
+                type: 'fingers',
+                answers: new Array(14)
+            },
+            {
+                question: "Meine Durchsetzungskraft",
+                type: 'fingers',
+                answers: new Array(14)
+            },
+            {
+                question: "Mein Vertrauen in die Demokratie",
+                type: 'fingers',
+                answers: new Array(14)
+            },
+            {
+                question: "Mein Vertrauen in das Spiel der Märkte",
+                type: 'fingers',
+                answers: new Array(14)
+            }
+        ];
+        return pollFactory;
+    })
 ;
