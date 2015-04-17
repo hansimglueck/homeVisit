@@ -212,7 +212,7 @@ angular.module('playerAppServices', [])
                 statusFactory.player.score = data.otherPlayers[statusFactory.player.playerId].score;
                 statusFactory.player.rank = data.otherPlayers[statusFactory.player.playerId].rank;
                 statusFactory.player.timeRank = data.otherPlayers[statusFactory.player.playerId].timeRank;
-                statusFactory.availablePlayers = statusFactory.getOtherPlayers();
+                statusFactory.availablePlayers = statusFactory.getAvailablePlayers();
             }
             if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
         });
