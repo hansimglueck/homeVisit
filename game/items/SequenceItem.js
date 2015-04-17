@@ -95,7 +95,9 @@ SequenceItem.prototype = {
         this.id = id;
     },
     appendItem: function (item) {
-        if (this.next == null) {
+        if (item === null)
+            return;
+        if (this.next === null) {
             this.next = item;
             this.next.setPrevious(this);
         }
