@@ -30,18 +30,18 @@ var wsManager = require('../game/wsManager.js');
 wsManager.setSocketServer(wss);
 
 wsManager.onRole("player", playerManager, playerManager.playerMessage);
-wsManager.onRole("master", playerManager, playerManager.masterMessage);
-wsManager.onRole("MC", playerManager, playerManager.mcMessage);
+wsManager.onType("register", playerManager, playerManager.requestStatus);
+wsManager.onType("score", playerManager, playerManager.scoreMessage);
 
 var game = require('../game/game.js');
 wsManager.onType("playbackAction", game, game.trigger);
 wsManager.onType("alert", game, game.alert);
-wsManager.onType("directItem", game, game.directItem);
 
 var raspiTools = require('../game/raspiTools.js');
 wsManager.onRole("master", raspiTools, raspiTools.newMessage);
 
 var gameConf = require('../game/gameConf.js');
+wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
 
 mongoConnection(function (db) {
     console.log("Database connection established");
@@ -72,6 +72,7 @@ app.use(function (req, res, next) {
 
 // static routes
 app.use('/bower_components', express.static(path.join(__dirname, '/../bower_components')));
+app.use('/homevisit_components', express.static(path.join(__dirname, '/../homevisit_components')));
 app.use('/admin', express.static(path.join(__dirname, '/../admin')));
 app.use('/player', express.static(path.join(__dirname, '/../player')));
 app.use('/mc', express.static(path.join(__dirname, '/../mc')));

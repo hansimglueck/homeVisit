@@ -1,8 +1,10 @@
 var mongoConnection = require('../server/mongoConnection');
+var wsManager = require('./wsManager.js');
 
 function GameConf() {
     this.conf = {};         //fixe Kongiguration wie startDeck, typeMapping
     this.options = {alertRecipients: "button:gruen,digits"};      //veränderliche optionen wie alertRecipients
+    this.maxPlayerCnt = 8;
 }
 
 GameConf.prototype = {
@@ -15,8 +17,8 @@ GameConf.prototype = {
                 if (conf.length == 0) self.conf = {
                     role: 'run',
                     startDeckId: 0,
-                    autostart: false,
-                    playerCnt: 1,
+                    autostart: false, //not used???
+                    playerCnt: 1,  //not used
                     typeMapping: []
                 };
                 console.log("autostart=" + self.conf.autostart);
@@ -29,6 +31,10 @@ GameConf.prototype = {
     getOption: function(field) {
         if (typeof this.options[field] != "undefined") return this.options[field];
         else return false;
+    },
+    confRequest: function(clientId, role, message) {
+        var self = this;
+        wsManager.msgDeviceByIds([clientId], "gameConf", {startDeckId: self.conf.startDeckId});
     }
 };
 

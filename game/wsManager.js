@@ -140,7 +140,7 @@ WsManager.prototype = {
                 try {
                     var clientId = ws.clientId;
 
-                    console.log("websocket received a message from " + clientId + ": " + (data));
+                    console.log("websocket received a message from " + clientId + ": " +  JSON.stringify(data));
                     //var msg = (typeof data == "Object") ? JSON.parse(data) : data;
                     var msg = JSON.parse(data);
                     //console.log(typeof data);
@@ -214,7 +214,7 @@ WsManager.prototype = {
         this.typeCallbacks.forEach(function (cb) {
             if (cb.type == msg.type) {
                 try {
-                    cb.fn.call(cb.self, ws.clientId, msg);
+                    cb.fn.call(cb.self, ws.clientId, ws.role, msg);
                 } catch (e) {
                     console.log("ERROR in wsManager.applyTypeCallback: " + e.stack);
                 }
@@ -278,7 +278,7 @@ WsManager.prototype = {
 
         //g.clients[clientId].role = role;
         //g.clients[clientId].sid = sid;
-        ws.send(JSON.stringify({type: "registerConfirm", data: client.clientId, sid: sid}));
+        ws.send(JSON.stringify({type: "registerConfirm", data: {clientId: client.clientId, sid: sid}}));
         ws.role = role;
 //        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
         //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));

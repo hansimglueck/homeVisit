@@ -2,9 +2,8 @@
  * Created by jeanbluer on 06.02.15.
  */
 angular.module('WebsocketServices', []).
-    factory('Socket', function ($rootScope, $cookies) {
+    factory('Socket', function ($rootScope) {
         var sid = "x";
-        //var sid = $cookies['connect.sid'].split(":")[1].split(".")[0];
         var ws;
         var onMessageCallbacks;
         //TODO: switch by type cordova/webapp
@@ -13,6 +12,7 @@ angular.module('WebsocketServices', []).
         onMessageCallbacks = [];
         var connected = false;
         var server = {connected: connected};
+        var started = false;
 
         var responseDelay = 1000;
         var checkDelay = 2000;
@@ -27,12 +27,17 @@ angular.module('WebsocketServices', []).
                 return;
             }
             //console.log("ping");
-            try {ws.send("ping");}catch(e){console.log("ws.sed ERRROR!");}
+            try {
+                ws.send("ping");
+            } catch (e) {
+                console.log("ws.sed ERRROR!");
+            }
             waitingForPong = true;
-            setTimeout(function() {checkPong($rootScope)}, checkDelay);
+            setTimeout(function () {
+                checkPong($rootScope)
+            }, checkDelay);
         };
-
-        var pong = function() {
+        var pong = function () {
             if (!waitingForPong) return;
             waitingForPong = false;
             var d = new Date();
@@ -40,10 +45,11 @@ angular.module('WebsocketServices', []).
             //console.log("pong: now-lastPong="+(now-lastPong));
             lastPong = now;
             timeouts = 0;
-            setTimeout(function(){ping()}, responseDelay);
+            setTimeout(function () {
+                ping()
+            }, responseDelay);
         };
-
-        var checkPong = function(scope) {
+        var checkPong = function (scope) {
             //console.log("checkPong: lastPong="+lastPong);
             var d = new Date();
             var now = d.getTime();
@@ -64,12 +70,10 @@ angular.module('WebsocketServices', []).
             }
         };
 
-
-
-        var closed = function(really) {
+        var closed = function (really) {
             var d = new Date();
             var now = d.getTime();
-            console.log("client lost connection "+(now-lastPong));
+            console.log("client lost connection " + (now - lastPong));
             server.connected = false;
             $rootScope.$digest(); //damit das false auch ankommt...
             $rootScope.$broadcast("disconnected");
@@ -78,27 +82,25 @@ angular.module('WebsocketServices', []).
             }, 1000);
         };
 
-        var connect = function () {
+        var connect = function (role) {
+            if (started) return;
+            started = true;
             console.log("trying new ws!");
             ws = new WebSocket('ws://' + host);
-            //ws.onconnect = function () {
-            //    console.log("client: connecting");
-            //};
             ws.onclose = function () {
                 console.log("ws.onclose!!");
                 closed(true);
             };
-
             ws.onopen = function () {
                 console.log("client: Socket has been opened!");
                 server.connected = true;
                 $rootScope.$digest(); //damit das true auch ankommt...
-                ws.send(JSON.stringify({type: "register", data: {role:'player', sid:sid}}));
+                ws.send(JSON.stringify({type: "register", data: {role: role, sid: sid}}));
                 onMessageCallbacks.push({
-                    fn: function (event) {
-                        var data = JSON.parse(event.data).sid;
-                        if (typeof sid != "undefined") sid = data;
-                        console.log("registerConfirm got sid: "+sid)
+                    fn: function (data) {
+                        var newSid = data.sid;
+                        if (typeof newSid != "undefined") sid = newSid;
+                        console.log("registerConfirm got sid: " + sid)
                     },
                     eventName: "registerConfirm"
                 });
@@ -121,29 +123,30 @@ angular.module('WebsocketServices', []).
                     if (eventName) {
                         if (angular.isString(eventName) && message.type === eventName) {
                             $rootScope.$apply(function () {
-                                currentCallback.fn.apply(ws, args);
+                                currentCallback.fn.call(ws, message.data);
                             });
                         }
                     }
                 }
             };
-            ws.onerror = function(event) {
+            ws.onerror = function (event) {
                 console.log("WS_ERROR!!!");
                 console.log(event);
             };
         };
-        connect();
         return {
 
-            server:server,
-            getPingPong: function() {
+            server: server,
+            getPingPong: function () {
                 //return pingTime;
             },
-            connected: function() {
+            connected: function () {
                 return connected;
             },
 
-            connect: function() {connect()},
+            connect: function (role) {
+                connect(role)
+            },
 
             on: function (eventName, callback) {
                 onMessageCallbacks.push({
@@ -151,10 +154,10 @@ angular.module('WebsocketServices', []).
                     eventName: eventName
                 });
             },
-            emit: function (data) {
+            emit: function (type, data) {
                 var msg = typeof(data) == "object" ? JSON.stringify(data) : data;
-                console.log("emit " + msg);
-                ws.send(msg);
+                console.log("emit " + JSON.stringify({type: type, data: msg}));
+                ws.send(JSON.stringify({type: type, data: msg}));
             }
         }
 

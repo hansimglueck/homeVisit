@@ -1,16 +1,13 @@
 angular.module("playerControllers", [])
-    .controller('MainController', function ($scope, colors, borderColors, Status) {
+    .controller('MainController', function ($scope, Status, playerColors) {
         $scope.status = Status;
-        $scope.borderColor = function () {
-            return borderColors[$scope.status.player.colors[0]];
-        }
+        $scope.playerColors = playerColors;
     })
-    .controller('HomeController', function ($scope, $location, Status, Home, Rating, Socket, colors, playerColors, ngAudio, europeSvgData) {
+    .controller('HomeController', function ($scope, $location, Status, Home, Rating, Socket, playerColors, ngAudio, europeSvgData) {
         $scope.europeSVG = europeSvgData;
-        $scope.europeSVG.forEach(function(c){
-            c.rgb = [96,96,96];
+        $scope.europeSVG.forEach(function (c) {
+            c.rgb = [96, 96, 96];
         });
-        $scope.colors = colors;
         $scope.playerColors = playerColors;
         $scope.status = Status;
         $scope.home = Home;
@@ -23,89 +20,87 @@ angular.module("playerControllers", [])
             voteNumber: 0
         };
         $scope.options = {
-            scaleOverlay : false,
-            scaleOverride : false,
-            scaleSteps : null,
-            scaleStepWidth : null,
-            scaleStartValue : null,
-            scaleLineColor : "rgba(0,0,0,.1)",
-            scaleLineWidth : 1,
-            scaleShowLabels : true,
-            scaleLabel : "<%=value%>",
-            scaleFontFamily : "'proxima-nova'",
-            scaleFontSize : 10,
-            scaleFontStyle : "normal",
-            scaleFontColor : "#909090",
-            scaleShowGridLines : true,
-            scaleGridLineColor : "rgba(0,0,0,.05)",
-            scaleGridLineWidth : 1,
-            bezierCurve : true,
-            pointDot : true,
-            pointDotRadius : 3,
-            pointDotStrokeWidth : 1,
-            datasetStroke : true,
-            datasetStrokeWidth : 2,
-            datasetFill : true,
-            animation : true,
-            animationSteps : 60,
-            animationEasing : "easeOutQuart",
-            onAnimationComplete : null
+            scaleOverlay: false,
+            scaleOverride: false,
+            scaleSteps: null,
+            scaleStepWidth: null,
+            scaleStartValue: null,
+            scaleLineColor: "rgba(0,0,0,.1)",
+            scaleLineWidth: 1,
+            scaleShowLabels: true,
+            scaleLabel: "<%=value%>",
+            scaleFontFamily: "'proxima-nova'",
+            scaleFontSize: 10,
+            scaleFontStyle: "normal",
+            scaleFontColor: "#909090",
+            scaleShowGridLines: true,
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+            scaleGridLineWidth: 1,
+            bezierCurve: true,
+            pointDot: true,
+            pointDotRadius: 3,
+            pointDotStrokeWidth: 1,
+            datasetStroke: true,
+            datasetStrokeWidth: 2,
+            datasetFill: true,
+            animation: true,
+            animationSteps: 60,
+            animationEasing: "easeOutQuart",
+            onAnimationComplete: null
         };
-        $scope.playSound = function() {
+        $scope.playSound = function () {
             console.log("play sound");
             $scope.sound.play();
         };
-        /*
-        $scope.$watch('home.type', function(newVal, oldVal) {
-            console.log(oldVal+"->"+newVal);
-            if (oldVal !="vote" && newVal == "vote") $scope.playSound();
-        });
-        */
-        $scope.getPathCSS = function(index) {
+        $scope.getPathCSS = function (index) {
             var id = $scope.europeSVG[index].id;
             var grey = 200;
             //console.log("get css for "+id);
-            var x = $scope.home.data.filter(function(a){return a.id == id});
+            var x = $scope.home.data.filter(function (a) {
+                return a.id == id
+            });
             if (x.length == 0) return "rgb(200,200,200)";
-            var sat = x[0].val/100;
-            var col0 = Math.round(grey - grey*sat);
-            var col1 = Math.round(grey + (255-grey)*sat);
-            var rgb = [col0,col0,col0];
+            var sat = x[0].val / 100;
+            var col0 = Math.round(grey - grey * sat);
+            var col1 = Math.round(grey + (255 - grey) * sat);
+            var rgb = [col0, col0, col0];
             rgb[$scope.home.resultColor] = col1;
-            return "rgb("+rgb[0]+","+rgb[1]+","+rgb[2]+")";
+            return "rgb(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + ")";
         };
-         $scope.go = function() {
-            Socket.emit({type:"playbackAction", data:"go"}, function() { console.log('go emitted'); });
-       }
+        $scope.go = function () {
+            Socket.emit("playbackAction", {cmd: "go"});
+        }
 
     })
-    .controller('VoteController', function($scope, Home, $location) {
+    .controller('VoteController', function ($scope, Home, $location) {
         $scope.home = Home;
         $scope.checkChanged = function (option) {
             if (option.checked) $scope.home.checked++;
             else $scope.home.checked--;
-            console.log("now "+$scope.home.checked+" checked. home.limit="+$scope.home.limit);
+            console.log("now " + $scope.home.checked + " checked. home.limit=" + $scope.home.limit);
         };
         $scope.vote = function (id) {
-            if (Home.voteType=="enterNumber" && (isNaN($scope.home.options[id].value) || $scope.home.options[id].value.indexOf(",")!=-1)) return;
+            if (Home.voteType == "enterNumber" && (isNaN($scope.home.options[id].value) || $scope.home.options[id].value.indexOf(",") != -1)) return;
             var text = "";
             //bei multiple-choice werden die checked direkt in der homeFactory gesetzt... und die funktion hier wird ohne argument aufgerufen
             if (id != undefined) {
                 text = $scope.home.options[id].text;
                 $scope.home.options[id].checked = true;
-                if ($scope.home.voteType=="enterNumber") text = $scope.home.options[id].value;
+                if ($scope.home.voteType == "enterNumber") text = $scope.home.options[id].value;
                 //if (!confirm("Vote for: "+text)) return;
-                if ($scope.home.voteType=="enterNumber") {
+                if ($scope.home.voteType == "enterNumber") {
                     $scope.home.options[id].text = $scope.home.options[id].value;
                 }
             }
             $scope.home.vote();
         };
-        $scope.confirmVote = function() {
+        $scope.confirmVote = function () {
             $scope.home.confirmVote();
         };
-        $scope.cancelVote = function() {
-            $scope.home.options.forEach(function(opt){opt.checked=false});
+        $scope.cancelVote = function () {
+            $scope.home.options.forEach(function (opt) {
+                opt.checked = false
+            });
             $scope.home.checked = 0;
             $location.path("/vote");
         }
@@ -134,7 +129,7 @@ angular.module("playerControllers", [])
             $scope.$digest();
         })
     })
-    .controller('NavbarController', function ($scope, $location, Status, Rating, Home, colors, fxService) {
+    .controller('NavbarController', function ($scope, $location, Status, Rating, Home, fxService) {
         $scope.status = Status;
         $scope.rating = Rating;
         $scope.newMessages = 0;
@@ -148,13 +143,14 @@ angular.module("playerControllers", [])
         $scope.go = function (path) {
             $location.path(path);
         };
-        $scope.startCountdown = function(val) {
+        $scope.startCountdown = function (val) {
             fxService.startCountdown(val, cb);
         };
         function cb() {
             alert($scope.test);
         }
-        $scope.playSound = function(id) {
+
+        $scope.playSound = function (id) {
             fxService.playSound(id);
         }
 
@@ -162,24 +158,23 @@ angular.module("playerControllers", [])
     .controller('EuropeController', function ($scope, europeSvgData) {
         $scope.europeSVG = europeSvgData;
         $scope.black = true;
-        $scope.europeSVG.forEach(function(c){
-            c.rgb = [96,96,96];
+        $scope.europeSVG.forEach(function (c) {
+            c.rgb = [96, 96, 96];
         });
         $scope.select = function (i) {
             console.log("select " + i);
             if (typeof $scope.europeSVG[i].selected == "undefined") $scope.europeSVG[i].selected = false;
             $scope.europeSVG[i].selected ^= true;
         };
-        $scope.getPathCSS = function(id) {
+        $scope.getPathCSS = function (id) {
             var x = $scope.europeSVG[id];
             if (x.selected) return "rgb(0,200,0)";
             else return "rgb(200,200,200)";
         };
     })
-    .controller('RatingController', function ($scope, Status, Rating, colors, playerColors) {
+    .controller('RatingController', function ($scope, Status, Rating, playerColors) {
         $scope.status = Status;
         $scope.rating = Rating;
-        $scope.colors = colors;
         $scope.playerColors = playerColors;
         $scope.rate = function (id, val) {
             $scope.rating.rate(id, val);

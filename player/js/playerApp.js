@@ -16,7 +16,8 @@ angular.module('playerApp', [
     'ngAudio',
     'fxControllers',
     'europeSVG',
-    'uuid'
+    'uuid',
+    'hvPlayerColors'
 ])
     .config(['$routeProvider',
         function ($routeProvider) {
@@ -72,7 +73,11 @@ angular.module('playerApp', [
                 otherwise({
                     redirectTo: '/home'
                 });
-        }]);
+        }])
+    .run(function(Socket){
+        Socket.connect('player');
+    })
+;
 
 
 

@@ -21,7 +21,7 @@ angular.module('playerAppDirectives', [])
             scope: {
                 playerId: '=pid'
             },
-            controller: function($scope, playerColors, colors) {
+            controller: function($scope, playerColors) {
                 $scope.playerColors = playerColors;
                 $scope.colors = colors;
             },

@@ -1,188 +1,13 @@
 var wsManager = require('./wsManager.js');
+var gameConf = require('./gameConf');
+
 
 
 PlayerManager = function () {
     this.players = [];
-    /*
-     this.colors = [
-     ["rot", "gelb"],
-     ["rot", "blau"],
-     ["rot", "weiss"],
-     ["rot", "gruen"],
-     ["rot", "pink"],
-     ["gelb", "blau"],
-     ["gelb", "weiss"],
-     ["gelb", "gruen"],
-     ["gelb", "pink"],
-     ["blau", "weiss"],
-     ["blau", "gruen"],
-     ["blau", "pink"],
-     ["weiss", "gruen"],
-     ["weiss", "pink"],
-     ["pink", "schwarz"]
-     ];
-
-    this.colors = [
-        ["pink", "schwarz"],
-        ["gelb", "gruen"],
-        ["rot", "blau"],
-        ["gelb", "pink"],
-        ["rot", "gruen"],
-        ["blau", "pink"],
-        ["rot", "gelb"],
-        ["gelb", "blau"]
-    ];
-    */
-    this.colors = [
-        ["rot", "rot"],
-        ["hellblau", "hellblau"],
-        ["dunkelblau", "dunkelblau"],
-        ["orange", "orange"],
-        ["gelb", "gelb"],
-        ["gruen", "gruen"],
-        ["lila", "lila"],
-        ["weiss", "weiss"]
-    ];
-
     this.rating = [];
     this.avgRatings = [];
-    this.conf = {
-        playerCnt: 8
-    };
-    this.europeCountries = [{"id": "pt", en: "Portugal", de: "Portugal", "class": "eu europe"}, {
-        "id": "es",
-        en: "Spain",
-        de: "Spanien",
-        "class": "eu europe"
-    }, {"id": "be", en: "Belgium", de: "Belgien", "class": "eu europe"}, {
-        "id": "it",
-        en: "Italy",
-        de: "Italien",
-        "class": "eu europe"
-    }, {"id": "pl", en: "Poland", de: "Polen", "class": "eu europe"}, {
-        "id": "fi",
-        en: "Finlandia",
-        de: "Finnland",
-        "class": "eu europe"
-    }, {"id": "de", en: "Germany", de: "Deutschland", "class": "eu europe"}, {
-        "id": "se",
-        en: "Sweden",
-        de: "Schweden",
-        "class": "eu europe"
-    }, {"id": "cy", en: "Cyprus", de: "Zypern", "class": "eu europe"}, {
-        "id": "ie",
-        en: "Ireland",
-        de: "Irland",
-        "class": "eu europe"
-    }, {"id": "uk", en: "United Kingdom", de: "Vereinigtes Königreich", "class": "eu europe"}, {
-        "id": "at",
-        en: "Austria",
-        de: "Österreich",
-        "class": "eu europe"
-    }, {"id": "cz", en: "Czech Republic", de: "Tschechien", "class": "eu europe"}, {
-        "id": "sk",
-        en: "Slovakia",
-        de: "Slowakei",
-        "class": "eu europe"
-    }, {"id": "hu", en: "Hungary", de: "Ungarn", "class": "eu europe"}, {
-        "id": "lt",
-        en: "Lithuania",
-        de: "Litauen",
-        "class": "eu europe"
-    }, {"id": "lv", en: "Latvia", de: "Lettland", "class": "eu europe"}, {
-        "id": "ro",
-        en: "Romania",
-        de: "Rumänien",
-        "class": "eu europe"
-    }, {"id": "bg", en: "Bulgaria", de: "Bulgarien", "class": "eu europe"}, {
-        "id": "ee",
-        en: "Estonia",
-        de: "Estland",
-        "class": "eu europe"
-    }, {"id": "lu", en: "Luxembourg", de: "Luxemburg", "class": "eu europe"}, {
-        "id": "fr",
-        en: "France",
-        de: "Frankreich",
-        "class": "eu europe"
-    }, {"id": "nl", en: "Netherlands", de: "Niederlande", "class": "eu europe"}, {
-        "id": "si",
-        en: "Slovenia",
-        de: "Slowenien",
-        "class": "eu europe"
-    }, {"id": "dk", en: "Denmark", de: "Dänemark", "class": "eu europe"}, {
-        "id": "mt",
-        en: "Malta",
-        de: "Malta",
-        "class": "eu europe"
-    }, {"id": "hr", en: "Croatia", de: "Kroatien", "class": "eu europe"}, {
-        "id": "gr",
-        en: "Greece",
-        de: "Griechenland",
-        "class": "eu europe"
-    }, {"id": "im", en: "", de: "", "class": "europe"}, {"id": "is", en: "", de: "", "class": "europe"}, {
-        "id": "by",
-        en: "",
-        de: "",
-        "class": "europe"
-    }, {"id": "no", en: "", de: "", "class": "europe"}, {"id": "ua", en: "", de: "", "class": "europe"}, {
-        "id": "tr",
-        en: "",
-        de: "",
-        "class": "europe"
-    }, {"id": "ch", en: "", de: "", "class": "europe"}, {"id": "md", en: "", de: "", "class": "europe"}, {
-        "id": "al",
-        en: "",
-        de: "",
-        "class": "europe"
-    }, {"id": "ad", en: "", de: "", "class": "europe"}, {"id": "sm", en: "", de: "", "class": "europe"}, {
-        "id": "mc",
-        en: "",
-        de: "",
-        "class": "europe"
-    }, {"id": "li", en: "", de: "", "class": "europe"}, {"id": "ba", en: "", de: "", "class": "europe"}, {
-        "id": "mk",
-        en: "",
-        de: "",
-        "class": "europe"
-    }, {"id": "va", en: "", de: "", "class": "europe"}, {"id": "gl", en: "", de: "", "class": null}, {
-        "id": "ma",
-        en: "",
-        de: "",
-        "class": null
-    }, {"id": "tn", en: "", de: "", "class": null}, {"id": "dz", en: "", de: "", "class": null}, {
-        "id": "jo",
-        en: "",
-        de: "",
-        "class": null
-    }, {"id": "tm", en: "", de: "", "class": null}, {"id": "kz", en: "", de: "", "class": null}, {
-        "id": "il",
-        en: "",
-        de: "",
-        "class": null
-    }, {"id": "sa", en: "", de: "", "class": null}, {"id": "iq", en: "", de: "", "class": null}, {
-        "id": "az",
-        en: "",
-        de: "",
-        "class": null
-    }, {"id": "ir", en: "", de: "", "class": null}, {"id": "ge", en: "", de: "", "class": null}, {
-        "id": "sy",
-        en: "",
-        de: "",
-        "class": null
-    }, {"id": "am", en: "", de: "", "class": null}, {"id": "lb", en: "", de: "", "class": null}, {
-        "id": "ru-main",
-        en: "",
-        de: "",
-        "class": null
-    }, {"id": "lakes", en: "", de: "", "class": null}, {
-        "id": "rs",
-        en: "",
-        de: "",
-        "class": "cet"
-    }, {"id": "ru-kaliningrad", en: "", de: "", "class": "europe ru"}, {"id": "me", en: "", de: "", "class": "cet"}];
-    this.joinedPlayers = 0;
     this.voteItems = [];
-    this.cardItems = [];
     this.directItems = [];
     this.resultItems = [];
     this.onTurn = 0;
@@ -193,10 +18,9 @@ PlayerManager = function () {
 PlayerManager.prototype = {
     //erzeugt das player-array (inklusive inventory - dieses wird derzeit nicht mehr genutzt)
     init: function () {
-        for (var i = 0; i < this.colors.length; i++) {
+        for (var i = 0; i < gameConf.maxPlayerCnt; i++) {
             this.players.push({
                 clientId: -1,
-                colors: this.colors[i],
                 joined: false,
                 busy: false,
                 seat: this.players.length,
@@ -221,7 +45,7 @@ PlayerManager.prototype = {
             });
             this.rating[i] = [];
             this.avgRatings[i] = 4;
-            for (var j = 0; j < this.colors.length; j++) {
+            for (var j = 0; j < gameConf.maxPlayerCnt; j++) {
                 this.rating[i][j] = 4;
             }
         }
@@ -246,7 +70,7 @@ PlayerManager.prototype = {
                     break;
 
                 case "vote":
-                    this.vote(clientId, msg);
+                    this.vote(clientId, msg.data);
                     break;
 
                 case "rate":
@@ -406,18 +230,16 @@ PlayerManager.prototype = {
         this.sendPlayerStatus(-1);
     },
 
-    // callback-funktion für master-messages - bloss damit der master beim registrieren den status gesendet bekommen kann
-    masterMessage: function (clientId, msg) {
+    //TODO: subscribeStatus oder so ausdenken um berücksichtigt zu werden, immer wenn playerStatus neu gesendet wird
+    requestStatus: function (clientId, role, msg) {
+        if (role !== "MC" && role !== "master") return;
         if (msg.type == "register") {
             this.sendPlayerStatus(-1);
         }
     },
 
     //callback für mc-messages. bei register wird status versendet, der MC kann auch punkte vergeben
-    mcMessage: function (clientId, msg) {
-        if (msg.type == "register") {
-            this.sendPlayerStatus(-1);
-        }
+    scoreMessage: function (clientId, role, msg) {
         if (msg.type == "score") {
             this.score(msg.data.playerId, msg.data.score);
         }
@@ -622,15 +444,17 @@ PlayerManager.prototype = {
                     score: this.players[playerId].score,
                     rank: this.players[playerId].rank
                 },
+                colors: this.colors,
                 rating: this.rating[playerId]
             });
             this.sendInventory(playerId);
             if (this.players[playerId]) this.sendMessage(playerId, "dealStatus", this.players[playerId].deals);
         }
+        //TODO: calcRanking() könnte auch alleinig in score() untergebracht werden... oder?
         this.calcRanking();
         var msg = {
             otherPlayers: this.getPlayerArray(),
-            maxPlayers: this.conf.playerCnt,
+            maxPlayers: gameConf.maxPlayerCnt,
             avgRatings: this.avgRatings
         };
         this.broadcastMessage("status", msg);
@@ -721,11 +545,11 @@ PlayerManager.prototype = {
         //1. check if there are unseated players (clientId == -1)
         //2. check if there are unjoined players
         var playerId = -1;
-        for (var i = this.conf.playerCnt - 1; i >= 0; i--) {
+        for (var i = gameConf.maxPlayerCnt - 1; i >= 0; i--) {
             if (this.players[i].clientId == -1) playerId = i;
         }
         if (playerId == -1) {
-            for (var i = this.conf.playerCnt - 1; i >= 0; i--) {
+            for (var i = gameConf.maxPlayerCnt - 1; i >= 0; i--) {
                 if (this.players[i].joined == false) playerId = i;
             }
         }

@@ -1,42 +1,5 @@
 angular.module('playerAppServices', [])
-    .factory('colors', function () {
-        return {
-            rot: {'background-color': '#9e0000', 'color': '#BBBBBB'},
-            hellblau: {'background-color': '#2883c3', 'color': '#555555'},
-            dunkelblau: {'background-color': '#0c3669', 'color': '#BBBBBB'},
-            orange: {'background-color': '#f78500', 'color': '#555555'},
-            gelb: {'background-color': '#ffd800', 'color': '#555555'},
-            gruen: {'background-color': '#c4df0d', 'color': '#555555'},
-            lila: {'background-color': '#b27de4', 'color': '#555555'},
-            weiss: {'background-color': '#9f9f9f', 'color': '#555555'}
-        }
-    })
-    .factory('borderColors', function () {
-        var width = "5px";
-        return {
-            rot: {'border': width + ' solid #9e0000'},
-            hellblau: {'border': width + ' solid #2883c3'},
-            dunkelblau: {'border': width + ' solid #0c3669'},
-            orange: {'border': width + ' solid #f78500'},
-            gelb: {'border': width + ' solid #ffd800'},
-            gruen: {'border': width + ' solid #c4df0d'},
-            lila: {'border': width + ' solid #b27de4'},
-            weiss: {'border': width + ' solid #9f9f9f'}
-        }
-    })
-    .factory('playerColors', function () {
-        return [
-            ["rot", "rot"],
-            ["hellblau", "hellblau"],
-            ["dunkelblau", "dunkelblau"],
-            ["orange", "orange"],
-            ["gelb", "gelb"],
-            ["gruen", "gruen"],
-            ["lila", "lila"],
-            ["weiss", "weiss"],
-        ];
-    })
-    .factory('Home', function (Socket, $location, fxService, Status, $timeout, DealFactory) {
+     .factory('Home', function (Socket, $location, fxService, Status, $timeout, DealFactory) {
         var homeFactory = {};
         homeFactory.displayData = {};
         homeFactory.type = "vote";
@@ -80,8 +43,7 @@ angular.module('playerAppServices', [])
                 $timeout.cancel(homeFactory.timeout);
             }
             fxService.cancelCountdown();
-            Socket.emit({
-                type: "vote",
+            Socket.emit("vote", {
                 choice: homeFactory.voteChoice,
                 text: homeFactory.voteChoiceText,
                 playerId: Status.player.playerId,
@@ -90,8 +52,7 @@ angular.module('playerAppServices', [])
             $location.path("/voteFinished");
         };
 
-        Socket.on('display', function (event) {
-            var data = JSON.parse(event.data).data;
+        Socket.on('display', function (data) {
             console.log("new display: " + data.type);
             homeFactory.type = "card";
             homeFactory.labels = [];
@@ -167,7 +128,7 @@ angular.module('playerAppServices', [])
                         case "deal":
                             var dealType = "";
                             if (typeof data.dealType !== "undefined") dealType = data.dealType;
-                            $location.path('/deals/new/'+dealType);
+                            $location.path('/deals/new/' + dealType);
                             return;
                             break;
                         case "alert":
@@ -181,6 +142,17 @@ angular.module('playerAppServices', [])
             }
         });
         return homeFactory;
+    })
+    .factory('GameConf', function (Socket) {
+        var gameConf = {};
+        gameConf.playerColors = ["not yet set"];
+        Socket.on('registerConfirm', function (data) {
+            Socket.emit("getGameConf");
+            Socket.on('gameConf', function (data) {
+                gameConf.playerColors = data.playerColors;
+            });
+        });
+        return gameConf;
     })
     .factory('Status', function ($rootScope, Socket, $location) {
 
@@ -198,14 +170,12 @@ angular.module('playerAppServices', [])
         //diese eigenschaft wird hier geführt, da sie im view benötigt wird und sonst im digest-cycle immerwieder neu berrechnet werden muss...
         statusFactory.availablePlayers = [];
 
-        Socket.on('registerConfirm', function (event) {
-            var data = JSON.parse(event.data).data;
+        Socket.on('registerConfirm', function (data) {
             if (typeof data != "undefined") statusFactory.clientId = data;
             statusFactory.joinGame();
         });
 
-        Socket.on('status', function (event) {
-            var data = JSON.parse(event.data).data;
+        Socket.on('status', function (data) {
             console.log(data);
             if (data.otherPlayers) {
                 statusFactory.otherPlayers = data.otherPlayers;
@@ -216,13 +186,11 @@ angular.module('playerAppServices', [])
             }
             if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
         });
-        Socket.on('inventory', function (event) {
-            var data = JSON.parse(event.data).data;
+        Socket.on('inventory', function (data) {
             console.log(data);
             if (data) statusFactory.inventory = data;
         });
-        Socket.on('joined', function (event) {
-            var data = JSON.parse(event.data).data;
+        Socket.on('joined', function (data) {
             if (data.player) {
                 statusFactory.player = data.player;
                 statusFactory.rating = data.rating;
@@ -246,10 +214,10 @@ angular.module('playerAppServices', [])
             return Socket.connected();
         };
         statusFactory.joinGame = function () {
-            Socket.emit({type: "joinGame", data: {}});
+            Socket.emit("joinGame");
         };
         statusFactory.leaveGame = function () {
-            Socket.emit({type: "leaveGame", data: {}});
+            Socket.emit("leaveGame");
         };
         statusFactory.resetPlayer = function () {
             statusFactory.player = emptyPlayer;
@@ -280,9 +248,8 @@ angular.module('playerAppServices', [])
             // Socket.emit({type: "rate", data: {rate: ratingFactory.myRatings, playerId: Status.player.playerId}});
         };
 
-        ratingFactory.posNeg = function (event) {
+        ratingFactory.posNeg = function (data) {
             console.log('CALLED!');
-            var data = JSON.parse(event.data).data;
             if (data) statusFactory.ttest = 'blabla';
         };
 
@@ -355,8 +322,7 @@ angular.module('playerAppServices', [])
         // deal.states entspricht ["just opened", "waiting for answer", "have to reply", "confirmed", "denied"]
         var dealFactory = {};
         dealFactory.deals = {};
-        Socket.on('deal', function (event) {
-            var deal = JSON.parse(event.data).data;
+        Socket.on('deal', function (deal) {
             if (dealFactory.deals.hasOwnProperty(deal.id)) {
                 dealFactory.deals[deal.id].state = deal.state;
                 dealFactory.deals[deal.id].messages = deal.messages;
@@ -364,9 +330,8 @@ angular.module('playerAppServices', [])
             else dealFactory.deals[deal.id] = deal;
             $location.path("/deals/" + deal.id);
         });
-        Socket.on('dealStatus', function (event) {
+        Socket.on('dealStatus', function (deals) {
             console.log("dealStatus coming in");
-            var deals = JSON.parse(event.data).data;
             var activeDealId = -1;
             for (var dealId in deals) if (deals.hasOwnProperty(dealId)) {
                 if (dealFactory.deals.hasOwnProperty(dealId)) {
@@ -423,7 +388,7 @@ angular.module('playerAppServices', [])
             else if (deal.state === 1) {
                 deal.state = 2;
             }
-            Socket.emit({type: "deal", data: deal});
+            Socket.emit("deal", deal);
         };
 
         dealFactory.getMyDealState = function (deal) {

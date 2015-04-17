@@ -22,14 +22,23 @@ function Game() {
 
 Game.prototype = {
 
-    trigger: function (clientId, msg) {
+    //callback für type="playBackAction"-Messages
+    trigger: function (clientId, role, msg) {
         try {
-            var param = "";
-            if (typeof msg.param != "undefined") {
-                param = msg.param;
+            //für scripte, die noch im format {type:"playBackAction", data:"go", param:0} senden::
+            if (typeof msg.data.cmd === "undefined") {
+                msg.data = {cmd: msg.data, param: msg.param};
             }
-            console.log("game.trigger: " + msg.data + " with parameter: " + param);
-            switch (msg.data) {
+
+            var param = "";
+            if (typeof msg.data.param != "undefined") {
+                param = msg.data.param;
+            }
+
+           console.log("game.trigger: " + msg.data.cmd + " with parameter: " + param);
+            switch (msg.data.cmd) {
+                //TODO: das ist hier nicht korrekt. sollte als type="score" emitted werden. und wird dann entsprechend im playerManager empfangen ->.mcMessage()
+                    //evtl. ist die struktur aber auch käse ;)
                 case "rate":
                     playerManager.players[param.playerId].score = playerManager.players[param.playerId].score + param.value;
                     playerManager.sendPlayerStatus(param.playerId);
@@ -73,7 +82,7 @@ Game.prototype = {
             console.log("ERROR in game.trigger! " + e.stack);
         }
     },
-    alert: function(clientId, msg) {
+    alert: function(clientId, role, msg) {
         this.alertState += 1;
         this.alertState %= 3;
         var self = this;

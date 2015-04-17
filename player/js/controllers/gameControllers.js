@@ -1,5 +1,5 @@
 angular.module("gameControllers", [])
-    .controller('ScoreController', function ($scope, Socket, Status, colors) {
+    .controller('ScoreController', function ($scope, Socket, Status, playerColors) {
         $scope.socket = Socket;
         $scope.test = "HALLO WELT";
         $scope.status = {};
@@ -30,7 +30,7 @@ angular.module("gameControllers", [])
         $scope.status = Status;
         //$scope.color = "green";
         $scope.myColor = function () {
-            return colors[$scope.status.player.colors[0]];
+            return playerColors[Status.player.playerId];
         };
 
         $scope.baromaterHeight = 350;
