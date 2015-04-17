@@ -1,36 +1,17 @@
 <div class="container-fluid">
-    {{status}}
+    {{playerId}}
     <div class="player" ng-repeat="player in players track by $index"
          ng-style="{'top':player.top, 'left':player.left, 'background':playerColors[$index]}" ng-class="{dimm: !status.otherPlayers[$index].joined}">
         <ul class="list-group list-unstyled" ng-style=''>
             <li class="list-group-item">{{player.name}} - Score: {{status.otherPlayers[$index].score}} - Platz: {{status.otherPlayers[$index].rank}}</li>
             <li class="list-group-item">
-                <button class="btn" ng-click="showScore(player)">Score</button>
+                <a class="btn btn-default" ng-href="#/players/{{player.playerId}}">Details</a>
             </li>
         </ul>
     </div>
-    <div class="table-display" ng-controller="TableDisplayController">
-        <div ng-switch="tableDisplay.type">
-            <div ng-switch-when="playback">
-    <!--
-                <button class="btn" ng-click="playback('restart')">RESTART</button>
-    -->
-                <button class="btn" ng-click="playback('go','0')">GO 0</button>
-                <button class="btn" ng-click="playback('go','1')">GO 1</button>
-                <button class="btn" ng-click="playback('go','2')">GO 2</button>
-                <button class="btn" ng-click="playback('rego')">REGO</button>
-                <button class="btn" ng-click="playback('back')">BACK</button>
-                <button class="btn" ng-click="alert()">ALARM</button>
-            </div>
-            <div ng-switch-when="score">
-                <h1>Score für Player {{tableDisplay.player.name}}</h1>
-                <ul class="list-inline">
-                    <li class="list-group-item" ng-repeat="sc in ['+5','+4','+3','+2','+1','-1','-2','-3','-4','-5']"><button class="btn" ng-click="score(tableDisplay.player.playerId, sc)">{{sc}}</button><br /></li>
-                    <li class="list-group-item"><button class="btn btn-danger" ng-click="showPlayback()">Cancel</button></li>
-                </ul>
-            </div>
-        </div>
-    </div>
+</div>
 
-
+<div class="table-display" ng-switch="tableDisplayType">
+    <div playback ng-switch-when="playback"></div>
+    <div player-details pid="playerId" ng-switch-when="playerDetails"></div>
 </div>

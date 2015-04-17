@@ -15,7 +15,9 @@ angular
         'ngRoute',
         'WebsocketServices',
         'mcAppServices',
-        'hvPlayerColors'
+        'hvPlayerColors',
+        'playerDirectives',
+        'mcDirectives'
     ])
     .config(function ($routeProvider) {
         $routeProvider
@@ -24,6 +26,14 @@ angular
                 controller: 'DummiesCtrl'
             })
             .when('/players', {
+                templateUrl: '/mc/views/players.html',
+                controller: 'PlayersCtrl'
+            })
+            .when('/players/playback', {
+                templateUrl: '/mc/views/players.html',
+                controller: 'PlayersCtrl'
+            })
+            .when('/players/:playerId', {
                 templateUrl: '/mc/views/players.html',
                 controller: 'PlayersCtrl'
             })
