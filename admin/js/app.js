@@ -13,7 +13,8 @@ var app = angular.module('homevisitAdmin', [
     'xeditable',
     'luegg.directives',
     'angular.filter',
-    'ngRoute'
+    'ngRoute',
+    'hvPlayerColors'
 ])
 .config(function ($routeProvider, $anchorScrollProvider) {
 //        $locationProvider.html5Mode(true);
@@ -28,7 +29,8 @@ var app = angular.module('homevisitAdmin', [
             });
     });
 
-app.run(function(editableOptions) {
+app.run(function(editableOptions, Socket) {
 //    editableThemes.bs3.buttonsClass = 'btn-sm';
+    Socket.connect('master');
     editableOptions.theme = 'bs3';
 });

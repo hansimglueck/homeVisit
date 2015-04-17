@@ -415,7 +415,7 @@ adminControllers.controller('itemCtrl', function ($scope, $filter, itemOptions) 
             return selected.length ? selected[0].text : 'Not set';
         };
         $scope.executeItem = function() {
-            Socket.emit({type:"directItem", data:$scope.item}, function() { console.log('directItem emitted'); });
+            Socket.emit("directItem",$scope.item);
         }
 
     });

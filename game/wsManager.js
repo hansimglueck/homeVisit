@@ -140,7 +140,7 @@ WsManager.prototype = {
                 try {
                     var clientId = ws.clientId;
 
-                    console.log("websocket received a message from " + clientId + ": " +  JSON.stringify(data));
+                    console.log("websocket received a message from " + clientId + ": " + (data));
                     //var msg = (typeof data == "Object") ? JSON.parse(data) : data;
                     var msg = JSON.parse(data);
                     //console.log(typeof data);
@@ -160,7 +160,7 @@ WsManager.prototype = {
                                 break;
 
                             case "getDeviceList":
-                                //self.sendDeviceList();
+                                self.sendDeviceList();
                                 break;
 
                             default:
@@ -283,9 +283,6 @@ WsManager.prototype = {
 //        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
         //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));
         this.sendDeviceList();
-        if (role == "master") {
-            this.sendOsInfo(ws);
-        }
     },
 
     msgDevicesByRoleAndName: function(role, name, type, message) {
@@ -330,19 +327,6 @@ WsManager.prototype = {
             }));
         });
     },
-    sendOsInfo: function (ws) {
-        var info = {
-            hostname: os.hostname(),
-            type: os.type(),
-            arch: os.arch(),
-            uptime: os.uptime(),
-            loadavg: os.loadavg(),
-            totalmem: os.totalmem(),
-            freemem: os.freemem(),
-            interfaces: os.networkInterfaces()
-        };
-        ws.send(JSON.stringify({type: "osinfo", data: info}));
-    }
 };
 
 module.exports = new WsManager();

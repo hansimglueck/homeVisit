@@ -13,7 +13,7 @@ RaspiTools.prototype = {
         try {
             if (typeof msg != "undefined") switch (msg.type) {
                 case "os":
-                    switch (msg.data) {
+                    switch (msg.data.cmd) {
                         case "shutdown":
                             console.log("shutdown!!!");
                             exec("sudo shutdown -h now", function (error, stdout, stderr) {
@@ -29,13 +29,12 @@ RaspiTools.prototype = {
                             });
                             break;
                         case "getInfo":
-                            //self.sendOsInfo(ws);
+                            this.sendOsInfo(clientId);
                             break;
                         case "restartwlan1":
                             console.log("restarting wlan1");
-                            exec("/home/pi/homeVisit/shellscripts/wlan1_conf " + msg.para.ssid + " " + msg.para.passwd, function (error, stdout, stderr) {
+                            exec("/home/pi/homeVisit/shellscripts/wlan1_conf " + msg.data.param.ssid + " " + msg.data.param.passwd, function (error, stdout, stderr) {
                                 console.log("exec1");
-                                //self.sendOsInfo(ws);
                             });
                             break;
                     }
@@ -45,26 +44,18 @@ RaspiTools.prototype = {
                     console.log("db command");
                     switch (msg.data) {
                         case "connect":
-                            mongoose.connect('mongodb://localhost/homeVisit', function(err) {
-                                if(err) {
-                                    console.log('db-connection error', err);
-                                } else {
-                                    console.log('db-connection successful');
-                                }
-                            });
                             break;
                         case "repair":
                             exec("/home/pi/homeVisit/shellscripts/repair_db", function (error, stdout, stderr) {
                             });
                             break;
+                        case "getStatus":
+                            this.sendDbStatus();
+                            break;
 
                         default:
                             break;
                     }
-                    break;
-
-                case "register":
-                    this.sendDbStatus();
                     break;
 
                 default:
@@ -93,7 +84,21 @@ RaspiTools.prototype = {
         console.log("readyStat= "+connected);
 
         wsManager.msgDevicesByRole('master', 'dbStatus', {'connected':connected});
+    },
+    sendOsInfo: function (clientId) {
+        var info = {
+            hostname: os.hostname(),
+            type: os.type(),
+            arch: os.arch(),
+            uptime: os.uptime(),
+            loadavg: os.loadavg(),
+            totalmem: os.totalmem(),
+            freemem: os.freemem(),
+            interfaces: os.networkInterfaces()
+        };
+        wsManager.msgDeviceByIds([clientId], "osinfo", info);
     }
+
 };
 
 var raspiToolsObj = new RaspiTools();

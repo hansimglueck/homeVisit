@@ -2,7 +2,7 @@
  * Created by jeanbluer on 06.02.15.
  */
 angular.module('WebsocketServices', []).
-    factory('Socket', function ($rootScope) {
+    factory('Socket', function ($rootScope, $timeout) {
         var sid = "x";
         var ws;
         var onMessageCallbacks;
@@ -10,6 +10,7 @@ angular.module('WebsocketServices', []).
         var host = location.host;
         //var host = "home.visit.eu";
         onMessageCallbacks = [];
+        var registered = false;
         var connected = false;
         var server = {connected: connected};
         var started = false;
@@ -20,6 +21,11 @@ angular.module('WebsocketServices', []).
         var timeouts = 0;
         var maxTimeouts = 10;
         var waitingForPong = false;
+        var role = "NN";
+
+        var setRole = function(val) {
+            role = val;
+        };
 
         var ping = function () {
             if (!server.connected) {
@@ -77,12 +83,13 @@ angular.module('WebsocketServices', []).
             server.connected = false;
             $rootScope.$digest(); //damit das false auch ankommt...
             $rootScope.$broadcast("disconnected");
-            if (really) setTimeout(function () {
+            if (really) $timeout(function () {
+                started = false;
                 connect();
             }, 1000);
         };
 
-        var connect = function (role) {
+        var connect = function () {
             if (started) return;
             started = true;
             console.log("trying new ws!");
@@ -98,6 +105,8 @@ angular.module('WebsocketServices', []).
                 ws.send(JSON.stringify({type: "register", data: {role: role, sid: sid}}));
                 onMessageCallbacks.push({
                     fn: function (data) {
+                        connected = true;
+                        registered = true;
                         var newSid = data.sid;
                         if (typeof newSid != "undefined") sid = newSid;
                         console.log("registerConfirm got sid: " + sid)
@@ -114,7 +123,6 @@ angular.module('WebsocketServices', []).
                 }
                 console.log('onmessage: ' + event.data);
                 var message = JSON.parse(event.data);
-                var args = arguments;
                 var eventName;
                 var currentCallback;
                 for (var i = 0; i < onMessageCallbacks.length; i++) {
@@ -145,19 +153,21 @@ angular.module('WebsocketServices', []).
             },
 
             connect: function (role) {
-                connect(role)
+                setRole(role);
+                connect()
             },
 
             on: function (eventName, callback) {
+                console.log("Socket registers callback for "+eventName);
                 onMessageCallbacks.push({
                     fn: callback,
                     eventName: eventName
                 });
             },
             emit: function (type, data) {
-                var msg = typeof(data) == "object" ? JSON.stringify(data) : data;
-                console.log("emit " + JSON.stringify({type: type, data: msg}));
-                ws.send(JSON.stringify({type: type, data: msg}));
+                //var msg = typeof(data) == "object" ? JSON.stringify(data) : data;
+                console.log("emit " + JSON.stringify({type: type, data: data}));
+                ws.send(JSON.stringify({type: type, data: data}));
             }
         }
 

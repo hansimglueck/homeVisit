@@ -1,6 +1,6 @@
 <ul class="list-group" ng-controller="OsCtrl">
-    <li class="list-group-item" ng-click="collapsed.server = !collapsed.server"  ng-class="{ 'text-danger': !socket.getConnState(), bubble: !dbStatus.socket.getConnState() }">
-        Server: {{socket.getConnState() ? "connected" : "not connected"}}
+    <li class="list-group-item" ng-click="collapsed.server = !collapsed.server"  ng-class="{ 'text-danger': !socket.connected(), bubble: !dbStatus.socket.connected() }">
+        Server: {{socket.connected() ? "connected" : "not connected"}}
         <i class="pull-right glyphicon"
            ng-class="{'glyphicon-chevron-down': !collapsed.server, 'glyphicon-chevron-right': collapsed.server}"></i>
         <ul class="list-group" collapse="collapsed.server">

@@ -8,18 +8,17 @@ var masterControllers = angular.module('masterControllers', [])
 
         $scope.playback = function(cmd, param) {
             console.log("play clicked");
-            Socket.emit({type:"playbackAction", data:cmd, param:param}, function() { console.log('play emitted'); });
+            Socket.emit("playbackAction", {cmd:cmd, param:param});
         };
 
-        Socket.on("playBackStatus", function(message) {
-            console.log("callback got "+message);
-            var status = message.data;
+        Socket.on("playBackStatus", function(status) {
+            console.log("callback got "+status);
             $scope.status = status;
             console.log("got status info: "+JSON.stringify(status));
         });
         $scope.alert = function() {
             console.log("Alarm clicked");
-            Socket.emit({type:"alert"}, function() { console.log('Alarm emitted'); });
+            Socket.emit("alert");
         }
 
     });
@@ -96,13 +95,8 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOp
 masterControllers.controller('LogCtrl', function($scope, Socket){
         $scope.messages = ["waiting..."];
         Socket.on('log', function(data) {
-            console.log("new log-message: "+data.data);
-            $scope.messages.push(data.data);
-            if (data.content) {
-                $scope.text = data.content.text;
-                if (data.content.type == "vote") $scope.options = data.content.voteOptions;
-            }
-            else $scope.options = null;
+            console.log("new log-message: "+data);
+            $scope.messages.push(data);
         })
 
     });
@@ -111,25 +105,22 @@ masterControllers.controller('DeviceCtrl', function($scope, Socket, itemOptions)
     $scope.deviceList = [];
     $scope.itemTypes = itemOptions.type;
     $scope.isCollapsed = true;
-    Socket.on("DeviceList", function(message) {
-        $scope.deviceList = message.data;
+    Socket.on("DeviceList", function(data) {
+        $scope.deviceList = data;
         console.log("got device list: "+JSON.stringify($scope.deviceList));
     });
+    Socket.emit("getDeviceList");
     $scope.forceReload = function(role) {
-        Socket.emit({type:"forceReload", data:role}, function() { console.log('force reload of '+role); });
+        Socket.emit("forceReload", role);
     };
 });
 
 masterControllers.controller('PlayerCtrl', function($scope, Socket) {
     $scope.playerList = [];
     $scope.ratings = [];
-    $scope.rate = function(playerId, value) {
-        console.log("rate clicked", playerId, value);
-        Socket.emit({type:"rateAction", param:value}, function() { console.log('rated!'); });
-    };
-    Socket.on("status", function(message) {
-        $scope.playerList = message.data.otherPlayers;
-        $scope.ratings = message.data.avgRatings;
+    Socket.on("status", function(data) {
+        $scope.playerList = data.otherPlayers;
+        $scope.ratings = data.avgRatings;
         console.log("got player list: "+JSON.stringify($scope.playerList));
     });
 });
@@ -144,37 +135,36 @@ masterControllers.controller('OsCtrl', function($scope, Socket) {
     $scope.osInfo = {};
     $scope.dbStatus = {};
     $scope.socket = Socket;
+    Socket.on("osinfo", function(data) {
+        $scope.osInfo = data;
+        console.log("got os info: "+JSON.stringify($scope.osInfo));
+    });
+    Socket.on("dbStatus", function(data) {
+        $scope.dbStatus = data;
+        console.log("got dbStatus: "+JSON.stringify($scope.dbStatus));
+    });
+    Socket.emit("database", "getStatus");
+    Socket.emit("os", {cmd:"getInfo"});
     $scope.restartServer = function() {
         if (!confirm("Wirklich Server neu starten?")) return;
-        Socket.emit({type:"os", data:"restartServer"}, function() { console.log('restart-request sent'); });
+        Socket.emit("os",{cmd:"restartServer"});
     };
     $scope.shutdown = function(reboot) {
         if (!confirm("Wirklich Runterfahren???")) return;
         if (!confirm("WIRKLICH RUNTERFAHREN??????????")) return;
         var d = reboot ? "reboot" : "shutdown";
-        Socket.emit({type:"os", data:d}, function() { console.log('shutdown send'); });
+        Socket.emit("os", {cmd:d});
     };
     $scope.restartWlan1 = function() {
-        Socket.emit({type:"os", data:"restartwlan1", para:{ssid:$scope.wlanId, passwd:$scope.wlanPasswd}}, function() { console.log('restart-request sent'); });
+        Socket.emit("os",  {cmd: "restartwlan1", param:{ssid:$scope.wlanId, passwd:$scope.wlanPasswd}});
     };
     $scope.requestOsInfo = function() {
-        Socket.emit({type:"os", data:"getInfo"}, function() { console.log('os info requested'); });
+        Socket.emit("os", {cmd:"getInfo"});
     };
     $scope.dbAction = function(action) {
         if (!confirm("Wirklich DB:"+action+"?")) return;
-        Socket.emit({type:"database", data:action}, function() { console.log('db action requested: '+action); });
+        Socket.emit("database", action);
     };
-    Socket.on("osinfo", function(message) {
-        $scope.osInfo = message.data;
-        // $scope.osInfo = {
-            
-        // };
-        console.log("got os info: "+JSON.stringify($scope.osInfo));
-    });
-    Socket.on("dbStatus", function(message) {
-        $scope.dbStatus = message.data;
-        console.log("got dbStatus: "+JSON.stringify($scope.dbStatus));
-    });
     $scope.printInterfaces = function(iname) {
         if (typeof $scope.osInfo.interfaces == "undefined") return "fghj";
         var interfaces = "";
