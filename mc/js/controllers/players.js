@@ -8,16 +8,13 @@
  * Controller of the homeVisitMCApp
  */
 angular.module('homeVisitMCApp')
-    .controller('PlayersCtrl', function ($scope, Status, Socket, colors, playerColors) {
+    .controller('PlayersCtrl', function ($scope, Status, Socket, playerColors) {
         $scope.socket = Socket;
         $scope.status = Status;
-        $scope.colors = colors;
         $scope.playerColors = playerColors;
         $scope.tableDisplay = {
             type: 'playback'
         };
-
-
         $scope.players = [
             {playerId: 0, name: 'player1', top: 10, left: 189, color: '#000000'},
             {playerId: 1, name: 'player2', top: 10, left: 377, color: '#000000'},
@@ -46,17 +43,16 @@ angular.module('homeVisitMCApp')
         $scope.score = function(playerId, score) {
             console.log("score "+score);
             score = parseInt(score);
-            Socket.emit({type: "score", data: {playerId:playerId, score:score}},
-                function() { console.log('mc command emitted'); });
+            Socket.emit("score", {playerId:playerId, score:score});
             $scope.tableDisplay.type = "playback";
         };
         $scope.playback = function(cmd, param) {
             console.log("play clicked");
-            Socket.emit({type:"playbackAction", data:cmd, param:param}, function() { console.log('play emitted'); });
+            Socket.emit("playbackAction", {data:cmd, param:param});
         };
         $scope.alert = function() {
             console.log("Alarm clicked");
-            Socket.emit({type:"alert"}, function() { console.log('Alarm emitted'); });
+            Socket.emit("alert");
         }
 
    });

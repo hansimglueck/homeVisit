@@ -1,7 +1,7 @@
 <div class="container-fluid">
     {{status}}
     <div class="player" ng-repeat="player in players track by $index"
-         ng-style="{'top':player.top, 'left':player.left, 'background':colors[playerColors[$index][0]]['background-color']}" ng-class="{dimm: !status.otherPlayers[$index].joined}">
+         ng-style="{'top':player.top, 'left':player.left, 'background':playerColors[$index]}" ng-class="{dimm: !status.otherPlayers[$index].joined}">
         <ul class="list-group list-unstyled" ng-style=''>
             <li class="list-group-item">{{player.name}} - Score: {{status.otherPlayers[$index].score}} - Platz: {{status.otherPlayers[$index].rank}}</li>
             <li class="list-group-item">
