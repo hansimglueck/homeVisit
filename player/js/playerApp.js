@@ -38,6 +38,10 @@ angular.module('playerApp', [
                     templateUrl: 'partials/score.html',
                     controller: 'ScoreController'
                 }).
+                when('/results', {
+                    templateUrl: 'partials/results.html',
+                    controller: 'ResultsController'
+                }).
                 when('/vote', {
                     templateUrl: 'partials/vote.html',
                     controller: 'VoteController'

@@ -106,6 +106,9 @@ angular.module("playerControllers", [])
         }
 
     })
+    .controller('ResultsController', function($scope, Home){
+        $scope.home = Home;
+    })
     .controller('MenuController', function ($scope, Status, Socket) {
         $scope.status = Status;
         $scope.socket = Socket;

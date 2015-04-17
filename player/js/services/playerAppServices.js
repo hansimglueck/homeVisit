@@ -87,12 +87,14 @@ angular.module('playerAppServices', [])
 
                             var labels = [];
                             var resData = [];
+                            homeFactory.correctAnswer = "";
                             //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
                             if (resultType == "numberStats") {
                                 //send stats as array: [sum, avg]
                                 resData = [result.sum, result.average, result.minVal, result.maxVal];
                             }
                             else result.voteOptions.forEach(function (option) {
+                                if (option.correctAnswer) homeFactory.correctAnswer = option.text;
                                 labels.push(option.text + ": " + option.percent + "% (" + option.votes + " Votes)");
                                 if (resultType == "europeMap") resData.push({
                                     id: option.value,
@@ -100,12 +102,15 @@ angular.module('playerAppServices', [])
                                 });
                                 else resData.push(option.result);
                             });
+
                             homeFactory.resultType = resultType;
                             (homeFactory.resultType == 'Bar' || homeFactory.resultType == 'Line') ? homeFactory.data = [resData] : homeFactory.data = resData;
                             homeFactory.labels = labels;
                             homeFactory.votelast = "result";
                             homeFactory.type = "result";
                             homeFactory.resultColor = data.resultColor;
+                            $location.path("/results");
+                            return;
                             break;
                         case "rating":
                             homeFactory.type = "rating";
