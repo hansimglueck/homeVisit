@@ -93,7 +93,7 @@ angular.module('playerAppServices', [])
                                 resData = [result.sum, result.average, result.minVal, result.maxVal];
                             }
                             else result.voteOptions.forEach(function (option) {
-                                labels.push(option.text + ": " + option.percent + "% (" + option.votes + ")");
+                                labels.push(option.text + ": " + option.percent + "% (" + option.votes + " Votes)");
                                 if (resultType == "europeMap") resData.push({
                                     id: option.value,
                                     val: option.percent
