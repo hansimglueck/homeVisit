@@ -321,6 +321,7 @@ angular.module('playerAppServices', [])
             fxService.countdown.count = 0;
         };
         fxService.playSound = function (id) {
+            console.log("fxService.play "+id);
             fxService.sound[id].play();
         };
         return fxService;
