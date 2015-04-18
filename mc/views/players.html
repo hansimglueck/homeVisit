@@ -1,9 +1,9 @@
 <div class="container-fluid">
     {{playerId}}
-    <div class="player" ng-repeat="player in players track by $index"
-         ng-style="{'top':player.top, 'left':player.left, 'background':playerColors[$index]}" ng-class="{dimm: !status.otherPlayers[$index].joined}">
+    <div class="player" ng-repeat="player in status.otherPlayers track by $index"
+         ng-style="{'top':playerPos[player.playerId].top, 'left':playerPos[player.playerId].left, 'background':playerColors[$index]}" ng-class="{dimm: !player.joined}">
         <ul class="list-group list-unstyled" ng-style=''>
-            <li class="list-group-item">{{player.name}} - Score: {{status.otherPlayers[$index].score}} - Platz: {{status.otherPlayers[$index].rank}}</li>
+            <li class="list-group-item">Score: {{player.score}} - Rank: {{player.rank}}</li>
             <li class="list-group-item">
                 <a class="btn btn-default" ng-href="#/players/{{player.playerId}}">Details</a>
             </li>
@@ -11,7 +11,7 @@
     </div>
 </div>
 
-<div class="table-display" ng-switch="tableDisplayType">
+<div class="table-display-players" ng-switch="tableDisplayType">
     <div playback ng-switch-when="playback"></div>
     <div player-details pid="playerId" ng-switch-when="playerDetails"></div>
 </div>
