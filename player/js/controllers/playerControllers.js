@@ -2,6 +2,9 @@ angular.module("playerControllers", [])
     .controller('MainController', function ($scope, Status, playerColors) {
         $scope.status = Status;
         $scope.playerColors = playerColors;
+        $scope.turn = navigator.platform.indexOf("arm")>-1;
+        console.log("onAndroid=");
+        console.log($scope.turn);
     })
     .controller('HomeController', function ($scope, $location, Status, Home, Rating, Socket, playerColors, ngAudio, europeSvgData) {
         $scope.europeSVG = europeSvgData;

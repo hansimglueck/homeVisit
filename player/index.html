@@ -47,6 +47,8 @@
       ng-swipe-left='Ui.turnOff("uiSidebarLeft")'
       ng-controller="MainController"
       ng-app="playerApp">
+
+<div ng-class="{'turn':turn, 'no-turn':!turn}">
 <!-- Sidebars -->
 <!--
 <div class="sidebar sidebar-left" ng-controller="MenuController">
@@ -97,7 +99,7 @@
 
     </div>
 </div>
-<div class="app" ng-style="{'border':'solid 5px', 'border-color':playerColors[status.player.playerId]}">
+<div class="app" ng-style="{'border-color':playerColors[status.player.playerId]}">
     <!--
     <div class="navbar navbar-app navbar-absolute-top text-center" ng-controller="NavbarController">
         <div>
@@ -121,7 +123,7 @@
     -->
 
     <!-- App body -->
-    <div id="score" ng-show="showScore()" ng-controller="ScoreController">
+    <div class="score" ng-show="showScore()" ng-controller="ScoreController">
         <div id="score_stats">
             <p class="score_stats_entry">
                 Rank: {{status.player.rank}}<br/>
@@ -164,6 +166,6 @@
 </div>
 <!-- ~ .app -->
 
-<div ui-yield-to="modals"></div>
+</div>
 </body>
 </html>

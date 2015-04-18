@@ -1,21 +1,29 @@
-body, html {
-    width: 321px;
-    height: 544px;
+html, body {
+    width: 100%;
+    height: 100%;
 }
 body {
+    overflow: hidden;
+}
+
+.turn {
+    transform: rotate(90deg)  translate(112px,112px);
+    width: 544px;
+    height: 320px;
+}
+
+.no-turn {
+    background: red;
 }
 
 .app {
-    transform: rotate(90deg)  translate(111px,111px);
-    transform-origin: 50% 50%;
-    width: 544px;
-    height: 321px;
+    height: 100%;
     border: solid 5px;
     display: flex;
     flex-direction: row;
     align-items: center;
 }
-#score {
+.score {
     position: relative;
     width: 80px;
     height: 300px;
