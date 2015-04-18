@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('homeVisitMCApp')
-    .controller('DummiesCtrl', function ($scope) {
+    .controller('DummiesCtrl', function ($scope, Polls) {
         $scope.selectedRow = 3;
         $scope.dummies = [
             {name: 'dummy1', top: 10, left: 189},
@@ -19,54 +19,18 @@ angular.module('homeVisitMCApp')
             {name: 'dummy13', top: 340, left: 20},
             {name: 'dummy14', top: 150, left: 20}
         ];
-        $scope.polls = [
-            {
-                question: "Ist es toll hier?",
-                type: 'binary',
-                answers: new Array(14)
-            },
-            {
-                question: "Wie toll denn?",
-                type: 'fingers',
-                answers: new Array(14)
-            },
-            {
-                question: "Wie gerne magst Du Eis?",
-                type: 'fingers',
-                answers: new Array(14)
-            },
-            {
-                question: "Wie charmant bist Du?",
-                type: 'fingers',
-                answers: new Array(14)
-            },
-            {
-                question: "Hast Du Nachts Angst?",
-                type: 'binary',
-                answers: new Array(14)
-            },
-            {
-                question: "Willst Du weiter spielen?",
-                type: 'binary',
-                answers: new Array(14)
-            },
-            {
-                question: "Wie stark bist Du?",
-                type: 'fingers',
-                answers: new Array(14)
-            }
-        ];
+        $scope.polls = Polls;
         $scope.selectRow = function(id){
             $scope.selectedRow = id;
         };
         $scope.selectAnswer = function(did, aid) {
-            $scope.polls[$scope.selectedRow].answers[did] = aid;
+            $scope.polls.polls[$scope.selectedRow].answers[did] = aid;
         };
         $scope.showPlusMinus = function(x) {
             if (x === 0) return "-";
             if (x === 1) return "+";
         };
         $scope.unanswered = function(did){
-            return typeof $scope.polls[$scope.selectedRow].answers[did] == 'undefined';
+            return typeof $scope.polls.polls[$scope.selectedRow].answers[did] == 'undefined';
         }
     });
