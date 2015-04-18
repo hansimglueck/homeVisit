@@ -1,8 +1,8 @@
 <div>
-    <h1>Score für Player {{playerId}}</h1>
+    <h1 ng-style="{'color':playerColors[playerId]}">Score for Player {{playerId}}</h1>
     <ul class="list-inline">
-        <li class="list-group-item" ng-repeat="sc in ['+5','+4','+3','+2','+1','-1','-2','-3','-4','-5']">
-            <button class="btn" ng-click="score(tableDisplay.player.playerId, sc)">{{sc}}</button>
+        <li class="list-group-item" ng-repeat="sc in [5,4,3,2,1,-1,-2,-3,-4,-5]">
+            <button class="btn" ng-click="score(playerId, sc)">{{sc}}</button>
             <br/></li>
         <li class="list-group-item">
             <a class="btn btn-danger" ng-href="#/players/playback">Cancel</a>

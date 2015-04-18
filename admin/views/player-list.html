@@ -15,7 +15,7 @@
         <td>{{player.joined ? "Joined" : "Off"}}</td>
         <td>{{ratings[$index]}}</td>
         <td>{{player.score}}</td>
-        <td>{{player.colors}}</td>
+        <td ng-style="{'color':playerColors[$index]}">{{playerColors[$index]}}</td>
         <td>
             <button class="btn btn-danger" ng-click="playback('rate', { playerId: player.playerId, value: -1})">-1</button>
             <button class="btn btn-success" ng-click="playback('rate', { playerId: player.playerId, value: +1})">+1</button>

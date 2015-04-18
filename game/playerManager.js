@@ -41,7 +41,8 @@ PlayerManager.prototype = {
                     {type: 1, name: "minus"},
                     {type: 1, name: "minus"}
                 ],
-                away: false
+                away: false,
+                selected: false
             });
             this.rating[i] = [];
             this.avgRatings[i] = 4;
@@ -242,9 +243,44 @@ PlayerManager.prototype = {
     scoreMessage: function (clientId, role, msg) {
         if (msg.type == "score") {
             this.score(msg.data.playerId, msg.data.score);
+            
         }
     },
 
+    setStatusMessage: function(clientId, role, msg) {
+        var data = msg.data;
+        try {
+            console.log(data);
+            if (typeof data != "undefined") switch (data.cmd) {
+                //case "score":
+                //        this.score(data, data.id, data.value);
+                //    break;
+                case "toggleSelected":
+                    this.players[data.id].selected ^= true;
+                    console.log("Set Player #: " + data.id + " .selected = " + this.players[data.id].selected );
+                    break;
+                case "toggleAway":
+                    this.players[data.id].away ^= true;
+                    console.log("Set Player #: " + data.id + " .away = " + this.players[data.id].away );
+                    break;
+
+                case "setNext":
+                    console.log("Set Player #: " + data.id + " as next");
+                    break;
+
+                case "setAct":
+                    console.log("Set Player #: " + data.id + " as active");
+                    break;
+                default:
+                    console.log("unknown message-type");
+                    break;
+            }
+        } catch (e) {
+            console.log("ERROR in playerManager.newMessage! " + e.stack);
+        }
+        this.sendPlayerStatus(-1);
+    },
+    
     //wenn das game meint, die player sollten beschäftigt sein, ist das seine eingangstür
     addItem: function (item) {
         try {
@@ -410,6 +446,15 @@ PlayerManager.prototype = {
                     if (id != self.onTurn) self.sendMessage(id, type, content);
                 });
                 break;
+            case "selected":
+                this.players.forEach(function(player,id){
+                    if (player.selected) self.sendMessage(id, type, content);
+                });
+            case "allButSelected":
+                this.players.forEach(function(player,id){
+                    if (!player.selected) self.sendMessage(id, type, content);
+                });
+                break;
             case "all":
             default:
                 this.broadcastMessage(type, content);
@@ -442,7 +487,9 @@ PlayerManager.prototype = {
                     colors: this.players[playerId].colors,
                     seat: this.players[playerId].seat,
                     score: this.players[playerId].score,
-                    rank: this.players[playerId].rank
+                    rank: this.players[playerId].rank,
+                    selected: this.players[playerId].selected,
+                    away: this.players[playerId].away
                 },
                 colors: this.colors,
                 rating: this.rating[playerId]
@@ -535,7 +582,10 @@ PlayerManager.prototype = {
                 seat: this.players[i].seat,
                 score: this.players[i].score,
                 rank: this.players[i].rank,
-                timeRank: this.players[i].timeRank
+                timeRank: this.players[i].timeRank,
+                selected: this.players[i].selected,
+                onTurn: (i == this.onTurn),
+                away: this.players[i].away
             });
         }
         return ret;

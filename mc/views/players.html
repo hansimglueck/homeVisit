@@ -1,11 +1,12 @@
 <div class="container-fluid">
-    {{playerId}}
     <div class="player" ng-repeat="player in status.otherPlayers track by $index"
-         ng-style="{'top':playerPos[player.playerId].top, 'left':playerPos[player.playerId].left, 'background':playerColors[$index]}" ng-class="{dimm: !player.joined}">
-        <ul class="list-group list-unstyled" ng-style=''>
-            <li class="list-group-item">Score: {{player.score}} - Rank: {{player.rank}}</li>
-            <li class="list-group-item">
+         ng-style="{'top':playerPos[player.playerId].top, 'left':playerPos[player.playerId].left, 'background':playerColors[$index], 'color':awayColor(player.playerId)}" ng-class="{dimm: !player.joined}">
+        <ul class="list-group list-unstyled">
+            <li class="list-group-item" ng-class="{onTurn: player.onTurn}">Score: {{player.score}} &nbsp;&nbsp;  Rank: {{player.rank}} &nbsp;&nbsp;&nbsp;&nbsp; {{myTurn(player.playerId)}}</li>
+            <li class="list-group-item" ng-class="{selected: player.selected}">
                 <a class="btn btn-default" ng-href="#/players/{{player.playerId}}">Details</a>
+                <button class="btn" ng-click="toggleSelected(player.playerId)">{{playerSelected(player.playerId)}}</button>
+                <button class="btn" ng-click="toggleAway(player.playerId)">{{playerAway(player.playerId)}}</button>
             </li>
         </ul>
     </div>

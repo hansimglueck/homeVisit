@@ -34,6 +34,17 @@ body {
   background: #eee !important;
 }
 
+.selected {
+  border-color: #f00 !important;
+  background: #fcc !important;
+}
+
+.onTurn {
+  border-color: #f00 !important;
+  border-width: 3px !important;
+  background: #fcc !important;
+}
+
 .table-display {
   border-radius: 10px;
   position:absolute;

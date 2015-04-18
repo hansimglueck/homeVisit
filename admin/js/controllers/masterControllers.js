@@ -115,11 +115,12 @@ masterControllers.controller('DeviceCtrl', function($scope, Socket, itemOptions)
     };
 });
 
-masterControllers.controller('PlayerCtrl', function($scope, Socket) {
+masterControllers.controller('PlayerCtrl', function($scope, Socket, playerColors) {
     $scope.playerList = [];
     $scope.ratings = [];
     Socket.on("status", function(data) {
         $scope.playerList = data.otherPlayers;
+        $scope.playerColors = playerColors;
         $scope.ratings = data.avgRatings;
         console.log("got player list: "+JSON.stringify($scope.playerList));
     });

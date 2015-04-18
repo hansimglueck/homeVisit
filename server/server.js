@@ -32,6 +32,7 @@ wsManager.setSocketServer(wss);
 wsManager.onRole("player", playerManager, playerManager.playerMessage);
 wsManager.onType("register", playerManager, playerManager.requestStatus);
 wsManager.onType("score", playerManager, playerManager.scoreMessage);
+wsManager.onType("setPlayerStatus", playerManager, playerManager.setStatusMessage);
 
 var game = require('../game/game.js');
 wsManager.onType("playbackAction", game, game.trigger);
