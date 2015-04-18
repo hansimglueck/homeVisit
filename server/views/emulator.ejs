@@ -6,19 +6,24 @@
     <script src="/bower_components/jquery/dist/jquery.min.js"></script>
     <style>
         #wrapper{
-            min-width: 2800px;
+            /*min-width: 2800px;*/
+            display: flex;
+            flex-wrap: wrap;
         }
 
         .playerAppFrame {
-            width: 326px;
-            height: 555px;
+            width: 544px;
+            height: 320px;
             border: 0;
         }
         .playerAppDiv{
             position: relative;
-            transform: scale(0.7);
+            transform: scale(0.6);
             transform-origin: 0 0;
             float:left;
+            margin: -50px -150px -70px -50px;
+            left: 50px;
+            top: 50px;
         }
         .playerAppDiv button {
             font-size: 20px;
@@ -67,8 +72,8 @@
         var frames = $('.playerAppDiv');
         for (var i = 0; i < frames.length; i++) {
             //console.error(Math.floor(i / 8));
-            $(frames[i]).css('left', (i % 6) * -50);
-            $(frames[i]).css('top', (Math.floor(i / 6)) * -35);
+            //$(frames[i]).css('left', (i % 4) * -120);
+            //$(frames[i]).css('top', (Math.floor(i / 4)) * -35);
         }
     }
 </script>

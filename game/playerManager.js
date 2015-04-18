@@ -244,7 +244,7 @@ PlayerManager.prototype = {
     scoreMessage: function (clientId, role, msg) {
         if (msg.type == "score") {
             this.score(msg.data.playerId, msg.data.score);
-            
+
         }
     },
 
@@ -280,9 +280,9 @@ PlayerManager.prototype = {
         }
         this.sendPlayerStatus(-1);
     },
-    
+
     //wenn das game meint, die player sollten beschäftigt sein, ist das seine eingangstür
-    addItem: function (item) {
+    addItem: function (item, device) {
         try {
             if (!item.type) {
                 this.log("cannot process item (no type)!");
@@ -292,13 +292,13 @@ PlayerManager.prototype = {
                 case "vote":
                     this.polls[item.poll.id] = item.poll;
                     item.poll.setMaxVotes(this.players.filter(function(player){return player.joined}).length);
-                    this.deliverMessage(item.device, "display", item.getWsContent());
+                    this.deliverMessage(device, "display", item.getWsContent());
                     break;
                 case "card":
-                    this.deliverMessage(item.device, "display", item.getWsContent());
+                    this.deliverMessage(device, "display", item.getWsContent());
                     break;
                 case "results":
-                    this.deliverMessage(item.device, "display", item.getWsContent());
+                    this.deliverMessage(device, "display", item.getWsContent());
                     //this.results(item);
                     break;
                 case "playerDirect":
@@ -308,11 +308,11 @@ PlayerManager.prototype = {
                     this.eval(item.text);
                     break;
                 case "rating":
-                    console.log('->RATING<- ', item.device, item.getWsContent());
-                    this.deliverMessage(item.device, "display", item.getWsContent());
+                    console.log('->RATING<- ', device, item.getWsContent());
+                    this.deliverMessage(device, "display", item.getWsContent());
                     break;
                 case "deal":
-                    this.deliverMessage(item.device, "display", item.getWsContent());
+                    this.deliverMessage(device, "display", item.getWsContent());
                     break;
                 default:
                     break;

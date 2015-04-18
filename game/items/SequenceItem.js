@@ -294,7 +294,7 @@ SequenceItem.prototype = {
         })[0];
         //oder an die speziell gewünschten devices senden
         else {
-            map.devices = this.device.split(",");
+            map.devices = this.device;
         }
         if (typeof map === "undefined" || map.devices.length == 0) {
             this.log("keine Devices gefunden für " + this.type, true);
@@ -307,7 +307,7 @@ SequenceItem.prototype = {
             //alle anderen devices bekommen nur, getWsContent()
             //es kann auch zB player:next geben...
             if (dev.indexOf("player") == 0) {
-                playerManager.addItem(self);
+                playerManager.addItem(self, dev);
                 return;
             }
             //ist ein spezieller device-name angegeben? ZB für die buttons: button:red

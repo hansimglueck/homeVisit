@@ -19,7 +19,8 @@ angular.module('hvSetFactory', ['ngResource']).factory('setFactory', ['$resource
             deck.items.forEach(function (item) {
                 if (typeof item === 'undefined' || item === null)
                     return;
-                if (typeof item.device == "undefined") item.device = "default";
+                if (typeof item.device == "undefined") item.device = ["default"];
+                if (typeof item.device == "string") item.device = [item.device];
             })
         });
         $rootScope.$broadcast("decksLoaded")

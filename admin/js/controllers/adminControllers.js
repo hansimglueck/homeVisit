@@ -383,6 +383,18 @@ adminControllers.controller('itemCtrl', function ($scope, $filter, itemOptions) 
         $scope.decks[deckId].items[id].voteOptions.push($scope.decks[deckId].items[id].newVoteOpt);
         console.log($scope.decks[deckId].items[id].voteOptions);
     };
+
+    $scope.addDeviceToItem = function() {
+        $scope.item.device.push("");
+        $scope.updateDeck($scope.deck);
+    };
+
+    $scope.removeDeviceFromItem = function(devId) {
+        console.log($scope.item);
+        $scope.item.device.splice(devId,1);
+        $scope.updateDeck($scope.deck);
+    };
+
 })
     .controller('ImportJsonController', function ($scope) {
         $scope.processedJson = [];
