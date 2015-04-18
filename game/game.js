@@ -141,20 +141,6 @@ Game.prototype = {
             else this.sequence.appendItem(new SequenceItem(deck.items[i], i));
         }
     },
-
-    //TODO: anpassen
-    stop: function () {
-        this.play = false;
-        this.stepId = -1;
-        this.log("stopped game");
-        this.sendPlaybackStatus();
-    },
-    sendPlaybackStatus: function () {
-        wsManager.msgDevicesByRole('master', 'playBackStatus', {
-            stepId: this.stepId,
-            type: this.getItem() ? this.getItem().type : ""
-        });
-    }
  };
 
 var gameObj = new Game();

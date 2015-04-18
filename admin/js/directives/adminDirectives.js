@@ -66,11 +66,11 @@ angular.module('adminDirectives', [])
             templateUrl: 'views/admin/show-item-contents/show-vote-content.html'
         };
     })
-    .directive('showTradeContent', function () {
+    .directive('showDealContent', function () {
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'views/admin/show-item-contents/show-trade-content.html'
+            templateUrl: 'views/admin/show-item-contents/show-deal-content.html'
         };
     })
 

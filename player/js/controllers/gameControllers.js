@@ -32,7 +32,9 @@ angular.module("gameControllers", [])
         $scope.myColor = function () {
             return playerColors[Status.player.playerId];
         };
-
+        $scope.showScore = function() {
+            return (Status.otherPlayers.filter(function(player){return player.score != 0}).length > 0);
+        };
         $scope.baromaterHeight = 200;
         $scope.getBaroHeight = function () {
             return $scope.baromaterHeight.toString() + "px";

@@ -1,0 +1,27 @@
+.deal {
+}
+
+.deal, .deal-details, .deal-messages , .deal-messages-outer2 {
+    height: 100%;
+}
+
+.deal-details, .deal-messages, .deal-content, .deal-messages-history, .deal-messages-new {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+.deal-messages-outer1, .deal-messages-outer2 {
+
+}
+.deal-messages > div,
+.deal-messages-history > div,
+.deal-messages-new > div,
+.deal-details > div,
+.deal-content > div
+{
+    flex: 1 1 auto;
+}
+
+.deal-messages-history, .deal-messages-new {
+
+}

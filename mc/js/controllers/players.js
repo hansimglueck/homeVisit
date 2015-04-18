@@ -29,12 +29,12 @@ angular.module('homeVisitMCApp')
             {top: 490, left: 330},
             {top: 490, left: 15}
         ];
-        
+
         $scope.toggleSelected = function (id) {
             console.log("select player " + id);
             Socket.emit("setPlayerStatus", {cmd: "toggleSelected", id: id});
         }
-        
+
         $scope.playerSelected = function (id) {
             if (Status.otherPlayers[id].selected) {
                 return 'Deselect';
@@ -42,12 +42,12 @@ angular.module('homeVisitMCApp')
                 return 'Select';
             }
         }
-        
+
         $scope.toggleAway = function (id) {
             console.log("select player " + id);
             Socket.emit("setPlayerStatus", {cmd: "toggleAway", id: id});
         }
-        
+
         $scope.playerAway = function (id) {
             if (Status.otherPlayers[id].away) {
                 return 'Come Back!';
@@ -55,7 +55,7 @@ angular.module('homeVisitMCApp')
                 return 'Leave Table!';
             }
         }
-        
+
         $scope.myTurn = function (id) {
             if (Status.otherPlayers[id].onTurn) {
                 return 'My Turn!';
@@ -65,7 +65,7 @@ angular.module('homeVisitMCApp')
                 return '';
             }
         }
-        
+
         $scope.awayColor = function (id) {
             if (Status.otherPlayers[id].away) {
                 return '#aaa'
@@ -95,10 +95,10 @@ angular.module('homeVisitMCApp')
         }
     })
     .controller("PlayerDetailsCtrl", function ($scope, Socket, playerColors) {
-        
+
         $scope.socket = Socket;
         $scope.playerColors = playerColors;
-        
+
         $scope.score = function (id, val) {
             console.log("score " + val);
             //Socket.emit("setPlayerStatus", {cmd: "score", id: id, value: val});

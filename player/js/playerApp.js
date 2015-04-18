@@ -74,11 +74,16 @@ angular.module('playerApp', [
                     templateUrl: 'partials/deals/deal.details.html',
                     controller: 'DealDetailsController'
                 }).
+                when('/sound', {
+                    templateUrl: 'partials/sound.html',
+                    controller: 'SoundController'
+                }).
                 otherwise({
                     redirectTo: '/home'
                 });
         }])
-    .run(function(Socket){
+    .run(function(Socket, Home){
+        Home.start();
         Socket.connect('player');
     })
 ;

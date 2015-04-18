@@ -13,12 +13,14 @@
     <link rel="stylesheet" href="css/player.css"/>
     <link rel="stylesheet" href="css/score.css"/>
     <link rel="stylesheet" href="css/results.css"/>
+    <link rel="stylesheet" href="css/deal.css"/>
+    <link rel="stylesheet" href="css/animation.css"/>
 
     <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
-    <!--
+<!--
         <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
         <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
         -->
@@ -46,6 +48,8 @@
       ng-swipe-left='Ui.turnOff("uiSidebarLeft")'
       ng-controller="MainController"
       ng-app="playerApp">
+
+<div ng-class="{'turn':turn, 'no-turn':!turn}">
 <!-- Sidebars -->
 <!--
 <div class="sidebar sidebar-left" ng-controller="MenuController">
@@ -74,7 +78,29 @@
 </div>
 -->
 <!--<div class="app-border" ng-style="col1border()">-->
-<div class="app" ng-style="{'border':'solid 5px', 'border-color':playerColors[status.player.playerId]}">
+<div id="animation-overlay" ng-controller="overlayController">
+    <div class="animation-element score-alert score-up-animate green" ng-repeat="a in fx.posAlerts track by $index">
+            <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x semi-transparent"></i>
+                <i class="fa fa-stack-1x">{{a}}</i>
+            </span>
+    </div>
+    <div class="animation-element score-alert score-down-animate red" ng-repeat="a in fx.negAlerts track by $index">
+                       <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x semi-transparent"></i>
+                <i class="fa fa-stack-1x">{{a}}</i>
+            </span>
+
+    </div>
+    <div class="animation-element countdown countdown-animate red" ng-if="fx.countdown.display">
+                       <span class="fa-stack">
+                <i class="fa fa-certificate fa-stack-2x countdown-background"></i>
+                <i class="fa fa-stack-1x fa-inverse countdown-counter">{{fx.countdown.count}}</i>
+            </span>
+
+    </div>
+</div>
+<div class="app" ng-style="{'border-color':playerColors[status.player.playerId]}">
     <!--
     <div class="navbar navbar-app navbar-absolute-top text-center" ng-controller="NavbarController">
         <div>
@@ -96,38 +122,16 @@
         </div>
     </div>
     -->
-    <div id="animation-overlay" ng-controller="overlayController">
-        <div class="animation-element score-alert score-up-animate green" ng-repeat="a in fx.posAlerts track by $index">
-            <span class="fa-stack">
-                <i class="fa fa-circle fa-stack-2x semi-transparent"></i>
-                <i class="fa fa-stack-1x">{{a}}</i>
-            </span>
-        </div>
-        <div class="animation-element score-alert score-down-animate red" ng-repeat="a in fx.negAlerts track by $index">
-                       <span class="fa-stack">
-                <i class="fa fa-circle fa-stack-2x semi-transparent"></i>
-                <i class="fa fa-stack-1x">{{a}}</i>
-            </span>
-
-        </div>
-        <div class="animation-element countdown countdown-animate red" ng-if="fx.countdown.display">
-                       <span class="fa-stack">
-                <i class="fa fa-certificate fa-stack-2x countdown-background"></i>
-                <i class="fa fa-stack-1x fa-inverse countdown-counter">{{fx.countdown.count}}</i>
-            </span>
-
-        </div>
-    </div>
 
     <!-- App body -->
-    <div id="score">
+    <div class="score" ng-show="showScore()" ng-controller="ScoreController">
         <div id="score_stats">
             <p class="score_stats_entry">
                 Rank: {{status.player.rank}}<br/>
                 Pts: {{status.player.score}}<br/>
             </p>
         </div>
-        <div id="score_barometer" ng-style="{'height': getBaroHeight()}" ng-controller="ScoreController">
+        <div id="score_barometer" ng-style="{'height': getBaroHeight()}">
             <div id="baro_vert_line" ng-style="{'height': getBaroHeight()}"></div>
             <!--<div id="baro_top_line"></div>-->
             <!--<div id="baro_bottom_line" ng-style="{'top': getBaroHeight()}"></div>-->
@@ -163,6 +167,6 @@
 </div>
 <!-- ~ .app -->
 
-<div ui-yield-to="modals"></div>
+</div>
 </body>
 </html>
