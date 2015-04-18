@@ -355,6 +355,14 @@ SequenceItem.prototype = {
                     color: this.color
                 };
                 break;
+            case "deal":
+                content = {
+                    type: this.type,
+                    text: this.text,
+                    dealType: this.dealType,
+                    maxSteps: this.maxSteps
+                };
+                break;
             default:
                 content = {
                     type: this.type,
@@ -401,10 +409,13 @@ SequenceItem.prototype = {
         this.polls[this.poll.id] = (this.poll);
     },
     sendPlaybackStatus: function () {
-        wsManager.msgDevicesByRole('master', 'playBackStatus', {
+        var playbackStatus = {
             stepId: this.id,
-            type: this.type
-        });
+            type: this.type,
+            deckId: gameConf.conf.startDeckId
+        };
+        wsManager.msgDevicesByRole('master', 'playBackStatus', playbackStatus);
+        wsManager.msgDevicesByRole('MC', 'playBackStatus', playbackStatus);
     }
 
 };

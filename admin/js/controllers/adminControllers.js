@@ -178,7 +178,7 @@ adminControllers.controller('setCtrl', function ($scope, setFactory, $location, 
 
 adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
     $scope.name = "deck";
-
+    console.log($scope.deck);
     $scope.showFollowUp = function (option) {
         //console.log("showFollowUp");
         var selected = [];
@@ -245,7 +245,6 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
             trigger: 'go',
             type: 'card',
             text: '',
-            time: '',
             device: "default"
         };
         if (typeof itemId == "undefined") $scope.deck.items.push($scope.inserted);

@@ -82,7 +82,8 @@ angular.module('playerApp', [
                     redirectTo: '/home'
                 });
         }])
-    .run(function(Socket){
+    .run(function(Socket, Home){
+        Home.start();
         Socket.connect('player');
     })
 ;

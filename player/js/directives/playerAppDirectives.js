@@ -23,7 +23,6 @@ angular.module('playerAppDirectives', [])
             },
             controller: function($scope, playerColors) {
                 $scope.playerColors = playerColors;
-                $scope.colors = colors;
             },
             templateUrl: 'views/player-icon.html'
         };

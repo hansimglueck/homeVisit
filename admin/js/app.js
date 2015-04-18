@@ -14,7 +14,9 @@ var app = angular.module('homevisitAdmin', [
     'luegg.directives',
     'angular.filter',
     'ngRoute',
-    'hvPlayerColors'
+    'hvPlayerColors',
+    'hvItemOptions',
+    'hvSetFactory'
 ])
 .config(function ($routeProvider, $anchorScrollProvider) {
 //        $locationProvider.html5Mode(true);

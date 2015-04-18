@@ -1,0 +1,32 @@
+.deal-title {
+    font-size: 20px;
+    font-weight: bold;
+}
+.deal-messages-history {
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.deal-messages-new button {
+    margin-bottom: 10px;
+}
+
+.deal, .deal-details, .deal-messages , .deal-messages-outer2 {
+ }
+
+.deal-details, .deal-messages, .deal-content, .deal-messages-history, .deal-messages-new {
+}
+.deal-messages-outer1, .deal-messages-outer2 {
+
+}
+.deal-messages > div,
+.deal-messages-history > div,
+.deal-messages-new > div,
+.deal-details > div,
+.deal-content > div
+{
+}
+
+.deal-messages-history, .deal-messages-new {
+
+}

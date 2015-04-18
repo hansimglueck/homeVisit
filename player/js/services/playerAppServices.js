@@ -1,5 +1,5 @@
 angular.module('playerAppServices', [])
-     .factory('Home', function (Socket, $location, fxService, Status, $timeout, DealFactory) {
+    .factory('Home', function (Socket, $location, fxService, Status, $timeout, DealFactory) {
         var homeFactory = {};
         homeFactory.displayData = {};
         homeFactory.type = "vote";
@@ -52,100 +52,103 @@ angular.module('playerAppServices', [])
             $location.path("/voteFinished");
         };
 
-        Socket.on('display', function (data) {
-            console.log("new display: " + data.type);
-            homeFactory.type = "card";
-            homeFactory.labels = [];
-            homeFactory.options = null;
-            if (data) {
-                if (!!data.text) homeFactory.text = data.text.split("::");
-                //homeFactory.showGo = false;
-                if (typeof data.showGo != "undefined") homeFactory.showGo = data.showGo;
-                homeFactory.displayData = data;
-                if (data.type) {
-                    switch (data.type) {
-                        case "vote":
-                            homeFactory.type = "vote";
-                            homeFactory.voteType = data.voteType;
-                            homeFactory.options = data.voteOptions || [{value: 0}];
-                            if (homeFactory.voteType == "enterNumber") homeFactory.options[0].checked = true;
-                            homeFactory.limit = (homeFactory.voteType == "customOptions") ? 1 : data.voteMulti;
-                            homeFactory.checked = 0;
-                            homeFactory.votelast = "vote";
-                            homeFactory.pollId = data.pollId;
-                            homeFactory.ratedVote = data.ratedVote;
-                            homeFactory.time = parseInt(data.time);
-                            homeFactory.timedVote();
-                            fxService.playSound("poll");
-                            $location.path("/vote");
-                            return;
-                            break;
-                        case "results":
-                            var resultType = data.resultType;
-                            var result = data.data;
-                            var msg = data.text;
+        homeFactory.start = function () {
+            Socket.on('display', function (data) {
+                console.log("new display: " + data.type);
+                homeFactory.type = "card";
+                homeFactory.labels = [];
+                homeFactory.options = null;
+                if (data) {
+                    if (!!data.text) homeFactory.text = data.text.split("::");
+                    //homeFactory.showGo = false;
+                    if (typeof data.showGo != "undefined") homeFactory.showGo = data.showGo;
+                    homeFactory.displayData = data;
+                    if (data.type) {
+                        switch (data.type) {
+                            case "vote":
+                                homeFactory.type = "vote";
+                                homeFactory.voteType = data.voteType;
+                                homeFactory.options = data.voteOptions || [{value: 0}];
+                                if (homeFactory.voteType == "enterNumber") homeFactory.options[0].checked = true;
+                                homeFactory.limit = (homeFactory.voteType == "customOptions") ? 1 : data.voteMulti;
+                                homeFactory.checked = 0;
+                                homeFactory.votelast = "vote";
+                                homeFactory.pollId = data.pollId;
+                                homeFactory.ratedVote = data.ratedVote;
+                                homeFactory.time = parseInt(data.time);
+                                homeFactory.timedVote();
+                                fxService.playSound("poll");
+                                $location.path("/vote");
+                                return;
+                                break;
+                            case "results":
+                                var resultType = data.resultType;
+                                var result = data.data;
+                                var msg = data.text;
 
-                            var labels = [];
-                            var resData = [];
-                            homeFactory.correctAnswer = "";
-                            //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
-                            if (resultType == "numberStats") {
-                                //send stats as array: [sum, avg]
-                                resData = [result.sum, result.average, result.minVal, result.maxVal];
-                            }
-                            else result.voteOptions.forEach(function (option) {
-                                if (option.correctAnswer) homeFactory.correctAnswer = option.text;
-                                labels.push(option.text + ": " + option.percent + "% (" + option.votes + " Votes)");
-                                if (resultType == "europeMap") resData.push({
-                                    id: option.value,
-                                    val: option.percent
+                                var labels = [];
+                                var resData = [];
+                                homeFactory.correctAnswer = "";
+                                //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
+                                if (resultType == "numberStats") {
+                                    //send stats as array: [sum, avg]
+                                    resData = [result.sum, result.average, result.minVal, result.maxVal];
+                                }
+                                else result.voteOptions.forEach(function (option) {
+                                    if (option.correctAnswer) homeFactory.correctAnswer = option.text;
+                                    labels.push(option.text + ": " + option.percent + "% (" + option.votes + " Votes)");
+                                    if (resultType == "europeMap") resData.push({
+                                        id: option.value,
+                                        val: option.percent
+                                    });
+                                    else resData.push(option.result);
                                 });
-                                else resData.push(option.result);
-                            });
 
-                            homeFactory.resultType = resultType;
-                            (homeFactory.resultType == 'Bar' || homeFactory.resultType == 'Line') ? homeFactory.data = [resData] : homeFactory.data = resData;
-                            homeFactory.labels = labels;
-                            homeFactory.votelast = "result";
-                            homeFactory.type = "result";
-                            homeFactory.resultColor = data.resultColor;
-                            $location.path("/results");
-                            return;
-                            break;
-                        case "rating":
-                            homeFactory.type = "rating";
-                            $location.path("/rating");
-                            return;
-                            break;
-                        case "card":
-                            break;
-                        case "browser":
-                            homeFactory.type = "browser";
-                            break;
-                        case "seatOrder":
-                            $location.path('/rating');
-                            return;
-                            break;
-                        case "black":
-                            $location.path('/score');
-                            return;
-                            break;
-                        case "deal":
-                            var dealType = "";
-                            if (typeof data.dealType !== "undefined") dealType = data.dealType;
-                            $location.path('/deals/new/' + dealType);
-                            return;
-                            break;
-                        case "alert":
-                            fxService.playSound("alert");
-                            return;
-                            break;
+                                homeFactory.resultType = resultType;
+                                (homeFactory.resultType == 'Bar' || homeFactory.resultType == 'Line') ? homeFactory.data = [resData] : homeFactory.data = resData;
+                                homeFactory.labels = labels;
+                                homeFactory.votelast = "result";
+                                homeFactory.type = "result";
+                                homeFactory.resultColor = data.resultColor;
+                                $location.path("/results");
+                                return;
+                                break;
+                            case "rating":
+                                homeFactory.type = "rating";
+                                $location.path("/rating");
+                                return;
+                                break;
+                            case "card":
+                                console.log("we have to show a card!");
+                                break;
+                            case "browser":
+                                homeFactory.type = "browser";
+                                break;
+                            case "seatOrder":
+                                $location.path('/rating');
+                                return;
+                                break;
+                            case "black":
+                                $location.path('/score');
+                                return;
+                                break;
+                            case "deal":
+                                var dealType = "";
+                                if (typeof data.dealType !== "undefined") dealType = data.dealType;
+                                $location.path('/deals/new/' + dealType);
+                                return;
+                                break;
+                            case "alert":
+                                fxService.playSound("alert");
+                                return;
+                                break;
+                        }
+                        $location.path('/home');
+
                     }
-                    $location.path('/home');
-
                 }
-            }
-        });
+            });
+        }
         return homeFactory;
     })
     .factory('GameConf', function (Socket) {
@@ -321,7 +324,7 @@ angular.module('playerAppServices', [])
             fxService.countdown.count = 0;
         };
         fxService.playSound = function (id) {
-            console.log("fxService.play "+id);
+            console.log("fxService.play " + id);
             fxService.sound[id].play();
         };
         return fxService;

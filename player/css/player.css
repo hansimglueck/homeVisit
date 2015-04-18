@@ -13,6 +13,8 @@ body {
 }
 
 .no-turn {
+    width: 544px;
+    height: 320px;
 }
 
 .app {

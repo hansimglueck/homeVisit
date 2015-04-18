@@ -38,7 +38,7 @@ angular.module("dealControllers", [])
             if (typeof message.playerId == "undefined") me = true;
             var first = ($scope.status.player.playerId == $scope.deal.player0Id);
 
-            var ret = ["I like to deal " + $scope.deal.subject + " with you!"];
+            var ret = ["I like to deal!"];
             var balance = getBalance(value, me ^ !first);
             if (balance < 0) {
                 ret.push(" I offer " + (-1) * balance + " points.");
@@ -62,6 +62,7 @@ angular.module("dealControllers", [])
         $scope.getMyDealState = function () {
             return DealFactory.getMyDealState($scope.deal);
         };
+        //die optionen für jeden schritt...
         $scope.messageOptions = [
             [
                 {type: "request", value: 0},
@@ -71,11 +72,21 @@ angular.module("dealControllers", [])
                 type: "cancel"
             }],
             [
-                {type: "request", value: 0},
+                {type: "request", value: 1},
+                {type: "request", value: 2},
                 {type: "confirm"},
                 {type: "deny"}
             ]
         ];
+        $scope.lastMessageOptions = [
+            {type: "confirm"},
+            {type: "deny"}
+        ];
+        $scope.getMessageOptions = function () {
+            var myState = $scope.getMyDealState();
+            if ($scope.deal.messages.length > $scope.deal.maxMessages - 1) return $scope.lastMessageOptions;
+            return $scope.messageOptions[myState];
+        };
     })
     .controller('ChooseDealSubjectController', function ($scope) {
         $scope.subjects = [

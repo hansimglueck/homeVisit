@@ -148,4 +148,16 @@ angular.module('mcAppServices', [])
         ];
         return pollFactory;
     })
+    .factory('Deck', function(Socket, setFactory){
+        var playbackStatus = {stepId: -1, type:"nix", deckId: null};
+        var deck = null;
+        var deckFactory = {};
+        Socket.on("playBackStatus", function(status) {
+            playbackStatus = status;
+            console.log("got playbackStatus info: "+JSON.stringify(status));
+            deckFactory.deck = setFactory.getDeckById(playbackStatus.deckId);
+            deckFactory.stepId = playbackStatus.stepId;
+        });
+        return deckFactory;
+    })
 ;
