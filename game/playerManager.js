@@ -11,6 +11,7 @@ PlayerManager = function () {
     this.directItems = [];
     this.resultItems = [];
     this.onTurn = 0;
+    this.upcoming = 1;
     this.polls = {};
     this.deals = {};
 };
@@ -263,11 +264,11 @@ PlayerManager.prototype = {
                     this.players[data.id].away ^= true;
                     console.log("Set Player #: " + data.id + " .away = " + this.players[data.id].away );
                     break;
-
-                case "setNext":
-                    console.log("Set Player #: " + data.id + " as next");
+                case "setUpcoming":
+                    this.advanceTurnTo(this.upcoming);
+                    this.setUpcoming(data.id);
+                    console.log("Set Player #: " + data.id + " as upcoming");
                     break;
-
                 case "setAct":
                     console.log("Set Player #: " + data.id + " as active");
                     break;
@@ -435,7 +436,11 @@ PlayerManager.prototype = {
             case "next":
                 // wir hoffen, dass die websocket-nachrichten in richtiger sequenz durchs netz flitzen....
                 this.broadcastMessage(type, {type: "black"});
-                this.advanceTurn(1);
+                if (this.upcoming == this.onTurn + 1 || this.upcoming == -1) {
+                    this.advanceTurn(1);
+                } else {
+                    this.advanceTurnTo(this.upcoming);
+                }
                 this.sendMessage(this.onTurn, type, content);
                 break;
             case "act":
@@ -585,6 +590,7 @@ PlayerManager.prototype = {
                 timeRank: this.players[i].timeRank,
                 selected: this.players[i].selected,
                 onTurn: (i == this.onTurn),
+                upcoming: (i == this.upcoming),
                 away: this.players[i].away
             });
         }
@@ -669,11 +675,45 @@ PlayerManager.prototype = {
         this.onTurn += x;
         this.onTurn %= this.players.length;
         if (!this.players[this.onTurn].joined || this.players[this.onTurn].away) {
+            if (this.upcoming == this.onTurn) {
+                this.upcoming = -1;
+            }
             this.advanceTurn(1);
             return;
         }
+        if (this.upcoming == this.onTurn || this.upcoming == -1) {
+            this.setUpcoming(this.onTurn + 1);
+        }
         this.sendPlayerStatus(-1);
         console.log("Now on turn: "+this.onTurn);
+    },
+    advanceTurnTo: function(x) {
+        this.onTurn = x;
+        this.onTurn %= this.players.length;
+        if (!this.players[this.onTurn].joined || this.players[this.onTurn].away) {
+            if (this.upcoming == this.onTurn) {
+                this.upcoming = -1;
+            }
+            this.advanceTurn(1);
+            return;
+        }
+        if (this.upcoming == this.onTurn || this.upcoming == -1) {
+            this.setUpcoming(this.onTurn + 1);
+        }
+        this.sendPlayerStatus(-1);
+        console.log("Now on turn: "+this.onTurn);
+    },
+    
+    // der, der nach dem nächsten dran sein soll
+    setUpcoming: function(x) {
+        this.upcoming = x;
+        this.upcoming %= this.players.length;
+        if (!this.players[this.upcoming].joined || this.players[this.upcoming].away) {
+            this.upcoming(x + 1);
+            return;
+        }
+        this.sendPlayerStatus(-1);
+        console.log("Next on turn: "+this.upcoming);
     },
 
     getCheckedVotes: function (voteId) {

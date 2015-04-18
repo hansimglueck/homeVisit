@@ -45,6 +45,11 @@ body {
   background: #fcc !important;
 }
 
+.upcoming {
+  border-color: #f00 !important;
+  border-width: 3px !important;
+}
+
 .table-display {
   border-radius: 10px;
   position:absolute;

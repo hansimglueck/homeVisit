@@ -62,7 +62,7 @@ angular.module('homeVisitMCApp')
             } else if (Status.otherPlayers[id].away) {
                 return 'Away';
             } else {
-                return '---';
+                return '';
             }
         }
         
@@ -72,6 +72,26 @@ angular.module('homeVisitMCApp')
             } else {
                 return ''
             }
+        }
+        
+        $scope.isOnTurn = function(id) {
+            return Status.otherPlayers[id].onTurn;
+        }
+        
+        $scope.isUpcoming = function(id) {
+            return Status.otherPlayers[id].upcoming;
+        }
+        
+        $scope.wantsToBeNext = function(id) {
+            if (!Status.otherPlayers[id].onTurn && !Status.otherPlayers[id].away && Status.otherPlayers[id].joined) {
+                return true;
+            }
+            return false;
+        }
+        
+        $scope.upcomingPlayer = function(id) {
+            Socket.emit("setPlayerStatus", {cmd: "setUpcoming", id: id});
+            console.log("Ich bin als naechstes dran: Player " + id);
         }
     })
     .controller("PlayerDetailsCtrl", function ($scope, Socket, playerColors) {
