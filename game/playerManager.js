@@ -672,6 +672,7 @@ PlayerManager.prototype = {
             this.advanceTurn(1);
             return;
         }
+        this.sendPlayerStatus(-1);
         console.log("Now on turn: "+this.onTurn);
     },
 
