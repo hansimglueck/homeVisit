@@ -1,3 +1,5 @@
+var mongoUri = require('../homevisitConf').mongoUri;
+
 var MongoClient = require('mongodb').MongoClient;
 var db;
 
@@ -7,7 +9,7 @@ module.exports = function(cb){
         return true;
     }
 
-    MongoClient.connect('mongodb://localhost/homeVisit', function(err, conn) {
+    MongoClient.connect(mongoUri, function(err, conn) {
         if(err){
             console.log(err.message);
             return false;
