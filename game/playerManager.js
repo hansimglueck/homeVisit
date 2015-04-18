@@ -265,7 +265,6 @@ PlayerManager.prototype = {
                     console.log("Set Player #: " + data.id + " .away = " + this.players[data.id].away );
                     break;
                 case "setUpcoming":
-                    this.advanceTurnTo(this.upcoming);
                     this.setUpcoming(data.id);
                     console.log("Set Player #: " + data.id + " as upcoming");
                     break;
