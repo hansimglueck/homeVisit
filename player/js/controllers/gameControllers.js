@@ -33,7 +33,7 @@ angular.module("gameControllers", [])
             return playerColors[Status.player.playerId];
         };
 
-        $scope.baromaterHeight = 350;
+        $scope.baromaterHeight = 200;
         $scope.getBaroHeight = function () {
             return $scope.baromaterHeight.toString() + "px";
         }

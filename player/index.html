@@ -6,15 +6,24 @@
     <meta name="mobile-web-app-capable" content="yes">
     <title>HomeVisitApp</title>
     <link rel="stylesheet" href="/bower_components/angular-chart.js/dist/angular-chart.css">
-    <link rel="stylesheet" href="/bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <!--
+        <link rel="stylesheet" href="/bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css">
+    -->
     <link rel="stylesheet" href="css/player.css"/>
     <link rel="stylesheet" href="css/score.css"/>
+    <link rel="stylesheet" href="css/results.css"/>
 
+    <script src="/bower_components/jquery/dist/jquery.js"></script>
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
-    <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
-    <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
+    <!--
+        <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
+        <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
+        -->
+    <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
+
     <script src="/bower_components/Chart.js/Chart.js"></script>
     <script src="/bower_components/angular-chart.js/angular-chart.js"></script>
     <script src="/bower_components/angular-audio/app/angular.audio.js"></script>
@@ -38,6 +47,7 @@
       ng-controller="MainController"
       ng-app="playerApp">
 <!-- Sidebars -->
+<!--
 <div class="sidebar sidebar-left" ng-controller="MenuController">
     <div class="scrollable">
         <h1 class="scrollable-header app-name">Menu</h1>
@@ -62,8 +72,10 @@
         </div>
     </div>
 </div>
+-->
 <!--<div class="app-border" ng-style="col1border()">-->
 <div class="app" ng-style="{'border':'solid 5px', 'border-color':playerColors[status.player.playerId]}">
+    <!--
     <div class="navbar navbar-app navbar-absolute-top text-center" ng-controller="NavbarController">
         <div>
             <div>
@@ -83,6 +95,7 @@
             </div>
         </div>
     </div>
+    -->
     <div id="animation-overlay" ng-controller="overlayController">
         <div class="animation-element score-alert score-up-animate green" ng-repeat="a in fx.posAlerts track by $index">
             <span class="fa-stack">
@@ -107,48 +120,44 @@
     </div>
 
     <!-- App body -->
-    <div id="score_stats">
-        <p class="score_stats_entry">
-            Rank: {{status.player.rank}}<br/>
-            Pts: {{status.player.score}}<br/>
-        </p>
-    </div>
-
-
-    <div id="score_barometer" ng-style="{'height': getBaroHeight()}" ng-controller="ScoreController">
-        <div id="baro_vert_line" ng-style="{'height': getBaroHeight()}"></div>
-        <!--<div id="baro_top_line"></div>-->
-        <!--<div id="baro_bottom_line" ng-style="{'top': getBaroHeight()}"></div>-->
-        <div class="baro_others_line" ng-repeat="player in status.otherPlayers track by $index"
-             ng-style="{'top': getLinePos($index)}">
-            <div class="score_label">
-                {{player.score}}
-            </div>
+    <div id="score">
+        <div id="score_stats">
+            <p class="score_stats_entry">
+                Rank: {{status.player.rank}}<br/>
+                Pts: {{status.player.score}}<br/>
+            </p>
         </div>
-
-        <div class="baro_my_line" ng-style="{'top': getMyLinePos()}">
-            <div class="my_score_label_top" ng-style="{'background':myColor()}"></div>
-            <!--<div class="my_score_label_bottom" ng-controller="NavbarController" ng-style="col2()"></div>-->
-            <div class="my_score_label">
-                {{status.player.score}}
+        <div id="score_barometer" ng-style="{'height': getBaroHeight()}" ng-controller="ScoreController">
+            <div id="baro_vert_line" ng-style="{'height': getBaroHeight()}"></div>
+            <!--<div id="baro_top_line"></div>-->
+            <!--<div id="baro_bottom_line" ng-style="{'top': getBaroHeight()}"></div>-->
+            <div class="baro_others_line" ng-repeat="player in status.otherPlayers track by $index"
+                 ng-style="{'top': getLinePos($index)}">
+                <div class="score_label">
+                    {{player.score}}
+                </div>
             </div>
+
+            <div class="baro_my_line" ng-style="{'top': getMyLinePos()}">
+                <div class="my_score_label_top" ng-style="{'background':myColor()}"></div>
+                <!--<div class="my_score_label_bottom" ng-controller="NavbarController" ng-style="col2()"></div>-->
+                <div class="my_score_label">
+                    {{status.player.score}}
+                </div>
+            </div>
+
+            <div id="baro_positive" ng-style="{'height': getPosHeight()}"></div>
+            <div id="baro_negative" ng-style="{'height': getBaroHeight()}"></div>
         </div>
-
-        <div id="baro_positive" ng-style="{'height': getPosHeight()}"></div>
-        <div id="baro_negative" ng-style="{'height': getBaroHeight()}"></div>
     </div>
-    <div class='app-body scrollable'>
-
-        <div class='app-content text-center scrollable-content'>
-            <div ng-show="debug">
-                DEBUG: {{type}}, {{player}}, {{col1}}, {{avgRating}}
-            </div>
-
-            <div ng-show="player.playerId==-1">
-                could not log you in to the game (maybe there already enough players?)
-            </div>
-            <div class="content" ng-view>
-            </div>
+    <div class='content text-center scrollable-content'>
+        <div ng-show="debug">
+            DEBUG: {{type}}, {{player}}, {{col1}}, {{avgRating}}
+        </div>
+        <div ng-show="player.playerId==-1">
+            could not log you in to the game (maybe there already enough players?)
+        </div>
+        <div class="view-content" ng-view>
         </div>
     </div>
 </div>

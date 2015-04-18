@@ -1,57 +1,38 @@
+body, html {
+    width: 100%;
+    height: 100%;
+}
+
+.app {
+    height: 100%;
+    border: solid 5px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+#score {
+    position: relative;
+    width: 80px;
+    height: 300px;
+    flex: 1 0 auto;
+    padding-left: 20px;
+}
 
 .content {
-    background-color: inherit;
-    #padding-top: 30px;
-    font-size: 1.2em;
-}
-.chart-container {
-    width: 200px
-}
-.pie-legend {
-    padding: 0;
-    position: relative;
-    left: 200px;
-    top: -200px;
+    #background-color: #006699;
+    font-size: 1.4em;
+    flex: 24 1 auto;
+    height: 100%;
 }
 
-.pie-legend li {
-    white-space: normal !important;
-}
-.app-border {
-    width: 100%;
-    height:100%;
+.view-content {
+    height: 100%;
 }
 
-.navbar {
-    background: #d3d3d3;
-    color: black;
-    display: none;
-}
-.app {
-    background: transparent !important;
-}
-.app-content {
-    #background: white;
-}
-
-.playback-control {
-    margin-top: 10px;
-}
 .wide-list li {
     margin: 0.8em;
 }
 
-
-.btn {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.navbarbtn {
-    height: 50px;
-    padding: 12px;
-    font-size: 1.5em;
-    float: left;
-}
 .bigger {
     font-size: 1.5em;
 }
@@ -62,6 +43,7 @@
     margin-top: 15px;
     display: inline-block;
 }
+
 .player-icon-med {
     width: 80px;
     height: 40px;
@@ -69,6 +51,7 @@
     margin-right: 5px;
     display: inline-block;
 }
+
 .player-icon-xs {
     width: 40px;
     height: 20px;
@@ -76,54 +59,9 @@
     margin-right: 5px;
     display: inline-block;
 }
-.player-grid {
-    padding-top: 10px;
-    font-size: 1.3em;
-}
-
-.player-grid-item {
-    margin-bottom: 15px;
-
-}
-.player-grid-buttons {
-    font-size: 0.8em;
-    margin-top: 5px;
-}
-
-.player-grid-buttons button {
-    padding: 0;
-    border: none;
-    background: inherit;
-}
-
-.badge-notification {
-    background-color: red;
-    color:white;
-    font-size:0.6em;
-    font-weight:bold;
-    position:relative;
-    right:2em;
-    margin-right: -2em;
-    top:-1em;
-
-}
-
-.badge-flag-notification {
-    background-color: red;
-    color: white;
-    font-size:0.8em;
-    font-weight: bold;
-    position: relative;
-    bottom: 55px;
-    left: 40px;
-}
-
-.margin-top {
-    margin-top: 1em;
-}
 
 .rotDiv {
-    position:relative;
+    position: relative;
     top: 100px;
     font-size: 2em;
 }
@@ -133,7 +71,7 @@
     top: 50px;
     left: 0px;
     z-index: 100;
-    height:100%;
+    height: 100%;
     width: 100%;
 }
 
@@ -157,93 +95,4 @@
 
 .green {
     color: forestgreen;
-}
-#animation-overlay {
-    position:fixed;
-    width: 100%;
-    height: 100%;
-    z-index: 1000;
-    pointer-events: none;
-}
-.animation-element {
-    position: fixed;
-    left: 0;
-    right: 0;
-    font-size: 200px;
-    text-align: center;
-}
-.score-alert {
-    border-radius: 50%;
-    font-size: 140px;
-    font-weight: bolder;
-    margin: auto;
-    top: 100px;
-}
-.semi-transparent{
-    color: rgba(255,255,255,0.8);
-}
-.score-up-animate.ng-enter,
-.score-down-animate.ng-enter{
-    -webkit-transition:all ease 2s;
-}
-.score-up-animate.ng-leave,
-.score-down-animate.ng-leave {
-    -webkit-transition:all ease-in-out 1s;
-}
-
-.score-down-animate.ng-enter,
-.score-up-animate.ng-enter {
-    opacity:0;
-    top: 150px;
-    font-size: 10px;
-}
-.score-up-animate.ng-leave,
-.score-up-animate.ng-enter.ng-enter-active,
-.score-down-animate.ng-leave,
-.score-down-animate.ng-enter.ng-enter-active {
-    opacity:1;
-    top:100px;
-    font-size: 140px;
-}
-.score-up-animate.ng-leave.ng-leave-active
- {
-    opacity:0.5;
-    top: -200px;
-    font-size: 120px;
-}
-.score-down-animate.ng-leave.ng-leave-active
-{
-    opacity:0;
-    top: 480px;
-    font-size: 180px;
-}
-
-.countdown {
-    left: -200px;
-    top: -180px;
-    font-size: 300px;
-    text-align: left;
-}
-.countdown-background{
-    font-size: 3em;
-    top: -200px;
-    left: -260px;
-}
-.countdown-counter {
-    font-size: 0.8em;
-    top:-20px;
-}
-.countdown-animate.ng-enter {
-    -webkit-transition:all linear 0.3s;
-}
-.countdown-animate.ng-leave {
-    -webkit-transition:all ease-in-out 0.7s;
-}
-.countdown-animate.ng-enter,
-.countdown-animate.ng-leave.ng-leave-active {
-    opacity: 0.1;
-}
-.countdown-animate.ng-enter.ng-enter-active,
-.countdown-animate.ng-leave {
-    opacity: 0.6;
 }

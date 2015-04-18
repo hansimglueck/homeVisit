@@ -19,35 +19,6 @@ angular.module("playerControllers", [])
         $scope.data = {
             voteNumber: 0
         };
-        $scope.options = {
-            scaleOverlay: false,
-            scaleOverride: false,
-            scaleSteps: null,
-            scaleStepWidth: null,
-            scaleStartValue: null,
-            scaleLineColor: "rgba(0,0,0,.1)",
-            scaleLineWidth: 1,
-            scaleShowLabels: true,
-            scaleLabel: "<%=value%>",
-            scaleFontFamily: "'proxima-nova'",
-            scaleFontSize: 10,
-            scaleFontStyle: "normal",
-            scaleFontColor: "#909090",
-            scaleShowGridLines: true,
-            scaleGridLineColor: "rgba(0,0,0,.05)",
-            scaleGridLineWidth: 1,
-            bezierCurve: true,
-            pointDot: true,
-            pointDotRadius: 3,
-            pointDotStrokeWidth: 1,
-            datasetStroke: true,
-            datasetStrokeWidth: 2,
-            datasetFill: true,
-            animation: true,
-            animationSteps: 60,
-            animationEasing: "easeOutQuart",
-            onAnimationComplete: null
-        };
         $scope.playSound = function () {
             console.log("play sound");
             $scope.sound.play();
@@ -108,6 +79,37 @@ angular.module("playerControllers", [])
     })
     .controller('ResultsController', function($scope, Home){
         $scope.home = Home;
+        $scope.pieChartOptions = {
+            scaleOverlay: false,
+            scaleOverride: false,
+            scaleSteps: null,
+            scaleStepWidth: null,
+            scaleStartValue: null,
+            scaleLineColor: "rgba(0,0,0,.1)",
+            scaleLineWidth: 1,
+            scaleShowLabels: true,
+            scaleLabel: "<%=value%>",
+            scaleFontFamily: "'proxima-nova'",
+            scaleFontSize: 10,
+            scaleFontStyle: "normal",
+            scaleFontColor: "#909090",
+            scaleShowGridLines: true,
+            scaleGridLineColor: "rgba(0,0,0,.05)",
+            scaleGridLineWidth: 1,
+            bezierCurve: true,
+            pointDot: true,
+            pointDotRadius: 3,
+            pointDotStrokeWidth: 1,
+            datasetStroke: true,
+            datasetStrokeWidth: 2,
+            datasetFill: true,
+            animation: true,
+            animationSteps: 60,
+            //animationEasing: "easeOutQuart",
+            onAnimationComplete: null,
+            responsive: false
+        };
+
     })
     .controller('MenuController', function ($scope, Status, Socket) {
         $scope.status = Status;

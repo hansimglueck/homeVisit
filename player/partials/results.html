@@ -1,30 +1,31 @@
-<div>
-    <ul class="list-unstyled">
-        <li ng-repeat="t in home.text track by $index">{{t}}</li>
-    </ul>
+<div class="results">
+    <div class="results-text">
+        <ul class="list-unstyled">
+            <li ng-repeat="t in home.text track by $index">{{t}}</li>
+        </ul>
+        <div class="correct-answer" ng-if="home.correctAnswer !== ''">Correct: {{home.correctAnswer}}</div>
+    </div>
 
-    <div ng-if="home.correctAnswer !== ''">Correct: {{home.correctAnswer}}</div>
-
-    <div ng-if="home.resultType == 'europeMap'">
+    <div class="results-content" ng-if="home.resultType == 'europeMap'">
         <div class="overlayText">{{home.text[0]}}</div>
         <europe-map></europe-map>
     </div>
 
-    <ul class="list-unstyled" ng-if="home.resultType == 'numberStats'">
-       <li>
+    <ul class="list-unstyled results-content" ng-if="home.resultType == 'numberStats'">
+        <li>
             Gesamt: {{home.data[0]}}
         </li>
         <li>
             Durchschnitt: {{home.data[1]}}
         </li>
     </ul>
-    <div ng-if="['europeMap','numberStats'].indexOf(home.resultType) == -1">
-        <div class="chart2">
-            <canvas id="base" class="chart chart-base" chart-type="home.resultType" data="home.data"
-                    labels="home.labels"
-                    legend="true"
-                    width="100px" height="100px">
-            </canvas>
-        </div>
+
+    <div class="results-content"  ng-if="['europeMap','numberStats'].indexOf(home.resultType) == -1">
+        <canvas id="base" class="chart chart-base" chart-type="home.resultType" data="home.data"
+                labels="home.labels"
+                legend="true"
+                options="pieChartOptions"
+                width="220px" height="220px">
+        </canvas>
     </div>
 </div>

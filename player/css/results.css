@@ -1,0 +1,48 @@
+.results {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+}
+
+.results-text {
+    #background: greenyellow;
+    flex: 1 1 auto;
+    text-align: center;
+}
+.results-text ul {
+    margin: 0px;
+}
+.correct-answer {
+    color: #008800;
+    font-size: 0.8em;
+    font-weight: bold;
+}
+
+.results-content {
+    display: flex;
+    #background: #e838ff;
+    flex: 4 1 auto;
+    font-size: 0.8em;
+}
+.chart-container {
+    display: flex;
+    align-items: center;
+}
+
+.chart-container .chart-base {
+    flex: 1 1 auto;
+}
+chart-legend {
+    width: 50%;
+    flex: 1 1 auto;
+}
+
+.chart-container .pie-legend {
+     text-align: left;
+}
+
+.pie-legend li {
+    white-space: normal !important;
+}
+
