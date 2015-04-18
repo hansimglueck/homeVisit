@@ -76,7 +76,7 @@ angular.module('playerAppServices', [])
                             homeFactory.ratedVote = data.ratedVote;
                             homeFactory.time = parseInt(data.time);
                             homeFactory.timedVote();
-                            fxService.playSound(0);
+                            fxService.playSound("poll");
                             $location.path("/vote");
                             return;
                             break;
@@ -137,7 +137,7 @@ angular.module('playerAppServices', [])
                             return;
                             break;
                         case "alert":
-                            fxService.playSound(0);
+                            fxService.playSound("alert");
                             return;
                             break;
                     }
@@ -263,9 +263,11 @@ angular.module('playerAppServices', [])
     .factory('fxService', function ($timeout, $interval, ngAudio) {
         var fxService = {};
         fxService.sound = [];
-        fxService.sound[0] = ngAudio.load("sounds/tiny-01.mp3");    //vote incoming
-        fxService.sound[1] = ngAudio.load("sounds/smashing.mp3");   //scoreDown
-        fxService.sound[2] = ngAudio.load("sounds/glass.mp3");      //scoreUp
+        fxService.sound["poll"] = ngAudio.load("sounds/tiny-01.mp3");
+        fxService.sound["alert"] = ngAudio.load("sounds/tiny-01.mp3");
+        fxService.sound["result"] = ngAudio.load("sounds/glass.mp3");
+        fxService.sound["scoreDown"] = ngAudio.load("sounds/smashing.mp3");
+        fxService.sound["scoreUp"] = ngAudio.load("sounds/glass.mp3");
         fxService.posAlerts = [];
         fxService.negAlerts = [];
         fxService.countdown = {
@@ -279,7 +281,7 @@ angular.module('playerAppServices', [])
             if (isNaN(score)) return;
             if (score < 0) {
                 score = "" + score;
-                fxService.playSound(1);
+                fxService.playSound("scoreDown");
                 fxService.negAlerts.push(score);
                 $timeout(function () {
                     console.log("timeout");
@@ -289,7 +291,7 @@ angular.module('playerAppServices', [])
             if (score > 0) {
                 console.log(">");
                 score = "+" + score;
-                fxService.playSound(2);
+                fxService.playSound("scoreUp");
                 fxService.posAlerts.push(score);
                 $timeout(function () {
                     console.log("timeout");
