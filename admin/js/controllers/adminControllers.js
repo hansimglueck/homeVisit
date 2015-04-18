@@ -283,6 +283,8 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
     $scope.getTimeForDeck = function () {
         var time = 0;
         angular.forEach($scope.deck.items, function (item, id) {
+            if (typeof item === 'undefined' || item === null)
+                return;
             time += parseInt(item.time) || 0;
         });
         return time;
@@ -326,14 +328,14 @@ adminControllers.controller('itemCtrl', function ($scope, $filter, itemOptions) 
     $scope.itemOptions = itemOptions;
     $scope.showTextForValue = function (item, option) {
         var selected = [];
-        if (item[option]) {
+        if (typeof item !== 'undefined' && item !== null && item[option]) {
             selected = $filter('filter')($scope.itemOptions[option], {value: item[option]}, true);
         }
         return selected.length ? selected[0].text : 'Not set';
     };
     $scope.isMappable = function(option) {
         var selected = [];
-        if ($scope.item.type) {
+        if (typeof $scope.item !== 'undefined' && $scope.item !== null && $scope.item.type) {
             selected = $filter('filter')($scope.itemOptions.type, {value: $scope.item.type}, true);
         }
         return selected.length ? selected[0].mappable : false;
