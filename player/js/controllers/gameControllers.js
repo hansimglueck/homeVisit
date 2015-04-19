@@ -97,6 +97,7 @@ angular.module("gameControllers", [])
     })
     .controller('GameEventController', function ($scope, Status) {
         $scope.status = Status;
+        $scope.turn = navigator.platform.indexOf("arm")>-1;
     })
 ;
 
