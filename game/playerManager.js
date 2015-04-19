@@ -600,6 +600,7 @@ PlayerManager.prototype = {
     },
     setRelation: function(relation) {
         this.relations[relation.id] = relation;
+        this.sendGameEvent(playerId, relation.type, relation.playerIds, "A new "+relation.type);
         this.sendPlayerStatus(-1);
     },
     getRelationsForPlayer: function(playerId) {
