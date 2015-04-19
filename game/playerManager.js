@@ -13,6 +13,7 @@ PlayerManager = function () {
     this.upcoming = 1;
     this.polls = {};
     this.deals = {};
+    this.relations = {};
 };
 
 PlayerManager.prototype = {
@@ -31,16 +32,6 @@ PlayerManager.prototype = {
                 timeRank: -1,
                 deals: {},
                 inventory: [
-                    {type: 0, name: "plus"},
-                    {type: 0, name: "plus"},
-                    {type: 0, name: "plus"},
-                    {type: 0, name: "plus"},
-                    {type: 0, name: "plus"},
-                    {type: 1, name: "minus"},
-                    {type: 1, name: "minus"},
-                    {type: 1, name: "minus"},
-                    {type: 1, name: "minus"},
-                    {type: 1, name: "minus"}
                 ],
                 away: false,
                 selected: false
@@ -543,6 +534,7 @@ PlayerManager.prototype = {
         return playerId;
     },
     calcRanking: function () {
+        console.log("playerManager calcs ranking");
         var self = this;
         var ranking = this.players.map(function (p, id) {
             return {playerId: id, score: (p.joined ? p.score : -1000)}
@@ -599,13 +591,28 @@ PlayerManager.prototype = {
         this.calcRanking();
         this.sendPlayerStatus(-1);
     },
+    setAgreement:function (agreement) {
+        this.setRelation({id: agreement.id, playerIds: agreement.playerIds, type: agreement.agreementType})
+    },
+    setRelation: function(relation) {
+        this.relations[relation.id] = relation;
+        this.sendPlayerStatus(-1);
+    },
+    getRelationsForPlayer: function(playerId) {
+        var self = this;
+        var relForPlayer = [];
+        Object.keys(this.relations).forEach(function(key){
+            if (self.relations[key].playerIds.indexOf(playerId) != -1) relForPlayer.push(self.relations[key]);
+        });
+        return relForPlayer;
+    },
     getPlayerArray: function () {
         var ret = [];
         for (var i = 0; i < this.players.length; i++) {
-            ret.push({
+             ret.push({
                 joined: this.players[i].joined,
                 busy: this.players[i].busy,
-                playerId: i,
+                playerId: this.players[i].playerId,
                 colors: this.players[i].colors,
                 seat: this.players[i].seat,
                 score: this.players[i].score,
@@ -614,7 +621,8 @@ PlayerManager.prototype = {
                 selected: this.players[i].selected,
                 onTurn: (i == this.onTurn),
                 upcoming: (i == this.upcoming),
-                away: this.players[i].away
+                away: this.players[i].away,
+                relations: this.getRelationsForPlayer(i)
             });
         }
         return ret;

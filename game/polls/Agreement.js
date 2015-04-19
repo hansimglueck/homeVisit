@@ -1,5 +1,4 @@
 var OptionPoll = require('./OptionPoll');
-var playerManager = require('../playerManager.js');
 
 Agreement = function (item) {
     this.voteOptions = [{value: "yes", text: "Yes"}, {value: "no", text: "No"}];    //deep clone
@@ -14,6 +13,18 @@ Agreement.prototype.init = function () {
     this.wsContent.type = "agreement";
     this.wsContent.agreementType = this.agreementType;
     this.wsContent.playerIds = this.playerIds
+};
+Agreement.prototype.getResult = function () {
+    var result = OptionPoll.prototype.getResult.call(this);
+    var fullfilled = false;
+    if (result.voteOptions[0].percent > 99) fullfilled = true;
+    var resText = "The Agreement on " + this.agreementType;
+    resText += fullfilled ? " is fullfilled." : " is neglected.";
+    return {
+        text: resText,
+        fullfilled: fullfilled,
+        complete: !this.open
+    }
 };
 
 module.exports = Agreement;

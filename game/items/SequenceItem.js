@@ -65,7 +65,7 @@ var playerManager = require('../playerManager.js');
  item.value:        Wert des Wertes
 
  item.type = "agreement"
-    wird intern wie eine spezielle Poll (Objecttype Agreement) behandelt.
+ wird intern wie eine spezielle Poll (Objecttype Agreement) behandelt.
  item.agreementType:        ['alliance'] - TODO: agreete Allianzen werden im player-Array unter .allied als Array geführt
  item.agreementOptions:     ['topTwo'] - die besten zwei werden im
 
@@ -194,25 +194,11 @@ SequenceItem.prototype = {
                 }
                 break;
             case "agreement":
-                var players = playerManager.getPlayerArray();
-                switch (this.agreementOption) {
-                    case "topTwo":
-                        this.playerIds = players = players.filter(function(player){
-                            return player.rank < 3;
-                        }).map(function(player){
-                            return player.playerId;
-                        });
-                        this.setupPoll();
-                        this.mapToDevice();
-                        break;
-                    case "closest":
-                        //hier müssten mehrere Polls erzeugt werden...
-                        //und dementsprechend muss dann this.poll -> this.polls = []
-                        break;
-                    default:
-                        break;
-                }
-
+                this.playerIds = playerManager.getPlayerGroup(this.agreementOption).map(function (player) {
+                    return player.playerId;
+                });
+                this.setupPoll();
+                this.mapToDevice();
                 break;
             case "vote":
                 this.setupPoll();
@@ -409,12 +395,10 @@ SequenceItem.prototype = {
         var poll;
         if (this.type === "agreement") {
             poll = new Agreement(this);
-            poll.onFinish(playerManager, function(result){
-                var resText = "The Agreement on "+poll.agreementType;
-                if (result.voteOptions[0].percent > 99) resText += " is fullfilled.";
-                else resText += " is neglected.";
-                poll.playerIds.forEach(function(pid) {
-                    playerManager.sendMessage(pid, "display", {type: "card", text: resText});
+            poll.onFinish(playerManager, function (result) {
+                if (result.fullfilled) playerManager.setAgreement(poll);
+                poll.playerIds.forEach(function (pid) {
+                    playerManager.sendMessage(pid, "display", {type: "card", text: result.text});
                 })
             })
         }
