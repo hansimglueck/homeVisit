@@ -289,7 +289,7 @@ SequenceItem.prototype = {
         //entweder komplett (wenn an playerManager), oder reduzierter content (wenn über WS)
         var map = {};
         var self = this;
-        if (this.device == "default" || typeof this.device == "undefined") map = gameConf.conf.typeMapping.filter(function (tm) {
+        if (typeof this.device == "undefined" || this.device[0] == "default") map = gameConf.conf.typeMapping.filter(function (tm) {
             return (tm.type == self.type);
         })[0];
         //oder an die speziell gewünschten devices senden
