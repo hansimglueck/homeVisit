@@ -17,7 +17,7 @@ Agreement.prototype.init = function () {
 Agreement.prototype.getResult = function () {
     var result = OptionPoll.prototype.getResult.call(this);
     var fullfilled = false;
-    if (result.voteOptions[0].percent > 99) fullfilled = true;
+    if (result.voteOptions[0].percent > 99 && result.voteOptions[0].value=="yes") fullfilled = true;
     var resText = "The Agreement on " + this.agreementType;
     resText += fullfilled ? " is fullfilled." : " is neglected.";
     return {
