@@ -73,6 +73,13 @@ angular.module('adminDirectives', [])
             templateUrl: 'views/admin/show-item-contents/show-deal-content.html'
         };
     })
+    .directive('showAgreementContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'views/admin/show-item-contents/show-agreement-content.html'
+        };
+    })
 
     .directive('showSwitchContent', function () {
         return {

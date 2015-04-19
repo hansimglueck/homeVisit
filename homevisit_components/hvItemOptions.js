@@ -11,8 +11,9 @@ angular.module('hvItemOptions', [])
             {value: 'cmd', text: 'Kommando', mappable: true},
             {value: 'config', text: 'Konfiguartion', mappable: false},
             {value: 'rating', text: 'Bewertung', mappable: true},
-            {value: 'eval', text: 'eval', mappable: true},
-            {value: 'dummy', text: 'Dummy', mappable: false}
+            {value: 'eval', text: 'eval', mappable: false},
+            {value: 'dummy', text: 'Dummy', mappable: false},
+            {value: 'agreement', text: 'Agreement', mappable: true}
         ],
         'color': [
             {value: '0', text: 'Rot'},
@@ -36,7 +37,8 @@ angular.module('hvItemOptions', [])
         ],
         'bestWorst': [
             {value: 'best', text: 'bestes'},
-            {value: 'worst', text: 'schlechtestes'}
+            {value: 'worst', text: 'schlechtestes'},
+            {value: 'selected', text: 'selektiertes'}
         ],
         'resultType': [
             {value: 'Pie', text: 'Tortendiagramm'},
@@ -65,5 +67,13 @@ angular.module('hvItemOptions', [])
         ],
         'dealType': [
             {value: "insurance", text: "Versicherung"}
+        ],
+        'agreementType': [
+            {value: 'alliance', text: 'Allianz'}
+
+        ],
+        'agreementOption': [
+            {value: "topTwo", text: "besten zwei"},
+//            {value: "closest", text: "Rangnachbarn"}
         ]
     });

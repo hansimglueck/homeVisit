@@ -1,5 +1,6 @@
 var OptionPoll = require('../polls/OptionPoll.js');
 var NumberPoll = require('../polls/NumberPoll.js');
+var Agreement = require('../polls/Agreement.js');
 var data = require('../data.js');
 var gameConf = require('../gameConf');
 var game = require('../game');
@@ -187,6 +188,27 @@ SequenceItem.prototype = {
                     this.step();
                 }
                 break;
+            case "agreement":
+                var players = playerManager.getPlayerArray();
+                switch (this.agreementOption) {
+                    case "topTwo":
+                        this.playerIds = players = players.filter(function(player){
+                            return player.rank < 3;
+                        }).map(function(player){
+                            return player.playerId;
+                        });
+                        this.setupPoll();
+                        this.mapToDevice();
+                        break;
+                    case "closest":
+                        //hier müssten mehrere Polls erzeugt werden...
+                        //und dementsprechend muss dann this.poll -> this.polls = []
+                        break;
+                    default:
+                        break;
+                }
+
+                break;
             case "vote":
                 this.setupPoll();
                 this.mapToDevice();
@@ -209,7 +231,7 @@ SequenceItem.prototype = {
                         var sum = posScoreArr.reduce(function (prev, curr) {
                             return prev + curr.score
                         }, 0);
-                        this.data.text="Die Verteilung des Kuchens";
+                        this.data.text = "Die Verteilung des Kuchens";
                         this.data.voteOptions = posScoreArr.map(function (player) {
                             return {
                                 value: player.playerId,
@@ -272,6 +294,10 @@ SequenceItem.prototype = {
             case "dummy":
                 if (this.next !== null) this.next.step(this.param);
                 break;
+            case "eval":
+                console.log("Eval: " + code);
+                eval(code);
+                break;
             default:
                 this.mapToDevice();
                 break;
@@ -289,7 +315,7 @@ SequenceItem.prototype = {
         //entweder komplett (wenn an playerManager), oder reduzierter content (wenn über WS)
         var map = {};
         var self = this;
-        if (this.device == "default" || typeof this.device == "undefined") map = gameConf.conf.typeMapping.filter(function (tm) {
+        if (typeof this.device == "undefined" || this.device[0] == "default") map = gameConf.conf.typeMapping.filter(function (tm) {
             return (tm.type == self.type);
         })[0];
         //oder an die speziell gewünschten devices senden
@@ -332,6 +358,7 @@ SequenceItem.prototype = {
                     device: this.device
                 };
                 break;
+            case "agreement":
             case "vote":
                 content = this.poll.getWsContent();
                 break;
@@ -375,33 +402,46 @@ SequenceItem.prototype = {
     setupPoll: function () {
         var self = this;
         var poll;
-        switch (this.voteType) {
-            case "customOptions":
-            case "customMultipleOptions":
-                this.voteOptions.forEach(function (opt, id) {
-                    opt.value = id;
-                });
-                poll = new OptionPoll(this);
-                break;
-            case "playerChoice":
-            case "countryChoice":
-                var lang = this.language;
-                this.voteOptions = data.getEUcountries().map(function (c) {
-                    return {value: c.id, text: c[lang]}
-                });
-                poll = new OptionPoll(this);
-                break;
-
-            case "enterNumber":
-                poll = new NumberPoll(this);
-                break;
-            default:
-                break;
+        if (this.type === "agreement") {
+            poll = new Agreement(this);
+            poll.onFinish(playerManager, function(result){
+                var resText = "The Agreement on "+poll.agreementType;
+                if (result.voteOptions[0].percent > 99) resText += " is fullfilled.";
+                else resText += " is neglected.";
+                poll.playerIds.forEach(function(pid) {
+                    playerManager.sendMessage(pid, "display", {type: "card", text: resText});
+                })
+            })
         }
-        poll.onFinish(this, function (result) {
-            //game.trigger(-1, {data: 'go'})
-            this.step(result);
-        });
+        else {
+            switch (this.voteType) {
+                case "customOptions":
+                case "customMultipleOptions":
+                    this.voteOptions.forEach(function (opt, id) {
+                        opt.value = id;
+                    });
+                    poll = new OptionPoll(this);
+                    break;
+                case "playerChoice":
+                case "countryChoice":
+                    var lang = this.language;
+                    this.voteOptions = data.getEUcountries().map(function (c) {
+                        return {value: c.id, text: c[lang]}
+                    });
+                    poll = new OptionPoll(this);
+                    break;
+
+                case "enterNumber":
+                    poll = new NumberPoll(this);
+                    break;
+                default:
+                    break;
+            }
+            poll.onFinish(this, function (result) {
+                //game.trigger(-1, {data: 'go'})
+                this.step(result);
+            });
+        }
         this.poll = poll;
         this.getData = function () {
             return this.poll.getResult();

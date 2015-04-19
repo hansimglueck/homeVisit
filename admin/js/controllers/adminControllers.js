@@ -245,7 +245,7 @@ adminControllers.controller('deckCtrl', function ($scope, $modal, $filter) {
             trigger: 'go',
             type: 'card',
             text: '',
-            device: "default"
+            device: ["default"]
         };
         if (typeof itemId == "undefined") $scope.deck.items.push($scope.inserted);
         else $scope.deck.items.splice(itemId + 1, 0, $scope.inserted);

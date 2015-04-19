@@ -1,0 +1,32 @@
+<table>
+    <tr>
+        <td>Text:</td>
+        <td>
+            <span editable-textarea="item.text"
+                  e-rows="7" e-cols="40" e-name="text"
+                  onaftersave="saveItem()">
+                {{ item.text || 'kein Text' }}
+            </span>
+        </td>
+    </tr>
+    <tr>
+        <td>Art:</td>
+        <td>
+            <span editable-select="item.agreementType" e-name="agreementType"
+                  onaftersave="saveItem()"
+                  e-ng-options="s.value as s.text for s in itemOptions.agreementType"
+                    >
+                {{ showTextForValue(item, "agreementType") }}
+            </span>
+        </td>
+        <td>Option:</td>
+        <td>
+            <span editable-select="item.agreementOption" e-name="agreementOption"
+                  onaftersave="saveItem()"
+                  e-ng-options="s.value as s.text for s in itemOptions.agreementOption"
+                    >
+                {{ showTextForValue(item, "agreementOption") }}
+            </span>
+        </td>
+    </tr>
+</table>

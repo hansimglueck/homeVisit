@@ -314,6 +314,13 @@ PlayerManager.prototype = {
                 case "deal":
                     this.deliverMessage(device, "display", item.getWsContent());
                     break;
+                case "agreement":
+                    this.polls[item.poll.id] = item.poll;
+                    var self = this;
+                    item.playerIds.forEach(function(id){
+                        self.sendMessage(id,"display", item.getWsContent());
+                    });
+                    break;
                 default:
                     break;
             }
@@ -385,10 +392,6 @@ PlayerManager.prototype = {
             self.sendMessage(id, "display", {type: opt.value, text: opt.text});
         })
     },
-    eval: function (code) {
-        console.log("Eval: " + code);
-        eval(code);
-    },
     //TODO: findSeatOrder ergibt noch keinen Sinn am ende - wird aber auch nicht verwendet ;)
     findSeatOrder: function (voteId) {
 
@@ -454,6 +457,7 @@ PlayerManager.prototype = {
                 this.players.forEach(function(player,id){
                     if (player.selected) self.sendMessage(id, type, content);
                 });
+                break;
             case "allButSelected":
                 this.players.forEach(function(player,id){
                     if (!player.selected) self.sendMessage(id, type, content);
@@ -702,7 +706,7 @@ PlayerManager.prototype = {
         this.sendPlayerStatus(-1);
         console.log("Now on turn: "+this.onTurn);
     },
-    
+
     // der, der nach dem nächsten dran sein soll
     setUpcoming: function(x) {
         this.upcoming = x;

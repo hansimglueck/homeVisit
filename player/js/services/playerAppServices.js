@@ -65,6 +65,7 @@ angular.module('playerAppServices', [])
                     homeFactory.displayData = data;
                     if (data.type) {
                         switch (data.type) {
+                            case "agreement":
                             case "vote":
                                 homeFactory.type = "vote";
                                 homeFactory.voteType = data.voteType;
