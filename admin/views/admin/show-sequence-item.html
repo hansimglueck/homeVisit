@@ -67,7 +67,7 @@
         results: text als select
         sound: text (filename)
     -->
-    <td ng-switch="item.type">
+    <td class="item-text" ng-switch="item.type">
         <div show-vote-content ng-switch-when="vote"></div>
         <div show-switch-content ng-switch-when="switch"></div>
         <div show-inline-switch-content ng-switch-when="inlineSwitch"></div>
@@ -80,15 +80,25 @@
         <div show-deal-content ng-switch-when="deal"></div>
         <div show-rating-content ng-switch-when="rating"></div>
         <div show-card-content ng-switch-default></div>
-    </td>
+
+      </td>
 
     <!-- comment -->
-    <td>
+    <td class="item-comment">
       <span editable-textarea="item.comment"
            e-rows="7" e-cols="30" e-name="comment"
            onaftersave="saveItem()">
         {{ item.comment || 'Kein Kommentar!' }}
       </span>
+        <div class="item-mcnote">
+            <div class="mcnote-title">MC-Note</div>
+      <span editable-textarea="item.mcnote"
+            e-rows="7" e-cols="30" e-name="mcnote"
+            onaftersave="saveItem()">
+        {{ item.mcnote || 'Keine MC-Note' }}
+      </span>
+
+        </div>
     </td>
 
     <!--

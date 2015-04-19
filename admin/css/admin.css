@@ -26,3 +26,16 @@ ul#messages {
 .direct-item {
     width: 100%;
 }
+
+td.item-comment {
+}
+
+.item-mcnote {
+    margin-top: 20px;
+}
+.mcnote-title {
+    border-bottom: 2px solid #ddd;
+    font-weight: bold;
+    padding-bottom: 5px;
+    margin-bottom: 7px;
+}
