@@ -141,6 +141,11 @@ Game.prototype = {
             if (this.sequence == null) this.sequence = new SequenceItem(deck.items[i], i);
             else this.sequence.appendItem(new SequenceItem(deck.items[i], i));
         }
+    },
+
+    sendPlayBackStatus: function(clientId, role, msg) {
+        if (role !== "MC" && role !== "master") return;
+        if (this.sequence !== null) this.sequence.sendPlaybackStatus();
     }
  };
 

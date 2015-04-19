@@ -37,6 +37,7 @@ wsManager.onType("setPlayerStatus", playerManager, playerManager.setStatusMessag
 var game = require('../game/game.js');
 wsManager.onType("playbackAction", game, game.trigger);
 wsManager.onType("alert", game, game.alert);
+wsManager.onType("register", game, game.sendPlayBackStatus);
 
 var raspiTools = require('../game/raspiTools.js');
 wsManager.onRole("master", raspiTools, raspiTools.newMessage);
