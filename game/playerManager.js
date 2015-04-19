@@ -440,12 +440,13 @@ PlayerManager.prototype = {
         var players = this.getPlayerGroup(specialPlayer);
         //                this.broadcastMessage(type, {type: "black"});
 
-        players.forEach(function (player, id) {
-            self.sendMessage(id, type, content);
+        players.forEach(function (player) {
+            self.sendMessage(player.playerId, type, content);
         });
     },
 
     getPlayerGroup: function (identifier) {
+        console.log("getPlayerGroup "+identifier);
         var ret;
         var self = this;
         var inverse = false;
@@ -476,6 +477,7 @@ PlayerManager.prototype = {
                 ret = this.players;
                 break;
         }
+        console.log(ret.map(function(player){return player.playerId}));
         return ret;
     },
     // Zum Verteilen von allgemeinen ws-messages an alle Player.
