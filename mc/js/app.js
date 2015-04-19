@@ -18,7 +18,8 @@ angular
         'hvPlayerColors',
         'playerDirectives',
         'mcDirectives',
-        'hvSetFactory'
+        'hvSetFactory',
+        'hvItemOptions'
     ])
     .config(function ($routeProvider) {
         $routeProvider
@@ -49,6 +50,10 @@ angular
             .when('/about', {
                 templateUrl: '/mc/views/about.html',
                 controller: 'MatchingCtrl'
+            })
+            .when('/emergency', {
+                templateUrl: '/mc/views/emergency.html',
+                controller: 'PlaybackCtrl'
             })
             .otherwise({
                 redirectTo: '/'
