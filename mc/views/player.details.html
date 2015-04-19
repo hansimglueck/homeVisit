@@ -1,11 +1,13 @@
 <div>
     <h1 ng-style="{'color':playerColors[playerId]}">Score for Player {{playerId}}</h1>
+    <br/>
     <ul class="list-inline">
         <li class="list-group-item" ng-repeat="sc in [5,4,3,2,1,-1,-2,-3,-4,-5]">
             <button class="btn" ng-click="score(playerId, sc)">{{sc}}</button>
             <br/></li>
+        <br/><br/>
         <li class="list-group-item">
-            <a class="btn btn-danger" ng-href="#/players/playback">Cancel</a>
+            <a class="btn btn-danger btn-big" ng-href="#/players/playback">BACK TO GAME!</a>
         </li>
     </ul>
 </div>

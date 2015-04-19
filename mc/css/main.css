@@ -70,7 +70,7 @@ body {
   width: 1245px;
   height: 310px;
   border: solid 1px;
-  font-size: 1.5em;
+  font-size: 1.3em;
   overflow: scroll;
 }
 
@@ -108,4 +108,24 @@ body {
 
 .unknownAnswer {
   background-color: aquamarine;
+}
+
+.mcnote {
+  color: #f00;
+}
+
+.btn-big {
+  font-size: 2em;
+}
+
+.btn-middle-big {
+  font-size: 1.5em;
+}
+
+.right-aligned {
+  float:right;
+}
+
+.game_sequence_item {
+  width: 100%;
 }
