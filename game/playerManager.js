@@ -512,6 +512,9 @@ PlayerManager.prototype = {
         wsManager.msgDevicesByRole("master", "status", msg);
         wsManager.msgDevicesByRole("MC", "status", msg);
     },
+    sendGameEvent: function(playerId, type, value, text) {
+        this.sendMessage(playerId, "gameEvent", {type: type, value:value, text:text})
+    },
     getPlayerIdForClientId: function (clientId) {
         var playerId = -1;
         for (var i = 0; i < this.players.length; i++) {
@@ -573,6 +576,7 @@ PlayerManager.prototype = {
                 }
             })
         }
+        this.sendGameEvent(playerId, "score", score, "You got "+score+ "Points");
         this.sendPlayerStatus(-1);
     },
     getPlayerArray: function () {
@@ -702,7 +706,7 @@ PlayerManager.prototype = {
         this.sendPlayerStatus(-1);
         console.log("Now on turn: "+this.onTurn);
     },
-    
+
     // der, der nach dem nächsten dran sein soll
     setUpcoming: function(x) {
         this.upcoming = x;

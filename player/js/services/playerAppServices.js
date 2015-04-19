@@ -174,6 +174,7 @@ angular.module('playerAppServices', [])
         statusFactory.server = Socket.server;
         statusFactory.clientId = -1;
         statusFactory.rating = [];
+        statusFactory.gameEvents = [{type: "score", value: 1, text: "testEvent"}]
 
         //diese eigenschaft wird hier geführt, da sie im view benötigt wird und sonst im digest-cycle immerwieder neu berrechnet werden muss...
         statusFactory.availablePlayers = [];
@@ -194,6 +195,10 @@ angular.module('playerAppServices', [])
             }
             if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
         });
+        Socket.on('gameEvent', function (data) {
+            console.log("new gameEvent: " + data);
+            statusFactory.gameEvents.push(data)
+        });
         Socket.on('inventory', function (data) {
             console.log(data);
             if (data) statusFactory.inventory = data;
@@ -208,6 +213,7 @@ angular.module('playerAppServices', [])
                 } else statusFactory.joined = true;
             }
         });
+
 
         Socket.on('reload', function () {
             window.location.reload();
