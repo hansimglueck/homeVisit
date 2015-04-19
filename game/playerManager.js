@@ -526,6 +526,9 @@ PlayerManager.prototype = {
         wsManager.msgDevicesByRole("master", "status", msg);
         wsManager.msgDevicesByRole("MC", "status", msg);
     },
+    sendGameEvent: function(playerId, type, value, text) {
+        this.sendMessage(playerId, "gameEvent", {type: type, value:value, text:text})
+    },
     getPlayerIdForClientId: function (clientId) {
         var playerId = -1;
         for (var i = 0; i < this.players.length; i++) {
@@ -588,6 +591,7 @@ PlayerManager.prototype = {
                 }
             })
         }
+        this.sendGameEvent(playerId, "score", score, "You got "+score+ "Points");
         this.calcRanking();
         this.sendPlayerStatus(-1);
     },

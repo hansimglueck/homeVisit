@@ -25,7 +25,7 @@
         <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
         -->
     <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
-
+    <script src="/bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
     <script src="/bower_components/Chart.js/Chart.js"></script>
     <script src="/bower_components/angular-chart.js/angular-chart.js"></script>
     <script src="/bower_components/angular-audio/app/angular.audio.js"></script>
@@ -124,7 +124,7 @@
     -->
 
     <!-- App body -->
-    <div class="score" ng-show="showScore()" ng-controller="ScoreController">
+    <div class="score" ng-show="showScore()" ng-controller="ScoreController" ng-click="openGameEventModal()">
         <div id="score_stats">
             <p class="score_stats_entry">
                 Rank: {{status.player.rank}}<br/>

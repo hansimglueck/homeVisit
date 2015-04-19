@@ -17,7 +17,8 @@ angular.module('playerApp', [
     'fxControllers',
     'europeSVG',
     'uuid',
-    'hvPlayerColors'
+    'hvPlayerColors',
+    'angularModalService'
 ])
     .config(['$routeProvider',
         function ($routeProvider) {

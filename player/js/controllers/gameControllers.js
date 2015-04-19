@@ -1,5 +1,5 @@
 angular.module("gameControllers", [])
-    .controller('ScoreController', function ($scope, Socket, Status, playerColors) {
+    .controller('ScoreController', function ($scope, Socket, Status, playerColors, ModalService) {
         $scope.socket = Socket;
         $scope.test = "HALLO WELT";
         $scope.status = {};
@@ -32,13 +32,15 @@ angular.module("gameControllers", [])
         $scope.myColor = function () {
             return playerColors[Status.player.playerId];
         };
-        $scope.showScore = function() {
-            return (Status.otherPlayers.filter(function(player){return player.score != 0}).length > 0);
+        $scope.showScore = function () {
+            return (Status.otherPlayers.filter(function (player) {
+                return player.score != 0
+            }).length > 0);
         };
         $scope.baromaterHeight = 200;
         $scope.getBaroHeight = function () {
             return $scope.baromaterHeight.toString() + "px";
-        }
+        };
 
         $scope.getLinePos = function (index) {
             $scope.minScore = $scope.status.otherPlayers[0].score;
@@ -59,22 +61,42 @@ angular.module("gameControllers", [])
             }
             var myScore = $scope.status.otherPlayers[index].score;
             return ($scope.linePosFromScore(myScore)).toString() + "px";
-        }
+        };
         $scope.getMyLinePos = function () {
             var myScore = $scope.status.player.score;
             return ($scope.linePosFromScore(myScore)).toString() + "px";
-        }
+        };
         $scope.linePosFromScore = function (myScore) {
             var linePos = $scope.baromaterHeight - ((myScore - $scope.minScore) * $scope.baromaterHeight / ($scope.maxScore - $scope.minScore));
             return linePos;
-        }
+        };
 
         $scope.getPosHeight = function () {
             return ($scope.linePosFromScore(0)).toString() + "px";
-        }
+        };
         $scope.getNegHeight = function () {
             return ($scope.baromaterHeight - $scope.linePosFromScore(0)).toString() + "px";
-        }
+        };
+
+        $scope.openGameEventModal = function () {
+            // Just provide a template url, a controller and call 'showModal'.
+            ModalService.showModal({
+                templateUrl: "views/game-events.html",
+                controller: "GameEventController"
+            }).then(function (modal) {
+                // The modal object has the element built, if this is a bootstrap modal
+                // you can call 'modal' to show it, if it's a custom modal just show or hide
+                // it as you need to.
+                modal.element.modal();
+                modal.close.then(function (result) {
+                    $scope.message = result ? "You said Yes" : "You said No";
+                });
+            });
+
+        };
+    })
+    .controller('GameEventController', function ($scope, Status) {
+        $scope.status = Status;
     })
 ;
 
