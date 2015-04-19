@@ -2,7 +2,6 @@ var wsManager = require('./wsManager.js');
 var gameConf = require('./gameConf');
 
 
-
 PlayerManager = function () {
     this.players = [];
     this.rating = [];
@@ -21,6 +20,7 @@ PlayerManager.prototype = {
     init: function () {
         for (var i = 0; i < gameConf.maxPlayerCnt; i++) {
             this.players.push({
+                playerId: i,
                 clientId: -1,
                 joined: false,
                 busy: false,
@@ -182,18 +182,20 @@ PlayerManager.prototype = {
 
         var choice = data.choice;
         var vote = {choice: choice, playerId: playerId};
-        data.multiplier = this.players.filter(function (p) { return p.joined; }).length - this.players[playerId].rank + 1;
+        data.multiplier = this.players.filter(function (p) {
+            return p.joined;
+        }).length - this.players[playerId].rank + 1;
 //        vote.multiplier = this.avgRatings[playerId];
 
         poll.vote(data);
 
         /*
-        TODO: falls diese infos gesendet werden sollen, müssten dieses VOR poll.vote() ausgeführt werden.
-        Das weitersteppen nach dem letzten vote überholt sonst diese nachricht
-        var msg = "You voted: "+data.text;
-        if (poll.isWeighted()) msg += " with a weight of "+vote.multiplier;
-        this.log("Player " + playerId + ": " + msg);
-        this.sendMessage(playerId, "display", {"text": msg});
+         TODO: falls diese infos gesendet werden sollen, müssten dieses VOR poll.vote() ausgeführt werden.
+         Das weitersteppen nach dem letzten vote überholt sonst diese nachricht
+         var msg = "You voted: "+data.text;
+         if (poll.isWeighted()) msg += " with a weight of "+vote.multiplier;
+         this.log("Player " + playerId + ": " + msg);
+         this.sendMessage(playerId, "display", {"text": msg});
          */
     },
     rate: function (clientId, data) {
@@ -207,7 +209,7 @@ PlayerManager.prototype = {
     //deals werden immer komplett versendet mit unique .id
     //wenn es den deal noch nicht gibt im deal-array, dann füge ihn ein, sonst update ihn.
     //je nach state an .playerId0 oder .playerId1 schicken
-    deal: function(clientId, deal) {
+    deal: function (clientId, deal) {
         this.deals[deal.id] = deal;
         this.players[deal.player0Id].deals[deal.id] = deal;
         this.players[deal.player1Id].deals[deal.id] = deal;
@@ -248,7 +250,7 @@ PlayerManager.prototype = {
         }
     },
 
-    setStatusMessage: function(clientId, role, msg) {
+    setStatusMessage: function (clientId, role, msg) {
         var data = msg.data;
         try {
             console.log(data);
@@ -258,11 +260,11 @@ PlayerManager.prototype = {
                 //    break;
                 case "toggleSelected":
                     this.players[data.id].selected ^= true;
-                    console.log("Set Player #: " + data.id + " .selected = " + this.players[data.id].selected );
+                    console.log("Set Player #: " + data.id + " .selected = " + this.players[data.id].selected);
                     break;
                 case "toggleAway":
                     this.players[data.id].away ^= true;
-                    console.log("Set Player #: " + data.id + " .away = " + this.players[data.id].away );
+                    console.log("Set Player #: " + data.id + " .away = " + this.players[data.id].away);
                     break;
                 case "setUpcoming":
                     this.setUpcoming(data.id);
@@ -291,7 +293,9 @@ PlayerManager.prototype = {
             switch (item.type) {
                 case "vote":
                     this.polls[item.poll.id] = item.poll;
-                    item.poll.setMaxVotes(this.players.filter(function(player){return player.joined}).length);
+                    item.poll.setMaxVotes(this.players.filter(function (player) {
+                        return player.joined
+                    }).length);
                     this.deliverMessage(device, "display", item.getWsContent());
                     break;
                 case "card":
@@ -317,8 +321,8 @@ PlayerManager.prototype = {
                 case "agreement":
                     this.polls[item.poll.id] = item.poll;
                     var self = this;
-                    item.playerIds.forEach(function(id){
-                        self.sendMessage(id,"display", item.getWsContent());
+                    item.playerIds.forEach(function (id) {
+                        self.sendMessage(id, "display", item.getWsContent());
                     });
                     break;
                 default:
@@ -425,55 +429,69 @@ PlayerManager.prototype = {
         }
         if (!ok) console.log("Answers are not yielding an Order!");
         this.sendPlayerStatus(-1);
-        this.broadcastMessage("display", { type: "seatOrder"});
+        this.broadcastMessage("display", {type: "seatOrder"});
     },
 
     //schau mal, ob im ziel-device ein spezial steckt (zB player:next)
     //hier steckt auch die logik des weiterschaltens
-    deliverMessage: function(device, type, content) {
+    deliverMessage: function (device, type, content) {
         var specialPlayer = device.split(":")[1];
         var self = this;
         if (typeof specialPlayer == "undefined") specialPlayer = "all";
-        switch (specialPlayer) {
-            case "next":
-                // wir hoffen, dass die websocket-nachrichten in richtiger sequenz durchs netz flitzen....
-                this.broadcastMessage(type, {type: "black"});
-                if (this.upcoming == this.onTurn + 1 || this.upcoming == -1) {
-                    this.advanceTurn(1);
-                } else {
-                    this.advanceTurnTo(this.upcoming);
-                }
-                this.sendMessage(this.onTurn, type, content);
-                break;
+        if (specialPlayer === "next") {
+            if (this.upcoming === this.onTurn + 1 || this.upcoming === -1) {
+                this.advanceTurn(1);
+            } else {
+                this.advanceTurnTo(this.upcoming);
+            }
+            specialPlayer = "act";
+        }
+        var players = this.getPlayerGroup(specialPlayer);
+        //                this.broadcastMessage(type, {type: "black"});
+
+        players.forEach(function (player, id) {
+            self.sendMessage(id, type, content);
+        });
+    },
+
+    getPlayerGroup: function (identifier) {
+        var ret;
+        var self = this;
+        var inverse = false;
+        if (identifier.indexOf("!") === 0) {
+            inverse = true;
+            identifier = identifier.substring(1);
+        }
+        switch (identifier) {
             case "act":
-                this.sendMessage(this.onTurn, type, content);
-                break;
-            case "allButAct":
-                this.players.forEach(function(player,id){
-                    if (id != self.onTurn) self.sendMessage(id, type, content);
+            case "active":
+                ret = this.players.filter(function (player) {
+                    return (player.seat === self.onTurn)^inverse;
                 });
                 break;
+            case "sel":
             case "selected":
-                this.players.forEach(function(player,id){
-                    if (player.selected) self.sendMessage(id, type, content);
+                ret = this.players.filter(function (player) {
+                    return player.selected^inverse;
                 });
                 break;
-            case "allButSelected":
-                this.players.forEach(function(player,id){
-                    if (!player.selected) self.sendMessage(id, type, content);
+            case "topTwo":
+                ret = this.players.filter(function(player){
+                    return (player.rank < 3)^inverse;
                 });
                 break;
-            case "all":
             default:
-                this.broadcastMessage(type, content);
+            case "all":
+                ret = this.players;
                 break;
         }
+        return ret;
     },
     // Zum Verteilen von allgemeinen ws-messages an alle Player.
     // diese funktion bemüht den wsManager und sichert die letzte Message zum Ausliefern bei Client-Reload
     broadcastMessage: function (type, data) {
         wsManager.msgDevicesByRole("player", type, data);
-        if (type === "display") this.players.forEach(function(player){
+        if (type === "display") this.players.forEach(function (player) {
             player.lastDisplayMessage = data;
         });
     },
@@ -487,6 +505,7 @@ PlayerManager.prototype = {
         if (this.players[playerId]) this.sendMessage(playerId, "inventory", this.players[playerId].inventory);
     },
     sendPlayerStatus: function (playerId) {
+        console.log("playerManager sending playerStatus");
         if (this.players[playerId]) {
             this.sendMessage(playerId, "joined", {
                 player: {
@@ -564,7 +583,7 @@ PlayerManager.prototype = {
 
         var self = this;
         if (deals.length > 0) {
-            deals.forEach(function(deal) {
+            deals.forEach(function (deal) {
                 var otherPlayerId = deal.player0Id;
                 if (otherPlayerId == playerId) otherPlayerId = deal.player1Id;
                 while (self.players[playerId].score - self.players[otherPlayerId].score > 4) {
@@ -577,6 +596,7 @@ PlayerManager.prototype = {
                 }
             })
         }
+        this.calcRanking();
         this.sendPlayerStatus(-1);
     },
     getPlayerArray: function () {
@@ -674,7 +694,7 @@ PlayerManager.prototype = {
     },
 
     //der nächste ist dran...
-    advanceTurn: function(x) {
+    advanceTurn: function (x) {
         this.onTurn += x;
         this.onTurn %= this.players.length;
         if (!this.players[this.onTurn].joined || this.players[this.onTurn].away) {
@@ -688,9 +708,9 @@ PlayerManager.prototype = {
             this.setUpcoming(this.onTurn + 1);
         }
         this.sendPlayerStatus(-1);
-        console.log("Now on turn: "+this.onTurn);
+        console.log("Now on turn: " + this.onTurn);
     },
-    advanceTurnTo: function(x) {
+    advanceTurnTo: function (x) {
         this.onTurn = x;
         this.onTurn %= this.players.length;
         if (!this.players[this.onTurn].joined || this.players[this.onTurn].away) {
@@ -704,11 +724,11 @@ PlayerManager.prototype = {
             this.setUpcoming(this.onTurn + 1);
         }
         this.sendPlayerStatus(-1);
-        console.log("Now on turn: "+this.onTurn);
+        console.log("Now on turn: " + this.onTurn);
     },
 
     // der, der nach dem nächsten dran sein soll
-    setUpcoming: function(x) {
+    setUpcoming: function (x) {
         this.upcoming = x;
         this.upcoming %= this.players.length;
         if (!this.players[this.upcoming].joined || this.players[this.upcoming].away) {
@@ -716,7 +736,7 @@ PlayerManager.prototype = {
             return;
         }
         this.sendPlayerStatus(-1);
-        console.log("Next on turn: "+this.upcoming);
+        console.log("Next on turn: " + this.upcoming);
     },
 
     getCheckedVotes: function (voteId) {

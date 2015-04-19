@@ -64,6 +64,11 @@ var playerManager = require('../playerManager.js');
  item.configField:  name des konfigurierbaren Wertes (zB alertRecipients)
  item.value:        Wert des Wertes
 
+ item.type = "agreement"
+    wird intern wie eine spezielle Poll (Objecttype Agreement) behandelt.
+ item.agreementType:        ['alliance'] - TODO: agreete Allianzen werden im player-Array unter .allied als Array geführt
+ item.agreementOptions:     ['topTwo'] - die besten zwei werden im
+
  */
 
 
