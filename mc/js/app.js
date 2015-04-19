@@ -54,6 +54,8 @@ angular
                 redirectTo: '/'
             });
     })
-    .run(function (Socket) {
+    .run(function (Socket, Status, Deck) {
         Socket.connect('MC');
+        Status.start();
+        Deck.start();
     });

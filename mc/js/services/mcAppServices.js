@@ -12,20 +12,22 @@ angular.module('mcAppServices', [])
         statusFactory.clientId = -1;
         statusFactory.rating = [];
 
-        Socket.on('registerConfirm', function (data) {
-            if (typeof data != "undefined") statusFactory.clientId = data;
-        });
+        statusFactory.start = function(){
+            Socket.on('registerConfirm', function (data) {
+                if (typeof data != "undefined") statusFactory.clientId = data;
+            });
 
-        Socket.on('status', function (data) {
-            if (data.otherPlayers) {
-                statusFactory.otherPlayers = data.otherPlayers;
-            }
-            if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
-        });
-        Socket.on('reload', function () {
-            window.location.reload();
-            console.log('X')
-        });
+            Socket.on('status', function (data) {
+                if (data.otherPlayers) {
+                    statusFactory.otherPlayers = data.otherPlayers;
+                }
+                if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
+            });
+            Socket.on('reload', function () {
+                window.location.reload();
+                console.log('X')
+            });
+        };
         statusFactory.reload = function () {
             window.location.reload();
             console.log('X')
@@ -152,12 +154,15 @@ angular.module('mcAppServices', [])
         var playbackStatus = {stepId: -1, type:"nix", deckId: null};
         var deck = null;
         var deckFactory = {};
-        Socket.on("playBackStatus", function(status) {
-            playbackStatus = status;
-            console.log("got playbackStatus info: "+JSON.stringify(status));
-            deckFactory.deck = setFactory.getDeckById(playbackStatus.deckId);
-            deckFactory.stepId = playbackStatus.stepId;
-        });
+
+        deckFactory.start = function() {
+            Socket.on("playBackStatus", function(status) {
+                playbackStatus = status;
+                console.log("got playbackStatus info: "+JSON.stringify(status));
+                deckFactory.deck = setFactory.getDeckById(playbackStatus.deckId);
+                deckFactory.stepId = playbackStatus.stepId;
+            });
+        };
         return deckFactory;
     })
 ;

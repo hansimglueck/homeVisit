@@ -129,6 +129,7 @@ Game.prototype = {
                 if (callback) callback();
             });
         });
+        this.sequence.sendPlaybackStatus();
         this.log("client started game");
         //wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRatings});
     },
@@ -140,7 +141,7 @@ Game.prototype = {
             if (this.sequence == null) this.sequence = new SequenceItem(deck.items[i], i);
             else this.sequence.appendItem(new SequenceItem(deck.items[i], i));
         }
-    },
+    }
  };
 
 var gameObj = new Game();
