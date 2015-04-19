@@ -717,7 +717,7 @@ PlayerManager.prototype = {
         this.onTurn %= this.players.length;
         if (!this.players[this.onTurn].joined || this.players[this.onTurn].away) {
             if (this.upcoming == this.onTurn) {
-                this.upcoming = -1;
+                this.upcoming = -1; // reset
             }
             this.advanceTurn(1);
             return;
@@ -750,7 +750,7 @@ PlayerManager.prototype = {
         this.upcoming = x;
         this.upcoming %= this.players.length;
         if (!this.players[this.upcoming].joined || this.players[this.upcoming].away) {
-            this.upcoming(x + 1);
+            this.setUpcoming(x + 1);
             return;
         }
         this.sendPlayerStatus(-1);
