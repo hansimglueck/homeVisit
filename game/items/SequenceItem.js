@@ -167,6 +167,7 @@ SequenceItem.prototype = {
     },
     execute: function () {
         this.log("executing step " + this.id + ": " + this.type, true);
+        this.sendPlaybackStatus();
         this.done = true;
         switch (this.type) {
             case "switch":
@@ -293,7 +294,6 @@ SequenceItem.prototype = {
                 this.mapToDevice();
                 break;
         }
-        this.sendPlaybackStatus();
         //checken, wie der nächste step getriggert wird
         if (this.next != null) {
             if (this.next.trigger == "follow") {
@@ -438,7 +438,11 @@ SequenceItem.prototype = {
         this.polls[this.poll.id] = (this.poll);
     },
     sendPlaybackStatus: function () {
+        if (this.done) {
+            if (this.next !== null) this.next.sendPlaybackStatus();
+        }
         var playbackStatus = {
+            done: this.done,
             stepId: this.id,
             type: this.type,
             deckId: gameConf.conf.startDeckId
