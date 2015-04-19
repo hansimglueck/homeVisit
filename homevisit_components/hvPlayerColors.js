@@ -3,11 +3,11 @@ angular.module('hvPlayerColors', [])
         '#9e0000',     //rot
         '#2883c3',     //hellblau
         '#0c3669',     //dunkelblau
-        '#f78500',     //orange
-        '#ffd800',     //gelb
-        '#c4df0d',     //gruen
+        '#ff5a00',     //orange
+        '#ffc000',     //gelb
+        '#2ab200',     //gruen
         '#b27de4',     //lila
-        '#9f9f9f'      //weiss
+        '#ce2460'      //pink
     ])
     .value('playerTextColors', [
         '#FFFFFF',     //rot
@@ -17,5 +17,5 @@ angular.module('hvPlayerColors', [])
         '#000000',     //gelb
         '#000000',     //gruen
         '#000000',     //lila
-        '#000000'      //weiss
+        '#000000'      //pink
     ]);
