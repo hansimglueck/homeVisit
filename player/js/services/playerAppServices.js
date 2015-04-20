@@ -64,9 +64,12 @@ angular.module('playerAppServices', [])
                     if (typeof data.showGo != "undefined") homeFactory.showGo = data.showGo;
                     homeFactory.displayData = data;
                     if (data.type) {
+                        if (!data.silent) fxService.playSound(data.type);
                         switch (data.type) {
+                            case "roulette":
                             case "agreement":
                             case "vote":
+                                if (data.type == "roulette") homeFactory.text = ["You wanna play a Game of Roulette?"];
                                 homeFactory.type = "vote";
                                 homeFactory.voteType = data.voteType;
                                 homeFactory.options = data.voteOptions || [{value: 0}];
@@ -78,7 +81,6 @@ angular.module('playerAppServices', [])
                                 homeFactory.ratedVote = data.ratedVote;
                                 homeFactory.time = parseInt(data.time);
                                 homeFactory.timedVote();
-                                fxService.playSound("poll");
                                 $location.path("/vote");
                                 return;
                                 break;
@@ -117,13 +119,13 @@ angular.module('playerAppServices', [])
                             case "rating":
                                 homeFactory.type = "rating";
                                 var path = "/rating";
-                                if (data.ratingType ==="allTeams") {
+                                if (data.ratingType === "allTeams") {
                                     path += "/player";
                                     if (data.posNeg == "+1") path+= "/1";
                                     else path += "/-1";
                                 }
-                                if (data.ratingType ==="oneTeam") {
-                                    path += "/score/"+data.playerId;
+                                if (data.ratingType === "oneTeam") {
+                                    path += "/score/" + data.playerId;
                                 }
 
                                 $location.path(path);
@@ -150,7 +152,6 @@ angular.module('playerAppServices', [])
                                 return;
                                 break;
                             case "alert":
-                                fxService.playSound("alert");
                                 return;
                                 break;
                         }
@@ -277,15 +278,19 @@ angular.module('playerAppServices', [])
 
         return ratingFactory;
     })
-    .factory('fxService', function ($timeout, $interval, ngAudio) {
+    .factory('fxService', function ($timeout, $interval, ngAudio, Status, Socket) {
         var fxService = {};
         fxService.sound = [];
-        fxService.sound["poll"] = ngAudio.load("sounds/tiny-01.mp3");
+        fxService.sound["vote"] = ngAudio.load("sounds/tiny-01.mp3");
         fxService.sound["alert"] = ngAudio.load("sounds/tiny-01.mp3");
-        fxService.sound["result"] = ngAudio.load("sounds/glass.mp3");
+        fxService.sound["results"] = ngAudio.load("sounds/whoosh3.mp3");
+        console.log("Volume " + fxService.sound["results"].volume);
+        fxService.sound["card"] = ngAudio.load("sounds/karte1.mp3");
+        fxService.sound["rating"] = ngAudio.load("sounds/karte2.mp3");
         fxService.sound["countdown_tick"] = ngAudio.load("sounds/countdown_tick.mp3");
         fxService.sound["scoreDown"] = ngAudio.load("sounds/smashing.mp3");
         fxService.sound["scoreUp"] = ngAudio.load("sounds/glass.mp3");
+        fxService.sound["zip"] = ngAudio.load("sounds/zip1.mp3");
         fxService.posAlerts = [];
         fxService.negAlerts = [];
         fxService.countdown = {
@@ -293,6 +298,10 @@ angular.module('playerAppServices', [])
             count: -1
         };
         fxService.interval;
+        fxService.classes = {};
+        fxService.class = {
+            background: "transparent"
+        };
 
         fxService.scoreAlert = function (score) {
             console.log("FX-Service got score: " + score);
@@ -326,7 +335,7 @@ angular.module('playerAppServices', [])
             fxService.interval = $interval(function () {
                 fxService.countdown.count--;
                 fxService.countdown.display = true;
-                console.log("count down to "+fxService.countdown.count);
+                console.log("count down to " + fxService.countdown.count);
                 fxService.playSound("countdown_tick");
                 $timeout(function () {
                     fxService.countdown.display = false;
@@ -341,7 +350,34 @@ angular.module('playerAppServices', [])
         };
         fxService.playSound = function (id) {
             console.log("fxService.play " + id);
-            fxService.sound[id].play();
+            var delay = 0;
+            if (id == "results") delay = 250 * Status.player.playerId;
+            if (typeof fxService.sound[id] !== "undefined") {
+                $timeout(function () {
+                    fxService.sound[id].play()
+                }, delay);
+            }
+        };
+        fxService.setClass = function (name) {
+            console.log("fx.setClass " + name);
+            if (typeof fxService.classes[name] == "undefined") fxService.classes[name] = false;
+            fxService.classes[name] ^= true;
+            console.log("now " + fxService.classes[name]);
+        };
+        Socket.on("fx", function (fx) {
+            switch (fx.type) {
+                case "flashAndSound":
+                    fxService.playSound(fx.sound);
+                    fxService.flash(fx.color, fx.time);
+                    break;
+            }
+        });
+        fxService.flash = function (col, time) {
+            console.log("flash");
+            fxService.class.background = col;
+            $timeout(function() {
+                fxService.class.background = "transparent";
+            }, time)
         };
         return fxService;
     })

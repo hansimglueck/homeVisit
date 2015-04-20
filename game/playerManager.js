@@ -276,6 +276,7 @@ PlayerManager.prototype = {
 
     //wenn das game meint, die player sollten beschäftigt sein, ist das seine eingangstür
     addItem: function (item, device) {
+        var self = this;
         try {
             if (!item.type) {
                 this.log("cannot process item (no type)!");
@@ -311,7 +312,12 @@ PlayerManager.prototype = {
                     break;
                 case "agreement":
                     this.polls[item.poll.id] = item.poll;
-                    var self = this;
+                    item.playerIds.forEach(function (id) {
+                        self.sendMessage(id, "display", item.getWsContent());
+                    });
+                    break;
+                case "roulette":
+                    this.polls[item.poll.id] = item.poll;
                     item.playerIds.forEach(function (id) {
                         self.sendMessage(id, "display", item.getWsContent());
                     });
@@ -423,6 +429,11 @@ PlayerManager.prototype = {
         this.broadcastMessage("display", {type: "seatOrder"});
     },
 
+    playRoulette: function(result) {
+        console.log("play roulette");
+
+    },
+
     //schau mal, ob im ziel-device ein spezial steckt (zB player:next)
     //hier steckt auch die logik des weiterschaltens
     deliverMessage: function (device, type, content) {
@@ -485,6 +496,10 @@ PlayerManager.prototype = {
                     return (player.rank == joined);
                 });
                 break;
+            case "joined":
+                return this.players.filter(function(player){
+                    return player.joined;
+                });
             default:
             case "all":
                 ret = this.players;

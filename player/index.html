@@ -52,7 +52,10 @@
       ng-app="playerApp">
 
 <div ng-class="{'turn':turn, 'no-turn':!turn}">
-    <div id="animation-overlay" ng-controller="overlayController">
+    <button ng-audio="sounds/whoosh3.mp3" volume="0.1" start="0">Click me</button>
+    <button ng-click="fxService.flash('red', 500)">red</button>
+    <div id="animation-overlay" ng-style="{'background':fx.class.background}" ng-class="fx.classes" ng-controller="overlayController">
+        {{fx.classes['red']}}
         <div class="animation-element score-alert score-up-animate green" ng-repeat="a in fx.posAlerts track by $index">
             <span class="fa-stack">
                 <i class="fa fa-circle fa-stack-2x semi-transparent"></i>

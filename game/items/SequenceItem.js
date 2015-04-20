@@ -229,6 +229,13 @@ SequenceItem.prototype = {
                 this.setupPoll();
                 this.mapToDevice();
                 break;
+            case "roulette":
+                this.playerIds = playerManager.getPlayerGroup('joined').map(function (player) {
+                    return player.playerId;
+                });
+                this.setupPoll();
+                this.mapToDevice();
+                break;
             case "vote":
                 this.setupPoll();
                 this.mapToDevice();
@@ -377,6 +384,7 @@ SequenceItem.prototype = {
                     device: this.device
                 };
                 break;
+            case "roulette":
             case "agreement":
             case "vote":
                 content = this.poll.getWsContent();
@@ -434,6 +442,14 @@ SequenceItem.prototype = {
                 poll.playerIds.forEach(function (pid) {
                     playerManager.sendMessage(pid, "display", {type: "card", text: result.text});
                 })
+            })
+        }
+        else if (this.type === "roulette") {
+            poll = new Agreement(this);
+            poll.onFinish(playerManager, function(result) {
+                result.win = self.win;
+                result.cost = self.cost;
+                playerManager.playRoulette(result);
             })
         }
         else {

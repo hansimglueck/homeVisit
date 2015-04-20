@@ -1,0 +1,33 @@
+<table>
+    <tr>
+        <td class="text-right">Kosten: </td>
+        <td>
+    <span editable-text="item.cost"
+          e-rows="7" e-cols="40" e-name="cost"
+          onaftersave="saveItem()">
+          {{ item.cost || 'not Set' }}
+        </span>
+        </td>
+    </tr>
+    <tr>
+        <td class="text-right">Gewinn: </td>
+        <td>
+    <span editable-text="item.win"
+          e-rows="7" e-cols="40" e-name="win"
+          onaftersave="saveItem()">
+          {{ item.win || 'not Set' }}
+        </span>
+        </td>
+    </tr>
+    <tr>
+        <td>Zeit bis Entscheidung: </td>
+        <td>
+<span editable-text="item.time"
+      e-rows="1" e-cols="4" e-name="time"
+      onaftersave="saveItem()">
+          {{ item.time || 'not set' }}
+        </span>
+        </td>
+    </tr>
+
+</table>

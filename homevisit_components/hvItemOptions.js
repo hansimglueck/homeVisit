@@ -13,7 +13,8 @@ angular.module('hvItemOptions', [])
             {value: 'rating', text: 'Bewertung', mappable: true},
             {value: 'eval', text: 'eval', mappable: false},
             {value: 'dummy', text: 'Dummy', mappable: false},
-            {value: 'agreement', text: 'Agreement', mappable: true}
+            {value: 'agreement', text: 'Agreement', mappable: true},
+            {value: 'roulette', text: 'Roulette', mappable: true}
         ],
         'color': [
             {value: '0', text: 'Rot'},

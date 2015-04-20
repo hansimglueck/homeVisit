@@ -156,7 +156,7 @@ WsManager.prototype = {
                                 break;
 
                             case "forceReload":
-                                //self.msgDevicesByRole(msg.data, "reload");
+                                self.msgDevicesByRole(msg.data, "reload");
                                 break;
 
                             case "getDeviceList":

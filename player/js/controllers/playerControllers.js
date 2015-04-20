@@ -1,6 +1,7 @@
 angular.module("playerControllers", [])
-    .controller('MainController', function ($scope, Status, playerColors) {
+    .controller('MainController', function ($scope, Status, playerColors, fxService) {
         $scope.status = Status;
+        $scope.fxService = fxService;
         $scope.player = Status.player;
         $scope.playerColors = playerColors;
         $scope.turn = navigator.platform.indexOf("arm")>-1;

@@ -133,6 +133,13 @@ angular.module('adminDirectives', [])
             templateUrl: 'views/admin/show-item-contents/show-cmd-content.html'
         };
     })
+    .directive('showRouletteContent', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'views/admin/show-item-contents/show-roulette-content.html'
+        };
+    })
 
     .directive('showPlayerDirectContent', function () {
         return {
