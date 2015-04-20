@@ -14,7 +14,7 @@ module.exports = function(cb){
     MongoClient.connect(mongoUri, function(err, conn) {
         if(err){
             console.log(err.message);
-            throw new Error(err);
+            return false;
         } else {
             db = conn;
             if (cb) cb(db);
