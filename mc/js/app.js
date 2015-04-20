@@ -24,6 +24,9 @@ angular
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
+                redirectTo: '/polls'
+            })
+            .when('/polls', {
                 templateUrl: '/mc/views/dummies.html',
                 controller: 'DummiesCtrl'
             })

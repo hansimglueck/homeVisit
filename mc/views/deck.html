@@ -1,101 +1,121 @@
 <div>
-    <!--{{deck.stepIndex}}<br/>-->
-    <!--{{deck.deck.items.length}}<br/>-->
-    <!--{{showTextForValue(deck.deck.items[0],'type')}}-->
-    
-    {{deck.deck.items[deck.stepIndex].text}}
-    
     <ul class="list-inline">
         
-        <li class="list-group-item game_sequence_item next_sequence_item" ng-if="deck.stepIndex + 1 < deck.deck.items.length">
-            <button class="btn btn-success" ng-click="playback('go','0')">GO</button>
-            Next Turn: <br/>
-            
-            <!--<div ng-switch="deck.deck.items[deck.stepIndex + 1].type">-->
-                <div ng-switch="deck.nextItem.type">
-                <div ng-switch-when="vote"></div>
-                <div ng-switch-when="inlineSwitch">
-                    <div ng-repeat="inlineDeck in deck.deck.items[deck.stepIndex + 1].inlineDecks track by $index">
-                        <button class="btn btn-warning" ng-click="playback('go', $index)">GO Option {{$index}}</button> {{inlineDeck.items[0].text}} 
-                    </div>
-                </div>
-                <div ng-switch-when="results">Ergebnisse</div>
-                <div ng-switch-when="sound">Sound: {{deck.deck.items[deck.stepIndex + 1].text}}</div>
-                <div ng-switch-when="cmd">Kommando</div>
-                <div ng-switch-when="config">Konfiguration</div>
-                <div ng-switch-when="deal">Dealen</div>
-                <div ng-switch-when="rating">Bewertung</div>
-                <div ng-switch-default>Text: {{deck.deck.items[deck.stepIndex + 1].text}}</div>
-            </div>
-            
-            <div ng-if="deck.deck.items[deck.stepIndex].mcnote.length > 0" class="mcnote">
-                >>> {{deck.deck.items[deck.stepIndex + 1].mcnote}} <<<
-            </div>
-            
-            
-            <!--Next Turn --- Type: {{showTextForValue(deck.deck.items[deck.stepIndex + 1],'type')}} --- Text: {{deck.deck.items[deck.stepIndex + 1].text}} Note: {{deck.deck.items[deck.stepIndex + 1].mcnote}}-->
-            <!--Next Turn: {{deck.deck.items[deck.stepIndex + 1]}}-->
-            <br/>
-        </li>
-        
-        <li class="list-group-item game_sequence_item" ng-if="deck.stepIndex + 1 >= deck.deck.items.length">
-            * * * T H E * * * E N D * * *
-            <br/>
-        </li>
-        
-        <br/>
-        
         <li class="list-group-item game_sequence_item">
-            <button class="btn btn-default" ng-click="playback('rego')">REGO</button>
-            Current Turn: <br/>
-            
-            <div ng-switch="deck.deck.items[deck.stepIndex].type">
-                <div ng-switch-when="vote">Players are voting</div>
-                <div ng-switch-when="inlineSwitch">Inlineswitch {{deck.deck}}
-                    
-                </div>
-                <div ng-switch-when="results">Results are displayed</div>
-                <div ng-switch-when="sound">Sound is playing: {{deck.deck.items[deck.stepIndex].text}}</div>
-                <div ng-switch-when="cmd">Command: {{deck.deck.items[deck.stepIndex]</div>
-                <div ng-switch-when="config">Configuration: {{deck.deck.items[deck.stepIndex]</div>
-                <div ng-switch-when="deal">Players are dealing</div>
-                <div ng-switch-when="rating">Players are rating others</div>
-                <div ng-switch-default>Text: {{deck.deck.items[deck.stepIndex].text}}</div>
-            </div>
-            
-            <div ng-if="deck.deck.items[deck.stepIndex].mcnote.length > 0">
-                >>> {{deck.deck.items[deck.stepIndex].mcnote}} <<<
-            </div>
-            
-            
-            <!--Type: {{showTextForValue(deck.deck.items[deck.stepIndex],'type')}} --- Text: {{deck.deck.items[deck.stepIndex].text}} Note: {{deck.deck.items[deck.stepIndex].mcnote}}-->
-            <br/>
-        </li>
-        
-        <br/>
-        
-        <li class="list-group-item game_sequence_item" ng-if="deck.stepIndex > 0">
             <button class="btn btn-default" ng-click="playback('back')">BACK</button>
-            Previous Turn: <br/>
+            <label class="sequence-type" ng-if="deck.previous">{{deck.previous.type}}</label>
             
-            <div ng-switch="deck.deck.items[deck.stepIndex - 1].type">
-                <div ng-switch-when="vote">Voting</div>
-                <div ng-switch-when="inlineSwitch">Branching</div>
-                <div ng-switch-when="results">Results</div>
-                <div ng-switch-when="sound">Sound</div>
-                <div ng-switch-when="cmd">Command</div>
-                <div ng-switch-when="config">Configuration</div>
-                <div ng-switch-when="deal">Players dealt</div>
-                <div ng-switch-when="rating">Players rated others</div>
-                <div ng-switch-default>Text: {{deck.deck.items[deck.stepIndex].text}}</div>
+            <label class="sequence-label" ng-if="deck.previous">Previous: <span>{{deck.stepIndex - 1}}</span></label>
+
+            <div class="content">
+                <div ng-switch="deck.previous.type">
+                    <div ng-switch-when="vote">Players are voting</div>
+                    <div ng-switch-when="inlineSwitch">
+                        <div ng-repeat="inlineDeck in deck.previous.inlineDecks track by $index">
+                            <!-- <button class="btn btn-warning" ng-click="playback('go', $index)">GO Option {{$index}}</button> -->
+                            <ol class="inline-options">
+                                <li ng-repeat="inlineItem in inlineDeck.items">
+                                    <span class="type">{{inlineItem.type}}</span> {{inlineItem.text}}
+                                    <ol ng-if="inlineItem.type == 'vote'">
+                                        <li ng-repeat="voteOption in inlineItem.voteOptions">
+                                            {{voteOption.text}}
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div ng-switch-when="results">Results are displayed</div>
+                    <div ng-switch-when="sound">Sound is playing: {{deck.previous.text}}</div>
+                    <div ng-switch-when="cmd">Command</div>
+                    <div ng-switch-when="config">Configuration</div>
+                    <div ng-switch-when="deal">Players are dealing</div>
+                    <div ng-switch-when="rating">Players are rating others</div>
+                    <div ng-switch-default class="text-scroller">{{deck.previous.text}}</div>
+                </div>
+
+                <div ng-if="deck.previous.mcnote.trim().length > 0" class="mcnote">
+                    {{deck.previous.mcnote}}
+                </div>
             </div>
         </li>
-                
+
+        <li class="list-group-item game_sequence_item game_sequence_item_current">
+            <button class="btn btn-default" ng-click="playback('rego')">REGO</button>
+            <label class="sequence-type">{{deck.current.type}}</label>
+            <label class="sequence-label">Current: <span>{{deck.stepIndex}}</span></label>
+
+            <div class="content">
+                <div ng-switch="deck.current.type">
+                    <div ng-switch-when="vote">Players are voting</div>
+                    <div ng-switch-when="inlineSwitch">
+                        <div ng-repeat="inlineDeck in deck.current.inlineDecks track by $index">
+                            <!-- <button class="btn btn-warning" ng-click="playback('go', $index)">GO Option {{$index}}</button> -->
+                            <ol class="inline-options">
+                                <li ng-repeat="inlineItem in inlineDeck.items">
+                                    <span class="type">{{inlineItem.type}}</span> {{inlineItem.text}}
+                                    <ol ng-if="inlineItem.type == 'vote'">
+                                        <li ng-repeat="voteOption in inlineItem.voteOptions">
+                                            {{voteOption.text}}
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div ng-switch-when="results">Results are displayed</div>
+                    <div ng-switch-when="sound">Sound is playing: {{deck.current.text}}</div>
+                    <div ng-switch-when="cmd">Command</div>
+                    <div ng-switch-when="config">Configuration</div>
+                    <div ng-switch-when="deal">Players are dealing</div>
+                    <div ng-switch-when="rating">Players are rating others</div>
+                    <div ng-switch-default class="text-scroller">{{deck.current.text}}</div>
+                </div>
+
+                <div ng-if="deck.current.mcnote.trim().length > 0" class="mcnote">
+                    {{deck.current.mcnote}}
+                </div>
+            </div>
+        </li>
+        
+        <li class="list-group-item game_sequence_item next_sequence_item" ng-if="deck.next">
+            <button class="btn btn-success" ng-click="playback('go','0')">GO</button>
+            <label class="sequence-type">{{deck.next.type}}</label>
+            <label class="sequence-label">Next: <span>{{deck.stepIndex + 1}}</span></label>
+            
+            <div class="content">
+                <div ng-switch="deck.next.type">
+                    <div ng-switch-when="vote">Players are voting</div>
+                    <div ng-switch-when="inlineSwitch">
+                        <div ng-repeat="inlineDeck in deck.next.inlineDecks track by $index">
+                            <!-- <button class="btn btn-warning" ng-click="playback('go', $index)">GO Option {{$index}}</button> -->
+                            <ol class="inline-options">
+                                <li ng-repeat="inlineItem in inlineDeck.items">
+                                    <span class="type">{{inlineItem.type}}</span> {{inlineItem.text}}
+                                    <ol ng-if="inlineItem.type == 'vote'">
+                                        <li ng-repeat="voteOption in inlineItem.voteOptions">
+                                            {{voteOption.text}}
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div ng-switch-when="results">Results are displayed</div>
+                    <div ng-switch-when="sound">Sound is playing: {{deck.next.text}}</div>
+                    <div ng-switch-when="cmd">Command</div>
+                    <div ng-switch-when="config">Configuration</div>
+                    <div ng-switch-when="deal">Players are dealing</div>
+                    <div ng-switch-when="rating">Players are rating others</div>
+                    <div ng-switch-default class="text-scroller">{{deck.next.text}}</div>
+                </div>
+
+                <div ng-if="deck.next.mcnote.trim().length > 0" class="mcnote">
+                    {{deck.next.mcnote}}
+                </div>
+            </div>
+        </li>
+
     </ul>
-    
-    
-    
-    <!--{{deck.stepIndex}}<br />-->
-    <!--    {{deck.deck}}<br />-->
     
 </div>

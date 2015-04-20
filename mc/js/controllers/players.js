@@ -20,14 +20,14 @@ angular.module('homeVisitMCApp')
             type: 'playback'
         };
         $scope.playerPos = [
-            {top: 10, left: 15},
-            {top: 10, left: 330},
-            {top: 10, left: 645},
-            {top: 10, left: 960},
-            {top: 490, left: 960},
-            {top: 490, left: 645},
-            {top: 490, left: 330},
-            {top: 490, left: 15}
+            {top: 8, left: 15},
+            {top: 8, left: 330},
+            {top: 8, left: 645},
+            {top: 8, left: 960},
+            {top: 480, left: 960},
+            {top: 480, left: 645},
+            {top: 480, left: 330},
+            {top: 480, left: 15}
         ];
 
         $scope.toggleSelected = function (id) {
