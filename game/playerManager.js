@@ -466,6 +466,7 @@ PlayerManager.prototype = {
         var self = this;
         if (typeof specialPlayer == "undefined") specialPlayer = "all";
         if (specialPlayer === "next") {
+            this.broadcastMessage("display", {type:"black"});
             if (this.upcoming === this.onTurn + 1 || this.upcoming === -1) {
                 this.advanceTurn(1);
             } else {

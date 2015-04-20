@@ -406,9 +406,7 @@ SequenceItem.prototype = {
                 break;
             case "results":
                 content = {
-                    data: {
-                        voteOptions: this.data.voteOptions
-                    },
+                    data: this.data,
                     type: this.type,
                     text: this.data.text,
                     resultType: this.resultType,
