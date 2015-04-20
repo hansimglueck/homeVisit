@@ -2,10 +2,10 @@
     <table class="table table-bordered">
         <tr>
             <th>Player</th>
-            <th ng-repeat="playerY in matchMatrix track by $index">{{$index + 1}}</th>
+            <th ng-repeat="playerY in matchMatrix track by $index">{{playerNames[$index]}}</th>
         </tr>
         <tr ng-repeat="playerX in matchMatrix track by $index">
-            <td>{{playerLineCount($index) + 1}}</td>
+            <td>{{playerNames[playerLineCount($index)]}}</td>
             <td ng-repeat="match in playerX track by $index">
                 <div ng-if="$index == playerLine" class="black">{{match}}</div>
                 <div ng-if="$index != playerLine">
@@ -16,7 +16,7 @@
                     </button>
                     <button ng-if="isMatched($index,playerLine)" class="btn matchedUp" ng-click="clearMatch($index,$parent.$parent.$parent.$index)">
                         <!-- These are matched = Team -->
-                        TEAM: {{$index + 1}} + {{$parent.$parent.$parent.$index + 1}}
+                        {{playerNames[$index]}} + {{playerNames[$parent.$parent.$parent.$index]}}
                     </button>
             </td>
         </tr>

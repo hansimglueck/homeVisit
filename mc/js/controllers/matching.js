@@ -1,9 +1,10 @@
 'use strict';
 
 angular.module('homeVisitMCApp')
-    .controller('MatchingCtrl', function ($scope, Polls, Matches) {
+    .controller('MatchingCtrl', function ($scope, Polls, Matches, PlayerNames) {
         $scope.polls = Polls;
         $scope.matches = Matches;
+        $scope.playerNames = PlayerNames.names;
         $scope.playerLine = 0;
         
         $scope.matchMatrix = [

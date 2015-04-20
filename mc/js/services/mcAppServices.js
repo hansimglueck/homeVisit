@@ -170,6 +170,26 @@ angular.module('mcAppServices', [])
         ];
         return matchFactory;
     })
+    .factory('PlayerNames', function () {
+        var playerNamesFactory = {};
+        playerNamesFactory.names = [
+            'player 1',
+            'player 2',
+            'player 3',
+            'player 4',
+            'player 5',
+            'player 6',
+            'player 7',
+            'player 8',
+            'player 9',
+            'player 10',
+            'player 11',
+            'player 12',
+            'player 13',
+            'player 14',
+        ];
+        return playerNamesFactory;
+    })
     .factory('Deck', function(Socket, setFactory){
         var playbackStatus = {stepId: -1, type:"nix", deckId: null};
         var deck = null;
