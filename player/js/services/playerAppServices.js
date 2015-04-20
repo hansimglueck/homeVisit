@@ -66,10 +66,8 @@ angular.module('playerAppServices', [])
                     if (data.type) {
                         if (!data.silent) fxService.playSound(data.type);
                         switch (data.type) {
-                            case "roulette":
                             case "agreement":
                             case "vote":
-                                if (data.type == "roulette") homeFactory.text = ["You wanna play a Game of Roulette?"];
                                 homeFactory.type = "vote";
                                 homeFactory.voteType = data.voteType;
                                 homeFactory.options = data.voteOptions || [{value: 0}];
@@ -121,7 +119,7 @@ angular.module('playerAppServices', [])
                                 var path = "/rating";
                                 if (data.ratingType === "allTeams") {
                                     path += "/player";
-                                    if (data.posNeg == "+1") path+= "/1";
+                                    if (data.posNeg == "+1") path += "/1";
                                     else path += "/-1";
                                 }
                                 if (data.ratingType === "oneTeam") {
@@ -375,7 +373,7 @@ angular.module('playerAppServices', [])
         fxService.flash = function (col, time) {
             console.log("flash");
             fxService.class.background = col;
-            $timeout(function() {
+            $timeout(function () {
                 fxService.class.background = "transparent";
             }, time)
         };

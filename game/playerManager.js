@@ -31,8 +31,7 @@ PlayerManager.prototype = {
                 timeScore: 0,
                 timeRank: -1,
                 deals: {},
-                inventory: [
-                ],
+                inventory: [],
                 away: false,
                 selected: false
             });
@@ -429,9 +428,35 @@ PlayerManager.prototype = {
         this.broadcastMessage("display", {type: "seatOrder"});
     },
 
-    playRoulette: function(result) {
+    playRoulette: function (result) {
         console.log("play roulette");
+        var self = this;
+        var steps = Math.floor(Math.random() * result.positivePlayerIds.length) + 23;
 
+        this.rouletteStep(steps, result, function(item, winner) {self.finishRoulette(item, winner)});
+
+    },
+
+    rouletteStep: function (steps, item, cb) {
+        var cnt = item.positivePlayerIds.length;
+        var turn = item.positivePlayerIds[steps%cnt];
+        var self = this;
+        console.log("step "+steps+ "turn="+turn);
+        if (steps == 0) cb.call(self, item, turn);
+        else setTimeout(function () {
+            self.sendMessage(turn, "fx", {type: "flashAndSound", color: "#ff0000", sound: "zip", time: 500});
+            self.rouletteStep(steps-1, item, cb);
+        }, Math.pow(((35 - steps) * 30),2)/1000)
+    },
+
+    finishRoulette: function(item, winner) {
+        console.log("and the winner is: "+winner);
+        this.sendMessage(winner, "fx", {type: "flashAndSound", color: "green", sound: "zip", time: 2000});
+        var self = this;
+        item.positivePlayerIds.forEach(function(player){
+            if (player === winner) self.score(player, item.win, "roulette");
+            else self.score(player, -item.cost, "roulette");
+        })
     },
 
     //schau mal, ob im ziel-device ein spezial steckt (zB player:next)
@@ -457,7 +482,7 @@ PlayerManager.prototype = {
     },
 
     getPlayerGroup: function (identifier) {
-        console.log("getPlayerGroup "+identifier);
+        console.log("getPlayerGroup " + identifier);
         var ret;
         var self = this;
         var inverse = false;
@@ -469,35 +494,35 @@ PlayerManager.prototype = {
             case "act":
             case "active":
                 ret = this.players.filter(function (player) {
-                    return (player.seat === self.onTurn)^inverse;
+                    return (player.seat === self.onTurn) ^ inverse;
                 });
                 break;
             case "sel":
             case "selected":
                 ret = this.players.filter(function (player) {
-                    return player.selected^inverse;
+                    return player.selected ^ inverse;
                 });
                 break;
             case "topTwo":
-                ret = this.players.filter(function(player){
-                    return (player.rank < 3)^inverse;
+                ret = this.players.filter(function (player) {
+                    return (player.rank < 3) ^ inverse;
                 });
                 break;
             case "best":
-                ret = this.players.filter(function(player){
+                ret = this.players.filter(function (player) {
                     return (player.rank == 1);
                 });
                 break;
             case "worst":
-                var joined = this.players.filter(function(player){
+                var joined = this.players.filter(function (player) {
                     return player.joined;
                 }).length;
-                ret = this.players.filter(function(player){
+                ret = this.players.filter(function (player) {
                     return (player.rank == joined);
                 });
                 break;
             case "joined":
-                return this.players.filter(function(player){
+                return this.players.filter(function (player) {
                     return player.joined;
                 });
             default:
@@ -505,7 +530,9 @@ PlayerManager.prototype = {
                 ret = this.players;
                 break;
         }
-        console.log(ret.map(function(player){return player.playerId}));
+        console.log(ret.map(function (player) {
+            return player.playerId
+        }));
         return ret;
     },
     // Zum Verteilen von allgemeinen ws-messages an alle Player.
@@ -556,8 +583,8 @@ PlayerManager.prototype = {
         wsManager.msgDevicesByRole("master", "status", msg);
         wsManager.msgDevicesByRole("MC", "status", msg);
     },
-    sendGameEvent: function(playerId, type, value, text) {
-        this.sendMessage(playerId, "gameEvent", {type: type, value:value, text:text})
+    sendGameEvent: function (playerId, type, value, text) {
+        this.sendMessage(playerId, "gameEvent", {type: type, value: value, text: text})
     },
     getPlayerIdForClientId: function (clientId) {
         var playerId = -1;
@@ -621,25 +648,25 @@ PlayerManager.prototype = {
                 }
             })
         }
-        this.sendGameEvent(playerId, "score", score, "You got "+score+ "Points");
+        this.sendGameEvent(playerId, "score", score, "You got " + score + "Points");
         this.calcRanking();
         this.sendPlayerStatus(-1);
     },
-    setAgreement:function (agreement) {
+    setAgreement: function (agreement) {
         this.setRelation({id: agreement.id, playerIds: agreement.playerIds, type: agreement.agreementType})
     },
-    setRelation: function(relation) {
+    setRelation: function (relation) {
         this.relations[relation.id] = relation;
         var self = this;
-        relation.playerIds.forEach(function(playerId){
-            self.sendGameEvent(playerId, relation.type, relation.playerIds, "A new "+relation.type);
+        relation.playerIds.forEach(function (playerId) {
+            self.sendGameEvent(playerId, relation.type, relation.playerIds, "A new " + relation.type);
         });
         this.sendPlayerStatus(-1);
     },
-    getRelationsForPlayer: function(playerId) {
+    getRelationsForPlayer: function (playerId) {
         var self = this;
         var relForPlayer = [];
-        Object.keys(this.relations).forEach(function(key){
+        Object.keys(this.relations).forEach(function (key) {
             if (self.relations[key].playerIds.indexOf(playerId) != -1) relForPlayer.push(self.relations[key]);
         });
         return relForPlayer;
@@ -647,7 +674,7 @@ PlayerManager.prototype = {
     getPlayerArray: function () {
         var ret = [];
         for (var i = 0; i < this.players.length; i++) {
-             ret.push({
+            ret.push({
                 joined: this.players[i].joined,
                 busy: this.players[i].busy,
                 playerId: this.players[i].playerId,
