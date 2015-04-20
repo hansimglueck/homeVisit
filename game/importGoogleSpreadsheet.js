@@ -60,7 +60,7 @@ function buildItemFromRow(row, hash) {
     var item = {
         _id: hash,
         wait: row.wait || 0,
-        device: 'default',
+        device: ['default'],
         mcnote: row.mcnote,
         highlight: 1 // mark for review
     };
@@ -103,7 +103,7 @@ function buildItemFromRow(row, hash) {
                         trigger: 'go',
                         type: 'vote',
                         text: row.text,
-                        device: 'default',
+                        device: ['default'],
                         percentsForFinish: '100',
                         voteType: 'customOptions',
                         voteOptions: voteOptions
@@ -113,7 +113,7 @@ function buildItemFromRow(row, hash) {
                         trigger: 'go',
                         type: 'results',
                         text: '',
-                        device: 'default',
+                        device: ['default'],
                         sourceType: 'previousStep',
                         resultType: 'Pie',
                         scoreType: 'optionScore'
