@@ -24,6 +24,7 @@ var playerManager = require('../playerManager.js');
  item.wait:      Zeit in Sekunden nach trigger, bevor der Step ausgeführt wird
  item.comment:   Freifeld für Kommentare
  item.highlight: 1 für highlight in der Darstellung
+ item.mcnote:   eine Notiz für den mc
 
  item.type = "card"
  item.text:      Der Darzustellende Text

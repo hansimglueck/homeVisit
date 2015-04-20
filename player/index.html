@@ -7,6 +7,7 @@
     <title>HomeVisitApp</title>
     <link rel="stylesheet" href="/bower_components/angular-chart.js/dist/angular-chart.css">
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="/bower_components/font-awesome/css/font-awesome.min.css"/>
     <!--
         <link rel="stylesheet" href="/bower_components/mobile-angular-ui/dist/css/mobile-angular-ui-base.min.css">
     -->
@@ -51,7 +52,26 @@
       ng-app="playerApp">
 
 <div ng-class="{'turn':turn, 'no-turn':!turn}">
-<!-- Sidebars -->
+    <div id="animation-overlay" ng-controller="overlayController">
+        <div class="animation-element score-alert score-up-animate green" ng-repeat="a in fx.posAlerts track by $index">
+            <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x semi-transparent"></i>
+                <i class="fa fa-stack-1x">{{a}}</i>
+            </span>
+        </div>
+        <div class="animation-element score-alert score-down-animate red" ng-repeat="a in fx.negAlerts track by $index">
+                       <span class="fa-stack">
+                <i class="fa fa-circle fa-stack-2x semi-transparent"></i>
+                <i class="fa fa-stack-1x">{{a}}</i>
+            </span>
+
+        </div>
+        <div class="animation-element countdown countdown-animate red" ng-if="fx.countdown.display">
+                       {{fx.countdown.count}}
+        </div>
+    </div>
+
+    <!-- Sidebars -->
 <!--
 <div class="sidebar sidebar-left" ng-controller="MenuController">
     <div class="scrollable">
@@ -79,8 +99,6 @@
 </div>
 -->
 <!--<div class="app-border" ng-style="col1border()">-->
-
-    <!--
 <div id="animation-overlay" ng-controller="overlayController">
     <div class="animation-element score-alert score-up-animate green" ng-repeat="a in fx.posAlerts track by $index">
             <span class="fa-stack">
@@ -103,8 +121,6 @@
 
     </div>
 </div>
-
--->
 <div class="app" ng-style="{'border-color':playerColors[status.player.playerId]}">
     <!--
     <div class="navbar navbar-app navbar-absolute-top text-center" ng-controller="NavbarController">
@@ -163,9 +179,7 @@
         <div ng-show="debug">
             DEBUG: {{type}}, {{player}}, {{col1}}, {{avgRating}}
         </div>
-        <div ng-show="player.playerId==-1">
-            could not log you in to the game (maybe there already enough players?)
-        </div>
+        <not-joined ng-hide="status.joined"></not-joined>
         <div class="view-content" ng-view>
         </div>
     </div>

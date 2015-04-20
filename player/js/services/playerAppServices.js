@@ -224,8 +224,6 @@ angular.module('playerAppServices', [])
                 } else statusFactory.joined = true;
             }
         });
-
-
         Socket.on('reload', function () {
             window.location.reload();
             console.log('X')
@@ -285,6 +283,7 @@ angular.module('playerAppServices', [])
         fxService.sound["poll"] = ngAudio.load("sounds/tiny-01.mp3");
         fxService.sound["alert"] = ngAudio.load("sounds/tiny-01.mp3");
         fxService.sound["result"] = ngAudio.load("sounds/glass.mp3");
+        fxService.sound["countdown_tick"] = ngAudio.load("sounds/countdown_tick.mp3");
         fxService.sound["scoreDown"] = ngAudio.load("sounds/smashing.mp3");
         fxService.sound["scoreUp"] = ngAudio.load("sounds/glass.mp3");
         fxService.posAlerts = [];
@@ -327,7 +326,8 @@ angular.module('playerAppServices', [])
             fxService.interval = $interval(function () {
                 fxService.countdown.count--;
                 fxService.countdown.display = true;
-                //console.log("count down to "+fxService.countdown.count);
+                console.log("count down to "+fxService.countdown.count);
+                fxService.playSound("countdown_tick");
                 $timeout(function () {
                     fxService.countdown.display = false;
                 }, 300);

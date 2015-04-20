@@ -1,10 +1,15 @@
 angular.module("playerControllers", [])
     .controller('MainController', function ($scope, Status, playerColors) {
         $scope.status = Status;
+        $scope.player = Status.player;
         $scope.playerColors = playerColors;
         $scope.turn = navigator.platform.indexOf("arm")>-1;
         console.log("onAndroid=");
         console.log($scope.turn);
+        $scope.$on("disconnected", function () {
+            console.log("MainController got 'disconnected'");
+            $scope.status.resetPlayer();
+        });
     })
     .controller('HomeController', function ($scope, $location, Status, Home, Rating, Socket, playerColors, ngAudio, europeSvgData) {
         $scope.europeSVG = europeSvgData;

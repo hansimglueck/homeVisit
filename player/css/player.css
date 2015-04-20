@@ -23,7 +23,7 @@ body {
 
 .app {
     height: 100%;
-    border: solid 5px;
+    border: solid 5px grey;
     display: flex;
     flex-direction: row;
     align-items: center;
