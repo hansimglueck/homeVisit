@@ -1,3 +1,20 @@
-Hier tauchen dann die Matching-Ergebnisse auf...
+<div>
+    <table class="table table-bordered">
+        <tr>
+            <th>Player</th>
+            <th ng-repeat="playerY in matchMatrix track by $index">{{$index + 1}}</th>
+        </tr>
+        <tr ng-repeat="playerX in matchMatrix track by $index">
+            <td>{{playerLineCount($index) + 1}}</td>
+            <td ng-repeat="match in playerX track by $index">
+                <!--<div ng-if="$index != playerLine" ng-class="{matching:isMatch(playerX,match)}">{{match}}</div>-->
+                <div ng-if="$index != playerLine" ng-class="{matching_green:match >= 4, matching_yellow:match >= 2 && match < 4}">{{match}}</div>
+                <div ng-if="$index == playerLine" class="black">{{match}}</div>
+            </td>
+        </tr>
+    </table>
+</div>
 
-{{polls.polls}}
+<!--{{polls.polls}}-->
+<!--<br/>-->
+<!--{{matchMatrix}}-->

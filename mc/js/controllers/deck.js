@@ -3,10 +3,6 @@ angular.module('homeVisitMCApp')
         $scope.deck = Deck;
         //$scope.nextDeckItem = Deck.deck.items[Deck.stepId + 1];
         
-        $scope.inlineOptions = function (item) {
-            
-        }
-        
         $scope.showTextForValue = function (item, option) {
             var selected = [];
             if (item[option]) {

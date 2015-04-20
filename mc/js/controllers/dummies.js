@@ -2,7 +2,7 @@
 
 angular.module('homeVisitMCApp')
     .controller('DummiesCtrl', function ($scope, Polls) {
-        $scope.selectedRow = 3;
+        $scope.selectedRow = 0;
         $scope.dummies = [
             {name: 'dummy1', top: 10, left: 189},
             {name: 'dummy2', top: 10, left: 377},

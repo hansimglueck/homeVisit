@@ -2,19 +2,21 @@
     <!--{{deck.stepId}}<br/>-->
     <!--{{deck.deck.items.length}}<br/>-->
     <!--{{showTextForValue(deck.deck.items[0],'type')}}-->
-    <!--{{deck.deck.items[0].mcnote}}-->
+    
+    {{deck.deck.items[deck.stepId].text}}
     
     <ul class="list-inline">
         
-        <li class="list-group-item game_sequence_item" ng-if="deck.stepId + 1 < deck.deck.items.length">
+        <li class="list-group-item game_sequence_item next_sequence_item" ng-if="deck.stepId + 1 < deck.deck.items.length">
             <button class="btn btn-success" ng-click="playback('go','0')">GO</button>
             Next Turn: <br/>
             
-            <div ng-switch="deck.deck.items[deck.stepId + 1].type">
+            <!--<div ng-switch="deck.deck.items[deck.stepId + 1].type">-->
+                <div ng-switch="deck.nextItem.type">
                 <div ng-switch-when="vote"></div>
-                <div ng-switch-when="inlineSwitch">Inline
+                <div ng-switch-when="inlineSwitch">
                     <div ng-repeat="inlineDeck in deck.deck.items[deck.stepId + 1].inlineDecks track by $index">
-                        Branching {{$index}}
+                        <button class="btn btn-warning" ng-click="playback('go', $index)">GO Option {{$index}}</button> {{inlineDeck.items[0].text}} 
                     </div>
                 </div>
                 <div ng-switch-when="results">Ergebnisse</div>
@@ -27,7 +29,7 @@
             </div>
             
             <div ng-if="deck.deck.items[deck.stepId].mcnote.length > 0" class="mcnote">
-                IMPORTANT NOTE: {{deck.deck.items[deck.stepId + 1].mcnote}}
+                >>> {{deck.deck.items[deck.stepId + 1].mcnote}} <<<
             </div>
             
             
@@ -62,7 +64,7 @@
             </div>
             
             <div ng-if="deck.deck.items[deck.stepId].mcnote.length > 0">
-                IMPORTANT NOTE: {{deck.deck.items[deck.stepId].mcnote}}
+                >>> {{deck.deck.items[deck.stepId].mcnote}} <<<
             </div>
             
             

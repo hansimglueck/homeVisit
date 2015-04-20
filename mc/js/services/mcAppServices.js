@@ -60,92 +60,92 @@ angular.module('mcAppServices', [])
             {
                 question: "Wer am Tisch lebt auch in dieser Gegend?",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer an diesem Tisch war einmal Klassensprecher?",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer war oder ist Parteimitglied? ",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Und wer engagiert sich in einem Verein?",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer am Tisch hat eine Arbeit, von der er oder sie leben kann?",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer hat einen Konflikt schon mal körperlich ausgetragen?",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer hat eine Nationalflagge bei sich zu Hause?",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer hat eine Europaflagge bei sich zu Hause?",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer hat im Ausland schon mal bewusst seine nationale Herkunft verleugnet?",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer fühlt sich mehr als Europäer denn als Bürger seines Landes?",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer findet die Runde hier grundsätzlich vertrauenswürdig?",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer hat Angst vor der Zukunft?",
                 type: 'binary',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Meine Solidaritätsbereitschaft",
                 type: 'fingers',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Mein diplomatisches Geschick",
                 type: 'fingers',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Meine Verschwiegenheit",
                 type: 'fingers',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Meine Durchsetzungskraft",
                 type: 'fingers',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Mein Vertrauen in die Demokratie",
                 type: 'fingers',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Mein Vertrauen in das Spiel der Märkte",
                 type: 'fingers',
-                answers: new Array(14)
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             }
         ];
         return pollFactory;
@@ -161,6 +161,23 @@ angular.module('mcAppServices', [])
                 console.log("got playbackStatus info: "+JSON.stringify(status));
                 deckFactory.deck = setFactory.getDeckById(playbackStatus.deckId);
                 deckFactory.stepId = playbackStatus.stepId;
+                console.log(deckFactory.stepId);
+                deckFactory.stepIdArray = (deckFactory.stepId + "").split(":");
+                deckFactory.actItem = deckFactory.deck.items[deckFactory.stepIdArray[0]];
+                if (deckFactory.stepIdArray.length > 1) {
+                    console.log(deckFactory.actItem.inlineDecks);
+                    deckFactory.actItem = deckFactory.actItem.inlineDecks[deckFactory.stepIdArray[1]].items[deckFactory.stepIdArray[2]];
+                }
+                if (deckFactory.deck.items.length > deckFactory.stepIdArray[0]+1) {
+                    deckFactory.nextItem = deckFactory.deck.items[deckFactory.stepIdArray[0]+1];
+                    if (deckFactory.stepIdArray.length > 1) {
+                        if (deckFactory.actItem.inlineDecks[deckFactory.stepIdArray[1]].length > deckFactory.stepIdArray[2]+1) {
+                        deckFactory.nextItem = deckFactory.nextItem.inlineDecks[deckFactory.stepIdArray[1]].items[deckFactory.stepIdArray[2]+1];
+                        }
+                    }
+                }
+                
+            
             });
         };
         return deckFactory;

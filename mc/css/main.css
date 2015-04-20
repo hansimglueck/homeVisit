@@ -106,6 +106,30 @@ body {
   background: red;
 }
 
+.selectedFinger_neg {
+  background: #ef6850;
+}
+
+.selectedFinger_pos {
+  background: #9cc45a;
+}
+
+.matching {
+  background: #9cc45a;
+}
+
+.matching_green {
+  background: #9cc45a;
+}
+
+.matching_yellow {
+  background: #fd0;
+}
+
+.black {
+  background: #000;
+}
+
 .unknownAnswer {
   background-color: aquamarine;
 }
@@ -128,4 +152,9 @@ body {
 
 .game_sequence_item {
   width: 100%;
+}
+
+.next_sequence_item {
+  border-color: #0a0;
+  border-width: 3px;
 }
