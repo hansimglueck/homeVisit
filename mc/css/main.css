@@ -126,6 +126,11 @@ body {
   background: #fd0;
 }
 
+.matchedUp {
+  background: #f88;
+  color: #fff;
+}
+
 .black {
   background: #000;
 }

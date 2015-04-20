@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('homeVisitMCApp')
-    .controller('MatchingCtrl', function ($scope, Polls) {
+    .controller('MatchingCtrl', function ($scope, Polls, Matches) {
         $scope.polls = Polls;
+        $scope.matches = Matches;
         $scope.playerLine = 0;
         
         $scope.matchMatrix = [
@@ -21,7 +22,6 @@ angular.module('homeVisitMCApp')
             [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
             [0,0,0,0,0,0,0,0,0,0,0,0,0,0],
         ];
-        
         
         $scope.getMatrix = function(){
             //console.log(Polls.polls.length);
@@ -54,14 +54,36 @@ angular.module('homeVisitMCApp')
                     }
                 }
             }
-            console.log($scope.matchMatrix);
+            //console.log($scope.matchMatrix);
             return $scope.matchMatrix;
         };
         
         $scope.getMatrix();
         
-        $scope.isMatch = function(player, val) {
-            return val >= 3;
+        $scope.isMatched = function(playerX, playerY) {
+            if (Matches.matches[playerX][1] == playerY) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+        
+        $scope.matchUp = function(playerX, playerY) {
+            console.log("Match: " + playerX + " + " + playerY);
+            if (Matches.matches[playerX][0] != Matches.matches[playerX][1]) {
+                $scope.clearMatch(Matches.matches[playerX][0], Matches.matches[playerX][1]);
+            }
+            if (Matches.matches[playerY][0] != Matches.matches[playerY][1]) {
+                $scope.clearMatch(Matches.matches[playerY][0], Matches.matches[playerY][1]);
+            }
+            Matches.matches[playerX][1] = playerY;
+            Matches.matches[playerY][1] = playerX;
+        }
+        
+        $scope.clearMatch = function(playerX, playerY) {
+            console.log("Clear: " + playerX + " + " + playerY);
+            Matches.matches[playerX][1] = playerX;
+            Matches.matches[playerY][1] = playerY;
         }
         
         $scope.playerLineCount = function (val) {
