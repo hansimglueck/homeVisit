@@ -68,12 +68,17 @@ angular.module('mcAppServices', [])
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
-                question: "Wer war oder ist Parteimitglied? ",
+                question: "Wer hat schon mal hoch gewonnen?",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
-                question: "Und wer engagiert sich in einem Verein?",
+                question: "Wer war oder ist Parteimitglied?",
+                type: 'binary',
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+            },
+            {
+                question: "Wer engagiert sich in einem Verein oder in einer NGO?",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
@@ -93,12 +98,7 @@ angular.module('mcAppServices', [])
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
-                question: "Wer hat eine Europaflagge bei sich zu Hause?",
-                type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
-            },
-            {
-                question: "Wer hat im Ausland schon mal bewusst seine nationale Herkunft verleugnet?",
+                question: "Wer hat schon mal seine nationale Herkunft verleugnet?",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
@@ -108,12 +108,12 @@ angular.module('mcAppServices', [])
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
-                question: "Wer findet die Runde hier grundsätzlich vertrauenswürdig?",
+                question: "Wer hat Angst vor der Zukunft?",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
-                question: "Wer hat Angst vor der Zukunft?",
+                question: "Wer findet die Runde hier grundsätzlich vertrauenswürdig?",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
@@ -128,12 +128,7 @@ angular.module('mcAppServices', [])
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
-                question: "Meine Verschwiegenheit",
-                type: 'fingers',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
-            },
-            {
-                question: "Meine Durchsetzungskraft",
+                question: "Mein Ehrgeiz",
                 type: 'fingers',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
