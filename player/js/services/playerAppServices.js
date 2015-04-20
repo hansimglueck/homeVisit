@@ -117,7 +117,7 @@ angular.module('playerAppServices', [])
                             case "rating":
                                 homeFactory.type = "rating";
                                 var path = "/rating";
-                                if (data.ratingType === "allTeams") {
+                                if (data.ratingType ==="allTeams") {
                                     path += "/player";
                                     if (data.posNeg == "+1") path+= "/1";
                                     else path += "/-1";
