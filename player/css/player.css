@@ -6,6 +6,10 @@ body {
     overflow: hidden;
 }
 
+.btn {
+    white-space: normal;
+}
+
 .turn {
     transform: rotate(90deg)  translate(112px,112px);
     width: 544px;
@@ -34,13 +38,14 @@ body {
 
 .content {
     #background-color: #006699;
-    font-size: 1.4em;
+    font-size: 18px;
     flex: 24 1 auto;
     height: 100%;
 }
 
 .view-content {
     height: 100%;
+    overflow: auto;
 }
 
 .wide-list li {

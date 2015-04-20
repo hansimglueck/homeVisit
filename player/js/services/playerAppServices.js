@@ -120,7 +120,7 @@ angular.module('playerAppServices', [])
                                 if (data.ratingType ==="allTeams") {
                                     path += "/player";
                                     if (data.posNeg == "+1") path+= "/1";
-                                    else path += "-1";
+                                    else path += "/-1";
                                 }
                                 if (data.ratingType ==="oneTeam") {
                                     path += "/score/"+data.playerId;
