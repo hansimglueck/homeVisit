@@ -195,7 +195,7 @@ SequenceItem.prototype = {
                     var oldNext = this.next;
                     this.next = null;
                     for (var i = 0; i < deck.items.length; i++) {
-                        this.appendItem(new SequenceItem(deck.items[i], this.id + ":" + i));
+                        this.appendItem(new SequenceItem(deck.items[i], this.id + ":" + this.param + ":" + i));
                     }
                     this.appendItem(oldNext);
                     this.step();
