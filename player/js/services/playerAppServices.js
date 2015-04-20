@@ -119,7 +119,7 @@ angular.module('playerAppServices', [])
                                 var path = "/rating";
                                 if (data.ratingType === "allTeams") {
                                     path += "/player";
-                                    if (data.posNeg == "+1") path += "/1";
+                                    if (data.posNeg == "+1") path+= "/1";
                                     else path += "/-1";
                                 }
                                 if (data.ratingType === "oneTeam") {
@@ -333,7 +333,7 @@ angular.module('playerAppServices', [])
             fxService.interval = $interval(function () {
                 fxService.countdown.count--;
                 fxService.countdown.display = true;
-                console.log("count down to " + fxService.countdown.count);
+                //console.log("count down to " + fxService.countdown.count);
                 fxService.playSound("countdown_tick");
                 $timeout(function () {
                     fxService.countdown.display = false;
