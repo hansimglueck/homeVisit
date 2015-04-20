@@ -362,12 +362,16 @@ SequenceItem.prototype = {
                 break;
             case "rating":
                 var bestWorst;
-                if (this.ratingType == "oneTeam") bestWorst = playerManager.getPlayerGroup(this.bestWorst)[0];
+                var bestWorstArr;
+                if (this.ratingType == "oneTeam") {
+                    bestWorstArr = playerManager.getPlayerGroup(this.bestWorst);
+                    if (bestWorstArr.length > 0) bestWorst = bestWorstArr[0].playerId;
+                }
                 content = {
                     type: this.type,
                     ratingType: this.ratingType,
                     posNeg: this.posNeg,
-                    playerId: bestWorst.playerId,
+                    playerId: bestWorst,
                     text: this.text
                 };
                 break;
