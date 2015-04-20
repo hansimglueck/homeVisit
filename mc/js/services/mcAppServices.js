@@ -206,13 +206,13 @@ angular.module('mcAppServices', [])
                 deckFactory.actItem = deckFactory.deck.items[deckFactory.stepIdArray[0]];
                 if (deckFactory.stepIdArray.length > 1) {
                     console.log(deckFactory.actItem.inlineDecks);
-                    deckFactory.actItem = deckFactory.actItem.inlineDecks[deckFactory.stepIdArray[1]].items[deckFactory.stepIdArray[2]];
+                    deckFactory.actItem = deckFactory.actItem.inlineDecks[deckFactory.stepIndexArray[1]].items[deckFactory.stepIndexArray[2]];
                 }
-                if (deckFactory.deck.items.length > deckFactory.stepIdArray[0]+1) {
-                    deckFactory.nextItem = deckFactory.deck.items[deckFactory.stepIdArray[0]+1];
-                    if (deckFactory.stepIdArray.length > 1) {
-                        if (deckFactory.actItem.inlineDecks[deckFactory.stepIdArray[1]].length > deckFactory.stepIdArray[2]+1) {
-                        deckFactory.nextItem = deckFactory.nextItem.inlineDecks[deckFactory.stepIdArray[1]].items[deckFactory.stepIdArray[2]+1];
+                if (deckFactory.deck.items.length > deckFactory.stepIndexArray[0]+1) {
+                    deckFactory.nextItem = deckFactory.deck.items[deckFactory.stepIndexArray[0]+1];
+                    if (deckFactory.stepIndexArray.length > 1) {
+                        if (deckFactory.actItem.inlineDecks[deckFactory.stepIndexArray[1]].length > deckFactory.stepIndexArray[2]+1) {
+                        deckFactory.nextItem = deckFactory.nextItem.inlineDecks[deckFactory.stepIndexArray[1]].items[deckFactory.stepIndexArray[2]+1];
                         }
                     }
                 }

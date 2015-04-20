@@ -14,7 +14,7 @@ var Q = require('q');
 function Game() {
     this.play = false;
     this.deckId = 0;
-    this.stepId = 0;
+    this.stepIndex = 0;
     this.decks = [];
     this.conf = {};
     this.polls = [];

@@ -1,6 +1,6 @@
 <div class="panel-body buttons" ng-controller="MasterPlaybackCtrl">
-    <div class="well well-sm" ng-hide="status.stepId < 0">Aktueller Step: <strong>{{status.stepId}} ({{status.type}})</strong></div>
-    <pre ng-show="status.stepId < 0">Game stopped</pre>
+    <div class="well well-sm" ng-hide="status.stepIndex < 0">Aktueller Step: <strong>{{status.stepIndex}} ({{status.type}})</strong></div>
+    <pre ng-show="status.stepIndex < 0">Game stopped</pre>
     <div class="form-group">
         <button class="btn btn-default" ng-click="playback('restart')">RESTART</button>
         <button class="btn btn-success" ng-click="playback('go','0')">GO</button>
