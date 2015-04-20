@@ -180,14 +180,6 @@ angular.module("playerControllers", [])
             else return "rgb(200,200,200)";
         };
     })
-    .controller('RatingController', function ($scope, Status, Rating, playerColors) {
-        $scope.status = Status;
-        $scope.rating = Rating;
-        $scope.playerColors = playerColors;
-        $scope.rate = function (id, val) {
-            $scope.rating.rate(id, val);
-        };
-    })
     .controller("SoundController", function($scope, fxService){
         fxService.playSound(0);
     })

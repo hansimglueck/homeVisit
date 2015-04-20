@@ -1,0 +1,12 @@
+<div>
+    <div>
+        Bitte ein Team bewerten! Vergib {{score}} Punkt!
+    </div>
+    <ul class="list-inline list-unstyled">
+        <li ng-repeat="player in status.availablePlayers">
+            <a href="#/rating/{{player.playerId}}/{{score}}">
+                <player-icon pid="player.playerId"></player-icon>
+            </a>
+        </li>
+    </ul>
+</div>

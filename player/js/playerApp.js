@@ -5,6 +5,7 @@ angular.module('playerApp', [
     'playerControllers',
     'gameControllers',
     'dealControllers',
+    'ratingControllers',
     'WebsocketServices',
 //    'mobile-angular-ui',
 //    'mobile-angular-ui.gestures',
@@ -27,8 +28,20 @@ angular.module('playerApp', [
                     templateUrl: 'partials/home.html',
                     controller: 'HomeController'
                 }).
-                when('/rating', {
-                    templateUrl: 'partials/rating.html',
+                when('/rating/done', {
+                    templateUrl: 'partials/rating/rating.done.html',
+                    controller: 'RatingController'
+                }).
+                when('/rating/score/:playerId', {
+                    templateUrl: 'partials/rating/rating.score.html',
+                    controller: 'RateScoreController'
+                }).
+                when('/rating/player/:score', {
+                    templateUrl: 'partials/rating/rating.player.html',
+                    controller: 'RatePlayerController'
+                }).
+                when('/rating/:playerId/:score', {
+                    templateUrl: 'partials/rating/rating.html',
                     controller: 'RatingController'
                 }).
                 when('/europe', {

@@ -80,6 +80,7 @@ SequenceItem = function (item, id) {
     this.wait = parseInt(this.wait) || 0;
     this.next = null;
     this.previous = null;
+    this.started = false;
     this.done = false;
     this.id = -1;
     if (typeof id != "undefined") this.id = id;
@@ -91,6 +92,7 @@ SequenceItem.prototype = {
 
     reset: function () {
         this.done = false;
+        this.started = false;
         if (this.next != null) this.next.reset();
     },
     log: function (message, ws) {
@@ -129,6 +131,8 @@ SequenceItem.prototype = {
     //falls nötig, kann dem step etwas param mitgegeben werden - zB die id eines go-buttons
     step: function (param) {
         if (!this.done) {
+            if (this.previous !== null) this.previous.finish();
+            this.done = true;
             this.param = param;
             var self = this;
             this.log("stepped into " + this.id + ": " + this.type, true);
@@ -138,7 +142,11 @@ SequenceItem.prototype = {
             }, this.wait * 1000);
             return true;
         }
-        else if (this.next !== null) return this.next.step(param);
+        else {
+            if (this.next !== null) {
+                return this.next.step(param);
+            }
+        }
         return false;
     },
     //und die ziel-step-id (die wird dann auf jedenfall angefahren, auch wenn schon done)
@@ -168,7 +176,6 @@ SequenceItem.prototype = {
     execute: function () {
         this.log("executing step " + this.id + ": " + this.type, true);
         this.sendPlaybackStatus();
-        this.done = true;
         switch (this.type) {
             case "switch":
                 //TODO: der switch muss wohl wieder implementiert werden, wenns komplexer werden soll
@@ -306,7 +313,7 @@ SequenceItem.prototype = {
         //entweder komplett (wenn an playerManager), oder reduzierter content (wenn über WS)
         var map = {};
         var self = this;
-        if (typeof this.device == "undefined" || this.device[0] == "default") map = gameConf.conf.typeMapping.filter(function (tm) {
+        if (typeof this.device == "undefined" || typeof this.device == "string" || this.device[0] == "default") map = gameConf.conf.typeMapping.filter(function (tm) {
             return (tm.type == self.type);
         })[0];
         //oder an die speziell gewünschten devices senden
@@ -354,11 +361,13 @@ SequenceItem.prototype = {
                 content = this.poll.getWsContent();
                 break;
             case "rating":
+                var bestWorst;
+                if (this.ratingType == "oneTeam") bestWorst = playerManager.getPlayerGroup(this.bestWorst)[0];
                 content = {
                     type: this.type,
                     ratingType: this.ratingType,
                     posNeg: this.posNeg,
-                    bestWorst: this.bestWorst,
+                    playerId: bestWorst.playerId,
                     text: this.text
                 };
                 break;
@@ -449,6 +458,22 @@ SequenceItem.prototype = {
         };
         wsManager.msgDevicesByRole('master', 'playBackStatus', playbackStatus);
         wsManager.msgDevicesByRole('MC', 'playBackStatus', playbackStatus);
+    },
+    //TODO: hacky closing the deals - das geht besser
+    finish: function () {
+        if (!this.done) return;
+        if (this.next !== null) this.next.finish();
+        this.log("finishing step " + this.id + ": " + this.type, true);
+        Object.keys(playerManager.deals).forEach(function (key) {
+            var deal = playerManager.deals[key];
+            if (deal.state < 3) deal.state = 4;
+            playerManager.sendMessage(deal.player0Id, "deal", deal);
+            playerManager.sendMessage(deal.player1Id, "deal", deal);
+            playerManager.players[deal.player0Id].busy = false;
+            playerManager.players[deal.player1Id].busy = false;
+            playerManager.sendPlayerStatus(-1);
+        });
+
     }
 
 };

@@ -472,6 +472,19 @@ PlayerManager.prototype = {
                     return (player.rank < 3)^inverse;
                 });
                 break;
+            case "best":
+                ret = this.players.filter(function(player){
+                    return (player.rank == 1);
+                });
+                break;
+            case "worst":
+                var joined = this.players.filter(function(player){
+                    return player.joined;
+                }).length;
+                ret = this.players.filter(function(player){
+                    return (player.rank == joined);
+                });
+                break;
             default:
             case "all":
                 ret = this.players;
@@ -574,7 +587,7 @@ PlayerManager.prototype = {
         this.sendPlayerStatus(-1);
     },
     score: function (playerId, score) {
-        this.players[playerId].score += score;
+        this.players[playerId].score += parseInt(score);
         var deals = [];
         for (var deal in this.deals) if (this.deals.hasOwnProperty(deal)) deals.push(this.deals[deal]);
 

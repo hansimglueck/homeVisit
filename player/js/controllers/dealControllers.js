@@ -90,8 +90,8 @@ angular.module("dealControllers", [])
     })
     .controller('ChooseDealSubjectController', function ($scope) {
         $scope.subjects = [
-            {value: "insurance", text: "Insurance"},
-            {value: "alliance", text: "Alliance"}
+            {value: "insurance", text: "Insurance"}
+//            {value: "alliance", text: "Alliance"}
         ];
     })
     .controller('ChooseDealPlayerController', function ($scope, Status, $routeParams) {

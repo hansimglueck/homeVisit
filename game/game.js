@@ -108,6 +108,7 @@ Game.prototype = {
         else {
             if (!this.sequence.step(param, id)) {
                 this.start(function () {
+                    self.sequence.reset();
                     self.sequence.step(param, id);
                 });
             }
@@ -115,6 +116,7 @@ Game.prototype = {
     },
     start: function (callback) {
         //console.log(this.conf);
+        if (this.sequence !== null) this.sequence.finish();
         var g = this;
         mongoConnection(function (db) {
             db.collection('decks').find({}).toArray(function (err, decks) {
@@ -126,10 +128,10 @@ Game.prototype = {
                 g.prepareSequence();
                 //g.sequence.step();
                 //g.step("", 0);
+                g.sequence.sendPlaybackStatus();
                 if (callback) callback();
             });
         });
-        this.sequence.sendPlaybackStatus();
         this.log("client started game");
         //wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRatings});
     },

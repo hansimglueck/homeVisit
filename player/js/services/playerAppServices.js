@@ -116,7 +116,17 @@ angular.module('playerAppServices', [])
                                 break;
                             case "rating":
                                 homeFactory.type = "rating";
-                                $location.path("/rating");
+                                var path = "/rating";
+                                if (data.ratingType ==="allTeams") {
+                                    path += "/player";
+                                    if (data.posNeg == "+1") path+= "/1";
+                                    else path += "-1";
+                                }
+                                if (data.ratingType ==="oneTeam") {
+                                    path += "/score/"+data.playerId;
+                                }
+
+                                $location.path(path);
                                 return;
                                 break;
                             case "card":
@@ -259,8 +269,7 @@ angular.module('playerAppServices', [])
         ratingFactory.negPos = Home.displayData.posNeg;
 
         ratingFactory.rate = function (id, value) {
-            // TODO
-            // Socket.emit({type: "rate", data: {rate: ratingFactory.myRatings, playerId: Status.player.playerId}});
+            Socket.emit("rate", {playerId: id, score: value});
         };
 
         ratingFactory.posNeg = function (data) {
