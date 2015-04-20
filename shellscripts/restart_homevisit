@@ -1,5 +1,5 @@
 #!/bin/bash
 
-sudo supervisorctl restart homevisit:homevisit_server
+sudo supervisorctl restart homevisit_server
 
 exit 0
