@@ -188,13 +188,18 @@ body {
   float: left;
 }
 
-.game_sequence_item_current {
-  width: 34%;
+.game_sequence_item_previous * {
+  opacity: 0.75;
 }
 
-.next_sequence_item {
+.game_sequence_item_current {
+  width: 34%;
+  background: aliceblue;
   border-color: #0a0;
   border-width: 3px;
+}
+
+.game_sequence_item_next {
 }
 
 .sequence-label {

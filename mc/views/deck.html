@@ -1,7 +1,7 @@
 <div>
     <ul class="list-inline">
         
-        <li class="list-group-item game_sequence_item">
+        <li class="list-group-item game_sequence_item game_sequence_item_previous">
             <button class="btn btn-default" ng-click="playback('back')">BACK</button>
             <label class="sequence-type" ng-if="deck.previous">{{deck.previous.type}}</label>
             
@@ -78,7 +78,7 @@
             </div>
         </li>
         
-        <li class="list-group-item game_sequence_item next_sequence_item" ng-if="deck.next">
+        <li class="list-group-item game_sequence_item game_sequence_item_next" ng-if="deck.next">
             <button class="btn btn-success" ng-click="playback('go','0')">GO</button>
             <label class="sequence-type">{{deck.next.type}}</label>
             <label class="sequence-label">Next: <span>{{deck.stepIndex + 1}}</span></label>
