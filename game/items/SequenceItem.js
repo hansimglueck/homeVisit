@@ -1,3 +1,5 @@
+var Q = require('q');
+var mongoConnection = require('../../server/mongoConnection.js');
 var OptionPoll = require('../polls/OptionPoll.js');
 var NumberPoll = require('../polls/NumberPoll.js');
 var Agreement = require('../polls/Agreement.js');
@@ -10,9 +12,9 @@ var playerManager = require('../playerManager.js');
 
 /*
  Ablauf:
- step(param, id) wird aufgerufen entweder durch eine "go"-playbackAction oder vom letzten step
- param:  unterschiedliche hardware-buttons senden ihre id als param mit, zur Unterscheidung von switches
- results mit auto-go senden hier die id der besten Option mit
+ step(param, index) wird aufgerufen entweder durch eine "go"-playbackAction oder vom letzten step
+ param:  unterschiedliche hardware-buttons senden ihre index als param mit, zur Unterscheidung von switches
+ results mit auto-go senden hier die index der besten Option mit
 
 
  Item-Struktur:
@@ -72,19 +74,26 @@ var playerManager = require('../playerManager.js');
  */
 
 
-SequenceItem = function (item, id) {
-    for (var attr in item) {
-        if (item.hasOwnProperty(attr)) this[attr] = item[attr];
-    }
-    if (!this.time) this.time = 0;
-    this.wait = parseInt(this.wait) || 0;
-    this.next = null;
-    this.previous = null;
-    this.started = false;
-    this.done = false;
-    this.id = -1;
-    if (typeof id != "undefined") this.id = id;
-    //this.poll = null;
+SequenceItem = function (db, itemHash, index) {
+    var self = this;
+    var findItems = db.collection('items').find({ _id: itemHash });
+    var toArray = Q.nbind(findItems.toArray, findItems);
+    return toArray().then(function(item) {
+        var item = item[0];
+        for (var attr in item) {
+            if (item.hasOwnProperty(attr)) self[attr] = item[attr];
+        }
+        if (!self.time) self.time = 0;
+        self.wait = parseInt(self.wait) || 0;
+        self.next = null;
+        self.previous = null;
+        self.started = false;
+        self.done = false;
+        self.index = -1;
+        if (typeof index !== "undefined") self.index = index;
+        //self.poll = null;
+        return self;
+    });
 };
 
 SequenceItem.prototype = {
@@ -99,8 +108,8 @@ SequenceItem.prototype = {
         console.log("Sequence.log: " + message);
         if (ws) wsManager.msgDevicesByRole("master", "log", message);
     },
-    setId: function (id) {
-        this.id = id;
+    setIndex: function (index) {
+        this.index = index;
     },
     appendItem: function (item) {
         if (item === null)
@@ -128,14 +137,14 @@ SequenceItem.prototype = {
     getNext: function () {
         return this.next;
     },
-    //falls nötig, kann dem step etwas param mitgegeben werden - zB die id eines go-buttons
+    //falls nötig, kann dem step etwas param mitgegeben werden - zB der index eines go-buttons
     step: function (param) {
         if (!this.done) {
             if (this.previous !== null) this.previous.finish();
             this.done = true;
             this.param = param;
             var self = this;
-            this.log("stepped into " + this.id + ": " + this.type, true);
+            this.log("stepped into " + this.index + ": " + this.type, true);
             this.log("executing in " + this.wait + " sec");
             setTimeout(function () {
                 self.execute.call(self);
@@ -149,16 +158,16 @@ SequenceItem.prototype = {
         }
         return false;
     },
-    //und die ziel-step-id (die wird dann auf jedenfall angefahren, auch wenn schon done)
-    stepToId: function (param, id) {
-        this.log("stepping to nr " + id);
-        if (id === this.id) {
+    //und den ziel-step-index (die wird dann auf jedenfall angefahren, auch wenn schon done)
+    stepToIndex: function (param, index) {
+        this.log("stepping to nr " + index);
+        if (index === this.index) {
             this.reset();
             this.step(param)
         }
         else if (this.next !== null) {
             this.done = true;
-            this.next.stepToId(param, id);
+            this.next.stepToIndex(param, index);
         }
     },
     restep: function () {
@@ -174,7 +183,7 @@ SequenceItem.prototype = {
         } else if (this.next !== null) this.next.back();
     },
     execute: function () {
-        this.log("executing step " + this.id + ": " + this.type, true);
+        this.log("executing step " + this.index + ": " + this.type, true);
         this.sendPlaybackStatus();
         switch (this.type) {
             case "switch":
@@ -195,7 +204,7 @@ SequenceItem.prototype = {
                     var oldNext = this.next;
                     this.next = null;
                     for (var i = 0; i < deck.items.length; i++) {
-                        this.appendItem(new SequenceItem(deck.items[i], this.id + ":" + this.param + ":" + i));
+                        this.appendItem(new SequenceItem(deck.items[i], this.index + ":" + this.param + ":" + i));
                     }
                     this.appendItem(oldNext);
                     this.step();
@@ -456,7 +465,7 @@ SequenceItem.prototype = {
         }
         var playbackStatus = {
             done: this.done,
-            stepId: this.id,
+            stepIndex: this.index,
             type: this.type,
             deckId: gameConf.conf.startDeckId
         };
@@ -467,7 +476,7 @@ SequenceItem.prototype = {
     finish: function () {
         if (!this.done) return;
         if (this.next !== null) this.next.finish();
-        this.log("finishing step " + this.id + ": " + this.type, true);
+        this.log("finishing step " + this.index + ": " + this.type, true);
         Object.keys(playerManager.deals).forEach(function (key) {
             var deal = playerManager.deals[key];
             if (deal.state < 3) deal.state = 4;

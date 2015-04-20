@@ -7,6 +7,8 @@ var playerManager = require('./playerManager.js');
 var SequenceItem = require('./items/SequenceItem.js');
 var mongoConnection = require('../server/mongoConnection.js');
 var gameConf = require('./gameConf');
+var _ = require('underscore');
+var Q = require('q');
 
 
 function Game() {
@@ -125,24 +127,46 @@ Game.prototype = {
                 g.decks.forEach(function (deck, id) {
                     if (String(deck._id) == String(gameConf.conf.startDeckId)) g.deckId = id;
                 });
-                g.prepareSequence();
-                //g.sequence.step();
-                //g.step("", 0);
-                g.sequence.sendPlaybackStatus();
-                if (callback) callback();
+                g.prepareSequence(db, function(sequence) {
+                    //sequence.step();
+                    //g.step("", 0);
+                    sequence.sendPlaybackStatus();
+                    if (callback) callback();
+                });
             });
         });
         this.log("client started game");
         //wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRatings});
     },
 
-    prepareSequence: function () {
+    prepareSequence: function(db, cb) {
         var deck = this.decks[this.deckId];
+
+        // load items from db
+        var promises = [];
+        deck.items.forEach(function(item, i) {
+            promises.push(new SequenceItem(db, deck.items[i], i));
+        });
+
+        var self = this;
         this.sequence = null;
-        for (var i = 0; i < deck.items.length; i++) {
-            if (this.sequence == null) this.sequence = new SequenceItem(deck.items[i], i);
-            else this.sequence.appendItem(new SequenceItem(deck.items[i], i));
-        }
+
+        return Q.allSettled(promises).then(function(results) {
+            // unpack & respect order
+            var items = _.sortBy(_.pluck(results, 'value'), 'index');
+            items.forEach(function(item, i) {
+                if (self.sequence === null) {
+                    self.sequence = items[i];
+                }
+                else {
+                    self.sequence.appendItem(items[i]);
+                }
+            });
+            cb(self.sequence);
+        }).catch(function(err) {
+            console.log('Error loading items:', err);
+            throw new Error(err);
+        }).done();
     },
 
     sendPlayBackStatus: function(clientId, role, msg) {
