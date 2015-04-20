@@ -69,7 +69,7 @@ Game.prototype = {
 
                 case "goto":
                     console.log('goto');
-                    if (this.sequence !== null) this.sequence.stepToId(0, parseInt(param));
+                    if (this.sequence !== null) this.sequence.stepToIndex(0, parseInt(param));
                     break;
 
                 case "back":

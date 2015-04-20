@@ -74,12 +74,9 @@ var playerManager = require('../playerManager.js');
  */
 
 
-SequenceItem = function (db, itemHash, index) {
-    var self = this;
-    var findItems = db.collection('items').find({ _id: itemHash });
-    var toArray = Q.nbind(findItems.toArray, findItems);
-    return toArray().then(function(item) {
-        var item = item[0];
+SequenceItem = function (db, itemRef, index, dontLoadItem) {
+
+    function buildItem(self, item) {
         for (var attr in item) {
             if (item.hasOwnProperty(attr)) self[attr] = item[attr];
         }
@@ -90,10 +87,24 @@ SequenceItem = function (db, itemHash, index) {
         self.started = false;
         self.done = false;
         self.index = -1;
-        if (typeof index !== "undefined") self.index = index;
-        //self.poll = null;
+        if (typeof index != "undefined") self.index = index;
+        //this.poll = null;
         return self;
-    });
+    }
+
+    // itemRef is object (for inlineswitch)
+    if (dontLoadItem) {
+        return buildItem(this, itemRef);
+    }
+    // itemRef is hash/id
+    else {
+        var self = this;
+        var findItems = db.collection('items').find({ _id: itemRef });
+        var toArray = Q.nbind(findItems.toArray, findItems);
+        return toArray().then(function(item) {
+            return buildItem(self, item[0]);
+        });
+    }
 };
 
 SequenceItem.prototype = {
@@ -204,7 +215,7 @@ SequenceItem.prototype = {
                     var oldNext = this.next;
                     this.next = null;
                     for (var i = 0; i < deck.items.length; i++) {
-                        this.appendItem(new SequenceItem(deck.items[i], this.index + ":" + this.param + ":" + i));
+                        this.appendItem(new SequenceItem(null, deck.items[i], this.index + ":" + this.param + ":" + i, true));
                     }
                     this.appendItem(oldNext);
                     this.step();
