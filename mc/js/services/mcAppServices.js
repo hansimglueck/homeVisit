@@ -191,31 +191,49 @@ angular.module('mcAppServices', [])
         return playerNamesFactory;
     })
     .factory('Deck', function(Socket, setFactory){
-        var playbackStatus = {stepId: -1, type:"nix", deckId: null};
-        var deck = null;
+        var playbackStatus = {stepIndex: -1, type:"nix", deckId: null};
+        // var deck = null;
         var deckFactory = {};
 
         deckFactory.start = function() {
             Socket.on("playBackStatus", function(status) {
                 playbackStatus = status;
                 console.log("got playbackStatus info: "+JSON.stringify(status));
-                deckFactory.deck = setFactory.getDeckById(playbackStatus.deckId);
-                deckFactory.stepId = playbackStatus.stepId;
-                console.log(deckFactory.stepId);
-                deckFactory.stepIdArray = (deckFactory.stepId + "").split(":");
-                deckFactory.actItem = deckFactory.deck.items[deckFactory.stepIdArray[0]];
-                if (deckFactory.stepIdArray.length > 1) {
-                    console.log(deckFactory.actItem.inlineDecks);
-                    deckFactory.actItem = deckFactory.actItem.inlineDecks[deckFactory.stepIndexArray[1]].items[deckFactory.stepIndexArray[2]];
+                // deckFactory.deck = setFactory.getDeckById(playbackStatus.deckId);
+
+                var deck = setFactory.getDeckById(playbackStatus.deckId);
+
+                if (!deck) {
+                    console.error('No deck set!');
+                    return;
                 }
-                if (deckFactory.deck.items.length > deckFactory.stepIndexArray[0]+1) {
-                    deckFactory.nextItem = deckFactory.deck.items[deckFactory.stepIndexArray[0]+1];
-                    if (deckFactory.stepIndexArray.length > 1) {
-                        if (deckFactory.actItem.inlineDecks[deckFactory.stepIndexArray[1]].length > deckFactory.stepIndexArray[2]+1) {
-                        deckFactory.nextItem = deckFactory.nextItem.inlineDecks[deckFactory.stepIndexArray[1]].items[deckFactory.stepIndexArray[2]+1];
-                        }
-                    }
-                }
+
+                var stepIndex = parseInt(playbackStatus.stepIndex);
+                deckFactory.stepIndex = stepIndex;
+                console.log('StepId:', stepIndex);
+
+                deckFactory.current = deck.items[stepIndex];
+
+                deckFactory.previous = deck.items[stepIndex - 1];
+
+                deckFactory.next = deck.items[stepIndex + 1];
+
+                // deckFactory.stepIndexArray = (deckFactory.stepIndex + "").split(":");
+                // console.log('deckFactory.stepIndexArray');
+                // console.dir(deckFactory.stepIndexArray);
+                // deckFactory.actItem = deckFactory.deck.items[deckFactory.stepIndexArray[0]];
+                // if (deckFactory.stepIndexArray.length > 1) {
+                //     console.log(deckFactory.actItem.inlineDecks);
+                //     deckFactory.actItem = deckFactory.actItem.inlineDecks[deckFactory.stepIndexArray[1]].items[deckFactory.stepIndexArray[2]];
+                // }
+                // if (deckFactory.deck.items.length > deckFactory.stepIndexArray[0]+1) {
+                //     deckFactory.nextItem = deckFactory.deck.items[deckFactory.stepIndexArray[0]+1];
+                //     if (deckFactory.stepIndexArray.length > 1) {
+                //         if (deckFactory.actItem.inlineDecks[deckFactory.stepIndexArray[1]].length > deckFactory.stepIndexArray[2]+1) {
+                //         deckFactory.nextItem = deckFactory.nextItem.inlineDecks[deckFactory.stepIndexArray[1]].items[deckFactory.stepIndexArray[2]+1];
+                //         }
+                //     }
+                // }
                 
             
             });

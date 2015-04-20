@@ -1,14 +1,27 @@
 body {
-  padding: 0;
+  padding: 60px 0 0 0;
+  overflow: hidden;
 }
 
 .navbar {
   margin-bottom: 0px;
 }
 
+.btn-alarm, .btn-go {
+    color: white !important;
+}
+
+.btn-alarm:active, .btn-alarm:hover {
+    background-color: #d9534f !important;
+}
+
+.btn-go:active, .btn-go:hover {
+    background-color: #5cb85c !important;
+}
+
 .app-content {
   position: relative;
-  height: 650px;
+  height: 620px;
   width: 1280px;
 }
 
@@ -65,13 +78,13 @@ body {
 .table-display-players {
   border-radius: 10px;
   position:absolute;
-  top: 170px;
+  top: 164px;
   left:15px;
   width: 1245px;
   height: 310px;
   border: solid 1px;
   font-size: 1.3em;
-  overflow: scroll;
+  overflow: hidden;
 }
 
 .finger {
@@ -155,11 +168,54 @@ body {
   float:right;
 }
 
+.playback {
+  height: 310px;
+  position: relative;
+}
+
+.playback > div {
+    height: 100%;
+}
+
+.playback > div > ul {
+    height: 100%;
+}
+
 .game_sequence_item {
-  width: 100%;
+  position: relative;
+  width: 33%;
+  height: 100%;
+  float: left;
+}
+
+.game_sequence_item_current {
+  width: 34%;
 }
 
 .next_sequence_item {
   border-color: #0a0;
   border-width: 3px;
+}
+
+.sequence-label {
+    float: right;
+}
+
+.content {
+    height: 262px;
+    display: flex;
+    flex-direction: column;
+}
+
+.content > * {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.type {
+    font-weight: bold;
+}
+
+.inline-options {
+    margin: 10px 0;
 }
