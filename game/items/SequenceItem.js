@@ -322,8 +322,12 @@ SequenceItem.prototype = {
                 if (this.next !== null) this.next.step(this.param);
                 break;
             case "eval":
-                console.log("Eval: " + code);
-                eval(code);
+                console.log("Eval: " + this.text);
+                try {
+                    eval(this.text);
+                } catch (e) {
+                    this.log("Error = "+ e.stack);
+                }
                 break;
             default:
                 this.mapToDevice();
