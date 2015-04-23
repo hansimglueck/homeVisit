@@ -93,6 +93,10 @@ angular.module('playerApp', [
                     templateUrl: 'partials/sound.html',
                     controller: 'SoundController'
                 }).
+                when('/black', {
+                    templateUrl: 'partials/black.html',
+                    controller: 'BlackController'
+                }).
                 otherwise({
                     redirectTo: '/home'
                 });

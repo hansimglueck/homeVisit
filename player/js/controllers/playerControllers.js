@@ -189,6 +189,9 @@ angular.module("playerControllers", [])
     .controller("SoundController", function($scope, fxService){
         fxService.playSound(0);
     })
+    .controller("BlackController", function($scope, Status){
+        $scope.status = Status;
+    })
     .filter('isOtherPlayerThan', function () {
         return function (players, self) {
             return players.filter(function (p) {

@@ -141,7 +141,7 @@ angular.module('playerAppServices', [])
                                 return;
                                 break;
                             case "black":
-                                $location.path('/score');
+                                $location.path('/black');
                                 return;
                                 break;
                             case "deal":
@@ -186,6 +186,7 @@ angular.module('playerAppServices', [])
         statusFactory.clientId = -1;
         statusFactory.rating = [];
         statusFactory.gameEvents = [];
+        statusFactory.playerOnTurn = null;
 
         //diese eigenschaft wird hier geführt, da sie im view benötigt wird und sonst im digest-cycle immerwieder neu berrechnet werden muss...
         statusFactory.availablePlayers = [];
@@ -203,6 +204,7 @@ angular.module('playerAppServices', [])
                 statusFactory.player.rank = data.otherPlayers[statusFactory.player.playerId].rank;
                 statusFactory.player.timeRank = data.otherPlayers[statusFactory.player.playerId].timeRank;
                 statusFactory.availablePlayers = statusFactory.getAvailablePlayers();
+                statusFactory.playerOnTurn = statusFactory.getPlayerOnTurn();
             }
             if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
         });
@@ -269,6 +271,15 @@ angular.module('playerAppServices', [])
                 if (prev.indexOf(curr) < 0 && curr != statusFactory.player.playerId) prev.push(curr);
                 return prev;
             },[]);
+        };
+        statusFactory.getPlayerOnTurn = function() {
+            var x = statusFactory.otherPlayers.filter(function(player){
+                return player.onTurn == true;
+            }).map(function(player){
+                return player.playerId;
+            });
+            if (x.length > 0) return x[0];
+            else return null;
         };
         return statusFactory;
 

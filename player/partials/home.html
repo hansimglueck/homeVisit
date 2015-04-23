@@ -5,6 +5,14 @@
         <ul class="list-unstyled">
             <li ng-repeat="t in home.text track by $index">{{t}}</li>
         </ul>
+        <!--
+        directive:
+        <ul class="list-unstyled">
+            <li ng-repeat="t in home.text track by $index">
+                <card text="t"></card>
+            </li>
+        </ul>
+        -->
     </div>
 
     <div ng-switch-when="home" translate>EUROPE</div>

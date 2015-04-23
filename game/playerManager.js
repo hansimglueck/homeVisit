@@ -413,6 +413,10 @@ PlayerManager.prototype = {
     playRoulette: function (result) {
         console.log("play roulette");
         var self = this;
+        result.positivePlayerIds.forEach(function(playerId){
+            self.sendMessage(playerId, "display", {type: "card", text: "{{$compile('<player-icon pid=0></player-icon>')}} You are in the game!"});
+        });
+        var self = this;
         var steps = Math.floor(Math.random() * result.positivePlayerIds.length) + 23;
 
         this.rouletteStep(steps, result, function(item, winner) {self.finishRoulette(item, winner)});
