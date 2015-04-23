@@ -44,6 +44,18 @@ PlayerManager.prototype = {
         //this.calcAvgRate();
         console.log();
     },
+    resetPlayers: function() {
+        this.deals = {};
+        this.relations = {};
+        this.players.forEach(function(player){
+            player.score = 0;
+            player.rank = -1;
+            player.selcted = false;
+            player.away = false;
+            player.deals = {};
+        });
+        this.sendPlayerStatus(-1);
+    },
     log: function (message) {
         message = "PMANAGER: " + message;
         wsManager.msgDevicesByRole("master", "log", message);

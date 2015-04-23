@@ -118,6 +118,7 @@ Game.prototype = {
     },
     start: function (callback) {
         //console.log(this.conf);
+        playerManager.resetPlayers();
         if (this.sequence !== null) this.sequence.finish();
         var g = this;
         mongoConnection(function (db) {
