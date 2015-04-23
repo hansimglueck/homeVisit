@@ -26,14 +26,24 @@ angular.module('homeVisitMCApp')
             $scope.selectedRow = id;
         };
         $scope.selectAnswer = function(did, aid) {
-            //if (Polls.)
-            $scope.polls.polls[$scope.selectedRow].answers[did] = aid;
+            if (Polls.polls[$scope.selectedRow].answers[did] === aid) {
+                $scope.polls.polls[$scope.selectedRow].answers[did] = -1;
+            } else {
+                $scope.polls.polls[$scope.selectedRow].answers[did] = aid;
+            }
         };
         $scope.showPlusMinus = function(x) {
             if (x === 0) return "-";
             if (x === 1) return "+";
             return "";
         };
+        $scope.showFingers = function(x) {
+            if (x === -1) {
+                return "";
+            } else {
+                return x;
+            }
+        }
         $scope.unanswered = function(did){
             return typeof $scope.polls.polls[$scope.selectedRow].answers[did] == 'undefined';
         }

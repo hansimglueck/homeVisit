@@ -73,7 +73,7 @@
                 <td>{{poll.question}}</td>
                 <td ng-repeat="answer in poll.answers track by $index">
                     <div ng-if="poll.type=='binary'">{{showPlusMinus(answer)}}</div>
-                    <div ng-if="poll.type=='fingers'">{{answer}}</div>
+                    <div ng-if="poll.type=='fingers'">{{showFingers(answer)}}</div>
                 </td>
             </tr>
         </table>
