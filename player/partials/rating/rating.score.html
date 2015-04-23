@@ -1,7 +1,10 @@
 <div>
-    <div>
-        <player-icon pid="playerId"></player-icon>
-    </div>
+    <div ng-if="playerIds.length == 0">Der MC muss jemanden auswählen!!</div>
+    <ul class="list-inline">
+        <li ng-repeat="pid in playerIds">
+            <player-icon pid="pid"></player-icon>
+        </li>
+    </ul>
     <ul class="wide-list list-unstyled">
         <li>
             <a class="btn btn-default button" href="#/rating/{{playerId}}/1">+1</a>

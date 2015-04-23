@@ -124,7 +124,7 @@ angular.module('playerAppServices', [])
                                     else path += "/-1";
                                 }
                                 if (data.ratingType === "oneTeam") {
-                                    path += "/score/" + data.playerId;
+                                    path += "/score/" + data.playerId.join(":");
                                 }
 
                                 $location.path(path);
