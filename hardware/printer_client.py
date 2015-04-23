@@ -74,9 +74,11 @@ def printPiePartition(data):
 	### In diesem Test wird eine Textzeile der Form:
 	### 50 20 10 10 5 5
 	### ausgewertet --- jede Zahl ist ein prozentualer Anteil
-	### Kuchenumfang ca. 59 cm --- 1 Zeile = 0.44 cm ---> ca. 134 Zeilen
-	### Kuchenumfang ca. 76 cm --- 1 Zeile = 0.44 cm ---> ca. 173 Zeilen
-	all_lines = 173
+	### Kuchenumfang 1 Gugelhupf ca. 59 cm --- 1 Zeile = 0.44 cm ---> ca. 134 Zeilen
+	### Kuchenumfang 2 rund gross ca. 76 cm --- 1 Zeile = 0.44 cm ---> ca. 173 Zeilen
+	### Kuchenumfang 3 rund klein ca. 57 cm --- 1 Zeile = 0.44 cm ---> ca. 130 Zeilen
+	
+	all_lines = 130
 
 	###parts = txt.split()
 

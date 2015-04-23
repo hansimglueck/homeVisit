@@ -10,5 +10,9 @@ angular.module('homeVisitMCApp')
             }
             return selected.length ? selected[0].text : gettext('Not set');
         };
+        
+        $scope.getAllFollows = function(stepIndex) {
+            
+        }
     })
 ;
