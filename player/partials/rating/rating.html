@@ -1,11 +1,6 @@
 <div>
     <div ng-switch="traitor">
         <div ng-switch-when="false">
-            <ul class="list-inline">
-                <li ng-repeat="pid in playerIds">
-                    <player-icon pid="pid"></player-icon>
-                </li>
-            </ul>
             <player-icon pid="playerId"></player-icon>
             <span translate>should get {{score}} points from you?</span>
 

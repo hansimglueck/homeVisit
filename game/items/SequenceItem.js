@@ -398,7 +398,7 @@ SequenceItem.prototype = {
                 var bestWorstArr;
                 if (this.ratingType == "oneTeam") {
                     bestWorstArr = playerManager.getPlayerGroup(this.bestWorst);
-                    if (bestWorstArr.length > 0) bestWorst = bestWorstArr.map(function(x){return x.playerId}).playerId;
+                    if (bestWorstArr.length > 0) bestWorst = bestWorstArr.map(function(x){return x.playerId});
                 }
                 content = {
                     type: this.type,
