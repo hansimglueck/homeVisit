@@ -124,36 +124,6 @@ PlayerManager.prototype = {
         if (!!this.players[playerId].lastDisplayMessage) wsManager.msgDeviceByIds([clientId], "display", this.players[playerId].lastDisplayMessage);
         //this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
     },
-    // donation-msg-data: data.recipient (playerId), data.itemType
-    donate: function (clientId, data) {
-        var playerId = this.getPlayerIdForClientId(clientId);
-        console.log("Donation-Action from " + playerId + ": giving item" + data.itemId + " to " + data.recipient);
-        var items = this.players[playerId].inventory.filter(function (item, id) {
-            item.id = id;
-            return item.type == data.itemId
-        });
-        var count = items.length;
-        if (count <= 0) {
-            console.log("not in stock!!!");
-            return;
-        }
-        count--;
-        this.players[playerId].inventory.splice(items[0].id, 1);
-        switch (parseInt(data.itemId)) {
-            case 0:
-                this.players[data.recipient].score += 1;
-                break;
-            case 1:
-                this.players[data.recipient].score -= 1;
-                break;
-            default:
-                console.log("unknown inventory item");
-                break;
-        }
-        this.sendInventory(playerId);
-        this.sendPlayerStatus(-1);
-
-    },
     chat: function (clientId, data) {
         var recId = this.players[data.recipient].clientId;
         this.sendMessage(data.recipient, "chat", {playerId: data.sender, message: data.message});
@@ -235,7 +205,7 @@ PlayerManager.prototype = {
     //callback für mc-messages. bei register wird status versendet, der MC kann auch punkte vergeben
     scoreMessage: function (clientId, role, msg) {
         if (msg.type == "score") {
-            this.score(msg.data.playerId, msg.data.score);
+            this.score(msg.data.playerId, msg.data.score, "MC");
 
         }
     },
@@ -607,50 +577,34 @@ PlayerManager.prototype = {
             self.players[rank.playerId].rank = id + 1;
         });
     },
-    calcScore: function (type, voteId) {
-        var voteItem = this.voteItems[voteId];
-        var voteOptions = voteItem.voteOptions;
-        var self = this;
-        voteItem.votes.forEach(function (vote, id) {
-            var score = 0;
-            vote.filter(function (opt, id) {
-                opt.id = id;
-                return opt.checked;
-            })
-                .forEach(function (checked) {
-                    if (type == "correct") {
-                        if (checked.flags[0]) score++;
-                        else score--;
-                    } else if (type == "majority") {
-                        if (checked.id == voteItem.bestOption) score++;
-                        else score--;
-                    }
-                });
-            self.players[id].score += score;
-        });
-        this.sendPlayerStatus(-1);
-    },
     score: function (playerId, score, reason) {
         this.players[playerId].score += parseInt(score);
+        this.sendGameEvent(playerId, "score", score, reason, "You got " + score + "Points");
         var deals = [];
         for (var deal in this.deals) if (this.deals.hasOwnProperty(deal)) deals.push(this.deals[deal]);
 
         var self = this;
         if (deals.length > 0) {
-            deals.forEach(function (deal) {
+            deals.filter(function(deal) {
+                return deal.state === 3;
+            }).forEach(function (deal) {
                 var otherPlayerId = deal.player0Id;
                 if (otherPlayerId == playerId) otherPlayerId = deal.player1Id;
                 while (self.players[playerId].score - self.players[otherPlayerId].score > 4) {
                     self.players[playerId].score--;
+                    self.sendGameEvent(playerId, "score", -1, "insurance", "You got " + -1 + " Points");
                     self.players[otherPlayerId].score++;
+                    self.sendGameEvent(otherPlayerId, "score", +1, "insurance", "You got " + +1 + " Points");
+
                 }
                 while (self.players[otherPlayerId].score - self.players[playerId].score > 4) {
-                    self.players[playerId].score++;
-                    self.players[otherPlayerId].score--;
+                    pScore = self.players[playerId].score++;
+                    self.sendGameEvent(playerId, "score", 1, "insurance", "You got " + 1 + " Points");
+                    opScore = self.players[otherPlayerId].score--;
+                    self.sendGameEvent(otherPlayerId, "score", -1, "insurance", "You got " + -1 + " Points");
                 }
             })
         }
-        this.sendGameEvent(playerId, "score", score, reason, "You got " + score + "Points");
         this.calcRanking();
         this.sendPlayerStatus(-1);
     },

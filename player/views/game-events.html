@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <ul class="list-unstyled">
                     <li ng-repeat="event in status.gameEvents track by $index">
-                        {{event.text}}
+                        {{event.type}}: {{event.value}} from {{event.reason}}
                     </li>
                 </ul>
             </div>

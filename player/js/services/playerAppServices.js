@@ -55,6 +55,7 @@ angular.module('playerAppServices', [])
         homeFactory.start = function () {
             Socket.on('display', function (data) {
                 console.log("new display: " + data.type);
+                fxService.cancelCountdown();
                 homeFactory.type = "card";
                 homeFactory.labels = [];
                 homeFactory.options = null;
@@ -158,7 +159,7 @@ angular.module('playerAppServices', [])
                     }
                 }
             });
-        }
+        };
         return homeFactory;
     })
     .factory('GameConf', function (Socket) {
@@ -184,7 +185,7 @@ angular.module('playerAppServices', [])
         statusFactory.server = Socket.server;
         statusFactory.clientId = -1;
         statusFactory.rating = [];
-        statusFactory.gameEvents = [{type: "score", value: 1, text: "testEvent"}]
+        statusFactory.gameEvents = [];
 
         //diese eigenschaft wird hier geführt, da sie im view benötigt wird und sonst im digest-cycle immerwieder neu berrechnet werden muss...
         statusFactory.availablePlayers = [];
