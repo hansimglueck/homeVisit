@@ -1,7 +1,7 @@
 <div>
     <div ng-if="playerIds.length == 0">Der MC muss jemanden auswählen!!</div>
     <ul class="list-inline">
-        <li ng-repeat="pid in playerIds">
+        <li ng-repeat="pid in playerIds | filter:pid.playerId != status.player.playerId">
             <player-icon pid="pid"></player-icon>
         </li>
     </ul>

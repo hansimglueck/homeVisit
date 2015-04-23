@@ -1,14 +1,22 @@
 <div>
-    <div>
-        <ul class="list-inline">
-            <li ng-repeat="pid in playerIds">
-                <player-icon pid="pid"></player-icon>
-            </li>
-        </ul>
-        <player-icon pid="playerId"></player-icon> <span translate>should get {{score}} points from you?</span>
-    </div>
-    <div>
-        <button class="button" ng-click="confirm()" translate>Confirm</button>
-        <button class="button" ng-click="cancel()" translate>Cancel</button>
+    <div ng-switch="traitor">
+        <div ng-switch-when="false">
+            <ul class="list-inline">
+                <li ng-repeat="pid in playerIds">
+                    <player-icon pid="pid"></player-icon>
+                </li>
+            </ul>
+            <player-icon pid="playerId"></player-icon>
+            <span translate>should get {{score}} points from you?</span>
+
+            <div>
+                <button class="button" ng-click="confirm()" translate>Confirm</button>
+                <button class="button" ng-click="cancel()" translate>Cancel</button>
+            </div>
+        </div>
+        <div ng-switch-when="true">
+            Traitor! You can't score down your allied!
+            <button class="button" ng-click="cancel()" translate>Back</button>
+        </div>
     </div>
 </div>

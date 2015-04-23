@@ -258,6 +258,18 @@ angular.module('playerAppServices', [])
                 return !player.busy && player.joined && player.playerId !== statusFactory.player.playerId;
             })
         };
+        statusFactory.getAllied = function() {
+            return statusFactory.otherPlayers[statusFactory.player.playerId].relations.filter(function(rel){
+                return rel.type=="alliance"
+            }).map(function(rel) {
+                return rel.playerIds;
+            }).reduce(function (prev, curr) {
+                return prev.concat(curr)
+            },[]).reduce(function (prev, curr) {
+                if (prev.indexOf(curr) < 0 && curr != statusFactory.player.playerId) prev.push(curr);
+                return prev;
+            },[]);
+        };
         return statusFactory;
 
     })

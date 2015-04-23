@@ -287,7 +287,7 @@ SequenceItem.prototype = {
                             vote.choice.forEach(function (ch) {
                                 if (correct.indexOf(ch) != -1) score = 1;
                             });
-                            playerManager.score(vote.playerId, score);
+                            playerManager.score(vote.playerId, score, "Correct Answer");
                         });
                         break;
                     case "majorityScore":
@@ -301,7 +301,7 @@ SequenceItem.prototype = {
                             vote.choice.forEach(function (ch) {
                                 if (best == ch) score = 1;
                             });
-                            playerManager.score(vote.playerId, score);
+                            playerManager.score(vote.playerId, score, "Opportunism");
                         });
                         break;
 
