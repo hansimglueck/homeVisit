@@ -1,6 +1,6 @@
 <table>
     <tr>
-        <td>Quelle:</td>
+        <td translate>Source:</td>
         <td>
 <span editable-select="item.sourceType" e-name="sourceType"
       onaftersave="saveItem()"
@@ -10,7 +10,7 @@
         </td>
     </tr>
     <tr>
-        <td>Darstellung:</td>
+        <td translate>Display:</td>
         <td>
 <span editable-select="item.resultType" e-name="resultType"
       onaftersave="saveItem()"
@@ -20,7 +20,7 @@
         </td>
     </tr>
     <tr>
-        <td>Score:</td>
+        <td translate>Score:</td>
         <td>
 <span editable-select="item.scoreType" e-name="scoreType"
       onaftersave="saveItem()"
@@ -30,16 +30,16 @@
         </td>
     </tr>
     <tr>
-        <td>Auto-Go:</td>
+        <td translate>Auto-Go:</td>
         <td>
         <span editable-checkbox="item.autoGo" e-name="autoGo" onaftersave="saveItem()">
-          {{ item.autoGo || 'nein' }}
+          {{ item.autoGo || '-' }}
         </span>
 
         </td>
     </tr>
     <tr ng-show="item.text=='europeMap'">
-        <td>Farbe:</td>
+        <td translate>Color:</td>
         <td>
 <span editable-select="item.color" e-name="color"
       onaftersave="saveItem()"

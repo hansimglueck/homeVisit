@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('homeVisitMCApp')
-    .controller('DummiesCtrl', function ($scope, Polls, PlayerNames) {
+    .controller('DummiesCtrl', function ($scope, Polls, PlayerNames, gettext) {
         $scope.selectedRow = 0;
         $scope.playerNames = PlayerNames.names;
         $scope.dummies = [
@@ -35,7 +35,7 @@ angular.module('homeVisitMCApp')
             return typeof $scope.polls.polls[$scope.selectedRow].answers[did] == 'undefined';
         }
         $scope.setName = function(nr) {
-            var name = prompt("Change name",PlayerNames.names[nr]);
+            var name = prompt(gettext('Change name'), PlayerNames.names[nr]);
             if (name != null){
                 PlayerNames.names[nr] = name;
             }

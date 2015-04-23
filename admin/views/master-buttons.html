@@ -1,15 +1,15 @@
 <div class="panel-body buttons" ng-controller="MasterPlaybackCtrl">
-    <div class="well well-sm" ng-hide="status.stepIndex < 0">Aktueller Step: <strong>{{status.stepIndex}} ({{status.type}})</strong></div>
-    <pre ng-show="status.stepIndex < 0">Game stopped</pre>
+    <div class="well well-sm" ng-hide="status.stepIndex < 0"><span translate>Current step:</span> <strong>{{status.stepIndex}} ({{status.type}})</strong></div>
+    <pre ng-show="status.stepIndex < 0" translate>Game stopped</pre>
     <div class="form-group">
-        <button class="btn btn-default" ng-click="playback('restart')">RESTART</button>
-        <button class="btn btn-success" ng-click="playback('go','0')">GO</button>
-        <button class="btn btn-danger" ng-click="playback('go','1')">GO 2</button>
+        <button class="btn btn-default" ng-click="playback('restart')" translate>RESTART</button>
+        <button class="btn btn-success" ng-click="playback('go','0')" translate>GO</button>
+        <button class="btn btn-danger" ng-click="playback('go','1')" translate>GO 2</button>
     </div>
     <div class="form-group">
-        <button class="btn btn-default" ng-click="playback('rego')">REGO</button>
-        <button class="btn btn-warning" ng-click="playback('back')">BACK</button>
-        <button class="btn btn-danger" ng-click="alert()">ALARM</button><br>
+        <button class="btn btn-default" ng-click="playback('rego')" translate>REGO</button>
+        <button class="btn btn-warning" ng-click="playback('back')" translate>BACK</button>
+        <button class="btn btn-danger" ng-click="alert()" translate>ALARM</button><br>
     </div>
     <div class="form-group">
     </div>
@@ -18,7 +18,7 @@
       <div class="form-group">
           <input type="text" ng-model="goto" size="3" class="form-control"/>
       </div>
-      <button class="btn btn-default" ng-click="playback('goto',goto)">GOTO</button>
+      <button class="btn btn-default" ng-click="playback('goto',goto)" translate>GOTO</button>
     </form>
 
 </div>

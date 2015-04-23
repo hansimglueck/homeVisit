@@ -65,7 +65,7 @@
     <div class="table-display">
         <table class="table table-bordered">
             <tr>
-                <th>Player</th>
+                <th translate>Player</th>
                 <th ng-repeat="dummy in dummies track by $index">{{$index + 1}}</th>
             </tr>
             <tr ng-click="selectRow($index)" ng-class="{selectedRow: $index==selectedRow}"

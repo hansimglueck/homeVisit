@@ -16,7 +16,8 @@ var app = angular.module('homevisitAdmin', [
     'ngRoute',
     'hvPlayerColors',
     'hvItemOptions',
-    'hvSetFactory'
+    'hvSetFactory',
+    'gettext'
 ])
 .config(function ($routeProvider, $anchorScrollProvider) {
 //        $locationProvider.html5Mode(true);
@@ -31,6 +32,10 @@ var app = angular.module('homevisitAdmin', [
             });
     });
 
+app.run(function(gettextCatalog) {
+    // TODO: this has to come from server!
+    gettextCatalog.setCurrentLanguage('de');
+});
 app.run(function(editableOptions, Socket) {
 //    editableThemes.bs3.buttonsClass = 'btn-sm';
     Socket.connect('master');

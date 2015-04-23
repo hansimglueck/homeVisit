@@ -1,15 +1,14 @@
 <tbody>
     <tr>
-        <th>Option</th>
-        <th ng-show="item.type == 'switch'">Folge</th>
-        <th ng-show="item.type == 'vote'">Richtig</th>
-        <th ng-show="item.type == 'vote'">Score</th>
-        <th></th>
+        <th translate>Option</th>
+        <th ng-show="item.type == 'switch'"></th>
+        <th ng-show="item.type == 'vote'" translate>Correct</th>
+        <th ng-show="item.type == 'vote'" translate>Score</th>
     </tr>
     <tr  ng-repeat="voteOption in item.voteOptions track by $index">
         <td>
             <span editable-text="voteOption.text" e-name="text" onaftersave="saveVoteOption()">
-                  {{ voteOption.text || 'empty' }}
+                  {{ voteOption.text || '-' }}
             </span>
         </td>
         <td ng-show="item.type == 'vote'"><span editable-checkbox="voteOption.correctAnswer" e-name="correctAnswer" onaftersave="saveVoteOption()">
@@ -25,7 +24,7 @@
         -->
          <td style="white-space: nowrap">
             <div class="buttons">
-                <button class="btn btn-sm btn-danger" ng-click="deleteVoteOption($parent.$parent.$index, $parent.$index, $index)">Löschen</button>
+                <button class="btn btn-sm btn-danger" ng-click="deleteVoteOption($parent.$parent.$index, $parent.$index, $index)" translate>Delete</button>
             </div>
         </td>
     </tr>

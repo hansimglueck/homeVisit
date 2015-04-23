@@ -1,7 +1,6 @@
-<h3>You are voting for:
-</h3>
-{{ home.voteChoiceText.join(",") }}
+<h3 translate>You are voting for:</h3>
+<p>{{ home.voteChoiceText.join(",") }}</p>
 <ul class="list-unstyled wide-list">
-    <li><button class="btn-lg" ng-click="confirmVote()">Confirm</button></li>
-    <li><button class="btn-lg" ng-click="cancelVote()">Cancel</button></li>
+    <li><button class="btn-lg" ng-click="confirmVote()" translate>Confirm</button></li>
+    <li><button class="btn-lg" ng-click="cancelVote()" translate>Cancel</button></li>
 </ul>

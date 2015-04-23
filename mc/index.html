@@ -22,21 +22,21 @@
             <div class="collapse navbar-collapse" id="js-navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li ng-class="{active: isActive('/polls')}">
-                        <a href="#/polls">Polls</a>
+                        <a href="#/polls" translate>Polls</a>
                     </li>
                     <li ng-class="{active: isActive('/players')}">
-                        <a ng-href="#/players">Game-Teams</a>
+                        <a ng-href="#/players" translate>Teams</a>
                     </li>
                     <li ng-class="{active: isActive('/matching')}">
-                        <a ng-href="#/matching">Matching</a>
+                        <a ng-href="#/matching" translate>Matching</a>
                     </li>
                     <li ng-class="{active: isActive('/emergency')}">
-                        <a ng-href="#/emergency">Emergency</a>
+                        <a ng-href="#/emergency" translate>Emergency</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-controller="PlaybackCtrl">
                     <li>
-                        <a class="btn btn-danger btn-alarm" ng-click="alert()">ALARM</a>
+                        <a class="btn btn-danger btn-alarm" ng-click="alert()" translate>ALARM</a>
                     </li>
                     <li>
                         <p class="navbar-text">&nbsp;</a>
@@ -45,7 +45,7 @@
                         <p class="navbar-text">&nbsp;</a>
                     </li>
                     <li>
-                        <a class="btn btn-success btn-go" ng-click="playback('go', 0)">GO</a>
+                        <a class="btn btn-success btn-go" ng-click="playback('go', 0)" translate>GO</a>
                     </li>
                 </ul>
             </div>

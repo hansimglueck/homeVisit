@@ -2,14 +2,14 @@
     <ul class="list-inline">
         
         <li class="list-group-item game_sequence_item game_sequence_item_previous">
-            <button class="btn btn-default" ng-click="playback('back')">BACK</button>
+            <button class="btn btn-default" ng-click="playback('back')" translate>BACK</button>
             <label class="sequence-type" ng-if="deck.previous">{{deck.previous.type}}</label>
             
-            <label class="sequence-label" ng-if="deck.previous">Previous: <span>{{deck.stepIndex - 1}}</span></label>
+            <label class="sequence-label" ng-if="deck.previous"><span translate>Previous:</span> <span>{{deck.stepIndex - 1}}</span></label>
 
             <div class="content">
                 <div ng-switch="deck.previous.type">
-                    <div ng-switch-when="vote">Players are voting</div>
+                    <div ng-switch-when="vote" translate>Players are voting</div>
                     <div ng-switch-when="inlineSwitch">
                         <div ng-repeat="inlineDeck in deck.previous.inlineDecks track by $index">
                             <!-- <button class="btn btn-warning" ng-click="playback('go', $index)">GO Option {{$index}}</button> -->
@@ -25,12 +25,12 @@
                             </ol>
                         </div>
                     </div>
-                    <div ng-switch-when="results">Results are displayed</div>
-                    <div ng-switch-when="sound">Sound is playing: {{deck.previous.text}}</div>
-                    <div ng-switch-when="cmd">Command</div>
-                    <div ng-switch-when="config">Configuration</div>
-                    <div ng-switch-when="deal">Players are dealing</div>
-                    <div ng-switch-when="rating">Players are rating others</div>
+                    <div ng-switch-when="results" translate>Results are displayed</div>
+                    <div ng-switch-when="sound"><span translate>Sound is playing:</span> {{deck.previous.text}}</div>
+                    <div ng-switch-when="cmd" translate>Command</div>
+                    <div ng-switch-when="config" translate>Configuration</div>
+                    <div ng-switch-when="deal" translate>Players are dealing</div>
+                    <div ng-switch-when="rating" translate>Players are rating others</div>
                     <div ng-switch-default class="text-scroller">{{deck.previous.text}}</div>
                 </div>
 
@@ -43,11 +43,11 @@
         <li class="list-group-item game_sequence_item game_sequence_item_current">
             <button class="btn btn-default" ng-click="playback('rego')">REGO</button>
             <label class="sequence-type">{{deck.current.type}}</label>
-            <label class="sequence-label">Current: <span>{{deck.stepIndex}}</span></label>
+            <label class="sequence-label"><span translate>Current:</span> <span>{{deck.stepIndex}}</span></label>
 
             <div class="content">
                 <div ng-switch="deck.current.type">
-                    <div ng-switch-when="vote">Players are voting</div>
+                    <div ng-switch-when="vote" translate>Players are voting</div>
                     <div ng-switch-when="inlineSwitch">
                         <div ng-repeat="inlineDeck in deck.current.inlineDecks track by $index">
                             <!-- <button class="btn btn-warning" ng-click="playback('go', $index)">GO Option {{$index}}</button> -->
@@ -63,12 +63,12 @@
                             </ol>
                         </div>
                     </div>
-                    <div ng-switch-when="results">Results are displayed</div>
-                    <div ng-switch-when="sound">Sound is playing: {{deck.current.text}}</div>
-                    <div ng-switch-when="cmd">Command</div>
-                    <div ng-switch-when="config">Configuration</div>
-                    <div ng-switch-when="deal">Players are dealing</div>
-                    <div ng-switch-when="rating">Players are rating others</div>
+                    <div ng-switch-when="results" translate>Results are displayed</div>
+                    <div ng-switch-when="sound"><span translate>Sound is playing:</span> {{deck.current.text}}</div>
+                    <div ng-switch-when="cmd" translate>Command</div>
+                    <div ng-switch-when="config" translate>Configuration</div>
+                    <div ng-switch-when="deal" translate>Players are dealing</div>
+                    <div ng-switch-when="rating" translate>Players are rating others</div>
                     <div ng-switch-default class="text-scroller">{{deck.current.text}}</div>
                 </div>
 
@@ -81,7 +81,7 @@
         <li class="list-group-item game_sequence_item game_sequence_item_next" ng-if="deck.next">
             <button class="btn btn-success" ng-click="playback('go','0')">GO</button>
             <label class="sequence-type">{{deck.next.type}}</label>
-            <label class="sequence-label">Next: <span>{{deck.stepIndex + 1}}</span></label>
+            <label class="sequence-label"><span translate>Next:</span> <span>{{deck.stepIndex + 1}}</span></label>
             
             <div class="content">
                 <div ng-switch="deck.next.type">
@@ -101,12 +101,12 @@
                             </ol>
                         </div>
                     </div>
-                    <div ng-switch-when="results">Results are displayed</div>
-                    <div ng-switch-when="sound">Sound is playing: {{deck.next.text}}</div>
-                    <div ng-switch-when="cmd">Command</div>
-                    <div ng-switch-when="config">Configuration</div>
-                    <div ng-switch-when="deal">Players are dealing</div>
-                    <div ng-switch-when="rating">Players are rating others</div>
+                    <div ng-switch-when="results" translate>Results are displayed</div>
+                    <div ng-switch-when="sound"><span translate>Sound is playing:</span> {{deck.next.text}}</div>
+                    <div ng-switch-when="cmd" translate>Command</div>
+                    <div ng-switch-when="config" translate>Configuration</div>
+                    <div ng-switch-when="deal" translate>Players are dealing</div>
+                    <div ng-switch-when="rating" translate>Players are rating others</div>
                     <div ng-switch-default class="text-scroller">{{deck.next.text}}</div>
                 </div>
 

@@ -1,9 +1,9 @@
 angular.module('homeVisitMCApp')
-    .controller('PlaybackCtrl', function ($scope, Status, Socket) {
+    .controller('PlaybackCtrl', function ($scope, Status, Socket, gettext) {
         $scope.playback = function(cmd, param) {
             console.log("play clicked");
             if (cmd == "restart") {
-                if (!confirm("Really restart?")) {
+                if (!confirm(gettext('Really restart?'))) {
                     return;
                 }
             }

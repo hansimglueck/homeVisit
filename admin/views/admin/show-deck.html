@@ -1,15 +1,15 @@
 <div ng-controller="deckCtrl">
     <ul class="list-unstyled" ng-hide="deck.inline">
         <li>{{deck.description}}</li>
-        <li>Gesamtdauer: {{getTimeForDeck()}}</li>
+        <li translate>Total duration: {{getTimeForDeck()}}</li>
         <li style="text-align: right">
-            <a ng-click="deleteDeck($index)">Lösche Strang</a>
+            <a ng-click="deleteDeck($index)" translate>Delete deck</a>
         </li>
         <li style="text-align: right">
-            <a ng-click="duplicateDeck($index)">Dupliziere Strang</a>
+            <a ng-click="duplicateDeck($index)" translate>Duplicate deck</a>
         </li>
         <li style="text-align: right">
-            <a ng-click="exportCSV($index)">Export CSV</a>
+            <a ng-click="exportCSV($index)" translate>Export CSV</a>
         </li>
     </ul>
     <table class="table deck-table">
@@ -23,12 +23,12 @@
         </colgroup>
         <tbody>
         <tr>
-            <th>Nr</th>
-            <th>Typ</th>
-            <th>Trigger</th>
-            <th>Inhalt</th>
-            <th>Kommentar</th>
-            <th>Action</th>
+            <th translate>No.</th>
+            <th translate>Type</th>
+            <th translate>Trigger</th>
+            <th translate>Content</th>
+            <th translate>Comment</th>
+            <th translate>Action</th>
         </tr>
         </tbody>
         <tbody ui-sortable="sortOptions" ng-model="deck.items" id="{{ 'sort-table-'+ $index }}">
@@ -38,7 +38,7 @@
         <tbody>
         <tr>
             <td colspan="5">
-                <button class="btn btn-primary" ng-click="addItem()">Neues Ereignis</button>
+                <button class="btn btn-primary" ng-click="addItem()" translate>Add new item</button>
             </td>
         </tr>
         </tbody>

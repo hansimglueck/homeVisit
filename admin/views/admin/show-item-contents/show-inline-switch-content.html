@@ -1,9 +1,9 @@
 <div>
-    Optionen:
+    <span translate>Options:</span>
     <table class="table">
         <tr>
-            <th>Nr</th>
-            <th>Strang</th>
+            <th translate>No.</th>
+            <th translate>Deck</th>
             <th></th>
         </tr>
         <tr class="option-table-row" ng-repeat="deck in item.inlineDecks track by $index">
@@ -21,5 +21,5 @@
             </td>
         </tr>
     </table>
-    <button class="btn btn-primary" ng-click="addInlineSwitchOption($index)">Neue Option</button>
+    <button class="btn btn-primary" ng-click="addInlineSwitchOption($index)" translate>New option</button>
 </div>

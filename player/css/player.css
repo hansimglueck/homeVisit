@@ -28,13 +28,6 @@ body {
     flex-direction: row;
     align-items: center;
 }
-.score {
-    position: relative;
-    width: 80px;
-    height: 300px;
-    flex: 1 0 auto;
-    padding-left: 20px;
-}
 
 .content {
     #background-color: #006699;

@@ -1,6 +1,6 @@
 <div class="deal">
-    <div class="" ng-if="deal == null">
-        This Deal does not exist!
+    <div class="" ng-if="deal == null" translate>
+        This deal does not exist!
     </div>
     <div class="deal-details" ng-if="deal != null">
         <div class="deal-title">Deal-a-{{deal.subject}}</div>
@@ -23,7 +23,7 @@
                                 {{getMessageText()[0]}} {{getMessageText()[1]}}
                             </div>
                         </div>
-                        <div ng-if="getMyDealState()===1">We are waiting for a reply.</div>
+                        <div ng-if="getMyDealState()===1" translate>Waiting for reply...</div>
                         <div class="form-group deal-messages-new">
                             <div ng-repeat="message in getMessageOptions() track by $index"
                                  ng-controller="DealMessageController">
@@ -43,8 +43,8 @@
                     </div>
                 </div>
                 <div ng-switch-when="false">
-                    <div ng-if="getMyDealState()===3">This Deal is ACTIVE.</div>
-                    <div ng-if="getMyDealState()===4">This Deal was DENIED.</div>
+                    <div ng-if="getMyDealState()===3" translate>This deal is ACTIVE.</div>
+                    <div ng-if="getMyDealState()===4" translate>This deal was DENIED.</div>
                 </div>
             </div>
         </div>

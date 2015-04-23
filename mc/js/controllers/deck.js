@@ -1,5 +1,5 @@
 angular.module('homeVisitMCApp')
-    .controller('DeckCtrl', function($scope, Deck, itemOptions, $filter){
+    .controller('DeckCtrl', function($scope, Deck, itemOptions, $filter, gettext){
         $scope.deck = Deck;
         //$scope.nextDeckItem = Deck.deck.items[Deck.stepIndex + 1];
         
@@ -8,7 +8,7 @@ angular.module('homeVisitMCApp')
             if (item[option]) {
                 selected = $filter('filter')(itemOptions[option], {value: item[option]}, true);
             }
-            return selected.length ? selected[0].text : 'Not set';
+            return selected.length ? selected[0].text : gettext('Not set');
         };
     })
 ;

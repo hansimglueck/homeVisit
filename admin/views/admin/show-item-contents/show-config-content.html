@@ -1,6 +1,6 @@
 <table>
     <tr>
-        <td class="text-right">Config-Option : </td>
+        <td class="text-right" translate>Configuration option: </td>
         <td>
     <span editable-select="item.configField" e-name="configField"
           onaftersave="saveItem()"
@@ -11,12 +11,12 @@
         </td>
     </tr>
     <tr>
-        <td class="text-right">Wert = </td>
+        <td class="text-right" translate>Value = </td>
         <td>
     <span editable-text="item.value"
           e-rows="7" e-cols="40" e-name="value"
           onaftersave="saveItem()">
-          {{ item.value || 'not Set' }}
+          {{ item.value || '-' }}
         </span>
         </td>
     </tr>

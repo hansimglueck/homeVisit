@@ -1,28 +1,6 @@
 <table>
-    <!--
-        <tr>
-            <td>Text:</td>
-            <td>
-    <span editable-textarea="item.text"
-          e-rows="7" e-cols="40" e-name="text"
-          onaftersave="saveItem()">
-              {{ item.text || 'kein Text' }}
-            </span>
-            </td>
-        </tr>
-        <tr>
-            <td>Zeit:</td>
-            <td>
-    <span editable-textarea="item.time"
-          e-rows="1" e-cols="4" e-name="time"
-          onaftersave="saveItem()">
-              {{ item.time || 'not set' }}
-            </span>
-            </td>
-        </tr>
-     -->
     <tr>
-        <td>Art:</td>
+        <td translate>Type:</td>
         <td>
         <span editable-select="item.dealType" e-name="dealType"
               onaftersave="saveItem()"
@@ -34,12 +12,12 @@
     </tr>
 
     <tr>
-        <td>Anzahl Schritte:</td>
+        <td translate>Max. steps:</td>
         <td>
 <span editable-text="item.maxSteps"
       e-rows="1" e-cols="4" e-name="maxSteps"
       onaftersave="saveItem()">
-          {{ item.maxSteps || 'not set' }}
+          {{ item.maxSteps || '-' }}
         </span>
         </td>
     </tr>

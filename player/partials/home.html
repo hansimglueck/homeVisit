@@ -1,4 +1,4 @@
-<div class="playback-control" ng-if="home.showGo"><button class="btn-lg" ng-click="go()">Weiter</button></div>
+<div class="playback-control" ng-if="home.showGo"><button class="btn-lg" ng-click="go()" translate>Next</button></div>
 <div class="section content" ng-switch="home.type" ng-show="status.joined">
 
     <div ng-switch-when="card">
@@ -7,10 +7,7 @@
         </ul>
     </div>
 
-    <div ng-switch-when="home">
-        EUROPA
-    </div>
-
+    <div ng-switch-when="home" translate>EUROPE</div>
 
     <div ng-switch-when="browser">
         <div class="mep">

@@ -1,7 +1,7 @@
 <div ng-controller="ImportJsonController">
     <form novalidate name="importJsonForm">
                 <textarea ng-model="json" cols="40" rows="5"/>
-                <button ng-click="process()">Process</button>
+                <button ng-click="process()" translate>Process</button>
     </form>
     <table class="table">
         <tr ng-repeat="item in processedJson track by $index">
@@ -9,10 +9,10 @@
                 {{item.title}}
             </td>
             <td>
-                Neuer Title: <input type="text" size="30" ng-model="item.newTitle">
+                <span translate>Neuer Title:</span> <input type="text" size="30" ng-model="item.newTitle">
             </td>
             <td>
-                <button ng-click="import($index)">Import</button>
+                <button ng-click="import($index)" translate>Import</button>
             </td>
         </tr>
     </table>

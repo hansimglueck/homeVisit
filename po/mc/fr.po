@@ -1,0 +1,162 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+
+#: mc/index.html:39
+msgid "ALARM"
+msgstr ""
+
+#: mc/js/controllers/players.js:63
+msgid "Away"
+msgstr ""
+
+#: mc/views/deck.html:5
+msgid "BACK"
+msgstr ""
+
+#: mc/views/player.details.html:10
+msgid "BACK TO GAME!"
+msgstr ""
+
+#: mc/js/controllers/dummies.js:38
+msgid "Change name"
+msgstr ""
+
+#: mc/js/controllers/players.js:53
+msgid "Come Back!"
+msgstr ""
+
+#: mc/views/deck.html:106 mc/views/deck.html:30 mc/views/deck.html:68
+msgid "Command"
+msgstr ""
+
+#: mc/views/deck.html:107 mc/views/deck.html:31 mc/views/deck.html:69
+msgid "Configuration"
+msgstr ""
+
+#: mc/views/deck.html:46
+msgid "Current:"
+msgstr ""
+
+#: mc/js/controllers/players.js:40
+msgid "Deselect"
+msgstr ""
+
+#: mc/views/players.html:14
+msgid "Details"
+msgstr ""
+
+#: mc/index.html:34
+msgid "Emergency"
+msgstr ""
+
+#: mc/index.html:48
+msgid "GO"
+msgstr ""
+
+#: mc/js/controllers/players.js:55
+msgid "Leave Table!"
+msgstr ""
+
+#: mc/index.html:31
+msgid "Matching"
+msgstr ""
+
+#: mc/js/controllers/players.js:61
+msgid "My Turn!"
+msgstr ""
+
+#: mc/views/players.html:10
+msgid "Next!"
+msgstr ""
+
+#: mc/views/deck.html:84
+msgid "Next:"
+msgstr ""
+
+#: mc/js/controllers/deck.js:11
+msgid "Not set"
+msgstr ""
+
+#: mc/views/dummies.html:68 mc/views/matching.html:4
+msgid "Player"
+msgstr ""
+
+#: mc/views/deck.html:108 mc/views/deck.html:32 mc/views/deck.html:70
+msgid "Players are dealing"
+msgstr ""
+
+#: mc/views/deck.html:109 mc/views/deck.html:33 mc/views/deck.html:71
+msgid "Players are rating others"
+msgstr ""
+
+#: mc/views/deck.html:12 mc/views/deck.html:50
+msgid "Players are voting"
+msgstr ""
+
+#: mc/index.html:25
+msgid "Polls"
+msgstr ""
+
+#: mc/views/deck.html:8
+msgid "Previous:"
+msgstr ""
+
+#: mc/views/emergency.html:2
+msgid "RESTART GAME"
+msgstr ""
+
+#: mc/views/players.html:6 mc/views/players.html:9
+msgid "Rank: {{player.rank}}"
+msgstr ""
+
+#: mc/js/controllers/playback.js:6
+msgid "Really restart?"
+msgstr ""
+
+#: mc/views/deck.html:104 mc/views/deck.html:28 mc/views/deck.html:66
+msgid "Results are displayed"
+msgstr ""
+
+#: mc/views/player.details.html:2
+msgid "Score for Player {{playerId}}"
+msgstr ""
+
+#: mc/views/players.html:6
+msgid "Score: {{player.score}}"
+msgstr ""
+
+#: mc/js/controllers/players.js:42
+msgid "Select"
+msgstr ""
+
+#: mc/views/deck.html:105 mc/views/deck.html:29 mc/views/deck.html:67
+msgid "Sound is playing:"
+msgstr ""
+
+#: mc/index.html:28
+msgid "Teams"
+msgstr ""
+
+#: mc/views/about.html:1
+msgid "This is the about view."
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:171 mc/js/services/mcAppServices.js:172
+#: mc/js/services/mcAppServices.js:173 mc/js/services/mcAppServices.js:174
+#: mc/js/services/mcAppServices.js:175 mc/js/services/mcAppServices.js:176
+#: mc/js/services/mcAppServices.js:177 mc/js/services/mcAppServices.js:178
+#: mc/js/services/mcAppServices.js:179 mc/js/services/mcAppServices.js:180
+#: mc/js/services/mcAppServices.js:181 mc/js/services/mcAppServices.js:182
+#: mc/js/services/mcAppServices.js:183 mc/js/services/mcAppServices.js:184
+msgid "player"
+msgstr ""

@@ -2,15 +2,14 @@
 
 <table class="table" ng-show="!isCollapsed">
     <tr>
-        <th>PlayerId</th>
-        <th>Joined</th>
-        <th>Rating</th>
-        <th>Score</th>
-        <th>Farbe</th>
-        <th>Punkte ändern</th>
+        <th translate>Team ID</th>
+        <th translate>Joined</th>
+        <th translate>Rank</th>
+        <th translate>Score</th>
+        <th translate>Color</th>
+        <th translate>Change score</th>
     </tr>
     <tr ng-repeat="player  in playerList track by $index" ng-click="isCollapsed = !isCollapsed">
-
         <td>{{player.playerId}}</td>
         <td>{{player.joined ? "Joined" : "Off"}}</td>
         <td>{{ratings[$index]}}</td>

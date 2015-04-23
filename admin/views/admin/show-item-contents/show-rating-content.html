@@ -1,16 +1,16 @@
 <table>
     <tr>
-        <td>Text:</td>
+        <td translate>Text:</td>
         <td>
             <span editable-textarea="item.text"
                   e-rows="7" e-cols="40" e-name="text"
                   onaftersave="saveItem()">
-                {{ item.text || 'kein Text' }}
+                {{ item.text || '' }}
             </span>
         </td>
     </tr>
     <tr>
-        <td>Art:</td>
+        <td translate>Type:</td>
         <td>
             <span editable-select="item.ratingType" e-name="ratingType"
                   onaftersave="saveItem()"
@@ -21,7 +21,7 @@
         </td>
     </tr>
     <tr ng-show="item.ratingType=='allTeams'">
-        <td>Bewertung:</td>
+        <td translate>Rating:</td>
         <td>
         <span editable-select="item.posNeg" e-name="posNeg"
               onaftersave="saveItem()"
@@ -32,7 +32,7 @@
         </td>
     </tr>
     <tr ng-show="item.ratingType=='oneTeam'">
-        <td>Welches Team:</td>
+        <td>Which team:</td>
         <td>
         <span editable-select="item.bestWorst" e-name="bestWorst"
               onaftersave="saveItem()"

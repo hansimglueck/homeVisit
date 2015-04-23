@@ -1,18 +1,18 @@
 <div>
     <table class="table">
         <tr>
-            <th>Typ</th>
-            <th>Inhalt</th>
+            <th translate>Type</th>
+            <th translate>Content</th>
         </tr>
         <tr  ng-repeat="voteOption in item.voteOptions track by $index">
             <td>
             <span editable-text="voteOption.value" e-name="value" onaftersave="saveVoteOption()">
-                  {{ voteOption.value || 'empty' }}
+                  {{ voteOption.value || '-' }}
             </span>
             </td>
             <td>
             <span editable-text="voteOption.text" e-name="text" onaftersave="saveVoteOption()">
-                  {{ voteOption.text || 'empty' }}
+                  {{ voteOption.text || '-' }}
             </span>
             </td>
         </tr>

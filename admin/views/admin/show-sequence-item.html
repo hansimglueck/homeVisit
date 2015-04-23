@@ -13,7 +13,7 @@
           {{ showTextForValue(item, "type") }}
         </span> <br/><br/>
 
-        <div ng-show="isMappable()">Mapped:<br/>
+        <div ng-show="isMappable()"><span translate>Mapped:</span><br/>
 
                     <ul class="list-unstyled">
                         <li ng-repeat="device in item.device track by $index">
@@ -90,14 +90,14 @@
       <span editable-textarea="item.comment"
            e-rows="7" e-cols="30" e-name="comment"
            onaftersave="saveItem()">
-        {{ item.comment || 'Kein Kommentar!' }}
+        {{ item.comment || '-' }}
       </span>
         <div class="item-mcnote">
             <div class="mcnote-title">MC-Note</div>
       <span editable-textarea="item.mcnote"
             e-rows="7" e-cols="30" e-name="mcnote"
             onaftersave="saveItem()">
-        {{ item.mcnote || 'Keine MC-Note' }}
+        {{ item.mcnote || '-' }}
       </span>
 
         </div>

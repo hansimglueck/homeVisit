@@ -23,6 +23,7 @@
     "angular-scroll-glue": "~2.0.5",
     "angular-bootstrap": "~0.12.1",
     "angular-modal-service": "~0.6.6",
-    "font-awesome": "~4.3.0"
+    "font-awesome": "~4.3.0",
+    "angular-gettext": "~2.0.5"
   }
 }

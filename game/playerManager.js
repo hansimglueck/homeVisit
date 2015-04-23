@@ -487,6 +487,7 @@ PlayerManager.prototype = {
         var ret;
         var self = this;
         var inverse = false;
+        if (typeof identifier === 'undefined') return;
         if (identifier.indexOf("!") === 0) {
             inverse = true;
             identifier = identifier.substring(1);

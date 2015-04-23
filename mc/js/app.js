@@ -19,7 +19,8 @@ angular
         'playerDirectives',
         'mcDirectives',
         'hvSetFactory',
-        'hvItemOptions'
+        'hvItemOptions',
+        'gettext'
     ])
     .config(function ($routeProvider) {
         $routeProvider
@@ -61,6 +62,10 @@ angular
             .otherwise({
                 redirectTo: '/'
             });
+    })
+    .run(function(gettextCatalog) {
+        // TODO: this has to come from server!
+        gettextCatalog.setCurrentLanguage('de');
     })
     .run(function (Socket, Status, Deck) {
         Socket.connect('MC');

@@ -2,7 +2,7 @@
     <div class="left-pane">
         <ul class="list-unstyled">
             <li ng-repeat="t in home.text track by $index">{{t}}</li>
-            <li ng-if="home.ratedVote" class="red">Dein Ranking macht Stimmgewicht!</li>
+            <li ng-if="home.ratedVote" class="red" translate>Your voting weight depends on your rank!</li>
         </ul>
     </div>
     <div class="right-pane">
@@ -16,7 +16,7 @@
                 </ul>
                 <ul class="list-unstyled wide-list" ng-switch-when="true">
                     <li>
-                        <button ng-click="vote()">VOTE</button>
+                        <button ng-click="vote()" translate>VOTE</button>
                     </li>
                     <li ng-repeat="opt in home.options track by $index">
                         <input type="checkbox" id="{{opt.val}}" ng-model="opt.checked" ng-change="checkChanged(opt)"

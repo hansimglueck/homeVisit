@@ -5,7 +5,7 @@
     <span editable-text="item.text"
           e-rows="7" e-cols="40" e-name="text"
           onaftersave="saveItem()">
-          {{ item.text || 'not Set' }}
+          {{ item.text || '-' }}
         </span>
         </td>
     </tr>
@@ -15,7 +15,7 @@
     <span editable-text="item.parameter"
           e-rows="7" e-cols="40" e-name="parameter"
           onaftersave="saveItem()">
-          {{ item.parameter || 'not Set' }}
+          {{ item.parameter || '-' }}
         </span>
         </td>
     </tr>

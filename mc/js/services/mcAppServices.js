@@ -1,5 +1,5 @@
 angular.module('mcAppServices', [])
-    .factory('Status', function ($rootScope, Socket, $location) {
+    .factory('Status', function ($rootScope, Socket, $location, gettext) {
 
         var emptyPlayer = {playerId: -1, colors: ["weiss", "weiss"]};
         var statusFactory = {};
@@ -168,20 +168,20 @@ angular.module('mcAppServices', [])
     .factory('PlayerNames', function () {
         var playerNamesFactory = {};
         playerNamesFactory.names = [
-            'player 1',
-            'player 2',
-            'player 3',
-            'player 4',
-            'player 5',
-            'player 6',
-            'player 7',
-            'player 8',
-            'player 9',
-            'player 10',
-            'player 11',
-            'player 12',
-            'player 13',
-            'player 14',
+            gettext('player') + ' 1',
+            gettext('player') + ' 2',
+            gettext('player') + ' 3',
+            gettext('player') + ' 4',
+            gettext('player') + ' 5',
+            gettext('player') + ' 6',
+            gettext('player') + ' 7',
+            gettext('player') + ' 8',
+            gettext('player') + ' 9',
+            gettext('player') + ' 10',
+            gettext('player') + ' 11',
+            gettext('player') + ' 12',
+            gettext('player') + ' 13',
+            gettext('player') + ' 14'
         ];
         return playerNamesFactory;
     })

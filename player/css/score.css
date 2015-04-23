@@ -5,8 +5,20 @@
     font-weight: bold;
 }
 
+.score {
+    position: relative;
+    width: 80px;
+    height: 300px;
+    flex: 1 0 auto;
+    padding-left: 20px;
+}
+
 .score_stats_entry {
     line-height: 20px;
+}
+
+.score_stats_entry .rank_display, .score_stats_entry .score_display {
+    white-space: nowrap;
 }
 
 #score_barometer {

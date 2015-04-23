@@ -19,7 +19,8 @@ angular.module('playerApp', [
     'europeSVG',
     'uuid',
     'hvPlayerColors',
-    'angularModalService'
+    'angularModalService',
+    'gettext'
 ])
     .config(['$routeProvider',
         function ($routeProvider) {
@@ -96,11 +97,11 @@ angular.module('playerApp', [
                     redirectTo: '/home'
                 });
         }])
-    .run(function(Socket, Home){
+    .run(function(gettextCatalog) {
+        // TODO: this has to come from server!
+        gettextCatalog.setCurrentLanguage('de');
+    })
+    .run(function(Socket, Home) {
         Home.start();
         Socket.connect('player');
-    })
-;
-
-
-
+    });

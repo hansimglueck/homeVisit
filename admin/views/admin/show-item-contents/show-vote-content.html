@@ -1,36 +1,36 @@
 <table>
     <tr>
-        <td>Text:</td>
+        <td translate>Text:</td>
         <td>
 <span editable-textarea="item.text"
       e-rows="7" e-cols="40" e-name="text"
       onaftersave="saveItem()">
-          {{ item.text || 'kein Text' }}
+          {{ item.text || '-' }}
         </span>
         </td>
     </tr>
     <tr>
-        <td>Zeit:</td>
+        <td translate>Time:</td>
         <td>
 <span editable-text="item.time"
       e-rows="1" e-cols="4" e-name="time"
       onaftersave="saveItem()">
-          {{ item.time || 'not set' }}
+          {{ item.time || '-' }}
         </span>
         </td>
     </tr>
     <tr>
-        <td>Nötige Stimmen:</td>
+        <td translate>Required votes:</td>
         <td>
 <span editable-text="item.percentsForFinish"
       e-rows="1" e-cols="4" e-name="percentsForFinish"
       onaftersave="saveItem()">
-          {{ item.percentsForFinish || 'not set' }}%
+          {{ item.percentsForFinish || '' }}%
         </span>
         </td>
     </tr>
     <tr ng-show="item.voteType == 'customMultipleOptions' || item.voteType=='countryChoice'">
-        <td>Anzahl Stimmen:</td>
+        <td translate>Vote count:</td>
         <td>
     <span editable-text="item.voteMulti" e-name="voteMulti" onaftersave="saveItem()">
           {{ item.voteMulti || '1' }}
@@ -38,7 +38,7 @@
         </td>
     </tr>
     <tr>
-        <td>Art:</td>
+        <td translate>Type:</td>
         <td>
         <span editable-select="item.voteType" e-name="voteType"
               onaftersave="saveItem()"
@@ -49,7 +49,7 @@
         </td>
     </tr>
     <tr ng-show="item.voteType=='countryChoice'">
-        <td>Sprache:</td>
+        <td translate>Language:</td>
         <td>
         <span editable-select="item.language" e-name="language"
               onaftersave="saveItem()"
@@ -60,21 +60,21 @@
         </td>
     </tr>
     <tr>
-        <td>mit Rating:</td>
+        <td translate>With rating:</td>
         <td><span editable-checkbox="item.ratedVote" e-name="voteFlag" onaftersave="saveItem()">
-          {{ item.ratedVote || 'nein' }}
+          {{ item.ratedVote || '-' }}
         </span>
         </td>
     </tr>
     <tr ng-show="(item.voteType == 'customOptions' || item.voteType == 'customMultipleOptions')">
-        <td>Optionen:</td>
+        <td translate>Options:</td>
         <td>
             <table class="table">
                 <tbody show-vote-option>
                 </tbody>
             </table>
 
-            <button class="btn btn-primary" ng-click="addVoteOption($index)">Neue Option</button>
+            <button class="btn btn-primary" ng-click="addVoteOption($index)" translate>New option</button>
         </td>
     </tr>
 </table>

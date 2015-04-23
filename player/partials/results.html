@@ -3,7 +3,7 @@
         <ul class="list-unstyled">
             <li ng-repeat="t in home.text track by $index">{{t}}</li>
         </ul>
-        <div class="correct-answer" ng-if="home.correctAnswer !== ''">Correct: {{home.correctAnswer}}</div>
+        <div class="correct-answer" ng-if="home.correctAnswer !== ''" translate>Correct: {{home.correctAnswer}}</div>
     </div>
 
     <div class="results-content" ng-if="home.resultType == 'europeMap'">
@@ -12,12 +12,8 @@
     </div>
 
     <ul class="list-unstyled results-content" ng-if="home.resultType == 'numberStats'">
-        <li>
-            Gesamt: {{home.data[0]}}
-        </li>
-        <li>
-            Durchschnitt: {{home.data[1]}}
-        </li>
+        <li translate>Total: {{home.data[0]}}</li>
+        <li translate>Average: {{home.data[1]}}</li>
     </ul>
 
     <div class="results-content"  ng-if="['europeMap','numberStats'].indexOf(home.resultType) == -1">

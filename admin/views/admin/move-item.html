@@ -1,8 +1,8 @@
 <div class="modal-header">
-    <h3 class="modal-title">Bewege Item</h3>
+    <h3 class="modal-title" translate>Move item</h3>
 </div>
 <div class="modal-body">
-    Wähle Ziel aus (wo es dahinter soll).<br />
+    <span translate>Choose target where item will be appended.</span><br />
     <select
             ng-init="result.newDeckId=deckId"
             data-ng-attr-size={{decks.length+1}}
@@ -18,7 +18,7 @@
     </select>
 </div>
 <div class="modal-footer">
-    <button class="btn btn-primary" ng-click="move()">Move</button>
-    <button class="btn btn-primary" ng-click="copy()">Copy</button>
-    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    <button class="btn btn-primary" ng-click="move()" translate>Move</button>
+    <button class="btn btn-primary" ng-click="copy()" translate>Copy</button>
+    <button class="btn btn-warning" ng-click="cancel()" translate>Cancel</button>
 </div>

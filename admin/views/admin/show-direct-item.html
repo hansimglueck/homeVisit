@@ -9,7 +9,7 @@
         <span editable-select="item.type" e-name="type"
               e-ng-options="s.value as s.text for s in types">
           {{ showType(item) }}
-        </span> <br/><br/>Mapped:<br/>
+        </span> <br/><br/><span translated>Mapped:</span><br/>
         <span editable-text="item.device" e-name="device"
               onaftersave="saveItem()"
               e-ng-options="s.value as s.text for s in types">
@@ -38,7 +38,7 @@
     <td style="white-space: nowrap">
         <div class="buttons">
             <p>
-                <button class="btn btn-sm btn-default" ng-click="executeItem($parent.$index, $index)">go</button>
+                <button class="btn btn-sm btn-default" ng-click="executeItem($parent.$index, $index)" translate>GO</button>
             </p>
         </div>
     </td>
