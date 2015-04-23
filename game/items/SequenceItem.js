@@ -158,6 +158,8 @@ SequenceItem.prototype = {
             var self = this;
             this.log("stepped into " + this.index + ": " + this.type, true);
             this.log("executing in " + this.wait + " sec");
+            this.execute = require('./includes/' + this.type);
+            console.log(this.execute);
             setTimeout(function () {
                 self.execute.call(self);
             }, this.wait * 1000);
@@ -381,22 +383,15 @@ SequenceItem.prototype = {
         });
 
     },
-    getWsContent: function () {
+    getWsContent_old: function () {
         //objekt mit den relevanten daten zum senden vorbereiten
         var content = {};
         switch (this.type) {
             case "cmd":
-                content = {
-                    type: this.type,
-                    command: this.text,
-                    param: this.parameter,
-                    device: this.device
-                };
                 break;
             case "roulette":
             case "agreement":
             case "vote":
-                content = this.poll.getWsContent();
                 break;
             case "rating":
                 var bestWorst;
@@ -425,22 +420,19 @@ SequenceItem.prototype = {
                 };
                 break;
             case "deal":
-                content = {
-                    type: this.type,
-                    text: this.text,
-                    dealType: this.dealType,
-                    maxSteps: this.maxSteps
-                };
                 break;
             default:
-                content = {
-                    type: this.type,
-                    text: this.text
-                };
                 break;
         }
         content.silent = this.silent;
         return content;
+    },
+    getWsContent: function () {
+        //objekt mit den relevanten daten zum senden vorbereiten
+        return {
+            type: this.type,
+            text: this.text
+        };
     },
     setupPoll: function () {
         var self = this;
@@ -461,35 +453,6 @@ SequenceItem.prototype = {
                 result.cost = self.cost;
                 playerManager.playRoulette(result);
             })
-        }
-        else {
-            switch (this.voteType) {
-                case "customOptions":
-                case "customMultipleOptions":
-                    this.voteOptions.forEach(function (opt, id) {
-                        opt.value = id;
-                    });
-                    poll = new OptionPoll(this);
-                    break;
-                case "playerChoice":
-                case "countryChoice":
-                    var lang = this.language;
-                    this.voteOptions = data.getEUcountries().map(function (c) {
-                        return {value: c.id, text: c[lang]}
-                    });
-                    poll = new OptionPoll(this);
-                    break;
-
-                case "enterNumber":
-                    poll = new NumberPoll(this);
-                    break;
-                default:
-                    break;
-            }
-            poll.onFinish(this, function (result) {
-                //game.trigger(-1, {data: 'go'})
-                this.step(result);
-            });
         }
         this.poll = poll;
         this.getData = function () {
