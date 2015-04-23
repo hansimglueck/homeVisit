@@ -508,7 +508,7 @@ SequenceItem.prototype = {
         if (!this.done) return;
         if (this.next !== null) this.next.finish();
         this.log("finishing step " + this.index + ": " + this.type, true);
-        Object.keys(playerManager.deals).forEach(function (key) {
+        if (this.type == "deal") Object.keys(playerManager.deals).forEach(function (key) {
             var deal = playerManager.deals[key];
             if (deal.state < 3) deal.state = 4;
             playerManager.sendMessage(deal.player0Id, "deal", deal);
