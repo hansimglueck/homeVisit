@@ -26,7 +26,8 @@ module.exports = function(grunt) {
             },
             express: {
                 files:  [
-                    '**/*.js'
+                    '**/*.js',
+                    '**/*.html'
                 ],
                 tasks:  [ 'express:dev' ],
                 options: {
