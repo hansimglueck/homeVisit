@@ -200,10 +200,6 @@ msgstr ""
 msgid "Move item"
 msgstr ""
 
-#: admin/views/admin/import-json.html:12
-msgid "Neuer Title:"
-msgstr ""
-
 #: admin/views/admin/show-set.html:12
 msgid "New deck"
 msgstr ""
@@ -212,6 +208,10 @@ msgstr ""
 #: admin/views/admin/show-item-contents/show-switch-content.html:7
 #: admin/views/admin/show-item-contents/show-vote-content.html:77
 msgid "New option"
+msgstr ""
+
+#: admin/views/admin/import-json.html:12
+msgid "New title:"
 msgstr ""
 
 #: admin/views/admin/show-deck.html:26
