@@ -295,9 +295,10 @@ angular.module('playerAppServices', [])
         fxService.sound["vote"] = ngAudio.load("sounds/tiny-01.mp3");
         fxService.sound["alert"] = ngAudio.load("sounds/tiny-01.mp3");
         fxService.sound["results"] = ngAudio.load("sounds/whoosh3.mp3");
-        console.log("Volume " + fxService.sound["results"].volume);
         fxService.sound["card"] = ngAudio.load("sounds/karte1.mp3");
         fxService.sound["rating"] = ngAudio.load("sounds/karte2.mp3");
+        fxService.sound["other"] = ngAudio.load("sounds/fanfare2.mp3");
+        fxService.sound["win"] = ngAudio.load("sounds/fanfare1.mp3");
         fxService.sound["countdown_tick"] = ngAudio.load("sounds/countdown_tick.mp3");
         fxService.sound["scoreDown"] = ngAudio.load("sounds/smashing.mp3");
         fxService.sound["scoreUp"] = ngAudio.load("sounds/glass.mp3");
@@ -361,6 +362,7 @@ angular.module('playerAppServices', [])
         };
         fxService.playSound = function (id) {
             console.log("fxService.play " + id);
+            if (typeof fxService.sound[id] === "undefined") id = "other";
             var delay = 0;
             if (id == "results") delay = 250 * Status.player.playerId;
             if (typeof fxService.sound[id] !== "undefined") {

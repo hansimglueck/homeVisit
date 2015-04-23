@@ -421,7 +421,7 @@ PlayerManager.prototype = {
 
     finishRoulette: function(item, winner) {
         console.log("and the winner is: "+winner);
-        this.sendMessage(winner, "fx", {type: "flashAndSound", color: "green", sound: "zip", time: 2000});
+        this.sendMessage(winner, "fx", {type: "flashAndSound", color: "green", sound: "win", time: 2000});
         var self = this;
         item.positivePlayerIds.forEach(function(player){
             if (player === winner) self.score(player, item.win, "roulette");
