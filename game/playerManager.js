@@ -585,8 +585,8 @@ PlayerManager.prototype = {
         wsManager.msgDevicesByRole("master", "status", msg);
         wsManager.msgDevicesByRole("MC", "status", msg);
     },
-    sendGameEvent: function (playerId, type, value, text) {
-        this.sendMessage(playerId, "gameEvent", {type: type, value: value, text: text})
+    sendGameEvent: function (playerId, type, value, reason, text) {
+        this.sendMessage(playerId, "gameEvent", {type: type, value: value, text: text, reason: reason})
     },
     getPlayerIdForClientId: function (clientId) {
         var playerId = -1;
@@ -630,7 +630,7 @@ PlayerManager.prototype = {
         });
         this.sendPlayerStatus(-1);
     },
-    score: function (playerId, score) {
+    score: function (playerId, score, reason) {
         this.players[playerId].score += parseInt(score);
         var deals = [];
         for (var deal in this.deals) if (this.deals.hasOwnProperty(deal)) deals.push(this.deals[deal]);
@@ -650,7 +650,7 @@ PlayerManager.prototype = {
                 }
             })
         }
-        this.sendGameEvent(playerId, "score", score, "You got " + score + "Points");
+        this.sendGameEvent(playerId, "score", score, reason, "You got " + score + "Points");
         this.calcRanking();
         this.sendPlayerStatus(-1);
     },
