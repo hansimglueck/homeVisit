@@ -23,8 +23,12 @@ var masterControllers = angular.module('masterControllers', [])
 
     });
 
-masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOptions, gameConf, $filter) {
+masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOptions, gameConf, $filter, languageFactory, gettext, gettextCatalog) {
         //$scope.error = "kein Problem";
+        $scope.currentLanguage = gettextCatalog.currentLanguage;
+        $scope.languages = languageFactory.availableLanguages;
+        $scope.languagesByCode = languageFactory.languagesByCode;
+
         $scope.decks = setFactory.decks;
         $scope.itemTypes = itemOptions.type;
         $scope.gameConf = gameConf.getRun(function() {
@@ -81,7 +85,7 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOp
         };
 
         $scope.removeDeviceFromType = function(typeId, devId) {
-            if (!confirm("Wirklich Löschen???")) return;
+            if (!confirm(gettext('Really delete???'))) return;
             var updatedTypeMapping = angular.copy($scope.gameConf.typeMapping);
             updatedTypeMapping[typeId].devices.splice(devId,1);
             $scope.updateGameConf({typeMapping: updatedTypeMapping}).then(function(x) {$scope.gameConf.typeMapping[typeId].devices.splice(devId,1);});
@@ -126,7 +130,7 @@ masterControllers.controller('PlayerCtrl', function($scope, Socket, playerColors
     });
 });
 
-masterControllers.controller('OsCtrl', function($scope, Socket) {
+masterControllers.controller('OsCtrl', function($scope, Socket, gettext) {
     $scope.collapsed = {
         db: true,
         wlan1: true,
@@ -147,12 +151,12 @@ masterControllers.controller('OsCtrl', function($scope, Socket) {
     Socket.emit("database", "getStatus");
     Socket.emit("os", {cmd:"getInfo"});
     $scope.restartServer = function() {
-        if (!confirm("Wirklich Server neu starten?")) return;
+        if (!confirm(gettext('Do you really want to restart the server?'))) return;
         Socket.emit("os",{cmd:"restartServer"});
     };
     $scope.shutdown = function(reboot) {
-        if (!confirm("Wirklich Runterfahren???")) return;
-        if (!confirm("WIRKLICH RUNTERFAHREN??????????")) return;
+        if (!confirm(gettext('Are you sure?'))) return;
+        if (!confirm(gettext('REALLY REALLY SURE??????????'))) return;
         var d = reboot ? "reboot" : "shutdown";
         Socket.emit("os", {cmd:d});
     };

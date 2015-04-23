@@ -101,11 +101,12 @@ angular.module('playerApp', [
                     redirectTo: '/home'
                 });
         }])
-    .run(function(gettextCatalog) {
-        // TODO: this has to come from server!
-        gettextCatalog.setCurrentLanguage('de');
-    })
-    .run(function(Socket, Home) {
+    .run(function(Socket, Home, gettextCatalog) {
         Home.start();
-        Socket.connect('player');
+        Socket.connect('player', function() {
+            Socket.emit('getLanguage');
+        });
+        Socket.on('languageChange', function(data) {
+            gettextCatalog.setCurrentLanguage(data.language);
+        });
     });

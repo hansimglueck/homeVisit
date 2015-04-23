@@ -39,9 +39,11 @@ router.post('/', function (req, res, next) {
 router.put('/:id', function (req, res, next) {
   mongoConnection(function (db) {
     db.collection('gameconfs').updateOne({"_id": ObjectID(req.params.id)}, req.body, function (err, result) {
-      if (err) return next(err);
-      gameConf.syncFromDb();
-      res.json(result);
+        if (err) return next(err);
+        gameConf.syncFromDb(function() {
+            gameConf.languageChange();
+        });
+        res.json(result);
     })
   });
 });

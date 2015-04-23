@@ -20,6 +20,7 @@ angular
         'mcDirectives',
         'hvSetFactory',
         'hvItemOptions',
+        'hvLanguageFactory',
         'gettext'
     ])
     .config(function ($routeProvider) {
@@ -55,20 +56,21 @@ angular
                 templateUrl: '/mc/views/about.html',
                 controller: 'MatchingCtrl'
             })
-            .when('/emergency', {
-                templateUrl: '/mc/views/emergency.html',
+            .when('/maintenance', {
+                templateUrl: '/mc/views/maintenance.html',
                 controller: 'PlaybackCtrl'
             })
             .otherwise({
                 redirectTo: '/'
             });
     })
-    .run(function(gettextCatalog) {
-        // TODO: this has to come from server!
-        gettextCatalog.setCurrentLanguage('de');
-    })
-    .run(function (Socket, Status, Deck) {
-        Socket.connect('MC');
+    .run(function (Socket, Status, Deck, gettextCatalog) {
+        Socket.connect('MC', function() {
+            Socket.emit('getLanguage');
+        });
         Status.start();
         Deck.start();
+        Socket.on('languageChange', function (data) {
+            gettextCatalog.setCurrentLanguage(data.language);
+        });
     });

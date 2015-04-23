@@ -37,6 +37,8 @@ wsManager.onRole("master", raspiTools, raspiTools.newMessage);
 
 var gameConf = require('../game/gameConf.js');
 wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
+wsManager.onType('getLanguage', gameConf, gameConf.languageRequest);
+wsManager.onType('changeLanguage', gameConf, gameConf.changeLanguage);
 
 mongoConnection(function (db) {
     console.log("Database connection established");

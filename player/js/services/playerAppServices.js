@@ -162,17 +162,6 @@ angular.module('playerAppServices', [])
         };
         return homeFactory;
     })
-    .factory('GameConf', function (Socket) {
-        var gameConf = {};
-        gameConf.playerColors = ["not yet set"];
-        Socket.on('registerConfirm', function (data) {
-            Socket.emit("getGameConf");
-            Socket.on('gameConf', function (data) {
-                gameConf.playerColors = data.playerColors;
-            });
-        });
-        return gameConf;
-    })
     .factory('Status', function ($rootScope, Socket, $location) {
 
         var emptyPlayer = {playerId: -1, colors: ["weiss", "weiss"]};
