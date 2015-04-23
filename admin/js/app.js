@@ -17,6 +17,7 @@ var app = angular.module('homevisitAdmin', [
     'hvPlayerColors',
     'hvItemOptions',
     'hvSetFactory',
+    'hvLanguageFactory',
     'gettext'
 ])
 .config(function ($routeProvider, $anchorScrollProvider) {
@@ -31,13 +32,13 @@ var app = angular.module('homevisitAdmin', [
                 redirectTo: '/home'
             });
     });
-
-app.run(function(gettextCatalog) {
-    // TODO: this has to come from server!
-    gettextCatalog.setCurrentLanguage('de');
-});
-app.run(function(editableOptions, Socket) {
+app.run(function(editableOptions, Socket, gettextCatalog) {
 //    editableThemes.bs3.buttonsClass = 'btn-sm';
-    Socket.connect('master');
     editableOptions.theme = 'bs3';
+    Socket.connect('master', function() {
+        Socket.emit('getLanguage');
+    });
+    Socket.on('languageChange', function (data) {
+        gettextCatalog.setCurrentLanguage(data.language);
+    });
 });

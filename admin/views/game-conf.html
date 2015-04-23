@@ -52,4 +52,11 @@
             </ul>
         </div>
     </li>
+    <li class="list-group-item">
+        <span translate>Language:</span>
+        <span editable-select="gameConf.language" e-ng-options="l[0] as l[1] for l in languages"
+              onaftersave="updateGameConf({language:$data})">
+            {{ languagesByCode[gameConf.language] }}
+        </span>
+    </li>
 </ul>

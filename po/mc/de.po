@@ -27,7 +27,7 @@ msgstr ""
 msgid "BACK TO GAME!"
 msgstr ""
 
-#: mc/js/controllers/dummies.js:38
+#: mc/js/controllers/dummies.js:41
 msgid "Change name"
 msgstr ""
 
@@ -55,17 +55,21 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: mc/index.html:34
-msgid "Emergency"
-msgstr ""
-
 #: mc/index.html:48
 msgid "GO"
+msgstr ""
+
+#: mc/views/maintenance.html:9
+msgid "Language"
 msgstr ""
 
 #: mc/js/controllers/players.js:55
 msgid "Leave Table!"
 msgstr ""
+
+#: mc/index.html:34
+msgid "Maintenance"
+msgstr "Wartung"
 
 #: mc/index.html:31
 msgid "Matching"
@@ -111,7 +115,7 @@ msgstr ""
 msgid "Previous:"
 msgstr ""
 
-#: mc/views/emergency.html:2
+#: mc/views/maintenance.html:6
 msgid "RESTART GAME"
 msgstr ""
 
@@ -119,7 +123,7 @@ msgstr ""
 msgid "Rank: {{player.rank}}"
 msgstr ""
 
-#: mc/js/controllers/playback.js:6
+#: mc/js/controllers/playback.js:12
 msgid "Really restart?"
 msgstr ""
 
@@ -151,12 +155,16 @@ msgstr ""
 msgid "This is the about view."
 msgstr ""
 
-#: mc/js/services/mcAppServices.js:171 mc/js/services/mcAppServices.js:172
-#: mc/js/services/mcAppServices.js:173 mc/js/services/mcAppServices.js:174
-#: mc/js/services/mcAppServices.js:175 mc/js/services/mcAppServices.js:176
-#: mc/js/services/mcAppServices.js:177 mc/js/services/mcAppServices.js:178
-#: mc/js/services/mcAppServices.js:179 mc/js/services/mcAppServices.js:180
-#: mc/js/services/mcAppServices.js:181 mc/js/services/mcAppServices.js:182
-#: mc/js/services/mcAppServices.js:183 mc/js/services/mcAppServices.js:184
+#: mc/js/services/mcAppServices.js:189 mc/js/services/mcAppServices.js:190
+#: mc/js/services/mcAppServices.js:191 mc/js/services/mcAppServices.js:192
+#: mc/js/services/mcAppServices.js:193 mc/js/services/mcAppServices.js:194
+#: mc/js/services/mcAppServices.js:195 mc/js/services/mcAppServices.js:196
+#: mc/js/services/mcAppServices.js:197 mc/js/services/mcAppServices.js:198
+#: mc/js/services/mcAppServices.js:199 mc/js/services/mcAppServices.js:200
+#: mc/js/services/mcAppServices.js:201 mc/js/services/mcAppServices.js:202
+#: mc/js/services/mcAppServices.js:203
 msgid "player"
 msgstr ""
+
+#~ msgid "Emergency"
+#~ msgstr "Notfall"

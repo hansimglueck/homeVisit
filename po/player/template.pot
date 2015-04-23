@@ -9,7 +9,7 @@ msgid "Average: {{home.data[1]}}"
 msgstr ""
 
 #: player/partials/deals/deal.new.html:12
-#: player/partials/rating/rating.html:7
+#: player/partials/rating/rating.html:12
 #: player/partials/voteConfirm.html:5
 msgid "Cancel"
 msgstr ""
@@ -23,7 +23,7 @@ msgid "Choose type of deal:"
 msgstr ""
 
 #: player/partials/deals/deal.new.html:9
-#: player/partials/rating/rating.html:6
+#: player/partials/rating/rating.html:11
 #: player/partials/voteConfirm.html:4
 msgid "Confirm"
 msgstr ""
@@ -56,11 +56,11 @@ msgstr ""
 msgid "Point given!"
 msgstr ""
 
-#: player/index.html:133
+#: player/index.html:157
 msgid "Rank: {{status.player.rank}}"
 msgstr ""
 
-#: player/index.html:134
+#: player/index.html:158
 msgid "Score: {{status.player.score}}"
 msgstr ""
 
@@ -104,7 +104,7 @@ msgstr ""
 msgid "Your voting weight depends on your rank!"
 msgstr ""
 
-#: player/partials/rating/rating.html:3
+#: player/partials/rating/rating.html:8
 msgid "should get {{score}} points from you?"
 msgstr ""
 

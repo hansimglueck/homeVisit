@@ -21,7 +21,7 @@ msgstr ""
 
 #: admin/views/admin/show-deck.html:41
 msgid "Add new item"
-msgstr ""
+msgstr "Neuen Eintrag hinzufügen"
 
 #: admin/views/admin/show-item-contents/show-results-content.html:33
 msgid "Auto-Go:"
@@ -33,11 +33,11 @@ msgstr ""
 
 #: admin/views/raspi-manager.html:87
 msgid "CONNECT DB"
-msgstr ""
+msgstr "VERBINDE DATENBANK"
 
 #: admin/views/admin/move-item.html:23
 msgid "Cancel"
-msgstr ""
+msgstr "Abbrechen"
 
 #: admin/views/player-list.html:10
 msgid "Change score"
@@ -86,11 +86,11 @@ msgstr ""
 
 #: admin/views/game-conf.html:19
 msgid "Current deck:"
-msgstr ""
+msgstr "Ausgewählter Strang:"
 
 #: admin/views/master-buttons.html:2
 msgid "Current step:"
-msgstr ""
+msgstr "Aktueller Eintrag:"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:6
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:4
@@ -103,7 +103,7 @@ msgstr ""
 
 #: admin/views/game-conf.html:27
 msgid "Default mapping:"
-msgstr ""
+msgstr "Voreingestellte Gerätezuordnung:"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:18
 #: admin/views/admin/show-item-contents/show-vote-option.html:27

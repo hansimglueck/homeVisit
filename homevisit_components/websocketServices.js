@@ -89,7 +89,7 @@ angular.module('WebsocketServices', []).
             }, 1000);
         };
 
-        var connect = function () {
+        var connect = function (cb) {
             if (started) return;
             started = true;
             console.log("trying new ws!");
@@ -114,6 +114,7 @@ angular.module('WebsocketServices', []).
                     eventName: "registerConfirm"
                 });
                 ping();
+                if (cb) cb();
             };
 
             ws.onmessage = function (event) {
@@ -141,6 +142,7 @@ angular.module('WebsocketServices', []).
                 console.log("WS_ERROR!!!");
                 console.log(event);
             };
+            return ws;
         };
         return {
 
@@ -152,9 +154,9 @@ angular.module('WebsocketServices', []).
                 return connected;
             },
 
-            connect: function (role) {
+            connect: function (role, cb) {
                 setRole(role);
-                connect()
+                connect(cb)
             },
 
             on: function (eventName, callback) {

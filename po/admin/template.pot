@@ -16,6 +16,10 @@ msgstr ""
 msgid "Add new item"
 msgstr ""
 
+#: admin/js/controllers/masterControllers.js:156
+msgid "Are you sure?"
+msgstr ""
+
 #: admin/views/admin/show-item-contents/show-results-content.html:33
 msgid "Auto-Go:"
 msgstr ""
@@ -123,6 +127,10 @@ msgstr ""
 msgid "Display:"
 msgstr ""
 
+#: admin/js/controllers/masterControllers.js:152
+msgid "Do you really want to restart the server?"
+msgstr ""
+
 #: admin/views/admin/show-deck.html:9
 msgid "Duplicate deck"
 msgstr ""
@@ -169,6 +177,7 @@ msgid "Joined"
 msgstr ""
 
 #: admin/views/admin/show-item-contents/show-vote-content.html:52
+#: admin/views/game-conf.html:56
 msgid "Language:"
 msgstr ""
 
@@ -250,6 +259,10 @@ msgstr ""
 msgid "RASPI Control"
 msgstr ""
 
+#: admin/js/controllers/masterControllers.js:157
+msgid "REALLY REALLY SURE??????????"
+msgstr ""
+
 #: admin/views/raspi-manager.html:94
 msgid "REBOOT"
 msgstr ""
@@ -284,6 +297,10 @@ msgstr ""
 
 #: admin/views/admin/show-item-contents/show-rating-content.html:24
 msgid "Rating:"
+msgstr ""
+
+#: admin/js/controllers/masterControllers.js:86
+msgid "Really delete???"
 msgstr ""
 
 #: admin/views/admin/show-item-contents/show-vote-content.html:23

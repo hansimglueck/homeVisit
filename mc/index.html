@@ -30,8 +30,8 @@
                     <li ng-class="{active: isActive('/matching')}">
                         <a ng-href="#/matching" translate>Matching</a>
                     </li>
-                    <li ng-class="{active: isActive('/emergency')}">
-                        <a ng-href="#/emergency" translate>Emergency</a>
+                    <li ng-class="{active: isActive('/maintenance')}">
+                        <a ng-href="#/maintenance" translate>Maintenance</a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-controller="PlaybackCtrl">
@@ -69,8 +69,10 @@
 <script src="/homevisit_components/websocketServices.js"></script>
 <script src="/homevisit_components/hvSetFactory.js"></script>
 <script src="/homevisit_components/hvItemOptions.js"></script>
+<script src="/homevisit_components/hvLanguageFactory.js"></script>
 
 <script src="/mc/js/app.js"></script>
+<script src="/mc/js/translations.js"></script>
 <script src="/mc/js/controllers/nav.js"></script>
 <script src="/mc/js/controllers/dummies.js"></script>
 <script src="/mc/js/controllers/players.js"></script>
