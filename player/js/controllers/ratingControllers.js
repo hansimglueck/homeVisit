@@ -18,11 +18,7 @@ angular.module("ratingControllers", [])
         if ($routeParams.playerId) $scope.playerIds = $routeParams.playerId.split(":");
         $scope.traitor = false;
         $scope.playerIds.forEach(function (pid) {
-            console.log(Status.getAllied());
-            console.log(pid);
-            console.log(Status.getAllied().indexOf(pid));
-            console.log(Status.getAllied().indexOf(parseInt(pid)));
-            if (Status.getAllied().indexOf(parseInt(pid)) != -1) $scope.traitor = true;
+             if (($scope.score < 0) && Status.getAllied().indexOf(parseInt(pid)) != -1) $scope.traitor = true;
         });
         $scope.confirm = function () {
             $scope.playerIds.forEach(function (playerId) {
