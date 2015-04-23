@@ -432,6 +432,7 @@ SequenceItem.prototype = {
                 };
                 break;
         }
+        content.silent = this.silent;
         return content;
     },
     setupPoll: function () {
