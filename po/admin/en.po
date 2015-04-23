@@ -5,7 +5,7 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
-"Language: nl\n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -13,390 +13,390 @@ msgstr ""
 
 #: admin/views/master-buttons.html:12
 msgid "ALARM"
-msgstr ""
+msgstr "ALARM"
 
 #: admin/views/admin/show-deck.html:31
 msgid "Action"
-msgstr ""
+msgstr "Action"
 
 #: admin/views/admin/show-deck.html:41
 msgid "Add new item"
-msgstr ""
+msgstr "Add new item"
 
 #: admin/views/admin/show-item-contents/show-results-content.html:33
 msgid "Auto-Go:"
-msgstr ""
+msgstr "Auto-Go:"
 
 #: admin/views/master-buttons.html:11
 msgid "BACK"
-msgstr ""
+msgstr "BACK"
 
 #: admin/views/raspi-manager.html:87
 msgid "CONNECT DB"
-msgstr ""
+msgstr "CONNECT DB"
 
 #: admin/views/admin/move-item.html:23
 msgid "Cancel"
-msgstr ""
+msgstr "Cancel"
 
 #: admin/views/player-list.html:10
 msgid "Change score"
-msgstr ""
+msgstr "Change score"
 
 #: admin/views/admin/move-item.html:5
 msgid "Choose target where item will be appended."
-msgstr ""
+msgstr "Choose target where item will be appended."
 
 #: admin/views/player-list.html:9
 msgid "Color"
-msgstr ""
+msgstr "Color"
 
 #: admin/views/admin/show-item-contents/show-results-content.html:42
 msgid "Color:"
-msgstr ""
+msgstr "Color:"
 
 #: admin/views/admin/show-deck.html:30
 msgid "Comment"
-msgstr ""
+msgstr "Comment"
 
 #: admin/partials/home.html:9
 msgid "Configuration"
-msgstr ""
+msgstr "Configuration"
 
 #: admin/views/admin/show-item-contents/show-config-content.html:3
 msgid "Configuration option:"
-msgstr ""
+msgstr "Configuration option:"
 
 #: admin/views/admin/show-deck.html:29
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:5
 msgid "Content"
-msgstr ""
+msgstr "Content"
 
 #: admin/views/admin/move-item.html:22
 msgid "Copy"
-msgstr ""
+msgstr "Copy"
 
 #: admin/views/admin/show-item-contents/show-vote-option.html:5
 msgid "Correct"
-msgstr ""
+msgstr "Correct"
 
 #: admin/views/admin/show-item-contents/show-roulette-content.html:13
 msgid "Cost:"
-msgstr ""
+msgstr "Cost:"
 
 #: admin/views/game-conf.html:19
 msgid "Current deck:"
-msgstr ""
+msgstr "Current deck:"
 
 #: admin/views/master-buttons.html:2
 msgid "Current step:"
-msgstr ""
+msgstr "Current step:"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:6
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:4
 msgid "Deck"
-msgstr ""
+msgstr "Deck"
 
 #: admin/partials/home.html:55
 msgid "Decks and items"
-msgstr ""
+msgstr "Decks and items"
 
 #: admin/views/game-conf.html:27
 msgid "Default mapping:"
-msgstr ""
+msgstr "Default mapping:"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:18
 #: admin/views/admin/show-item-contents/show-vote-option.html:27
 msgid "Delete"
-msgstr ""
+msgstr "Delete"
 
 #: admin/views/admin/show-deck.html:6
 msgid "Delete deck"
-msgstr ""
+msgstr "Delete deck"
 
 #: admin/views/admin/edit-new-deck.html:9
 msgid "Description:"
-msgstr ""
+msgstr "Description:"
 
 #: admin/partials/home.html:19
 msgid "Device Manager"
-msgstr ""
+msgstr "Device Manager"
 
 #: admin/partials/home.html:42
 msgid "Direct item"
-msgstr ""
+msgstr "Direct item"
 
 #: admin/views/admin/show-item-contents/show-results-content.html:13
 msgid "Display:"
-msgstr ""
+msgstr "Display:"
 
 #: admin/views/admin/show-deck.html:9
 msgid "Duplicate deck"
-msgstr ""
+msgstr "Duplicate deck"
 
 #: admin/views/admin/show-deck.html:12
 msgid "Export CSV"
-msgstr ""
+msgstr "Export CSV"
 
 #: admin/views/admin/show-direct-item.html:41
 #: admin/views/master-buttons.html:6
 msgid "GO"
-msgstr ""
+msgstr "GO"
 
 #: admin/views/master-buttons.html:7
 msgid "GO 2"
-msgstr ""
+msgstr "GO 2"
 
 #: admin/views/master-buttons.html:21
 msgid "GOTO"
-msgstr ""
+msgstr "GOTO"
 
 #: admin/views/master-buttons.html:3
 msgid "Game stopped"
-msgstr ""
+msgstr "Game stopped"
 
 #: admin/views/admin/import-json.html:15
 msgid "Import"
-msgstr ""
+msgstr "Import"
 
 #: admin/views/admin/show-set.html:15
 msgid "Import JSON"
-msgstr ""
+msgstr "Import JSON"
 
 #: admin/views/admin/edit-new-deck.html:13
 msgid "Import:"
-msgstr ""
+msgstr "Import:"
 
 #: admin/views/raspi-manager.html:56
 msgid "Interfaces"
-msgstr ""
+msgstr "Interfaces"
 
 #: admin/views/player-list.html:6
 msgid "Joined"
-msgstr ""
+msgstr "Joined"
 
 #: admin/views/admin/show-item-contents/show-vote-content.html:52
 msgid "Language:"
-msgstr ""
+msgstr "Language:"
 
 #: admin/views/raspi-manager.html:44
 msgid "Load"
-msgstr ""
+msgstr "Load"
 
 #: admin/partials/home.html:27
 msgid "Log"
-msgstr ""
+msgstr "Log"
 
 #: admin/views/admin/show-sequence-item.html:16
 msgid "Mapped:"
-msgstr ""
+msgstr "Mapped:"
 
 #: admin/views/admin/show-item-contents/show-deal-content.html:15
 msgid "Max. steps:"
-msgstr ""
+msgstr "Max. steps:"
 
 #: admin/views/raspi-manager.html:36
 msgid "Memory"
-msgstr ""
+msgstr "Memory"
 
 #: admin/views/admin/move-item.html:21
 msgid "Move"
-msgstr ""
+msgstr "Move"
 
 #: admin/views/admin/move-item.html:2
 msgid "Move item"
-msgstr ""
+msgstr "Move item"
 
 #: admin/views/admin/show-set.html:12
 msgid "New deck"
-msgstr ""
+msgstr "New deck"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:24
 #: admin/views/admin/show-item-contents/show-switch-content.html:7
 #: admin/views/admin/show-item-contents/show-vote-content.html:77
 msgid "New option"
-msgstr ""
+msgstr "New option"
 
 #: admin/views/admin/import-json.html:12
 msgid "New title:"
-msgstr ""
+msgstr "New title:"
 
 #: admin/views/admin/show-deck.html:26
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:5
 msgid "No."
-msgstr ""
+msgstr "No."
 
 #: admin/views/raspi-manager.html:14
 msgid "OS Info for {{osInfo.hostname}}"
-msgstr ""
+msgstr "OS Info for {{osInfo.hostname}}"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:3
 #: admin/views/admin/show-item-contents/show-vote-option.html:3
 msgid "Option"
-msgstr ""
+msgstr "Option"
 
 #: admin/views/admin/show-item-contents/show-agreement-content.html:22
 msgid "Option:"
-msgstr ""
+msgstr "Option:"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:2
 #: admin/views/admin/show-item-contents/show-switch-content.html:2
 #: admin/views/admin/show-item-contents/show-vote-content.html:70
 msgid "Options:"
-msgstr ""
+msgstr "Options:"
 
 #: admin/partials/home.html:5
 msgid "Playback"
-msgstr ""
+msgstr "Playback"
 
 #: admin/views/admin/import-json.html:4
 msgid "Process"
-msgstr ""
+msgstr "Process"
 
 #: admin/partials/home.html:15
 msgid "RASPI Control"
-msgstr ""
+msgstr "RASPI Control"
 
 #: admin/views/raspi-manager.html:94
 msgid "REBOOT"
-msgstr ""
+msgstr "REBOOT"
 
 #: admin/views/master-buttons.html:10
 msgid "REGO"
-msgstr ""
+msgstr "REGO"
 
 #: admin/views/show-device-list.html:7
 msgid "RELOAD"
-msgstr ""
+msgstr "RELOAD"
 
 #: admin/views/raspi-manager.html:88
 msgid "REPAIR DB"
-msgstr ""
+msgstr "REPAIR DB"
 
 #: admin/views/master-buttons.html:5
 msgid "RESTART"
-msgstr ""
+msgstr "RESTART"
 
 #: admin/views/raspi-manager.html:9
 msgid "RESTART SERVER"
-msgstr ""
+msgstr "RESTART SERVER"
 
 #: admin/views/raspi-manager.html:76
 msgid "RESTART WI-FI"
-msgstr ""
+msgstr "RESTART WI-FI"
 
 #: admin/views/player-list.html:7
 msgid "Rank"
-msgstr ""
+msgstr "Rank"
 
 #: admin/views/admin/show-item-contents/show-rating-content.html:24
 msgid "Rating:"
-msgstr ""
+msgstr "Rating:"
 
 #: admin/views/admin/show-item-contents/show-vote-content.html:23
 msgid "Required votes:"
-msgstr ""
+msgstr "Required votes:"
 
 #: admin/views/raspi-manager.html:93
 msgid "SHUTDOWN"
-msgstr ""
+msgstr "SHUTDOWN"
 
 #: admin/views/admin/edit-new-deck.html:17
 msgid "Save"
-msgstr ""
+msgstr "Save"
 
 #: admin/views/admin/show-item-contents/show-vote-option.html:6
 #: admin/views/player-list.html:8
 msgid "Score"
-msgstr ""
+msgstr "Score"
 
 #: admin/views/admin/show-item-contents/show-results-content.html:23
 msgid "Score:"
-msgstr ""
+msgstr "Score:"
 
 #: admin/views/admin/show-item-contents/show-results-content.html:3
 msgid "Source:"
-msgstr ""
+msgstr "Source:"
 
 #: admin/views/raspi-manager.html:28
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: admin/views/player-list.html:5
 msgid "Team ID"
-msgstr ""
+msgstr "Team ID"
 
 #: admin/partials/home.html:23
 msgid "Teams"
-msgstr ""
+msgstr "Teams"
 
 #: admin/views/admin/show-item-contents/show-agreement-content.html:3
 #: admin/views/admin/show-item-contents/show-rating-content.html:3
 #: admin/views/admin/show-item-contents/show-roulette-content.html:3
 #: admin/views/admin/show-item-contents/show-vote-content.html:3
 msgid "Text:"
-msgstr ""
+msgstr "Text:"
 
 #: admin/views/admin/show-item-contents/show-roulette-content.html:33
 msgid "Time until decision:"
-msgstr ""
+msgstr "Time until decision:"
 
 #: admin/views/admin/show-item-contents/show-vote-content.html:13
 msgid "Time:"
-msgstr ""
+msgstr "Time:"
 
 #: admin/views/admin/edit-new-deck.html:5
 msgid "Title:"
-msgstr ""
+msgstr "Title:"
 
 #: admin/views/admin/show-deck.html:4
 msgid "Total duration: {{getTimeForDeck()}}"
-msgstr ""
+msgstr "Total duration: {{getTimeForDeck()}}"
 
 #: admin/views/admin/show-deck.html:28
 msgid "Trigger"
-msgstr ""
+msgstr "Trigger"
 
 #: admin/views/admin/show-deck.html:27
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:4
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: admin/views/admin/show-item-contents/show-agreement-content.html:13
 #: admin/views/admin/show-item-contents/show-deal-content.html:3
 #: admin/views/admin/show-item-contents/show-rating-content.html:13
 #: admin/views/admin/show-item-contents/show-vote-content.html:41
 msgid "Type:"
-msgstr ""
+msgstr "Type:"
 
 #: admin/views/raspi-manager.html:32
 msgid "Uptime"
-msgstr ""
+msgstr "Uptime"
 
 #: admin/views/master-content.html:8
 msgid "VOTE"
-msgstr ""
+msgstr "VOTE"
 
 #: admin/views/admin/show-item-contents/show-config-content.html:14
 msgid "Value ="
-msgstr ""
+msgstr "Value ="
 
 #: admin/views/admin/show-item-contents/show-vote-content.html:33
 msgid "Vote count:"
-msgstr ""
+msgstr "Vote count:"
 
 #: admin/views/raspi-manager.html:69
 msgid "Wi-Fi name:"
-msgstr ""
+msgstr "Wi-Fi name:"
 
 #: admin/views/raspi-manager.html:72
 msgid "Wi-Fi password"
-msgstr ""
+msgstr "Wi-Fi password"
 
 #: admin/views/admin/show-item-contents/show-roulette-content.html:23
 msgid "Win:"
-msgstr ""
+msgstr "Win:"
 
 #: admin/views/admin/show-item-contents/show-vote-content.html:63
 msgid "With rating:"
-msgstr ""
+msgstr "With rating:"

@@ -1,0 +1,118 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: en\n"
+
+#: player/partials/results.html:16
+msgid "Average: {{home.data[1]}}"
+msgstr "Average: {{home.data[1]}}"
+
+#: player/partials/deals/deal.new.html:12 player/partials/rating/rating.html:7
+#: player/partials/voteConfirm.html:5
+msgid "Cancel"
+msgstr "Cancel"
+
+#: player/partials/deals/deal.choosePlayer.html:1
+msgid "Choose Player to deal {{subject}} with:"
+msgstr "Choose Player to deal {{subject}} with:"
+
+#: player/partials/deals/deal.chooseSubject.html:1
+msgid "Choose type of deal:"
+msgstr "Choose type of deal:"
+
+#: player/partials/deals/deal.new.html:9 player/partials/rating/rating.html:6
+#: player/partials/voteConfirm.html:4
+msgid "Confirm"
+msgstr "Confirm"
+
+#: player/partials/results.html:6
+msgid "Correct: {{home.correctAnswer}}"
+msgstr "Correct: {{home.correctAnswer}}"
+
+#: player/partials/deals/deal.new.html:4
+msgid "Do you want to deal {{subject}} with"
+msgstr "Do you want to deal {{subject}} with"
+
+#: player/partials/home.html:10
+msgid "EUROPE"
+msgstr "EUROPE"
+
+#: player/partials/deals/deal.html:10
+msgid "New deal"
+msgstr "New deal"
+
+#: player/partials/home.html:1
+msgid "Next"
+msgstr "Next"
+
+#: player/partials/rating/rating.player.html:2
+msgid "Please rate a team! Give {{score}} point!"
+msgstr "Please rate a team! Give {{score}} point!"
+
+#: player/partials/rating/rating.done.html:1
+msgid "Point given!"
+msgstr "Point given!"
+
+#: player/index.html:133
+msgid "Rank: {{status.player.rank}}"
+msgstr "Rank: {{status.player.rank}}"
+
+#: player/index.html:134
+msgid "Score: {{status.player.score}}"
+msgstr "Score: {{status.player.score}}"
+
+#: player/partials/deals/deal.details.html:2
+msgid "This deal does not exist!"
+msgstr "This deal does not exist!"
+
+#: player/partials/deals/deal.details.html:46
+msgid "This deal is ACTIVE."
+msgstr "This deal is ACTIVE."
+
+#: player/partials/deals/deal.details.html:47
+msgid "This deal was DENIED."
+msgstr "This deal was DENIED."
+
+#: player/partials/results.html:15
+msgid "Total: {{home.data[0]}}"
+msgstr "Total: {{home.data[0]}}"
+
+#: player/partials/vote.html:19
+msgid "VOTE"
+msgstr "VOTE"
+
+#: player/partials/deals/deal.details.html:26
+msgid "Waiting for reply..."
+msgstr "Waiting for reply..."
+
+#: player/views/not-joined.html:1
+msgid "You are not joined in the game!"
+msgstr "You are not joined in the game!"
+
+#: player/partials/voteConfirm.html:1
+msgid "You are voting for:"
+msgstr "You are voting for:"
+
+#: player/partials/voteFinished.html:1
+msgid "Your choice is sent!"
+msgstr "Your choice is sent!"
+
+#: player/partials/vote.html:5
+msgid "Your voting weight depends on your rank!"
+msgstr "Your voting weight depends on your rank!"
+
+#: player/partials/rating/rating.html:3
+msgid "should get {{score}} points from you?"
+msgstr "should get {{score}} points from you?"
+
+#: player/partials/deals/deal.html:5
+msgid "with team {{deal.player1Id}}"
+msgstr "with team {{deal.player1Id}}"
