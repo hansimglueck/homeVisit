@@ -59,88 +59,105 @@ angular.module('mcAppServices', [])
         pollFactory.polls = [
             {
                 question: "Wer am Tisch lebt auch in dieser Gegend?",
+                note: "aus dieser Gegend",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer an diesem Tisch war einmal Klassensprecher?",
+                note: "Klassensprecher",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer hat schon mal hoch gewonnen?",
+                note: "hoch gewonnen",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer war oder ist Parteimitglied?",
+                note: "Parteimitglied",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer engagiert sich in einem Verein oder in einer NGO?",
+                note: "Verein/NGO",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer am Tisch hat eine Arbeit, von der er oder sie leben kann?",
+                note: "bezahlte Arbeit",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer hat einen Konflikt schon mal körperlich ausgetragen?",
+                note: "körperlicher Konflikt",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer hat eine Nationalflagge bei sich zu Hause?",
+                note: "Nationalflagge",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer hat schon mal seine nationale Herkunft verleugnet?",
+                note: "Herkunft verleugnet",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer fühlt sich mehr als Europäer denn als Bürger seines Landes?",
+                note: "gefühlter Europäer",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer hat Angst vor der Zukunft?",
+                note: "Angst vor Zukunft",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer findet die Runde hier grundsätzlich vertrauenswürdig?",
+                note: "vertrauenswürdige Runde",
                 type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Meine Solidaritätsbereitschaft",
+                note: "Solidaritätsbereitschaft",
                 type: 'fingers',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Mein diplomatisches Geschick",
+                note: "diplomatisches Geschick",
                 type: 'fingers',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Mein Ehrgeiz",
+                note: "Ehrgeiz",
                 type: 'fingers',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Mein Vertrauen in die Demokratie",
+                note: "Vertrauen in Demokratie",
                 type: 'fingers',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Mein Vertrauen in das Spiel der Märkte",
+                note: "Vertauen in Spiel der Märkte",
                 type: 'fingers',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
             }
         ];
         return pollFactory;
@@ -162,6 +179,7 @@ angular.module('mcAppServices', [])
             [11,11],
             [12,12],
             [13,13],
+            [14,14]
         ];
         return matchFactory;
     })
@@ -181,7 +199,8 @@ angular.module('mcAppServices', [])
             gettext('player') + ' 11',
             gettext('player') + ' 12',
             gettext('player') + ' 13',
-            gettext('player') + ' 14'
+            gettext('player') + ' 14',
+            gettext('player') + ' 15'
         ];
         return playerNamesFactory;
     })
