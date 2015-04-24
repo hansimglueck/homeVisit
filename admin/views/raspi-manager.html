@@ -56,6 +56,12 @@
                             <td translate>Interfaces</td>
                             <td>{{printInterfaces()}}</td>
                         </tr>
+                        <tr>
+                            <td translate>Online</td>
+                            <td>
+                                <i class="fa fa-2x fa-circle" ng-class="{'text-success': osInfo.online, 'text-danger': !osInfo.online}" ng-attr-title="{{osInfo.online && 'Online' || 'Offline' }}"></i>
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
             </li>

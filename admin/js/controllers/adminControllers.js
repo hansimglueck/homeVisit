@@ -1,7 +1,11 @@
 var adminControllers = angular.module('adminControllers', [])
 
-adminControllers.controller('HomeController', function ($scope) {
+adminControllers.controller('HomeController', function ($scope, Socket) {
     $scope.name = "homE";
+    $scope.requestServerInfo = function() {
+        Socket.emit("database", "getStatus");
+        Socket.emit("os", {cmd:"getInfo"});
+    };
 });
 
 adminControllers.controller('setCtrl', function ($scope, setFactory, $location, $anchorScroll, $timeout) {

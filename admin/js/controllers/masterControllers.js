@@ -130,7 +130,7 @@ masterControllers.controller('PlayerCtrl', function($scope, Socket, playerColors
     });
 });
 
-masterControllers.controller('OsCtrl', function($scope, Socket, gettext) {
+masterControllers.controller('OsCtrl', function($scope, Socket, gettext, $interval) {
     $scope.collapsed = {
         db: true,
         wlan1: true,
@@ -163,9 +163,6 @@ masterControllers.controller('OsCtrl', function($scope, Socket, gettext) {
     $scope.restartWlan1 = function() {
         Socket.emit("os",  {cmd: "restartwlan1", param:{ssid:$scope.wlanId, passwd:$scope.wlanPasswd}});
     };
-    $scope.requestOsInfo = function() {
-        Socket.emit("os", {cmd:"getInfo"});
-    };
     $scope.dbAction = function(action) {
         if (!confirm("Wirklich DB:"+action+"?")) return;
         Socket.emit("database", action);
@@ -186,6 +183,12 @@ masterControllers.controller('OsCtrl', function($scope, Socket, gettext) {
         return interfaces;
     }
 
+    // update every automatically
+    $interval(function() {
+        console.log('interval!');
+        Socket.emit("database", "getStatus");
+        Socket.emit("os", {cmd:"getInfo"});
+    }, 10000); // every 10 sec
 });
 
 

@@ -1,7 +1,8 @@
 var exec = require('child_process').exec;
 var os = require('os');
-//var mongoose = require('mongoose');
-var mongoConnection = require('../server/mongoConnection');
+var isOnline = require('is-online');
+var MongoClient = require('mongodb').MongoClient;
+var mongoUri = require('../homevisitConf').mongoUri;
 var wsManager = require('./wsManager.js');
 
 function RaspiTools() {
@@ -41,7 +42,7 @@ RaspiTools.prototype = {
                     break;
 
                 case "database":
-                    console.log("db command");
+                    console.log("db command", msg);
                     switch (msg.data) {
                         case "connect":
                             break;
@@ -71,32 +72,34 @@ RaspiTools.prototype = {
     },
 
     sendDbStatus: function() {
-        //var db = mongoose.connection;
-        var connected = mongoConnection();
-
-        //var gConf = require('../models/GameConf.js');
-        //gConf.findOne(function (err, conf) {
-        //    if (err) {
-        //        return console.log("mongodb query not ok")
-        //    }
-        //    console.log("mongodb query ok")
-        //});
-        console.log("readyStat= "+connected);
-
-        wsManager.msgDevicesByRole('master', 'dbStatus', {'connected':connected});
+        MongoClient.connect(mongoUri, function(err, conn) {
+            var connected;
+            if(err){
+                connected = false;
+            } else {
+                connected = true;
+            }
+            console.log("db connection ", connected);
+            wsManager.msgDevicesByRole('master', 'dbStatus', {
+                connected: connected
+            });
+        });
     },
     sendOsInfo: function (clientId) {
-        var info = {
-            hostname: os.hostname(),
-            type: os.type(),
-            arch: os.arch(),
-            uptime: os.uptime(),
-            loadavg: os.loadavg(),
-            totalmem: os.totalmem(),
-            freemem: os.freemem(),
-            interfaces: os.networkInterfaces()
-        };
-        wsManager.msgDeviceByIds([clientId], "osinfo", info);
+        isOnline(function(err, online) {
+            var info = {
+                hostname: os.hostname(),
+                type: os.type(),
+                arch: os.arch(),
+                uptime: os.uptime(),
+                loadavg: os.loadavg(),
+                totalmem: os.totalmem(),
+                freemem: os.freemem(),
+                interfaces: os.networkInterfaces(),
+                online: online,
+            };
+            wsManager.msgDeviceByIds([clientId], "osinfo", info);
+        });
     }
 
 };

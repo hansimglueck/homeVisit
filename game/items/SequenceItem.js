@@ -1,5 +1,4 @@
 var Q = require('q');
-var mongoConnection = require('../../server/mongoConnection.js');
 var OptionPoll = require('../polls/OptionPoll.js');
 var NumberPoll = require('../polls/NumberPoll.js');
 var Agreement = require('../polls/Agreement.js');
