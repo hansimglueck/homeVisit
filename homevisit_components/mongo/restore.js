@@ -26,7 +26,9 @@ mongoConnection(function(db) {
     });
     Q.allSettled(countPromises)
         .then(function(results) {
-            if (_.any(results, function(r) { return r.value > 0; })) {
+            if (_.any(results, function(r) {
+                return r.value > 0 || r.state !== 'fulfilled';
+            })) {
                 throw new Error('Refusing to import into non-empty database!'.red);
             }
         })
@@ -37,14 +39,38 @@ mongoConnection(function(db) {
             collections.forEach(function(coll) {
                 // insert collections
                 var collData = dumpObj[coll],
-                c = db.collection(coll),
-                insertMany = Q.nbind(c.insertMany, c);
-                promises.push(insertMany(collData));
+                    c = db.collection(coll),
+                    insertOne = Q.nbind(c.insertOne, c);
+                collData.forEach(function(doc) {
+                    promises.push(insertOne(doc));
+                });
             });
             return Q.allSettled(promises)
-                .then(function() {
+                .then(function(results) {
+                    var dupCount = 0;
+                    var failed = _.filter(results, function(r) {
+                        if (r.state !== 'fulfilled') {
+                            if (r.reason.name === 'MongoError' &&
+                                !r.reason.errmsg.match(/E11000 duplicate key error/)) {
+                                return true;
+                            } else {
+                                ++dupCount;
+                            }
+                        }
+                        return false;
+                    });
+                    if (failed.length > 0) {
+                        _.each(failed, function(r) {
+                              console.dir(r);
+                        });
+                        throw new Error('Could not insert documents!'.red);
+                    }
                     console.log('Successfully restored data from %s.'.format(
                         restoreFilename).green);
+                    if (dupCount > 0) {
+                        console.log('Warning: Ignored %d duplicates...'.format(
+                            dupCount).yellow);
+                    }
                 });
         })
         .catch(function(err) {
