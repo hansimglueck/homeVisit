@@ -100,9 +100,9 @@ SequenceItem = function (db, itemRef, index, dontLoadItem) {
     // itemRef is hash/id
     else {
         var self = this;
-        var findItems = db.collection('items').find({ _id: itemRef });
+        var findItems = db.collection('items').find({_id: itemRef});
         var toArray = Q.nbind(findItems.toArray, findItems);
-        return toArray().then(function(item) {
+        return toArray().then(function (item) {
             return buildItem(self, item[0]);
         });
     }
@@ -312,7 +312,8 @@ SequenceItem.prototype = {
                 this.mapToDevice();
                 if (this.autoGo) {
                     //führe nächsten step aus mit param = value der bestOption
-                    this.step(this.data.complete ? this.data.voteOptions[0].value : -1);
+                    if (this.data !== null) this.step(this.data.complete ? this.data.voteOptions[0].value : -1);
+                    else this.next.step(this.param);
                 }
                 break;
             case "config":
@@ -326,7 +327,7 @@ SequenceItem.prototype = {
                 try {
                     eval(this.text);
                 } catch (e) {
-                    this.log("Error = "+ e.stack);
+                    this.log("Error = " + e.stack);
                 }
                 break;
             default:
@@ -398,7 +399,9 @@ SequenceItem.prototype = {
                 var bestWorstArr;
                 if (this.ratingType == "oneTeam") {
                     bestWorstArr = playerManager.getPlayerGroup(this.bestWorst);
-                    if (bestWorstArr.length > 0) bestWorst = bestWorstArr.map(function(x){return x.playerId});
+                    if (bestWorstArr.length > 0) bestWorst = bestWorstArr.map(function (x) {
+                        return x.playerId
+                    });
                 }
                 content = {
                     type: this.type,
@@ -412,7 +415,7 @@ SequenceItem.prototype = {
                 content = {
                     data: this.data,
                     type: this.type,
-                    text: this.data.text,
+                    text: this.data ? this.data.text : "",
                     resultType: this.resultType,
                     color: this.color
                 };
@@ -449,7 +452,7 @@ SequenceItem.prototype = {
         }
         else if (this.type === "roulette") {
             poll = new Agreement(this);
-            poll.onFinish(playerManager, function(result) {
+            poll.onFinish(playerManager, function (result) {
                 result.win = self.win;
                 result.cost = self.cost;
                 playerManager.playRoulette(result);
@@ -490,6 +493,10 @@ SequenceItem.prototype = {
         };
         this.polls[this.poll.id] = (this.poll);
     },
+    getData: function () {
+        return null;
+    }
+    ,
     sendPlaybackStatus: function () {
         if (this.done) {
             if (this.next !== null) this.next.sendPlaybackStatus();
@@ -502,8 +509,9 @@ SequenceItem.prototype = {
         };
         wsManager.msgDevicesByRole('master', 'playBackStatus', playbackStatus);
         wsManager.msgDevicesByRole('MC', 'playBackStatus', playbackStatus);
-    },
-    //TODO: hacky closing the deals - das geht besser
+    }
+    ,
+//TODO: hacky closing the deals - das geht besser
     finish: function () {
         if (!this.done) return;
         if (this.next !== null) this.next.finish();
@@ -520,5 +528,6 @@ SequenceItem.prototype = {
 
     }
 
-};
+}
+;
 module.exports = SequenceItem;

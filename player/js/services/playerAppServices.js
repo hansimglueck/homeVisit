@@ -147,6 +147,7 @@ angular.module('playerAppServices', [])
                             case "deal":
                                 var dealType = "";
                                 if (typeof data.dealType !== "undefined") dealType = data.dealType;
+                                DealFactory.subject = dealType;
                                 $location.path('/deals/new/' + dealType);
                                 return;
                                 break;
@@ -398,7 +399,10 @@ angular.module('playerAppServices', [])
         // deal.states entspricht ["just opened", "waiting for answer", "have to reply", "confirmed", "denied"]
         var dealFactory = {};
         dealFactory.deals = {};
+        dealFactory.subject;
+        dealFactory.busy = false;
         Socket.on('deal', function (deal) {
+            if (dealFactory.busy) dealFactory.sendMessage(deal, {type:"deny"});
             if (dealFactory.deals.hasOwnProperty(deal.id)) {
                 dealFactory.deals[deal.id].state = deal.state;
                 dealFactory.deals[deal.id].messages = deal.messages;

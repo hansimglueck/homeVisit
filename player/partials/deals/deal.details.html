@@ -46,6 +46,11 @@
                     <div ng-if="getMyDealState()===3" translate>This deal is ACTIVE.</div>
                     <div ng-if="getMyDealState()===4" translate>This deal was DENIED.</div>
                 </div>
+                <div ng-if="getMyDealState()===4">
+                    <a class="btn btn-default" href="{{'#/deals/new/' + dealFactory.subject}}" translate>
+                        Try Again
+                    </a>
+                </div>
             </div>
         </div>
     </div>

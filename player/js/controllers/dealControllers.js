@@ -58,6 +58,7 @@ angular.module("dealControllers", [])
     .controller('DealDetailsController', function ($scope, DealFactory, $routeParams, Status) {
         $scope.dealId = $routeParams.id;
         $scope.deal = DealFactory.deals[$scope.dealId];
+        $scope.dealFactory = DealFactory;
         console.log("DetailsController");
         $scope.getMyDealState = function () {
             return DealFactory.getMyDealState($scope.deal);
@@ -84,7 +85,7 @@ angular.module("dealControllers", [])
         ];
         $scope.getMessageOptions = function () {
             var myState = $scope.getMyDealState();
-            if ($scope.deal.messages.length > $scope.deal.maxMessages - 1) return $scope.lastMessageOptions;
+            if ($scope.deal.messages.length > $scope.deal.maxMessages - 1 && myState === 2) return $scope.lastMessageOptions;
             return $scope.messageOptions[myState];
         };
     })

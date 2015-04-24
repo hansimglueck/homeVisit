@@ -53,6 +53,7 @@ PlayerManager.prototype = {
             player.selcted = false;
             player.away = false;
             player.deals = {};
+            player.busy = false;
         });
         this.sendPlayerStatus(-1);
     },
@@ -193,6 +194,17 @@ PlayerManager.prototype = {
                 break;
             case 2:
                 this.sendMessage(deal.player0Id, "deal", deal);
+                this.players[deal.player0Id].busy = true;
+                this.players[deal.player1Id].busy = true;
+                break;
+            case 3:
+                var value = deal.messages[deal.messages.length-2].value;
+                this.score(deal.player0Id, -value, deal.subject);
+                this.score(deal.player1Id, value, deal.subject);
+                this.sendMessage(deal.player0Id, "deal", deal);
+                this.sendMessage(deal.player1Id, "deal", deal);
+                this.sendGameEvent(deal.player0Id, deal.subject, deal.player1Id, "");
+                this.sendGameEvent(deal.player1Id, deal.subject, deal.player0Id, "");
                 this.players[deal.player0Id].busy = true;
                 this.players[deal.player1Id].busy = true;
                 break;
@@ -413,8 +425,11 @@ PlayerManager.prototype = {
     playRoulette: function (result) {
         console.log("play roulette");
         var self = this;
+        self.broadcastMessage("display", {type: "card", text: "You are NOT in the game!"});
+        console.log(result.positivePlayerIds);
+        if (result.positivePlayerIds.length == 0) return;
         result.positivePlayerIds.forEach(function(playerId){
-            self.sendMessage(playerId, "display", {type: "card", text: "{{$compile('<player-icon pid=0></player-icon>')}} You are in the game!"});
+            self.sendMessage(playerId, "display", {type: "card", text: "You are in the game!"});
         });
         var self = this;
         var steps = Math.floor(Math.random() * result.positivePlayerIds.length) + 23;
@@ -498,7 +513,7 @@ PlayerManager.prototype = {
                 break;
             case "best":
                 ret = this.players.filter(function (player) {
-                    return (player.rank == 1);
+                    return (player.rank == 1) ^ inverse;
                 });
                 break;
             case "worst":
@@ -506,7 +521,7 @@ PlayerManager.prototype = {
                     return player.joined;
                 }).length;
                 ret = this.players.filter(function (player) {
-                    return (player.rank == joined);
+                    return (player.rank == joined) ^ inverse;
                 });
                 break;
             case "joined":

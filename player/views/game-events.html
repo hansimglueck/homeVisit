@@ -8,7 +8,17 @@
             <div class="modal-body">
                 <ul class="list-unstyled">
                     <li ng-repeat="event in status.gameEvents track by $index">
-                        {{event.type}}: {{event.value}} from {{event.reason}}
+                        <div ng-switch="event.type">
+                            <div ng-switch-when="score">
+                                {{event.type}}: {{event.value}} from {{event.reason}}
+                            </div>
+                            <div ng-switch-when="insurance">
+                                {{event.type}}: with <player-icon class="player-icon-xs" pid="event.value"></player-icon>
+                            </div>
+                            <div ng-switch-default>
+                                {{event.type}}: {{event.value}} from {{event.reason}}
+                            </div>
+                        </div>
                     </li>
                 </ul>
             </div>

@@ -47,7 +47,8 @@ Poll.prototype = {
         if (typeof vote.multiplier == "undefined") vote.multiplier = 1;
         this.evalVote(vote);
         this.votes.push(vote);
-        if (this.maxVotes != 0 && this.votes.length >= this.maxVotes*this.percentsForFinish/100) this.finish();
+        var requiredVotes = this.maxVotes*this.percentsForFinish/100;
+        if (this.maxVotes != 0 && this.votes.length >= requiredVotes) this.finish();
         return true;
     },
     checkVoteValid: function (vote) {
