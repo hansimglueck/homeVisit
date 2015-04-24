@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var mongoConnection = require('./mongoConnection');
+var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
 var playerManager = require('../game/playerManager.js');
 
 var conf = require('../homevisitConf');

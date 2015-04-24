@@ -1,4 +1,4 @@
-var mongoConnection = require('../server/mongoConnection');
+var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
 var wsManager = require('./wsManager.js');
 
 function GameConf() {

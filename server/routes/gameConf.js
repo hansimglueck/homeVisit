@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var mongoConnection = require('../mongoConnection');
+var mongoConnection = require('../../homevisit_components/mongo/mongoConnection.js');
 var game = require('../../game/game.js');
 var gameConf = require('../../game/gameConf.js');
 var ObjectID = require('mongodb').ObjectID;

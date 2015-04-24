@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-var mongoConnection = require('../server/mongoConnection'),
+var mongoConnection = require('../homevisit_components/mongo/mongoConnection'),
     https = require('https'),
     csv = require('csv'),
     crypto = require('crypto'),
