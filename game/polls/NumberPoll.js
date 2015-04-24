@@ -22,7 +22,8 @@ NumberPoll.prototype.getResult = function () {
         sum: this.sum,
         average: this.getAverage().toFixed(2),
         minVal: this.getMin().toFixed(2),
-        maxVal: this.getMax().toFixed(2)
+        maxVal: this.getMax().toFixed(2),
+        votes: this.votes
     }
 };
 NumberPoll.prototype.getAverage = function() {

@@ -114,3 +114,6 @@ body {
     align-items: center;
     height: 100%;
 }
+.card-text ul {
+    width: 100%;
+}

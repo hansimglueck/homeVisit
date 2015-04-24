@@ -196,144 +196,148 @@ SequenceItem.prototype = {
     },
     execute: function () {
         this.log("executing step " + this.index + ": " + this.type, true);
+        this.executeTime = new Date();
+        console.log(this.executeTime);
         this.sendPlaybackStatus();
-        switch (this.type) {
-            case "switch":
-                //TODO: der switch muss wohl wieder implementiert werden, wenns komplexer werden soll
-                //ähnlich wie inline-switch, nur dass das deck vom game geholt werden muss...
-                break;
-            case "inlineSwitch":
-                this.log("looking for deck for option " + this.param);
-                if (typeof this.inlineDecks === "undefined")
+        try {
+            switch (this.type) {
+                case "switch":
+                    //TODO: der switch muss wohl wieder implementiert werden, wenns komplexer werden soll
+                    //ähnlich wie inline-switch, nur dass das deck vom game geholt werden muss...
                     break;
-                var deck = this.inlineDecks[this.param];
-                if (typeof deck == "undefined") {
-                    this.log("no matching option found", true);
-                    this.step();
-                }
-                else {
-                    this.log("inserting deck for option " + this.param, true);
-                    var oldNext = this.next;
-                    this.next = null;
-                    for (var i = 0; i < deck.items.length; i++) {
-                        this.appendItem(new SequenceItem(null, deck.items[i], this.index + ":" + this.param + ":" + i, true));
+                case "inlineSwitch":
+                    this.log("looking for deck for option " + this.param);
+                    if (typeof this.inlineDecks === "undefined")
+                        break;
+                    var deck = this.inlineDecks[this.param];
+                    if (typeof deck == "undefined") {
+                        this.log("no matching option found", true);
+                        this.step();
                     }
-                    this.appendItem(oldNext);
-                    this.step();
-                }
-                break;
-            case "agreement":
-                this.playerIds = playerManager.getPlayerGroup(this.agreementOption).map(function (player) {
-                    return player.playerId;
-                });
-                this.setupPoll();
-                this.mapToDevice();
-                break;
-            case "roulette":
-                this.playerIds = playerManager.getPlayerGroup('joined').map(function (player) {
-                    return player.playerId;
-                });
-                this.setupPoll();
-                this.mapToDevice();
-                break;
-            case "vote":
-                this.setupPoll();
-                this.mapToDevice();
-                break;
-            case "deal":
-                this.mapToDevice();
-                break;
-            case "results":
-                //der score wird hier ermittelt, da das result ja auch zB an den printer geschickt werden könnte, dann käme playerManager.result() garnicht dran
-                this.data = {};
-                switch (this.sourceType) {
-                    case "previousStep":
-                        this.data = this.previous.getData();
-                        break;
-                    case "positivePlayerScore":
-                        var posScoreArr = playerManager.players.filter(function (player, id) {
-                            player.playerId = id;
-                            return player.score > 0 && player.joined;
-                        });
-                        var sum = posScoreArr.reduce(function (prev, curr) {
-                            return prev + curr.score
-                        }, 0);
-                        this.data.text = "Die Verteilung des Kuchens";
-                        this.data.voteOptions = posScoreArr.map(function (player) {
-                            return {
-                                value: player.playerId,
-                                result: player.score,
-                                votes: player.score,
-                                text: player.playerId,
-                                percent: (player.score / sum * 100).toFixed(1)
-                            }
-                        });
-                        break;
-                    default:
-                        break;
-                }
-                switch (this.scoreType) {
-                    case "optionScore":
-                        //checke, welche votes eine option mit .correctAnswer in der choice haben
-                        //und verteile +1 für jede korrekte choice, -1 für die anderen
-                        var correct = this.data.voteOptions.filter(function (opt) {
-                            return opt.correctAnswer
-                        }).map(function (opt) {
-                            return opt.value
-                        });
-                        var score;
-                        this.data.votes.forEach(function (vote) {
-                            score = -1;
-                            vote.choice.forEach(function (ch) {
-                                if (correct.indexOf(ch) != -1) score = 1;
+                    else {
+                        this.log("inserting deck for option " + this.param, true);
+                        var oldNext = this.next;
+                        this.next = null;
+                        for (var i = 0; i < deck.items.length; i++) {
+                            this.appendItem(new SequenceItem(null, deck.items[i], this.index + ":" + this.param + ":" + i, true));
+                        }
+                        this.appendItem(oldNext);
+                        this.step();
+                    }
+                    break;
+                case "agreement":
+                    this.playerIds = playerManager.getPlayerGroup(this.agreementOption).map(function (player) {
+                        return player.playerId;
+                    });
+                    this.setupPoll();
+                    this.mapToDevice();
+                    break;
+                case "roulette":
+                    this.playerIds = playerManager.getPlayerGroup('joined').map(function (player) {
+                        return player.playerId;
+                    });
+                    this.setupPoll();
+                    this.mapToDevice();
+                    break;
+                case "vote":
+                    this.setupPoll();
+                    this.mapToDevice();
+                    break;
+                case "deal":
+                    this.mapToDevice();
+                    break;
+                case "results":
+                    //der score wird hier ermittelt, da das result ja auch zB an den printer geschickt werden könnte, dann käme playerManager.result() garnicht dran
+                    this.data = {};
+                    switch (this.sourceType) {
+                        case "previousStep":
+                            this.data = this.previous.getData();
+                            break;
+                        case "positivePlayerScore":
+                            var posScoreArr = playerManager.players.filter(function (player, id) {
+                                player.playerId = id;
+                                return player.score > 0 && player.joined;
                             });
-                            playerManager.score(vote.playerId, score, "Correct Answer");
-                        });
-                        break;
-                    case "majorityScore":
-                        //checke, welche votes die voteOption[0] der results (sortiert) in der choice haben
-                        //und verteile +1 dafür, -1 für die anderen
-                        //TODO: bei zwei gleichguten Antworten wird nur eine berücksichtigt...
-                        var best = this.data.voteOptions[0].value;
-                        var score;
-                        this.data.votes.forEach(function (vote) {
-                            score = -1;
-                            vote.choice.forEach(function (ch) {
-                                if (best == ch) score = 1;
+                            var sum = posScoreArr.reduce(function (prev, curr) {
+                                return prev + curr.score
+                            }, 0);
+                            this.data.text = "Die Verteilung des Kuchens";
+                            this.data.voteOptions = posScoreArr.map(function (player) {
+                                return {
+                                    value: player.playerId,
+                                    result: player.score,
+                                    votes: player.score,
+                                    text: player.playerId,
+                                    percent: (player.score / sum * 100).toFixed(1)
+                                }
                             });
-                            playerManager.score(vote.playerId, score, "Opportunism");
-                        });
-                        break;
+                            break;
+                        default:
+                            break;
+                    }
+                    switch (this.scoreType) {
+                        case "optionScore":
+                            //checke, welche votes eine option mit .correctAnswer in der choice haben
+                            //und verteile +1 für jede korrekte choice, -1 für die anderen
+                            var correct = this.data.voteOptions.filter(function (opt) {
+                                return opt.correctAnswer
+                            }).map(function (opt) {
+                                return opt.value
+                            });
+                            var score;
+                            this.data.votes.forEach(function (vote) {
+                                score = -1;
+                                vote.choice.forEach(function (ch) {
+                                    if (correct.indexOf(ch) != -1) score = 1;
+                                });
+                                playerManager.score(vote.playerId, score, "Correct Answer");
+                            });
+                            break;
+                        case "majorityScore":
+                            //checke, welche votes die voteOption[0] der results (sortiert) in der choice haben
+                            //und verteile +1 dafür, -1 für die anderen
+                            //TODO: bei zwei gleichguten Antworten wird nur eine berücksichtigt...
+                            var best = this.data.voteOptions[0].value;
+                            var score;
+                            this.data.votes.forEach(function (vote) {
+                                score = -1;
+                                vote.choice.forEach(function (ch) {
+                                    if (best == ch) score = 1;
+                                });
+                                playerManager.score(vote.playerId, score, "Opportunism");
+                            });
+                            break;
 
-                    case "noScore":
-                    default:
-                        break;
-                }
-                this.mapToDevice();
-                if (this.autoGo) {
-                    //führe nächsten step aus mit param = value der bestOption
-                    if (this.data !== null) this.step(this.data.complete ? this.data.voteOptions[0].value : -1);
-                    else this.next.step(this.param);
-                }
-                break;
-            case "config":
-                gameConf.setOption(this.configField, this.value);
-                break;
-            case "dummy":
-                if (this.next !== null) this.next.step(this.param);
-                break;
-            case "eval":
-                console.log("Eval: " + this.text);
-                try {
-                    eval(this.text);
-                } catch (e) {
-                    this.log("Error = " + e.stack);
-                }
-                break;
-            default:
-                this.mapToDevice();
-                break;
-        }
+                        case "noScore":
+                        default:
+                            break;
+                    }
+                    this.mapToDevice();
+                    if (this.autoGo) {
+                        //führe nächsten step aus mit param = value der bestOption
+                        if (this.data !== null) this.step(this.data.complete ? this.data.voteOptions[0].value : -1);
+                        else this.next.step(this.param);
+                    }
+                    break;
+                case "config":
+                    gameConf.setOption(this.configField, this.value);
+                    break;
+                case "dummy":
+                    if (this.next !== null) this.next.step(this.param);
+                    break;
+                case "eval":
+                    console.log("Eval: " + this.text);
+                    try {
+                        eval(this.text);
+                    } catch (e) {
+                        this.log("Error = " + e.stack);
+                    }
+                    break;
+                default:
+                    this.mapToDevice();
+                    break;
+            }
+        } catch (e) { console.log(e.stack) }
         //checken, wie der nächste step getriggert wird
         if (this.next != null) {
             if (this.next.trigger == "follow") {
@@ -526,6 +530,22 @@ SequenceItem.prototype = {
             playerManager.sendPlayerStatus(-1);
         });
 
+    },
+
+    getExecuteTime: function() {
+        var my = {id:this.id, time:this.executeTime};
+        var rest = [];
+        if (this.next == null) {
+            console.log("ende");
+            console.log();
+            rest.push(my);
+            return rest;
+        }
+        else {
+            rest = this.next.getExecuteTime();
+            rest.push(my)
+            return rest;
+        }
     }
 
 }

@@ -122,7 +122,7 @@ PlayerManager.prototype = {
         playerId = this.getPlayerIdForClientId(clientId);
         if (playerId == -1) playerId = this.seatPlayer(clientId);
         if (playerId == -1) {
-            //kein freier platz!
+            //kein freier platz!sc
             wsManager.msgDeviceByIds([clientId], "status", {
                 player: {playerId: -1},
                 otherPlayers: this.getPlayerArray(),
@@ -177,6 +177,7 @@ PlayerManager.prototype = {
         this.rating[playerId] = rate;
         console.log("rate: " + this.rating);
         this.calcAvgRate();
+
         this.broadcastMessage('rates', {avgRatings: this.avgRatings});
     },
     //deals werden immer komplett versendet mit unique .id
@@ -229,7 +230,7 @@ PlayerManager.prototype = {
     //callback für mc-messages. bei register wird status versendet, der MC kann auch punkte vergeben
     scoreMessage: function (clientId, role, msg) {
         if (msg.type == "score") {
-            this.score(msg.data.playerId, msg.data.score, "MC");
+            this.score(msg.data.playerId, msg.data.score, role+":"+msg.data.reason);
 
         }
     },
@@ -610,6 +611,9 @@ PlayerManager.prototype = {
     },
     score: function (playerId, score, reason) {
         this.players[playerId].score += parseInt(score);
+        if (reason.indexOf("player")>-1) {
+            this.sendGameEvent(reason.split(":")[1], "rating", score, "player:"+playerId, "You gave " + score + "Points");
+        }
         this.sendGameEvent(playerId, "score", score, reason, "You got " + score + "Points");
         var deals = [];
         for (var deal in this.deals) if (this.deals.hasOwnProperty(deal)) deals.push(this.deals[deal]);

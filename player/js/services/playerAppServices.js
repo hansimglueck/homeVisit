@@ -177,6 +177,7 @@ angular.module('playerAppServices', [])
         statusFactory.rating = [];
         statusFactory.gameEvents = [];
         statusFactory.playerOnTurn = null;
+        statusFactory.gameEventTypes = [];
 
         //diese eigenschaft wird hier geführt, da sie im view benötigt wird und sonst im digest-cycle immerwieder neu berrechnet werden muss...
         statusFactory.availablePlayers = [];
@@ -200,7 +201,8 @@ angular.module('playerAppServices', [])
         });
         Socket.on('gameEvent', function (data) {
             console.log("new gameEvent: " + data);
-            statusFactory.gameEvents.push(data)
+            statusFactory.gameEvents.push(data);
+            if (statusFactory.gameEventTypes.indexOf(data.type)==-1) statusFactory.gameEventTypes.push(data.type);
         });
         Socket.on('inventory', function (data) {
             console.log(data);
