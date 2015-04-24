@@ -253,7 +253,7 @@ SequenceItem.prototype = {
                     case "positivePlayerScore":
                         var posScoreArr = playerManager.players.filter(function (player, id) {
                             player.playerId = id;
-                            return player.score > 0;
+                            return player.score > 0 && player.joined;
                         });
                         var sum = posScoreArr.reduce(function (prev, curr) {
                             return prev + curr.score
