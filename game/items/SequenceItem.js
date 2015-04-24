@@ -1,13 +1,11 @@
 var Q = require('q');
 var mongoConnection = require('../../server/mongoConnection.js');
-var OptionPoll = require('../polls/OptionPoll.js');
-var NumberPoll = require('../polls/NumberPoll.js');
-var Agreement = require('../polls/Agreement.js');
 var data = require('../data.js');
 var gameConf = require('../gameConf');
 var game = require('../game');
 var wsManager = require('../wsManager.js');
 var playerManager = require('../playerManager.js');
+var _ = require('underscore');
 
 
 /*
@@ -158,8 +156,19 @@ SequenceItem.prototype = {
             var self = this;
             this.log("stepped into " + this.index + ": " + this.type, true);
             this.log("executing in " + this.wait + " sec");
-            this.execute = require('./includes/' + this.type);
-            console.log(this.execute);
+            var itemRequire = {};
+            try {
+                itemRequire = require('./includes/' + this.type);
+                console.log(require('./includes/' + this.type));
+            } catch(e) {
+                itemRequire = require('./includes/default');
+            }
+            _.extend(this, itemRequire);
+/*
+            if (typeof itemRequire.executeItem !== "undefined") this.executeItem = itemRequire.executeItem;
+            if (typeof itemRequire.getWsContent !== "undefined") this.getWsContent = itemRequire.getWsContent;
+            if (typeof itemRequire.finishItem !== "undefined") this.finishItem = itemRequire.finishItem;
+*/
             setTimeout(function () {
                 self.execute.call(self);
             }, this.wait * 1000);
@@ -201,145 +210,7 @@ SequenceItem.prototype = {
         this.executeTime = new Date();
         console.log(this.executeTime);
         this.sendPlaybackStatus();
-        try {
-            switch (this.type) {
-                case "switch":
-                    //TODO: der switch muss wohl wieder implementiert werden, wenns komplexer werden soll
-                    //ähnlich wie inline-switch, nur dass das deck vom game geholt werden muss...
-                    break;
-                case "inlineSwitch":
-                    this.log("looking for deck for option " + this.param);
-                    if (typeof this.inlineDecks === "undefined")
-                        break;
-                    var deck = this.inlineDecks[this.param];
-                    if (typeof deck == "undefined") {
-                        this.log("no matching option found", true);
-                        this.step();
-                    }
-                    else {
-                        this.log("inserting deck for option " + this.param, true);
-                        var oldNext = this.next;
-                        this.next = null;
-                        for (var i = 0; i < deck.items.length; i++) {
-                            this.appendItem(new SequenceItem(null, deck.items[i], this.index + ":" + this.param + ":" + i, true));
-                        }
-                        this.appendItem(oldNext);
-                        this.step();
-                    }
-                    break;
-                case "agreement":
-                    this.playerIds = playerManager.getPlayerGroup(this.agreementOption).map(function (player) {
-                        return player.playerId;
-                    });
-                    this.setupPoll();
-                    this.mapToDevice();
-                    break;
-                case "roulette":
-                    this.playerIds = playerManager.getPlayerGroup('joined').map(function (player) {
-                        return player.playerId;
-                    });
-                    this.setupPoll();
-                    this.mapToDevice();
-                    break;
-                case "vote":
-                    this.setupPoll();
-                    this.mapToDevice();
-                    break;
-                case "deal":
-                    this.mapToDevice();
-                    break;
-                case "results":
-                    //der score wird hier ermittelt, da das result ja auch zB an den printer geschickt werden könnte, dann käme playerManager.result() garnicht dran
-                    this.data = {};
-                    switch (this.sourceType) {
-                        case "previousStep":
-                            this.data = this.previous.getData();
-                            break;
-                        case "positivePlayerScore":
-                            var posScoreArr = playerManager.players.filter(function (player, id) {
-                                player.playerId = id;
-                                return player.score > 0 && player.joined;
-                            });
-                            var sum = posScoreArr.reduce(function (prev, curr) {
-                                return prev + curr.score
-                            }, 0);
-                            this.data.text = "Die Verteilung des Kuchens";
-                            this.data.voteOptions = posScoreArr.map(function (player) {
-                                return {
-                                    value: player.playerId,
-                                    result: player.score,
-                                    votes: player.score,
-                                    text: player.playerId,
-                                    percent: (player.score / sum * 100).toFixed(1)
-                                }
-                            });
-                            break;
-                        default:
-                            break;
-                    }
-                    switch (this.scoreType) {
-                        case "optionScore":
-                            //checke, welche votes eine option mit .correctAnswer in der choice haben
-                            //und verteile +1 für jede korrekte choice, -1 für die anderen
-                            var correct = this.data.voteOptions.filter(function (opt) {
-                                return opt.correctAnswer
-                            }).map(function (opt) {
-                                return opt.value
-                            });
-                            var score;
-                            this.data.votes.forEach(function (vote) {
-                                score = -1;
-                                vote.choice.forEach(function (ch) {
-                                    if (correct.indexOf(ch) != -1) score = 1;
-                                });
-                                playerManager.score(vote.playerId, score, "Correct Answer");
-                            });
-                            break;
-                        case "majorityScore":
-                            //checke, welche votes die voteOption[0] der results (sortiert) in der choice haben
-                            //und verteile +1 dafür, -1 für die anderen
-                            //TODO: bei zwei gleichguten Antworten wird nur eine berücksichtigt...
-                            var best = this.data.voteOptions[0].value;
-                            var score;
-                            this.data.votes.forEach(function (vote) {
-                                score = -1;
-                                vote.choice.forEach(function (ch) {
-                                    if (best == ch) score = 1;
-                                });
-                                playerManager.score(vote.playerId, score, "Opportunism");
-                            });
-                            break;
-
-                        case "noScore":
-                        default:
-                            break;
-                    }
-                    this.mapToDevice();
-                    if (this.autoGo) {
-                        //führe nächsten step aus mit param = value der bestOption
-                        if (this.data !== null) this.step(this.data.complete ? this.data.voteOptions[0].value : -1);
-                        else this.next.step(this.param);
-                    }
-                    break;
-                case "config":
-                    gameConf.setOption(this.configField, this.value);
-                    break;
-                case "dummy":
-                    if (this.next !== null) this.next.step(this.param);
-                    break;
-                case "eval":
-                    console.log("Eval: " + this.text);
-                    try {
-                        eval(this.text);
-                    } catch (e) {
-                        this.log("Error = " + e.stack);
-                    }
-                    break;
-                default:
-                    this.mapToDevice();
-                    break;
-            }
-        } catch (e) { console.log(e.stack) }
+        this.executeItem();
         //checken, wie der nächste step getriggert wird
         if (this.next != null) {
             if (this.next.trigger == "follow") {
@@ -347,6 +218,8 @@ SequenceItem.prototype = {
             }
         }
     },
+    executeItem: function() {},
+    getWsContent: function() {},
     mapToDevice: function () {
         //sich selbst an die konfigurierten default-devices senden
         //entweder komplett (wenn an playerManager), oder reduzierter content (wenn über WS)
@@ -383,87 +256,6 @@ SequenceItem.prototype = {
         });
 
     },
-    getWsContent_old: function () {
-        //objekt mit den relevanten daten zum senden vorbereiten
-        var content = {};
-        switch (this.type) {
-            case "cmd":
-                break;
-            case "roulette":
-            case "agreement":
-            case "vote":
-                break;
-            case "rating":
-                var bestWorst;
-                var bestWorstArr;
-                if (this.ratingType == "oneTeam") {
-                    bestWorstArr = playerManager.getPlayerGroup(this.bestWorst);
-                    if (bestWorstArr.length > 0) bestWorst = bestWorstArr.map(function (x) {
-                        return x.playerId
-                    });
-                }
-                content = {
-                    type: this.type,
-                    ratingType: this.ratingType,
-                    posNeg: this.posNeg,
-                    playerId: bestWorst,
-                    text: this.text
-                };
-                break;
-            case "results":
-                content = {
-                    data: this.data,
-                    type: this.type,
-                    text: this.data ? this.data.text : "",
-                    resultType: this.resultType,
-                    color: this.color
-                };
-                break;
-            case "deal":
-                break;
-            default:
-                break;
-        }
-        content.silent = this.silent;
-        return content;
-    },
-    getWsContent: function () {
-        //objekt mit den relevanten daten zum senden vorbereiten
-        return {
-            type: this.type,
-            text: this.text
-        };
-    },
-    setupPoll: function () {
-        var self = this;
-        var poll;
-        if (this.type === "agreement") {
-            poll = new Agreement(this);
-            poll.onFinish(playerManager, function (result) {
-                if (result.fullfilled) playerManager.setAgreement(poll);
-                poll.playerIds.forEach(function (pid) {
-                    playerManager.sendMessage(pid, "display", {type: "card", text: result.text});
-                })
-            })
-        }
-        else if (this.type === "roulette") {
-            poll = new Agreement(this);
-            poll.onFinish(playerManager, function (result) {
-                result.win = self.win;
-                result.cost = self.cost;
-                playerManager.playRoulette(result);
-            })
-        }
-        this.poll = poll;
-        this.getData = function () {
-            return this.poll.getResult();
-        };
-        this.polls[this.poll.id] = (this.poll);
-    },
-    getData: function () {
-        return null;
-    }
-    ,
     sendPlaybackStatus: function () {
         if (this.done) {
             if (this.next !== null) this.next.sendPlaybackStatus();
@@ -476,24 +268,15 @@ SequenceItem.prototype = {
         };
         wsManager.msgDevicesByRole('master', 'playBackStatus', playbackStatus);
         wsManager.msgDevicesByRole('MC', 'playBackStatus', playbackStatus);
-    }
-    ,
-//TODO: hacky closing the deals - das geht besser
+    },
+    //TODO: hacky closing the deals - das geht besser
     finish: function () {
         if (!this.done) return;
         if (this.next !== null) this.next.finish();
         this.log("finishing step " + this.index + ": " + this.type, true);
-        if (this.type == "deal") Object.keys(playerManager.deals).forEach(function (key) {
-            var deal = playerManager.deals[key];
-            if (deal.state < 3) deal.state = 4;
-            playerManager.sendMessage(deal.player0Id, "deal", deal);
-            playerManager.sendMessage(deal.player1Id, "deal", deal);
-            playerManager.players[deal.player0Id].busy = false;
-            playerManager.players[deal.player1Id].busy = false;
-            playerManager.sendPlayerStatus(-1);
-        });
-
+        this.finishItem();
     },
+    finishItem: function() {},
 
     getExecuteTime: function() {
         var my = {id:this.id, time:this.executeTime};
@@ -510,7 +293,6 @@ SequenceItem.prototype = {
             return rest;
         }
     }
+};
 
-}
-;
 module.exports = SequenceItem;

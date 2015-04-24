@@ -1,5 +1,11 @@
-var execute = function() {
-    this.mapToDevice();
+module.exports = {
+    executeItem: function () {
+        this.mapToDevice();
+    },
+    getWsContent: function() {
+        return {
+            type: this.type,
+            text: this.text
+        };
+    },
 };
-
-module.exports = execute;
