@@ -14,4 +14,16 @@ angular.module('mcDirectives', [])
             templateUrl: '/mc/views/deck.html',
             controller: "DeckCtrl"
         };
+    })
+    .directive('item', function() {
+        return {
+            restrict: 'E',
+            replace: 'true',
+            templateUrl: '/mc/views/item.html',
+            controller: 'ItemCtrl',
+            scope: {},
+            link: function($scope, $element, $attributes) {
+                $scope.indexOffset = parseInt($attributes['indexOffset']);
+            }
+        };
     });

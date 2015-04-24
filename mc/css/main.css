@@ -188,18 +188,15 @@ body {
   float: left;
 }
 
-.game_sequence_item_previous * {
+.items .previous-item {
   opacity: 0.75;
 }
 
-.game_sequence_item_current {
+.items .current-item {
   width: 34%;
   background: aliceblue;
   border-color: #0a0;
   border-width: 3px;
-}
-
-.game_sequence_item_next {
 }
 
 .sequence-label {
@@ -215,6 +212,7 @@ body {
 .content > * {
     overflow-x: hidden;
     overflow-y: auto;
+    min-height: 20px;
 }
 
 .type {
@@ -223,4 +221,12 @@ body {
 
 .inline-options {
     margin: 10px 0;
+}
+
+ul.follow-items {
+    padding-left: 12px;
+}
+
+ul.follow-items > li {
+    list-style-position: inside;
 }

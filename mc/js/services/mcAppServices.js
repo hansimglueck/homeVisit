@@ -207,67 +207,60 @@ angular.module('mcAppServices', [])
     .factory('Deck', function(Socket, setFactory){
         var playbackStatus = {stepIndex: -1, type:"nix", deckId: null};
         // var deck = null;
-        var deckFactory = {};
+        var deckFactory = {
+            deck: { items: [] },
+            stepIndex: 0,
+            stepCount: 0,
+            current: null,
+            previous: null,
+            next: null
+        };
+
+        deckFactory.get = function(index) {
+            return deckFactory.deck.items[index];
+        };
 
         deckFactory.start = function() {
             Socket.on("playBackStatus", function(status) {
                 playbackStatus = status;
                 console.log("got playbackStatus info: "+JSON.stringify(status));
-                // deckFactory.deck = setFactory.getDeckById(playbackStatus.deckId);
 
                 var deck = setFactory.getDeckById(playbackStatus.deckId);
 
                 if (!deck) {
-                    console.error('No deck set!');
+                    console.log('No deck set!');
                     return;
                 }
 
+                deckFactory.deck = deck;
                 var stepIndex = parseInt(playbackStatus.stepIndex);
                 deckFactory.stepIndex = stepIndex;
-                console.log('StepId:', stepIndex);
+                deckFactory.stepCount = deck.items.length;
 
                 deckFactory.current = deck.items[stepIndex];
-
                 deckFactory.previous = deck.items[stepIndex - 1];
-
                 deckFactory.next = deck.items[stepIndex + 1];
-                
-                deckFactory.nextWithFollowItems = [deck.items[stepIndex + 1]];
-                
-                var indexCounter = stepIndex + 2;
-                if (indexCounter < deck.items.length)
-                {    
-                    var afterNext = deck.items[indexCounter];
-                    while (afterNext.trigger === "follow") {
-                        deckFactory.nextWithFollowItems.push(afterNext);
-                        indexCounter++;
-                        if (indexCounter >= deck.items.length) {
-                            break;
-                        }
-                        afterNext = deck.items[indexCounter];
-                    }
-                }
-                                
-                // deckFactory.stepIndexArray = (deckFactory.stepIndex + "").split(":");
-                // console.log('deckFactory.stepIndexArray');
-                // console.dir(deckFactory.stepIndexArray);
-                // deckFactory.actItem = deckFactory.deck.items[deckFactory.stepIndexArray[0]];
-                // if (deckFactory.stepIndexArray.length > 1) {
-                //     console.log(deckFactory.actItem.inlineDecks);
-                //     deckFactory.actItem = deckFactory.actItem.inlineDecks[deckFactory.stepIndexArray[1]].items[deckFactory.stepIndexArray[2]];
-                // }
-                // if (deckFactory.deck.items.length > deckFactory.stepIndexArray[0]+1) {
-                //     deckFactory.nextItem = deckFactory.deck.items[deckFactory.stepIndexArray[0]+1];
-                //     if (deckFactory.stepIndexArray.length > 1) {
-                //         if (deckFactory.actItem.inlineDecks[deckFactory.stepIndexArray[1]].length > deckFactory.stepIndexArray[2]+1) {
-                //         deckFactory.nextItem = deckFactory.nextItem.inlineDecks[deckFactory.stepIndexArray[1]].items[deckFactory.stepIndexArray[2]+1];
-                //         }
-                //     }
-                // }
-                
-            
             });
         };
         return deckFactory;
+    })
+    .factory('Playback', function(Socket) {
+
+        var playbackFactory = {
+            playback: function(cmd, param) {
+                console.log("play clicked");
+                if (cmd == "restart") {
+                    if (!confirm(gettext('Really restart?'))) {
+                        return;
+                    }
+                }
+                Socket.emit("playbackAction", {cmd:cmd, param:param});
+            },
+            alert: function() {
+                console.log("Alarm clicked");
+                Socket.emit("alert");
+            }
+        };
+        return playbackFactory;
     })
 ;
