@@ -11,8 +11,7 @@ angular.module('WebsocketServices', []).
         //var host = "home.visit.eu";
         onMessageCallbacks = [];
         var registered = false;
-        var connected = false;
-        var server = {connected: connected};
+        var server = { connected: false };
         var started = false;
 
         var responseDelay = 1000;
@@ -81,12 +80,12 @@ angular.module('WebsocketServices', []).
             var now = d.getTime();
             console.log("client lost connection " + (now - lastPong));
             server.connected = false;
-            $rootScope.$digest(); //damit das false auch ankommt...
-            $rootScope.$broadcast("disconnected");
+            // $rootScope.$broadcast("disconnected");
             if (really) $timeout(function () {
                 started = false;
                 connect();
             }, 1000);
+            $rootScope.$apply(); //damit das false auch ankommt...
         };
 
         var connect = function (cb) {
@@ -101,11 +100,10 @@ angular.module('WebsocketServices', []).
             ws.onopen = function () {
                 console.log("client: Socket has been opened!");
                 server.connected = true;
-                $rootScope.$digest(); //damit das true auch ankommt...
                 ws.send(JSON.stringify({type: "register", data: {role: role, sid: sid}}));
                 onMessageCallbacks.push({
                     fn: function (data) {
-                        connected = true;
+                        server.connected = true;
                         registered = true;
                         var newSid = data.sid;
                         if (typeof newSid != "undefined") sid = newSid;
@@ -115,6 +113,7 @@ angular.module('WebsocketServices', []).
                 });
                 ping();
                 if (cb) cb();
+                $rootScope.$apply(); //damit das auch ankommt...
             };
 
             ws.onmessage = function (event) {
@@ -151,7 +150,7 @@ angular.module('WebsocketServices', []).
                 //return pingTime;
             },
             connected: function () {
-                return connected;
+                return server.connected;
             },
 
             connect: function (role, cb) {
