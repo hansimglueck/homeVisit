@@ -108,3 +108,9 @@ body {
 .green {
     color: forestgreen;
 }
+
+.card-text {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}

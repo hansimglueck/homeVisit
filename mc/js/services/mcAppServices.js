@@ -231,7 +231,23 @@ angular.module('mcAppServices', [])
                 deckFactory.previous = deck.items[stepIndex - 1];
 
                 deckFactory.next = deck.items[stepIndex + 1];
-
+                
+                deckFactory.nextWithFollowItems = [deck.items[stepIndex + 1]];
+                
+                var indexCounter = stepIndex + 2;
+                if (indexCounter < deck.items.length)
+                {    
+                    var afterNext = deck.items[indexCounter];
+                    while (afterNext.trigger === "follow") {
+                        deckFactory.nextWithFollowItems.push(afterNext);
+                        indexCounter++;
+                        if (indexCounter >= deck.items.length) {
+                            break;
+                        }
+                        afterNext = deck.items[indexCounter];
+                    }
+                }
+                                
                 // deckFactory.stepIndexArray = (deckFactory.stepIndex + "").split(":");
                 // console.log('deckFactory.stepIndexArray');
                 // console.dir(deckFactory.stepIndexArray);
