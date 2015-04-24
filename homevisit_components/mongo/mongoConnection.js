@@ -1,8 +1,6 @@
-var mongoUri = require('../homevisitConf').mongoUri;
-
 var MongoClient = require('mongodb').MongoClient;
 
-var mongoUri = require('../homevisitConf').mongoUri;
+var mongoUri = require('../../homevisitConf').mongoUri;
 var db;
 
 module.exports = function(cb){
