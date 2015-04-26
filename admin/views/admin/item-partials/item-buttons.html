@@ -1,0 +1,21 @@
+<div class="btn-toolbar" role="toolbar">
+    <div class="btn-group btn-group-sm" role="group">
+        <button class="btn btn btn-danger" ng-click="deleteItem($parent.$index, $index)"><span
+                class="glyphicon glyphicon-remove"></span></button>
+
+        <button class="btn btn btn-primary" ng-hide="true" ng-click="moveItem($parent.$index, $index)"><span
+                class="glyphicon glyphicon-share-alt"></span></button>
+
+        <button class="btn btn btn-primary" ng-click="addItem($index)"><span
+                class="glyphicon glyphicon-plus"></span></button>
+
+        <button class="btn btn btn-primary" ng-click="move(-1)"><span
+                class="glyphicon glyphicon-arrow-up"></span></button>
+
+        <button class="btn btn btn-primary" ng-click="move(1)"><span
+                class="glyphicon glyphicon-arrow-down"></span></button>
+
+        <button class="btn btn btn-primary" ng-click="toggleMarker($parent.$index, $index)"><span
+                class="glyphicon glyphicon-pushpin"></span></button>
+    </div>
+</div>

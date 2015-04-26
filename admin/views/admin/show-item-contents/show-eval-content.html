@@ -1,5 +1,3 @@
-<span editable-textarea="item.text"
-      e-rows="7" e-cols="70" e-name="text"
-      onaftersave="saveItem()">
-          <pre><code>{{ item.text || '-' }}</code></pre>
-        </span>
+<div class="labeled-option-group">
+    <labeled-item-option field="text" title="Text" type="textarea_pre" item="item" saveitem="saveItem()"></labeled-item-option>
+</div>

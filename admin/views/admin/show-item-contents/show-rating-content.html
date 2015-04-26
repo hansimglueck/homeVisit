@@ -1,45 +1,7 @@
-<table>
-    <tr>
-        <td translate>Text:</td>
-        <td>
-            <span editable-textarea="item.text"
-                  e-rows="7" e-cols="40" e-name="text"
-                  onaftersave="saveItem()">
-                {{ item.text || '-' }}
-            </span>
-        </td>
-    </tr>
-    <tr>
-        <td translate>Type:</td>
-        <td>
-            <span editable-select="item.ratingType" e-name="ratingType"
-                  onaftersave="saveItem()"
-                  e-ng-options="s.value as s.text for s in itemOptions.ratingType"
-                  >
-                {{ showTextForValue(item, "ratingType") }}
-            </span>
-        </td>
-    </tr>
-    <tr ng-show="item.ratingType=='allTeams'">
-        <td translate>Rating:</td>
-        <td>
-        <span editable-select="item.posNeg" e-name="posNeg"
-              onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in itemOptions.posNeg"
-                >
-          {{ showTextForValue(item, "posNeg") }}
-        </span>
-        </td>
-    </tr>
-    <tr ng-show="item.ratingType=='oneTeam'">
-        <td>Which team:</td>
-        <td>
-        <span editable-select="item.bestWorst" e-name="bestWorst"
-              onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in itemOptions.bestWorst"
-                >
-          {{ showTextForValue(item, "bestWorst") }}
-        </span>
-        </td>
-    </tr>
-</table>
+<div class="labeled-option-group">
+    <labeled-item-option field="text" title="Text" type="textarea" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="ratingType" title="Type" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option ng-show="item.ratingType=='allTeams'" field="posNeg" title="Rating" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option ng-show="item.ratingType=='oneTeam'" field="bestWorst" title="Which team" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
+</div>
+

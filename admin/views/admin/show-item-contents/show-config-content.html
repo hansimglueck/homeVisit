@@ -1,23 +1,4 @@
-<table>
-    <tr>
-        <td class="text-right" translate>Configuration option: </td>
-        <td>
-    <span editable-select="item.configField" e-name="configField"
-          onaftersave="saveItem()"
-          e-ng-options="s.value as s.text for s in itemOptions.configField"
-            >
-          {{ showTextForValue(item, "configField") }}
-        </span>
-        </td>
-    </tr>
-    <tr>
-        <td class="text-right" translate>Value = </td>
-        <td>
-    <span editable-text="item.value"
-          e-rows="7" e-cols="40" e-name="value"
-          onaftersave="saveItem()">
-          {{ item.value || '-' }}
-        </span>
-        </td>
-    </tr>
-</table>
+<div class="labeled-option-group">
+    <labeled-item-option field="configField" title="Configuration option" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="value" title="Value" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
+</div>

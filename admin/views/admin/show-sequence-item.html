@@ -1,65 +1,58 @@
-<tr class="deck-table-row"
-    ng-style="item.highlight ? {'background': '#FFDDDD'} : {}"
-    ng-controller="itemCtrl">
+<div class="panel panel-default"
+     ng-class="{'item-highlighted':item.highlight}"
+     ng-controller="itemCtrl">
+    <div class="panel-heading item" ng-class="'item-'+item.type" ng-attr-id="{{item._id}}">
+        <div class="container-fluid item-header">
+            <ul class="list-inline pull-left">
+                <li><strong ng-click="collapse()">
+                    {{ $index }}</strong>
+                    <!--
+                                   {{ name }}:{{$parent.name}}:{{$parent.$parent.name}}:{{$parent.$parent.$parent.name}}:{{$parent.$parent.$parent.$parent.name}}:{{$parent.$parent.$parent.$parent.$parent.name}}:{{$parent.$parent.$parent.$parent.$parent.$parent.name}}
+                                   -->
+                <span ng-click="collapseAll()">
+                    <i ng-hide="all.collapsed" class="fa fa-caret-square-o-down"></i>
+                    <i ng-show="all.collapsed" class="fa fa-caret-square-o-up"></i>
+                </span>
+                <span ng-hide="true" ng-click="scrollTo(deck._id)">
+                    <i class="fa fa-long-arrow-up"></i>
+                </span>
+                </li>
 
-    <td>{{ $index }}</td>
+                <li>
+                    <labeled-item-option field="type" title="" type="select" item="item"
+                                         saveitem="saveItem()"></labeled-item-option>
+                </li>
+                <li>
+                    <labeled-item-option field="trigger" title="" type="select" item="item"
+                                         saveitem="saveItem()"></labeled-item-option>
+                </li>
+                <li>
+                    <strong><span translate>Wait </span>
+                        <labeled-item-option field="wait" title="" type="text" item="item"
+                                             saveitem="saveItem()"></labeled-item-option>
+                        <span translate> sec</span></strong>
+                </li>
+                <li>
+                    <strong><span translate>Silent </span>
+                        <labeled-item-option field="silent" title="" type="checkbox" item="item"
+                                             saveitem="saveItem()"></labeled-item-option>
+                    </strong>
+                </li>
+                <li>
+                    <strong>Mapping</strong>
+                    <labeled-item-option field="device" title="" type="tags" item="item"
+                                         saveitem="saveItem()"></labeled-item-option>
+                </li>
 
-    <!-- item.type - für alle items -->
-    <td>
-        <span editable-select="item.type" e-name="type"
-              onbeforesave="prepareItem($data, $index)"
-              onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in itemOptions.type">
-          {{ showTextForValue(item, "type") }}
-        </span> <br/><br/>
-
-        <div ng-show="isMappable()"><span translate>Mapped:</span><br/>
-
-                    <ul class="list-unstyled">
-                        <li ng-repeat="device in item.device track by $index">
-                            <form editable-form name="deviceFrm" shown="device == ''">
-                        <span class="device">
-                            <span ng-click="deviceFrm.$show()" e-form="deviceFrm" editable-text="item.device[$index]"
-                                  onbeforesave="" onaftersave="saveItem()">
-                                {{ device }}
-                            </span>
-                            <span class="glyphicon glyphicon-remove" aria-hidden="true"
-                                  ng-click="removeDeviceFromItem($index)"></span>
-                        </span>
-                            </form>
-                        </li>
-                        <li>
-                    <span ng-click="addDeviceToItem()"><span class="glyphicon glyphicon-plus"
-                                                                   aria-hidden="true"></span></span>
-                        </li>
-                    </ul>
-
-<!--
-        <span editable-text="item.device" e-name="device"
-              onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in types">
-          {{ item.device ? item.device : "default"}}
-        </span>
-    -->
+            </ul>
+            <ul class="list-inline pull-right">
+                <li>
+                    <item-buttons></item-buttons>
+                </li>
+            </ul>
         </div>
 
-
-
-
-    </td>
-
-    <!-- item.trigger + .wait - für alle items -->
-    <td>
-        <span editable-select="item.trigger" e-name="trigger"
-              onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in itemOptions.trigger">
-          {{ showTextForValue(item, "trigger") }}
-        </span><br/>
-        Wait: <br/><span editable-text="item.wait" e-name="wait" onaftersave="saveItem()">
-          {{ item.wait || '0' }}
-        </span> Sek.
-    </td>
-
+    </div>
     <!-- haupt teil - für alle items von optionen aus der factory
         card: text
         vote: text + mit/ohne rating + anzahl optionen + optionen (ohne followup)
@@ -67,7 +60,8 @@
         results: text als select
         sound: text (filename)
     -->
-    <td class="item-text" ng-switch="item.type">
+    <div class="panel-body" ng-switch="item.type" ng-hide="item.collapsed">
+
         <div show-vote-content ng-switch-when="vote"></div>
         <div show-switch-content ng-switch-when="switch"></div>
         <div show-inline-switch-content ng-switch-when="inlineSwitch"></div>
@@ -82,57 +76,13 @@
         <div show-roulette-content ng-switch-when="roulette"></div>
         <div show-agreement-content ng-switch-when="agreement"></div>
         <div show-card-content ng-switch-default></div>
-
-      </td>
-
-    <!-- comment -->
-    <td class="item-comment">
-      <span editable-textarea="item.comment"
-           e-rows="7" e-cols="30" e-name="comment"
-           onaftersave="saveItem()">
-        {{ item.comment || '-' }}
-      </span>
-        <div class="item-mcnote">
-            <div class="mcnote-title">MC-Note</div>
-      <span editable-textarea="item.mcnote"
-            e-rows="7" e-cols="30" e-name="mcnote"
-            onaftersave="saveItem()">
-        {{ item.mcnote || '-' }}
-      </span>
-
+        <hr>
+        <div class="labeled-option-group">
+            <labeled-item-option field="comment" title="Regie" type="textarea" item="item"
+                                 saveitem="saveItem()"></labeled-item-option>
+            <labeled-item-option field="mcnote" title="MC-Note" type="textarea" item="item"
+                                 saveitem="saveItem()"></labeled-item-option>
         </div>
-        <div class="item-mcnote">
-            <div class="mcnote-title">Silent</div>
-       <span editable-checkbox="item.silent" e-name="silent" onaftersave="saveItem()">
-          {{ item.silent || 'nein' }}
-        </span>
 
-        </div>
-    </td>
-
-    <!--
-        <td>
-            <span editable-text="item.time" e-name="time">
-              {{ item.time || '' }}
-            </span>
-        </td>
-    -->
-    <td style="white-space: nowrap">
-        <div class="buttons">
-            <p>
-                <button class="btn btn-sm btn-danger" ng-click="deleteItem($parent.$index, $index)"><span
-                        class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                <button class="btn btn-sm btn-primary" ng-click="moveItem($parent.$index, $index)"><span
-                        class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></button>
-            </p>
-            <p>
-                <button class="btn btn-sm btn-primary" ng-click="addItem($index)"><span
-                        class="glyphicon glyphicon-plus" aria-hidden="true"></span></button>
-                <button class="btn btn-sm btn-primary" ng-click="toggleMarker($parent.$index, $index)"><span
-                        class="glyphicon glyphicon-pushpin" aria-hidden="true"></span></button>
-            </p>
-
-            <!--            <button class="btn" ng-click="addItem($parent.$index, $index)">Einfügen</button> -->
-        </div>
-    </td>
-</tr>
+    </div>
+</div>

@@ -1,47 +1,31 @@
-<div ng-controller="deckCtrl">
+<div ng-controller="deckCtrl" ng-attr-id="{{deck._id}}">
     <ul class="list-unstyled" ng-hide="deck.inline">
         <li>{{deck.description}}</li>
-        <li translate>Total duration: {{getTimeForDeck()}}</li>
+        <li ng-hide="true" translate>Total duration: {{getTimeForDeck()}}</li>
         <li style="text-align: right">
             <a ng-click="deleteDeck($index)" translate>Delete deck</a>
         </li>
-        <li style="text-align: right">
+        <li ng-hide="true" style="text-align: right">
             <a ng-click="duplicateDeck($index)" translate>Duplicate deck</a>
         </li>
-        <li style="text-align: right">
+        <li ng-hide="true" style="text-align: right">
             <a ng-click="exportCSV($index)" translate>Export CSV</a>
         </li>
     </ul>
-    <table class="table deck-table">
-        <colgroup>
-            <col width="5%">
-            <col width="5%">
-            <col width="5%">
-            <col width="60%">
-            <col width="15%">
-            <col width="10%">
-        </colgroup>
-        <tbody>
-        <tr>
-            <th translate>No.</th>
-            <th translate>Type</th>
-            <th translate>Trigger</th>
-            <th translate>Content</th>
-            <th translate>Comment</th>
-            <th translate>Action</th>
-        </tr>
-        </tbody>
-        <tbody ui-sortable="sortOptions" ng-model="deck.items" id="{{ 'sort-table-'+ $index }}">
-        <tr ng-repeat="item in deck.items track by $index" show-sequence-item>
-        </tr>
-        </tbody>
-        <tbody>
-        <tr>
-            <td colspan="5">
+    <div class="table deck-table">
+        <!--
+            <div translate>No.</div>
+            <div translate>Type</div>
+            <div translate>Trigger</div>
+            <div translate>Content</div>
+            <div translate>Comment</div>
+            <div translate>Action</div>
+            -->
+        <div ng-repeat="item in deck.items track by $index" show-sequence-item>
+        </div>
+        <div>
                 <button class="btn btn-primary" ng-click="addItem()" translate>Add new item</button>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+        </div>
+    </div>
 </div>
 

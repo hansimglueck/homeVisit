@@ -289,7 +289,7 @@ SequenceItem.prototype = {
         }
         else {
             rest = this.next.getExecuteTime();
-            rest.push(my)
+            rest.push(my);
             return rest;
         }
     }

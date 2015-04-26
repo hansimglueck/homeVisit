@@ -9,7 +9,7 @@
             ng-model="result.newDeckId"
             ng-options="deck._id as deck.title for (id,deck) in decks">
     </select>
-    <select
+    <select class="form-control"
             ng-init="result.newItemId=itemId"
             data-ng-attr-size={{deckChoice.items.length+1}}
             ng-model="result.newItemId"

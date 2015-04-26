@@ -1,25 +1,16 @@
 <div>
-    <span translate>Options:</span>
-    <table class="table">
-        <tr>
-            <th translate>No.</th>
-            <th translate>Deck</th>
-            <th></th>
-        </tr>
-        <tr class="option-table-row" ng-repeat="deck in item.inlineDecks track by $index">
-            <td>
-                {{$index}}
-            </td>
-            <td>
-                <div ng-include="'/admin/views/admin/show-deck.html'"></div>
-            </td>
-            <td style="white-space: nowrap">
-                <div class="buttons">
-                    <button class="btn btn-sm btn-danger" ng-click="deleteInlineDeck($index)"><span
-                            class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-                </div>
-            </td>
-        </tr>
-    </table>
-    <button class="btn btn-primary" ng-click="addInlineSwitchOption($index)" translate>New option</button>
+    <div class="panel panel-default" ng-repeat="deck in item.inlineDecks track by $index">
+        <div class="panel-heading">
+            <strong>Inline Deck {{$index}}</strong>
+            <div class="buttons pull-right">
+                <button class="btn btn-sm btn-danger" ng-click="deleteInlineDeck($index)"><span
+                        class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+            </div>
+        </div>
+        <div class="panel-body inline-deck deck">
+            <div ng-include="'/admin/views/admin/show-deck.html'"></div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" ng-click="addInlineSwitchOption()" translate>New Deck</button>
 </div>
