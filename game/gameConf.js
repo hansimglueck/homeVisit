@@ -14,16 +14,26 @@ GameConf.prototype = {
         mongoConnection(function (db) {
             db.collection('gameconfs').find({role: 'run'}).toArray(function (err, conf) {
                 self.conf = conf[0];
-                if (conf.length == 0) self.conf = {
-                    role: 'run',
-                    startDeckId: 0,
-                    autostart: false, //not used???
-                    playerCnt: 1,  //not used
-                    typeMapping: [],
-                    language: 'en'
-                };
-                console.log("autostart=" + self.conf.autostart);
-                if (cb) cb();
+                if (conf.length == 0) {
+                    self.conf = {
+                        role: 'run',
+                        startDeckId: 0,
+                        autostart: false, //not used???
+                        playerCnt: 1,  //not used
+                        typeMapping: [],
+                        language: 'en'
+                    };
+                    db.collection('gameconfs').insertOne(self.conf, function(err, conf) {
+                        if (err !== null) {
+                            throw new Error(err.stack);
+                        }
+                        console.log('No gameConf found. Created a default.');
+                        if (cb) cb();
+                    });
+                }
+                else {
+                    if (cb) cb();
+                }
             });
         });
     },
