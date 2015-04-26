@@ -104,8 +104,9 @@ angular.module("gameControllers", [])
         };
         $scope.showScoringPlayers = false;
     })
-    .controller('AssholesController', function($scope, playerColors, Home){
+    .controller('AssholesController', function($scope, playerColors, Home, Status){
         $scope.playerColors = playerColors;
+        $scope.status = Status;
         $scope.home = Home;
     })
     .controller('FreezeController', function($scope){
