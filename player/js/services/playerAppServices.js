@@ -53,8 +53,17 @@ angular.module('playerAppServices', [])
         };
 
         homeFactory.freeze = function() {
+            Socket.emit("score", {playerId: Status.player.playerId, score: -1, reason: "timeout", otherPlayerId:Status.player.playerId});
+            $location.path("freeze");
+        };
 
-        }
+        homeFactory.cancelCountdown = function() {
+            if (homeFactory.timeout) {
+                console.log("cancel timeout!");
+                $timeout.cancel(homeFactory.timeout);
+            }
+            fxService.cancelCountdown();
+        };
 
         homeFactory.start = function () {
             Socket.on('display', function (data) {
@@ -132,9 +141,6 @@ angular.module('playerAppServices', [])
                                 if (data.ratingType === "oneTeam") {
                                     path += "/score/" + data.playerId.join(":");
                                 }
-                                homeFactory.time = parseInt(data.time);
-                                homeFactory.timedVote(homeFactory.confirmVote);
-
                                 $location.path(path);
                                 return;
                                 break;
@@ -165,6 +171,7 @@ angular.module('playerAppServices', [])
                                 return;
                                 break;
                             case "alert":
+                                homeFactory.timedVote(homeFactory.freeze);
                                 return;
                                 break;
                         }

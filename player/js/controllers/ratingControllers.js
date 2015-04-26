@@ -10,7 +10,7 @@ angular.module("ratingControllers", [])
         $scope.playerId = $routeParams.playerId;
         $scope.playerIds = $routeParams.playerId.split(":");
     })
-    .controller('RatingController', function ($scope, Socket, Status, Rating, $routeParams, $location) {
+    .controller('RatingController', function ($scope, Socket, Status, Rating, Home, $routeParams, $location) {
         $scope.status = Status;
         $scope.rating = Rating;
         $scope.score = $routeParams.score;
@@ -21,6 +21,7 @@ angular.module("ratingControllers", [])
              if (($scope.score < 0) && Status.getAllied().indexOf(parseInt(pid)) != -1) $scope.traitor = true;
         });
         $scope.confirm = function () {
+            Home.cancelCountdown();
             $scope.playerIds.forEach(function (playerId) {
                 Socket.emit("score", {playerId: playerId, score: $scope.score, reason: "rating", otherPlayerId:Status.player.playerId});
             });

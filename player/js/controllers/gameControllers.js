@@ -108,5 +108,8 @@ angular.module("gameControllers", [])
         $scope.playerColors = playerColors;
         $scope.home = Home;
     })
+    .controller('FreezeController', function($scope){
+
+    })
 ;
 
