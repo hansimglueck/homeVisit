@@ -83,8 +83,8 @@ SequenceItem = function (db, itemRef, index, dontLoadItem) {
         self.wait = parseInt(self.wait) || 0;
         self.next = null;
         self.previous = null;
-        self.started = false;
         self.done = false;
+        self.finished = false;
         self.index = -1;
         if (typeof index != "undefined") self.index = index;
         //this.poll = null;
@@ -111,7 +111,7 @@ SequenceItem.prototype = {
 
     reset: function () {
         this.done = false;
-        this.started = false;
+        this.finished = false;
         if (this.next != null) this.next.reset();
     },
     log: function (message, ws) {
@@ -160,15 +160,15 @@ SequenceItem.prototype = {
             try {
                 itemRequire = require('./includes/' + this.type);
                 console.log(require('./includes/' + this.type));
-            } catch(e) {
+            } catch (e) {
                 itemRequire = require('./includes/default');
             }
             _.extend(this, itemRequire);
-/*
-            if (typeof itemRequire.executeItem !== "undefined") this.executeItem = itemRequire.executeItem;
-            if (typeof itemRequire.getWsContent !== "undefined") this.getWsContent = itemRequire.getWsContent;
-            if (typeof itemRequire.finishItem !== "undefined") this.finishItem = itemRequire.finishItem;
-*/
+            /*
+             if (typeof itemRequire.executeItem !== "undefined") this.executeItem = itemRequire.executeItem;
+             if (typeof itemRequire.getWsContent !== "undefined") this.getWsContent = itemRequire.getWsContent;
+             if (typeof itemRequire.finishItem !== "undefined") this.finishItem = itemRequire.finishItem;
+             */
             setTimeout(function () {
                 self.execute.call(self);
             }, this.wait * 1000);
@@ -218,8 +218,10 @@ SequenceItem.prototype = {
             }
         }
     },
-    executeItem: function() {},
-    getWsContent: function() {},
+    executeItem: function () {
+    },
+    getWsContent: function () {
+    },
     mapToDevice: function () {
         //sich selbst an die konfigurierten default-devices senden
         //entweder komplett (wenn an playerManager), oder reduzierter content (wenn über WS)
@@ -257,29 +259,31 @@ SequenceItem.prototype = {
 
     },
     sendPlaybackStatus: function () {
-        if (this.done) {
-            if (this.next !== null) this.next.sendPlaybackStatus();
+        if (!this.isOnTurn()) this.next.sendPlaybackStatus();
+        else {
+            var playbackStatus = {
+                done: this.done,
+                stepIndex: this.index,
+                type: this.type,
+                deckId: gameConf.conf.startDeckId
+            };
+            wsManager.msgDevicesByRole('master', 'playBackStatus', playbackStatus);
+            wsManager.msgDevicesByRole('MC', 'playBackStatus', playbackStatus);
         }
-        var playbackStatus = {
-            done: this.done,
-            stepIndex: this.index,
-            type: this.type,
-            deckId: gameConf.conf.startDeckId
-        };
-        wsManager.msgDevicesByRole('master', 'playBackStatus', playbackStatus);
-        wsManager.msgDevicesByRole('MC', 'playBackStatus', playbackStatus);
     },
     //TODO: hacky closing the deals - das geht besser
     finish: function () {
-        if (!this.done) return;
-        if (this.next !== null) this.next.finish();
-        this.log("finishing step " + this.index + ": " + this.type, true);
-        this.finishItem();
+        if (!this.isOnTurn()) this.next.finish();
+        else {
+            this.log("finishing step " + this.index + ": " + this.type, true);
+            this.finishItem();
+        }
     },
-    finishItem: function() {},
+    finishItem: function () {
+    },
 
-    getExecuteTime: function() {
-        var my = {id:this.id, time:this.executeTime};
+    getExecuteTime: function () {
+        var my = {id: this.id, time: this.executeTime};
         var rest = [];
         if (this.next == null) {
             console.log("ende");
@@ -292,6 +296,11 @@ SequenceItem.prototype = {
             rest.push(my);
             return rest;
         }
+    },
+
+    isOnTurn: function() {
+        if (this.next === null) return true;
+        return (this.done && !this.next.done);
     }
 };
 
