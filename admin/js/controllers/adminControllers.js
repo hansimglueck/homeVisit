@@ -18,7 +18,9 @@ adminControllers
         $scope.name = "set";
         $scope.$on('decksLoaded', function () {
             console.log("decks changed. new length:" + $scope.decks.length);
-            $scope.activateDeck($scope.decks[0]._id);
+            if (typeof $scope.decks[0] !== 'undefined') {
+                $scope.activateDeck($scope.decks[0]._id);
+            }
         });
         $scope.getDeckById = function (id) {
             console.log("trying to find deck with " + id);

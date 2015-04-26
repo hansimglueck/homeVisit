@@ -1,3 +1,4 @@
+var colors = require('colors');
 var OptionPoll = require('../../polls/OptionPoll.js');
 var NumberPoll = require('../../polls/NumberPoll.js');
 
@@ -29,15 +30,20 @@ module.exports = {
             default:
                 break;
         }
-        poll.onFinish(this, function (result) {
-            //game.trigger(-1, {data: 'go'})
-            this.step(result);
-        });
-        this.poll = poll;
-        //this.polls ist "static"
-        this.polls[this.poll.id] = (this.poll);
+        if (typeof poll !== 'undefined') {
+            poll.onFinish(this, function (result) {
+                //game.trigger(-1, {data: 'go'})
+                this.step(result);
+            });
+            this.poll = poll;
+            //this.polls ist "static"
+            this.polls[this.poll.id] = (this.poll);
 
-        this.mapToDevice();
+            this.mapToDevice();
+        }
+        else {
+            console.log('Warning: Vote without voteOptions!'.red);
+        }
     },
     getData: function () {
         return this.poll.getResult();
