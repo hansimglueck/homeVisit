@@ -18,8 +18,8 @@ angular.module('homeVisitMCApp')
             {top: 490, left: 565},
             {top: 490, left: 377},
             {top: 490, left: 189},
-            {top: 340, left: 20},
-            {top: 150, left: 20}
+            {top: 440, left: 20},
+            {top: 250, left: 20}
         ];
         $scope.polls = Polls;
         $scope.selectRow = function(id){
@@ -30,6 +30,13 @@ angular.module('homeVisitMCApp')
                 $scope.polls.polls[$scope.selectedRow].answers[did] = -1;
             } else {
                 $scope.polls.polls[$scope.selectedRow].answers[did] = aid;
+            }
+        };
+        $scope.selectAllUnanswered = function (val) {
+            for (var index = 0; index < Polls.polls[0].answers.length; index++) {
+                if (Polls.polls[$scope.selectedRow].answers[index] === -1) {
+                    Polls.polls[$scope.selectedRow].answers[index] = val;
+                }
             }
         };
         $scope.showPlusMinus = function(x) {

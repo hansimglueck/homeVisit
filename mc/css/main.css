@@ -33,6 +33,11 @@ body {
   height: 150px;
 }
 
+.dummy_special {
+  background: #fd0;
+  border: solid 2px;
+}
+
 .player {
   border-radius: 10px;
   position: absolute;

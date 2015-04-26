@@ -2,38 +2,42 @@
     
     <div ng-repeat="category in teamCategories track by $index">
         {{category.category}}:
-        <div ng-repeat="player in calcTeam($index) track by $index">
-            <div ng-if="player">
-                {{player.name}}
+        <div ng-repeat="playerField in playerInTeam track by $index">
+            <div ng-if="playerIsInTeam(playerField,$parent.$index)">
+                <div class="matching_green" ng-class="{matchedUp:!playerPerfectAssigned($index)}">
+                    {{playerNames[$index]}} &nbsp; &nbsp;
+                    <span ng-repeat="note in playerFulfills($index) track by $index">
+                        {{note}} &nbsp; &nbsp;
+                    </span>
+                </div>
             </div>
         </div>
         <br/>
     </div>
+    <div>
+        Not matched:
+        <div ng-repeat="playerField in playerInTeam track by $index">
+            <div class="matching_yellow" ng-if="playerDoesntMatch(playerField)">
+                {{playerNames[$index]}}&nbsp;
+                    <span ng-repeat="note in playerAnswered($index) track by $index">
+                        {{note}} &nbsp;
+                    </span>
+            </div>
+        </div>
+    </div>
+    
     <!--{{teamCategories[6].category}}: {{calcTeam(6)}}-->
     
+    <!--{{playerInTeam}}-->
+    <!---->
+    <!--{{teamCategories[0].players}}-->
+    <!--{{teamCategories[1].players}}-->
+    <!--{{teamCategories[2].players}}-->
+    <!--{{teamCategories[3].players}}-->
+    <!--{{teamCategories[4].players}}-->
+    <!--{{teamCategories[5].players}}-->
+    <!--{{teamCategories[6].players}}-->
     
-    <table class="table table-bordered">
-        <tr>
-            <th translate>Player</th>
-            <th ng-repeat="playerY in matchMatrix track by $index">{{playerNames[$index]}}</th>
-        </tr>
-        <tr ng-repeat="playerX in matchMatrix track by $index">
-            <td>{{playerNames[playerLineCount($index)]}}</td>
-            <td ng-repeat="match in playerX track by $index">
-                <div ng-if="$index == playerLine" class="black">{{match}}</div>
-                <div ng-if="$index != playerLine">
-                
-                    <button ng-if="!isMatched($index,playerLine)" class="btn" ng-class="{matching_green:match >= 4, matching_yellow:match >= 2 && match < 4}" ng-click="matchUp($index,$parent.$parent.$parent.$index)">
-                        <!-- Show the number of corresponding answers --- not matched yet -->
-                        {{match}}
-                    </button>
-                    <button ng-if="isMatched($index,playerLine)" class="btn matchedUp" ng-click="clearMatch($index,$parent.$parent.$parent.$index)">
-                        <!-- These are matched = Team -->
-                        {{playerNames[$index]}} + {{playerNames[$parent.$parent.$parent.$index]}}
-                    </button>
-            </td>
-        </tr>
-    </table>
 </div>
 
 <!--{{polls.polls}}-->
