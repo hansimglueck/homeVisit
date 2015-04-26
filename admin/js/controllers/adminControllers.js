@@ -176,7 +176,7 @@ adminControllers
         };
 
         $scope.all = {
-            collapsed: false
+            collapsed: true
         };
         console.log($scope.deck);
         $scope.showFollowUp = function (option) {
