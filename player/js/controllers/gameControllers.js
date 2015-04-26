@@ -101,7 +101,8 @@ angular.module("gameControllers", [])
         $scope.selectedType = "";
         $scope.selectType = function(type) {
             $scope.selectedType = type;
-        }
+        };
+        $scope.showScoringPlayers = false;
     })
 ;
 
