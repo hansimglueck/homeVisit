@@ -17,7 +17,7 @@ var app = angular.module('homevisitAdmin', [
     'hvPlayerColors',
     'hvItemOptions',
     'hvSetFactory',
-    'hvLanguageFactory',
+    'hvLanguage',
     'gettext'
 ])
 .config(function ($routeProvider, $anchorScrollProvider) {

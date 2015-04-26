@@ -16,7 +16,7 @@ msgstr ""
 msgid "Add new item"
 msgstr ""
 
-#: admin/js/controllers/masterControllers.js:156
+#: admin/js/controllers/masterControllers.js:154
 msgid "Are you sure?"
 msgstr ""
 
@@ -28,7 +28,7 @@ msgstr ""
 msgid "BACK"
 msgstr ""
 
-#: admin/views/raspi-manager.html:87
+#: admin/views/raspi-manager.html:93
 msgid "CONNECT DB"
 msgstr ""
 
@@ -94,7 +94,7 @@ msgstr ""
 msgid "Deck"
 msgstr ""
 
-#: admin/partials/home.html:55
+#: admin/partials/home.html:60
 msgid "Decks and items"
 msgstr ""
 
@@ -115,11 +115,11 @@ msgstr ""
 msgid "Description:"
 msgstr ""
 
-#: admin/partials/home.html:19
+#: admin/partials/home.html:24
 msgid "Device Manager"
 msgstr ""
 
-#: admin/partials/home.html:42
+#: admin/partials/home.html:47
 msgid "Direct item"
 msgstr ""
 
@@ -127,7 +127,7 @@ msgstr ""
 msgid "Display:"
 msgstr ""
 
-#: admin/js/controllers/masterControllers.js:152
+#: admin/js/controllers/masterControllers.js:150
 msgid "Do you really want to restart the server?"
 msgstr ""
 
@@ -177,7 +177,6 @@ msgid "Joined"
 msgstr ""
 
 #: admin/views/admin/show-item-contents/show-vote-content.html:52
-#: admin/views/game-conf.html:56
 msgid "Language:"
 msgstr ""
 
@@ -185,7 +184,7 @@ msgstr ""
 msgid "Load"
 msgstr ""
 
-#: admin/partials/home.html:27
+#: admin/partials/home.html:32
 msgid "Log"
 msgstr ""
 
@@ -232,6 +231,10 @@ msgstr ""
 msgid "OS Info for {{osInfo.hostname}}"
 msgstr ""
 
+#: admin/views/raspi-manager.html:60
+msgid "Online"
+msgstr ""
+
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:3
 #: admin/views/admin/show-item-contents/show-vote-option.html:3
 msgid "Option"
@@ -255,15 +258,15 @@ msgstr ""
 msgid "Process"
 msgstr ""
 
-#: admin/partials/home.html:15
+#: admin/partials/home.html:19
 msgid "RASPI Control"
 msgstr ""
 
-#: admin/js/controllers/masterControllers.js:157
+#: admin/js/controllers/masterControllers.js:155
 msgid "REALLY REALLY SURE??????????"
 msgstr ""
 
-#: admin/views/raspi-manager.html:94
+#: admin/views/raspi-manager.html:100
 msgid "REBOOT"
 msgstr ""
 
@@ -275,7 +278,7 @@ msgstr ""
 msgid "RELOAD"
 msgstr ""
 
-#: admin/views/raspi-manager.html:88
+#: admin/views/raspi-manager.html:94
 msgid "REPAIR DB"
 msgstr ""
 
@@ -287,7 +290,7 @@ msgstr ""
 msgid "RESTART SERVER"
 msgstr ""
 
-#: admin/views/raspi-manager.html:76
+#: admin/views/raspi-manager.html:82
 msgid "RESTART WI-FI"
 msgstr ""
 
@@ -299,15 +302,19 @@ msgstr ""
 msgid "Rating:"
 msgstr ""
 
-#: admin/js/controllers/masterControllers.js:86
+#: admin/js/controllers/masterControllers.js:84
 msgid "Really delete???"
+msgstr ""
+
+#: admin/partials/home.html:17
+msgid "Refresh"
 msgstr ""
 
 #: admin/views/admin/show-item-contents/show-vote-content.html:23
 msgid "Required votes:"
 msgstr ""
 
-#: admin/views/raspi-manager.html:93
+#: admin/views/raspi-manager.html:99
 msgid "SHUTDOWN"
 msgstr ""
 
@@ -336,7 +343,7 @@ msgstr ""
 msgid "Team ID"
 msgstr ""
 
-#: admin/partials/home.html:23
+#: admin/partials/home.html:28
 msgid "Teams"
 msgstr ""
 
@@ -395,11 +402,11 @@ msgstr ""
 msgid "Vote count:"
 msgstr ""
 
-#: admin/views/raspi-manager.html:69
+#: admin/views/raspi-manager.html:75
 msgid "Wi-Fi name:"
 msgstr ""
 
-#: admin/views/raspi-manager.html:72
+#: admin/views/raspi-manager.html:78
 msgid "Wi-Fi password"
 msgstr ""
 

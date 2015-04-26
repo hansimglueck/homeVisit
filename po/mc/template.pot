@@ -4,7 +4,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: mc/index.html:39
+#: mc/index.html:40
 msgid "ALARM"
 msgstr ""
 
@@ -12,7 +12,7 @@ msgstr ""
 msgid "Away"
 msgstr ""
 
-#: mc/views/deck.html:5
+#: mc/views/item.html:2
 msgid "BACK"
 msgstr ""
 
@@ -20,7 +20,7 @@ msgstr ""
 msgid "BACK TO GAME!"
 msgstr ""
 
-#: mc/js/controllers/dummies.js:41
+#: mc/js/controllers/dummies.js:51
 msgid "Change name"
 msgstr ""
 
@@ -28,19 +28,15 @@ msgstr ""
 msgid "Come Back!"
 msgstr ""
 
-#: mc/views/deck.html:106
-#: mc/views/deck.html:30
-#: mc/views/deck.html:68
+#: mc/views/item.html:33
 msgid "Command"
 msgstr ""
 
-#: mc/views/deck.html:107
-#: mc/views/deck.html:31
-#: mc/views/deck.html:69
+#: mc/views/item.html:34
 msgid "Configuration"
 msgstr ""
 
-#: mc/views/deck.html:46
+#: mc/views/item.html:9
 msgid "Current:"
 msgstr ""
 
@@ -52,23 +48,19 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: mc/index.html:48
+#: mc/index.html:49
 msgid "GO"
-msgstr ""
-
-#: mc/views/maintenance.html:9
-msgid "Language"
 msgstr ""
 
 #: mc/js/controllers/players.js:55
 msgid "Leave Table!"
 msgstr ""
 
-#: mc/index.html:34
+#: mc/index.html:35
 msgid "Maintenance"
 msgstr ""
 
-#: mc/index.html:31
+#: mc/index.html:32
 msgid "Matching"
 msgstr ""
 
@@ -80,12 +72,8 @@ msgstr ""
 msgid "Next!"
 msgstr ""
 
-#: mc/views/deck.html:84
+#: mc/views/item.html:10
 msgid "Next:"
-msgstr ""
-
-#: mc/js/controllers/deck.js:11
-msgid "Not set"
 msgstr ""
 
 #: mc/views/dummies.html:68
@@ -93,28 +81,23 @@ msgstr ""
 msgid "Player"
 msgstr ""
 
-#: mc/views/deck.html:108
-#: mc/views/deck.html:32
-#: mc/views/deck.html:70
+#: mc/views/item.html:35
 msgid "Players are dealing"
 msgstr ""
 
-#: mc/views/deck.html:109
-#: mc/views/deck.html:33
-#: mc/views/deck.html:71
+#: mc/views/item.html:36
 msgid "Players are rating others"
 msgstr ""
 
-#: mc/views/deck.html:12
-#: mc/views/deck.html:50
+#: mc/views/item.html:16
 msgid "Players are voting"
 msgstr ""
 
-#: mc/index.html:25
+#: mc/index.html:26
 msgid "Polls"
 msgstr ""
 
-#: mc/views/deck.html:8
+#: mc/views/item.html:8
 msgid "Previous:"
 msgstr ""
 
@@ -127,13 +110,11 @@ msgstr ""
 msgid "Rank: {{player.rank}}"
 msgstr ""
 
-#: mc/js/controllers/playback.js:12
+#: mc/js/services/mcAppServices.js:253
 msgid "Really restart?"
 msgstr ""
 
-#: mc/views/deck.html:104
-#: mc/views/deck.html:28
-#: mc/views/deck.html:66
+#: mc/views/item.html:31
 msgid "Results are displayed"
 msgstr ""
 
@@ -149,13 +130,11 @@ msgstr ""
 msgid "Select"
 msgstr ""
 
-#: mc/views/deck.html:105
-#: mc/views/deck.html:29
-#: mc/views/deck.html:67
+#: mc/views/item.html:32
 msgid "Sound is playing:"
 msgstr ""
 
-#: mc/index.html:28
+#: mc/index.html:29
 msgid "Teams"
 msgstr ""
 

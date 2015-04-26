@@ -1,5 +1,7 @@
 angular.module('gettext').run(['gettextCatalog', function (gettextCatalog) {
 /* jshint -W100 */
+    gettextCatalog.setStrings('de', {"Czech":"Tschechisch","Danish":"Dänisch","Dutch":"Niederländisch","English":"Englisch","French":"Französisch","German":"Deutsch","Language":"Sprache","Norwegian":"Norwegisch","Polish":"Polnisch","Portuguese":"Portugiesisch"});
+    gettextCatalog.setStrings('en', {"Czech":"Czech","Danish":"Danish","Dutch":"Dutch","English":"English","French":"French","German":"German","Language":"Language","Norwegian":"Norwegian","Polish":"Polish","Portuguese":"Portuguese"});
     gettextCatalog.setStrings('cs', {});
     gettextCatalog.setStrings('da', {});
     gettextCatalog.setStrings('de', {"Add new item":"Neuen Eintrag hinzufügen","CONNECT DB":"VERBINDE DATENBANK","Cancel":"Abbrechen","Current deck:":"Ausgewählter Strang:","Current step:":"Aktueller Eintrag:","Default mapping:":"Voreingestellte Gerätezuordnung:"});

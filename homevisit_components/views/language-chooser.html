@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label translate>Language</label>
+    <select class="form-control"
+            ng-model="gettextCatalog.currentLanguage"
+            ng-options="l[0] as l[1] for l in languages"
+            ng-change="changeLanguage()">
+    </select>
+</div>

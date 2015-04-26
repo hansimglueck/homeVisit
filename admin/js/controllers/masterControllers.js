@@ -23,12 +23,8 @@ var masterControllers = angular.module('masterControllers', [])
 
     });
 
-masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOptions, gameConf, $filter, languageFactory, gettext, gettextCatalog) {
+masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOptions, gameConf, $filter, gettext) {
         //$scope.error = "kein Problem";
-        $scope.currentLanguage = gettextCatalog.currentLanguage;
-        $scope.languages = languageFactory.availableLanguages;
-        $scope.languagesByCode = languageFactory.languagesByCode;
-
         $scope.decks = setFactory.decks;
         $scope.itemTypes = itemOptions.type;
         $scope.gameConf = gameConf.getRun(function() {

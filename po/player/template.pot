@@ -8,8 +8,12 @@ msgstr ""
 msgid "Average: {{home.data[1]}}"
 msgstr ""
 
+#: player/partials/rating/rating.html:18
+msgid "Back"
+msgstr ""
+
 #: player/partials/deals/deal.new.html:12
-#: player/partials/rating/rating.html:12
+#: player/partials/rating/rating.html:13
 #: player/partials/voteConfirm.html:5
 msgid "Cancel"
 msgstr ""
@@ -23,7 +27,7 @@ msgid "Choose type of deal:"
 msgstr ""
 
 #: player/partials/deals/deal.new.html:9
-#: player/partials/rating/rating.html:11
+#: player/partials/rating/rating.html:12
 #: player/partials/voteConfirm.html:4
 msgid "Confirm"
 msgstr ""
@@ -80,6 +84,10 @@ msgstr ""
 msgid "Total: {{home.data[0]}}"
 msgstr ""
 
+#: player/partials/deals/deal.details.html:50
+msgid "Try Again"
+msgstr ""
+
 #: player/partials/vote.html:19
 msgid "VOTE"
 msgstr ""
@@ -96,6 +104,10 @@ msgstr ""
 msgid "You are voting for:"
 msgstr ""
 
+#: player/partials/rating/rating.score.html:2
+msgid "You can rate these Teams up or down!"
+msgstr ""
+
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
 msgstr ""
@@ -104,7 +116,7 @@ msgstr ""
 msgid "Your voting weight depends on your rank!"
 msgstr ""
 
-#: player/partials/rating/rating.html:8
+#: player/partials/rating/rating.html:9
 msgid "should get {{score}} points from you?"
 msgstr ""
 

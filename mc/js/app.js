@@ -20,7 +20,7 @@ angular
         'mcDirectives',
         'hvSetFactory',
         'hvItemOptions',
-        'hvLanguageFactory',
+        'hvLanguage',
         'gettext'
     ])
     .config(function ($routeProvider) {

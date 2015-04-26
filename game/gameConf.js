@@ -62,10 +62,18 @@ GameConf.prototype = {
         });
     },
     changeLanguage: function(clientId, role, data) {
-        if (role === 'MC') {
-            this.conf.language = data.data;
-            this.languageChange();
-        }
+        var self = this;
+        this.conf.language = data.data;
+        mongoConnection(function (db) {
+            db.collection('gameconfs').updateOne({ _id: self.conf._id }, { $set: { language: self.conf.language } }, {}, function(err, conf) {
+                if (err !== null) {
+                    throw new Error(err.stack);
+                }
+                else {
+                    self.languageChange();
+                }
+            });
+        });
     }
 };
 
