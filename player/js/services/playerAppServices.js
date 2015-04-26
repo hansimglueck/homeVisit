@@ -10,16 +10,16 @@ angular.module('playerAppServices', [])
         homeFactory.showGo = false;
         homeFactory.timeout;
 
-        homeFactory.timedVote = function () {
+        homeFactory.timedVote = function (cb) {
             //TODO: wenn eine nummer-eingabe-abstimmung läuft sollte die eingegebene nummer, wenn auch noch nicht gesendet, verwendet werden
             if (homeFactory.time == 0) return;
-            if (homeFactory.time < 10) {
-                fxService.startCountdown(homeFactory.time, homeFactory.confirmVote);
+            if (homeFactory.time < 12) {
+                fxService.startCountdown(homeFactory.time, cb);
             }
             else {
                 homeFactory.timeout = $timeout(function () {
-                    fxService.startCountdown(10, homeFactory.confirmVote);
-                }, (homeFactory.time - 10) * 1000);
+                    fxService.startCountdown(12, cb);
+                }, (homeFactory.time - 12) * 1000);
             }
         };
         homeFactory.vote = function () {
@@ -52,6 +52,10 @@ angular.module('playerAppServices', [])
             $location.path("/voteFinished");
         };
 
+        homeFactory.freeze = function() {
+
+        }
+
         homeFactory.start = function () {
             Socket.on('display', function (data) {
                 console.log("new display: " + data.type);
@@ -80,7 +84,7 @@ angular.module('playerAppServices', [])
                                 homeFactory.pollId = data.pollId;
                                 homeFactory.ratedVote = data.ratedVote;
                                 homeFactory.time = parseInt(data.time);
-                                homeFactory.timedVote();
+                                homeFactory.timedVote(homeFactory.confirmVote);
                                 $location.path("/vote");
                                 return;
                                 break;
@@ -128,6 +132,8 @@ angular.module('playerAppServices', [])
                                 if (data.ratingType === "oneTeam") {
                                     path += "/score/" + data.playerId.join(":");
                                 }
+                                homeFactory.time = parseInt(data.time);
+                                homeFactory.timedVote(homeFactory.confirmVote);
 
                                 $location.path(path);
                                 return;
@@ -358,7 +364,7 @@ angular.module('playerAppServices', [])
                 fxService.countdown.count--;
                 fxService.countdown.display = true;
                 //console.log("count down to " + fxService.countdown.count);
-                fxService.playSound("countdown_tick");
+                if (fxService.countdown.count < 8) fxService.playSound("countdown_tick");
                 $timeout(function () {
                     fxService.countdown.display = false;
                 }, 300);
