@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('homeVisitMCApp')
-    .controller('MatchingCtrl', function ($scope, Polls, Matches, PlayerNames) {
+    .controller('MatchingCtrl', function ($scope, Polls, Matches, PlayerNames, Teams) {
         $scope.polls = Polls;
         $scope.matches = Matches;
         $scope.playerNames = PlayerNames.names;
         $scope.playerLine = 0;
+        $scope.teamCategories = Teams.categories;
         
         $scope.matchMatrix = [
             [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -61,6 +62,119 @@ angular.module('homeVisitMCApp')
         };
         
         $scope.getMatrix();
+        
+        
+        
+        // Am Anfang sind alle Spieler im "Pool"
+        $scope.playerPool = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+        
+        $scope.calcTeam = function(cat_index) {
+            var potPlayers = [null,null,null,null,null,null,null,null,null,null,null,null,null,null,null];
+            var potPlayersLength = 0;
+            if ($scope.playerPool.length > 0) {
+                // Erstes Kriterium
+                for (var potPlayer = 0; potPlayer < $scope.playerPool.length; potPlayer++) {
+                    var answer = Polls.polls[$scope.teamCategories[cat_index].questionNr[0]].answers[potPlayer];
+                    var type = Polls.polls[$scope.teamCategories[cat_index].questionNr[0]].type;
+                    var note = Polls.polls[$scope.teamCategories[cat_index].questionNr[0]].note;
+                    var weight = $scope.teamCategories[cat_index].weight[0];
+                    //if (answer != -1) {
+                        if (weight == 1) {
+                            if (type == 'binary' && answer == 1) {
+                                //if ($scope.playerPool.indexOf(potPlayer) != -1) {
+                                    potPlayers[potPlayer] = {id:potPlayer,name: $scope.playerNames[potPlayer],cat:note};
+                                    potPlayersLength++;
+                                    //potPlayers.push({id:potPlayer,name: $scope.playerNames[potPlayer],cat:note});
+                                    //potPlayers.push({id:potPlayer});
+                                //}
+                            } else if (type == 'fingers' && answer === 5) {
+                                //if ($scope.playerPool.indexOf(potPlayer) != -1) {
+                                    potPlayers[potPlayer] = {id:potPlayer,name: $scope.playerNames[potPlayer],cat:note};
+                                    potPlayersLength++;
+                                    //potPlayers.push({id:potPlayer,name: $scope.playerNames[potPlayer],cat:note});
+                                    //potPlayers.push({id:potPlayer});
+                                //}
+                            }
+                        } else {
+                            if (type == 'binary' && answer != 1) {
+                                //if ($scope.playerPool.indexOf(potPlayer) != -1) {
+                                    potPlayers[potPlayer] = {id:potPlayer,name: $scope.playerNames[potPlayer],cat:note};
+                                    potPlayersLength++;
+                                    //potPlayers.push({id:potPlayer,name: $scope.playerNames[potPlayer],cat:note});
+                                    //potPlayers.push({id:potPlayer});
+                                //}
+                            } else if (type == 'fingers' && answer <= 1) {
+                                //if ($scope.playerPool.indexOf(potPlayer) != -1) {
+                                    potPlayers[potPlayer] = {id:potPlayer,name: $scope.playerNames[potPlayer],cat:note};
+                                    potPlayersLength++;
+                                    //potPlayers.push({id:potPlayer,name: $scope.playerNames[potPlayer],cat:note});
+                                    //potPlayers.push({id:potPlayer});
+                                //}
+                            }
+                        }
+                    //}
+                }
+                // Ausschlusskriterien
+                for (var question = 1; question < $scope.teamCategories[cat_index].questionNr.length; question++) {
+                    if (potPlayersLength > 2) {
+                        var throwOut = [];
+                        for (var player = 0; player < potPlayers.length; player++) {
+                            if (potPlayers[player] != null) {
+                                console.log("Checke player: " + player);
+                                var answer = Polls.polls[$scope.teamCategories[cat_index].questionNr[question]].answers[player];
+                                var type = Polls.polls[$scope.teamCategories[cat_index].questionNr[question]].type;
+                                var weight = $scope.teamCategories[cat_index].weight[question];
+                                //if (answer != -1) {
+                                    if (weight == 1) {
+                                        if (type == 'binary' && answer != 1) {
+                                            console.log("Fliegt raus: " + player);
+                                            throwOut.push(player);
+                                        } else if (type == 'fingers' && answer < 4 && answer != -1) {
+                                            console.log("Fliegt raus: " + player);
+                                            throwOut.push(player);
+                                        }
+                                    } else {
+                                        if (type == 'binary' && answer == 1) {
+                                            console.log("Fliegt raus: " + player);
+                                            throwOut.push(player);
+                                        } else if (type == 'fingers' && (answer != 0 || answer != 1 || answer != 2)) {
+                                            console.log("Fliegt raus: " + player);
+                                            throwOut.push(player);
+                                        }
+                                    }
+                                //}
+                            }
+                        }
+                        console.log("Potentielle: " + potPlayersLength);
+                        console.log("Rausflieger: " + throwOut.length);
+                        if (throwOut.length <= potPlayersLength - 2) { // Nur rauswerfen, wenn mind. 2 Ÿbrig bleiben
+                            console.log(potPlayers);
+                            for (var thrownPlayer = 0; thrownPlayer < throwOut.length; thrownPlayer++) {
+                                console.log(throwOut[thrownPlayer]);
+                                potPlayers[throwOut[thrownPlayer]] = null;
+                                potPlayersLength--;
+                                //console.log(potPlayers.splice($.inArray(throwOut[thrownPlayer],potPlayers) ,1 ));
+                                //potPlayers.splice($.inArray(throwOut[thrownPlayer].id,potPlayers) ,1 );
+                                console.log("raus: " + throwOut[thrownPlayer]);
+                            }
+                            console.log(potPlayers);
+                        }
+                    } else {
+                        if (potPlayersLength === 2) {
+                            //for (var removeFromPool = 0; removeFromPool < potPlayers.length; removeFromPool++) {
+                            //    if (potPlayers[removeFromPool] != null) {
+                            //        $scope.playerPool.splice($inArray(removeFromPool),1);
+                            //    }
+                            //}
+                            return potPlayers;
+                        }
+                    }
+                }
+            }
+            return potPlayers;
+
+            
+        }
         
         $scope.isMatched = function(playerX, playerY) {
             if (Matches.matches[playerX][1] == playerY) {

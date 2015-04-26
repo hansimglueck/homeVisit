@@ -1,17 +1,4 @@
 <div>
-    
-    <div ng-repeat="category in teamCategories track by $index">
-        {{category.category}}:
-        <div ng-repeat="player in calcTeam($index) track by $index">
-            <div ng-if="player">
-                {{player.name}}
-            </div>
-        </div>
-        <br/>
-    </div>
-    <!--{{teamCategories[6].category}}: {{calcTeam(6)}}-->
-    
-    
     <table class="table table-bordered">
         <tr>
             <th translate>Player</th>
