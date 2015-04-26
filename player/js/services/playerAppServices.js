@@ -91,6 +91,7 @@ angular.module('playerAppServices', [])
 
                                 var labels = [];
                                 var resData = [];
+                                var labels2 = [];
                                 homeFactory.correctAnswer = "";
                                 //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
                                 if (resultType == "numberStats") {

@@ -615,7 +615,7 @@ PlayerManager.prototype = {
         if (typeof reason === "undefined") reason = "?";
         this.players[playerId].score += parseInt(score);
         if (reason == "rating") {
-            this.sendGameEvent(otherPlayerId, "rating", score, "player", otherPlayerId);
+            this.sendGameEvent(otherPlayerId, "rating", score, "player", playerId);
         }
         this.sendGameEvent(playerId, "score", score, reason, otherPlayerId);
         var deals = [];

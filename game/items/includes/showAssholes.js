@@ -4,17 +4,16 @@ module.exports = {
     executeItem: function () {
         this.data = [];
         var self = this;
+        console.log(JSON.stringify(playerManager.gameEvents));
         playerManager.players.forEach(function (player) {
             var negs = [];
             playerManager.players.forEach(function(player){
                 negs[player.playerId] = 0;
             });
-            var negScoreEvents = playerManager.gameEvents.forEach(function(event){
-                if (event.playerId === player.playerId && event.type === "score" && event.reason === "rating" && event.value == -1) negs[event.otherPlayerId] += 1;
+            playerManager.gameEvents.forEach(function(event){
+                if (event.playerId == player.playerId && event.event.type === "score" && event.event.reason === "rating" && event.event.value == "-1") negs[event.event.otherPlayerId] += 1;
             });
-            self.data[player.playerId] = {
-                text: "Du bist Spieler "+player.playerId
-            };
+            self.data[player.playerId] = negs;
         });
         this.mapToDevice();
     },

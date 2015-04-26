@@ -106,8 +106,7 @@ angular.module("gameControllers", [])
     })
     .controller('AssholesController', function($scope, playerColors, Home){
         $scope.playerColors = playerColors;
-        $scope.data = Home.assholeData;
-
+        $scope.home = Home;
     })
 ;
 

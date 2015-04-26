@@ -1,3 +1,6 @@
-<span translate>Diese Spieler waren gemein zu Dir:</span>
-
-{{data.text}}
+<h3 translate>Diese Spieler waren gemein zu Dir:</h3>
+<ul class="list-unstyled">
+    <li ng-repeat="dat in home.assholeData track by $index">
+        <div ng-hide="dat==0"><player-icon pid="$index"></player-icon>{{dat}} <span translate>Minuspunkte</span></div>
+    </li>
+</ul>
