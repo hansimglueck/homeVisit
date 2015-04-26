@@ -83,5 +83,8 @@ module.exports = {
             resultType: this.resultType,
             color: this.color
         };
+    },
+    getData: function() {
+        return this.data;
     }
 } ;

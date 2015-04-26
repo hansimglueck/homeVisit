@@ -34,15 +34,14 @@ module.exports = {
             this.step(result);
         });
         this.poll = poll;
-        this.getData = function () {
-            return this.poll.getResult();
-        };
         //this.polls ist "static"
         this.polls[this.poll.id] = (this.poll);
 
         this.mapToDevice();
     },
-
+    getData: function () {
+        return this.poll.getResult();
+    },
     getWsContent: function () {
         return this.poll.getPollWsContent();
     }

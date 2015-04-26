@@ -301,6 +301,11 @@ SequenceItem.prototype = {
     isOnTurn: function() {
         if (this.next === null) return true;
         return (this.done && !this.next.done);
+    },
+
+    getData: function() {
+        if (this.previous !== null) return this.previous.getData();
+        else return null;
     }
 };
 
