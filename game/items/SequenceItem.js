@@ -87,6 +87,7 @@ SequenceItem = function (db, itemRef, index, dontLoadItem) {
         self.previous = null;
         self.done = false;
         self.finished = false;
+        self.timeout = null;
         self.index = -1;
         if (typeof index != "undefined") self.index = index;
         //this.poll = null;
@@ -171,7 +172,7 @@ SequenceItem.prototype = {
              if (typeof itemRequire.getWsContent !== "undefined") this.getWsContent = itemRequire.getWsContent;
              if (typeof itemRequire.finishItem !== "undefined") this.finishItem = itemRequire.finishItem;
              */
-            setTimeout(function () {
+            this.timeout = setTimeout(function () {
                 self.execute.call(self);
             }, this.wait * 1000);
             return true;
@@ -278,6 +279,7 @@ SequenceItem.prototype = {
         if (!this.isOnTurn()) this.next.finish();
         else {
             this.log("finishing step " + this.index + ": " + this.type, true);
+            clearTimeout(this.timeout);
             this.finishItem();
         }
     },

@@ -31,7 +31,7 @@ module.exports = {
             default:
                 break;
         }
-        switch (this.scoreType) {
+        if (this.data !== null) switch (this.scoreType) {
             case "optionScore":
                 //checke, welche votes eine option mit .correctAnswer in der choice haben
                 //und verteile +1 für jede korrekte choice, -1 für die anderen
@@ -70,16 +70,14 @@ module.exports = {
         }
 
         this.mapToDevice();
-        if (this.autoGo) {
-            //führe nächsten step aus mit param = value der bestOption
-            this.step(this.data.complete ? this.data.voteOptions[0].value : -1);
-        }
     },
     getWsContent: function () {
+        var text = "";
+        if (this.data !== null) test = this.data.text;
         return {
             data: this.data,
             type: this.type,
-            text: this.data.text,
+            text: text,
             resultType: this.resultType,
             color: this.color
         };

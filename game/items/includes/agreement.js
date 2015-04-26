@@ -25,7 +25,8 @@ module.exports = {
         this.mapToDevice();
     },
     getData: function() {
-        return this.poll.getResult();
+        if (typeof this.poll !== "undefined") return this.poll.getResult();
+        else return null;
     },
     getWsContent: function () {
         return this.poll.getPollWsContent();

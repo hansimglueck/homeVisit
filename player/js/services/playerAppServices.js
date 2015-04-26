@@ -87,7 +87,7 @@ angular.module('playerAppServices', [])
                             case "results":
                                 var resultType = data.resultType;
                                 var result = data.data;
-                                var msg = data.text;
+                                var msg = data.data.text;
 
                                 var labels = [];
                                 var resData = [];

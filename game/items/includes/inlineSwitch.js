@@ -3,7 +3,7 @@ module.exports = {
         var option = this.param;
         if (this.inlineSwitchSource === 'previousStep') {
             var data = this.previous.getData();
-            option = data.complete ? data.voteOptions[0].value : -1;
+            if (data !== null) option = data.complete ? data.voteOptions[0].value : -1;
         }
         this.log("looking for deck for option " + option);
         if (typeof this.inlineDecks === "undefined") return;
