@@ -22,7 +22,7 @@ angular.module("ratingControllers", [])
         });
         $scope.confirm = function () {
             $scope.playerIds.forEach(function (playerId) {
-                Socket.emit("score", {playerId: playerId, score: $scope.score, reason: Status.player.playerId});
+                Socket.emit("score", {playerId: playerId, score: $scope.score, reason: "rating", otherPlayerId:Status.player.playerId});
             });
             $location.path("/rating/done");
         };

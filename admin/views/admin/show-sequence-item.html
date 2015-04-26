@@ -60,7 +60,7 @@
         results: text als select
         sound: text (filename)
     -->
-    <div class="panel-body" ng-switch="item.type" ng-hide="item.collapsed">
+    <div class="panel-body" ng-switch="item.type" ng-if="!item.collapsed">
 
         <div show-vote-content ng-switch-when="vote"></div>
         <div show-switch-content ng-switch-when="switch"></div>

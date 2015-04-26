@@ -14,6 +14,7 @@ PlayerManager = function () {
     this.polls = {};
     this.deals = {};
     this.relations = {};
+    this.gameEvents = [];
 };
 
 PlayerManager.prototype = {
@@ -56,6 +57,7 @@ PlayerManager.prototype = {
             player.busy = false;
         });
         this.sendPlayerStatus(-1);
+        this.gameEvents = [];
     },
     log: function (message) {
         message = "PMANAGER: " + message;
@@ -230,8 +232,7 @@ PlayerManager.prototype = {
     //callback für mc-messages. bei register wird status versendet, der MC kann auch punkte vergeben
     scoreMessage: function (clientId, role, msg) {
         if (msg.type == "score") {
-            this.score(msg.data.playerId, msg.data.score, role+":"+msg.data.reason);
-
+            this.score(msg.data.playerId, msg.data.score, msg.data.reason, msg.data.otherPlayerId);
         }
     },
 
@@ -298,7 +299,6 @@ PlayerManager.prototype = {
                     this.eval(item.text);
                     break;
                 case "rating":
-                    console.log('->RATING<- ', device, item.getWsContent());
                     this.deliverMessage(device, "display", item.getWsContent());
                     break;
                 case "deal":
@@ -317,6 +317,7 @@ PlayerManager.prototype = {
                     });
                     break;
                 default:
+                    this.deliverMessage(device, "display", item.getWsContent());
                     break;
             }
         } catch (e) {
@@ -587,8 +588,9 @@ PlayerManager.prototype = {
         wsManager.msgDevicesByRole("master", "status", msg);
         wsManager.msgDevicesByRole("MC", "status", msg);
     },
-    sendGameEvent: function (playerId, type, value, reason, text) {
-        this.sendMessage(playerId, "gameEvent", {type: type, value: value, text: text, reason: reason})
+    sendGameEvent: function (playerId, type, value, reason, otherPlayerId) {
+        this.sendMessage(playerId, "gameEvent", {type: type, value: value, reason: reason, otherPlayerId: otherPlayerId});
+        this.gameEvents.push({playerId: playerId, event:{type: type, value: value, reason: reason, otherPlayerId: otherPlayerId}});
     },
     getPlayerIdForClientId: function (clientId) {
         var playerId = -1;
@@ -609,13 +611,13 @@ PlayerManager.prototype = {
             self.players[rank.playerId].rank = id + 1;
         });
     },
-    score: function (playerId, score, reason) {
+    score: function (playerId, score, reason, otherPlayerId) {
         if (typeof reason === "undefined") reason = "?";
         this.players[playerId].score += parseInt(score);
-        if (reason.indexOf("player")>-1) {
-            this.sendGameEvent(reason.split(":")[1], "rating", score, "player:"+playerId, "You gave " + score + "Points");
+        if (reason == "rating") {
+            this.sendGameEvent(otherPlayerId, "rating", score, "player", otherPlayerId);
         }
-        this.sendGameEvent(playerId, "score", score, reason, "You got " + score + "Points");
+        this.sendGameEvent(playerId, "score", score, reason, otherPlayerId);
         var deals = [];
         for (var deal in this.deals) if (this.deals.hasOwnProperty(deal)) deals.push(this.deals[deal]);
 

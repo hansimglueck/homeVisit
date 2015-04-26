@@ -14,7 +14,8 @@ angular.module('hvItemOptions', [])
             {value: 'eval', text: 'eval', mappable: false},
             {value: 'dummy', text: 'Dummy', mappable: false},
             {value: 'agreement', text: 'Agreement', mappable: true},
-            {value: 'roulette', text: 'Roulette', mappable: true}
+            {value: 'roulette', text: 'Roulette', mappable: true},
+            {value: 'showAssholes', text: 'Show Assholes', mappable: true}
         ],
         'color': [
             {value: '0', text: 'Rot'},

@@ -104,5 +104,10 @@ angular.module("gameControllers", [])
         };
         $scope.showScoringPlayers = false;
     })
+    .controller('AssholesController', function($scope, playerColors, Home){
+        $scope.playerColors = playerColors;
+        $scope.data = Home.assholeData;
+
+    })
 ;
 
