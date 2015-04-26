@@ -1,51 +1,7 @@
-<table>
-    <tr>
-        <td translate>Source:</td>
-        <td>
-<span editable-select="item.sourceType" e-name="sourceType"
-      onaftersave="saveItem()"
-      e-ng-options="s.value as s.text for s in itemOptions.sourceType">
-          {{ showTextForValue(item, "sourceType") }}
-        </span>
-        </td>
-    </tr>
-    <tr>
-        <td translate>Display:</td>
-        <td>
-<span editable-select="item.resultType" e-name="resultType"
-      onaftersave="saveItem()"
-      e-ng-options="s.value as s.text for s in itemOptions.resultType">
-          {{ showTextForValue(item, "resultType") }}
-        </span>
-        </td>
-    </tr>
-    <tr>
-        <td translate>Score:</td>
-        <td>
-<span editable-select="item.scoreType" e-name="scoreType"
-      onaftersave="saveItem()"
-      e-ng-options="s.value as s.text for s in itemOptions.scoreType">
-          {{ showTextForValue(item, "scoreType") }}
-        </span>
-        </td>
-    </tr>
-    <tr>
-        <td translate>Auto-Go:</td>
-        <td>
-        <span editable-checkbox="item.autoGo" e-name="autoGo" onaftersave="saveItem()">
-          {{ item.autoGo || '-' }}
-        </span>
-
-        </td>
-    </tr>
-    <tr ng-show="item.text=='europeMap'">
-        <td translate>Color:</td>
-        <td>
-<span editable-select="item.color" e-name="color"
-      onaftersave="saveItem()"
-      e-ng-options="s.value as s.text for s in itemOptions.color">
-          {{ showTextForValue(item, "color") }}
-        </span>
-        </td>
-    </tr>
-</table>
+<div class="labeled-option-group">
+    <labeled-item-option field="sourceType" title="Source" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="resultType" title="Display" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="scoreType" title="Score" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="autoGo" title="Auto-Go" type="checkbox" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option ng-show="item.text=='europeMap'" field="color" title="Color" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+</div>

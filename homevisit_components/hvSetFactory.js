@@ -13,8 +13,8 @@ angular.module('hvSetFactory', ['ngResource']).factory('setFactory', ['$resource
     });
     var restfactory = {};
     restfactory.decks = resource.query(null, function (data) {
-        console.log("setfactory.query: " + data);
-        console.log(data);
+        //console.log("setfactory.query: " + data);
+        //console.log(data);
         data.forEach(function (deck) {
             deck.items.forEach(function (item) {
                 if (typeof item === 'undefined' || item === null)

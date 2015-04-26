@@ -1,0 +1,23 @@
+<div>
+    <span translate>Mapped:</span>
+
+    <ul class="device-map-tags list-inline">
+        <li ng-repeat="device in item.device track by $index">
+            <form editable-form name="deviceFrm" shown="device == ''">
+                        <span class="device">
+                            <span ng-click="deviceFrm.$show()" e-form="deviceFrm" editable-text="item.device[$index]"
+                                  onbeforesave="" onaftersave="saveItem()">
+                                {{ device }}
+                            </span>
+                            <span class="glyphicon glyphicon-remove" aria-hidden="true"
+                                  ng-click="removeDeviceFromItem($index)"></span>
+                        </span>
+            </form>
+        </li>
+        <li>
+                    <span ng-click="addDeviceToItem()"><span class="glyphicon glyphicon-plus"
+                                                             aria-hidden="true"></span></span>
+        </li>
+    </ul>
+
+</div>

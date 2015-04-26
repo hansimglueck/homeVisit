@@ -1,80 +1,19 @@
-<table>
-    <tr>
-        <td translate>Text:</td>
-        <td>
-<span editable-textarea="item.text"
-      e-rows="7" e-cols="40" e-name="text"
-      onaftersave="saveItem()">
-          {{ item.text || '-' }}
-        </span>
-        </td>
-    </tr>
-    <tr>
-        <td translate>Time:</td>
-        <td>
-<span editable-text="item.time"
-      e-rows="1" e-cols="4" e-name="time"
-      onaftersave="saveItem()">
-          {{ item.time || '-' }}
-        </span>
-        </td>
-    </tr>
-    <tr>
-        <td translate>Required votes:</td>
-        <td>
-<span editable-text="item.percentsForFinish"
-      e-rows="1" e-cols="4" e-name="percentsForFinish"
-      onaftersave="saveItem()">
-          {{ item.percentsForFinish || '' }}%
-        </span>
-        </td>
-    </tr>
-    <tr ng-show="item.voteType == 'customMultipleOptions' || item.voteType=='countryChoice'">
-        <td translate>Vote count:</td>
-        <td>
-    <span editable-text="item.voteMulti" e-name="voteMulti" onaftersave="saveItem()">
-          {{ item.voteMulti || '1' }}
-        </span>
-        </td>
-    </tr>
-    <tr>
-        <td translate>Type:</td>
-        <td>
-        <span editable-select="item.voteType" e-name="voteType"
-              onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in itemOptions.voteType"
-                >
-          {{ showTextForValue(item, "voteType") }}
-        </span>
-        </td>
-    </tr>
-    <tr ng-show="item.voteType=='countryChoice'">
-        <td translate>Language:</td>
-        <td>
-        <span editable-select="item.language" e-name="language"
-              onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in itemOptions.language"
-                >
-          {{ showTextForValue(item, "language") }}
-        </span>
-        </td>
-    </tr>
-    <tr>
-        <td translate>With rating:</td>
-        <td><span editable-checkbox="item.ratedVote" e-name="voteFlag" onaftersave="saveItem()">
-          {{ item.ratedVote || '-' }}
-        </span>
-        </td>
-    </tr>
-    <tr ng-show="(item.voteType == 'customOptions' || item.voteType == 'customMultipleOptions')">
-        <td translate>Options:</td>
-        <td>
+<div class="labeled-option-group">
+    <labeled-item-option field="text" title="Text" type="textarea" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="voteType" title="Type" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="time" title="Time" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="percentsForFinish" title="Required votes %" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="ratedVote" title="With rating" type="checkbox" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option ng-show="item.voteType=='countryChoice'" field="language" title="Language" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option ng-show="item.voteType == 'customMultipleOptions' || item.voteType=='countryChoice'" field="voteMulti" title="Vote count" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
+    <div class="labeled-option" ng-show="(item.voteType == 'customOptions' || item.voteType == 'customMultipleOptions')">
+        <div class="labeled-option-title" translate>Options</div>
+        <div class="labeled-option-content">
             <table class="table">
                 <tbody show-vote-option>
                 </tbody>
             </table>
-
             <button class="btn btn-primary" ng-click="addVoteOption($index)" translate>New option</button>
-        </td>
-    </tr>
-</table>
+        </div>
+    </div>
+</div>

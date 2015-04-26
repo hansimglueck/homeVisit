@@ -90,6 +90,7 @@ angular.module('adminDirectives', [])
     })
     .directive('showInlineSwitchContent', function () {
         return {
+            scope: false,
             restrict: 'AE',
             replace: 'true',
             templateUrl: 'views/admin/show-item-contents/show-inline-switch-content.html'
@@ -97,6 +98,7 @@ angular.module('adminDirectives', [])
     })
     .directive('showInlineSwitchOption', function () {
         return {
+            scope: false,
             restrict: 'AE',
             replace: 'true',
             templateUrl: 'views/admin/show-item-contents/show-inline-switch-option.html'
@@ -165,12 +167,55 @@ angular.module('adminDirectives', [])
         };
     })
 
-    .directive('directItem', function () {
+     .directive('itemMapping', function () {
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'views/admin/show-direct-item.html'
+            templateUrl: 'views/admin/item-partials/item-mapping.html'
         };
     })
+    .directive('itemButtons', function () {
+        return {
+            restrict: 'AE',
+            replace: 'true',
+            templateUrl: 'views/admin/item-partials/item-buttons.html'
+        };
+    })
+    .directive('labeledItemOption', function () {
+        return {
+            restrict: 'E',
+            replace: 'true',
+            scope: {
+                item: '=',
+                title: '@',
+                field: '@',
+                type: '@',
+                saveitem: '&',
+                showtextforvalue: '&'
+            },
+            controller: function($scope, itemOptions, $filter) {
+                $scope.itemOptions = itemOptions;
+                $scope.showTextForValue = function (item, option) {
+                    var selected = [];
+                    if (typeof item !== 'undefined' && item !== null && item[option]) {
+                        selected = $filter('filter')(itemOptions[option], {value: item[option]}, true);
+                    }
+                    return selected.length ? selected[0].text : 'Not set';
+                };
+                $scope.addTag = function (field) {
+                    console.log($scope.item);
+                    $scope.item[field].push("");
+                };
+
+                $scope.removeTag = function (field, id) {
+                    $scope.item[field].splice(id, 1);
+                };
+
+            },
+
+            templateUrl: 'views/admin/item-partials/labeled-item-option.html'
+        };
+    })
+
 
 ;

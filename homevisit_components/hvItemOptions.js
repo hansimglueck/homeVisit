@@ -62,6 +62,10 @@ angular.module('hvItemOptions', [])
             {value: 'previousStep', text: 'Vorhergehender Step'},
             {value: 'positivePlayerScore', text: 'Scores grösser Null'}
         ],
+        'inlineSwitchSource': [
+            {value: 'previousStep', text: 'Vorherige Daten'},
+            {value: 'go-parameter', text: 'Go-Parameter'}
+        ],
         'trigger': [{text: "Go", value: "go"}, {text: "Follow", value: "follow"}],
         'configField': [
             {value: 'alertRecipients', text: 'alertRecipients'}

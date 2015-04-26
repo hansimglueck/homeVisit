@@ -1,10 +1,3 @@
-<div>
-    <span editable-textarea="item.text"
-          e-rows="7" e-cols="40" e-name="text"
-          onaftersave="saveItem()">
-          {{ item.text || '-' }}
-        </span>
-<!--
-    <js-tree ng-hide="true" tree-events="select_node:nodeSelected" tree-ajax="/fileBrowser"></js-tree>
-    -->
+<div class="labeled-option-group">
+    <labeled-item-option field="text" title="File" type="textarea" item="item" saveitem="saveItem()"></labeled-item-option>
 </div>

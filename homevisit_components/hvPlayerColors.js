@@ -19,3 +19,4 @@ angular.module('hvPlayerColors', [])
         '#000000',     //lila
         '#000000'      //pink
     ]);
+

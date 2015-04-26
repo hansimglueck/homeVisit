@@ -1,8 +1,12 @@
-<div>
-    <span translate>Options:</span>
-    <table class="table">
-        <tbody show-vote-option>
-        </tbody>
-    </table>
-    <button class="btn btn-default" ng-click="addVoteOption($index)" translate>New option</button>
+<div class="labeled-option-group">
+    <div class="labeled-option" ng-show="(item.voteType == 'customOptions' || item.voteType == 'customMultipleOptions')">
+        <div class="labeled-option-title" translate>Options</div>
+        <div class="labeled-option-content">
+            <table class="table">
+                <tbody show-vote-option>
+                </tbody>
+            </table>
+            <button class="btn btn-primary" ng-click="addVoteOption($index)" translate>New option</button>
+        </div>
+    </div>
 </div>

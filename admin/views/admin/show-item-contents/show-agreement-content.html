@@ -1,32 +1,5 @@
-<table>
-    <tr>
-        <td translate>Text:</td>
-        <td>
-            <span editable-textarea="item.text"
-                  e-rows="7" e-cols="40" e-name="text"
-                  onaftersave="saveItem()">
-                {{ item.text || '-' }}
-            </span>
-        </td>
-    </tr>
-    <tr>
-        <td translate>Type:</td>
-        <td>
-            <span editable-select="item.agreementType" e-name="agreementType"
-                  onaftersave="saveItem()"
-                  e-ng-options="s.value as s.text for s in itemOptions.agreementType"
-                    >
-                {{ showTextForValue(item, "agreementType") }}
-            </span>
-        </td>
-        <td translate>Option:</td>
-        <td>
-            <span editable-select="item.agreementOption" e-name="agreementOption"
-                  onaftersave="saveItem()"
-                  e-ng-options="s.value as s.text for s in itemOptions.agreementOption"
-                    >
-                {{ showTextForValue(item, "agreementOption") }}
-            </span>
-        </td>
-    </tr>
-</table>
+<div class="labeled-option-group">
+    <labeled-item-option field="text" title="Text" type="textarea" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="agreementType" title="Type" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="agreementOption" title="Option" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+</div>

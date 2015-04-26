@@ -1,43 +1,6 @@
-<table>
-    <tr>
-        <td translate>Text:</td>
-        <td>
-            <span editable-textarea="item.text"
-                  e-rows="7" e-cols="40" e-name="text"
-                  onaftersave="saveItem()">
-                {{ item.text || '-' }}
-            </span>
-        </td>
-    </tr>
-    <tr>
-        <td class="text-right" translate>Cost:</td>
-        <td>
-    <span editable-text="item.cost"
-          e-rows="7" e-cols="40" e-name="cost"
-          onaftersave="saveItem()">
-          {{ item.cost || '-' }}
-        </span>
-        </td>
-    </tr>
-    <tr>
-        <td class="text-right" translate>Win:</td>
-        <td>
-    <span editable-text="item.win"
-          e-rows="7" e-cols="40" e-name="win"
-          onaftersave="saveItem()">
-          {{ item.win || '-' }}
-        </span>
-        </td>
-    </tr>
-    <tr>
-        <td translate>Time until decision:</td>
-        <td>
-<span editable-text="item.time"
-      e-rows="1" e-cols="4" e-name="time"
-      onaftersave="saveItem()">
-          {{ item.time || '-' }}
-        </span>
-        </td>
-    </tr>
-
-</table>
+<div class="labeled-option-group">
+    <labeled-item-option field="text" title="Text" type="textarea" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="cost" title="Cost" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="win" title="Win" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="time" title="Time" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
+</div>

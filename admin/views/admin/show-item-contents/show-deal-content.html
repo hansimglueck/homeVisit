@@ -1,24 +1,5 @@
-<table>
-    <tr>
-        <td translate>Type:</td>
-        <td>
-        <span editable-select="item.dealType" e-name="dealType"
-              onaftersave="saveItem()"
-              e-ng-options="s.value as s.text for s in itemOptions.dealType"
-                >
-          {{ showTextForValue(item, "dealType") }}
-        </span>
-        </td>
-    </tr>
+<div class="labeled-option-group">
+    <labeled-item-option field="dealType" title="Type" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="maxSteps" title="max steps" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
+</div>
 
-    <tr>
-        <td translate>Max. steps:</td>
-        <td>
-<span editable-text="item.maxSteps"
-      e-rows="1" e-cols="4" e-name="maxSteps"
-      onaftersave="saveItem()">
-          {{ item.maxSteps || '-' }}
-        </span>
-        </td>
-    </tr>
-</table>

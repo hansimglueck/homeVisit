@@ -1,22 +1,4 @@
-<table>
-    <tr>
-        <td class="text-right">command = </td>
-        <td>
-    <span editable-text="item.text"
-          e-rows="7" e-cols="40" e-name="text"
-          onaftersave="saveItem()">
-          {{ item.text || '-' }}
-        </span>
-        </td>
-    </tr>
-    <tr>
-        <td class="text-right">param = </td>
-        <td>
-    <span editable-text="item.parameter"
-          e-rows="7" e-cols="40" e-name="parameter"
-          onaftersave="saveItem()">
-          {{ item.parameter || '-' }}
-        </span>
-        </td>
-    </tr>
-</table>
+<div class="labeled-option-group">
+    <labeled-item-option field="text" title="command" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="parameter" title="parameter" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
+</div>

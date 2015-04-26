@@ -12,13 +12,14 @@
             </div>
             <div class="modal-body">
                 <ul class="list-unstyled">
-                    <li ng-repeat="event in status.gameEvents track by $index | filter:{type:selectedType}">
+                    <li ng-repeat="event in status.gameEvents track by $index | filter:type:selectedType">
                         <div ng-switch="event.type">
                             <div ng-switch-when="score">
                                 {{event.type}}: {{event.value}} from
                                 <span ng-switch="event.reason.indexOf('player')">
                                     <span ng-switch-when="0">
-                                        <player-icon class="player-icon-xs" pid="event.reason.split(':')[1]"></player-icon>
+                                        <player-icon ng-show="showScoringPlayers" class="player-icon-xs" pid="event.reason.split(':')[1]"></player-icon>
+                                        <span ng-hide="showScoringPlayers" translate>other Player</span>
                                     </span>
                                     <span ng-switch-when="-1">
                                         {{event.reason}}

@@ -92,7 +92,7 @@ Poll.prototype = {
             time: this.time
         }
     },
-    getWsContent: function() {
+    getPollWsContent: function() {
         return this.wsContent;
     },
     setMaxVotes: function(x) {

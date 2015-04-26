@@ -67,6 +67,7 @@ angular.module('playerAppServices', [])
                     if (data.type) {
                         if (!data.silent) fxService.playSound(data.type);
                         switch (data.type) {
+                            case "roulette":
                             case "agreement":
                             case "vote":
                                 homeFactory.type = "vote";
