@@ -21,6 +21,7 @@ angular.module('hvSetFactory', ['ngResource']).factory('setFactory', ['$resource
                     return;
                 if (typeof item.device == "undefined") item.device = ["default"];
                 if (typeof item.device == "string") item.device = [item.device];
+                item.collapsed = true;
             })
         });
         $rootScope.$broadcast("decksLoaded")

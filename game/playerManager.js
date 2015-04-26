@@ -589,7 +589,7 @@ PlayerManager.prototype = {
         wsManager.msgDevicesByRole("MC", "status", msg);
     },
     sendGameEvent: function (playerId, type, value, reason, otherPlayerId) {
-        this.sendMessage(playerId, "gameEvent", {type: type, value: value, reason: reason});
+        this.sendMessage(playerId, "gameEvent", {type: type, value: value, reason: reason, otherPlayerId: otherPlayerId});
         this.gameEvents.push({playerId: playerId, event:{type: type, value: value, reason: reason, otherPlayerId: otherPlayerId}});
     },
     getPlayerIdForClientId: function (clientId) {
@@ -614,7 +614,7 @@ PlayerManager.prototype = {
     score: function (playerId, score, reason, otherPlayerId) {
         if (typeof reason === "undefined") reason = "?";
         this.players[playerId].score += parseInt(score);
-        if (reason.indexOf("rating")>-1) {
+        if (reason == "rating") {
             this.sendGameEvent(otherPlayerId, "rating", score, "player", otherPlayerId);
         }
         this.sendGameEvent(playerId, "score", score, reason, otherPlayerId);
