@@ -97,6 +97,10 @@ angular.module('playerApp', [
                     templateUrl: 'partials/black.html',
                     controller: 'BlackController'
                 }).
+                when('/assholes', {
+                    templateUrl: 'partials/assholes.html',
+                    controller: 'AssholesController'
+                }).
                 otherwise({
                     redirectTo: '/home'
                 });

@@ -5,7 +5,6 @@ module.exports = {
         this.mapToDevice();
     },
     getWsContent: function() {
-        console.log("HAllo, hier rating-wsContent!!!");
         var bestWorst;
         var bestWorstArr;
         if (this.ratingType == "oneTeam") {

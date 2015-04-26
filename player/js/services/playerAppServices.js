@@ -152,6 +152,11 @@ angular.module('playerAppServices', [])
                                 $location.path('/deals/new/' + dealType);
                                 return;
                                 break;
+                            case "showAssholes":
+                                homeFactory.assholeData = data.data[Status.player.playerId];
+                                $location.path('/assholes');
+                                return;
+                                break;
                             case "alert":
                                 return;
                                 break;
