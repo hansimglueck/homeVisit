@@ -77,17 +77,21 @@ def cb(msg):
 			if (cmd == "countdown"):
 				countdown(int(msg["data"]["param"]))
 		elif (msg["data"]["type"] == "alert"):
-			if (mode != "countdown"):
-				### Dies ist die Alert-State-Nachricht vom Game: 0=aus, 1=an, 2=blink
-				#print "type="+msg["type"]+" - param="+msg["data"]["param"]
-				al_state = msg["data"]["param"]
-				if (al_state == 1):
-					sendSound("mpg321 alarm.mp3")
+			### Dies ist die Alert-State-Nachricht vom Game: 0=aus, 1=an, 2=blink
+			#print "type="+msg["type"]+" - param="+msg["data"]["param"]
+			al_state = msg["data"]["param"]
+			if (al_state == 1):
+				sendSound("mpg321 alarm.mp3")
+				if (mode != "countdown"):
 					turnOn()
 					#blink(msg["data"]["param"])
-				elif (al_state == 2):
+			elif (al_state == 2):
+				if (mode != "countdown"):
 					blink(0.3)
-				elif (al_state == 0):
+				else:
+					sendSound("mpg321 alarm.mp3")
+			elif (al_state == 0):
+				if (mode != "countdown"):
 					turnOff()
 
 
