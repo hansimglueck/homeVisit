@@ -610,6 +610,7 @@ PlayerManager.prototype = {
         });
     },
     score: function (playerId, score, reason) {
+        if (typeof reason === "undefined") reason = "?";
         this.players[playerId].score += parseInt(score);
         if (reason.indexOf("player")>-1) {
             this.sendGameEvent(reason.split(":")[1], "rating", score, "player:"+playerId, "You gave " + score + "Points");

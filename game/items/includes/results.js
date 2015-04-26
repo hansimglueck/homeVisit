@@ -46,7 +46,7 @@ module.exports = {
                     vote.choice.forEach(function (ch) {
                         if (correct.indexOf(ch) != -1) score = 1;
                     });
-                    playerManager.score(vote.playerId, score);
+                    playerManager.score(vote.playerId, score, "correct Answer");
                 });
                 break;
             case "majorityScore":
@@ -60,7 +60,7 @@ module.exports = {
                     vote.choice.forEach(function (ch) {
                         if (best == ch) score = 1;
                     });
-                    playerManager.score(vote.playerId, score);
+                    playerManager.score(vote.playerId, score, "opportunism");
                 });
                 break;
 
