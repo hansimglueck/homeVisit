@@ -66,10 +66,8 @@
 }
 
 .countdown {
-    /*left: -200px;
-    top: -180px;
-    font-size: 300px;
-    text-align: left;*/
+    position: relative;
+    left: 150px;
 }
 
 .countdown-background {
@@ -81,6 +79,7 @@
 .countdown-counter {
     font-size: 0.8em;
     top: -20px;
+    left: 150px;
 }
 
 .countdown-animate.ng-enter {

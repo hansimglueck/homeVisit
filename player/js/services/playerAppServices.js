@@ -8,7 +8,13 @@ angular.module('playerAppServices', [])
         homeFactory.voteId = -1;
         homeFactory.checked = 0;
         homeFactory.showGo = false;
+        homeFactory.done = false;
         homeFactory.timeout;
+
+        homeFactory.doneTask = function() {
+            homeFactory.done = true;
+            console.log(homeFactory.done);
+        };
 
         homeFactory.timedVote = function (cb) {
             //TODO: wenn eine nummer-eingabe-abstimmung läuft sollte die eingegebene nummer, wenn auch noch nicht gesendet, verwendet werden
@@ -52,12 +58,18 @@ angular.module('playerAppServices', [])
             $location.path("/voteFinished");
         };
 
-        homeFactory.freeze = function() {
-            Socket.emit("score", {playerId: Status.player.playerId, score: -1, reason: "timeout", otherPlayerId:Status.player.playerId});
+        homeFactory.freeze = function () {
+            Socket.emit("score", {
+                playerId: Status.player.playerId,
+                score: -1,
+                reason: "timeout",
+                otherPlayerId: Status.player.playerId
+            });
             $location.path("freeze");
         };
 
-        homeFactory.cancelCountdown = function() {
+        homeFactory.cancelCountdown = function () {
+
             if (homeFactory.timeout) {
                 console.log("cancel timeout!");
                 $timeout.cancel(homeFactory.timeout);
@@ -67,6 +79,7 @@ angular.module('playerAppServices', [])
 
         homeFactory.start = function () {
             Socket.on('display', function (data) {
+                if (data.type !== "alert") homeFactory.done = false;
                 console.log("new display: " + data.type);
                 fxService.cancelCountdown();
                 homeFactory.type = "card";
@@ -78,7 +91,7 @@ angular.module('playerAppServices', [])
                     if (typeof data.showGo != "undefined") homeFactory.showGo = data.showGo;
                     homeFactory.displayData = data;
                     if (data.type) {
-                        if (!data.silent) fxService.playSound(data.type);
+                        if (!data.silent && !(data.type === "alert")) fxService.playSound(data.type);
                         switch (data.type) {
                             case "roulette":
                             case "agreement":
@@ -133,9 +146,9 @@ angular.module('playerAppServices', [])
                             case "rating":
                                 homeFactory.type = "rating";
                                 var path = "/rating";
-                                if (data.ratingType ==="allTeams") {
+                                if (data.ratingType === "allTeams") {
                                     path += "/player";
-                                    if (data.posNeg == "+1") path+= "/1";
+                                    if (data.posNeg == "+1") path += "/1";
                                     else path += "/-1";
                                 }
                                 if (data.ratingType === "oneTeam") {
@@ -171,9 +184,21 @@ angular.module('playerAppServices', [])
                                 return;
                                 break;
                             case "alert":
-                                homeFactory.timedVote(homeFactory.freeze);
+                                if (homeFactory.type == "vote") return;
+                                switch (data.param) {
+                                    case 0:
+                                        homeFactory.cancelCountdown();
+                                        break;
+                                    case 1:
+                                        if (!homeFactory.done) fxService.playSound('alert');
+                                        break;
+                                    case 2:
+                                        if (!homeFactory.done) homeFactory.timedVote(homeFactory.freeze);
+                                        break;
+                                }
                                 return;
                                 break;
+
                         }
                         $location.path('/home');
 
@@ -222,7 +247,7 @@ angular.module('playerAppServices', [])
         Socket.on('gameEvent', function (data) {
             console.log("new gameEvent: " + data);
             statusFactory.gameEvents.push(data);
-            if (statusFactory.gameEventTypes.indexOf(data.type)==-1) statusFactory.gameEventTypes.push(data.type);
+            if (statusFactory.gameEventTypes.indexOf(data.type) == -1) statusFactory.gameEventTypes.push(data.type);
         });
         Socket.on('inventory', function (data) {
             console.log(data);
@@ -272,22 +297,22 @@ angular.module('playerAppServices', [])
                 return !player.busy && player.joined && player.playerId !== statusFactory.player.playerId;
             })
         };
-        statusFactory.getAllied = function() {
-            return statusFactory.otherPlayers[statusFactory.player.playerId].relations.filter(function(rel){
-                return rel.type=="alliance"
-            }).map(function(rel) {
+        statusFactory.getAllied = function () {
+            return statusFactory.otherPlayers[statusFactory.player.playerId].relations.filter(function (rel) {
+                return rel.type == "alliance"
+            }).map(function (rel) {
                 return rel.playerIds;
             }).reduce(function (prev, curr) {
                 return prev.concat(curr)
-            },[]).reduce(function (prev, curr) {
+            }, []).reduce(function (prev, curr) {
                 if (prev.indexOf(curr) < 0 && curr != statusFactory.player.playerId) prev.push(curr);
                 return prev;
-            },[]);
+            }, []);
         };
-        statusFactory.getPlayerOnTurn = function() {
-            var x = statusFactory.otherPlayers.filter(function(player){
+        statusFactory.getPlayerOnTurn = function () {
+            var x = statusFactory.otherPlayers.filter(function (player) {
                 return player.onTurn == true;
-            }).map(function(player){
+            }).map(function (player) {
                 return player.playerId;
             });
             if (x.length > 0) return x[0];
@@ -316,7 +341,7 @@ angular.module('playerAppServices', [])
         var fxService = {};
         fxService.sound = [];
         fxService.sound["vote"] = ngAudio.load("sounds/tiny-01.mp3");
-        fxService.sound["alert"] = ngAudio.load("sounds/tiny-01.mp3");
+        fxService.sound["alert"] = ngAudio.load("sounds/alarm.mp3");
         fxService.sound["results"] = ngAudio.load("sounds/whoosh3.mp3");
         fxService.sound["card"] = ngAudio.load("sounds/karte1.mp3");
         fxService.sound["rating"] = ngAudio.load("sounds/karte2.mp3");
@@ -424,7 +449,7 @@ angular.module('playerAppServices', [])
         dealFactory.subject;
         dealFactory.busy = false;
         Socket.on('deal', function (deal) {
-            if (dealFactory.busy) dealFactory.sendMessage(deal, {type:"deny"});
+            if (dealFactory.busy) dealFactory.sendMessage(deal, {type: "deny"});
             if (dealFactory.deals.hasOwnProperty(deal.id)) {
                 dealFactory.deals[deal.id].state = deal.state;
                 dealFactory.deals[deal.id].messages = deal.messages;
