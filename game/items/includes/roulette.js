@@ -24,10 +24,7 @@ module.exports = {
         return this.poll.getResult();
     },
     getWsContent: function () {
-        return {
-            type: this.type,
-            text: this.text
-        };
+        return this.poll.getPollWsContent();
     }
 };
 

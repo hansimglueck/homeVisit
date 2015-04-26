@@ -28,12 +28,7 @@ module.exports = {
         return this.poll.getResult();
     },
     getWsContent: function () {
-        return {
-            type: this.type,
-            command: this.text,
-            param: this.parameter,
-            device: this.device
-        };
+        return this.poll.getPollWsContent();
     }
 };
 
