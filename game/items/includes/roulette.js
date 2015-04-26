@@ -26,9 +26,7 @@ module.exports = {
     getWsContent: function () {
         return {
             type: this.type,
-            command: this.text,
-            param: this.parameter,
-            device: this.device
+            text: this.text
         };
     }
 };
