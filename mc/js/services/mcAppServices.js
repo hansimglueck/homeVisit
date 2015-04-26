@@ -62,105 +62,170 @@ angular.module('mcAppServices', [])
                 note: "aus dieser Gegend",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [1,-1,1,-1,1,1,-1,0,-1,-1,-1,-1,1,-1,-1]
             },
             {
                 question: "Wer an diesem Tisch war einmal Klassensprecher?",
                 note: "Klassensprecher",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [1,1,-1,1,1,1,1,1,-1,1,1,1,1,1,-1]
             },
             {
                 question: "Wer hat schon mal hoch gewonnen?",
                 note: "hoch gewonnen",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [1,1,1,1,1,-1,-1,-1,-1,-1,1,-1,-1,-1,-1]
             },
             {
                 question: "Wer war oder ist Parteimitglied?",
                 note: "Parteimitglied",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,1,-1]
             },
             {
                 question: "Wer engagiert sich in einem Verein oder in einer NGO?",
                 note: "Verein/NGO",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [1,1,-1,-1,1,-1,1,1,-1,-1,-1,1,1,1,-1]
             },
             {
                 question: "Wer am Tisch hat eine Arbeit, von der er oder sie leben kann?",
                 note: "bezahlte Arbeit",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,-1]
             },
             {
                 question: "Wer hat einen Konflikt schon mal körperlich ausgetragen?",
                 note: "körperlicher Konflikt",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [-1,-1,0,0,-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 question: "Wer hat eine Nationalflagge bei sich zu Hause?",
                 note: "Nationalflagge",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [-1,-1,-1,-1,1,-1,1,-1,-1,-1,-1,1,-1,-1,-1]
             },
             {
                 question: "Wer hat schon mal seine nationale Herkunft verleugnet?",
                 note: "Herkunft verleugnet",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [1,1,-1,-1,1,1,1,-1,1,-1,1,-1,-1,-1,-1]
             },
             {
                 question: "Wer fühlt sich mehr als Europäer denn als Bürger seines Landes?",
                 note: "gefühlter Europäer",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,-1,-1,1,-1]
             },
             {
                 question: "Wer hat Angst vor der Zukunft?",
                 note: "Angst vor Zukunft",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [-1,1,-1,1,-1,1,1,1,-1,-1,-1,1,-1,1,-1]
             },
             {
                 question: "Wer findet die Runde hier grundsätzlich vertrauenswürdig?",
                 note: "vertrauenswürdige Runde",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [-1,1,-1,-1,-1,1,-1,1,1,-1,-1,-1,1,1,-1]
             },
             {
                 question: "Meine Solidaritätsbereitschaft",
                 note: "Solidaritätsbereitschaft",
                 type: 'fingers',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [-1,3,3,-1,3,-1,-1,-1,3,-1,-1,-1,3,-1,-1]
             },
             {
                 question: "Mein diplomatisches Geschick",
                 note: "diplomatisches Geschick",
                 type: 'fingers',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [4,-1,-1,5,2,-1,4,3,3,-1,-1,-1,5,3,-1]
             },
             {
                 question: "Mein Ehrgeiz",
                 note: "Ehrgeiz",
                 type: 'fingers',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [4,5,0,5,4,3,3,2,4,5,3,4,5,4,-1]
             },
             {
                 question: "Mein Vertrauen in die Demokratie",
                 note: "Vertrauen in Demokratie",
                 type: 'fingers',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [1,2,1,3,2,2,3,2,3,2,4,2,4,2,-1]
             },
             {
                 question: "Mein Vertrauen in das Spiel der Märkte",
-                note: "Vertauen in Spiel der Märkte",
+                note: "Vertrauen in Spiel der Märkte",
                 type: 'fingers',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [0,0,1,1,1,0,2,0,2,5,5,0,2,2,-1]
             }
         ];
         return pollFactory;
+    })
+    .factory('Teams', function () {
+        var teamFactory = {};
+        teamFactory.categories = [
+            {
+                category: "Überflieger",
+                questionNr: [14, 1, 2],
+                weight: [1, 1, 1],
+                players: []
+            },
+            {
+                category: "Politiker",
+                questionNr: [3, 1, 13, 15],
+                weight: [1, 1, 1, 1],
+                players: []
+            },
+            {
+                category: "Anpacker",
+                questionNr: [6, 4, 14, 5],
+                weight: [1, 1, 1, 1],
+                players: []
+            },
+            {
+                category: "Angsthasen",
+                questionNr: [10, 11, 6, 14],
+                weight: [1, 1, -1, -1],
+                players: []
+            },
+            {
+                category: "Nette",
+                questionNr: [12, 6, 15, 9],
+                weight: [1, -1, 1, 1],
+                players: []
+            },
+            {
+                category: "Nationalflaggen-Haber",
+                questionNr: [7, 8, 9, 10],
+                weight: [1, -1, -1, 1],
+                players: []
+            },
+            {
+                category: "Unterbezahlte",
+                questionNr: [5, 16],
+                weight: [-1, 1],
+                players: []
+            }
+        ];
+        return teamFactory;
     })
     .factory('Matches', function () {
         var matchFactory = {};
@@ -202,6 +267,25 @@ angular.module('mcAppServices', [])
             gettext('player') + ' 14',
             gettext('player') + ' 15'
         ];
+        
+        //playerNamesFactory.names = [
+        //    'Soren',
+        //    'Anna 1',
+        //    'Max',
+        //    'Wilke',
+        //    'Fara',
+        //    'Mona',
+        //    'Amelie',
+        //    'Annika',
+        //    'Julia',
+        //    'Anna 2',
+        //    'Lukas',
+        //    'Philine',
+        //    'Imanuel',
+        //    'Jasmin',
+        //    'X'
+        //];
+        
         return playerNamesFactory;
     })
     .factory('Deck', function(Socket, setFactory){
