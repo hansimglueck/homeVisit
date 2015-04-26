@@ -12,7 +12,7 @@
             </div>
             <div class="modal-body">
                 <ul class="list-unstyled">
-                    <li ng-repeat="event in status.gameEvents track by $index | filter:{type:selectedType}">
+                    <li ng-repeat="event in status.gameEvents track by $index | filter:type:selectedType">
                         <div ng-switch="event.type">
                             <div ng-switch-when="score">
                                 {{event.type}}: {{event.value}} from
