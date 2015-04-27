@@ -40,6 +40,7 @@ chart-legend {
     flex: 1 1 auto;
 }
 
+
 .chart-container .pie-legend {
      text-align: left;
 }
@@ -48,3 +49,6 @@ chart-legend {
     white-space: normal !important;
 }
 
+.noflex {
+    display: block;
+}
