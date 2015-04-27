@@ -21,7 +21,7 @@ if (typeof deckTitle === 'undefined') {
 }
 
 if (typeof url === 'undefined') {
-    url = 'https://docs.google.com/spreadsheets/d/1Of_mzFBUkaG-VrKPthuWZqZLlwoxIJXG-pcwpgbLWto/pub?output=csv';
+    url = 'https://docs.google.com/spreadsheets/d/1FmZuCtTrGx_03p8A3kWPxY-vBSuTWRcMYEX3W932em4/pub?output=csv';
     console.log('No URL given: using default spreadsheet URL.');
 }
 
