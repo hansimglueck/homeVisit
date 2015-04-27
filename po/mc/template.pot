@@ -48,12 +48,16 @@ msgstr ""
 msgid "Details"
 msgstr ""
 
-#: mc/index.html:29
-msgid "Game"
+#: mc/views/dummies.html:69
+msgid "Fill the rest"
 msgstr ""
 
 #: mc/index.html:49
 msgid "GO"
+msgstr ""
+
+#: mc/index.html:29
+msgid "Game"
 msgstr ""
 
 #: mc/js/controllers/players.js:55
@@ -72,30 +76,12 @@ msgstr ""
 msgid "My Turn!"
 msgstr ""
 
-#: mc/views/item.html:10
-msgid "Next:"
-msgstr ""
-
 #: mc/views/players.html:10
 msgid "Next!"
 msgstr ""
 
-#: mc/js/services/mcAppServices.js:254
-#: mc/js/services/mcAppServices.js:255
-#: mc/js/services/mcAppServices.js:256
-#: mc/js/services/mcAppServices.js:257
-#: mc/js/services/mcAppServices.js:258
-#: mc/js/services/mcAppServices.js:259
-#: mc/js/services/mcAppServices.js:260
-#: mc/js/services/mcAppServices.js:261
-#: mc/js/services/mcAppServices.js:262
-#: mc/js/services/mcAppServices.js:263
-#: mc/js/services/mcAppServices.js:264
-#: mc/js/services/mcAppServices.js:265
-#: mc/js/services/mcAppServices.js:266
-#: mc/js/services/mcAppServices.js:267
-#: mc/js/services/mcAppServices.js:268
-msgid "player"
+#: mc/views/item.html:10
+msgid "Next:"
 msgstr ""
 
 #: mc/views/dummies.html:122
@@ -122,6 +108,10 @@ msgstr ""
 msgid "Previous:"
 msgstr ""
 
+#: mc/views/maintenance.html:6
+msgid "RESTART GAME"
+msgstr ""
+
 #: mc/views/players.html:6
 #: mc/views/players.html:9
 msgid "Rank: {{player.rank}}"
@@ -129,10 +119,6 @@ msgstr ""
 
 #: mc/js/services/mcAppServices.js:337
 msgid "Really restart?"
-msgstr ""
-
-#: mc/views/maintenance.html:6
-msgid "RESTART GAME"
 msgstr ""
 
 #: mc/views/item.html:31
@@ -157,4 +143,22 @@ msgstr ""
 
 #: mc/views/about.html:1
 msgid "This is the about view."
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:254
+#: mc/js/services/mcAppServices.js:255
+#: mc/js/services/mcAppServices.js:256
+#: mc/js/services/mcAppServices.js:257
+#: mc/js/services/mcAppServices.js:258
+#: mc/js/services/mcAppServices.js:259
+#: mc/js/services/mcAppServices.js:260
+#: mc/js/services/mcAppServices.js:261
+#: mc/js/services/mcAppServices.js:262
+#: mc/js/services/mcAppServices.js:263
+#: mc/js/services/mcAppServices.js:264
+#: mc/js/services/mcAppServices.js:265
+#: mc/js/services/mcAppServices.js:266
+#: mc/js/services/mcAppServices.js:267
+#: mc/js/services/mcAppServices.js:268
+msgid "player"
 msgstr ""

@@ -36,10 +36,6 @@ msgstr ""
 msgid "Correct: {{home.correctAnswer}}"
 msgstr ""
 
-#: player/partials/assholes.html:1
-msgid "Diese Spieler waren gemein zu Dir:"
-msgstr ""
-
 #: player/partials/deals/deal.new.html:4
 msgid "Do you want to deal {{subject}} with"
 msgstr ""
@@ -56,10 +52,6 @@ msgstr ""
 msgid "Min: {{home.data[2]}}"
 msgstr ""
 
-#: player/partials/assholes.html:4
-msgid "Minuspunkte"
-msgstr ""
-
 #: player/partials/deals/deal.html:10
 msgid "New deal"
 msgstr ""
@@ -68,8 +60,8 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: player/views/game-events.html:24
-msgid "other Player"
+#: player/partials/assholes.html:12
+msgid "Nobody was mean to you."
 msgstr ""
 
 #: player/partials/rating/rating.player.html:2
@@ -88,12 +80,12 @@ msgstr ""
 msgid "Score: {{status.player.score}}"
 msgstr ""
 
-#: player/partials/rating/rating.html:9
-msgid "should get {{score}} points from you?"
-msgstr ""
-
 #: player/partials/black.html:1
 msgid "Silence please. Now is reading:"
+msgstr ""
+
+#: player/partials/assholes.html:2
+msgid "These teams were mean to you:"
 msgstr ""
 
 #: player/partials/deals/deal.details.html:2
@@ -124,10 +116,6 @@ msgstr ""
 msgid "Waiting for reply..."
 msgstr ""
 
-#: player/partials/deals/deal.html:5
-msgid "with team {{deal.player1Id}}"
-msgstr ""
-
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
 msgstr ""
@@ -140,14 +128,32 @@ msgstr ""
 msgid "You can rate these Teams up or down!"
 msgstr ""
 
-#: player/partials/voteFinished.html:1
-msgid "Your choice is sent!"
-msgstr ""
-
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
+msgstr ""
+
+#: player/partials/voteFinished.html:1
+msgid "Your choice is sent!"
 msgstr ""
 
 #: player/partials/vote.html:5
 msgid "Your voting weight depends on your rank!"
 msgstr ""
+
+#: player/views/game-events.html:24
+msgid "other Player"
+msgstr ""
+
+#: player/partials/rating/rating.html:9
+msgid "should get {{score}} points from you?"
+msgstr ""
+
+#: player/partials/deals/deal.html:5
+msgid "with team {{deal.player1Id}}"
+msgstr ""
+
+#: player/partials/assholes.html:7
+msgid "{{minuspoints}} minus point"
+msgid_plural "{{minuspoints}} minus points"
+msgstr[0] ""
+msgstr[1] ""

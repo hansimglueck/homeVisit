@@ -4,16 +4,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: admin/views/admin/item-partials/labeled-item-option.html:2
-msgid "{{title}}"
+#: admin/views/master-buttons.html:12
+msgid "ALARM"
 msgstr ""
 
 #: admin/views/admin/show-deck.html:27
 msgid "Add new item"
-msgstr ""
-
-#: admin/views/master-buttons.html:12
-msgid "ALARM"
 msgstr ""
 
 #: admin/js/controllers/masterControllers.js:154
@@ -22,6 +18,10 @@ msgstr ""
 
 #: admin/views/master-buttons.html:11
 msgid "BACK"
+msgstr ""
+
+#: admin/views/raspi-manager.html:93
+msgid "CONNECT DB"
 msgstr ""
 
 #: admin/views/admin/move-item.html:23
@@ -42,10 +42,6 @@ msgstr ""
 
 #: admin/partials/home.html:9
 msgid "Configuration"
-msgstr ""
-
-#: admin/views/raspi-manager.html:93
-msgid "CONNECT DB"
 msgstr ""
 
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:5
@@ -109,10 +105,6 @@ msgstr ""
 msgid "Export CSV"
 msgstr ""
 
-#: admin/views/master-buttons.html:3
-msgid "Game stopped"
-msgstr ""
-
 #: admin/views/master-buttons.html:6
 msgid "GO"
 msgstr ""
@@ -123,6 +115,10 @@ msgstr ""
 
 #: admin/views/master-buttons.html:21
 msgid "GOTO"
+msgstr ""
+
+#: admin/views/master-buttons.html:3
+msgid "Game stopped"
 msgstr ""
 
 #: admin/views/admin/import-json.html:15
@@ -169,12 +165,12 @@ msgstr ""
 msgid "Move item"
 msgstr ""
 
-#: admin/views/admin/show-set.html:12
-msgid "New deck"
-msgstr ""
-
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:22
 msgid "New Deck"
+msgstr ""
+
+#: admin/views/admin/show-set.html:12
+msgid "New deck"
 msgstr ""
 
 #: admin/views/admin/show-item-contents/show-switch-content.html:9
@@ -184,6 +180,10 @@ msgstr ""
 
 #: admin/views/admin/import-json.html:12
 msgid "New title:"
+msgstr ""
+
+#: admin/views/raspi-manager.html:14
+msgid "OS Info for {{osInfo.hostname}}"
 msgstr ""
 
 #: admin/views/raspi-manager.html:60
@@ -200,10 +200,6 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
-#: admin/views/raspi-manager.html:14
-msgid "OS Info for {{osInfo.hostname}}"
-msgstr ""
-
 #: admin/partials/home.html:5
 msgid "Playback"
 msgstr ""
@@ -212,16 +208,8 @@ msgstr ""
 msgid "Process"
 msgstr ""
 
-#: admin/views/player-list.html:7
-msgid "Rank"
-msgstr ""
-
 #: admin/partials/home.html:19
 msgid "RASPI Control"
-msgstr ""
-
-#: admin/js/controllers/masterControllers.js:84
-msgid "Really delete???"
 msgstr ""
 
 #: admin/js/controllers/masterControllers.js:155
@@ -230,10 +218,6 @@ msgstr ""
 
 #: admin/views/raspi-manager.html:100
 msgid "REBOOT"
-msgstr ""
-
-#: admin/partials/home.html:17
-msgid "Refresh"
 msgstr ""
 
 #: admin/views/master-buttons.html:10
@@ -260,6 +244,22 @@ msgstr ""
 msgid "RESTART WI-FI"
 msgstr ""
 
+#: admin/views/player-list.html:7
+msgid "Rank"
+msgstr ""
+
+#: admin/js/controllers/masterControllers.js:84
+msgid "Really delete???"
+msgstr ""
+
+#: admin/partials/home.html:17
+msgid "Refresh"
+msgstr ""
+
+#: admin/views/raspi-manager.html:99
+msgid "SHUTDOWN"
+msgstr ""
+
 #: admin/views/admin/edit-new-deck.html:17
 msgid "Save"
 msgstr ""
@@ -267,14 +267,6 @@ msgstr ""
 #: admin/views/admin/show-item-contents/show-vote-option.html:6
 #: admin/views/player-list.html:8
 msgid "Score"
-msgstr ""
-
-#: admin/views/admin/show-sequence-item.html:33
-msgid "sec"
-msgstr ""
-
-#: admin/views/raspi-manager.html:99
-msgid "SHUTDOWN"
 msgstr ""
 
 #: admin/views/admin/show-sequence-item.html:36
@@ -323,4 +315,12 @@ msgstr ""
 
 #: admin/views/raspi-manager.html:78
 msgid "Wi-Fi password"
+msgstr ""
+
+#: admin/views/admin/show-sequence-item.html:33
+msgid "sec"
+msgstr ""
+
+#: admin/views/admin/item-partials/labeled-item-option.html:2
+msgid "{{title}}"
 msgstr ""
