@@ -73,8 +73,6 @@ angular.module("dealControllers", [])
                 type: "cancel"
             }],
             [
-                {type: "request", value: 1},
-                {type: "request", value: 2},
                 {type: "confirm"},
                 {type: "deny"}
             ]

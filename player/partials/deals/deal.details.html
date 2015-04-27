@@ -20,7 +20,7 @@
                                  ng-controller="DealMessageController">
 
                                 <player-icon class="player-icon-xs" pid="message.playerId"></player-icon>
-                                {{getMessageText()[0]}} {{getMessageText()[1]}}
+                                {{getMessageText()[0]}}
                             </div>
                         </div>
                         <div ng-if="getMyDealState()===1" translate>Waiting for reply...</div>
@@ -28,7 +28,7 @@
                             <div ng-repeat="message in getMessageOptions() track by $index"
                                  ng-controller="DealMessageController">
                                 <button class="btn" ng-click="sendMessage()">
-                                    {{getMessageText()[0]}} {{getMessageText()[1]}}
+                                    {{getMessageText()[0]}}
                                 </button>
 
                                 <!--
