@@ -39,34 +39,26 @@ module.exports = function(grunt) {
         nggettext_extract: {
             pot: {
                 files: {
-                    'po/common/template.pot': [
+                    'po/template.pot': [
                         'homevisit_components/**/*.html',
-                        'homevisit_components/**/*.js'
-                    ],
-                    'po/admin/template.pot': [
+                        'homevisit_components/**/*.js',
                         'admin/**/*.html',
-                        'admin/**/*.js'
-                    ],
-                    'po/player/template.pot': [
+                        'admin/**/*.js',
                         'player/**/*.html',
-                        'player/**/*.js'
-                    ],
-                    'po/mc/template.pot': [
+                        'player/**/*.js',
                         'mc/**/*.html',
                         'mc/**/*.js'
                     ]
                 }
-            },
+            }
         },
 
         nggettext_compile: {
             all: {
                 files: {
-                    'admin/js/translations.js':             ['po/common/*.po', 'po/admin/*.po'],
-                    'player/js/translations.js':            ['po/common/*.po', 'po/player/*.po'],
-                    'mc/js/translations.js':                ['po/common/*.po', 'po/mc/*.po']
+                    'homevisit_components/translations.js': ['po/*.po']
                 }
-            },
+            }
         }
 
     });

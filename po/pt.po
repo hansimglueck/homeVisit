@@ -1,0 +1,649 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.5.5\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: pt\n"
+
+#: admin/views/master-buttons.html:12 mc/index.html:40
+msgid "ALARM"
+msgstr ""
+
+#: admin/views/admin/show-deck.html:27
+msgid "Add new item"
+msgstr ""
+
+#: admin/js/controllers/masterControllers.js:154
+msgid "Are you sure?"
+msgstr ""
+
+#: player/partials/results.html:16
+msgid "Average: {{home.data[1]}}"
+msgstr ""
+
+#: mc/js/controllers/players.js:63
+msgid "Away"
+msgstr ""
+
+#: admin/views/master-buttons.html:11 mc/views/item.html:2
+msgid "BACK"
+msgstr ""
+
+#: mc/views/player.details.html:10
+msgid "BACK TO GAME!"
+msgstr ""
+
+#: player/partials/rating/rating.html:18
+msgid "Back"
+msgstr ""
+
+#: admin/views/raspi-manager.html:93
+msgid "CONNECT DB"
+msgstr ""
+
+#: admin/views/admin/move-item.html:23 player/partials/deals/deal.new.html:12
+#: player/partials/rating/rating.html:13 player/partials/voteConfirm.html:5
+msgid "Cancel"
+msgstr ""
+
+#: mc/js/controllers/dummies.js:58
+msgid "Change name"
+msgstr ""
+
+#: admin/views/player-list.html:10
+msgid "Change score"
+msgstr ""
+
+#: player/partials/deals/deal.choosePlayer.html:1
+msgid "Choose Player to deal {{subject}} with:"
+msgstr ""
+
+#: admin/views/admin/move-item.html:5
+msgid "Choose target where item will be appended."
+msgstr ""
+
+#: player/partials/deals/deal.chooseSubject.html:1
+msgid "Choose type of deal:"
+msgstr ""
+
+#: admin/views/player-list.html:9
+msgid "Color"
+msgstr ""
+
+#: mc/js/controllers/players.js:53
+msgid "Come Back!"
+msgstr ""
+
+#: mc/views/item.html:33
+msgid "Command"
+msgstr ""
+
+#: admin/partials/home.html:9 mc/views/item.html:34
+msgid "Configuration"
+msgstr ""
+
+#: player/partials/deals/deal.new.html:9 player/partials/rating/rating.html:12
+#: player/partials/voteConfirm.html:4
+msgid "Confirm"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-player-direct-content.html:5
+msgid "Content"
+msgstr ""
+
+#: admin/views/admin/move-item.html:22
+msgid "Copy"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-vote-option.html:5
+msgid "Correct"
+msgstr ""
+
+#: player/partials/results.html:6
+msgid "Correct: {{home.correctAnswer}}"
+msgstr ""
+
+#: admin/views/game-conf.html:19
+msgid "Current deck:"
+msgstr ""
+
+#: admin/views/master-buttons.html:2
+msgid "Current step:"
+msgstr ""
+
+#: mc/views/item.html:9
+msgid "Current:"
+msgstr ""
+
+#: homevisit_components/hvLanguage.js:7
+msgid "Czech"
+msgstr ""
+
+#: homevisit_components/hvLanguage.js:8
+msgid "Danish"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-inline-switch-option.html:4
+msgid "Deck"
+msgstr ""
+
+#: admin/partials/home.html:48
+msgid "Decks and items"
+msgstr ""
+
+#: admin/views/game-conf.html:27
+msgid "Default mapping:"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-inline-switch-option.html:18
+#: admin/views/admin/show-item-contents/show-vote-option.html:27
+msgid "Delete"
+msgstr ""
+
+#: admin/views/admin/show-deck.html:6
+msgid "Delete deck"
+msgstr ""
+
+#: admin/views/admin/edit-new-deck.html:9
+msgid "Description:"
+msgstr ""
+
+#: mc/js/controllers/players.js:40
+msgid "Deselect"
+msgstr ""
+
+#: mc/views/players.html:14
+msgid "Details"
+msgstr ""
+
+#: admin/partials/home.html:24
+msgid "Device Manager"
+msgstr ""
+
+#: admin/js/controllers/masterControllers.js:150
+msgid "Do you really want to restart the server?"
+msgstr ""
+
+#: player/partials/deals/deal.new.html:4
+msgid "Do you want to deal {{subject}} with"
+msgstr ""
+
+#: admin/views/admin/show-deck.html:9
+msgid "Duplicate deck"
+msgstr ""
+
+#: homevisit_components/hvLanguage.js:10
+msgid "Dutch"
+msgstr ""
+
+#: player/partials/home.html:10
+msgid "EUROPE"
+msgstr ""
+
+#: homevisit_components/hvLanguage.js:5
+msgid "English"
+msgstr ""
+
+#: admin/views/admin/show-deck.html:12
+msgid "Export CSV"
+msgstr ""
+
+#: mc/views/dummies.html:69
+msgid "Fill the rest"
+msgstr ""
+
+#: homevisit_components/hvLanguage.js:9
+msgid "French"
+msgstr ""
+
+#: admin/views/master-buttons.html:6 mc/index.html:49
+msgid "GO"
+msgstr ""
+
+#: admin/views/master-buttons.html:7
+msgid "GO 2"
+msgstr ""
+
+#: admin/views/master-buttons.html:21
+msgid "GOTO"
+msgstr ""
+
+#: mc/index.html:29
+msgid "Game"
+msgstr ""
+
+#: admin/views/master-buttons.html:3
+msgid "Game stopped"
+msgstr ""
+
+#: homevisit_components/hvLanguage.js:6
+msgid "German"
+msgstr ""
+
+#: admin/views/admin/import-json.html:15
+msgid "Import"
+msgstr ""
+
+#: admin/views/admin/show-set.html:15
+msgid "Import JSON"
+msgstr ""
+
+#: admin/views/admin/edit-new-deck.html:13
+msgid "Import:"
+msgstr ""
+
+#: admin/views/raspi-manager.html:56
+msgid "Interfaces"
+msgstr ""
+
+#: admin/views/player-list.html:6
+msgid "Joined"
+msgstr ""
+
+#: homevisit_components/views/language-chooser.html:2
+msgid "Language"
+msgstr ""
+
+#: mc/js/controllers/players.js:55
+msgid "Leave Table!"
+msgstr ""
+
+#: admin/views/raspi-manager.html:44
+msgid "Load"
+msgstr ""
+
+#: admin/partials/home.html:32
+msgid "Log"
+msgstr ""
+
+#: mc/index.html:35
+msgid "Maintenance"
+msgstr ""
+
+#: admin/views/admin/item-partials/item-mapping.html:2
+msgid "Mapped:"
+msgstr ""
+
+#: mc/index.html:32
+msgid "Matching"
+msgstr ""
+
+#: player/partials/results.html:18
+msgid "Max: {{home.data[3]}}"
+msgstr ""
+
+#: admin/views/raspi-manager.html:36
+msgid "Memory"
+msgstr ""
+
+#: player/partials/results.html:17
+msgid "Min: {{home.data[2]}}"
+msgstr ""
+
+#: admin/views/admin/move-item.html:21
+msgid "Move"
+msgstr ""
+
+#: admin/views/admin/move-item.html:2
+msgid "Move item"
+msgstr ""
+
+#: mc/js/controllers/players.js:61
+msgid "My Turn!"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-inline-switch-content.html:22
+msgid "New Deck"
+msgstr ""
+
+#: player/partials/deals/deal.html:10
+msgid "New deal"
+msgstr ""
+
+#: admin/views/admin/show-set.html:12
+msgid "New deck"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-switch-content.html:9
+#: admin/views/admin/show-item-contents/show-vote-content.html:16
+msgid "New option"
+msgstr ""
+
+#: admin/views/admin/import-json.html:12
+msgid "New title:"
+msgstr ""
+
+#: player/partials/home.html:1
+msgid "Next"
+msgstr ""
+
+#: mc/views/players.html:10
+msgid "Next!"
+msgstr ""
+
+#: mc/views/item.html:10
+msgid "Next:"
+msgstr ""
+
+#: player/partials/assholes.html:12
+msgid "Nobody was mean to you."
+msgstr ""
+
+#: homevisit_components/hvLanguage.js:11
+msgid "Norwegian"
+msgstr ""
+
+#: admin/views/raspi-manager.html:14
+msgid "OS Info for {{osInfo.hostname}}"
+msgstr ""
+
+#: admin/views/raspi-manager.html:60
+msgid "Online"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-inline-switch-option.html:3
+#: admin/views/admin/show-item-contents/show-vote-option.html:3
+msgid "Option"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-switch-content.html:3
+#: admin/views/admin/show-item-contents/show-vote-content.html:10
+msgid "Options"
+msgstr ""
+
+#: admin/partials/home.html:5
+msgid "Playback"
+msgstr ""
+
+#: mc/views/dummies.html:122
+msgid "Player"
+msgstr ""
+
+#: mc/views/item.html:35
+msgid "Players are dealing"
+msgstr ""
+
+#: mc/views/item.html:36
+msgid "Players are rating others"
+msgstr ""
+
+#: mc/views/item.html:16
+msgid "Players are voting"
+msgstr ""
+
+#: player/partials/rating/rating.player.html:2
+msgid "Please rate a team! Give {{score}} point!"
+msgstr ""
+
+#: player/partials/rating/rating.done.html:1
+msgid "Point given!"
+msgstr ""
+
+#: homevisit_components/hvLanguage.js:12
+msgid "Polish"
+msgstr ""
+
+#: mc/index.html:26
+msgid "Polls"
+msgstr ""
+
+#: homevisit_components/hvLanguage.js:13
+msgid "Portuguese"
+msgstr ""
+
+#: mc/views/item.html:8
+msgid "Previous:"
+msgstr ""
+
+#: admin/views/admin/import-json.html:4
+msgid "Process"
+msgstr ""
+
+#: admin/partials/home.html:19
+msgid "RASPI Control"
+msgstr ""
+
+#: admin/js/controllers/masterControllers.js:155
+msgid "REALLY REALLY SURE??????????"
+msgstr ""
+
+#: admin/views/raspi-manager.html:100
+msgid "REBOOT"
+msgstr ""
+
+#: admin/views/master-buttons.html:10
+msgid "REGO"
+msgstr ""
+
+#: admin/views/show-device-list.html:7
+msgid "RELOAD"
+msgstr ""
+
+#: admin/views/raspi-manager.html:94
+msgid "REPAIR DB"
+msgstr ""
+
+#: admin/views/master-buttons.html:5
+msgid "RESTART"
+msgstr ""
+
+#: mc/views/maintenance.html:6
+msgid "RESTART GAME"
+msgstr ""
+
+#: admin/views/raspi-manager.html:9
+msgid "RESTART SERVER"
+msgstr ""
+
+#: admin/views/raspi-manager.html:82
+msgid "RESTART WI-FI"
+msgstr ""
+
+#: admin/views/player-list.html:7
+msgid "Rank"
+msgstr ""
+
+#: mc/views/players.html:6 mc/views/players.html:9
+msgid "Rank: {{player.rank}}"
+msgstr ""
+
+#: player/index.html:157
+msgid "Rank: {{status.player.rank}}"
+msgstr ""
+
+#: admin/js/controllers/masterControllers.js:84
+msgid "Really delete???"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:342
+msgid "Really restart?"
+msgstr ""
+
+#: admin/partials/home.html:17
+msgid "Refresh"
+msgstr ""
+
+#: mc/views/item.html:31
+msgid "Results are displayed"
+msgstr ""
+
+#: admin/views/raspi-manager.html:99
+msgid "SHUTDOWN"
+msgstr ""
+
+#: admin/views/admin/edit-new-deck.html:17
+msgid "Save"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-vote-option.html:6
+#: admin/views/player-list.html:8
+msgid "Score"
+msgstr ""
+
+#: mc/views/player.details.html:2
+msgid "Score for Player {{playerId}}"
+msgstr ""
+
+#: mc/views/players.html:6
+msgid "Score: {{player.score}}"
+msgstr ""
+
+#: player/index.html:158
+msgid "Score: {{status.player.score}}"
+msgstr ""
+
+#: mc/js/controllers/players.js:42
+msgid "Select"
+msgstr ""
+
+#: player/partials/black.html:1
+msgid "Silence please. Now is reading:"
+msgstr ""
+
+#: admin/views/admin/show-sequence-item.html:36
+msgid "Silent"
+msgstr ""
+
+#: mc/views/item.html:32
+msgid "Sound is playing:"
+msgstr ""
+
+#: admin/views/raspi-manager.html:28
+msgid "System"
+msgstr ""
+
+#: admin/views/player-list.html:5
+msgid "Team ID"
+msgstr ""
+
+#: admin/partials/home.html:28
+msgid "Teams"
+msgstr ""
+
+#: player/partials/assholes.html:2
+msgid "These teams were mean to you:"
+msgstr ""
+
+#: player/partials/deals/deal.details.html:2
+msgid "This deal does not exist!"
+msgstr ""
+
+#: player/partials/deals/deal.details.html:46
+msgid "This deal is ACTIVE."
+msgstr ""
+
+#: player/partials/deals/deal.details.html:47
+msgid "This deal was DENIED."
+msgstr ""
+
+#: mc/views/about.html:1
+msgid "This is the about view."
+msgstr ""
+
+#: admin/views/admin/edit-new-deck.html:5
+msgid "Title:"
+msgstr ""
+
+#: admin/views/admin/show-deck.html:4
+msgid "Total duration: {{getTimeForDeck()}}"
+msgstr ""
+
+#: player/partials/results.html:15
+msgid "Total: {{home.data[0]}}"
+msgstr ""
+
+#: player/partials/deals/deal.details.html:50
+msgid "Try Again"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-player-direct-content.html:4
+msgid "Type"
+msgstr ""
+
+#: admin/views/raspi-manager.html:32
+msgid "Uptime"
+msgstr ""
+
+#: admin/views/master-content.html:8 player/partials/vote.html:19
+msgid "VOTE"
+msgstr ""
+
+#: admin/views/admin/show-sequence-item.html:30
+msgid "Wait"
+msgstr ""
+
+#: player/partials/deals/deal.details.html:26
+msgid "Waiting for reply..."
+msgstr ""
+
+#: admin/views/raspi-manager.html:75
+msgid "Wi-Fi name:"
+msgstr ""
+
+#: admin/views/raspi-manager.html:78
+msgid "Wi-Fi password"
+msgstr ""
+
+#: player/views/not-joined.html:1
+msgid "You are not joined in the game!"
+msgstr ""
+
+#: player/partials/voteConfirm.html:1
+msgid "You are voting for:"
+msgstr ""
+
+#: player/partials/rating/rating.score.html:2
+msgid "You can rate these Teams up or down!"
+msgstr ""
+
+#: player/partials/freeze.html:1
+msgid "Your Time is Up. Scored one down!"
+msgstr ""
+
+#: player/partials/voteFinished.html:1
+msgid "Your choice is sent!"
+msgstr ""
+
+#: player/partials/vote.html:5
+msgid "Your voting weight depends on your rank!"
+msgstr ""
+
+#: player/views/game-events.html:24
+msgid "other Player"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:259 mc/js/services/mcAppServices.js:260
+#: mc/js/services/mcAppServices.js:261 mc/js/services/mcAppServices.js:262
+#: mc/js/services/mcAppServices.js:263 mc/js/services/mcAppServices.js:264
+#: mc/js/services/mcAppServices.js:265 mc/js/services/mcAppServices.js:266
+#: mc/js/services/mcAppServices.js:267 mc/js/services/mcAppServices.js:268
+#: mc/js/services/mcAppServices.js:269 mc/js/services/mcAppServices.js:270
+#: mc/js/services/mcAppServices.js:271 mc/js/services/mcAppServices.js:272
+#: mc/js/services/mcAppServices.js:273
+msgid "player"
+msgstr ""
+
+#: admin/views/admin/show-sequence-item.html:33
+msgid "sec"
+msgstr ""
+
+#: player/partials/rating/rating.html:9
+msgid "should get {{score}} points from you?"
+msgstr ""
+
+#: player/partials/deals/deal.html:5
+msgid "with team {{deal.player1Id}}"
+msgstr ""
+
+#: player/partials/assholes.html:7
+msgid "{{minuspoints}} minus point"
+msgid_plural "{{minuspoints}} minus points"
+msgstr[0] ""
+msgstr[1] ""
