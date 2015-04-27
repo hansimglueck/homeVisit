@@ -1,6 +1,12 @@
-<h3 translate>Diese Spieler waren gemein zu Dir:</h3>
-<ul class="list-unstyled">
-    <li ng-repeat="dat in home.assholeData track by $index">
-        <div ng-hide="(dat==0) || ($index = status.player.playerId)"><player-icon pid="$index"></player-icon>{{dat}} <span translate>Minuspunkte</span></div>
-    </li>
-</ul>
+<div ng-if="!nothing">
+  <h3 translate>These teams were mean to you:</h3>
+  <ul class="list-unstyled">
+      <li ng-repeat="minuspoints in home.assholeData track by $index">
+          <div ng-hide="(minuspoints === 0) || ($index === status.player.playerId)">
+            <player-icon pid="$index"></player-icon>
+            <div translate translate-n="minuspoints" translate-plural="{{minuspoints}} minus points">{{minuspoints}} minus point</div>
+          </div>
+      </li>
+  </ul>
+</div>
+<p ng-if="nothing" translate>Nobody was mean to you.</p>

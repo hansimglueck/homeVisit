@@ -108,6 +108,13 @@ angular.module("gameControllers", [])
         $scope.playerColors = playerColors;
         $scope.status = Status;
         $scope.home = Home;
+        $scope.nothing = true;
+        Home.assholeData.forEach(function(d) {
+            if (d !== 0) {
+                $scope.nothing = false;
+                return false;
+            }
+        });
     })
     .controller('FreezeController', function($scope){
 
