@@ -1,9 +1,13 @@
 var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
 var wsManager = require('./wsManager.js');
+var clone = require('clone');
 
 function GameConf() {
     this.conf = {};         //fixe Kongiguration wie startDeck, typeMapping
-    this.options = {alertRecipients: "button:gruen,digits"};      //veränderliche optionen wie alertRecipients
+    this.defaultOptions = {
+        alertRecipients: 'button:gruen,digits'
+    };
+    this.options = clone(this.defaultOptions);      //veränderliche optionen wie alertRecipients
     this.maxPlayerCnt = 8;
 }
 

@@ -17,7 +17,8 @@
     "q": "~1.2.0",
     "sprintf-js": "~1.0.2",
     "underscore": "~1.8.3",
-    "ws": "~0.7.1"
+    "ws": "~0.7.1",
+    "clone": "~1.0.2"
   },
   "devDependencies": {
     "grunt": "^0.4.5",

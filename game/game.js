@@ -9,6 +9,7 @@ var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js'
 var gameConf = require('./gameConf');
 var _ = require('underscore');
 var Q = require('q');
+var clone = require('clone');
 
 
 function Game() {
@@ -123,8 +124,8 @@ Game.prototype = {
         }
     },
     start: function (callback) {
-        //console.log(this.conf);
         playerManager.resetPlayers();
+        gameConf.options = clone(gameConf.defaultOptions); // reset the options when game restarts
         if (this.sequence !== null) this.sequence.finish();
         var g = this;
         mongoConnection(function (db) {
