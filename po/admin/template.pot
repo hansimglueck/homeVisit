@@ -4,32 +4,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
+#: admin/views/admin/item-partials/labeled-item-option.html:2
+msgid "{{title}}"
+msgstr ""
+
+#: admin/views/admin/show-deck.html:27
+msgid "Add new item"
+msgstr ""
+
 #: admin/views/master-buttons.html:12
 msgid "ALARM"
-msgstr ""
-
-#: admin/views/admin/show-deck.html:31
-msgid "Action"
-msgstr ""
-
-#: admin/views/admin/show-deck.html:41
-msgid "Add new item"
 msgstr ""
 
 #: admin/js/controllers/masterControllers.js:154
 msgid "Are you sure?"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-results-content.html:33
-msgid "Auto-Go:"
-msgstr ""
-
 #: admin/views/master-buttons.html:11
 msgid "BACK"
-msgstr ""
-
-#: admin/views/raspi-manager.html:93
-msgid "CONNECT DB"
 msgstr ""
 
 #: admin/views/admin/move-item.html:23
@@ -48,23 +40,14 @@ msgstr ""
 msgid "Color"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-results-content.html:42
-msgid "Color:"
-msgstr ""
-
-#: admin/views/admin/show-deck.html:30
-msgid "Comment"
-msgstr ""
-
 #: admin/partials/home.html:9
 msgid "Configuration"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-config-content.html:3
-msgid "Configuration option:"
+#: admin/views/raspi-manager.html:93
+msgid "CONNECT DB"
 msgstr ""
 
-#: admin/views/admin/show-deck.html:29
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:5
 msgid "Content"
 msgstr ""
@@ -77,10 +60,6 @@ msgstr ""
 msgid "Correct"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-roulette-content.html:13
-msgid "Cost:"
-msgstr ""
-
 #: admin/views/game-conf.html:19
 msgid "Current deck:"
 msgstr ""
@@ -89,12 +68,11 @@ msgstr ""
 msgid "Current step:"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-inline-switch-content.html:6
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:4
 msgid "Deck"
 msgstr ""
 
-#: admin/partials/home.html:60
+#: admin/partials/home.html:48
 msgid "Decks and items"
 msgstr ""
 
@@ -119,14 +97,6 @@ msgstr ""
 msgid "Device Manager"
 msgstr ""
 
-#: admin/partials/home.html:47
-msgid "Direct item"
-msgstr ""
-
-#: admin/views/admin/show-item-contents/show-results-content.html:13
-msgid "Display:"
-msgstr ""
-
 #: admin/js/controllers/masterControllers.js:150
 msgid "Do you really want to restart the server?"
 msgstr ""
@@ -139,7 +109,10 @@ msgstr ""
 msgid "Export CSV"
 msgstr ""
 
-#: admin/views/admin/show-direct-item.html:41
+#: admin/views/master-buttons.html:3
+msgid "Game stopped"
+msgstr ""
+
 #: admin/views/master-buttons.html:6
 msgid "GO"
 msgstr ""
@@ -150,10 +123,6 @@ msgstr ""
 
 #: admin/views/master-buttons.html:21
 msgid "GOTO"
-msgstr ""
-
-#: admin/views/master-buttons.html:3
-msgid "Game stopped"
 msgstr ""
 
 #: admin/views/admin/import-json.html:15
@@ -176,10 +145,6 @@ msgstr ""
 msgid "Joined"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-vote-content.html:52
-msgid "Language:"
-msgstr ""
-
 #: admin/views/raspi-manager.html:44
 msgid "Load"
 msgstr ""
@@ -188,12 +153,8 @@ msgstr ""
 msgid "Log"
 msgstr ""
 
-#: admin/views/admin/show-sequence-item.html:16
+#: admin/views/admin/item-partials/item-mapping.html:2
 msgid "Mapped:"
-msgstr ""
-
-#: admin/views/admin/show-item-contents/show-deal-content.html:15
-msgid "Max. steps:"
 msgstr ""
 
 #: admin/views/raspi-manager.html:36
@@ -212,23 +173,17 @@ msgstr ""
 msgid "New deck"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-inline-switch-content.html:24
-#: admin/views/admin/show-item-contents/show-switch-content.html:7
-#: admin/views/admin/show-item-contents/show-vote-content.html:77
+#: admin/views/admin/show-item-contents/show-inline-switch-content.html:22
+msgid "New Deck"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-switch-content.html:9
+#: admin/views/admin/show-item-contents/show-vote-content.html:16
 msgid "New option"
 msgstr ""
 
 #: admin/views/admin/import-json.html:12
 msgid "New title:"
-msgstr ""
-
-#: admin/views/admin/show-deck.html:26
-#: admin/views/admin/show-item-contents/show-inline-switch-content.html:5
-msgid "No."
-msgstr ""
-
-#: admin/views/raspi-manager.html:14
-msgid "OS Info for {{osInfo.hostname}}"
 msgstr ""
 
 #: admin/views/raspi-manager.html:60
@@ -240,14 +195,13 @@ msgstr ""
 msgid "Option"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-agreement-content.html:22
-msgid "Option:"
+#: admin/views/admin/show-item-contents/show-switch-content.html:3
+#: admin/views/admin/show-item-contents/show-vote-content.html:10
+msgid "Options"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-inline-switch-content.html:2
-#: admin/views/admin/show-item-contents/show-switch-content.html:2
-#: admin/views/admin/show-item-contents/show-vote-content.html:70
-msgid "Options:"
+#: admin/views/raspi-manager.html:14
+msgid "OS Info for {{osInfo.hostname}}"
 msgstr ""
 
 #: admin/partials/home.html:5
@@ -258,8 +212,16 @@ msgstr ""
 msgid "Process"
 msgstr ""
 
+#: admin/views/player-list.html:7
+msgid "Rank"
+msgstr ""
+
 #: admin/partials/home.html:19
 msgid "RASPI Control"
+msgstr ""
+
+#: admin/js/controllers/masterControllers.js:84
+msgid "Really delete???"
 msgstr ""
 
 #: admin/js/controllers/masterControllers.js:155
@@ -268,6 +230,10 @@ msgstr ""
 
 #: admin/views/raspi-manager.html:100
 msgid "REBOOT"
+msgstr ""
+
+#: admin/partials/home.html:17
+msgid "Refresh"
 msgstr ""
 
 #: admin/views/master-buttons.html:10
@@ -294,30 +260,6 @@ msgstr ""
 msgid "RESTART WI-FI"
 msgstr ""
 
-#: admin/views/player-list.html:7
-msgid "Rank"
-msgstr ""
-
-#: admin/views/admin/show-item-contents/show-rating-content.html:24
-msgid "Rating:"
-msgstr ""
-
-#: admin/js/controllers/masterControllers.js:84
-msgid "Really delete???"
-msgstr ""
-
-#: admin/partials/home.html:17
-msgid "Refresh"
-msgstr ""
-
-#: admin/views/admin/show-item-contents/show-vote-content.html:23
-msgid "Required votes:"
-msgstr ""
-
-#: admin/views/raspi-manager.html:99
-msgid "SHUTDOWN"
-msgstr ""
-
 #: admin/views/admin/edit-new-deck.html:17
 msgid "Save"
 msgstr ""
@@ -327,12 +269,16 @@ msgstr ""
 msgid "Score"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-results-content.html:23
-msgid "Score:"
+#: admin/views/admin/show-sequence-item.html:33
+msgid "sec"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-results-content.html:3
-msgid "Source:"
+#: admin/views/raspi-manager.html:99
+msgid "SHUTDOWN"
+msgstr ""
+
+#: admin/views/admin/show-sequence-item.html:36
+msgid "Silent"
 msgstr ""
 
 #: admin/views/raspi-manager.html:28
@@ -347,21 +293,6 @@ msgstr ""
 msgid "Teams"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-agreement-content.html:3
-#: admin/views/admin/show-item-contents/show-rating-content.html:3
-#: admin/views/admin/show-item-contents/show-roulette-content.html:3
-#: admin/views/admin/show-item-contents/show-vote-content.html:3
-msgid "Text:"
-msgstr ""
-
-#: admin/views/admin/show-item-contents/show-roulette-content.html:33
-msgid "Time until decision:"
-msgstr ""
-
-#: admin/views/admin/show-item-contents/show-vote-content.html:13
-msgid "Time:"
-msgstr ""
-
 #: admin/views/admin/edit-new-deck.html:5
 msgid "Title:"
 msgstr ""
@@ -370,20 +301,8 @@ msgstr ""
 msgid "Total duration: {{getTimeForDeck()}}"
 msgstr ""
 
-#: admin/views/admin/show-deck.html:28
-msgid "Trigger"
-msgstr ""
-
-#: admin/views/admin/show-deck.html:27
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:4
 msgid "Type"
-msgstr ""
-
-#: admin/views/admin/show-item-contents/show-agreement-content.html:13
-#: admin/views/admin/show-item-contents/show-deal-content.html:3
-#: admin/views/admin/show-item-contents/show-rating-content.html:13
-#: admin/views/admin/show-item-contents/show-vote-content.html:41
-msgid "Type:"
 msgstr ""
 
 #: admin/views/raspi-manager.html:32
@@ -394,12 +313,8 @@ msgstr ""
 msgid "VOTE"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-config-content.html:14
-msgid "Value ="
-msgstr ""
-
-#: admin/views/admin/show-item-contents/show-vote-content.html:33
-msgid "Vote count:"
+#: admin/views/admin/show-sequence-item.html:30
+msgid "Wait"
 msgstr ""
 
 #: admin/views/raspi-manager.html:75
@@ -408,12 +323,4 @@ msgstr ""
 
 #: admin/views/raspi-manager.html:78
 msgid "Wi-Fi password"
-msgstr ""
-
-#: admin/views/admin/show-item-contents/show-roulette-content.html:23
-msgid "Win:"
-msgstr ""
-
-#: admin/views/admin/show-item-contents/show-vote-content.html:63
-msgid "With rating:"
 msgstr ""
