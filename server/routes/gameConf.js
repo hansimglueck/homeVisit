@@ -3,7 +3,6 @@ var router = express.Router();
 var mongoConnection = require('../../homevisit_components/mongo/mongoConnection.js');
 var game = require('../../game/game.js');
 var gameConf = require('../../game/gameConf.js');
-var ObjectID = require('mongodb').ObjectID;
 
 /* GET /gameConf listing. */
 
@@ -38,7 +37,7 @@ router.post('/', function (req, res, next) {
 
 router.put('/:id', function (req, res, next) {
   mongoConnection(function (db) {
-    db.collection('gameconfs').updateOne({"_id": ObjectID(req.params.id)}, req.body, function (err, result) {
+    db.collection('gameconfs').updateOne({"_id": req.params.id}, req.body, function (err, result) {
         if (err) return next(err);
         gameConf.syncFromDb(function() {
             gameConf.languageChange();
