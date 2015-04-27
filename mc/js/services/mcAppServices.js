@@ -58,13 +58,6 @@ angular.module('mcAppServices', [])
         var pollFactory = {};
         pollFactory.polls = [
             {
-                question: "Wer am Tisch lebt auch in dieser Gegend?",
-                note: "aus dieser Gegend",
-                type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
-                //answers: [1,-1,1,-1,1,1,-1,0,-1,-1,-1,-1,1,-1,-1]
-            },
-            {
                 question: "Wer an diesem Tisch war einmal Klassensprecher?",
                 note: "Klassensprecher",
                 type: 'binary',
@@ -72,8 +65,8 @@ angular.module('mcAppServices', [])
                 //answers: [1,1,-1,1,1,1,1,1,-1,1,1,1,1,1,-1]
             },
             {
-                question: "Wer hat schon mal hoch gewonnen?",
-                note: "hoch gewonnen",
+                question: "Wer an diesem Tisch hat schon mal viel gewonnen? ",
+                note: "viel gewonnen",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [1,1,1,1,1,-1,-1,-1,-1,-1,1,-1,-1,-1,-1]
@@ -100,21 +93,21 @@ angular.module('mcAppServices', [])
                 //answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,-1]
             },
             {
-                question: "Wer hat einen Konflikt schon mal körperlich ausgetragen?",
+                question: "Wer hat in den vergangenen 10 Jahren einen Konflikt schon mal körperlich ausgetragen?",
                 note: "körperlicher Konflikt",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [-1,-1,0,0,-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1]
             },
             {
-                question: "Wer hat eine Nationalflagge bei sich zu Hause?",
+                question: "Wer hat auf der Karte einen Ort eingetragen, an dem er im Ausland studiert hat?",
                 note: "Nationalflagge",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [-1,-1,-1,-1,1,-1,1,-1,-1,-1,-1,1,-1,-1,-1]
             },
             {
-                question: "Wer hat schon mal seine nationale Herkunft verleugnet?",
+                question: "Wer hat im Ausland schon mal bewusst seine nationale Herkunft verleugnet?",
                 note: "Herkunft verleugnet",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
@@ -184,44 +177,56 @@ angular.module('mcAppServices', [])
         teamFactory.categories = [
             {
                 category: "Überflieger",
-                questionNr: [14, 1, 2],
-                weight: [1, 1, 1],
+                questionNr: [13, 0, 1, 6],
+                weight: [1, 1, 1, 1],
                 players: []
             },
             {
                 category: "Politiker",
-                questionNr: [3, 1, 13, 15],
+                questionNr: [2, 0, 12, 14],
                 weight: [1, 1, 1, 1],
                 players: []
             },
             {
                 category: "Anpacker",
-                questionNr: [6, 4, 14, 5],
+                questionNr: [5, 3, 13, 4],
                 weight: [1, 1, 1, 1],
                 players: []
             },
             {
                 category: "Angsthasen",
-                questionNr: [10, 11, 6, 14],
+                questionNr: [9, 10, 5, 13],
                 weight: [1, 1, -1, -1],
                 players: []
             },
             {
-                category: "Nette",
-                questionNr: [12, 6, 15, 9],
-                weight: [1, -1, 1, 1],
-                players: []
-            },
-            {
-                category: "Nationalflaggen-Haber",
-                questionNr: [7, 8, 9, 10],
+                category: "Nationale",
+                questionNr: [14, 7, 8, 9],
                 weight: [1, -1, -1, 1],
                 players: []
             },
             {
-                category: "Unterbezahlte",
-                questionNr: [5, 16, 14],
-                weight: [-1, 1, -1],
+                category: "Arbeitslos",
+                questionNr: [4, 1, 15, 3],
+                weight: [-1, -1, 1, 1],
+                players: []
+            },
+            {
+                category: "Nette",
+                questionNr: [11, 5, 14, 8],
+                weight: [1, -1, 1, 1],
+                players: []
+            },
+            {
+                category: "Vereinsnasen",
+                questionNr: [3, 14, 12, 10],
+                weight: [1, 1, 1, 1],
+                players: []
+            },
+            {
+                category: "Europäer",
+                questionNr: [8, 6, 14],
+                weight: [1, 1, 1],
                 players: []
             }
         ];
