@@ -89,12 +89,17 @@ Game.prototype = {
         this.alertState %= 3;
         var self = this;
         var recipients = gameConf.getOption("alertRecipients").split(",");
-        recipients.forEach(function(recipient){
+
+        recipients.forEach(function(recipient) {
             var role = recipient.split(":")[0];
             var name = recipient.split(":")[1];
-            if (role != "player") wsManager.msgDevicesByRoleAndName(role, name, "display", {type:"alert", param:self.alertState});
-            else playerManager.deliverMessage(recipient, "display", {type:"alert", param:self.alertState});
-        })
+            if (role !== 'player'){
+                wsManager.msgDevicesByRoleAndName(role, name, "display", {type:"alert", param:self.alertState});
+            }
+            else {
+                playerManager.deliverMessage(recipient, "display", {type:"alert", param:self.alertState});
+            }
+        });
     },
 
     log: function (message) {
