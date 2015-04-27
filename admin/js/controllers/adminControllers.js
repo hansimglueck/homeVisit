@@ -359,15 +359,16 @@ adminControllers
                 }
             }
         };
-        $scope.$watch('item.type', function (newVal, oldVal) {
-            if (newVal === "inlineSwitch" && oldVal !== "inlineSwitch") {
-                console.log($scope.item.inlineDecks);
-                var item = angular.copy($scope.item);
-                item.type = oldVal;
-                $scope.addInlineSwitchOption(item);
-            }
-        });
 
+        // this seems VERY evil!
+        // $scope.$watch('item.type', function (newVal, oldVal) {
+        //     if (newVal === "inlineSwitch" && oldVal !== "inlineSwitch") {
+        //         console.log($scope.item.inlineDecks);
+        //         var item = angular.copy($scope.item);
+        //         item.type = oldVal;
+        //         $scope.addInlineSwitchOption(item);
+        //     }
+        // });
 
         $scope.addVoteOption = function (id) {
             $scope.insertedOption = {
