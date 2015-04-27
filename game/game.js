@@ -172,7 +172,7 @@ Game.prototype = {
             cb(self.sequence);
         }).catch(function(err) {
             console.log('Error loading items:', err);
-            throw new Error(err);
+            throw new Error(err.stack);
         }).done();
     },
 
