@@ -220,8 +220,8 @@ angular.module('mcAppServices', [])
             },
             {
                 category: "Unterbezahlte",
-                questionNr: [5, 16],
-                weight: [-1, 1],
+                questionNr: [5, 16, 14],
+                weight: [-1, 1, -1],
                 players: []
             }
         ];

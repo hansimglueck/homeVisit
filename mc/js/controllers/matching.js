@@ -67,7 +67,7 @@ angular.module('homeVisitMCApp')
             return $scope.matchMatrix;
         };
         
-        $scope.getMatrix();
+        //$scope.getMatrix();
         
         
         
@@ -88,7 +88,7 @@ angular.module('homeVisitMCApp')
                             if (type == 'binary' && answer == 1) {
                                 potPlayers[potPlayer] = {id:potPlayer,name: $scope.playerNames[potPlayer]};
                                 potPlayersLength++;
-                            } else if (type == 'fingers' && answer === 5) {
+                            } else if (type == 'fingers' && answer >= 3) {
                                 potPlayers[potPlayer] = {id:potPlayer,name: $scope.playerNames[potPlayer]};
                                 potPlayersLength++;
                             }
@@ -96,7 +96,7 @@ angular.module('homeVisitMCApp')
                             if (type == 'binary' && answer != 1) {
                                 potPlayers[potPlayer] = {id:potPlayer,name: $scope.playerNames[potPlayer]};
                                 potPlayersLength++;
-                            } else if (type == 'fingers' && answer <= 1) {
+                            } else if (type == 'fingers' && answer <= 2) {
                                 potPlayers[potPlayer] = {id:potPlayer,name: $scope.playerNames[potPlayer]};
                                 potPlayersLength++;
                             }
@@ -114,12 +114,12 @@ angular.module('homeVisitMCApp')
                                 var answer = Polls.polls[$scope.teamCategories[cat_index].questionNr[question]].answers[player];
                                 var type = Polls.polls[$scope.teamCategories[cat_index].questionNr[question]].type;
                                 var weight = $scope.teamCategories[cat_index].weight[question];
-                                //if (answer != -1) {
+                                if (answer != -1) {
                                     if (weight == 1) {
                                         if (type == 'binary' && answer != 1) {
                                             console.log("Fliegt raus: " + player);
                                             throwOut.push(player);
-                                        } else if (type == 'fingers' && answer < 4 && answer != -1) {
+                                        } else if (type == 'fingers' && answer <= 1) {
                                             console.log("Fliegt raus: " + player);
                                             throwOut.push(player);
                                         }
@@ -127,26 +127,30 @@ angular.module('homeVisitMCApp')
                                         if (type == 'binary' && answer == 1) {
                                             console.log("Fliegt raus: " + player);
                                             throwOut.push(player);
-                                        } else if (type == 'fingers' && (answer != 0 || answer != 1 || answer != 2)) {
+                                        } else if (type == 'fingers' && answer >=4) {
                                             console.log("Fliegt raus: " + player);
                                             throwOut.push(player);
                                         }
                                     }
-                                //}
+                                }
                             }
                         }
                         //console.log("Potentielle: " + potPlayersLength);
                         //console.log("Rausflieger: " + throwOut.length);
-                        if (throwOut.length <= potPlayersLength - 2) { // Only keep throwing out, if there will be 2 players stay in
-                            //console.log(potPlayers);
-                            for (var thrownPlayer = 0; thrownPlayer < throwOut.length; thrownPlayer++) {
-                                //console.log(throwOut[thrownPlayer]);
-                                potPlayers[throwOut[thrownPlayer]] = null;
-                                potPlayersLength--;
-                                //console.log("raus: " + throwOut[thrownPlayer]);
+                        //console.log(potPlayers);
+                        for (var thrownPlayer = 0; thrownPlayer < throwOut.length; thrownPlayer++) {
+                            // Only keep throwing out, if there will be 2 players stay in
+                            if (throwOut.length <= potPlayersLength - 2) {
+                                // and only if the player has been assigned to several teams ---- seems to be too strict
+                                //if ($scope.playerInTeam[throwOut[thrownPlayer]].length > 1) {
+                                    //console.log(throwOut[thrownPlayer]);
+                                    potPlayers[throwOut[thrownPlayer]] = null;
+                                    potPlayersLength--;
+                                    //console.log("raus: " + throwOut[thrownPlayer]);
+                                //}
                             }
-                            //console.log(potPlayers);
                         }
+                        //console.log(potPlayers);
                     }
                 }
             }
@@ -198,7 +202,7 @@ angular.module('homeVisitMCApp')
         }
         
         $scope.playerDoesntMatch = function (playerField) {
-            // player has not been not assigned to any team
+            // player has not been assigned to any team
             return playerField.length === 0;
         }
         
