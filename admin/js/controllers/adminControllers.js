@@ -1,7 +1,7 @@
 var adminControllers = angular.module('adminControllers', [])
 
 adminControllers
-    .controller('HomeController', function ($scope) {
+    .controller('HomeController', function ($scope, Socket) {
         $scope.name = "homE";
         $scope.requestServerInfo = function() {
             Socket.emit("database", "getStatus");

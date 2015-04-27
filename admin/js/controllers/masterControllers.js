@@ -126,7 +126,7 @@ masterControllers.controller('PlayerCtrl', function($scope, Socket, playerColors
     });
 });
 
-masterControllers.controller('OsCtrl', function($scope, Socket, gettext, $interval) {
+masterControllers.controller('OsCtrl', function($scope, Socket, gettext) {
     $scope.collapsed = {
         db: true,
         wlan1: true,
@@ -180,11 +180,12 @@ masterControllers.controller('OsCtrl', function($scope, Socket, gettext, $interv
     }
 
     // update every automatically
-    $interval(function() {
-        console.log('interval!');
-        Socket.emit("database", "getStatus");
-        Socket.emit("os", {cmd:"getInfo"});
-    }, 10000); // every 10 sec
+    // disabled for now. too many mongo connections?!
+    // $interval(function() {
+    //     console.log('interval!');
+    //     Socket.emit("database", "getStatus");
+    //     Socket.emit("os", {cmd:"getInfo"});
+    // }, 10000); // every 10 sec
 });
 
 
