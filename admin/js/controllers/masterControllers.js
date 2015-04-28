@@ -79,6 +79,9 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOp
         };
         $scope.addDeviceToType = function(id) {
             var t = $scope.gameConf.typeMapping[id];
+            if (typeof $scope.gameConf.typeMapping === 'undefined') {
+                $scope.gameConf.typeMapping = [];
+            }
             $scope.gameConf.typeMapping[id].devices.push("");
             //$scope.deviceFrm.$show();
         };
