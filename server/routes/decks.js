@@ -73,7 +73,7 @@ router.post('/', function (req, res, next) {
 // item references get replaced with items
 router.get('/:id', function (req, res, next) {
     mongoConnection(function (db) {
-        var find = db.collection('decks').find({ _id: req.params.id });
+        var find = db.collection('decks').find({ _id: ObjectID(req.params.id) });
         var toArray = Q.nbind(find.toArray, find);
         toArray().then(function(decks) {
             var deck = decks[0];
@@ -104,7 +104,7 @@ router.put('/:id', function (req, res, next) {
         Q.all(itemPromises).then(function() {
             deck.items = itemHashes;
             var updateOne = Q.nbind(decks.updateOne, decks);
-            return updateOne({ _id: req.params.id }, deck);
+            return updateOne({ _id: ObjectID(req.params.id) }, deck);
         }).then(function(result) {
             res.json(result);
         }).catch(function(err) {
@@ -116,7 +116,7 @@ router.put('/:id', function (req, res, next) {
 /* DELETE /decks/:id */
 router.delete('/:id', function (req, res, next) {
     mongoConnection(function (db) {
-        db.collection('decks').deleteOne({ _id: req.params.id }, function (err, result) {
+        db.collection('decks').deleteOne({"_id": ObjectID(req.params.id)}, function (err, result) {
             if (err) return next(err);
             res.json(result);
         });
