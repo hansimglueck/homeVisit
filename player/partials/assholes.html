@@ -2,7 +2,7 @@
   <h3 translate>These teams were mean to you:</h3>
   <ul class="list-unstyled">
       <li ng-repeat="minuspoints in home.assholeData track by $index">
-          <div ng-hide="(minuspoints === 0) || ($index === status.player.playerId)">
+          <div class="mean_list" ng-hide="(minuspoints === 0) || ($index === status.player.playerId)">
             <player-icon pid="$index"></player-icon>
             <div translate translate-n="minuspoints" translate-plural="{{minuspoints}} minus points">{{minuspoints}} minus point</div>
           </div>
