@@ -3,14 +3,14 @@
         <li>{{deck.description}}</li>
         <li ng-hide="true" translate>Total duration: {{getTimeForDeck()}}</li>
         <li style="text-align: right">
-            <a ng-click="deleteDeck($index)" translate>Delete deck</a>
+            <button class="btn btn-sm btn-danger" ng-click="deleteDeck($index)" translate>Delete deck</button>
         </li>
-        <li ng-hide="true" style="text-align: right">
-            <a ng-click="duplicateDeck($index)" translate>Duplicate deck</a>
-        </li>
-        <li ng-hide="true" style="text-align: right">
-            <a ng-click="exportCSV($index)" translate>Export CSV</a>
-        </li>
+        <!-- <li style="text-align: right"> -->
+        <!--     <button class="btn btn-sm btn-default" href="#" ng-click="duplicateDeck($index)" translate>Duplicate deck</button> -->
+        <!-- </li> -->
+        <!-- <li style="text-align: right"> -->
+        <!--     <button class="btn btn-sm btn-default" href="#" ng-click="exportCSV($index)" translate>Export CSV</button> -->
+        <!-- </li> -->
     </ul>
     <div class="table deck-table">
         <!--
