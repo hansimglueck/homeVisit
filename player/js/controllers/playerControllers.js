@@ -117,7 +117,8 @@ angular.module("playerControllers", [])
             animationSteps: 60,
             //animationEasing: "easeOutQuart",
             onAnimationComplete: null,
-            responsive: false
+            responsive: false,
+            colours: playerColors
         };
 
     })

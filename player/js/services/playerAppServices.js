@@ -1,5 +1,5 @@
 angular.module('playerAppServices', [])
-    .factory('Home', function (Socket, $location, fxService, Status, $timeout, DealFactory) {
+    .factory('Home', function (Socket, $location, fxService, Status, $timeout, DealFactory, playerColors) {
         var homeFactory = {};
         homeFactory.displayData = {};
         homeFactory.type = "vote";
@@ -147,7 +147,14 @@ angular.module('playerAppServices', [])
                                 homeFactory.labels = labels;
                                 homeFactory.votelast = "result";
                                 homeFactory.type = "result";
-                                homeFactory.resultColor = data.resultColor;
+                                if (data.resultColors) {
+                                    if (data.resultColors == "playerColors") {
+                                        homeFactory.resultColors = [];
+                                        result.voteOptions.forEach(function (option) {
+                                            homeFactory.resultColors.push(playerColors[option.value]);
+                                        });
+                                    }
+                                }
                                 $location.path("/results");
                                 return;
                                 break;

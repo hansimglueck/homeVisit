@@ -50,6 +50,10 @@ angular.module('hvItemOptions', [])
             {value: 'firstVote', text: 'erster Abstimmer'},
             {value: 'numberStats', text: 'Numerische Auswertung'}
         ],
+        'resultColors': [
+            {value: 'default', text: 'Default'},
+            {value: 'playerColors', text: 'Spielerfarben'}
+        ],
         'language': [
             {value: 'de', text: 'Deutsch'},
             {value: 'en', text: 'Englisch'}

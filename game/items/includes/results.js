@@ -81,7 +81,8 @@ module.exports = {
             silent: this.silent,
             resultType: this.resultType,
             color: this.color,
-            ratedVote: this.ratedVote
+            ratedVote: this.ratedVote,
+            resultColors: this.resultColors
         };
     },
     getData: function() {
