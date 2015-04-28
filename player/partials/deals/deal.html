@@ -1,8 +1,8 @@
 <div id="deal-overview" class="left-pane">
     <table class="list-unstyled">
-        <tr ng-repeat="deal in deals">
+        <tr ng-repeat="deal in deals" translate>
             <td><a href="#/deals/{{deal.id}}">{{deal.subject}}</a></td>
-            <td translate>with team {{deal.player1Id}}</td>
+            <td>with team <player-icon pid="deal.player1Id"></player-icon></td>
             <td>{{getDealStateText(deal)}}</td>
         </tr>
         <tr>

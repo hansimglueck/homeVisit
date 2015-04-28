@@ -1,13 +1,14 @@
 <div>
     <div ng-switch="traitor">
         <div ng-switch-when="false">
-            <ul class="list-inline">
+            <div translate>
+              <ul class="list-inline">
                 <li ng-repeat="pid in playerIds">
-                    <player-icon pid="pid"></player-icon>
+                  <player-icon pid="pid"></player-icon>
                 </li>
-            </ul>
-            <span translate>should get {{score}} points from you?</span>
-
+              </ul>
+              should get {{score}} point from you?
+            </div> 
             <div>
                 <button class="button" ng-click="confirm()" translate>Confirm</button>
                 <button class="button" ng-click="cancel()" translate>Cancel</button>

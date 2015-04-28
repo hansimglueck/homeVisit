@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-04-28 22:12+0200\n"
+"PO-Revision-Date: 2015-04-28 22:59+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -12,6 +12,24 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: player/partials/deals/deal.html:3
+msgid ""
+"<td><a href=\"#/deals/{{deal.id}}\">{{deal.subject}}</a></td>\n"
+"            <td>with team <player-icon pid=\"deal.player1Id\"></player-"
+"icon></td>\n"
+"            <td>{{getDealStateText(deal)}}</td>"
+msgstr ""
+
+#: player/partials/rating/rating.html:4
+msgid ""
+"<ul class=\"list-inline\">\n"
+"                <li ng-repeat=\"pid in playerIds\">\n"
+"                  <player-icon pid=\"pid\"></player-icon>\n"
+"                </li>\n"
+"              </ul>\n"
+"              should get {{score}} point from you?"
+msgstr ""
+
 #: admin/views/master-buttons.html:12 mc/index.html:40
 msgid "ALARM"
 msgstr ""
@@ -20,11 +38,11 @@ msgstr ""
 msgid "Add new item"
 msgstr "Neuen Eintrag hinzufügen"
 
-#: admin/js/controllers/masterControllers.js:154
+#: admin/js/controllers/masterControllers.js:160
 msgid "Are you sure?"
 msgstr "Bist Du sicher?"
 
-#: player/partials/results.html:16
+#: player/partials/results.html:21
 msgid "Average: {{home.data[1]}}"
 msgstr "Durchschnitt: {{home.data[1]}}"
 
@@ -40,7 +58,7 @@ msgstr "Zurück"
 msgid "BACK TO GAME!"
 msgstr ""
 
-#: player/partials/rating/rating.html:18
+#: player/partials/rating/rating.html:19
 msgid "Back"
 msgstr "Zurück"
 
@@ -48,8 +66,8 @@ msgstr "Zurück"
 msgid "CONNECT DB"
 msgstr "VERBINDE MIT DATENBANK"
 
-#: admin/views/admin/move-item.html:23 player/partials/deals/deal.new.html:12
-#: player/partials/rating/rating.html:13 player/partials/voteConfirm.html:5
+#: admin/views/admin/move-item.html:23 player/partials/deals/deal.new.html:11
+#: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:5
 msgid "Cancel"
 msgstr "Abbrechen"
 
@@ -61,13 +79,14 @@ msgstr ""
 msgid "Change score"
 msgstr ""
 
-#: player/partials/deals/deal.choosePlayer.html:1
-msgid "Choose Player to deal {{subject}} with:"
-msgstr "Team wählen um Deal {{subject}} zu vereinbaren:"
-
 #: admin/views/admin/move-item.html:5
 msgid "Choose target where item will be appended."
 msgstr ""
+
+#: player/partials/deals/deal.choosePlayer.html:1
+#, fuzzy
+msgid "Choose team to deal {{subject}} with:"
+msgstr "Team wählen um Deal {{subject}} zu vereinbaren:"
 
 #: player/partials/deals/deal.chooseSubject.html:1
 msgid "Choose type of deal:"
@@ -89,7 +108,7 @@ msgstr ""
 msgid "Configuration"
 msgstr ""
 
-#: player/partials/deals/deal.new.html:9 player/partials/rating/rating.html:12
+#: player/partials/deals/deal.new.html:8 player/partials/rating/rating.html:13
 #: player/partials/voteConfirm.html:4
 msgid "Confirm"
 msgstr "Bestätigen"
@@ -167,17 +186,15 @@ msgstr "Details"
 msgid "Device Manager"
 msgstr "Gerätemanager"
 
-#: admin/js/controllers/masterControllers.js:150
+#: admin/js/controllers/masterControllers.js:156
 msgid "Do you really want to restart the server?"
 msgstr "Willst Du den Server wirklich neustarten?"
 
-#: player/partials/deals/deal.new.html:4
-msgid "Do you want to deal {{subject}} with"
-msgstr "Möchten sie Deal {{subject}} abschließen mit"
-
-#: admin/views/admin/show-deck.html:9
-msgid "Duplicate deck"
-msgstr "Strang duplizieren"
+#: player/partials/deals/deal.new.html:3
+msgid ""
+"Do you want to take out {{subject}} with <player-icon class=\"player-icon-med"
+"\" pid=\"player1Id\"></player-icon>?"
+msgstr ""
 
 #: homevisit_components/hvLanguage.js:10
 msgid "Dutch"
@@ -189,10 +206,6 @@ msgstr "EUROPA"
 
 #: homevisit_components/hvLanguage.js:5
 msgid "English"
-msgstr ""
-
-#: admin/views/admin/show-deck.html:12
-msgid "Export CSV"
 msgstr ""
 
 #: mc/views/dummies.html:69
@@ -275,7 +288,7 @@ msgstr ""
 msgid "Matching"
 msgstr ""
 
-#: player/partials/results.html:18
+#: player/partials/results.html:23
 msgid "Max: {{home.data[3]}}"
 msgstr "Max: {{home.data[3]}}"
 
@@ -283,7 +296,7 @@ msgstr "Max: {{home.data[3]}}"
 msgid "Memory"
 msgstr ""
 
-#: player/partials/results.html:17
+#: player/partials/results.html:22
 msgid "Min: {{home.data[2]}}"
 msgstr "Min: {{home.data[2]}}"
 
@@ -410,7 +423,7 @@ msgstr ""
 msgid "RASPI Control"
 msgstr ""
 
-#: admin/js/controllers/masterControllers.js:155
+#: admin/js/controllers/masterControllers.js:161
 msgid "REALLY REALLY SURE??????????"
 msgstr ""
 
@@ -454,11 +467,11 @@ msgstr "Rang"
 msgid "Rank: {{player.rank}}"
 msgstr "Rang: {{player.rank}}"
 
-#: player/index.html:157
+#: player/index.html:158
 msgid "Rank: {{status.player.rank}}"
 msgstr "Rang: {{status.player.rank}}"
 
-#: admin/js/controllers/masterControllers.js:84
+#: admin/js/controllers/masterControllers.js:90
 msgid "Really delete???"
 msgstr ""
 
@@ -472,6 +485,10 @@ msgstr ""
 
 #: mc/views/item.html:31
 msgid "Results are displayed"
+msgstr ""
+
+#: player/partials/results.html:7
+msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr ""
 
 #: admin/views/raspi-manager.html:99
@@ -495,7 +512,7 @@ msgstr ""
 msgid "Score: {{player.score}}"
 msgstr ""
 
-#: player/index.html:158
+#: player/index.html:159
 msgid "Score: {{status.player.score}}"
 msgstr ""
 
@@ -504,8 +521,10 @@ msgid "Select"
 msgstr ""
 
 #: player/partials/black.html:1
-msgid "Silence please. Now is reading:"
-msgstr "Ruhe bitte! Jetzt liest:"
+msgid ""
+"Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
+"is reading:"
+msgstr ""
 
 #: admin/views/admin/show-sequence-item.html:36
 msgid "Silent"
@@ -555,7 +574,7 @@ msgstr "Titel:"
 msgid "Total duration: {{getTimeForDeck()}}"
 msgstr ""
 
-#: player/partials/results.html:15
+#: player/partials/results.html:20
 msgid "Total: {{home.data[0]}}"
 msgstr "Gesamt: {{home.data[0]}}"
 
@@ -634,16 +653,23 @@ msgstr ""
 msgid "sec"
 msgstr "Sek."
 
-#: player/partials/rating/rating.html:9
-msgid "should get {{score}} points from you?"
-msgstr "soll {{score}} Punkte von Dir bekommen?"
-
-#: player/partials/deals/deal.html:5
-msgid "with team {{deal.player1Id}}"
-msgstr "mit Team {{deal.player1Id}}"
-
 #: player/partials/assholes.html:7
 msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
 msgstr[0] "{{minuspoints}} Minuspunkt"
 msgstr[1] "{{minuspoints}} Minuspunkte"
+
+#~ msgid "Do you want to deal {{subject}} with"
+#~ msgstr "Möchten sie Deal {{subject}} abschließen mit"
+
+#~ msgid "Duplicate deck"
+#~ msgstr "Strang duplizieren"
+
+#~ msgid "Silence please. Now is reading:"
+#~ msgstr "Ruhe bitte! Jetzt liest:"
+
+#~ msgid "should get {{score}} points from you?"
+#~ msgstr "soll {{score}} Punkte von Dir bekommen?"
+
+#~ msgid "with team {{deal.player1Id}}"
+#~ msgstr "mit Team {{deal.player1Id}}"
