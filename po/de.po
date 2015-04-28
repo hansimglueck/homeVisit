@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2015-04-28 22:12+0200\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -452,11 +452,11 @@ msgstr "Rang"
 
 #: mc/views/players.html:6 mc/views/players.html:9
 msgid "Rank: {{player.rank}}"
-msgstr "Rang: {{status.player.rank}}"
+msgstr "Rang: {{player.rank}}"
 
 #: player/index.html:157
 msgid "Rank: {{status.player.rank}}"
-msgstr ""
+msgstr "Rang: {{status.player.rank}}"
 
 #: admin/js/controllers/masterControllers.js:84
 msgid "Really delete???"
