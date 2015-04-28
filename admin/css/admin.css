@@ -114,3 +114,7 @@ td.item-comment {
     padding-bottom: 5px;
     margin-bottom: 7px;
 }
+
+.on-turn {
+    background-color: rgba(255, 116, 0, 0.27);
+}

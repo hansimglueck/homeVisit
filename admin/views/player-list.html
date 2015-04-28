@@ -9,10 +9,10 @@
         <th translate>Color</th>
         <th translate>Change score</th>
     </tr>
-    <tr ng-repeat="player  in playerList track by $index" ng-click="isCollapsed = !isCollapsed">
+    <tr ng-repeat="player in playerList track by $index" ng-click="isCollapsed = !isCollapsed" ng-class="{ 'on-turn': player.onTurn }">
         <td>{{player.playerId}}</td>
         <td>{{player.joined ? "Joined" : "Off"}}</td>
-        <td>{{ratings[$index]}}</td>
+        <td>{{player.rank}}</td>
         <td>{{player.score}}</td>
         <td ng-style="{'color':playerColors[$index]}">{{playerColors[$index]}}</td>
         <td>
