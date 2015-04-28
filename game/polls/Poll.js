@@ -89,6 +89,7 @@ Poll.prototype = {
             voteMulti: this.voteMulti,
             ratedVote: this.ratedVote,
             voteType: this.voteType,
+            silent: this.silent,
             time: this.time
         }
     },

@@ -8,6 +8,7 @@ module.exports = {
         return {
             type: this.type,
             text: this.text,
+            silent: this.silent,
             dealType: this.dealType,
             maxSteps: this.maxSteps
         };

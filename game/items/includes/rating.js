@@ -18,6 +18,7 @@ module.exports = {
             ratingType: this.ratingType,
             posNeg: this.posNeg,
             playerId: bestWorst,
+            silent: this.silent,
             text: this.text
         };
     }

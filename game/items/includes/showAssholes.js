@@ -20,7 +20,8 @@ module.exports = {
     getWsContent: function () {
         return {
             type: this.type,
-            data: this.data
+            data: this.data,
+            silent: this.silent
         };
     }
 };

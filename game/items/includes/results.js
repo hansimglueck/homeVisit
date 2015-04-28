@@ -78,6 +78,7 @@ module.exports = {
             data: this.data,
             type: this.type,
             text: text,
+            silent: this.silent,
             resultType: this.resultType,
             color: this.color
         };

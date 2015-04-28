@@ -5,7 +5,9 @@ module.exports = {
     getWsContent: function() {
         return {
             type: this.type,
-            text: this.text
+            text: this.text,
+            silent: this.silent
+
         };
-    },
+    }
 };
