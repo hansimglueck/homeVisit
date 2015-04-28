@@ -17,6 +17,10 @@ angular.module('playerAppServices', [])
         };
 
         homeFactory.timedVote = function (cb) {
+            if (homeFactory.timeout) {
+                console.log("new timeout - cancel old timeout!");
+                $timeout.cancel(homeFactory.timeout);
+            }
             //TODO: wenn eine nummer-eingabe-abstimmung läuft sollte die eingegebene nummer, wenn auch noch nicht gesendet, verwendet werden
             if (homeFactory.time == 0) return;
             if (homeFactory.time < 12) {
@@ -84,7 +88,6 @@ angular.module('playerAppServices', [])
                 fxService.cancelCountdown();
                 homeFactory.type = "card";
                 homeFactory.labels = [];
-                homeFactory.options = null;
                 if (data) {
                     if (!!data.text) homeFactory.text = data.text.split("::");
                     //homeFactory.showGo = false;
@@ -189,7 +192,6 @@ angular.module('playerAppServices', [])
                                 return;
                                 break;
                             case "alert":
-                                if (homeFactory.type == "vote") return;
                                 switch (data.param) {
                                     case 0:
                                         homeFactory.cancelCountdown();
@@ -198,7 +200,11 @@ angular.module('playerAppServices', [])
                                         if (!homeFactory.done) fxService.playSound('alert');
                                         break;
                                     case 2:
-                                        if (!homeFactory.done) homeFactory.timedVote(homeFactory.freeze);
+                                        homeFactory.time = 12;
+                                        if (!homeFactory.done) {
+                                            if (homeFactory.type == "vote") homeFactory.timedVote(homeFactory.confirmVote);
+                                            else homeFactory.timedVote(homeFactory.freeze);
+                                        }
                                         break;
                                 }
                                 return;
