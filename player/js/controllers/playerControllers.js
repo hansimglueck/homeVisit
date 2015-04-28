@@ -86,7 +86,8 @@ angular.module("playerControllers", [])
         }
 
     })
-    .controller('ResultsController', function($scope, Home){
+    .controller('ResultsController', function($scope, Home, playerColors){
+        $scope.playerColors = playerColors;
         $scope.home = Home;
         $scope.pieChartOptions = {
             scaleOverlay: false,

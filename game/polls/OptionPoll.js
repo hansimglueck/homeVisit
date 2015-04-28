@@ -34,7 +34,8 @@ OptionPoll.prototype.getResult = function () {
         text: this.text,
         voteOptions: this.voteOptions.sort(function(a,b){return b.result- a.result}),
         votes: this.votes,
-        complete: !this.open
+        complete: !this.open,
+        ratedVote: this.ratedVote
     }
 };
 

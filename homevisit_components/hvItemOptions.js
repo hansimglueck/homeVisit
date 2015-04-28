@@ -46,8 +46,8 @@ angular.module('hvItemOptions', [])
             {value: 'Pie', text: 'Tortendiagramm'},
             {value: 'Bar', text: 'Balkendiagramm'},
             {value: 'Line', text: 'Kurve'},
-            {value: 'seatOrder', text: 'Sitzordnung'},
             {value: 'europeMap', text: 'Europakarte'},
+            {value: 'firstVote', text: 'erster Abstimmer'},
             {value: 'numberStats', text: 'Numerische Auswertung'}
         ],
         'language': [

@@ -119,6 +119,7 @@ angular.module('playerAppServices', [])
                                 var resData = [];
                                 var labels2 = [];
                                 homeFactory.correctAnswer = "";
+                                homeFactory.ratedVote = result.ratedVote;
                                 //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
                                 if (resultType == "numberStats") {
                                     //send stats as array: [sum, avg]
@@ -133,6 +134,10 @@ angular.module('playerAppServices', [])
                                     });
                                     else resData.push(option.result);
                                 });
+                                if (resultType === "firstVote") {
+                                    resData = result.votes[0].playerId;
+                                    console.log(resData);
+                                }
 
                                 homeFactory.resultType = resultType;
                                 (homeFactory.resultType == 'Bar' || homeFactory.resultType == 'Line') ? homeFactory.data = [resData] : homeFactory.data = resData;

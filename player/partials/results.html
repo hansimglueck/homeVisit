@@ -4,11 +4,16 @@
             <li ng-repeat="t in home.text track by $index">{{t}}</li>
         </ul>
         <div class="correct-answer" ng-if="home.correctAnswer !== ''" translate>Correct: {{home.correctAnswer}}</div>
+        <div ng-if="home.ratedVote" translate>Results are weighted by ranking. See actual votes in braces.</div>
     </div>
 
     <div class="results-content" ng-if="home.resultType == 'europeMap'">
         <div class="overlayText">{{home.text[0]}}</div>
         <europe-map></europe-map>
+    </div>
+
+    <div class="results-content" ng-if="home.resultType == 'firstVote'">
+        <player-icon pid="home.data">{{home.data}}</player-icon>
     </div>
 
     <ul class="list-unstyled results-content noflex" ng-if="home.resultType == 'numberStats'">

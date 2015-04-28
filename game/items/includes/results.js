@@ -73,14 +73,15 @@ module.exports = {
     },
     getWsContent: function () {
         var text = "";
-        if (this.data !== null) test = this.data.text;
+        if (this.data !== null) text = this.data.text;
         return {
             data: this.data,
             type: this.type,
             text: text,
             silent: this.silent,
             resultType: this.resultType,
-            color: this.color
+            color: this.color,
+            ratedVote: this.ratedVote
         };
     },
     getData: function() {
