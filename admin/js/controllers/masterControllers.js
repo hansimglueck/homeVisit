@@ -46,33 +46,37 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOp
             return selected.length ? selected[0].title : 'Not set';
         };
         $scope.updateGameConf = function(data) {
-            console.log("updateGameConf");
-            console.log(data);
-            var updatedGameConf = angular.copy($scope.gameConf);
-            angular.extend(updatedGameConf, data);
-            delete updatedGameConf._id;   //sonst macht mongoDB auf dem raspi stunk
+            if (typeof data === 'undefined') return;
+
+            console.log('updating game conf');
             if (typeof $scope.gameConf._id == "undefined") {
                 var gConf = new gameConf({role:'run', startDeckId:null, autostart:false, playerCnt:1, typeMapping:[]});
                 gConf.$save(function success(saved){
                         console.log("---success");                    },
                     function error(err){
-                        console.log("---error: "+err);
-                        console.log(err);
+                        console.error("---error: "+err);
+                        console.error(err);
                         $scope.error = err.data;
                     });
                 $scope.gameConf = gConf;
-            } else
-            var ret = gameConf.update({id: $scope.gameConf._id}, updatedGameConf, function success(data) {
-                //console.log("success");
-                //console.log(data);
-            }, function error(data){
-                //alert(data);
-                //console.log("error");
-                //console.log(data);
-            });
-            //console.log(ret.$promise);
-
-            return ret.$promise;
+            }
+            else {
+                var updatedGameConf = angular.copy($scope.gameConf);
+                angular.extend(updatedGameConf, data);
+                delete updatedGameConf._id;   //sonst macht mongoDB auf dem raspi stunk
+                var ret = gameConf.update(
+                    { id: $scope.gameConf._id },
+                    updatedGameConf,
+                    function(data) {
+                        console.log('successfully updated gameConf');
+                    },
+                    function error(err){
+                        console.error('error saving gameConf', err);
+                        console.error(err.stack);
+                    }
+                );
+                return ret.$promise;
+            }
         };
         $scope.addDeviceToType = function(id) {
             var t = $scope.gameConf.typeMapping[id];
