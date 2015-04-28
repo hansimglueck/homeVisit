@@ -46,9 +46,8 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOp
             return selected.length ? selected[0].title : 'Not set';
         };
         $scope.updateGameConf = function(data) {
-            if (typeof data === 'undefined') return;
+            console.log('updateGameConf');
 
-            console.log('updating game conf');
             if (typeof $scope.gameConf._id == "undefined") {
                 var gConf = new gameConf({role:'run', startDeckId:null, autostart:false, playerCnt:1, typeMapping:[]});
                 gConf.$save(function success(saved){
@@ -80,6 +79,9 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOp
         };
         $scope.addDeviceToType = function(id) {
             var t = $scope.gameConf.typeMapping[id];
+            if (typeof $scope.gameConf.typeMapping === 'undefined') {
+                $scope.gameConf.typeMapping = [];
+            }
             $scope.gameConf.typeMapping[id].devices.push("");
             //$scope.deviceFrm.$show();
         };
