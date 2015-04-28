@@ -624,22 +624,22 @@ PlayerManager.prototype = {
         var self = this;
         if (deals.length > 0) {
             deals.filter(function(deal) {
-                return deal.state === 3;
+                return (deal.state === 3) && ((deal.player0Id === playerId) || (deal.player1Id === playerId));
             }).forEach(function (deal) {
                 var otherPlayerId = deal.player0Id;
                 if (otherPlayerId == playerId) otherPlayerId = deal.player1Id;
                 while (self.players[playerId].score - self.players[otherPlayerId].score > 4) {
                     self.players[playerId].score--;
-                    self.sendGameEvent(playerId, "score", -1, "insurance", "You got " + -1 + " Points");
+                    self.sendGameEvent(playerId, "score", -1, "insurance", otherPlayerId);
                     self.players[otherPlayerId].score++;
-                    self.sendGameEvent(otherPlayerId, "score", +1, "insurance", "You got " + +1 + " Points");
+                    self.sendGameEvent(otherPlayerId, "score", +1, "insurance", playerId);
 
                 }
                 while (self.players[otherPlayerId].score - self.players[playerId].score > 4) {
-                    pScore = self.players[playerId].score++;
-                    self.sendGameEvent(playerId, "score", 1, "insurance", "You got " + 1 + " Points");
-                    opScore = self.players[otherPlayerId].score--;
-                    self.sendGameEvent(otherPlayerId, "score", -1, "insurance", "You got " + -1 + " Points");
+                    self.players[playerId].score++;
+                    self.sendGameEvent(playerId, "score", 1, "insurance", otherPlayerId);
+                    self.players[otherPlayerId].score--;
+                    self.sendGameEvent(otherPlayerId, "score", -1, "insurance", playerId);
                 }
             })
         }
