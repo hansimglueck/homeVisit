@@ -5,9 +5,8 @@ module.exports = function(grunt) {
 
     grunt.registerTask('default', 'dev');
     grunt.registerTask('dev', [
-        'nggettext_compile',
-        'express',
-        'watch'
+        'express:dev',
+        'watch:express'
     ]);
 
     grunt.initConfig({
@@ -26,8 +25,14 @@ module.exports = function(grunt) {
             },
             express: {
                 files:  [
-                    '**/*.js',
-                    '**/*.html'
+                    'game/*.js',
+                    'game/**/*.js',
+                    'server/*.js',
+                    'server/**/*.js',
+                    'homevisit_components/*.js',
+                    'homevisit_components/**/*.js',
+                    'homevisitConf.js',
+                    'homevisitConf.local.js'
                 ],
                 tasks:  [ 'express:dev' ],
                 options: {
