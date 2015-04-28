@@ -156,13 +156,13 @@ Game.prototype = {
         });
 
         var self = this;
-        this.sequence = null;
+        this.sequence = [];
 
         return Q.allSettled(promises).then(function(results) {
             // unpack & respect order
             var items = _.sortBy(_.pluck(results, 'value'), 'index');
             items.forEach(function(item, i) {
-                if (self.sequence === null) {
+                if (self.sequence.length === 0) {
                     self.sequence = items[i];
                 }
                 else {
