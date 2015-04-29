@@ -1,7 +1,7 @@
 var colors = require('colors');
 var OptionPoll = require('../../polls/OptionPoll.js');
 var NumberPoll = require('../../polls/NumberPoll.js');
-var playerManager = require('../playerManager.js');
+var playerManager = require('../../playerManager.js');
 
 module.exports = {
     test: "test",
@@ -17,8 +17,8 @@ module.exports = {
                 poll = new OptionPoll(this);
                 break;
             case "playerChoice":
-                this.voteOptions = playerManager.getPlayerGroup("joined").map(function(opt){
-                    return {value: opt, text: opt};
+                this.voteOptions = playerManager.getPlayerGroup("joined").map(function(player){
+                    return {value: player.playerId, text: player.playerId};
                 });
                 poll = new OptionPoll(this);
                 break;

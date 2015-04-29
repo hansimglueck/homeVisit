@@ -63,7 +63,17 @@ module.exports = {
                     playerManager.score(vote.playerId, score, "opportunism");
                 });
                 break;
-
+            case "guessedBest":
+                var best = playerManager.getPlayerArray("best")[0].playerId;
+                var score;
+                this.data.votes.forEach(function (vote) {
+                    score = -1;
+                    vote.choice.forEach(function (ch) {
+                        if (best == ch) score = 1;
+                    });
+                    playerManager.score(vote.playerId, score, "guessed Best");
+                });
+                break;
             case "noScore":
             default:
                 break;

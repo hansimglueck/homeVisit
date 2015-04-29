@@ -61,6 +61,7 @@ angular.module('hvItemOptions', [])
         'scoreType': [
             {value: 'noScore', text: 'Kein Score'},
             {value: 'optionScore', text: 'Nach Antwort'},
+            {value: 'guessedBest', text: 'Besten erraten'},
             {value: 'majorityScore', text: 'Nach Mehrheit'}
         ],
         'sourceType': [

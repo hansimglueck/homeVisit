@@ -29,7 +29,7 @@
                 <ul class="list-inline list-unstyled">
                     <li ng-repeat="player in home.options track by $index">
                         <span ng-click="vote($index)">
-                            <player-icon pid="player.playerId"></player-icon>
+                            <player-icon pid="player.value"></player-icon>
                         </span>
                     </li>
                 </ul>
