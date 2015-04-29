@@ -34,11 +34,7 @@
                     </li>
                 </ul>
             </div>
-            <div ng-if="home.voteType == 'enterNumber'">
-                <form ng-submit="vote(0)">
-                    <input type="text" ng-model="home.options[0].value"/></form>
-            </div>
-
+            <keypad ng-if="home.voteType == 'enterNumber'"></keypad>
         </div>
     </div>
 </div>

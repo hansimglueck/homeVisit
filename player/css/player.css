@@ -118,3 +118,17 @@ body {
 .card-text ul {
     width: 100%;
 }
+.ui-keyboard {
+    position: static;
+}
+.ui-keyboard .disp {
+    border: 1px solid grey;
+    margin: 8px auto;
+    height: 28px;
+    line-height: 28px;
+    width: 40%;
+    padding: 0;
+}
+.ui-keyboard .btn {
+    margin: 0 .25em 0.7em;
+}

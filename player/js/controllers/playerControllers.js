@@ -60,14 +60,9 @@ angular.module("playerControllers", [])
             console.log("now " + $scope.home.checked + " checked. home.limit=" + $scope.home.limit);
         };
         $scope.vote = function (id) {
-            if (Home.voteType == "enterNumber" && (isNaN($scope.home.options[id].value) || $scope.home.options[id].value.indexOf(",") != -1)) return;
-            var text = "";
             //bei multiple-choice werden die checked direkt in der homeFactory gesetzt... und die funktion hier wird ohne argument aufgerufen
-            if (id != undefined) {
-                text = $scope.home.options[id].text;
+            if (typeof id !== 'undefined') {
                 $scope.home.options[id].checked = true;
-                if ($scope.home.voteType == "enterNumber") text = $scope.home.options[id].value;
-                //if (!confirm("Vote for: "+text)) return;
                 if ($scope.home.voteType == "enterNumber") {
                     $scope.home.options[id].text = $scope.home.options[id].value;
                 }
