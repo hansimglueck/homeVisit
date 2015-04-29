@@ -64,7 +64,7 @@ module.exports = {
                 });
                 break;
             case "guessedBest":
-                var best = playerManager.getPlayerArray("best")[0].playerId;
+                var best = playerManager.getPlayerGroup("best")[0].playerId;
                 var score;
                 this.data.votes.forEach(function (vote) {
                     score = -1;
