@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-04-28 22:59+0100\n"
+"PO-Revision-Date: 2015-04-29 23:24+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -19,6 +19,10 @@ msgid ""
 "icon></td>\n"
 "            <td>{{getDealStateText(deal)}}</td>"
 msgstr ""
+"<td><a href=\"#/deals/{{deal.id}}\">{{deal.subject}}</a></td>\n"
+"            <td>mit Team <player-icon pid=\"deal.player1Id\"></player-icon></"
+"td>\n"
+"            <td>{{getDealStateText(deal)}}</td>"
 
 #: player/partials/rating/rating.html:4
 msgid ""
@@ -29,8 +33,15 @@ msgid ""
 "              </ul>\n"
 "              should get {{score}} point from you?"
 msgstr ""
+"<ul class=\"list-inline\">\n"
+"                <li ng-repeat=\"pid in playerIds\">\n"
+"                  <player-icon pid=\"pid\"></player-icon>\n"
+"                </li>\n"
+"              </ul>\n"
+"              soll {{score}} Punkt von Euch bekommen?"
 
 #: admin/views/master-buttons.html:12 mc/index.html:40
+#: mc/views/players.html:32
 msgid "ALARM"
 msgstr ""
 
@@ -48,15 +59,15 @@ msgstr "Durchschnitt: {{home.data[1]}}"
 
 #: mc/js/controllers/players.js:63
 msgid "Away"
-msgstr ""
+msgstr "Weg"
 
-#: admin/views/master-buttons.html:11 mc/views/item.html:2
+#: admin/views/master-buttons.html:11 mc/views/item.html:3
 msgid "BACK"
 msgstr "Zurück"
 
 #: mc/views/player.details.html:10
 msgid "BACK TO GAME!"
-msgstr ""
+msgstr "ZURÜCK ZUM SPIEL!"
 
 #: player/partials/rating/rating.html:19
 msgid "Back"
@@ -73,20 +84,19 @@ msgstr "Abbrechen"
 
 #: mc/js/controllers/dummies.js:58
 msgid "Change name"
-msgstr ""
+msgstr "Namen ändern"
 
 #: admin/views/player-list.html:10
 msgid "Change score"
-msgstr ""
+msgstr "Punkte ändern"
 
 #: admin/views/admin/move-item.html:5
 msgid "Choose target where item will be appended."
-msgstr ""
+msgstr "Ziel auswählen wo Eintrag angehängt werden soll."
 
 #: player/partials/deals/deal.choosePlayer.html:1
-#, fuzzy
 msgid "Choose team to deal {{subject}} with:"
-msgstr "Team wählen um Deal {{subject}} zu vereinbaren:"
+msgstr "Team wählen um {{subject}} zu vereinbaren:"
 
 #: player/partials/deals/deal.chooseSubject.html:1
 msgid "Choose type of deal:"
@@ -94,19 +104,19 @@ msgstr "Wählen Sie Art des Deals:"
 
 #: admin/views/player-list.html:9
 msgid "Color"
-msgstr ""
+msgstr "Farbe"
 
 #: mc/js/controllers/players.js:53
 msgid "Come Back!"
-msgstr ""
+msgstr "Komm zurück!"
 
-#: mc/views/item.html:33
+#: mc/views/item.html:35
 msgid "Command"
-msgstr ""
+msgstr "Kommando"
 
-#: admin/partials/home.html:9 mc/views/item.html:34
+#: admin/partials/home.html:9 mc/views/item.html:36
 msgid "Configuration"
-msgstr ""
+msgstr "Konfiguration"
 
 #: player/partials/deals/deal.new.html:8 player/partials/rating/rating.html:13
 #: player/partials/voteConfirm.html:4
@@ -115,15 +125,15 @@ msgstr "Bestätigen"
 
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:5
 msgid "Content"
-msgstr ""
+msgstr "Inhalt"
 
 #: admin/views/admin/move-item.html:22
 msgid "Copy"
-msgstr ""
+msgstr "Kopieren"
 
 #: admin/views/admin/show-item-contents/show-vote-option.html:5
 msgid "Correct"
-msgstr ""
+msgstr "Richtig"
 
 #: player/partials/results.html:6
 msgid "Correct: {{home.correctAnswer}}"
@@ -137,9 +147,9 @@ msgstr "Ausgewählter Strang:"
 msgid "Current step:"
 msgstr "Aktueller Eintrag:"
 
-#: mc/views/item.html:9
+#: mc/views/item.html:10
 msgid "Current:"
-msgstr ""
+msgstr "Aktuell:"
 
 #: homevisit_components/hvLanguage.js:7
 msgid "Czech"
@@ -155,7 +165,7 @@ msgstr "Strang"
 
 #: admin/partials/home.html:48
 msgid "Decks and items"
-msgstr ""
+msgstr "Strang und Einträge"
 
 #: admin/views/game-conf.html:27
 msgid "Default mapping:"
@@ -176,9 +186,9 @@ msgstr "Beschreibung:"
 
 #: mc/js/controllers/players.js:40
 msgid "Deselect"
-msgstr ""
+msgstr "Deselektieren"
 
-#: mc/views/players.html:14
+#: mc/views/players.html:17
 msgid "Details"
 msgstr "Details"
 
@@ -195,6 +205,8 @@ msgid ""
 "Do you want to take out {{subject}} with <player-icon class=\"player-icon-med"
 "\" pid=\"player1Id\"></player-icon>?"
 msgstr ""
+"Möchtest du eine {{subject}} mit <player-icon class=\"player-icon-med\" pid="
+"\"player1Id\"></player-icon> abschließen?"
 
 #: homevisit_components/hvLanguage.js:10
 msgid "Dutch"
@@ -216,7 +228,7 @@ msgstr "Rest ausfüllen"
 msgid "French"
 msgstr ""
 
-#: admin/views/master-buttons.html:6 mc/index.html:49
+#: admin/views/master-buttons.html:6 mc/index.html:49 mc/views/players.html:31
 msgid "GO"
 msgstr ""
 
@@ -230,11 +242,11 @@ msgstr ""
 
 #: mc/index.html:29
 msgid "Game"
-msgstr ""
+msgstr "Spiel"
 
 #: admin/views/master-buttons.html:3
 msgid "Game stopped"
-msgstr ""
+msgstr "Spiel gestoppt"
 
 #: homevisit_components/hvLanguage.js:6
 msgid "German"
@@ -242,31 +254,31 @@ msgstr ""
 
 #: admin/views/admin/import-json.html:15
 msgid "Import"
-msgstr ""
+msgstr "Importieren"
 
 #: admin/views/admin/show-set.html:15
 msgid "Import JSON"
-msgstr ""
+msgstr "JSON importieren"
 
 #: admin/views/admin/edit-new-deck.html:13
 msgid "Import:"
-msgstr ""
+msgstr "Importieren:"
 
 #: admin/views/raspi-manager.html:56
 msgid "Interfaces"
-msgstr ""
+msgstr "Schnittstellen"
 
 #: admin/views/player-list.html:6
 msgid "Joined"
-msgstr ""
+msgstr "Verbunden"
 
 #: homevisit_components/views/language-chooser.html:2
 msgid "Language"
-msgstr ""
+msgstr "Sprache"
 
 #: mc/js/controllers/players.js:55
 msgid "Leave Table!"
-msgstr ""
+msgstr "Tisch verlassen!"
 
 #: admin/views/raspi-manager.html:44
 msgid "Load"
@@ -282,11 +294,11 @@ msgstr "Wartung"
 
 #: admin/views/admin/item-partials/item-mapping.html:2
 msgid "Mapped:"
-msgstr ""
+msgstr "Zugeordnet:"
 
 #: mc/index.html:32
 msgid "Matching"
-msgstr ""
+msgstr "Übereinstimmung"
 
 #: player/partials/results.html:23
 msgid "Max: {{home.data[3]}}"
@@ -294,7 +306,7 @@ msgstr "Max: {{home.data[3]}}"
 
 #: admin/views/raspi-manager.html:36
 msgid "Memory"
-msgstr ""
+msgstr "Speicher"
 
 #: player/partials/results.html:22
 msgid "Min: {{home.data[2]}}"
@@ -302,19 +314,19 @@ msgstr "Min: {{home.data[2]}}"
 
 #: admin/views/admin/move-item.html:21
 msgid "Move"
-msgstr ""
+msgstr "Verschieben"
 
 #: admin/views/admin/move-item.html:2
 msgid "Move item"
-msgstr ""
+msgstr "Eintrag verschieben"
 
 #: mc/js/controllers/players.js:61
 msgid "My Turn!"
-msgstr ""
+msgstr "Dran!"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:22
 msgid "New Deck"
-msgstr ""
+msgstr "Neuer Strang"
 
 #: player/partials/deals/deal.html:10
 msgid "New deal"
@@ -322,26 +334,26 @@ msgstr "Neuer Deal"
 
 #: admin/views/admin/show-set.html:12
 msgid "New deck"
-msgstr ""
+msgstr "Neuer Strang"
 
 #: admin/views/admin/show-item-contents/show-switch-content.html:9
 #: admin/views/admin/show-item-contents/show-vote-content.html:16
 msgid "New option"
-msgstr ""
+msgstr "Neue Option"
 
 #: admin/views/admin/import-json.html:12
 msgid "New title:"
-msgstr ""
+msgstr "Neuer Titel:"
 
 #: player/partials/home.html:1
 msgid "Next"
 msgstr "Nächster"
 
-#: mc/views/players.html:10
+#: mc/views/players.html:13
 msgid "Next!"
 msgstr "Nächster!"
 
-#: mc/views/item.html:10
+#: mc/views/item.html:11
 msgid "Next:"
 msgstr "Nächster:"
 
@@ -355,7 +367,7 @@ msgstr ""
 
 #: admin/views/raspi-manager.html:14
 msgid "OS Info for {{osInfo.hostname}}"
-msgstr ""
+msgstr "OS Info für {{osInfo.hostname}}"
 
 #: admin/views/raspi-manager.html:60
 msgid "Online"
@@ -369,7 +381,7 @@ msgstr ""
 #: admin/views/admin/show-item-contents/show-switch-content.html:3
 #: admin/views/admin/show-item-contents/show-vote-content.html:10
 msgid "Options"
-msgstr ""
+msgstr "Optionen"
 
 #: admin/partials/home.html:5
 msgid "Playback"
@@ -377,19 +389,19 @@ msgstr ""
 
 #: mc/views/dummies.html:122
 msgid "Player"
-msgstr ""
+msgstr "Spieler"
 
-#: mc/views/item.html:35
+#: mc/views/item.html:37
 msgid "Players are dealing"
-msgstr ""
+msgstr "Die Teams verhandeln"
 
-#: mc/views/item.html:36
+#: mc/views/item.html:38
 msgid "Players are rating others"
-msgstr ""
+msgstr "Die Teams bewerten andere"
 
-#: mc/views/item.html:16
+#: mc/views/item.html:18
 msgid "Players are voting"
-msgstr ""
+msgstr "Die Teams stimmen ab"
 
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
@@ -405,19 +417,19 @@ msgstr ""
 
 #: mc/index.html:26
 msgid "Polls"
-msgstr ""
+msgstr "Abstimmung"
 
 #: homevisit_components/hvLanguage.js:13
 msgid "Portuguese"
 msgstr ""
 
-#: mc/views/item.html:8
+#: mc/views/item.html:9
 msgid "Previous:"
-msgstr ""
+msgstr "Vorheriges:"
 
 #: admin/views/admin/import-json.html:4
 msgid "Process"
-msgstr ""
+msgstr "Prozess"
 
 #: admin/partials/home.html:19
 msgid "RASPI Control"
@@ -425,7 +437,7 @@ msgstr ""
 
 #: admin/js/controllers/masterControllers.js:161
 msgid "REALLY REALLY SURE??????????"
-msgstr ""
+msgstr "WIRKLICH WIRKLICH SICHER????????"
 
 #: admin/views/raspi-manager.html:100
 msgid "REBOOT"
@@ -463,7 +475,7 @@ msgstr ""
 msgid "Rank"
 msgstr "Rang"
 
-#: mc/views/players.html:6 mc/views/players.html:9
+#: mc/views/players.html:12 mc/views/players.html:9
 msgid "Rank: {{player.rank}}"
 msgstr "Rang: {{player.rank}}"
 
@@ -473,23 +485,23 @@ msgstr "Rang: {{status.player.rank}}"
 
 #: admin/js/controllers/masterControllers.js:90
 msgid "Really delete???"
-msgstr ""
+msgstr "Wirklich löschen???"
 
-#: mc/js/services/mcAppServices.js:342
+#: mc/js/services/mcAppServices.js:344
 msgid "Really restart?"
-msgstr ""
+msgstr "Wirklich neustarten?"
 
 #: admin/partials/home.html:17
 msgid "Refresh"
-msgstr ""
+msgstr "Neuladen"
 
-#: mc/views/item.html:31
+#: mc/views/item.html:33
 msgid "Results are displayed"
-msgstr ""
+msgstr "Ergebnisse werden angezeigt"
 
 #: player/partials/results.html:7
 msgid "Results are weighted by ranking. See actual votes in braces."
-msgstr ""
+msgstr "Ergebnisse sind nach Rang gewichtet. Die Stimmen stehen in Klammern."
 
 #: admin/views/raspi-manager.html:99
 msgid "SHUTDOWN"
@@ -497,54 +509,56 @@ msgstr ""
 
 #: admin/views/admin/edit-new-deck.html:17
 msgid "Save"
-msgstr ""
+msgstr "Speichern"
 
 #: admin/views/admin/show-item-contents/show-vote-option.html:6
 #: admin/views/player-list.html:8
 msgid "Score"
-msgstr ""
+msgstr "Punkte"
 
 #: mc/views/player.details.html:2
 msgid "Score for Player {{playerId}}"
-msgstr ""
+msgstr "Punkte für Team {{playerId}}"
 
-#: mc/views/players.html:6
+#: mc/views/players.html:9
 msgid "Score: {{player.score}}"
-msgstr ""
+msgstr "Punkte: {{player.score}}"
 
 #: player/index.html:159
 msgid "Score: {{status.player.score}}"
-msgstr ""
+msgstr "Punkte: {{status.player.score}}"
 
 #: mc/js/controllers/players.js:42
 msgid "Select"
-msgstr ""
+msgstr "Auswählen"
 
 #: player/partials/black.html:1
 msgid ""
 "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
 "is reading:"
 msgstr ""
+"Ruhe bitte. Jetzt liest <player-icon pid=\"status.playerOnTurn\"></player-"
+"icon>:"
 
 #: admin/views/admin/show-sequence-item.html:36
 msgid "Silent"
-msgstr ""
+msgstr "Still"
 
-#: mc/views/item.html:32
+#: mc/views/item.html:34
 msgid "Sound is playing:"
-msgstr ""
+msgstr "Ton wird wiedergegeben:"
 
 #: admin/views/raspi-manager.html:28
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: admin/views/player-list.html:5
 msgid "Team ID"
-msgstr ""
+msgstr "Team ID"
 
 #: admin/partials/home.html:28
 msgid "Teams"
-msgstr ""
+msgstr "Teams"
 
 #: player/partials/assholes.html:2
 msgid "These teams were mean to you:"
@@ -564,7 +578,7 @@ msgstr "Dieser Deal wurde ABGELEHNT."
 
 #: mc/views/about.html:1
 msgid "This is the about view."
-msgstr ""
+msgstr "Das ist die About-Ansicht."
 
 #: admin/views/admin/edit-new-deck.html:5
 msgid "Title:"
@@ -572,7 +586,7 @@ msgstr "Titel:"
 
 #: admin/views/admin/show-deck.html:4
 msgid "Total duration: {{getTimeForDeck()}}"
-msgstr ""
+msgstr "Gesamtdauer: {{getTimeForDeck()}}"
 
 #: player/partials/results.html:20
 msgid "Total: {{home.data[0]}}"
@@ -584,19 +598,19 @@ msgstr "Versucht nochmal"
 
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:4
 msgid "Type"
-msgstr ""
+msgstr "Art"
 
 #: admin/views/raspi-manager.html:32
 msgid "Uptime"
 msgstr ""
 
-#: admin/views/master-content.html:8 player/partials/vote.html:19
+#: admin/views/master-content.html:8 player/partials/vote.html:18
 msgid "VOTE"
 msgstr "ABSTIMMUNG"
 
 #: admin/views/admin/show-sequence-item.html:30
 msgid "Wait"
-msgstr ""
+msgstr "Warten"
 
 #: player/partials/deals/deal.details.html:26
 msgid "Waiting for reply..."
@@ -604,11 +618,11 @@ msgstr "Warten auf Antwort ..."
 
 #: admin/views/raspi-manager.html:75
 msgid "Wi-Fi name:"
-msgstr ""
+msgstr "Wi-Fi Name:"
 
 #: admin/views/raspi-manager.html:78
 msgid "Wi-Fi password"
-msgstr ""
+msgstr "Wi-Fi Passwort"
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
@@ -647,7 +661,7 @@ msgstr "anderer Spieler"
 #: mc/js/services/mcAppServices.js:271 mc/js/services/mcAppServices.js:272
 #: mc/js/services/mcAppServices.js:273
 msgid "player"
-msgstr ""
+msgstr "Spieler"
 
 #: admin/views/admin/show-sequence-item.html:33
 msgid "sec"

@@ -23,6 +23,7 @@ msgstr ""
 
 #: admin/views/master-buttons.html:12
 #: mc/index.html:40
+#: mc/views/players.html:32
 msgid "ALARM"
 msgstr ""
 
@@ -43,7 +44,7 @@ msgid "Away"
 msgstr ""
 
 #: admin/views/master-buttons.html:11
-#: mc/views/item.html:2
+#: mc/views/item.html:3
 msgid "BACK"
 msgstr ""
 
@@ -94,12 +95,12 @@ msgstr ""
 msgid "Come Back!"
 msgstr ""
 
-#: mc/views/item.html:33
+#: mc/views/item.html:35
 msgid "Command"
 msgstr ""
 
 #: admin/partials/home.html:9
-#: mc/views/item.html:34
+#: mc/views/item.html:36
 msgid "Configuration"
 msgstr ""
 
@@ -133,7 +134,7 @@ msgstr ""
 msgid "Current step:"
 msgstr ""
 
-#: mc/views/item.html:9
+#: mc/views/item.html:10
 msgid "Current:"
 msgstr ""
 
@@ -174,7 +175,7 @@ msgstr ""
 msgid "Deselect"
 msgstr ""
 
-#: mc/views/players.html:14
+#: mc/views/players.html:17
 msgid "Details"
 msgstr ""
 
@@ -212,6 +213,7 @@ msgstr ""
 
 #: admin/views/master-buttons.html:6
 #: mc/index.html:49
+#: mc/views/players.html:31
 msgid "GO"
 msgstr ""
 
@@ -332,11 +334,11 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: mc/views/players.html:10
+#: mc/views/players.html:13
 msgid "Next!"
 msgstr ""
 
-#: mc/views/item.html:10
+#: mc/views/item.html:11
 msgid "Next:"
 msgstr ""
 
@@ -374,15 +376,15 @@ msgstr ""
 msgid "Player"
 msgstr ""
 
-#: mc/views/item.html:35
+#: mc/views/item.html:37
 msgid "Players are dealing"
 msgstr ""
 
-#: mc/views/item.html:36
+#: mc/views/item.html:38
 msgid "Players are rating others"
 msgstr ""
 
-#: mc/views/item.html:16
+#: mc/views/item.html:18
 msgid "Players are voting"
 msgstr ""
 
@@ -406,7 +408,7 @@ msgstr ""
 msgid "Portuguese"
 msgstr ""
 
-#: mc/views/item.html:8
+#: mc/views/item.html:9
 msgid "Previous:"
 msgstr ""
 
@@ -458,7 +460,7 @@ msgstr ""
 msgid "Rank"
 msgstr ""
 
-#: mc/views/players.html:6
+#: mc/views/players.html:12
 #: mc/views/players.html:9
 msgid "Rank: {{player.rank}}"
 msgstr ""
@@ -471,7 +473,7 @@ msgstr ""
 msgid "Really delete???"
 msgstr ""
 
-#: mc/js/services/mcAppServices.js:342
+#: mc/js/services/mcAppServices.js:344
 msgid "Really restart?"
 msgstr ""
 
@@ -479,7 +481,7 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: mc/views/item.html:31
+#: mc/views/item.html:33
 msgid "Results are displayed"
 msgstr ""
 
@@ -504,7 +506,7 @@ msgstr ""
 msgid "Score for Player {{playerId}}"
 msgstr ""
 
-#: mc/views/players.html:6
+#: mc/views/players.html:9
 msgid "Score: {{player.score}}"
 msgstr ""
 
@@ -524,7 +526,7 @@ msgstr ""
 msgid "Silent"
 msgstr ""
 
-#: mc/views/item.html:32
+#: mc/views/item.html:34
 msgid "Sound is playing:"
 msgstr ""
 
@@ -585,7 +587,7 @@ msgid "Uptime"
 msgstr ""
 
 #: admin/views/master-content.html:8
-#: player/partials/vote.html:19
+#: player/partials/vote.html:18
 msgid "VOTE"
 msgstr ""
 
