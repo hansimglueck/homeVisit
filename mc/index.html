@@ -35,7 +35,7 @@
                         <a ng-href="#/maintenance" translate>Maintenance</a>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" ng-controller="PlaybackCtrl">
+                <ul class="nav navbar-nav navbar-right" ng-controller="PlaybackCtrl" ng-hide="isActive('/players')">
                     <li>
                         <a class="btn btn-danger btn-alarm" ng-click="alert()" translate>ALARM</a>
                     </li>

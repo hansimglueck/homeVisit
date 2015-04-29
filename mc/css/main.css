@@ -23,10 +23,15 @@ body {
     background-color: #5cb85c !important;
 }
 
+.btn-skip {
+  margin-left: 8px;
+}
+
 .app-content {
   position: relative;
   height: 620px;
   width: 1280px;
+  padding: 0;
 }
 
 .dummy {
@@ -88,12 +93,32 @@ body {
   border-radius: 10px;
   position:absolute;
   top: 164px;
-  left:15px;
-  width: 1245px;
+  left: 15px;
+  width: 986px;
   height: 310px;
   border: solid 1px;
   font-size: 1.3em;
   overflow: hidden;
+}
+
+.playback-controls {
+    position: absolute;
+    left: 1016px;
+    top: 165px;
+    width: 244px;
+}
+
+.playback-controls .btn-block {
+    height: 118px;
+    font-weight: bold;
+}
+
+.playback-controls .btn-go {
+    font-size: 77px;
+}
+
+.playback-controls .btn-alarm {
+    font-size: 46px;
 }
 
 .finger {
@@ -173,10 +198,6 @@ body {
   font-size: 1.5em;
 }
 
-.right-aligned {
-  float:right;
-}
-
 .playback {
   height: 310px;
   position: relative;
@@ -195,6 +216,11 @@ body {
   width: 33%;
   height: 100%;
   float: left;
+  padding: 5px;
+}
+
+.game_sequence_item header {
+  background-color: grey;
 }
 
 .items .previous-item {
@@ -209,10 +235,11 @@ body {
 }
 
 .sequence-label {
-    float: right;
+    margin-top: 3px;
+    margin-bottom: 0;
 }
 
-.content {
+.game_sequence_item .content {
     height: 262px;
     display: flex;
     flex-direction: column;
@@ -238,4 +265,20 @@ ul.follow-items {
 
 ul.follow-items > li {
     list-style-position: inside;
+}
+
+.container-mc {
+    margin: 0;
+    padding: 0;
+}
+
+.mc-left {
+    width: 996px;
+}
+
+.clock {
+    font-family: monospace;
+    font-size: 51px;
+    text-align: center;
+    font-weight: bold;
 }

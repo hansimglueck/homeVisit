@@ -1,25 +1,36 @@
-<div class="container-fluid">
-    <div class="player" ng-repeat="player in status.otherPlayers track by $index"
-         ng-style="{'top':playerPos[player.playerId].top, 'left':playerPos[player.playerId].left, 'background':playerColors[$index], 'color':awayColor(player.playerId)}" ng-class="{dimm: !player.joined}">
-        <ul class="list-group list-unstyled">
-            <li class="list-group-item" ng-if="isOnTurn(player.playerId)" ng-class="{onTurn: player.onTurn}">
-                <span translate>Score: {{player.score}}</span> &nbsp;&nbsp;  <span translate>Rank: {{player.rank}}</span> {{myTurn(player.playerId)}} &nbsp;&nbsp;
-            </li>
-            <li class="list-group-item" ng-if="!isOnTurn(player.playerId)" ng-class="{upcoming: player.upcoming}">
-                <span>Score: {{player.score}}</span> &nbsp;&nbsp;  <span translate>Rank: {{player.rank}}</span> {{myTurn(player.playerId)}} &nbsp;&nbsp;
-                <button  class="btn" ng-if="wantsToBeNext(player.playerId)" ng-click="upcomingPlayer(player.playerId)" translate>Next!</button>
-            </li>
-            
-            <li class="list-group-item" ng-class="{selected: player.selected}">
-                <a class="btn btn-default" ng-href="#/players/{{player.playerId}}" translate>Details</a>
-                <button class="btn" ng-click="toggleSelected(player.playerId)">{{playerSelected(player.playerId)}}</button>
-                <button class="btn" ng-click="toggleAway(player.playerId)">{{playerAway(player.playerId)}}</button>
-            </li>
-        </ul>
-    </div>
-</div>
+<div class="container container-mc">
+  <div class="row">
+    <div class="mc-left">
 
-<div class="table-display-players" ng-switch="tableDisplayType">
-    <div playback ng-switch-when="playback"></div>
-    <div player-details pid="playerId" ng-switch-when="playerDetails"></div>
+      <div class="player" ng-repeat="player in status.otherPlayers track by $index"
+           ng-style="{'top':playerPos[player.playerId].top, 'left':playerPos[player.playerId].left, 'background':playerColors[$index], 'color':awayColor(player.playerId)}" ng-class="{dimm: !player.joined}">
+        <ul class="list-group list-unstyled">
+          <li class="list-group-item" ng-if="isOnTurn(player.playerId)" ng-class="{onTurn: player.onTurn}">
+            <span translate>Score: {{player.score}}</span> &nbsp;&nbsp;  <span translate>Rank: {{player.rank}}</span> {{myTurn(player.playerId)}} &nbsp;&nbsp;
+          </li>
+          <li class="list-group-item" ng-if="!isOnTurn(player.playerId)" ng-class="{upcoming: player.upcoming}">
+            <span>Score: {{player.score}}</span> &nbsp;&nbsp;  <span translate>Rank: {{player.rank}}</span> {{myTurn(player.playerId)}} &nbsp;&nbsp;
+            <button  class="btn" ng-if="wantsToBeNext(player.playerId)" ng-click="upcomingPlayer(player.playerId)" translate>Next!</button>
+          </li>
+
+          <li class="list-group-item" ng-class="{selected: player.selected}">
+            <a class="btn btn-default" ng-href="#/players/{{player.playerId}}" translate>Details</a>
+            <button class="btn" ng-click="toggleSelected(player.playerId)">{{playerSelected(player.playerId)}}</button>
+            <button class="btn" ng-click="toggleAway(player.playerId)">{{playerAway(player.playerId)}}</button>
+          </li>
+        </ul>
+      </div>
+
+      <div class="table-display-players" ng-switch="tableDisplayType">
+        <div playback ng-switch-when="playback"></div>
+        <div player-details pid="playerId" ng-switch-when="playerDetails"></div>
+      </div>
+    </div>
+
+    <div class="playback-controls" ng-controller="PlaybackCtrl">
+      <button class="btn btn-block btn-success btn-go" ng-click="playback('go', 0)" translate>GO</button>
+      <button class="btn btn-block btn-danger btn-alarm" ng-click="alert()" translate>ALARM</button>
+      <div class="clock">1:59</div>
+    </div>
+  </div>
 </div>
