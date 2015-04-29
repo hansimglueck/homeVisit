@@ -80,6 +80,22 @@ angular.module("playerControllers", [])
             $location.path("/vote");
         }
 
+        $scope.smaller = false;
+        if ($scope.home.voteType === 'customOptions') {
+            var totalLength = 0;
+            Home.text.forEach(function(t) {
+                totalLength += t.length;
+            });
+            Home.options.forEach(function(o) {
+                totalLength += o.text.length;
+            });
+            if (totalLength > 400) {
+                console.log('lot of text: making it smaller!');
+                console.log('totalLength', totalLength);
+                $scope.smaller = true;
+            }
+        }
+
     })
     .controller('ResultsController', function($scope, Home, playerColors){
         $scope.playerColors = playerColors;

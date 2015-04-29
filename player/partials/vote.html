@@ -1,4 +1,4 @@
-<div>
+<div ng-class="{ smaller: smaller }">
     <div class="left-pane">
         <ul class="list-unstyled">
             <li ng-repeat="t in home.text track by $index">{{t}}</li>
@@ -7,8 +7,7 @@
     </div>
     <div class="right-pane">
         <div>
-            <div ng-if="['customOptions', 'customMultipleOptions', 'countryChoice'].indexOf(home.voteType) != -1"
-                 ng-switch="home.limit > 1">
+            <div ng-if="['customOptions', 'customMultipleOptions', 'countryChoice'].indexOf(home.voteType) != -1" ng-switch="home.limit > 1">
                 <ul class="list-unstyled wide-list" ng-switch-when="false">
                     <li ng-repeat="opt in home.options track by $index">
                         <button class="btn btn-default" ng-click="vote($index)">{{opt.text}}</button>
