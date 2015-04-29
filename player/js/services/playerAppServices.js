@@ -1,5 +1,5 @@
 angular.module('playerAppServices', [])
-    .factory('Home', function (Socket, $location, fxService, Status, $timeout, DealFactory, playerColors) {
+    .factory('Home', function (Socket, $location, fxService, Status, $timeout, playerColors) {
         var homeFactory = {};
         homeFactory.displayData = {};
         homeFactory.type = "vote";
@@ -46,6 +46,7 @@ angular.module('playerAppServices', [])
             $location.path("/voteConfirm");
         };
         homeFactory.confirmVote = function () {
+            homeFactory.done = true;
             if (typeof homeFactory.voteChoice == "undefined") homeFactory.voteChoice = [];
             console.log(homeFactory.voteChoice);
             if (homeFactory.timeout) {
@@ -86,7 +87,6 @@ angular.module('playerAppServices', [])
                 if (data.type !== "alert") homeFactory.done = false;
                 console.log("new display: " + data.type);
                 fxService.cancelCountdown();
-                homeFactory.type = "card";
                 homeFactory.labels = [];
                 if (data) {
                     if (!!data.text) homeFactory.text = data.text.split("::");
@@ -173,6 +173,7 @@ angular.module('playerAppServices', [])
                                 return;
                                 break;
                             case "card":
+                                homeFactory.type = "card";
                                 console.log("we have to show a card!");
                                 break;
                             case "browser":
@@ -183,13 +184,15 @@ angular.module('playerAppServices', [])
                                 return;
                                 break;
                             case "black":
+                                homeFactory.type = "card";
                                 $location.path('/black');
                                 return;
                                 break;
                             case "deal":
+                                homeFactory.type = "deal";
                                 var dealType = "";
                                 if (typeof data.dealType !== "undefined") dealType = data.dealType;
-                                DealFactory.subject = dealType;
+                                //DealFactory.subject = dealType;
                                 $location.path('/deals/new/' + dealType);
                                 return;
                                 break;
@@ -207,6 +210,8 @@ angular.module('playerAppServices', [])
                                         if (!homeFactory.done) fxService.playSound('alert');
                                         break;
                                     case 2:
+                                        console.log(homeFactory.type);
+                                        if (["agreement","rating","vote","deal"].indexOf(homeFactory.type) === -1) return;
                                         homeFactory.time = 12;
                                         if (!homeFactory.done) {
                                             if (homeFactory.type == "vote") homeFactory.timedVote(homeFactory.confirmVote);
@@ -460,15 +465,16 @@ angular.module('playerAppServices', [])
         };
         return fxService;
     })
-    .factory('DealFactory', function (Socket, Status, rfc4122, $location) {
+    .factory('DealFactory', function (Socket, Status, rfc4122, $location, Home) {
         // deal.states entspricht ["just opened", "waiting for answer", "have to reply", "confirmed", "denied"]
         var dealFactory = {};
         dealFactory.deals = {};
-        dealFactory.subject;
+        dealFactory.subject = "insurance";
         dealFactory.busy = false;
         Socket.on('deal', function (deal) {
             if (dealFactory.busy) dealFactory.sendMessage(deal, {type: "deny"});
             if (dealFactory.deals.hasOwnProperty(deal.id)) {
+                if (deal.state == 3) Home.cancelCountdown();
                 dealFactory.deals[deal.id].state = deal.state;
                 dealFactory.deals[deal.id].messages = deal.messages;
             }
@@ -525,7 +531,10 @@ angular.module('playerAppServices', [])
             if (message.type === "request") if (deal.messages.length > 0) if (message.value == deal.messages[deal.messages.length - 1].value) message.type = "confirm";
 
             deal.messages.push({playerId: Status.player.playerId, type: message.type, value: message.value});
-            if (message.type === "confirm") deal.state = 3;
+            if (message.type === "confirm") {
+                deal.state = 3;
+                Home.cancelCountdown();
+            }
             if (message.type === "deny") deal.state = 4;
             if (deal.state === 0 || deal.state === 2) {
                 deal.state = 1;

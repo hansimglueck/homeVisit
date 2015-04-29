@@ -280,10 +280,7 @@ PlayerManager.prototype = {
             switch (item.type) {
                 case "vote":
                     this.polls[item.poll.id] = item.poll;
-                    item.poll.setMaxVotes(this.players.filter(function (player) {
-                        return player.joined
-                    }).length);
-                    this.deliverMessage(device, "display", item.getWsContent());
+                    item.poll.setMaxVotes(this.deliverMessage(device, "display", item.getWsContent()));
                     break;
                 case "card":
                     this.deliverMessage(device, "display", item.getWsContent());
@@ -483,6 +480,7 @@ PlayerManager.prototype = {
         players.forEach(function (player) {
             self.sendMessage(player.playerId, type, content);
         });
+        return players.length;
     },
 
     getPlayerGroup: function (identifier) {
@@ -535,6 +533,9 @@ PlayerManager.prototype = {
                 ret = this.players;
                 break;
         }
+        ret = ret.filter(function(player) {
+            return player.joined === true;
+        });
         console.log(ret.map(function (player) {
             return player.playerId
         }));
