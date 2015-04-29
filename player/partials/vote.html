@@ -26,14 +26,13 @@
                 </ul>
             </div>
             <div ng-if="home.voteType == 'playerChoice'">
-                <div class="col-xs-4 player-grid-item"
-                     ng-repeat="player in home.options | isOtherPlayerThan:status.player track by $index">
-                    <div ng-style="{'height': '40px'}" ng-click="vote(player.playerId)">
-                        <div class="row1" ng-style="colors[playerColors[player.playerId][0]]">
-                        </div>
-                        <div class="row2" ng-style="colors[playerColors[player.playerId][1]]"></div>
-                    </div>
-                </div>
+                <ul class="list-inline list-unstyled">
+                    <li ng-repeat="player in home.options track by $index">
+                        <span ng-click="vote($index)">
+                            <player-icon pid="player.playerId"></player-icon>
+                        </span>
+                    </li>
+                </ul>
             </div>
             <div ng-if="home.voteType == 'enterNumber'">
                 <form ng-submit="vote(0)">

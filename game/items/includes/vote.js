@@ -1,6 +1,7 @@
 var colors = require('colors');
 var OptionPoll = require('../../polls/OptionPoll.js');
 var NumberPoll = require('../../polls/NumberPoll.js');
+var playerManager = require('../playerManager.js');
 
 module.exports = {
     test: "test",
@@ -16,6 +17,11 @@ module.exports = {
                 poll = new OptionPoll(this);
                 break;
             case "playerChoice":
+                this.voteOptions = playerManager.getPlayerGroup("joined").map(function(opt){
+                    return {value: opt, text: opt};
+                });
+                poll = new OptionPoll(this);
+                break;
             case "countryChoice":
                 var lang = this.language;
                 this.voteOptions = data.getEUcountries().map(function (c) {
@@ -32,7 +38,6 @@ module.exports = {
         }
         if (typeof poll !== 'undefined') {
             poll.onFinish(this, function (result) {
-                //game.trigger(-1, {data: 'go'})
                 this.step(result);
             });
             this.poll = poll;
