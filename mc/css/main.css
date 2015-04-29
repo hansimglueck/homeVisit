@@ -109,12 +109,12 @@ body {
 }
 
 .playback-controls .btn-block {
-    height: 118px;
+    height: 113px;
     font-weight: bold;
 }
 
 .playback-controls .btn-go {
-    font-size: 77px;
+    font-size: 73px;
 }
 
 .playback-controls .btn-alarm {
@@ -277,8 +277,12 @@ ul.follow-items > li {
 }
 
 .clock {
-    font-family: monospace;
+    font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
     font-size: 51px;
     text-align: center;
     font-weight: bold;
+    background-color: #252525;
+    color: #00d500;
+    margin-top: 5px;
+    border-radius: 4px;
 }

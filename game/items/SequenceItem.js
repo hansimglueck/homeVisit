@@ -4,7 +4,7 @@ var NumberPoll = require('../polls/NumberPoll.js');
 var Agreement = require('../polls/Agreement.js');
 var data = require('../data.js');
 var gameConf = require('../gameConf');
-var game = require('../game');
+var gameClock = require('../clock');
 var wsManager = require('../wsManager.js');
 var playerManager = require('../playerManager.js');
 var _ = require('underscore');
@@ -157,6 +157,12 @@ SequenceItem.prototype = {
             this.done = true;
             this.param = param;
             var self = this;
+
+            // game clock starts at card number 2!
+            if (this.index === 1) {
+                gameClock.start();
+            }
+
             this.log("stepped into " + this.index + ": " + this.type, true);
             this.log("executing in " + this.wait + " sec");
             var itemRequire = {};
@@ -261,14 +267,17 @@ SequenceItem.prototype = {
         });
 
     },
-    sendPlaybackStatus: function () {
-        if (!this.isOnTurn()) this.next.sendPlaybackStatus();
+    sendPlaybackStatus: function() {
+        if (!this.isOnTurn()) {
+            this.next.sendPlaybackStatus();
+        }
         else {
             var playbackStatus = {
                 done: this.done,
                 stepIndex: this.index,
                 type: this.type,
-                deckId: gameConf.conf.startDeckId
+                deckId: gameConf.conf.startDeckId,
+                clockSeconds: gameClock.getCurrentSeconds()
             };
             wsManager.msgDevicesByRole('master', 'playBackStatus', playbackStatus);
             wsManager.msgDevicesByRole('MC', 'playBackStatus', playbackStatus);

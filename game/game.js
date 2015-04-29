@@ -2,14 +2,16 @@
  * Created by jeanbluer on 26.01.15.
  */
 var exec = require('child_process').exec;
+var _ = require('underscore');
+var Q = require('q');
+var clone = require('clone');
+
 var wsManager = require('./wsManager.js');
 var playerManager = require('./playerManager.js');
 var SequenceItem = require('./items/SequenceItem.js');
 var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
 var gameConf = require('./gameConf');
-var _ = require('underscore');
-var Q = require('q');
-var clone = require('clone');
+var gameClock = require('./clock');
 
 
 function Game() {
@@ -21,6 +23,7 @@ function Game() {
     this.polls = [];
     this.sequence = null;
     this.alertState = 0;    //0: Alarmstufe off,  1: Alarmstufe an, 2: Alarmstufe blink
+    this.clock = gameClock;
 }
 
 Game.prototype = {
@@ -128,6 +131,7 @@ Game.prototype = {
         gameConf.options = clone(gameConf.defaultOptions); // reset the options when game restarts
         if (this.sequence !== null) this.sequence.finish();
         var g = this;
+        this.clock.reset();
         mongoConnection(function (db) {
             db.collection('decks').find({}).toArray(function (err, decks) {
                 if (err) return next(err);
@@ -178,8 +182,12 @@ Game.prototype = {
     },
 
     sendPlayBackStatus: function(clientId, role, msg) {
-        if (role !== "MC" && role !== "master") return;
-        if (this.sequence !== null) this.sequence.sendPlaybackStatus();
+        if (role !== "MC" && role !== "master") {
+            return;
+        }
+        if (this.sequence !== null) {
+            this.sequence.sendPlaybackStatus();
+        }
     }
  };
 

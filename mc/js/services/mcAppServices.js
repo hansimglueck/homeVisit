@@ -329,6 +329,8 @@ angular.module('mcAppServices', [])
                 deckFactory.current = deck.items[stepIndex];
                 deckFactory.previous = deck.items[stepIndex - 1];
                 deckFactory.next = deck.items[stepIndex + 1];
+
+                deckFactory.clockSeconds = playbackStatus.clockSeconds;
             });
         };
         return deckFactory;
