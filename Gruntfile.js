@@ -65,7 +65,54 @@ module.exports = function(grunt) {
                     'homevisit_components/translations.js': ['po/*.po']
                 }
             }
-        }
+        },
 
+        jshint: {
+            options: {
+                curly: true,
+                eqeqeq: true,
+                forin: true,
+                funcscope: true,
+                latedef: true,
+                noarg: true,
+                nonew: true,
+                singleGroups: true,
+                undef: true,
+                unused: 'vars',
+                expr: true,
+                eqnull: true,
+                reporter: require('jshint-stylish')
+            },
+            nodestuff: {
+                files: {
+                    src: [
+                        'Gruntfile.js',
+                        'game/**/*.js',
+                        'homevisit_components/**/*.js',
+                        'server/**/*.js'
+                    ]
+                },
+                options: {
+                    node: true
+                }
+            },
+            angularstuff: {
+                files: {
+                    src: [
+                        'admin/**/*.js',
+                        'homevisit_components/**/*.js',
+                        'mc/**/*.js',
+                        'player/**/*.js'
+                    ],
+                },
+                options: {
+                    browser: true,
+                    globals: {
+                        angular: true,
+                        console: true
+                    }
+                }
+            }
+        }
     });
 };

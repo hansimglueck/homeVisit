@@ -1,4 +1,4 @@
-Data = function() {
+var Data = function() {
     this.europeCountries = [{"id": "pt", en: "Portugal", de: "Portugal", "class": "eu europe"}, {
         "id": "es",
         en: "Spain",
@@ -135,7 +135,7 @@ Data = function() {
 Data.prototype = {
     getEUcountries: function () {
         return this.europeCountries.filter(function (c) {
-            return c.class == "eu europe";
+            return c.class === "eu europe";
         });
     }
 
