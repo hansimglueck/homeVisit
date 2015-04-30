@@ -24,7 +24,7 @@ def stopSound():
 	os.system("sudo pkill omxplayer");
 
 def stopmpg321():
-        os.system('pkill mpg321')
+        os.system('sudo pkill mpg321')
 
 #der client wird in einem extra-thread gestartet...
 client = ws.Client(role="speaker", cb = playSoundfile)

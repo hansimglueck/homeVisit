@@ -147,7 +147,7 @@ while(True):
 			mode = ""
 			sendSound("stopmpg321")
 			if (fies == 1):
-				sendSound("mpg321 alarm-fies-lauter.mp3")
+				sendSound("alarm-fies-lauter.mp3")
 			else:
 				sendSound("mpg321 time_up.mp3")
 	if (mode == ""):
