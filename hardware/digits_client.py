@@ -21,6 +21,7 @@ colon = 0
 blink_freq = 0
 blink_toggle = 0
 blink_toggle_timer = 0
+fies = false
 
 #print "Press CTRL+Z to exit"
 
@@ -66,6 +67,7 @@ def blink(freq):
 
 def cb(msg):
 	global mode
+	global fies
 	print "digits cb got message"
 	#print("DIGITS GETS MSG TYPE: " + msg["type"])
 	if (msg["type"] == "display"):
@@ -74,7 +76,11 @@ def cb(msg):
 			print "type="+msg["type"]+" - command="+msg["data"]["command"]
 			cmd = msg["data"]["command"]
 			#print("DIGITS GETS CMD: " + cmd)
-			if (cmd == "countdown"):
+			if (cmd == "countdown" or cmd == "countdown_fies"):
+				if (cmd == "countdown_fies"):
+					fies = true
+				else:
+					fies = false
 				countdown(int(msg["data"]["param"]))
 		elif (msg["data"]["type"] == "alert"):
 			### Dies ist die Alert-State-Nachricht vom Game: 0=aus, 1=an, 2=blink
@@ -140,7 +146,10 @@ while(True):
 			# countdown complete
 			mode = ""
 			sendSound("stopmpg321")
-			sendSound("mpg321 time_up.mp3")
+			if (fies):
+				sendSound("mpg321 alarm-fies-lauter.mp3")
+			else:
+				sendSound("mpg321 time_up.mp3")
 	if (mode == ""):
 		turnOff()
 	elif (mode == "countdown"):

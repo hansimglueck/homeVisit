@@ -100,8 +100,8 @@ angular.module('mcAppServices', [])
                 //answers: [-1,-1,0,0,-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1]
             },
             {
-                question: "Wer hat auf der Karte einen Ort eingetragen, an dem er im Ausland studiert hat?",
-                note: "Nationalflagge",
+                question: "Wer hat sein Herz schon mal im Ausland verloren??",
+                note: "Herz im Ausland",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [-1,-1,-1,-1,1,-1,1,-1,-1,-1,-1,1,-1,-1,-1]
