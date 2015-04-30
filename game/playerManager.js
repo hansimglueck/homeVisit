@@ -290,9 +290,6 @@ PlayerManager.prototype = {
                     this.deliverMessage(device, "display", item.getWsContent());
                     //this.results(item);
                     break;
-                case "playerDirect":
-                    this.direct(this.directItems.push(item) - 1);
-                    break;
                 case "eval":
                     this.eval(item.text);
                     break;

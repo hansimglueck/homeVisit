@@ -1,5 +1,6 @@
 angular.module('homeVisitMCApp')
-    .controller('ItemCtrl', function($scope, Deck, Playback) {
+    .controller('ItemCtrl', function($scope, Deck, Playback, gettextCatalog) {
+        $scope.lang = gettextCatalog.currentLanguage;
         $scope.deck = Deck;
         $scope.getIndex = function() {
             return Deck.stepIndex + $scope.indexOffset;
@@ -20,7 +21,7 @@ angular.module('homeVisitMCApp')
         $scope.alert = Playback.alert;
         $scope.skipStep = function() {
             return Deck.stepIndex + $scope.getFollowItems().length + 1;
-        }
+        };
         // follow items
         $scope.getFollowItems = function(item) {
             var indexCounter = Deck.stepIndex + 2, followItems = [];
@@ -35,5 +36,5 @@ angular.module('homeVisitMCApp')
                 }
             }
             return followItems;
-        }
+        };
     });

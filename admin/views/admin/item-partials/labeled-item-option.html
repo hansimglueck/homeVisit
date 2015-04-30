@@ -1,6 +1,13 @@
 <div class="labeled-option">
     <div class="labeled-option-title">{{title}}</div>
     <div class="labeled-option-content" ng-switch="type">
+        <div ng-switch-when="localized-textarea">
+            <span editable-textarea="item[field][lang]"
+                  e-rows="7" e-cols="40" e-name="field"
+                  onaftersave="saveitem()">
+                {{ item[field][lang] || '-' }}
+            </span>
+        </div>
         <div ng-switch-when="textarea">
             <span editable-textarea="item[field]"
                   e-rows="7" e-cols="40" e-name="field"

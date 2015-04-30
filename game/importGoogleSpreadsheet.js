@@ -35,26 +35,50 @@
         'regie',
         'mcnote',
         'kommentare',
-        'abstOptionen',
+        'voteOptions',
         'techNotes',
         'website',
-        'text_en'
+        // translation fields
+        'text_en',
+        'mcnote_en',
+        'voteOptions_en',
+        'text_cs',
+        'mcnote_cs',
+        'voteOptions_cs',
+        'text_da',
+        'mcnote_da',
+        'voteOptions_da',
+        'text_fr',
+        'mcnote_fr',
+        'voteOptions_fr',
+        'text_nl',
+        'mcnote_nl',
+        'voteOptions_nl',
+        'text_no',
+        'mcnote_no',
+        'voteOptions_no',
+        'text_pl',
+        'mcnote_pl',
+        'voteOptions_pl',
+        'text_pt',
+        'mcnote_pt',
+        'voteOptions_pt'
     ];
 
     // columns we use to build the item hash
-    var contentFields = [
+    var hashFields = [
         'szenenTyp',
         'trigger',
         'wait',
         'text',
         'regie',
         'mcnote',
-        'abstOptionen'
+        'voteOptions'
     ];
 
-    // languages we support for the moment (besides the main language
-    // German)
+    // languages we support
     var langCodes = [
+        'de',
         'en',
         'cs',
         'da',
@@ -69,10 +93,17 @@
     function calcHash(row) {
         var hash;
         hash = crypto.createHash('sha1');
-        contentFields.forEach(function(key) {
+        hashFields.forEach(function(key) {
             hash.update(row[key], 'utf8');
         });
         return hash.digest('hex');
+    }
+
+    function parseVoteOptions(voteOptions) {
+        return voteOptions
+            .split('\n')
+            .map(function(s) { return s.trim(); })
+            .filter(function(s) { return s.length > 0; });
     }
 
     // build an item from a spreadsheet row
@@ -81,36 +112,64 @@
             _id: hash,
             wait: row.wait || 0,
             device: ['default'],
-            mcnote: row.mcnote,
+            text: {},
+            mcnote: {
+                de: row.mcnote,
+                en: row.mcnote_en,
+                cs: row.mcnote_cs,
+                da: row.mcnote_da,
+                fr: row.mcnote_fr,
+                nl: row.mcnote_nl,
+                no: row.mcnote_no,
+                pl: row.mcnote_pl,
+                pt: row.mcnote_pt
+            },
             highlight: 1 // mark for review
         };
 
         // type
         if (row.szenenTyp === 'Karte') {
             item.type = 'card';
-            item.text = row.text;
+            item.text = {
+                de: row.text,
+                en: row.text_en,
+                cs: row.text_cs,
+                da: row.text_da,
+                fr: row.text_fr,
+                nl: row.text_nl,
+                no: row.text_no,
+                pl: row.text_pl,
+                pt: row.text_pt
+            };
         }
 
         // sound
         else if (row.szenenTyp === 'Sound') {
             item.type = 'sound';
-            item.text = row.text;
+            item.text = {
+                de: row.text,
+                en: row.text_en,
+                cs: row.text_cs,
+                da: row.text_da,
+                fr: row.text_fr,
+                nl: row.text_nl,
+                no: row.text_no,
+                pl: row.text_pl,
+                pt: row.text_pt
+            };
         }
 
         else if (row.szenenTyp === 'Abstimmung') {
-            // abstimmung has multiple steps, we exploit inlineswitch
             item.type = 'inlineSwitch';
 
-            // parse voteOptions
-            var voteOptions = row.abstOptionen.split('\n')
-                .map(function(s) { return s.trim(); })
-                .filter(function(s) { return s.length > 0; })
-                .map(function(s) {
-                    return {
-                        text: s,
-                        value: ''
-                    };
-                });
+            var voteOptions_en = parseVoteOptions(row.voteOptions_en),
+                voteOptions_cs = parseVoteOptions(row.voteOptions_cs),
+                voteOptions_da = parseVoteOptions(row.voteOptions_da),
+                voteOptions_fr = parseVoteOptions(row.voteOptions_fr),
+                voteOptions_nl = parseVoteOptions(row.voteOptions_nl),
+                voteOptions_no = parseVoteOptions(row.voteOptions_no),
+                voteOptions_pl = parseVoteOptions(row.voteOptions_pl),
+                voteOptions_pt = parseVoteOptions(row.voteOptions_pt);
 
             item.inlineDecks = [
                 {
@@ -122,17 +181,42 @@
                             wait: 0,
                             trigger: 'go',
                             type: 'vote',
-                            text: row.text,
+                            text: {
+                                de: row.text,
+                                en: row.text_en,
+                                cs: row.text_cs,
+                                da: row.text_da,
+                                fr: row.text_fr,
+                                nl: row.text_nl,
+                                no: row.text_no,
+                                pl: row.text_pl,
+                                pt: row.text_pt
+                            },
                             device: ['default'],
                             percentsForFinish: '100',
                             voteType: 'customOptions',
-                            voteOptions: voteOptions
+                            voteOptions: parseVoteOptions(row.voteOptions).map(function(s, i) {
+                                return {
+                                    text: {
+                                        de: s,
+                                        en: voteOptions_en[i],
+                                        cs: voteOptions_cs[i],
+                                        da: voteOptions_da[i],
+                                        fr: voteOptions_fr[i],
+                                        nl: voteOptions_nl[i],
+                                        no: voteOptions_no[i],
+                                        pl: voteOptions_pl[i],
+                                        pt: voteOptions_pt[i]
+                                    },
+                                    value: ''
+                                };
+                            })
                         },
                         {
                             wait: 0,
                             trigger: 'go',
                             type: 'results',
-                            text: '',
+                            text: {},
                             device: ['default'],
                             sourceType: 'previousStep',
                             resultType: 'Pie',
@@ -142,10 +226,21 @@
                 }
             ];
         }
+
         else {
             // dummy/sonstiges
             item.type = 'dummy';
-            item.text = row.text;
+            item.text = {
+                de: row.text,
+                en: row.text_en,
+                cs: row.text_cs,
+                da: row.text_da,
+                fr: row.text_fr,
+                nl: row.text_nl,
+                no: row.text_no,
+                pl: row.text_pl,
+                pt: row.text_pt
+            };
         }
 
         // regieanweisung
@@ -201,22 +296,27 @@
     }
 
     // extract translations from row
-    function getTranslations(row) {
-        var t = {
-            text: {},
-            mcnote: {}
-        };
+    function setTranslations(item, row) {
         _.forEach(langCodes, function(langCode) {
-            var propName = 'text_%s'.format(langCode);
-            if (row.hasOwnProperty(propName)) {
-                console.log(langCode, row[propName]);
-                t.text[langCode] = row[propName];
-            }
-            else {
-                t.text[langCode] = null;
+            // text
+            var propName = langCode === 'de' ? 'text' : 'text_%s'.format(langCode);
+            item.text[langCode] = row[propName];
+            // mcnote
+            propName = langCode === 'de' ? 'mcnote' : 'mcnote_%s'.format(langCode);
+            item.mcnote[langCode] = row[propName];
+            // voteOptions
+            if (item.type === 'inlineSwitch') {
+                var voteItem = item.inlineDecks[0].items[0];
+                if (voteItem.type === 'vote') {
+                    propName = langCode === 'de' ? 'voteOptions' : 'voteOptions_%s'.format(langCode);
+                    var voteOptions = parseVoteOptions(row[propName]);
+                    _.each(voteItem.voteOptions, function(option, i) {
+                        option.text[langCode] = voteOptions[i];
+                    });
+                }
             }
         });
-        return t;
+        return item;
     }
 
     // parse data
@@ -259,7 +359,7 @@
                                 }
 
                                 // always update translations
-                                item.translations = getTranslations(row);
+                                item = setTranslations(item, row);
 
                                 return saveItem(db, item)
                                     .then(function() {
@@ -282,27 +382,23 @@
                     return Q.allSettled(promises).then(function(results) {
 
                         // make sure all items were built
-                        var ok = _.all(results, function(r) { return r.state === 'fulfilled'; });
-                        if (!ok) {
-                            console.error(results);
-                            throw new Error('Something went wrong!'.red);
-                        }
+                        _.forEach(results, function(r) {
+                            if (r.state !== 'fulfilled') {
+                                throw new Error(r.reason.stack);
+                            }
+                        });
 
-                        // save deck
-                        else {
-                            // reorder using index info
-                            console.log(results);
-                            var items = _.map(_.sortBy(_.pluck(results, 'value'), 'index'), function(v) {
-                                return v.hash;
-                            });
-                            saveDeck(db, items).then(function() {
-                                console.log('Successfully imported %s items of which %s are new!'.format(
-                                    String(totalCount).bold, String(newCount).bold).green);
-                                db.close();
-                            }).catch(function(err) {
-                                throw new Error(err);
-                            }).done();
-                        }
+                        // reorder using index info
+                        var items = _.map(_.sortBy(_.pluck(results, 'value'), 'index'), function(v) {
+                            return v.hash;
+                        });
+                        saveDeck(db, items).then(function() {
+                            console.log('Successfully imported %s items of which %s are new!'.format(
+                                String(totalCount).bold, String(newCount).bold).green);
+                            db.close();
+                        }).catch(function(err) {
+                            throw new Error(err);
+                        }).done();
 
                     });
 

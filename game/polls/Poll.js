@@ -1,6 +1,6 @@
 var hat = require('hat');
 
-Poll = function (item) {
+var Poll = function (item) {
     //if (typeof item == "undefined") return;
     this.votes = [];            //Objekte mit Eigenschaften .multiplier, .playerId, .choice (array of ids bei optionpoll, number bei numberPoll
     this.voteCount = 0;
@@ -82,10 +82,15 @@ Poll.prototype = {
 
     },
     prepareWsContent: function() {
+        var lang = require('../gameConf').conf.language;
+        var text;
+        if (typeof this.text !== 'undefined') {
+            text = this.text[lang];
+        }
         this.wsContent = {
             type: "vote",
             pollId: this.id,
-            text: this.text,
+            text: text,
             voteMulti: this.voteMulti,
             ratedVote: this.ratedVote,
             voteType: this.voteType,

@@ -1,5 +1,5 @@
 <div class="labeled-option-group">
-    <labeled-item-option field="text" title="Text" type="textarea" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option field="text" title="Text" type="localized-textarea" item="item" saveitem="saveItem()"></labeled-item-option>
     <labeled-item-option field="voteType" title="Type" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
     <labeled-item-option field="time" title="Time" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
     <labeled-item-option field="percentsForFinish" title="Required votes %" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
@@ -10,7 +10,7 @@
         <div class="labeled-option-title" translate>Options</div>
         <div class="labeled-option-content">
             <table class="table">
-                <tbody show-vote-option>
+                <tbody show-vote-option item="item">
                 </tbody>
             </table>
             <button class="btn btn-primary" ng-click="addVoteOption($index)" translate>New option</button>

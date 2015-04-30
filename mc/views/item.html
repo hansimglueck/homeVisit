@@ -1,29 +1,29 @@
 <li class="list-group-item game_sequence_item game_sequence_item_current">
-    <div class="header">
+    <div class="header" ng-if="getIndex() >= 0 && getIndex() < deck.stepCount">
         <button class="btn btn-default" ng-click="playback('back')" ng-if="isPrevious()" translate>BACK</button>
         <button class="btn btn-default" ng-click="playback('rego')" ng-if="isCurrent()">REGO</button>
         <button class="btn btn-success" ng-click="playback('go','0')" ng-if="isNext()">GO</button>
-        <label class="sequence-type">{{getItem().type}}</label>
+        <label class="sequence-type">{{ getItem().type }}</label>
         <button class="btn btn-warning btn-skip pull-right" ng-click="playback('goto',skipStep())" ng-if="isNext()">SKIP</button>
         <label class="sequence-label pull-right">
             <span translate ng-if="isPrevious()">Previous:</span>
             <span translate ng-if="isCurrent()">Current:</span>
             <span translate ng-if="isNext()">Next:</span>
-            <span>{{getIndex()}}</span><span ng-if="isCurrent()"> / {{deck.stepCount}}</span>
+            <span>{{ getIndex() + 1 }}</span><span ng-if="isCurrent()"> / {{ deck.stepCount }}</span>
         </label>
     </div>
 
-    <div class="content">
+    <div class="content" ng-if="getIndex() >= 0 && getIndex() < deck.stepCount">
         <div ng-switch="getItem().type">
             <div ng-switch-when="vote" translate>Players are voting</div>
             <div ng-switch-when="inlineSwitch">
                 <div ng-repeat="inlineDeck in getItem().inlineDecks track by $index">
                     <ol class="inline-options">
                         <li ng-repeat="inlineItem in inlineDeck.items">
-                            <span class="type">{{inlineItem.type}}</span> {{inlineItem.text}}
+                            <span class="type">{{ inlineItem.type }}</span> {{ inlineItem.text[lang] }}
                             <ol ng-if="inlineItem.type == 'vote'">
                                 <li ng-repeat="voteOption in inlineItem.voteOptions">
-                                    {{voteOption.text}}
+                                    {{ voteOption.text[lang] }}
                                 </li>
                             </ol>
                         </li>
@@ -31,22 +31,22 @@
                 </div>
             </div>
             <div ng-switch-when="results" translate>Results are displayed</div>
-            <div ng-switch-when="sound"><span translate>Sound is playing:</span> {{getItem().text}}</div>
+            <div ng-switch-when="sound"><span translate>Sound is playing:</span> {{ getItem().text[lang] }}</div>
             <div ng-switch-when="cmd" translate>Command</div>
             <div ng-switch-when="config" translate>Configuration</div>
             <div ng-switch-when="deal" translate>Players are dealing</div>
             <div ng-switch-when="rating" translate>Players are rating others</div>
-            <div ng-switch-default class="text-scroller">{{getItem().text}}</div>
+            <div ng-switch-default class="text-scroller">{{ getItem().text[lang] }}</div>
         </div>
 
         <ul ng-if="isNext() && getFollowItems(getItem()).length > 0" class="follow-items">
             <li ng-repeat="followItem in getFollowItems(getItem()) track by $index">
-                <strong>{{followItem.type}}:</strong> {{followItem.text}}
+                <strong>{{ followItem.type }}:</strong> {{ followItem.text[lang] }}
             </li>
         </ul>
 
-        <div ng-if="getItem().mcnote.trim().length > 0" class="mcnote">
-            {{getItem().mcnote}}
+        <div ng-if="getItem().mcnote[lang].trim().length > 0" class="mcnote">
+            {{ getItem().mcnote[lang] }}
         </div>
     </div>
 </li>

@@ -39,7 +39,23 @@ angular.module('adminDirectives', [])
         return {
             restrict: 'AE',
             replace: 'true',
-            templateUrl: 'views/admin/show-item-contents/show-vote-option.html'
+            templateUrl: 'views/admin/show-item-contents/show-vote-option.html',
+            scope: {
+                item: '='
+            },
+            controller: function($scope, gettextCatalog) {
+                $scope.lang = gettextCatalog.currentLanguage;
+                $scope.saveVoteOption = function() {
+                    console.log('saveVoteOption')
+                    console.log($scope.$parent.$index);
+                    return $scope.$parent.updateDeck($scope.$parent.deck);
+                };
+                $scope.deleteVoteOption = function(i) {
+                    console.log('.deleteVoteOption', $scope.$parent.$index, i)
+                    $scope.$parent.deck.items[$scope.$parent.$index].voteOptions.splice(i, 1);
+                    $scope.$parent.updateDeck($scope.$parent.deck);
+                };
+            }
         };
     })
 
@@ -193,7 +209,8 @@ angular.module('adminDirectives', [])
                 saveitem: '&',
                 showtextforvalue: '&'
             },
-            controller: function($scope, itemOptions, $filter) {
+            controller: function($scope, itemOptions, $filter, gettextCatalog) {
+                $scope.lang = gettextCatalog.currentLanguage;
                 $scope.itemOptions = itemOptions;
                 $scope.showTextForValue = function (item, option) {
                     var selected = [];

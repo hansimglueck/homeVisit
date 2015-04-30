@@ -352,12 +352,6 @@ adminControllers
             console.log("Prepare for " + type);
             console.log($scope.deck);
             console.log(itemId);
-            if (type == "playerDirect") {
-                $scope.deck.items[itemId].voteOptions = [];
-                for (var i = 0; i < 15; i++) {
-                    $scope.deck.items[itemId].voteOptions.push({text: '/info/denanot.html', value: 'browser'});
-                }
-            }
         };
 
         // this seems VERY evil!
@@ -372,9 +366,8 @@ adminControllers
 
         $scope.addVoteOption = function (id) {
             $scope.insertedOption = {
-                text: '',
-                value: '',
-                flags: [false]
+                text: {},
+                value: ''
             };
             if (!$scope.deck.items[id].voteOptions) $scope.deck.items[id].voteOptions = [];
             $scope.deck.items[id].voteOptions.push($scope.insertedOption);
@@ -393,14 +386,6 @@ adminControllers
         };
         $scope.deleteInlineDeck = function (id) {
             $scope.item.inlineDecks.splice(id, 1);
-            $scope.updateDeck($scope.deck);
-        };
-        $scope.saveVoteOption = function () {
-            console.log($scope.$parent.$index);
-            return $scope.updateDeck($scope.deck);
-        };
-        $scope.deleteVoteOption = function (deckId, id, i) {
-            $scope.deck.items[id].voteOptions.splice(i, 1);
             $scope.updateDeck($scope.deck);
         };
         $scope.newVoteOption = function (deckId, id) {
