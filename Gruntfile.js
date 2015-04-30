@@ -52,7 +52,8 @@ module.exports = function(grunt) {
                         'player/**/*.html',
                         'player/**/*.js',
                         'mc/**/*.html',
-                        'mc/**/*.js'
+                        'mc/**/*.js',
+                        'game/**/*.js'
                     ]
                 }
             }

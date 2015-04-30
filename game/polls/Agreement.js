@@ -1,7 +1,8 @@
 var OptionPoll = require('./OptionPoll');
+function gettext(x) { return x; }
 
 Agreement = function (item) {
-    this.voteOptions = [{value: "yes", text: "Yes"}, {value: "no", text: "No"}];    //deep clone
+    this.voteOptions = [{value: "yes", text: gettext('Yes')}, {value: "no", text: gettext('No')}];    //deep clone
     this.voteType = "customOptions";
     OptionPoll.call(this, item);
 };

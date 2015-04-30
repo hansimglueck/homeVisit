@@ -61,14 +61,12 @@
         sound: text (filename)
     -->
     <div class="panel-body" ng-switch="item.type" ng-if="!item.collapsed">
-
         <div show-vote-content ng-switch-when="vote"></div>
         <div show-switch-content ng-switch-when="switch"></div>
         <div show-inline-switch-content ng-switch-when="inlineSwitch"></div>
         <div show-results-content ng-switch-when="results"></div>
         <div show-sound-content ng-switch-when="sound"></div>
         <div show-cmd-content ng-switch-when="cmd"></div>
-        <div show-player-direct-content ng-switch-when="playerDirect"></div>
         <div show-eval-content ng-switch-when="eval"></div>
         <div show-config-content ng-switch-when="config"></div>
         <div show-deal-content ng-switch-when="deal"></div>
@@ -80,7 +78,7 @@
         <div class="labeled-option-group">
             <labeled-item-option field="comment" title="Regie" type="textarea" item="item"
                                  saveitem="saveItem()"></labeled-item-option>
-            <labeled-item-option field="mcnote" title="MC-Note" type="textarea" item="item"
+            <labeled-item-option field="mcnote" title="MC-Note" type="localized-textarea" item="item"
                                  saveitem="saveItem()"></labeled-item-option>
         </div>
 

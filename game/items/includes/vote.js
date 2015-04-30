@@ -1,4 +1,3 @@
-var colors = require('colors');
 var OptionPoll = require('../../polls/OptionPoll.js');
 var NumberPoll = require('../../polls/NumberPoll.js');
 var playerManager = require('../../playerManager.js');
@@ -47,7 +46,7 @@ module.exports = {
             this.mapToDevice();
         }
         else {
-            console.log('Warning: Vote without voteOptions!'.red);
+            console.log('Warning: Vote without voteOptions!');
         }
     },
     getData: function () {
