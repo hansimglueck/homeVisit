@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-01 18:31+0100\n"
+"PO-Revision-Date: 2015-05-01 20:19+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -55,6 +55,14 @@ msgstr "Neuen Eintrag hinzufügen"
 msgid "ALARM"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:136
+msgid "Angst vor Zukunft"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:104
+msgid "arbeitet im Ausland"
+msgstr ""
+
 #: admin/js/controllers/masterControllers.js:160
 msgid "Are you sure?"
 msgstr "Bist Du sicher?"
@@ -78,6 +86,10 @@ msgstr "Zurück"
 #: mc/views/player.details.html:10
 msgid "BACK TO GAME!"
 msgstr "ZURÜCK ZUM SPIEL!"
+
+#: mc/js/services/mcAppServices.js:96
+msgid "bezahlte Arbeit"
+msgstr ""
 
 #: admin/views/admin/move-item.html:23 player/partials/deals/deal.new.html:11
 #: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:5
@@ -222,6 +234,10 @@ msgstr ""
 msgid "Dutch"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:160
+msgid "Ehrgeiz"
+msgstr ""
+
 #: homevisit_components/hvLanguage.js:5
 msgid "English"
 msgstr ""
@@ -246,8 +262,16 @@ msgstr "Spiel"
 msgid "Game stopped"
 msgstr "Spiel gestoppt"
 
+#: mc/js/services/mcAppServices.js:128
+msgid "gefühlter Europäer"
+msgstr ""
+
 #: homevisit_components/hvLanguage.js:6
 msgid "German"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:176
+msgid "Gewinn aus Spiel der Märkte"
 msgstr ""
 
 #: admin/views/master-buttons.html:6 mc/index.html:49 mc/views/players.html:31
@@ -265,6 +289,10 @@ msgstr ""
 #: homevisit_components/hvPlayerColors.js:31
 msgid "green"
 msgstr "grün"
+
+#: mc/js/services/mcAppServices.js:120
+msgid "Herkunft verleugnet"
+msgstr ""
 
 #: admin/views/admin/import-json.html:15
 msgid "Import"
@@ -285,6 +313,14 @@ msgstr "Schnittstellen"
 #: admin/views/player-list.html:6
 msgid "Joined"
 msgstr "Verbunden"
+
+#: mc/js/services/mcAppServices.js:64
+msgid "Klassensprecher"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:112
+msgid "körperlicher Konflikt"
+msgstr ""
 
 #: homevisit_components/views/language-chooser.html:2
 msgid "Language"
@@ -325,6 +361,22 @@ msgstr "Übereinstimmung"
 #: player/partials/results.html:23
 msgid "Max: {{home.data[3]}}"
 msgstr "Max: {{home.data[3]}}"
+
+#: mc/js/services/mcAppServices.js:159
+msgid "Mein Ehrgeiz"
+msgstr "Mein Ehrgeiz"
+
+#: mc/js/services/mcAppServices.js:175
+msgid "Mein Gewinn aus dem Spiel der Märkte"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:167
+msgid "Mein Vertrauen in die Demokratie"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:151
+msgid "Meine Solidaritätsbereitschaft"
+msgstr ""
 
 #: admin/views/raspi-manager.html:36
 msgid "Memory"
@@ -412,6 +464,10 @@ msgstr "OS Info für {{osInfo.hostname}}"
 #: player/views/game-events.html:24
 msgid "other Player"
 msgstr "anderer Spieler"
+
+#: mc/js/services/mcAppServices.js:80
+msgid "Parteimitglied"
+msgstr ""
 
 #: homevisit_components/hvPlayerColors.js:33
 msgid "pink"
@@ -597,6 +653,10 @@ msgstr ""
 msgid "Silent"
 msgstr "Still"
 
+#: mc/js/services/mcAppServices.js:152
+msgid "Solidaritätsbereitschaft"
+msgstr ""
+
 #: mc/views/item.html:34
 msgid "Sound is playing:"
 msgstr "Ton wird wiedergegeben:"
@@ -657,6 +717,22 @@ msgstr "Art"
 msgid "Uptime"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:88
+msgid "Verein/NGO"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:168
+msgid "Vertrauen in Demokratie"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:144
+msgid "vertrauenswürdig"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:72
+msgid "viel gewonnen"
+msgstr ""
+
 #: admin/views/master-content.html:8 player/partials/vote.html:18
 msgid "VOTE"
 msgstr "ABSTIMMUNG"
@@ -668,6 +744,52 @@ msgstr "Warten"
 #: player/partials/deals/deal.details.html:26
 msgid "Waiting for reply..."
 msgstr "Warten auf Antwort ..."
+
+#: mc/js/services/mcAppServices.js:95
+msgid "Wer am Tisch hat eine Arbeit, von der er oder sie leben kann?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:71
+msgid "Wer an diesem Tisch hat schon mal viel gewonnen?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:63
+msgid "Wer an diesem Tisch war einmal Klassensprecher?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:103
+msgid "Wer arbeitet regelmäßig außerhalb des Landes?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:87
+msgid "Wer engagiert sich in einem Verein oder in einer NGO?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:143
+msgid "Wer findet die Menschen hier grundsätzlich vertrauenswürdig?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:127
+msgid "Wer fühlt sich mehr als Europäer denn als Bürger seines Landes?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:135
+msgid "Wer hat Angst vor der Zukunft?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:111
+msgid ""
+"Wer hat in den vergangenen 10 Jahren einen Konflikt schon mal körperlich "
+"ausgetragen?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:119
+msgid "Wer hat schon mal bewusst seine nationale Herkunft verleugnet?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:79
+msgid "Wer war oder ist Parteimitglied?"
+msgstr ""
 
 #: admin/views/raspi-manager.html:75
 msgid "Wi-Fi name:"

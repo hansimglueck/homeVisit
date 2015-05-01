@@ -17,6 +17,7 @@ module.exports = {
                 var sum = posScoreArr.reduce(function (prev, curr) {
                     return prev + curr.score
                 }, 0);
+                // TODO translation
                 this.data.text = "Die Verteilung des Kuchens";
                 this.data.voteOptions = posScoreArr.map(function (player) {
                     return {
@@ -47,6 +48,7 @@ module.exports = {
                     vote.choice.forEach(function (ch) {
                         if (correct.indexOf(ch) != -1) score = 1;
                     });
+                    // TODO translation
                     playerManager.score(vote.playerId, score, "correct Answer");
                 });
                 break;
@@ -61,6 +63,7 @@ module.exports = {
                     vote.choice.forEach(function (ch) {
                         if (best == ch) score = 1;
                     });
+                    // TODO translation
                     playerManager.score(vote.playerId, score, "opportunism");
                 });
                 break;
@@ -72,6 +75,7 @@ module.exports = {
                     vote.choice.forEach(function (ch) {
                         if (best == ch) score = 1;
                     });
+                    // TODO translation
                     playerManager.score(vote.playerId, score, "guessed Best");
                 });
                 break;
