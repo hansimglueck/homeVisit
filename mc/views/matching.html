@@ -7,7 +7,7 @@
                 <div class="matching_green" ng-class="{matchedUp:!playerPerfectAssigned($index)}">
                     {{playerNames[$index]}} &nbsp; &nbsp;
                     <span ng-repeat="note in playerFulfills($index) track by $index">
-                        {{note}} &nbsp; &nbsp;
+                        {{gettextCatalog.getString(note)}} &nbsp; &nbsp;
                     </span>
                 </div>
             </div>
@@ -20,7 +20,7 @@
             <div class="matching_yellow" ng-if="playerDoesntMatch(playerField)">
                 {{playerNames[$index]}}&nbsp;
                     <span ng-repeat="note in playerAnswered($index) track by $index">
-                        {{note}} &nbsp;
+                        {{gettextCatalog.getString(note)}} &nbsp;
                     </span>
             </div>
         </div>

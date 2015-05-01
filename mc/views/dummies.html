@@ -124,7 +124,7 @@
             </tr>
             <tr ng-click="selectRow($index)" ng-class="{selectedRow: $index==selectedRow}"
                 ng-repeat="poll in polls.polls track by $index">
-                <td>{{poll.question}}</td>
+                <td>{{ gettextCatalog.getString(poll.question) }}</td>
                 <td ng-repeat="answer in poll.answers track by $index">
                     <div ng-if="poll.type=='binary'">{{showPlusMinus(answer)}}</div>
                     <div ng-if="poll.type=='fingers'">{{showFingers(answer)}}</div>

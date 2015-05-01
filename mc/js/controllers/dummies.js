@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('homeVisitMCApp')
-    .controller('DummiesCtrl', function ($scope, Polls, PlayerNames, gettext) {
+    .controller('DummiesCtrl', function ($scope, Polls, PlayerNames, gettextCatalog) {
+        $scope.gettextCatalog = gettextCatalog;
         $scope.selectedRow = Polls.selectedPoll;
         $scope.playerNames = PlayerNames.names;
         $scope.dummies = [

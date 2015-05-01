@@ -1,7 +1,8 @@
 'use strict';
 
 angular.module('homeVisitMCApp')
-    .controller('MatchingCtrl', function ($scope, Polls, Matches, PlayerNames, Teams) {
+    .controller('MatchingCtrl', function ($scope, Polls, Matches, PlayerNames, Teams, gettextCatalog) {
+        $scope.gettextCatalog = gettextCatalog;
         $scope.polls = Polls;
         $scope.matches = Matches;
         $scope.playerNames = PlayerNames.names;
