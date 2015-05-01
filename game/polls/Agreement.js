@@ -1,8 +1,18 @@
 var OptionPoll = require('./OptionPoll');
-function gettext(x) { return x; }
+require('../../homevisit_components/stringFormat');
 
 Agreement = function (item) {
-    this.voteOptions = [{value: "yes", text: gettext('Yes')}, {value: "no", text: gettext('No')}];    //deep clone
+    this.gettext = require('../gettext');
+    this.voteOptions = [
+        {
+            value: 'yes',
+            text: this.gettext.gettext('Yes')
+        },
+        {
+            value: 'no',
+            text: this.gettext.gettext('No')
+        }
+    ];
     this.voteType = "customOptions";
     OptionPoll.call(this, item);
 };
@@ -19,8 +29,17 @@ Agreement.prototype.getResult = function () {
     var result = OptionPoll.prototype.getResult.call(this);
     var fullfilled = false;
     if (result.voteOptions[0].percent > 99 && result.voteOptions[0].value=="yes") fullfilled = true;
-    var resText = "The Agreement on " + this.agreementType;
-    resText += fullfilled ? " is fullfilled." : " is neglected.";
+    var resText;
+    if (fullfilled) {
+        resText = this.gettext.gettext('The agreement on %(agreementType)s is fullfilled.').format({
+            aggreementType: this.agreementType
+        });
+    }
+    else {
+        resText = this.gettext.gettext('The agreement on %(agreementType)s is neglected.').format({
+            agreementType: this.agreementType
+        });
+    }
     var positivePlayerIds = result.votes.filter(function(vote){
         return vote.choice.indexOf('yes') != -1;
     }).map(function(vote){

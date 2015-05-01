@@ -1,16 +1,16 @@
 angular.module('hvLanguage', [])
-    .factory('languageFactory', ['gettext', function(gettext) {
+    .factory('languageFactory', function(gettextCatalog) {
 
         var languages = [
-            ['en', gettext('English')],
-            ['de', gettext('German')],
-            ['cs', gettext('Czech')],
-            ['da', gettext('Danish')],
-            ['fr', gettext('French')],
-            ['nl', gettext('Dutch')],
-            ['no', gettext('Norwegian')],
-            ['pl', gettext('Polish')],
-            ['pt', gettext('Portuguese')]
+            ['en', gettextCatalog.getString('English')],
+            ['de', gettextCatalog.getString('German')],
+            ['cs', gettextCatalog.getString('Czech')],
+            ['da', gettextCatalog.getString('Danish')],
+            ['fr', gettextCatalog.getString('French')],
+            ['nl', gettextCatalog.getString('Dutch')],
+            ['no', gettextCatalog.getString('Norwegian')],
+            ['pl', gettextCatalog.getString('Polish')],
+            ['pt', gettextCatalog.getString('Portuguese')]
         ];
 
         var languageFactory = {};
@@ -18,7 +18,7 @@ angular.module('hvLanguage', [])
         languageFactory.availableLanguages = languages;
 
         return languageFactory;
-    }])
+    })
     .directive('languageChooser', function() {
         return {
             restrict: 'E',

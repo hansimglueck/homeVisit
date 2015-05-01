@@ -1,5 +1,5 @@
 angular.module('playerAppServices', [])
-    .factory('Home', function (Socket, $location, fxService, Status, $timeout, playerColors) {
+    .factory('Home', function (Socket, $location, fxService, Status, $timeout, playerColors, gettextCatalog) {
         var homeFactory = {};
         homeFactory.displayData = {};
         homeFactory.type = "vote";
@@ -130,7 +130,7 @@ angular.module('playerAppServices', [])
                                 }
                                 else result.voteOptions.forEach(function (option) {
                                     if (option.correctAnswer) homeFactory.correctAnswer = option.text;
-                                    labels.push(option.text + ": " + option.percent + "% (" + option.votes + " Votes)");
+                                    labels.push(option.text + ": " + option.percent + "% (" + option.votes + " " + gettextCatalog.getPlural(option.votes, 'vote', 'votes') + ")");
                                     if (resultType == "europeMap") resData.push({
                                         id: option.value,
                                         val: option.percent

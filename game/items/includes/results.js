@@ -1,5 +1,5 @@
-var playerManager = require('../../playerManager.js');
-
+var playerManager = require('../../playerManager');
+var gettext = require('../../gettext');
 
 module.exports = {
     executeItem: function () {
@@ -17,8 +17,7 @@ module.exports = {
                 var sum = posScoreArr.reduce(function (prev, curr) {
                     return prev + curr.score
                 }, 0);
-                // TODO translation
-                this.data.text = "Die Verteilung des Kuchens";
+                this.data.text = gettext('The division of the cake');
                 this.data.voteOptions = posScoreArr.map(function (player) {
                     return {
                         value: player.playerId,

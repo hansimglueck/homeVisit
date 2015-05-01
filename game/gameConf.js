@@ -9,6 +9,7 @@ function GameConf() {
     };
     this.options = clone(this.defaultOptions);      //veränderliche optionen wie alertRecipients
     this.maxPlayerCnt = 8;
+    this.gettext = require('./gettext');
 }
 
 GameConf.prototype = {
@@ -38,6 +39,7 @@ GameConf.prototype = {
                 else {
                     if (cb) cb();
                 }
+                self.gettext.textdomain(self.conf.language);
             });
         });
     },
@@ -68,6 +70,7 @@ GameConf.prototype = {
     changeLanguage: function(clientId, role, data) {
         var self = this;
         this.conf.language = data.data;
+        this.gettext.textdomain(this.conf.language);
         mongoConnection(function (db) {
             db.collection('gameconfs').updateOne({ _id: self.conf._id }, { $set: { language: self.conf.language } }, {}, function(err, conf) {
                 if (err !== null) {

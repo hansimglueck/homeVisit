@@ -1,5 +1,6 @@
 var wsManager = require('./wsManager.js');
 var gameConf = require('./gameConf');
+require('../homevisit_components/stringFormat');
 
 
 PlayerManager = function () {
@@ -15,6 +16,7 @@ PlayerManager = function () {
     this.deals = {};
     this.relations = {};
     this.gameEvents = [];
+    this.gettext = require('./gettext');
 };
 
 PlayerManager.prototype = {
@@ -24,7 +26,16 @@ PlayerManager.prototype = {
             this.players.push({
                 playerId: i,
                 clientId: -1,
-                playercolor: ['red','light blue','dark blue','orange','yellow','green','lilac','pink'][i],
+                playercolor: [
+                    this.gettext.gettext('red'),
+                    this.gettext.gettext('light blue'),
+                    this.gettext.gettext('dark blue'),
+                    this.gettext.gettext('orange'),
+                    this.gettext.gettext('yellow'),
+                    this.gettext.gettext('green'),
+                    this.gettext.gettext('lilac'),
+                    this.gettext.gettext('pink')
+                ][i],
                 joined: false,
                 busy: false,
                 seat: this.players.length,
@@ -44,7 +55,6 @@ PlayerManager.prototype = {
             }
         }
         //this.calcAvgRate();
-        console.log();
     },
     resetPlayers: function() {
         this.deals = {};
@@ -152,7 +162,9 @@ PlayerManager.prototype = {
 
         var poll = this.polls[pollId];
         if (typeof poll == "undefined") {
-            this.sendMessage(playerId, "display", {"text": "This poll doesn't exist!"});
+            this.sendMessage(playerId, "display", {
+                text: this.gettext.gettext("This poll doesn't exist!")
+            });
             return;
         }
 
@@ -422,11 +434,17 @@ PlayerManager.prototype = {
     playRoulette: function (result) {
         console.log("play roulette");
         var self = this;
-        self.broadcastMessage("display", {type: "card", text: "You are NOT in the game!"});
+        self.broadcastMessage("display", {
+            type: 'card',
+            text: this.gettext.gettext('You are NOT in the game!')
+        });
         console.log(result.positivePlayerIds);
         if (result.positivePlayerIds.length == 0) return;
-        result.positivePlayerIds.forEach(function(playerId){
-            self.sendMessage(playerId, "display", {type: "card", text: "You are in the game!"});
+        result.positivePlayerIds.forEach(function(playerId) {
+            self.sendMessage(playerId, "display", {
+                type: 'card',
+                text: this.gettext.gettext('You are in the game!')
+            });
         });
         var self = this;
         var steps = Math.floor(Math.random() * result.positivePlayerIds.length) + 23;
@@ -652,7 +670,11 @@ PlayerManager.prototype = {
         this.relations[relation.id] = relation;
         var self = this;
         relation.playerIds.forEach(function (playerId) {
-            self.sendGameEvent(playerId, relation.type, relation.playerIds, "A new " + relation.type);
+            self.sendGameEvent(playerId,
+                               relation.type,
+                               relation.playerIds,
+                               self.gettext.gettext('A new %s').format(relation.type)
+            );
         });
         this.sendPlayerStatus(-1);
     },
