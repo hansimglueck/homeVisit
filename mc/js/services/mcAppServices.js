@@ -262,24 +262,24 @@ angular.module('mcAppServices', [])
         ];
         return matchFactory;
     })
-    .factory('PlayerNames', function (gettext) {
+    .factory('PlayerNames', function (gettextCatalog) {
         var playerNamesFactory = {};
         playerNamesFactory.names = [
-            gettext('player') + ' 1',
-            gettext('player') + ' 2',
-            gettext('player') + ' 3',
-            gettext('player') + ' 4',
-            gettext('player') + ' 5',
-            gettext('player') + ' 6',
-            gettext('player') + ' 7',
-            gettext('player') + ' 8',
-            gettext('player') + ' 9',
-            gettext('player') + ' 10',
-            gettext('player') + ' 11',
-            gettext('player') + ' 12',
-            gettext('player') + ' 13',
-            gettext('player') + ' 14',
-            gettext('player') + ' 15'
+            gettextCatalog.getString('player') + ' 1',
+            gettextCatalog.getString('player') + ' 2',
+            gettextCatalog.getString('player') + ' 3',
+            gettextCatalog.getString('player') + ' 4',
+            gettextCatalog.getString('player') + ' 5',
+            gettextCatalog.getString('player') + ' 6',
+            gettextCatalog.getString('player') + ' 7',
+            gettextCatalog.getString('player') + ' 8',
+            gettextCatalog.getString('player') + ' 9',
+            gettextCatalog.getString('player') + ' 10',
+            gettextCatalog.getString('player') + ' 11',
+            gettextCatalog.getString('player') + ' 12',
+            gettextCatalog.getString('player') + ' 13',
+            gettextCatalog.getString('player') + ' 14',
+            gettextCatalog.getString('player') + ' 15'
         ];
         
         //playerNamesFactory.names = [
@@ -344,13 +344,13 @@ angular.module('mcAppServices', [])
         };
         return deckFactory;
     })
-    .factory('Playback', function(Socket) {
+    .factory('Playback', function(Socket, gettextCatalog) {
 
         var playbackFactory = {
             playback: function(cmd, param) {
                 console.log("play clicked");
                 if (cmd == "restart") {
-                    if (!confirm(gettext('Really restart?'))) {
+                    if (!confirm(gettextCatalog.getString('Really restart?'))) {
                         return;
                     }
                 }

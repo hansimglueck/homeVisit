@@ -8,7 +8,7 @@
  * Controller of the homeVisitMCApp
  */
 angular.module('homeVisitMCApp')
-    .controller('PlayersCtrl', function ($scope, Status, Socket, playerColors, $routeParams, gettext) {
+    .controller('PlayersCtrl', function ($scope, Status, Socket, playerColors, $routeParams, gettextCatalog) {
         $scope.tableDisplayType = "playerDetails";
         $scope.playerId = $routeParams.playerId;
         if (typeof $scope.playerId === "undefined") $scope.tableDisplayType = "playback";
@@ -37,9 +37,9 @@ angular.module('homeVisitMCApp')
 
         $scope.playerSelected = function (id) {
             if (Status.otherPlayers[id].selected) {
-                return gettext('Deselect');
+                return gettextCatalog.getString('Deselect');
             } else {
-                return gettext('Select');
+                return gettextCatalog.getString('Select');
             }
         }
 
@@ -50,17 +50,17 @@ angular.module('homeVisitMCApp')
 
         $scope.playerAway = function (id) {
             if (Status.otherPlayers[id].away) {
-                return gettext('Come Back!');
+                return gettextCatalog.getString('Come Back!');
             } else {
-                return gettext('Leave Table!');
+                return gettextCatalog.getString('Leave Table!');
             }
         }
 
         $scope.myTurn = function (id) {
             if (Status.otherPlayers[id].onTurn) {
-                return gettext('My Turn!');
+                return gettextCatalog.getString('My Turn!');
             } else if (Status.otherPlayers[id].away) {
-                return gettext('Away');
+                return gettextCatalog.getString('Away');
             } else {
                 return '';
             }

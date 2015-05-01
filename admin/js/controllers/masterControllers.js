@@ -23,7 +23,7 @@ var masterControllers = angular.module('masterControllers', [])
 
     });
 
-masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOptions, gameConf, $filter, gettext) {
+masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOptions, gameConf, $filter, gettextCatalog) {
         //$scope.error = "kein Problem";
         $scope.decks = setFactory.decks;
         $scope.itemTypes = itemOptions.type;
@@ -87,7 +87,7 @@ masterControllers.controller('GameConfCtrl', function($scope, setFactory, itemOp
         };
 
         $scope.removeDeviceFromType = function(typeId, devId) {
-            if (!confirm(gettext('Really delete???'))) return;
+            if (!confirm(gettextCatalog.getString('Really delete???'))) return;
             var updatedTypeMapping = angular.copy($scope.gameConf.typeMapping);
             updatedTypeMapping[typeId].devices.splice(devId,1);
             $scope.updateGameConf({typeMapping: updatedTypeMapping}).then(function(x) {$scope.gameConf.typeMapping[typeId].devices.splice(devId,1);});
@@ -132,7 +132,7 @@ masterControllers.controller('PlayerCtrl', function($scope, Socket, playerColors
     });
 });
 
-masterControllers.controller('OsCtrl', function($scope, Socket, gettext) {
+masterControllers.controller('OsCtrl', function($scope, Socket, gettextCatalog) {
     $scope.collapsed = {
         db: true,
         wlan1: true,
@@ -153,12 +153,12 @@ masterControllers.controller('OsCtrl', function($scope, Socket, gettext) {
     Socket.emit("database", "getStatus");
     Socket.emit("os", {cmd:"getInfo"});
     $scope.restartServer = function() {
-        if (!confirm(gettext('Do you really want to restart the server?'))) return;
+        if (!confirm(gettextCatalog.getString('Do you really want to restart the server?'))) return;
         Socket.emit("os",{cmd:"restartServer"});
     };
     $scope.shutdown = function(reboot) {
-        if (!confirm(gettext('Are you sure?'))) return;
-        if (!confirm(gettext('REALLY REALLY SURE??????????'))) return;
+        if (!confirm(gettextCatalog.getString('Are you sure?'))) return;
+        if (!confirm(gettextCatalog.getString('REALLY REALLY SURE??????????'))) return;
         var d = reboot ? "reboot" : "shutdown";
         Socket.emit("os", {cmd:d});
     };
