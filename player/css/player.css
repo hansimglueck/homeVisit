@@ -131,6 +131,7 @@ body {
 }
 .ui-keyboard .btn {
     margin: 0 .25em 0.7em;
+    width: 52px;
 }
 .view-content .smaller .left-pane {
     line-height: 1.2em;
