@@ -2,7 +2,7 @@
 
 angular.module('homeVisitMCApp')
     .controller('DummiesCtrl', function ($scope, Polls, PlayerNames, gettext) {
-        $scope.selectedRow = 0;
+        $scope.selectedRow = Polls.selectedPoll;
         $scope.playerNames = PlayerNames.names;
         $scope.dummies = [
             {top: 10, left: 189},
@@ -24,6 +24,7 @@ angular.module('homeVisitMCApp')
         $scope.polls = Polls;
         $scope.selectRow = function(id){
             $scope.selectedRow = id;
+            //Polls.selectedPoll = id;
         };
         $scope.selectAnswer = function(did, aid) {
             if (Polls.polls[$scope.selectedRow].answers[did] === aid) {

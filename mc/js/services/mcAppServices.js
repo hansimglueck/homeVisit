@@ -56,8 +56,10 @@ angular.module('mcAppServices', [])
     })
     .factory('Polls', function () {
         var pollFactory = {};
+        pollFactory.selectedPoll = 0;
         pollFactory.polls = [
             {
+                // 0
                 question: "Wer an diesem Tisch war einmal Klassensprecher?",
                 note: "Klassensprecher",
                 type: 'binary',
@@ -65,6 +67,7 @@ angular.module('mcAppServices', [])
                 //answers: [1,1,-1,1,1,1,1,1,-1,1,1,1,1,1,-1]
             },
             {
+                // 1
                 question: "Wer an diesem Tisch hat schon mal viel gewonnen? ",
                 note: "viel gewonnen",
                 type: 'binary',
@@ -72,6 +75,7 @@ angular.module('mcAppServices', [])
                 //answers: [1,1,1,1,1,-1,-1,-1,-1,-1,1,-1,-1,-1,-1]
             },
             {
+                // 2
                 question: "Wer war oder ist Parteimitglied?",
                 note: "Parteimitglied",
                 type: 'binary',
@@ -79,6 +83,7 @@ angular.module('mcAppServices', [])
                 //answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,1,-1]
             },
             {
+                // 3
                 question: "Wer engagiert sich in einem Verein oder in einer NGO?",
                 note: "Verein/NGO",
                 type: 'binary',
@@ -86,6 +91,7 @@ angular.module('mcAppServices', [])
                 //answers: [1,1,-1,-1,1,-1,1,1,-1,-1,-1,1,1,1,-1]
             },
             {
+                // 4
                 question: "Wer am Tisch hat eine Arbeit, von der er oder sie leben kann?",
                 note: "bezahlte Arbeit",
                 type: 'binary',
@@ -93,6 +99,15 @@ angular.module('mcAppServices', [])
                 //answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,-1]
             },
             {
+                // 5
+                question: "Wer arbeitet regelmäßig außerhalb des Landes?",
+                note: "arbeitet im Ausland",
+                type: 'binary',
+                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
+                //answers: [-1,-1,-1,-1,1,-1,1,-1,-1,-1,-1,1,-1,-1,-1]
+            },
+            {
+                // 6
                 question: "Wer hat in den vergangenen 10 Jahren einen Konflikt schon mal körperlich ausgetragen?",
                 note: "körperlicher Konflikt",
                 type: 'binary',
@@ -100,20 +115,15 @@ angular.module('mcAppServices', [])
                 //answers: [-1,-1,0,0,-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1]
             },
             {
-                question: "Wer hat sein Herz schon mal im Ausland verloren??",
-                note: "Herz im Ausland",
-                type: 'binary',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
-                //answers: [-1,-1,-1,-1,1,-1,1,-1,-1,-1,-1,1,-1,-1,-1]
-            },
-            {
-                question: "Wer hat im Ausland schon mal bewusst seine nationale Herkunft verleugnet?",
+                // 7
+                question: "Wer hat schon mal bewusst seine nationale Herkunft verleugnet?",
                 note: "Herkunft verleugnet",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [1,1,-1,-1,1,1,1,-1,1,-1,1,-1,-1,-1,-1]
             },
             {
+                // 8
                 question: "Wer fühlt sich mehr als Europäer denn als Bürger seines Landes?",
                 note: "gefühlter Europäer",
                 type: 'binary',
@@ -121,6 +131,7 @@ angular.module('mcAppServices', [])
                 //answers: [1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,-1,-1,1,-1]
             },
             {
+                // 9
                 question: "Wer hat Angst vor der Zukunft?",
                 note: "Angst vor Zukunft",
                 type: 'binary',
@@ -128,13 +139,15 @@ angular.module('mcAppServices', [])
                 //answers: [-1,1,-1,1,-1,1,1,1,-1,-1,-1,1,-1,1,-1]
             },
             {
-                question: "Wer findet die Runde hier grundsätzlich vertrauenswürdig?",
-                note: "vertrauenswürdige Runde",
+                // 10
+                question: "Wer findet die Menschen hier grundsätzlich vertrauenswürdig?",
+                note: "vertrauenswürdig",
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [-1,1,-1,-1,-1,1,-1,1,1,-1,-1,-1,1,1,-1]
             },
             {
+                // 11
                 question: "Meine Solidaritätsbereitschaft",
                 note: "Solidaritätsbereitschaft",
                 type: 'fingers',
@@ -142,13 +155,7 @@ angular.module('mcAppServices', [])
                 //answers: [-1,3,3,-1,3,-1,-1,-1,3,-1,-1,-1,3,-1,-1]
             },
             {
-                question: "Mein diplomatisches Geschick",
-                note: "diplomatisches Geschick",
-                type: 'fingers',
-                answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
-                //answers: [4,-1,-1,5,2,-1,4,3,3,-1,-1,-1,5,3,-1]
-            },
-            {
+                // 12
                 question: "Mein Ehrgeiz",
                 note: "Ehrgeiz",
                 type: 'fingers',
@@ -156,6 +163,7 @@ angular.module('mcAppServices', [])
                 //answers: [4,5,0,5,4,3,3,2,4,5,3,4,5,4,-1]
             },
             {
+                // 13
                 question: "Mein Vertrauen in die Demokratie",
                 note: "Vertrauen in Demokratie",
                 type: 'fingers',
@@ -163,7 +171,8 @@ angular.module('mcAppServices', [])
                 //answers: [1,2,1,3,2,2,3,2,3,2,4,2,4,2,-1]
             },
             {
-                question: "Mein Vertrauen in das Spiel der Märkte",
+                // 14
+                question: "Mein Gewinn aus dem Spiel der Märkte",
                 note: "Vertrauen in Spiel der Märkte",
                 type: 'fingers',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
@@ -177,55 +186,55 @@ angular.module('mcAppServices', [])
         teamFactory.categories = [
             {
                 category: "Überflieger",
-                questionNr: [13, 0, 1, 6],
+                questionNr: [12, 0, 1, 5],
                 weight: [1, 1, 1, 1],
                 players: []
             },
             {
                 category: "Politiker",
-                questionNr: [2, 0, 12, 14],
+                questionNr: [2, 0, 13],
                 weight: [1, 1, 1, 1],
                 players: []
             },
             {
                 category: "Anpacker",
-                questionNr: [5, 3, 13, 4],
+                questionNr: [6, 3, 12, 4],
                 weight: [1, 1, 1, 1],
                 players: []
             },
             {
                 category: "Angsthasen",
-                questionNr: [9, 10, 5, 13],
+                questionNr: [9, 10, 6, 12],
                 weight: [1, 1, -1, -1],
                 players: []
             },
             {
                 category: "Nationale",
-                questionNr: [14, 7, 8, 9],
+                questionNr: [13, 7, 8, 9],
                 weight: [1, -1, -1, 1],
                 players: []
             },
             {
                 category: "Arbeitslos",
-                questionNr: [4, 1, 15, 3],
-                weight: [-1, -1, 1, 1],
+                questionNr: [4, 1, 14, 3],
+                weight: [-1, -1, -1, 1],
                 players: []
             },
             {
                 category: "Nette",
-                questionNr: [11, 5, 14, 8],
+                questionNr: [11, 6, 13, 8],
                 weight: [1, -1, 1, 1],
                 players: []
             },
             {
                 category: "Vereinsnasen",
-                questionNr: [3, 14, 12, 10],
+                questionNr: [3, 13, 10],
                 weight: [1, 1, 1, 1],
                 players: []
             },
             {
                 category: "Europäer",
-                questionNr: [8, 6, 14],
+                questionNr: [8, 5, 13],
                 weight: [1, 1, 1],
                 players: []
             }
