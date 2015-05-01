@@ -78,13 +78,14 @@ def cb(msg):
 			print "type="+msg["type"]+" - command="+msg["data"]["command"]
 			cmd = msg["data"]["command"]
 			#print("DIGITS GETS CMD: " + cmd)
-			if (cmd == "countdown" or cmd == "countdown_fies"):
+			if (cmd == "countdown" or cmd == "countdown_fies" or cmd == "countdown_leise"):
 				if (cmd == "countdown_fies"):
 					fies = 1
 					leise = 0
 				elif (cmd == "countdown_leise"):
 					leise = 1
 					fies = 0
+					print("LEISE!")
 				else:
 					fies = 0
 					leise = 0
