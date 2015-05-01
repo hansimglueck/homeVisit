@@ -33,11 +33,9 @@ body {
     #background-color: #006699;
     font-size: 18px;
     flex: 24 1 auto;
-    height: 100%;
 }
 
 .view-content {
-    height: 100%;
     overflow: auto;
 }
 
@@ -110,11 +108,6 @@ body {
     color: forestgreen;
 }
 
-.card-text {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
 .card-text ul {
     width: 100%;
 }

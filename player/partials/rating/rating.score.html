@@ -1,4 +1,4 @@
-<div>
+<div ng-if="notBeingRatedMyself()">
     <div translate>
         You can rate these Teams up or down!
     </div>
@@ -16,4 +16,9 @@
             <a class="btn btn-default button" href="#/rating/{{playerId}}/-1">-1</a>
         </li>
     </ul>
+</div>
+<div ng-if="!notBeingRatedMyself()">
+    <div translate>
+        Waiting for being rated.
+    </div>
 </div>

@@ -9,6 +9,21 @@ angular.module("ratingControllers", [])
         $scope.rating = Rating;
         $scope.playerId = $routeParams.playerId;
         $scope.playerIds = $routeParams.playerId.split(":");
+                
+        //if($scope.playerId.indexOf(':') === -1) {
+        //    console.log("Nur einer selektiert");
+        //} else {
+        //    console.log("Mehrere selektiert");
+        //}
+        
+        $scope.notBeingRatedMyself = function() {
+            for (var i = 0; i < $scope.playerIds.length; i++) {
+                if ($scope.playerIds[i] == Status.player.playerId) {
+                    return false;
+                }
+            }
+            return true;
+        }
     })
     .controller('RatingController', function ($scope, Socket, Status, Rating, Home, $routeParams, $location) {
         $scope.status = Status;
