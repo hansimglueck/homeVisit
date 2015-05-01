@@ -18,5 +18,24 @@ angular.module('hvPlayerColors', [])
         '#000000',     //gruen
         '#000000',     //lila
         '#000000'      //pink
-    ]);
+    ])
 
+    .factory('playerColornamesFactory', ['gettext', function(gettext) {
+
+        var colornames = [
+                gettext('red'),
+                gettext('light blue'),
+                gettext('dark blue'),
+                gettext('orange'),
+                gettext('yellow'),
+                gettext('green'),
+                gettext('lilac'),
+                gettext('pink')
+            ]
+
+        var playerColornamesFactory = {};
+
+        playerColornamesFactory.playercolornames = colornames;
+
+        return playerColornamesFactory;
+    }]);

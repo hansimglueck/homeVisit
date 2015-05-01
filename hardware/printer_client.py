@@ -60,7 +60,7 @@ def cb(msg):
 		p.linefeed()
 		p.linefeed()
 	elif (msg["data"]["type"] == "results"):
-		#print(msg)
+		print(msg)
 		printPiePartition(msg["data"]["data"])
 
 def replaceSpecialChars(txt):

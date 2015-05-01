@@ -4,6 +4,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
+#: player/partials/assholes.html:7
+msgid "{{minuspoints}} minus point"
+msgid_plural "{{minuspoints}} minus points"
+msgstr[0] ""
+msgstr[1] ""
+
 #: player/partials/deals/deal.html:3
 msgid ""
 "<td><a href=\"#/deals/{{deal.id}}\">{{deal.subject}}</a></td>\n"
@@ -21,14 +27,14 @@ msgid ""
 "              should get {{score}} point from you?"
 msgstr ""
 
+#: admin/views/admin/show-deck.html:27
+msgid "Add new item"
+msgstr ""
+
 #: admin/views/master-buttons.html:12
 #: mc/index.html:40
 #: mc/views/players.html:32
 msgid "ALARM"
-msgstr ""
-
-#: admin/views/admin/show-deck.html:27
-msgid "Add new item"
 msgstr ""
 
 #: admin/js/controllers/masterControllers.js:160
@@ -43,6 +49,10 @@ msgstr ""
 msgid "Away"
 msgstr ""
 
+#: player/partials/rating/rating.html:19
+msgid "Back"
+msgstr ""
+
 #: admin/views/master-buttons.html:11
 #: mc/views/item.html:3
 msgid "BACK"
@@ -52,14 +62,6 @@ msgstr ""
 msgid "BACK TO GAME!"
 msgstr ""
 
-#: player/partials/rating/rating.html:19
-msgid "Back"
-msgstr ""
-
-#: admin/views/raspi-manager.html:93
-msgid "CONNECT DB"
-msgstr ""
-
 #: admin/views/admin/move-item.html:23
 #: player/partials/deals/deal.new.html:11
 #: player/partials/rating/rating.html:14
@@ -67,7 +69,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: mc/js/controllers/dummies.js:58
+#: mc/js/controllers/dummies.js:59
 msgid "Change name"
 msgstr ""
 
@@ -110,6 +112,10 @@ msgstr ""
 msgid "Confirm"
 msgstr ""
 
+#: admin/views/raspi-manager.html:93
+msgid "CONNECT DB"
+msgstr ""
+
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:5
 msgid "Content"
 msgstr ""
@@ -144,6 +150,10 @@ msgstr ""
 
 #: homevisit_components/hvLanguage.js:8
 msgid "Danish"
+msgstr ""
+
+#: homevisit_components/hvPlayerColors.js:28
+msgid "dark blue"
 msgstr ""
 
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:4
@@ -195,12 +205,12 @@ msgstr ""
 msgid "Dutch"
 msgstr ""
 
-#: player/partials/home.html:10
-msgid "EUROPE"
-msgstr ""
-
 #: homevisit_components/hvLanguage.js:5
 msgid "English"
+msgstr ""
+
+#: player/partials/home.html:10
+msgid "EUROPE"
 msgstr ""
 
 #: mc/views/dummies.html:69
@@ -209,6 +219,18 @@ msgstr ""
 
 #: homevisit_components/hvLanguage.js:9
 msgid "French"
+msgstr ""
+
+#: mc/index.html:29
+msgid "Game"
+msgstr ""
+
+#: admin/views/master-buttons.html:3
+msgid "Game stopped"
+msgstr ""
+
+#: homevisit_components/hvLanguage.js:6
+msgid "German"
 msgstr ""
 
 #: admin/views/master-buttons.html:6
@@ -225,16 +247,8 @@ msgstr ""
 msgid "GOTO"
 msgstr ""
 
-#: mc/index.html:29
-msgid "Game"
-msgstr ""
-
-#: admin/views/master-buttons.html:3
-msgid "Game stopped"
-msgstr ""
-
-#: homevisit_components/hvLanguage.js:6
-msgid "German"
+#: homevisit_components/hvPlayerColors.js:31
+msgid "green"
 msgstr ""
 
 #: admin/views/admin/import-json.html:15
@@ -263,6 +277,14 @@ msgstr ""
 
 #: mc/js/controllers/players.js:55
 msgid "Leave Table!"
+msgstr ""
+
+#: homevisit_components/hvPlayerColors.js:27
+msgid "light blue"
+msgstr ""
+
+#: homevisit_components/hvPlayerColors.js:32
+msgid "lilac"
 msgstr ""
 
 #: admin/views/raspi-manager.html:44
@@ -309,16 +331,16 @@ msgstr ""
 msgid "My Turn!"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-inline-switch-content.html:22
-msgid "New Deck"
-msgstr ""
-
 #: player/partials/deals/deal.html:10
 msgid "New deal"
 msgstr ""
 
 #: admin/views/admin/show-set.html:12
 msgid "New deck"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-inline-switch-content.html:22
+msgid "New Deck"
 msgstr ""
 
 #: admin/views/admin/show-item-contents/show-switch-content.html:9
@@ -334,12 +356,12 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: mc/views/players.html:13
-msgid "Next!"
-msgstr ""
-
 #: mc/views/item.html:11
 msgid "Next:"
+msgstr ""
+
+#: mc/views/players.html:13
+msgid "Next!"
 msgstr ""
 
 #: player/partials/assholes.html:12
@@ -348,10 +370,6 @@ msgstr ""
 
 #: homevisit_components/hvLanguage.js:11
 msgid "Norwegian"
-msgstr ""
-
-#: admin/views/raspi-manager.html:14
-msgid "OS Info for {{osInfo.hostname}}"
 msgstr ""
 
 #: admin/views/raspi-manager.html:60
@@ -368,8 +386,42 @@ msgstr ""
 msgid "Options"
 msgstr ""
 
+#: homevisit_components/hvPlayerColors.js:29
+msgid "orange"
+msgstr ""
+
+#: admin/views/raspi-manager.html:14
+msgid "OS Info for {{osInfo.hostname}}"
+msgstr ""
+
+#: player/views/game-events.html:24
+msgid "other Player"
+msgstr ""
+
+#: homevisit_components/hvPlayerColors.js:33
+msgid "pink"
+msgstr ""
+
 #: admin/partials/home.html:5
 msgid "Playback"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:268
+#: mc/js/services/mcAppServices.js:269
+#: mc/js/services/mcAppServices.js:270
+#: mc/js/services/mcAppServices.js:271
+#: mc/js/services/mcAppServices.js:272
+#: mc/js/services/mcAppServices.js:273
+#: mc/js/services/mcAppServices.js:274
+#: mc/js/services/mcAppServices.js:275
+#: mc/js/services/mcAppServices.js:276
+#: mc/js/services/mcAppServices.js:277
+#: mc/js/services/mcAppServices.js:278
+#: mc/js/services/mcAppServices.js:279
+#: mc/js/services/mcAppServices.js:280
+#: mc/js/services/mcAppServices.js:281
+#: mc/js/services/mcAppServices.js:282
+msgid "player"
 msgstr ""
 
 #: mc/views/dummies.html:122
@@ -416,16 +468,45 @@ msgstr ""
 msgid "Process"
 msgstr ""
 
+#: admin/views/player-list.html:7
+msgid "Rank"
+msgstr ""
+
+#: mc/views/players.html:12
+#: mc/views/players.html:9
+msgid "Rank: {{player.rank}}"
+msgstr ""
+
+#: player/index.html:158
+msgid "Rank: {{status.player.rank}}"
+msgstr ""
+
 #: admin/partials/home.html:19
 msgid "RASPI Control"
+msgstr ""
+
+#: admin/js/controllers/masterControllers.js:90
+msgid "Really delete???"
 msgstr ""
 
 #: admin/js/controllers/masterControllers.js:161
 msgid "REALLY REALLY SURE??????????"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:353
+msgid "Really restart?"
+msgstr ""
+
 #: admin/views/raspi-manager.html:100
 msgid "REBOOT"
+msgstr ""
+
+#: homevisit_components/hvPlayerColors.js:26
+msgid "red"
+msgstr ""
+
+#: admin/partials/home.html:17
+msgid "Refresh"
 msgstr ""
 
 #: admin/views/master-buttons.html:10
@@ -456,41 +537,12 @@ msgstr ""
 msgid "RESTART WI-FI"
 msgstr ""
 
-#: admin/views/player-list.html:7
-msgid "Rank"
-msgstr ""
-
-#: mc/views/players.html:12
-#: mc/views/players.html:9
-msgid "Rank: {{player.rank}}"
-msgstr ""
-
-#: player/index.html:158
-msgid "Rank: {{status.player.rank}}"
-msgstr ""
-
-#: admin/js/controllers/masterControllers.js:90
-msgid "Really delete???"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:344
-msgid "Really restart?"
-msgstr ""
-
-#: admin/partials/home.html:17
-msgid "Refresh"
-msgstr ""
-
 #: mc/views/item.html:33
 msgid "Results are displayed"
 msgstr ""
 
 #: player/partials/results.html:7
 msgid "Results are weighted by ranking. See actual votes in braces."
-msgstr ""
-
-#: admin/views/raspi-manager.html:99
-msgid "SHUTDOWN"
 msgstr ""
 
 #: admin/views/admin/edit-new-deck.html:17
@@ -514,8 +566,16 @@ msgstr ""
 msgid "Score: {{status.player.score}}"
 msgstr ""
 
+#: admin/views/admin/show-sequence-item.html:33
+msgid "sec"
+msgstr ""
+
 #: mc/js/controllers/players.js:42
 msgid "Select"
+msgstr ""
+
+#: admin/views/raspi-manager.html:99
+msgid "SHUTDOWN"
 msgstr ""
 
 #: player/partials/black.html:1
@@ -607,6 +667,10 @@ msgstr ""
 msgid "Wi-Fi password"
 msgstr ""
 
+#: homevisit_components/hvPlayerColors.js:30
+msgid "yellow"
+msgstr ""
+
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
 msgstr ""
@@ -619,46 +683,14 @@ msgstr ""
 msgid "You can rate these Teams up or down!"
 msgstr ""
 
-#: player/partials/freeze.html:1
-msgid "Your Time is Up. Scored one down!"
-msgstr ""
-
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
+msgstr ""
+
+#: player/partials/freeze.html:1
+msgid "Your Time is Up. Scored one down!"
 msgstr ""
 
 #: player/partials/vote.html:5
 msgid "Your voting weight depends on your rank!"
 msgstr ""
-
-#: player/views/game-events.html:24
-msgid "other Player"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:259
-#: mc/js/services/mcAppServices.js:260
-#: mc/js/services/mcAppServices.js:261
-#: mc/js/services/mcAppServices.js:262
-#: mc/js/services/mcAppServices.js:263
-#: mc/js/services/mcAppServices.js:264
-#: mc/js/services/mcAppServices.js:265
-#: mc/js/services/mcAppServices.js:266
-#: mc/js/services/mcAppServices.js:267
-#: mc/js/services/mcAppServices.js:268
-#: mc/js/services/mcAppServices.js:269
-#: mc/js/services/mcAppServices.js:270
-#: mc/js/services/mcAppServices.js:271
-#: mc/js/services/mcAppServices.js:272
-#: mc/js/services/mcAppServices.js:273
-msgid "player"
-msgstr ""
-
-#: admin/views/admin/show-sequence-item.html:33
-msgid "sec"
-msgstr ""
-
-#: player/partials/assholes.html:7
-msgid "{{minuspoints}} minus point"
-msgid_plural "{{minuspoints}} minus points"
-msgstr[0] ""
-msgstr[1] ""

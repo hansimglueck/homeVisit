@@ -24,7 +24,8 @@ module.exports = {
                         result: player.score,
                         votes: player.score,
                         text: player.playerId,
-                        percent: (player.score / sum * 100).toFixed(1)
+                        percent: (player.score / sum * 100).toFixed(1),
+                        playercolor: player.playercolor
                     }
                 });
                 break;

@@ -24,6 +24,7 @@ PlayerManager.prototype = {
             this.players.push({
                 playerId: i,
                 clientId: -1,
+                playercolor: ['red','light blue','dark blue','orange','yellow','green','lilac','pink'][i],
                 joined: false,
                 busy: false,
                 seat: this.players.length,
