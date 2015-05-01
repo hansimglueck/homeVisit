@@ -1,5 +1,5 @@
 angular.module('playerAppServices', [])
-    .factory('Home', function (Socket, $location, fxService, Status, $timeout, playerColors) {
+    .factory('Home', function (Socket, $location, fxService, Status, $timeout, playerColors, gettextCatalog) {
         var homeFactory = {};
         homeFactory.displayData = {};
         homeFactory.type = "vote";
@@ -131,11 +131,9 @@ angular.module('playerAppServices', [])
                                 else result.voteOptions.forEach(function (option) {
                                     if (option.correctAnswer) homeFactory.correctAnswer = option.text;
                                     if (data.data.dataSource == "positivePlayerScore") {
-                                        // TODO translation
-                                        labels.push(option.playercolor + ": " + option.percent + "%, " + option.result + " points");
+                                        labels.push(option.playercolor + ': ' + option.percent + '% (' + option.result + ' ' + gettextCatalog.getPlural(option.result, 'point', 'points') + ')');
                                     } else {
-                                        // TODO translation
-                                        labels.push(option.text + ": " + option.percent + "% (" + option.votes + " votes)");
+                                        labels.push(option.text + ': ' + option.percent + '% (' + option.votes + ' ' + gettextCatalog.getPlural(option.votes, 'vote', 'votes') + ')');
                                     }
                                     if (resultType == "europeMap") resData.push({
                                         id: option.value,
