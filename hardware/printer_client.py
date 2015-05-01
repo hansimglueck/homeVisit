@@ -109,13 +109,18 @@ def printPiePartition(data):
 	for part in parts:
 	#	percentage = float(part) / sum
 		percentage = float(part["percent"]) / 100
+		playercolor = part["playercolor"]
 		lines = int(all_lines * percentage)
 		if (lines <= 2):
-			p.print_text(part["percent"])
+			p.print_text(part["percent"] + " %")
+			p.print_text("\n")
+			p.print_text(playercolor)
 			p.print_text("\n")
 			p.print_text(cutline)
 		else:
-			p.print_text(part["percent"])
+			p.print_text(part["percent"] + " %")
+			p.print_text("\n")
+			p.print_text(playercolor)
 			p.print_text("\n")
 			for x in range(0, lines-2):
 				p.print_text("\n")
