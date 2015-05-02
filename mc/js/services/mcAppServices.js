@@ -241,6 +241,13 @@ angular.module('mcAppServices', [])
         ];
         return teamFactory;
     })
+    .factory('TeamCriteria', function () {
+        var teamcriteriaFactory = {};
+        teamcriteriaFactory.criteria = [
+            -1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1
+        ];
+        return teamcriteriaFactory;
+    })
     .factory('Matches', function () {
         var matchFactory = {};
         matchFactory.matches = [
@@ -282,6 +289,7 @@ angular.module('mcAppServices', [])
         playerNamesFactory.getNames().forEach(function() {
             playerNamesFactory.customPlayerNames.push(undefined);
         });
+
         return playerNamesFactory;
     })
     .factory('Deck', function(Socket, setFactory){

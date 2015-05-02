@@ -1,43 +1,25 @@
-<div>
-    
-    <div ng-repeat="category in teamCategories track by $index">
-        {{category.category}}:
-        <div ng-repeat="playerField in playerInTeam track by $index">
-            <div ng-if="playerIsInTeam(playerField,$parent.$index)">
-                <div class="matching_green" ng-class="{matchedUp:!playerPerfectAssigned($index)}">
-                    {{customPlayerNames[$index] || playerNames()[$index]}} &nbsp; &nbsp;
-                    <span ng-repeat="note in playerFulfills($index) track by $index">
-                        {{gettextCatalog.getString(note)}} &nbsp; &nbsp;
-                    </span>
-                </div>
-            </div>
-        </div>
+<div ng-repeat="player in resultTeams track by $index">
+    <span ng-repeat="crit in player track by $index">
+        <span ng-if="$index == 0">
+            {{ customPlayerNames[crit] || playerNames()[crit] }}:
+        </span>
+        <span ng-if="$index > 0 && $parent.$index % 2 != 0">
+            <button ng-if="!isMarked($parent.$parent.$index,crit)" class="btn" ng-class="{used_crit:isUsed($parent.$parent.$parent.$index,crit)}" ng-click="mark($parent.$parent.$parent.$index,crit)">
+                {{getCritNote(player,crit)}}
+            </button>
+            <button ng-if="isMarked($parent.$parent.$index,crit)" class="btn marked_crit" ng-click="unmark($parent.$parent.$parent.$index,crit)">
+                {{getCritNote(player,crit)}}
+            </button>
+        </span>
+    </span>
+
+    <div ng-if="$index % 2 != 0">
+        ------------------------------------------------------------------------------
         <br/>
     </div>
-    <div>
-        Not matched:
-        <div ng-repeat="playerField in playerInTeam track by $index">
-            <div class="matching_yellow" ng-if="playerDoesntMatch(playerField)">
-                {{customPlayerNames[$index] || playerNames[$index]}}&nbsp;
-                    <span ng-repeat="note in playerAnswered($index) track by $index">
-                        {{gettextCatalog.getString(note)}} &nbsp;
-                    </span>
-            </div>
-        </div>
+    <div ng-if="$index == resultTeams.length - 1">
+        {{matchLastPlayer()}}
     </div>
-    
-    <!--{{teamCategories[6].category}}: {{calcTeam(6)}}-->
-    
-    <!--{{playerInTeam}}-->
-    <!---->
-    <!--{{teamCategories[0].players}}-->
-    <!--{{teamCategories[1].players}}-->
-    <!--{{teamCategories[2].players}}-->
-    <!--{{teamCategories[3].players}}-->
-    <!--{{teamCategories[4].players}}-->
-    <!--{{teamCategories[5].players}}-->
-    <!--{{teamCategories[6].players}}-->
-    
 </div>
 
 <!--{{polls.polls}}-->

@@ -187,6 +187,15 @@ body {
   color: #fff;
 }
 
+.marked_crit {
+  background: #9cc45a;
+}
+
+.used_crit {
+  background: #eee;
+  color: #bbb;
+}
+
 .black {
   background: #000;
 }
