@@ -8,6 +8,7 @@ module.exports = {
         switch (this.sourceType) {
             case "previousStep":
                 this.data = this.previous.getData();
+                this.data.dataSource = this.sourceType;
                 break;
             case "positivePlayerScore":
                 var posScoreArr = playerManager.players.filter(function (player, id) {
@@ -19,6 +20,7 @@ module.exports = {
                 }, 0);
                 // TODO translation
                 this.data.text = "Die Verteilung des Kuchens";
+                this.data.dataSource = this.sourceType;
                 this.data.voteOptions = posScoreArr.map(function (player) {
                     return {
                         value: player.playerId,
