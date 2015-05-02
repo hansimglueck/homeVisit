@@ -211,16 +211,59 @@ body {
     height: 100%;
 }
 
+.arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 999;
+    margin-left: -20px;
+    margin-top: -15px;
+    pointer-events: none;
+    color: #383838;
+}
+
+.arrow-1 {
+    left: 33%;
+}
+
+.arrow-2 {
+    left: 67%;
+}
+
 .game_sequence_item {
   position: relative;
   width: 33%;
   height: 100%;
   float: left;
-  padding: 5px;
+  padding: 0 !important;
 }
 
-.game_sequence_item header {
-  background-color: grey;
+.game_sequence_item .header {
+  background-color: #ddd;
+  display: flex;
+  flex-direction: row;
+  white-space: nowrap;
+  border-radius: 4px;
+}
+
+.game_sequence_item .content {
+    padding: 5px 10px;
+}
+
+.game_sequence_item .header label {
+    margin-top: 4px;
+    margin-bottom: 0;
+}
+
+.game_sequence_item .header label.sequence-type {
+    padding-right: 5px;
+    padding-left: 5px;
+    flex-grow: 1;
+}
+
+.game_sequence_item .header label.sequence-label {
+    text-align: right;
+    padding-left: 5px;
+    padding-right: 5px;
 }
 
 .items .previous-item {

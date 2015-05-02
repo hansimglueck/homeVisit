@@ -5,7 +5,7 @@
         <div ng-repeat="playerField in playerInTeam track by $index">
             <div ng-if="playerIsInTeam(playerField,$parent.$index)">
                 <div class="matching_green" ng-class="{matchedUp:!playerPerfectAssigned($index)}">
-                    {{playerNames()[$index]}} &nbsp; &nbsp;
+                    {{customPlayerNames[$index] || playerNames()[$index]}} &nbsp; &nbsp;
                     <span ng-repeat="note in playerFulfills($index) track by $index">
                         {{gettextCatalog.getString(note)}} &nbsp; &nbsp;
                     </span>
@@ -18,7 +18,7 @@
         Not matched:
         <div ng-repeat="playerField in playerInTeam track by $index">
             <div class="matching_yellow" ng-if="playerDoesntMatch(playerField)">
-                {{playerNames[$index]}}&nbsp;
+                {{customPlayerNames[$index] || playerNames[$index]}}&nbsp;
                     <span ng-repeat="note in playerAnswered($index) track by $index">
                         {{gettextCatalog.getString(note)}} &nbsp;
                     </span>

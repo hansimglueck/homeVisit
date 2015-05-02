@@ -264,6 +264,7 @@ angular.module('mcAppServices', [])
     })
     .factory('PlayerNames', function (gettextCatalog) {
         var playerNamesFactory = {
+            customPlayerNames: [],
             getNames: function() {
                 var pn = [];
                 for(var i = 0; i < 15; i++) {
@@ -277,6 +278,10 @@ angular.module('mcAppServices', [])
                 return pn;
             }
         };
+
+        playerNamesFactory.getNames().forEach(function() {
+            playerNamesFactory.customPlayerNames.push(undefined);
+        });
         return playerNamesFactory;
     })
     .factory('Deck', function(Socket, setFactory){

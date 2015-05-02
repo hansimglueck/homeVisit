@@ -5,6 +5,7 @@ angular.module('homeVisitMCApp')
         $scope.gettextCatalog = gettextCatalog;
         $scope.selectedRow = Polls.selectedPoll;
         $scope.playerNames = PlayerNames.getNames;
+        $scope.customPlayerNames = PlayerNames.customPlayerNames;
         $scope.dummies = [
             {top: 10, left: 189},
             {top: 10, left: 377},
@@ -57,9 +58,9 @@ angular.module('homeVisitMCApp')
             return typeof $scope.polls.polls[$scope.selectedRow].answers[did] == 'undefined';
         }
         $scope.setName = function(nr) {
-            var name = prompt(gettext('Change name'), PlayerNames.names[nr]);
+            var name = prompt(gettextCatalog.getString('Change name'), PlayerNames.getNames()[nr]);
             if (name != null){
-                PlayerNames.names[nr] = name;
+                PlayerNames.customPlayerNames[nr] = name;
             }
         }
     });
