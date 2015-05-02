@@ -31,10 +31,12 @@ Agreement.prototype.getResult = function () {
     if (result.voteOptions[0].percent > 99 && result.voteOptions[0].value=="yes") fullfilled = true;
     var resText;
     if (fullfilled) {
-        resText = this.gettext.gettext('The agreement on %s is fullfilled.', this.agreementType);
+        resText = this.gettext.gettext(
+            'The agreement on %s is fullfilled.').format(this.agreementType);
     }
     else {
-        resText = this.gettext.gettext('The agreement on %s is neglected.', this.agreementType);
+        resText = this.gettext.gettext(
+            'The agreement on %s is neglected.').format(this.agreementType);
     }
     var positivePlayerIds = result.votes.filter(function(vote){
         return vote.choice.indexOf('yes') != -1;
