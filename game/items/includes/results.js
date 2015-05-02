@@ -18,7 +18,7 @@ module.exports = {
                 var sum = posScoreArr.reduce(function (prev, curr) {
                     return prev + curr.score
                 }, 0);
-                this.data.text = gettext('The division of the cake');
+                this.data.text = gettext.gettext('The division of the cake');
                 this.data.dataSource = this.sourceType;
                 this.data.voteOptions = posScoreArr.map(function (player) {
                     return {
