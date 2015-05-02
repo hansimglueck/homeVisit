@@ -1,8 +1,8 @@
 angular.module("dealControllers", [])
-    .controller('DealsController', function ($scope, DealFactory, $routeParams, Status) {
+    .controller('DealsController', function ($scope, DealFactory, $routeParams, Status, gettextCatalog) {
         $scope.deals = DealFactory.deals;
     })
-    .controller('DealMessageController', function ($scope, DealFactory) {
+    .controller('DealMessageController', function ($scope, DealFactory, gettextCatalog) {
         function getBalance(value, x) {
             var balance = value;
             if (x) balance *= -1;
@@ -19,13 +19,13 @@ angular.module("dealControllers", [])
                     ret = $scope.getRequestMessage();
                     break;
                 case "deny":
-                    ret = ["Deny"];
+                    ret = [gettextCatalog.getString('Deny')];
                     break;
                 case "confirm":
-                    ret = ["Confirm"];
+                    ret = [gettextCatalog.getString('Confirm')];
                     break;
                 case "cancel":
-                    ret = ["Cancel"];
+                    ret = [gettextCatalog.getString('Cancel')];
                     break;
             }
             return ret;
@@ -38,15 +38,19 @@ angular.module("dealControllers", [])
             if (typeof message.playerId == "undefined") me = true;
             var first = ($scope.status.player.playerId == $scope.deal.player0Id);
 
-            var ret = ["I like to deal!"];
+            var ret = [gettextCatalog.getString('We like to deal!')];
             var balance = getBalance(value, me ^ !first);
             if (balance < 0) {
-                ret.push(" I offer " + (-1) * balance + " points.");
+                ret.push(gettextCatalog.getString('We offer {{points}} points.', {
+                    points: -1 * balance
+                }));
             }
             if (balance > 0) {
-                ret.push(" I want " + balance + " points.");
+                ret.push(gettextCatalog.getString('We want {{points}} points.', {
+                    points: balance
+                }));
             }
-            if (balance === 0) ret.push(" For 0 points.");
+            if (balance === 0) ret.push(gettextCatalog.getString('For 0 points.'));
             return ret;
         };
         $scope.sendMessage = function () {
@@ -87,9 +91,9 @@ angular.module("dealControllers", [])
             return $scope.messageOptions[myState];
         };
     })
-    .controller('ChooseDealSubjectController', function ($scope) {
+    .controller('ChooseDealSubjectController', function ($scope, gettextCatalog) {
         $scope.subjects = [
-            {value: "insurance", text: "Insurance"}
+            {value: "insurance", text: gettextCatalog.getString('Treaty')}
 //            {value: "alliance", text: "Alliance"}
         ];
     })

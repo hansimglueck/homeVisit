@@ -14,7 +14,7 @@ msgstr ""
 
 #: player/partials/deals/deal.html:3
 msgid ""
-"<td><a href=\"#/deals/{{deal.id}}\">{{deal.subject}}</a></td>\n"
+"<td><a href=\"#/deals/{{deal.id}}\">Treaty</a></td>\n"
 "            <td>with team <player-icon pid=\"deal.player1Id\"></player-"
 "icon></td>\n"
 "            <td>{{getDealStateText(deal)}}</td>"
@@ -37,6 +37,10 @@ msgstr ""
 #: admin/views/master-buttons.html:12 mc/index.html:40
 #: mc/views/players.html:35
 msgid "ALARM"
+msgstr ""
+
+#: player/partials/deals/deal.new.html:1
+msgid "Accept treaty"
 msgstr ""
 
 #: admin/views/admin/show-deck.html:27
@@ -71,7 +75,9 @@ msgstr ""
 msgid "CONNECT DB"
 msgstr ""
 
-#: admin/views/admin/move-item.html:23 player/partials/deals/deal.new.html:11
+#: admin/views/admin/move-item.html:23
+#: player/js/controllers/dealControllers.js:28
+#: player/partials/deals/deal.new.html:11
 #: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:5
 msgid "Cancel"
 msgstr ""
@@ -89,7 +95,7 @@ msgid "Choose target where item will be appended."
 msgstr ""
 
 #: player/partials/deals/deal.choosePlayer.html:1
-msgid "Choose team to deal {{subject}} with:"
+msgid "Choose team to offer treaty:"
 msgstr ""
 
 #: player/partials/deals/deal.chooseSubject.html:1
@@ -112,6 +118,7 @@ msgstr ""
 msgid "Configuration"
 msgstr ""
 
+#: player/js/controllers/dealControllers.js:25
 #: player/partials/deals/deal.new.html:8 player/partials/rating/rating.html:13
 #: player/partials/voteConfirm.html:4
 msgid "Confirm"
@@ -174,6 +181,10 @@ msgstr ""
 msgid "Delete deck"
 msgstr ""
 
+#: player/js/controllers/dealControllers.js:22
+msgid "Deny"
+msgstr ""
+
 #: admin/views/admin/edit-new-deck.html:9
 msgid "Description:"
 msgstr ""
@@ -196,8 +207,8 @@ msgstr ""
 
 #: player/partials/deals/deal.new.html:3
 msgid ""
-"Do you want to take out {{subject}} with <player-icon class=\"player-icon-med"
-"\" pid=\"player1Id\"></player-icon>?"
+"Do you want to accept a treaty with <player-icon class=\"player-icon-med\" "
+"pid=\"player1Id\"></player-icon>?"
 msgstr ""
 
 #: mc/js/controllers/matching.js:178
@@ -218,6 +229,10 @@ msgstr ""
 
 #: mc/views/dummies.html:69
 msgid "Fill the rest"
+msgstr ""
+
+#: player/js/controllers/dealControllers.js:53
+msgid "For 0 points."
 msgstr ""
 
 #: homevisit_components/hvLanguage.js:9
@@ -344,10 +359,6 @@ msgstr ""
 msgid "New Deck"
 msgstr ""
 
-#: player/partials/deals/deal.html:10
-msgid "New deal"
-msgstr ""
-
 #: admin/views/admin/show-set.html:12
 msgid "New deck"
 msgstr ""
@@ -359,6 +370,10 @@ msgstr ""
 
 #: admin/views/admin/import-json.html:12
 msgid "New title:"
+msgstr ""
+
+#: player/partials/deals/deal.html:10
+msgid "New treaty"
 msgstr ""
 
 #: player/partials/home.html:1
@@ -594,20 +609,20 @@ msgstr ""
 msgid "This deal does not exist!"
 msgstr ""
 
-#: player/partials/deals/deal.details.html:46
-msgid "This deal is ACTIVE."
-msgstr ""
-
-#: player/partials/deals/deal.details.html:47
-msgid "This deal was DENIED."
-msgstr ""
-
 #: mc/views/about.html:1
 msgid "This is the about view."
 msgstr ""
 
 #: game/playerManager.js:166
 msgid "This poll doesn't exist!"
+msgstr ""
+
+#: player/partials/deals/deal.details.html:46
+msgid "This treaty was ACCEPTED."
+msgstr ""
+
+#: player/partials/deals/deal.details.html:47
+msgid "This treaty was DENIED."
 msgstr ""
 
 #: admin/views/admin/edit-new-deck.html:5
@@ -624,6 +639,11 @@ msgstr ""
 
 #: player/partials/rating/rating.html:18
 msgid "Traitor! You can't score down your allied!"
+msgstr ""
+
+#: player/js/controllers/dealControllers.js:96
+#: player/partials/deals/deal.details.html:6
+msgid "Treaty"
 msgstr ""
 
 #: player/partials/deals/deal.details.html:50
@@ -652,6 +672,18 @@ msgstr ""
 
 #: player/partials/deals/deal.details.html:26
 msgid "Waiting for reply..."
+msgstr ""
+
+#: player/js/controllers/dealControllers.js:41
+msgid "We like to deal!"
+msgstr ""
+
+#: player/js/controllers/dealControllers.js:44
+msgid "We offer {{points}} points."
+msgstr ""
+
+#: player/js/controllers/dealControllers.js:49
+msgid "We want {{points}} points."
 msgstr ""
 
 #: mc/js/services/mcAppServices.js:95

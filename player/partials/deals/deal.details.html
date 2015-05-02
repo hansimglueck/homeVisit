@@ -3,12 +3,12 @@
         This deal does not exist!
     </div>
     <div class="deal-details" ng-if="deal != null">
-        <div class="deal-title">Deal-a-{{deal.subject}}</div>
+        <div class="deal-title" translate>Treaty</div>
 
         <div class="deal-content">
             <div>
                 <player-icon class="player-icon-med" pid="deal.player0Id"></player-icon>
-                <-->
+                <i class="fa fa-2x fa-exchange"></i>
                 <player-icon class="player-icon-med" pid="deal.player1Id"></player-icon>
             </div>
 
@@ -43,8 +43,8 @@
                     </div>
                 </div>
                 <div ng-switch-when="false">
-                    <div ng-if="getMyDealState()===3" translate>This deal is ACTIVE.</div>
-                    <div ng-if="getMyDealState()===4" translate>This deal was DENIED.</div>
+                    <div ng-if="getMyDealState()===3" translate>This treaty was ACCEPTED.</div>
+                    <div ng-if="getMyDealState()===4" translate>This treaty was DENIED.</div>
                 </div>
                 <div ng-if="getMyDealState()===4">
                     <a class="btn btn-default" href="{{'#/deals/new/' + dealFactory.subject}}" translate>

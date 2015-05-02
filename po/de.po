@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-02 22:38+0100\n"
+"PO-Revision-Date: 2015-05-02 23:58+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -14,12 +14,12 @@ msgstr ""
 
 #: player/partials/deals/deal.html:3
 msgid ""
-"<td><a href=\"#/deals/{{deal.id}}\">{{deal.subject}}</a></td>\n"
+"<td><a href=\"#/deals/{{deal.id}}\">Treaty</a></td>\n"
 "            <td>with team <player-icon pid=\"deal.player1Id\"></player-"
 "icon></td>\n"
 "            <td>{{getDealStateText(deal)}}</td>"
 msgstr ""
-"<td><a href=\"#/deals/{{deal.id}}\">{{deal.subject}}</a></td>\n"
+"<td><a href=\"#/deals/{{deal.id}}\">Abkommen</a></td>\n"
 "            <td>mit Team <player-icon pid=\"deal.player1Id\"></player-icon></"
 "td>\n"
 "            <td>{{getDealStateText(deal)}}</td>"
@@ -48,6 +48,10 @@ msgstr "Ein neuer %s"
 #: mc/views/players.html:35
 msgid "ALARM"
 msgstr ""
+
+#: player/partials/deals/deal.new.html:1
+msgid "Accept treaty"
+msgstr "Abkommen akzeptieren"
 
 #: admin/views/admin/show-deck.html:27
 msgid "Add new item"
@@ -81,7 +85,9 @@ msgstr "Zurück"
 msgid "CONNECT DB"
 msgstr "VERBINDE MIT DATENBANK"
 
-#: admin/views/admin/move-item.html:23 player/partials/deals/deal.new.html:11
+#: admin/views/admin/move-item.html:23
+#: player/js/controllers/dealControllers.js:28
+#: player/partials/deals/deal.new.html:11
 #: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:5
 msgid "Cancel"
 msgstr "Abbrechen"
@@ -99,8 +105,8 @@ msgid "Choose target where item will be appended."
 msgstr "Ziel auswählen wo Eintrag angehängt werden soll."
 
 #: player/partials/deals/deal.choosePlayer.html:1
-msgid "Choose team to deal {{subject}} with:"
-msgstr "Team wählen um {{subject}} zu vereinbaren:"
+msgid "Choose team to offer treaty:"
+msgstr "Wählt das Team dem Ihr ein Abkommen anbieten möchtet:"
 
 #: player/partials/deals/deal.chooseSubject.html:1
 msgid "Choose type of deal:"
@@ -122,6 +128,7 @@ msgstr "Kommando"
 msgid "Configuration"
 msgstr "Konfiguration"
 
+#: player/js/controllers/dealControllers.js:25
 #: player/partials/deals/deal.new.html:8 player/partials/rating/rating.html:13
 #: player/partials/voteConfirm.html:4
 msgid "Confirm"
@@ -184,6 +191,10 @@ msgstr "Löschen"
 msgid "Delete deck"
 msgstr "Lösche Strang"
 
+#: player/js/controllers/dealControllers.js:22
+msgid "Deny"
+msgstr "Ablehnen"
+
 #: admin/views/admin/edit-new-deck.html:9
 msgid "Description:"
 msgstr "Beschreibung:"
@@ -206,11 +217,11 @@ msgstr "Willst Du den Server wirklich neustarten?"
 
 #: player/partials/deals/deal.new.html:3
 msgid ""
-"Do you want to take out {{subject}} with <player-icon class=\"player-icon-med"
-"\" pid=\"player1Id\"></player-icon>?"
+"Do you want to accept a treaty with <player-icon class=\"player-icon-med\" "
+"pid=\"player1Id\"></player-icon>?"
 msgstr ""
-"Möchtest du eine {{subject}} mit <player-icon class=\"player-icon-med\" pid="
-"\"player1Id\"></player-icon> abschließen?"
+"Möchtest du ein Abkommen mit <player-icon class=\"player-icon-med\" pid="
+"\"player1Id\"></player-icon> schließen?"
 
 #: mc/js/controllers/matching.js:178
 msgid "Doesn't match well. Should play alone."
@@ -231,6 +242,10 @@ msgstr "Englisch"
 #: mc/views/dummies.html:69
 msgid "Fill the rest"
 msgstr "Rest ausfüllen"
+
+#: player/js/controllers/dealControllers.js:53
+msgid "For 0 points."
+msgstr "Für 0 Punkte."
 
 #: homevisit_components/hvLanguage.js:9
 msgid "French"
@@ -356,10 +371,6 @@ msgstr "Meine Solidaritätsbereitschaft"
 msgid "New Deck"
 msgstr "Neuer Strang"
 
-#: player/partials/deals/deal.html:10
-msgid "New deal"
-msgstr "Neuer Deal"
-
 #: admin/views/admin/show-set.html:12
 msgid "New deck"
 msgstr "Neuer Strang"
@@ -372,6 +383,10 @@ msgstr "Neue Option"
 #: admin/views/admin/import-json.html:12
 msgid "New title:"
 msgstr "Neuer Titel:"
+
+#: player/partials/deals/deal.html:10
+msgid "New treaty"
+msgstr "Neues Abkommen"
 
 #: player/partials/home.html:1
 msgid "Next"
@@ -589,14 +604,12 @@ msgid "Teams"
 msgstr "Teams"
 
 #: game/polls/Agreement.js:34
-#, fuzzy
 msgid "The agreement on %s is fullfilled."
-msgstr "Die %(agreementType)s ist erfüllt."
+msgstr "Die %s ist erfüllt."
 
 #: game/polls/Agreement.js:38
-#, fuzzy
 msgid "The agreement on %s is neglected."
-msgstr "Die %(agreementType)s ist nicht zustande gekommen."
+msgstr "Die %s ist nicht zustande gekommen."
 
 #: game/items/includes/results.js:21
 msgid "The division of the cake"
@@ -610,14 +623,6 @@ msgstr "Diese Teams waren gemein zu Euch:"
 msgid "This deal does not exist!"
 msgstr "Diesen Deal gibt es nicht!"
 
-#: player/partials/deals/deal.details.html:46
-msgid "This deal is ACTIVE."
-msgstr "Dieser Deal ist AKTIV."
-
-#: player/partials/deals/deal.details.html:47
-msgid "This deal was DENIED."
-msgstr "Dieser Deal wurde ABGELEHNT."
-
 #: mc/views/about.html:1
 msgid "This is the about view."
 msgstr "Das ist die About-Ansicht."
@@ -625,6 +630,14 @@ msgstr "Das ist die About-Ansicht."
 #: game/playerManager.js:166
 msgid "This poll doesn't exist!"
 msgstr "Diesen Frage gibt es nicht!"
+
+#: player/partials/deals/deal.details.html:46
+msgid "This treaty was ACCEPTED."
+msgstr "Dieses Abkommen wurde ANGENOMMEN."
+
+#: player/partials/deals/deal.details.html:47
+msgid "This treaty was DENIED."
+msgstr "Dieses Abkommen wurde ABGELEHNT."
 
 #: admin/views/admin/edit-new-deck.html:5
 msgid "Title:"
@@ -641,6 +654,11 @@ msgstr "Gesamt: {{home.data[0]}}"
 #: player/partials/rating/rating.html:18
 msgid "Traitor! You can't score down your allied!"
 msgstr "Verräter! Ihr könnt Euren Allianzpartner nicht negativ bewerten!"
+
+#: player/js/controllers/dealControllers.js:96
+#: player/partials/deals/deal.details.html:6
+msgid "Treaty"
+msgstr "Abkommen"
 
 #: player/partials/deals/deal.details.html:50
 msgid "Try Again"
@@ -669,6 +687,18 @@ msgstr "Auf Bewertung warten."
 #: player/partials/deals/deal.details.html:26
 msgid "Waiting for reply..."
 msgstr "Warten auf Antwort ..."
+
+#: player/js/controllers/dealControllers.js:41
+msgid "We like to deal!"
+msgstr "Wir wollen ein Abkommen schließen!"
+
+#: player/js/controllers/dealControllers.js:44
+msgid "We offer {{points}} points."
+msgstr "Wir bieten {{points}} Punkte."
+
+#: player/js/controllers/dealControllers.js:49
+msgid "We want {{points}} points."
+msgstr "Wir wollen {{points}} Punkte."
 
 #: mc/js/services/mcAppServices.js:95
 msgid "Who at the table has a job of which he or she can live?"
@@ -877,6 +907,12 @@ msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
 msgstr[0] "{{minuspoints}} Minuspunkt"
 msgstr[1] "{{minuspoints}} Minuspunkte"
+
+#~ msgid "Choose team to deal {{subject}} with:"
+#~ msgstr "Team wählen um {{subject}} zu vereinbaren:"
+
+#~ msgid "This deal is ACTIVE."
+#~ msgstr "Dieser Deal ist AKTIV."
 
 #~ msgid "Next:"
 #~ msgstr "Nächster:"
