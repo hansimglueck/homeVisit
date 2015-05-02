@@ -558,7 +558,7 @@ msgstr ""
 msgid "The agreement on %(agreementType)s is neglected."
 msgstr ""
 
-#: game/items/includes/results.js:20
+#: game/items/includes/results.js:21
 msgid "The division of the cake"
 msgstr ""
 
@@ -598,6 +598,10 @@ msgstr ""
 msgid "Total: {{home.data[0]}}"
 msgstr ""
 
+#: player/partials/rating/rating.html:18
+msgid "Traitor! You can't score down your allied!"
+msgstr ""
+
 #: player/partials/deals/deal.details.html:50
 msgid "Try Again"
 msgstr ""
@@ -617,6 +621,10 @@ msgstr ""
 
 #: admin/views/admin/show-sequence-item.html:30
 msgid "Wait"
+msgstr ""
+
+#: player/partials/rating/rating.score.html:21
+msgid "Waiting for being rated."
 msgstr ""
 
 #: player/partials/deals/deal.details.html:26
@@ -719,6 +727,12 @@ msgstr ""
 msgid "player"
 msgstr ""
 
+#: player/js/services/playerAppServices.js:134
+msgid "point"
+msgid_plural "points"
+msgstr[0] ""
+msgstr[1] ""
+
 #: game/playerManager.js:30
 #: homevisit_components/hvPlayerColors.js:26
 msgid "red"
@@ -728,7 +742,7 @@ msgstr ""
 msgid "sec"
 msgstr ""
 
-#: player/js/services/playerAppServices.js:133
+#: player/js/services/playerAppServices.js:136
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] ""

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-01 23:51+0100\n"
+"PO-Revision-Date: 2015-05-02 14:51+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -421,7 +421,7 @@ msgstr "Punkt vergeben!"
 
 #: homevisit_components/hvLanguage.js:12
 msgid "Polish"
-msgstr ""
+msgstr "Polnisch"
 
 #: mc/index.html:26
 msgid "Polls"
@@ -576,7 +576,7 @@ msgstr "Die %(agreementType)s ist erfüllt."
 msgid "The agreement on %(agreementType)s is neglected."
 msgstr "Die %(agreementType)s ist nicht zustande gekommen."
 
-#: game/items/includes/results.js:20
+#: game/items/includes/results.js:21
 msgid "The division of the cake"
 msgstr "Die Verteilung des Kuchens"
 
@@ -616,6 +616,10 @@ msgstr "Gesamtdauer: {{getTimeForDeck()}}"
 msgid "Total: {{home.data[0]}}"
 msgstr "Gesamt: {{home.data[0]}}"
 
+#: player/partials/rating/rating.html:18
+msgid "Traitor! You can't score down your allied!"
+msgstr "Verräter! Ihr könnt Euren Allianzpartner nicht negativ bewerten!"
+
 #: player/partials/deals/deal.details.html:50
 msgid "Try Again"
 msgstr "Versucht nochmal"
@@ -635,6 +639,10 @@ msgstr "ABSTIMMUNG"
 #: admin/views/admin/show-sequence-item.html:30
 msgid "Wait"
 msgstr "Warten"
+
+#: player/partials/rating/rating.score.html:21
+msgid "Waiting for being rated."
+msgstr "Auf Bewertung warten."
 
 #: player/partials/deals/deal.details.html:26
 msgid "Waiting for reply..."
@@ -702,7 +710,7 @@ msgstr "lila"
 
 #: game/playerManager.js:33 homevisit_components/hvPlayerColors.js:29
 msgid "orange"
-msgstr ""
+msgstr "orange"
 
 #: player/views/game-events.html:24
 msgid "other Player"
@@ -723,6 +731,12 @@ msgstr "rosa"
 msgid "player"
 msgstr "Spieler"
 
+#: player/js/services/playerAppServices.js:134
+msgid "point"
+msgid_plural "points"
+msgstr[0] "Punkt"
+msgstr[1] "Punkte"
+
 #: game/playerManager.js:30 homevisit_components/hvPlayerColors.js:26
 msgid "red"
 msgstr "rot"
@@ -731,7 +745,7 @@ msgstr "rot"
 msgid "sec"
 msgstr "Sek."
 
-#: player/js/services/playerAppServices.js:133
+#: player/js/services/playerAppServices.js:136
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "Stimme"
