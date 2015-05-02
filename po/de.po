@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-02 21:22+0100\n"
+"PO-Revision-Date: 2015-05-02 22:18+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -45,7 +45,7 @@ msgid "A new %s"
 msgstr "Ein neuer %s"
 
 #: admin/views/master-buttons.html:12 mc/index.html:40
-#: mc/views/players.html:32
+#: mc/views/players.html:35
 msgid "ALARM"
 msgstr ""
 
@@ -57,7 +57,7 @@ msgstr "Neuen Eintrag hinzufügen"
 msgid "Are you sure?"
 msgstr "Bist Du sicher?"
 
-#: player/partials/results.html:21
+#: player/partials/results.html:18
 msgid "Average: {{home.data[1]}}"
 msgstr "Durchschnitt: {{home.data[1]}}"
 
@@ -86,7 +86,7 @@ msgstr "VERBINDE MIT DATENBANK"
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: mc/js/controllers/dummies.js:60
+#: mc/js/controllers/dummies.js:61
 msgid "Change name"
 msgstr "Namen ändern"
 
@@ -114,11 +114,11 @@ msgstr "Farbe"
 msgid "Come Back!"
 msgstr "Komm zurück!"
 
-#: mc/views/item.html:35
+#: mc/views/item.html:33
 msgid "Command"
 msgstr "Kommando"
 
-#: admin/partials/home.html:9 mc/views/item.html:36
+#: admin/partials/home.html:9 mc/views/item.html:34
 msgid "Configuration"
 msgstr "Konfiguration"
 
@@ -139,7 +139,7 @@ msgstr "Kopieren"
 msgid "Correct"
 msgstr "Richtig"
 
-#: player/partials/results.html:6
+#: player/partials/results.html:3
 msgid "Correct: {{home.correctAnswer}}"
 msgstr "Richtig: {{home.correctAnswer}}"
 
@@ -151,7 +151,7 @@ msgstr "Ausgewählter Strang:"
 msgid "Current step:"
 msgstr "Aktueller Eintrag:"
 
-#: mc/views/item.html:10
+#: mc/views/item.html:9
 msgid "Current:"
 msgstr "Aktuell:"
 
@@ -192,7 +192,7 @@ msgstr "Beschreibung:"
 msgid "Deselect"
 msgstr "Deselektieren"
 
-#: mc/views/players.html:17
+#: mc/views/players.html:20
 msgid "Details"
 msgstr "Details"
 
@@ -211,6 +211,10 @@ msgid ""
 msgstr ""
 "Möchtest du eine {{subject}} mit <player-icon class=\"player-icon-med\" pid="
 "\"player1Id\"></player-icon> abschließen?"
+
+#: mc/js/controllers/matching.js:178
+msgid "Doesn't match well. Should play alone."
+msgstr "Keine Übereinstimmungen. Sollte alleine spielen."
 
 #: homevisit_components/hvLanguage.js:10
 msgid "Dutch"
@@ -232,7 +236,7 @@ msgstr "Rest ausfüllen"
 msgid "French"
 msgstr "Französisch"
 
-#: admin/views/master-buttons.html:6 mc/index.html:49 mc/views/players.html:31
+#: admin/views/master-buttons.html:6 mc/index.html:49 mc/views/players.html:34
 msgid "GO"
 msgstr ""
 
@@ -300,11 +304,15 @@ msgstr "Wartung"
 msgid "Mapped:"
 msgstr "Zugeordnet:"
 
+#: mc/js/controllers/matching.js:180
+msgid "Matches best with the team of {{name1}} and {{name2}}."
+msgstr "Passt am Besten zu Team {{name1}} und {{name2}}."
+
 #: mc/index.html:32
 msgid "Matching"
 msgstr "Übereinstimmung"
 
-#: player/partials/results.html:23
+#: player/partials/results.html:20
 msgid "Max: {{home.data[3]}}"
 msgstr "Max: {{home.data[3]}}"
 
@@ -312,7 +320,7 @@ msgstr "Max: {{home.data[3]}}"
 msgid "Memory"
 msgstr "Speicher"
 
-#: player/partials/results.html:22
+#: player/partials/results.html:19
 msgid "Min: {{home.data[2]}}"
 msgstr "Min: {{home.data[2]}}"
 
@@ -353,13 +361,9 @@ msgstr "Neuer Titel:"
 msgid "Next"
 msgstr "Nächster"
 
-#: mc/views/players.html:13
+#: mc/views/players.html:17
 msgid "Next!"
 msgstr "Nächster!"
-
-#: mc/views/item.html:11
-msgid "Next:"
-msgstr "Nächster:"
 
 #: game/polls/Agreement.js:13
 msgid "No"
@@ -399,19 +403,19 @@ msgstr "Spiel"
 msgid "Player"
 msgstr "Spieler"
 
-#: mc/js/services/mcAppServices.js:271
+#: mc/js/services/mcAppServices.js:279
 msgid "Player {{ playerNumber }}"
 msgstr "Spieler {{ playerNumber }}"
 
-#: mc/views/item.html:37
+#: mc/views/item.html:35
 msgid "Players are dealing"
 msgstr "Die Teams verhandeln"
 
-#: mc/views/item.html:38
+#: mc/views/item.html:36
 msgid "Players are rating others"
 msgstr "Die Teams bewerten andere"
 
-#: mc/views/item.html:18
+#: mc/views/item.html:16
 msgid "Players are voting"
 msgstr "Die Teams stimmen ab"
 
@@ -433,11 +437,7 @@ msgstr "Abstimmung"
 
 #: homevisit_components/hvLanguage.js:13
 msgid "Portuguese"
-msgstr ""
-
-#: mc/views/item.html:9
-msgid "Previous:"
-msgstr "Vorheriges:"
+msgstr "Portugiesisch"
 
 #: admin/views/admin/import-json.html:4
 msgid "Process"
@@ -487,7 +487,7 @@ msgstr ""
 msgid "Rank"
 msgstr "Rang"
 
-#: mc/views/players.html:12 mc/views/players.html:9
+#: mc/views/players.html:10 mc/views/players.html:15
 msgid "Rank: {{player.rank}}"
 msgstr "Rang: {{player.rank}}"
 
@@ -499,7 +499,7 @@ msgstr "Rang: {{status.player.rank}}"
 msgid "Really delete???"
 msgstr "Wirklich löschen???"
 
-#: mc/js/services/mcAppServices.js:330
+#: mc/js/services/mcAppServices.js:343
 msgid "Really restart?"
 msgstr "Wirklich neustarten?"
 
@@ -507,11 +507,11 @@ msgstr "Wirklich neustarten?"
 msgid "Refresh"
 msgstr "Neuladen"
 
-#: mc/views/item.html:33
+#: mc/views/item.html:31
 msgid "Results are displayed"
 msgstr "Ergebnisse werden angezeigt"
 
-#: player/partials/results.html:7
+#: player/partials/results.html:4
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr "Ergebnisse sind nach Rang gewichtet. Die Stimmen stehen in Klammern."
 
@@ -532,7 +532,7 @@ msgstr "Punkte"
 msgid "Score for Player {{playerId}}"
 msgstr "Punkte für Team {{playerId}}"
 
-#: mc/views/players.html:9
+#: mc/views/players.html:14 mc/views/players.html:9
 msgid "Score: {{player.score}}"
 msgstr "Punkte: {{player.score}}"
 
@@ -556,7 +556,7 @@ msgstr ""
 msgid "Silent"
 msgstr "Still"
 
-#: mc/views/item.html:34
+#: mc/views/item.html:32
 msgid "Sound is playing:"
 msgstr "Ton wird wiedergegeben:"
 
@@ -573,11 +573,13 @@ msgid "Teams"
 msgstr "Teams"
 
 #: game/polls/Agreement.js:34
-msgid "The agreement on %(agreementType)s is fullfilled."
+#, fuzzy
+msgid "The agreement on %s is fullfilled."
 msgstr "Die %(agreementType)s ist erfüllt."
 
-#: game/polls/Agreement.js:39
-msgid "The agreement on %(agreementType)s is neglected."
+#: game/polls/Agreement.js:38
+#, fuzzy
+msgid "The agreement on %s is neglected."
 msgstr "Die %(agreementType)s ist nicht zustande gekommen."
 
 #: game/items/includes/results.js:21
@@ -616,7 +618,7 @@ msgstr "Titel:"
 msgid "Total duration: {{getTimeForDeck()}}"
 msgstr "Gesamtdauer: {{getTimeForDeck()}}"
 
-#: player/partials/results.html:20
+#: player/partials/results.html:17
 msgid "Total: {{home.data[0]}}"
 msgstr "Gesamt: {{home.data[0]}}"
 
@@ -724,7 +726,7 @@ msgstr "anderer Spieler"
 msgid "pink"
 msgstr "rosa"
 
-#: player/js/services/playerAppServices.js:134
+#: player/js/services/playerAppServices.js:136
 msgid "point"
 msgid_plural "points"
 msgstr[0] "Punkt"
@@ -738,7 +740,7 @@ msgstr "rot"
 msgid "sec"
 msgstr "Sek."
 
-#: player/js/services/playerAppServices.js:136
+#: player/js/services/playerAppServices.js:145
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "Stimme"
@@ -753,6 +755,12 @@ msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
 msgstr[0] "{{minuspoints}} Minuspunkt"
 msgstr[1] "{{minuspoints}} Minuspunkte"
+
+#~ msgid "Next:"
+#~ msgstr "Nächster:"
+
+#~ msgid "Previous:"
+#~ msgstr "Vorheriges:"
 
 #~ msgid "player"
 #~ msgstr "Spieler"

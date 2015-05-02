@@ -27,7 +27,7 @@ msgstr ""
 
 #: admin/views/master-buttons.html:12
 #: mc/index.html:40
-#: mc/views/players.html:32
+#: mc/views/players.html:35
 msgid "ALARM"
 msgstr ""
 
@@ -39,7 +39,7 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: player/partials/results.html:21
+#: player/partials/results.html:18
 msgid "Average: {{home.data[1]}}"
 msgstr ""
 
@@ -71,7 +71,7 @@ msgstr ""
 msgid "Cancel"
 msgstr ""
 
-#: mc/js/controllers/dummies.js:60
+#: mc/js/controllers/dummies.js:61
 msgid "Change name"
 msgstr ""
 
@@ -99,12 +99,12 @@ msgstr ""
 msgid "Come Back!"
 msgstr ""
 
-#: mc/views/item.html:35
+#: mc/views/item.html:33
 msgid "Command"
 msgstr ""
 
 #: admin/partials/home.html:9
-#: mc/views/item.html:36
+#: mc/views/item.html:34
 msgid "Configuration"
 msgstr ""
 
@@ -126,7 +126,7 @@ msgstr ""
 msgid "Correct"
 msgstr ""
 
-#: player/partials/results.html:6
+#: player/partials/results.html:3
 msgid "Correct: {{home.correctAnswer}}"
 msgstr ""
 
@@ -138,7 +138,7 @@ msgstr ""
 msgid "Current step:"
 msgstr ""
 
-#: mc/views/item.html:10
+#: mc/views/item.html:9
 msgid "Current:"
 msgstr ""
 
@@ -179,7 +179,7 @@ msgstr ""
 msgid "Deselect"
 msgstr ""
 
-#: mc/views/players.html:17
+#: mc/views/players.html:20
 msgid "Details"
 msgstr ""
 
@@ -193,6 +193,10 @@ msgstr ""
 
 #: player/partials/deals/deal.new.html:3
 msgid "Do you want to take out {{subject}} with <player-icon class=\"player-icon-med\" pid=\"player1Id\"></player-icon>?"
+msgstr ""
+
+#: mc/js/controllers/matching.js:178
+msgid "Doesn't match well. Should play alone."
 msgstr ""
 
 #: homevisit_components/hvLanguage.js:10
@@ -217,7 +221,7 @@ msgstr ""
 
 #: admin/views/master-buttons.html:6
 #: mc/index.html:49
-#: mc/views/players.html:31
+#: mc/views/players.html:34
 msgid "GO"
 msgstr ""
 
@@ -285,11 +289,15 @@ msgstr ""
 msgid "Mapped:"
 msgstr ""
 
+#: mc/js/controllers/matching.js:180
+msgid "Matches best with the team of {{name1}} and {{name2}}."
+msgstr ""
+
 #: mc/index.html:32
 msgid "Matching"
 msgstr ""
 
-#: player/partials/results.html:23
+#: player/partials/results.html:20
 msgid "Max: {{home.data[3]}}"
 msgstr ""
 
@@ -297,7 +305,7 @@ msgstr ""
 msgid "Memory"
 msgstr ""
 
-#: player/partials/results.html:22
+#: player/partials/results.html:19
 msgid "Min: {{home.data[2]}}"
 msgstr ""
 
@@ -338,12 +346,8 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: mc/views/players.html:13
+#: mc/views/players.html:17
 msgid "Next!"
-msgstr ""
-
-#: mc/views/item.html:11
-msgid "Next:"
 msgstr ""
 
 #: game/polls/Agreement.js:13
@@ -384,19 +388,19 @@ msgstr ""
 msgid "Player"
 msgstr ""
 
-#: mc/js/services/mcAppServices.js:271
+#: mc/js/services/mcAppServices.js:279
 msgid "Player {{ playerNumber }}"
 msgstr ""
 
-#: mc/views/item.html:37
+#: mc/views/item.html:35
 msgid "Players are dealing"
 msgstr ""
 
-#: mc/views/item.html:38
+#: mc/views/item.html:36
 msgid "Players are rating others"
 msgstr ""
 
-#: mc/views/item.html:18
+#: mc/views/item.html:16
 msgid "Players are voting"
 msgstr ""
 
@@ -418,10 +422,6 @@ msgstr ""
 
 #: homevisit_components/hvLanguage.js:13
 msgid "Portuguese"
-msgstr ""
-
-#: mc/views/item.html:9
-msgid "Previous:"
 msgstr ""
 
 #: admin/views/admin/import-json.html:4
@@ -472,8 +472,8 @@ msgstr ""
 msgid "Rank"
 msgstr ""
 
-#: mc/views/players.html:12
-#: mc/views/players.html:9
+#: mc/views/players.html:10
+#: mc/views/players.html:15
 msgid "Rank: {{player.rank}}"
 msgstr ""
 
@@ -485,7 +485,7 @@ msgstr ""
 msgid "Really delete???"
 msgstr ""
 
-#: mc/js/services/mcAppServices.js:330
+#: mc/js/services/mcAppServices.js:343
 msgid "Really restart?"
 msgstr ""
 
@@ -493,11 +493,11 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
-#: mc/views/item.html:33
+#: mc/views/item.html:31
 msgid "Results are displayed"
 msgstr ""
 
-#: player/partials/results.html:7
+#: player/partials/results.html:4
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr ""
 
@@ -518,6 +518,7 @@ msgstr ""
 msgid "Score for Player {{playerId}}"
 msgstr ""
 
+#: mc/views/players.html:14
 #: mc/views/players.html:9
 msgid "Score: {{player.score}}"
 msgstr ""
@@ -538,7 +539,7 @@ msgstr ""
 msgid "Silent"
 msgstr ""
 
-#: mc/views/item.html:34
+#: mc/views/item.html:32
 msgid "Sound is playing:"
 msgstr ""
 
@@ -555,11 +556,11 @@ msgid "Teams"
 msgstr ""
 
 #: game/polls/Agreement.js:34
-msgid "The agreement on %(agreementType)s is fullfilled."
+msgid "The agreement on %s is fullfilled."
 msgstr ""
 
-#: game/polls/Agreement.js:39
-msgid "The agreement on %(agreementType)s is neglected."
+#: game/polls/Agreement.js:38
+msgid "The agreement on %s is neglected."
 msgstr ""
 
 #: game/items/includes/results.js:21
@@ -598,7 +599,7 @@ msgstr ""
 msgid "Total duration: {{getTimeForDeck()}}"
 msgstr ""
 
-#: player/partials/results.html:20
+#: player/partials/results.html:17
 msgid "Total: {{home.data[0]}}"
 msgstr ""
 
@@ -713,7 +714,7 @@ msgstr ""
 msgid "pink"
 msgstr ""
 
-#: player/js/services/playerAppServices.js:134
+#: player/js/services/playerAppServices.js:136
 msgid "point"
 msgid_plural "points"
 msgstr[0] ""
@@ -728,7 +729,7 @@ msgstr ""
 msgid "sec"
 msgstr ""
 
-#: player/js/services/playerAppServices.js:136
+#: player/js/services/playerAppServices.js:145
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] ""

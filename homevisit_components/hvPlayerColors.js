@@ -20,7 +20,7 @@ angular.module('hvPlayerColors', [])
         '#000000'      //pink
     ])
 
-    .factory('playerColornamesFactory', ['gettext', function(gettext) {
+    .factory('playerColornamesFactory', function(gettext) {
 
         var colornames = [
                 gettext('red'),
@@ -38,4 +38,4 @@ angular.module('hvPlayerColors', [])
         playerColornamesFactory.playercolornames = colornames;
 
         return playerColornamesFactory;
-    }]);
+    });
