@@ -1,8 +1,5 @@
 <div class="results">
     <div class="results-text">
-        <ul class="list-unstyled">
-            <li ng-repeat="t in home.text track by $index">{{t}}</li>
-        </ul>
         <div class="correct-answer" ng-if="home.correctAnswer !== ''" translate>Correct: {{home.correctAnswer}}</div>
         <div ng-if="home.ratedVote" translate>Results are weighted by ranking. See actual votes in braces.</div>
     </div>
