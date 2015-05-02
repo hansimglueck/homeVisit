@@ -29,24 +29,22 @@
     min-height: 1px;
 }
 
-#baro_positive {
-    background: #629820;
+#baro_zero_line {
     position: absolute;
-    top: 0px;
-    left: 2px;
-    width: 5px;
-    min-height: 1px;
-    z-index: -1;
+    left: -3px;
+    width: 33px;
+    height: 1px;
+    z-index: -6;
+    border-top: 2px dotted #333;
 }
 
-#baro_negative {
-    background: #DD3629;
+#baro_zero {
     position: absolute;
-    top: 0px;
-    left: 2px;
-    width: 5px;
-    min-height: 1px;
-    z-index: -2;
+    left: -12px;
+    z-index: -5;
+    margin-top: -9px;
+    font-weight: bold;
+    color: #333;
 }
 
 #baro_vert_line {
@@ -56,11 +54,11 @@
     left: 0px;
     width: 2px;
     min-height: 1px;
-    z-index: -3;
+    z-index: 1;
 }
 
 #baro_top_line {
-    background: #333;
+    background: #737373;
     position: absolute;
     top: 0px;
     left: 0px;
@@ -70,7 +68,7 @@
 }
 
 #baro_bottom_line {
-    background: #333;
+    background: #737373;
     position: absolute;
     left: 0px;
     width: 30px;
@@ -79,12 +77,13 @@
 }
 
 .baro_others_line {
-    background: #AAA;
+    background: #737373;
     position: absolute;
     left: 0px;
     width: 30px;
     height: 2px;
     min-height: 1px;
+    z-index: -4;
 }
 
 .baro_my_line {
@@ -97,23 +96,30 @@
 }
 
 .score_label {
-    background: #AAA;
+    background: #737373;
     position: absolute;
     left: 20px;
     top: -14px;
     color: #fff;
     padding: 1px 7px 1px 7px;
     font-size: 0.8em;
+    margin-top: 6px;
+    min-width: 25px;
+    border-radius: 5px;
+    text-align: right;
 }
 
 .my_score_label {
-    /*background: #555;*/
     position: absolute;
     left: 20px;
     top: -14px;
     color: #fff;
     padding: 1px 7px 1px 7px;
     font-size: 0.8em;
+    margin-top: 4px;
+    border-radius: 5px;
+    text-align: right;
+    min-width: 25px;
 }
 
 .my_score_label_top {
@@ -123,6 +129,8 @@
     width: 30px;
     top: -14px;
     left: 20px;
+    margin-top: 3px;
+    border-radius: 5px;
 }
 .my_score_label_bottom {
     position: absolute;

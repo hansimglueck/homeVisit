@@ -163,7 +163,7 @@
             <div id="baro_vert_line" ng-style="{'height': getBaroHeight()}"></div>
             <!--<div id="baro_top_line"></div>-->
             <!--<div id="baro_bottom_line" ng-style="{'top': getBaroHeight()}"></div>-->
-            <div class="baro_others_line" ng-repeat="player in status.otherPlayers track by $index"
+            <div class="baro_others_line" ng-repeat="player in status.getOtherPlayers() track by $index"
                  ng-style="{'top': getLinePos($index)}">
                 <div class="score_label">
                     {{player.score}}
@@ -177,9 +177,8 @@
                     {{status.player.score}}
                 </div>
             </div>
-
-            <div id="baro_positive" ng-style="{'height': getPosHeight()}"></div>
-            <div id="baro_negative" ng-style="{'height': getBaroHeight()}"></div>
+            <div id="baro_zero_line" ng-style="{'top': getPosHeight()}"></div>
+            <div id="baro_zero" ng-style="{'top': getPosHeight()}">0</div>
         </div>
     </div>
     <div class='content text-center scrollable-content'>
