@@ -321,6 +321,22 @@ msgstr ""
 msgid "My Turn!"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:159
+msgid "My ambition"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:167
+msgid "My confidence in democracy"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:175
+msgid "My earnings from the game of the markets"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:151
+msgid "My willingness of solidarity"
+msgstr ""
+
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:22
 msgid "New Deck"
 msgstr ""
@@ -636,6 +652,50 @@ msgstr ""
 msgid "Waiting for reply..."
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:95
+msgid "Who at the table has a job of which he or she can live?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:63
+msgid "Who at this table has been class spokesman?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:71
+msgid "Who at this table has ever won a lot?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:127
+msgid "Who feels more as an European than a citizens of his country?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:143
+msgid "Who finds the people here in general trustworthy?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:111
+msgid "Who had a physical conflict in the past 10 years?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:119
+msgid "Who has ever consciously denied his national origin?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:87
+msgid "Who is involved in a association or in an NGO?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:135
+msgid "Who is scared of the future?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:79
+msgid "Who was or is a member of a political party?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:103
+msgid "Who works regularly outside the country?"
+msgstr ""
+
 #: admin/views/raspi-manager.html:75
 msgid "Wi-Fi name:"
 msgstr ""
@@ -680,9 +740,37 @@ msgstr ""
 msgid "Your voting weight depends on your rank!"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:160
+msgid "ambition"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:88
+msgid "association/NGO"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:64
+msgid "class spokesman"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:168
+msgid "confidence in democracy"
+msgstr ""
+
 #: game/playerManager.js:32
 #: homevisit_components/hvPlayerColors.js:28
 msgid "dark blue"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:120
+msgid "denied origin"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:176
+msgid "earnings"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:128
+msgid "feeling European"
 msgstr ""
 
 #: game/playerManager.js:35
@@ -700,6 +788,10 @@ msgstr ""
 msgid "lilac"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:80
+msgid "member of political party"
+msgstr ""
+
 #: game/playerManager.js:33
 #: homevisit_components/hvPlayerColors.js:29
 msgid "orange"
@@ -707,6 +799,14 @@ msgstr ""
 
 #: player/views/game-events.html:24
 msgid "other Player"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:96
+msgid "paid job"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:112
+msgid "physical conflict"
 msgstr ""
 
 #: game/playerManager.js:37
@@ -725,8 +825,16 @@ msgstr[1] ""
 msgid "red"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:136
+msgid "scared of the future"
+msgstr ""
+
 #: admin/views/admin/show-sequence-item.html:33
 msgid "sec"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:144
+msgid "trustworthy"
 msgstr ""
 
 #: player/js/services/playerAppServices.js:145
@@ -734,6 +842,18 @@ msgid "vote"
 msgid_plural "votes"
 msgstr[0] ""
 msgstr[1] ""
+
+#: mc/js/services/mcAppServices.js:152
+msgid "willingness of solidarity"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:72
+msgid "won a lot"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:104
+msgid "working outside the country"
+msgstr ""
 
 #: game/playerManager.js:34
 #: homevisit_components/hvPlayerColors.js:30

@@ -54,126 +54,126 @@ angular.module('mcAppServices', [])
         return statusFactory;
 
     })
-    .factory('Polls', function() {
+    .factory('Polls', function(gettext) {
         var pollFactory = {};
         pollFactory.selectedPoll = 0;
         pollFactory.polls = [
             {
                 // 0
-                question: "Wer an diesem Tisch war einmal Klassensprecher?",
-                note: "Klassensprecher",
+                question: gettext('Who at this table has been class spokesman?'),
+                note: gettext('class spokesman'),
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [1,1,-1,1,1,1,1,1,-1,1,1,1,1,1,-1]
             },
             {
                 // 1
-                question: "Wer an diesem Tisch hat schon mal viel gewonnen? ",
-                note: "viel gewonnen",
+                question: gettext('Who at this table has ever won a lot?'),
+                note: gettext('won a lot'),
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [1,1,1,1,1,-1,-1,-1,-1,-1,1,-1,-1,-1,-1]
             },
             {
                 // 2
-                question: "Wer war oder ist Parteimitglied?",
-                note: "Parteimitglied",
+                question: gettext('Who was or is a member of a political party?'),
+                note: gettext('member of political party'),
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,1,-1]
             },
             {
                 // 3
-                question: "Wer engagiert sich in einem Verein oder in einer NGO?",
-                note: "Verein/NGO",
+                question: gettext('Who is involved in a association or in an NGO?'),
+                note: gettext('association/NGO'),
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [1,1,-1,-1,1,-1,1,1,-1,-1,-1,1,1,1,-1]
             },
             {
                 // 4
-                question: "Wer am Tisch hat eine Arbeit, von der er oder sie leben kann?",
-                note: "bezahlte Arbeit",
+                question: gettext('Who at the table has a job of which he or she can live?'),
+                note: gettext('paid job'),
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,-1]
             },
             {
                 // 5
-                question: "Wer arbeitet regelmäßig außerhalb des Landes?",
-                note: "arbeitet im Ausland",
+                question: gettext('Who works regularly outside the country?'),
+                note: gettext('working outside the country'),
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [-1,-1,-1,-1,1,-1,1,-1,-1,-1,-1,1,-1,-1,-1]
             },
             {
                 // 6
-                question: "Wer hat in den vergangenen 10 Jahren einen Konflikt schon mal körperlich ausgetragen?",
-                note: "körperlicher Konflikt",
+                question: gettext('Who had a physical conflict in the past 10 years?'),
+                note: gettext('physical conflict'),
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [-1,-1,0,0,-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1]
             },
             {
                 // 7
-                question: "Wer hat schon mal bewusst seine nationale Herkunft verleugnet?",
-                note: "Herkunft verleugnet",
+                question: gettext('Who has ever consciously denied his national origin?'),
+                note: gettext('denied origin'),
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [1,1,-1,-1,1,1,1,-1,1,-1,1,-1,-1,-1,-1]
             },
             {
                 // 8
-                question: "Wer fühlt sich mehr als Europäer denn als Bürger seines Landes?",
-                note: "gefühlter Europäer",
+                question: gettext('Who feels more as an European than a citizens of his country?'),
+                note: gettext('feeling European'),
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,-1,-1,1,-1]
             },
             {
                 // 9
-                question: "Wer hat Angst vor der Zukunft?",
-                note: "Angst vor Zukunft",
+                question: gettext('Who is scared of the future?'),
+                note: gettext('scared of the future'),
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [-1,1,-1,1,-1,1,1,1,-1,-1,-1,1,-1,1,-1]
             },
             {
                 // 10
-                question: "Wer findet die Menschen hier grundsätzlich vertrauenswürdig?",
-                note: "vertrauenswürdig",
+                question: gettext('Who finds the people here in general trustworthy?'),
+                note: gettext('trustworthy'),
                 type: 'binary',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [-1,1,-1,-1,-1,1,-1,1,1,-1,-1,-1,1,1,-1]
             },
             {
                 // 11
-                question: "Meine Solidaritätsbereitschaft",
-                note: "Solidaritätsbereitschaft",
+                question: gettext('My willingness of solidarity'),
+                note: gettext('willingness of solidarity'),
                 type: 'fingers',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [-1,3,3,-1,3,-1,-1,-1,3,-1,-1,-1,3,-1,-1]
             },
             {
                 // 12
-                question: "Mein Ehrgeiz",
-                note: "Ehrgeiz",
+                question: gettext('My ambition'),
+                note: gettext('ambition'),
                 type: 'fingers',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [4,5,0,5,4,3,3,2,4,5,3,4,5,4,-1]
             },
             {
                 // 13
-                question: "Mein Vertrauen in die Demokratie",
-                note: "Vertrauen in Demokratie",
+                question: gettext('My confidence in democracy'),
+                note: gettext('confidence in democracy'),
                 type: 'fingers',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [1,2,1,3,2,2,3,2,3,2,4,2,4,2,-1]
             },
             {
                 // 14
-                question: "Mein Gewinn aus dem Spiel der Märkte",
-                note: "Gewinn aus Spiel der Märkte",
+                question: gettext('My earnings from the game of the markets'),
+                note: gettext('earnings'),
                 type: 'fingers',
                 answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1]
                 //answers: [0,0,1,1,1,0,2,0,2,5,5,0,2,2,-1]
