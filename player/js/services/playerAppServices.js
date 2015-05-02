@@ -131,10 +131,11 @@ angular.module('playerAppServices', [])
                                 else result.voteOptions.forEach(function (option) {
                                     if (option.correctAnswer) homeFactory.correctAnswer = option.text;
                                     if (data.data.dataSource == "positivePlayerScore") {
-                                        console.log(option);
-                                        labels.push(option.playercolor + ": " + option.percent + "%");
+                                        // TODO translation
+                                        labels.push(option.playercolor + ": " + option.percent + "%, " + option.result + " points");
                                     } else {
-                                        labels.push(option.text + ": " + option.percent + "% (" + option.votes + " Votes)");
+                                        // TODO translation
+                                        labels.push(option.text + ": " + option.percent + "% (" + option.votes + " votes)");
                                     }
                                     if (resultType == "europeMap") resData.push({
                                         id: option.value,
