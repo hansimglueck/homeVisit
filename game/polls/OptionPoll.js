@@ -15,7 +15,13 @@ OptionPoll.prototype.init = function () {
     });
     this.prepareWsContent();
     var lang = require('../gameConf').conf.language;
-    this.wsContent.voteOptions = this.voteOptions.map(function(opt){return {text: opt.text[lang], value: opt.value, checked: false}});
+    this.wsContent.voteOptions = this.voteOptions.map(function(opt){
+        return {
+            text: opt.text[lang],
+            value: opt.value,
+            checked: false
+        }
+    });
 };
 OptionPoll.prototype.evalVote = function (vote) {
     var self = this;
@@ -30,9 +36,14 @@ OptionPoll.prototype.evalVote = function (vote) {
 };
 OptionPoll.prototype.getResult = function () {
     var resultSum = this.voteOptions.reduce(function(prev, curr){return prev+curr.result},0);
-    this.voteOptions.forEach(function(opt){opt.percent = (opt.result/resultSum*100).toFixed(1)});
+    var lang = require('../gameConf').conf.language;
+    this.voteOptions.forEach(function(opt) {
+        opt.percent = (opt.result/resultSum*100).toFixed(0);
+        if (typeof opt.text === 'object') {
+            opt.text = opt.text[lang];
+        }
+    });
     return {
-        text: this.text,
         voteOptions: this.voteOptions.sort(function(a,b){return b.result- a.result}),
         votes: this.votes,
         complete: !this.open,

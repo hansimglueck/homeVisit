@@ -88,12 +88,9 @@ module.exports = {
         this.mapToDevice();
     },
     getWsContent: function () {
-        var text = "";
-        if (this.data !== null) text = this.data.text;
         return {
             data: this.data,
             type: this.type,
-            text: text,
             silent: this.silent,
             resultType: this.resultType,
             color: this.color,

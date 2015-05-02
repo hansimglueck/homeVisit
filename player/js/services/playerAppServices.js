@@ -89,7 +89,9 @@ angular.module('playerAppServices', [])
                 fxService.cancelCountdown();
                 homeFactory.labels = [];
                 if (data) {
-                    if (!!data.text) homeFactory.text = data.text.split("::");
+                    if (typeof data.text !== 'undefined') {
+                        homeFactory.text = data.text.split("::");
+                    }
                     //homeFactory.showGo = false;
                     if (typeof data.showGo != "undefined") homeFactory.showGo = data.showGo;
                     homeFactory.displayData = data;
