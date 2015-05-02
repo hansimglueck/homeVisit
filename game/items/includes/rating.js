@@ -13,13 +13,14 @@ module.exports = {
                 return x.playerId
             });
         }
+        var lang = require('../../gameConf').conf.language;
         return {
             type: this.type,
             ratingType: this.ratingType,
             posNeg: this.posNeg,
             playerId: bestWorst,
             silent: this.silent,
-            text: this.text
+            text: this.text[lang]
         };
     }
 };
