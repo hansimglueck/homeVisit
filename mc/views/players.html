@@ -5,15 +5,18 @@
       <div class="player" ng-repeat="player in status.otherPlayers track by $index"
            ng-style="{'top':playerPos[player.playerId].top, 'left':playerPos[player.playerId].left, 'background':playerColors[$index], 'color':awayColor(player.playerId)}" ng-class="{dimm: !player.joined}">
         <ul class="list-group list-unstyled">
-          <li class="list-group-item" ng-if="isOnTurn(player.playerId)" ng-class="{onTurn: player.onTurn}">
-            <span translate>Score: {{player.score}}</span> &nbsp;&nbsp;  <span translate>Rank: {{player.rank}}</span> {{myTurn(player.playerId)}} &nbsp;&nbsp;
+          <li class="list-group-item header" ng-if="isOnTurn(player.playerId)" ng-class="{onTurn: player.onTurn}">
+            <div translate>Score: {{player.score}}</div>
+            <div translate>Rank: {{player.rank}}</div>
+            <div>{{myTurn(player.playerId)}}</div>
           </li>
-          <li class="list-group-item" ng-if="!isOnTurn(player.playerId)" ng-class="{upcoming: player.upcoming}">
-            <span translate>Score: {{player.score}}</span> &nbsp;&nbsp;  <span translate>Rank: {{player.rank}}</span> {{myTurn(player.playerId)}} &nbsp;&nbsp;
-            <button  class="btn btn-warning pull-right" ng-if="wantsToBeNext(player.playerId)" ng-click="upcomingPlayer(player.playerId)" translate>Next!</button>
+          <li class="list-group-item header" ng-if="!isOnTurn(player.playerId)" ng-class="{upcoming: player.upcoming}">
+            <div translate>Score: {{player.score}}</div>
+            <div translate>Rank: {{player.rank}}</div>
+            <div>{{myTurn(player.playerId)}}</div>
+            <button  class="btn btn-sm btn-warning" ng-if="wantsToBeNext(player.playerId)" ng-click="upcomingPlayer(player.playerId)" translate>Next!</button>
           </li>
-
-          <li class="list-group-item" ng-class="{selected: player.selected}">
+          <li class="list-group-item content" ng-class="{selected: player.selected}">
             <a class="btn btn-default" ng-href="#/players/{{player.playerId}}" translate>Details</a>
             <button class="btn btn-default" ng-click="toggleSelected(player.playerId)">{{playerSelected(player.playerId)}}</button>
             <button class="btn btn-default" ng-click="toggleAway(player.playerId)">{{playerAway(player.playerId)}}</button>

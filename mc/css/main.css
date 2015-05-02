@@ -56,6 +56,15 @@ body {
   font-size: 1.3em;
 }
 
+.player .header, .player .content {
+    display: flex;
+    flex-direction: row;
+}
+
+.player .header > *, .player .content > * {
+    flex-grow: 1
+}
+
 .dimm {
   color: #cccccc;
   background: #eee !important;
