@@ -5,7 +5,7 @@
         <ul class="list-group list-unstyled">
             <li class="list-group-item">
                 <button class="btn btn-default" ng-click="setName($index)">
-                {{playerNames[$index]}}
+                {{ playerNames()[$index] }}
                 </button>
             </li>
             <li ng-if="polls.polls[selectedRow].type=='fingers'" class="">

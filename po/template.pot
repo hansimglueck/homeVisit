@@ -384,6 +384,10 @@ msgstr ""
 msgid "Player"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:271
+msgid "Player {{ playerNumber }}"
+msgstr ""
+
 #: mc/views/item.html:37
 msgid "Players are dealing"
 msgstr ""
@@ -481,7 +485,7 @@ msgstr ""
 msgid "Really delete???"
 msgstr ""
 
-#: mc/js/services/mcAppServices.js:353
+#: mc/js/services/mcAppServices.js:330
 msgid "Really restart?"
 msgstr ""
 
@@ -707,24 +711,6 @@ msgstr ""
 #: game/playerManager.js:37
 #: homevisit_components/hvPlayerColors.js:33
 msgid "pink"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:268
-#: mc/js/services/mcAppServices.js:269
-#: mc/js/services/mcAppServices.js:270
-#: mc/js/services/mcAppServices.js:271
-#: mc/js/services/mcAppServices.js:272
-#: mc/js/services/mcAppServices.js:273
-#: mc/js/services/mcAppServices.js:274
-#: mc/js/services/mcAppServices.js:275
-#: mc/js/services/mcAppServices.js:276
-#: mc/js/services/mcAppServices.js:277
-#: mc/js/services/mcAppServices.js:278
-#: mc/js/services/mcAppServices.js:279
-#: mc/js/services/mcAppServices.js:280
-#: mc/js/services/mcAppServices.js:281
-#: mc/js/services/mcAppServices.js:282
-msgid "player"
 msgstr ""
 
 #: player/js/services/playerAppServices.js:134

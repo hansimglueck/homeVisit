@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-02 14:51+0100\n"
+"PO-Revision-Date: 2015-05-02 15:08+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -399,6 +399,10 @@ msgstr "Spiel"
 msgid "Player"
 msgstr "Spieler"
 
+#: mc/js/services/mcAppServices.js:271
+msgid "Player {{ playerNumber }}"
+msgstr "Spieler {{ playerNumber }}"
+
 #: mc/views/item.html:37
 msgid "Players are dealing"
 msgstr "Die Teams verhandeln"
@@ -495,7 +499,7 @@ msgstr "Rang: {{status.player.rank}}"
 msgid "Really delete???"
 msgstr "Wirklich löschen???"
 
-#: mc/js/services/mcAppServices.js:353
+#: mc/js/services/mcAppServices.js:330
 msgid "Really restart?"
 msgstr "Wirklich neustarten?"
 
@@ -720,17 +724,6 @@ msgstr "anderer Spieler"
 msgid "pink"
 msgstr "rosa"
 
-#: mc/js/services/mcAppServices.js:268 mc/js/services/mcAppServices.js:269
-#: mc/js/services/mcAppServices.js:270 mc/js/services/mcAppServices.js:271
-#: mc/js/services/mcAppServices.js:272 mc/js/services/mcAppServices.js:273
-#: mc/js/services/mcAppServices.js:274 mc/js/services/mcAppServices.js:275
-#: mc/js/services/mcAppServices.js:276 mc/js/services/mcAppServices.js:277
-#: mc/js/services/mcAppServices.js:278 mc/js/services/mcAppServices.js:279
-#: mc/js/services/mcAppServices.js:280 mc/js/services/mcAppServices.js:281
-#: mc/js/services/mcAppServices.js:282
-msgid "player"
-msgstr "Spieler"
-
 #: player/js/services/playerAppServices.js:134
 msgid "point"
 msgid_plural "points"
@@ -760,6 +753,9 @@ msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
 msgstr[0] "{{minuspoints}} Minuspunkt"
 msgstr[1] "{{minuspoints}} Minuspunkte"
+
+#~ msgid "player"
+#~ msgstr "Spieler"
 
 #~ msgid "Votes"
 #~ msgstr "Stimmen"

@@ -4,7 +4,7 @@ angular.module('homeVisitMCApp')
     .controller('DummiesCtrl', function ($scope, Polls, PlayerNames, gettextCatalog) {
         $scope.gettextCatalog = gettextCatalog;
         $scope.selectedRow = Polls.selectedPoll;
-        $scope.playerNames = PlayerNames.names;
+        $scope.playerNames = PlayerNames.getNames;
         $scope.dummies = [
             {top: 10, left: 189},
             {top: 10, left: 377},

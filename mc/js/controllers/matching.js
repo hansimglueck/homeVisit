@@ -5,8 +5,8 @@ angular.module('homeVisitMCApp')
         $scope.gettextCatalog = gettextCatalog;
         $scope.polls = Polls;
         $scope.matches = Matches;
-        $scope.playerNames = PlayerNames.names;
-        $scope.playerLine = 0;
+        $scope.playerNames = PlayerNames.getNames;
+         $scope.playerLine = 0;
         $scope.teamCategories = Teams.categories;
         
         $scope.matchMatrix = [

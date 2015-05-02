@@ -9,14 +9,14 @@
             <span translate>Score: {{player.score}}</span> &nbsp;&nbsp;  <span translate>Rank: {{player.rank}}</span> {{myTurn(player.playerId)}} &nbsp;&nbsp;
           </li>
           <li class="list-group-item" ng-if="!isOnTurn(player.playerId)" ng-class="{upcoming: player.upcoming}">
-            <span>Score: {{player.score}}</span> &nbsp;&nbsp;  <span translate>Rank: {{player.rank}}</span> {{myTurn(player.playerId)}} &nbsp;&nbsp;
-            <button  class="btn" ng-if="wantsToBeNext(player.playerId)" ng-click="upcomingPlayer(player.playerId)" translate>Next!</button>
+            <span translate>Score: {{player.score}}</span> &nbsp;&nbsp;  <span translate>Rank: {{player.rank}}</span> {{myTurn(player.playerId)}} &nbsp;&nbsp;
+            <button  class="btn btn-warning pull-right" ng-if="wantsToBeNext(player.playerId)" ng-click="upcomingPlayer(player.playerId)" translate>Next!</button>
           </li>
 
           <li class="list-group-item" ng-class="{selected: player.selected}">
             <a class="btn btn-default" ng-href="#/players/{{player.playerId}}" translate>Details</a>
-            <button class="btn" ng-click="toggleSelected(player.playerId)">{{playerSelected(player.playerId)}}</button>
-            <button class="btn" ng-click="toggleAway(player.playerId)">{{playerAway(player.playerId)}}</button>
+            <button class="btn btn-default" ng-click="toggleSelected(player.playerId)">{{playerSelected(player.playerId)}}</button>
+            <button class="btn btn-default" ng-click="toggleAway(player.playerId)">{{playerAway(player.playerId)}}</button>
           </li>
         </ul>
       </div>

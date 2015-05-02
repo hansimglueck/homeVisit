@@ -263,43 +263,20 @@ angular.module('mcAppServices', [])
         return matchFactory;
     })
     .factory('PlayerNames', function (gettextCatalog) {
-        var playerNamesFactory = {};
-        playerNamesFactory.names = [
-            gettextCatalog.getString('player') + ' 1',
-            gettextCatalog.getString('player') + ' 2',
-            gettextCatalog.getString('player') + ' 3',
-            gettextCatalog.getString('player') + ' 4',
-            gettextCatalog.getString('player') + ' 5',
-            gettextCatalog.getString('player') + ' 6',
-            gettextCatalog.getString('player') + ' 7',
-            gettextCatalog.getString('player') + ' 8',
-            gettextCatalog.getString('player') + ' 9',
-            gettextCatalog.getString('player') + ' 10',
-            gettextCatalog.getString('player') + ' 11',
-            gettextCatalog.getString('player') + ' 12',
-            gettextCatalog.getString('player') + ' 13',
-            gettextCatalog.getString('player') + ' 14',
-            gettextCatalog.getString('player') + ' 15'
-        ];
-        
-        //playerNamesFactory.names = [
-        //    'Soren',
-        //    'Anna 1',
-        //    'Max',
-        //    'Wilke',
-        //    'Fara',
-        //    'Mona',
-        //    'Amelie',
-        //    'Annika',
-        //    'Julia',
-        //    'Anna 2',
-        //    'Lukas',
-        //    'Philine',
-        //    'Imanuel',
-        //    'Jasmin',
-        //    'X'
-        //];
-        
+        var playerNamesFactory = {
+            getNames: function() {
+                var pn = [];
+                for(var i = 0; i < 15; i++) {
+                    pn.push(
+                        gettextCatalog.getString(
+                            'Player {{ playerNumber }}',
+                            { playerNumber: i }
+                        )
+                    );
+                }
+                return pn;
+            }
+        };
         return playerNamesFactory;
     })
     .factory('Deck', function(Socket, setFactory){
