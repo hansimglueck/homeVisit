@@ -37,6 +37,12 @@
                     ng-options="s.value as s.text for s in itemOptions[field]">
             </select>
         </div>
+        <div ng-switch-when="localized-text">
+            <span editable-text="item[field][lang]"
+                  e-rows="7" e-cols="40" e-name="field"
+                  onaftersave="saveitem()">
+            {{ item[field][lang] || '-' }}</span>
+        </div>
         <div ng-switch-when="text">
             <span editable-text="item[field]"
                   e-rows="7" e-cols="40" e-name="field"
