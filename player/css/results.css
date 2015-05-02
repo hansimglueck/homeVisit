@@ -1,4 +1,5 @@
 .results {
+    position: relative;
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -7,9 +8,9 @@
 }
 
 .results-text {
-    #background: greenyellow;
     flex: 1 1 auto;
     text-align: center;
+    max-width: 100%;
 }
 .results-text ul {
     margin: 0px;
@@ -17,8 +18,12 @@
 }
 .correct-answer {
     color: #008800;
-    font-size: 0.8em;
+    font-size: 1.2em;
     font-weight: bold;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .results-content {

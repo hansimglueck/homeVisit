@@ -135,7 +135,14 @@ angular.module('playerAppServices', [])
                                     if (data.data.dataSource == "positivePlayerScore") {
                                         labels.push(option.playercolor + ': ' + option.percent + '% (' + option.result + ' ' + gettextCatalog.getPlural(option.result, 'point', 'points') + ')');
                                     } else {
-                                        labels.push(option.text + ': ' + option.percent + '% (' + option.votes + ' ' + gettextCatalog.getPlural(option.votes, 'vote', 'votes') + ')');
+                                        var t;
+                                        if (option.text.length > 20) {
+                                            t = option.text.substr(0, 20) + '...';
+                                        }
+                                        else {
+                                            t = option.text;
+                                        }
+                                        labels.push(t + ': ' + option.percent + '% (' + option.votes + ' ' + gettextCatalog.getPlural(option.votes, 'vote', 'votes') + ')');
                                     }
                                     if (resultType == "europeMap") resData.push({
                                         id: option.value,
