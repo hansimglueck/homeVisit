@@ -443,7 +443,7 @@ PlayerManager.prototype = {
         result.positivePlayerIds.forEach(function(playerId) {
             self.sendMessage(playerId, "display", {
                 type: 'card',
-                text: this.gettext.gettext('You are in the game!')
+                text: self.gettext.gettext('You are in the game!')
             });
         });
         var self = this;

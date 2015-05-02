@@ -87,6 +87,7 @@ angular.module("playerControllers", [])
                 totalLength += t.length;
             });
             Home.options.forEach(function(o) {
+                console.log(o);
                 totalLength += o.text.length;
             });
             if (totalLength > 400) {

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-02 18:55+0100\n"
+"PO-Revision-Date: 2015-05-02 21:22+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -666,11 +666,11 @@ msgstr "Ja"
 
 #: game/playerManager.js:439
 msgid "You are NOT in the game!"
-msgstr "Nicht dem Spiel beigetreten!"
+msgstr "Du spielst NICHT mit!"
 
 #: game/playerManager.js:446
 msgid "You are in the game!"
-msgstr "Nicht dem Spiel beigetreten!"
+msgstr "Du spielst mit!"
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
