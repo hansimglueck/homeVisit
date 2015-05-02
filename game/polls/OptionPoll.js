@@ -14,9 +14,17 @@ OptionPoll.prototype.init = function () {
         opt.votes = 0;
     });
     this.prepareWsContent();
+    var lang = require('../gameConf').conf.language;
     this.wsContent.voteOptions = this.voteOptions.map(function(opt){
+        var text;
+        if (typeof opt.text !== 'undefined' && typeof opt.text !== 'string') {
+            text = opt.text[lang];
+        }
+        else {
+            text = opt.text;
+        }
         return {
-            text: opt.text,
+            text: text,
             value: opt.value,
             checked: false
         }
