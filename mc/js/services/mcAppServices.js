@@ -334,7 +334,7 @@ angular.module('mcAppServices', [])
         };
         return deckFactory;
     })
-    .factory('TeamActionInfo', function(Socket, gettext) {
+    .factory('TeamActionInfo', function(Socket, gettext, ModalService) {
         var teamActionInfo = {};
         
         teamActionInfo.actionInfo = [
@@ -356,6 +356,16 @@ angular.module('mcAppServices', [])
         
         Socket.on("results", function(info) {
             console.log("RESULT EMPFANGEN");
+            // Just provide a template url, a controller and call 'showModal'.
+            ModalService.showModal({
+                templateUrl: "views/results.html",
+                controller: "ResultsController"
+            }).then(function (modal) {
+                // The modal object has the element built, if this is a bootstrap modal
+                // you can call 'modal' to show it, if it's a custom modal just show or hide
+                // it as you need to.
+                modal.element.modal();
+            });
         });
         
         Socket.on("card", function(info) {

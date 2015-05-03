@@ -21,6 +21,7 @@ angular
         'hvSetFactory',
         'hvItemOptions',
         'hvLanguage',
+        'angularModalService',
         'gettext'
     ])
     .config(function ($routeProvider) {

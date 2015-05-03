@@ -32,7 +32,7 @@ angular.module('homeVisitMCApp')
         $scope.toggleSelected = function (id) {
             console.log("select player " + id);
             Socket.emit("setPlayerStatus", {cmd: "toggleSelected", id: id});
-        }
+        };
 
         $scope.playerSelected = function (id) {
             if (Status.otherPlayers[id].selected) {
@@ -40,12 +40,12 @@ angular.module('homeVisitMCApp')
             } else {
                 return gettextCatalog.getString('Select');
             }
-        }
+        };
 
         $scope.toggleAway = function (id) {
             console.log("select player " + id);
             Socket.emit("setPlayerStatus", {cmd: "toggleAway", id: id});
-        }
+        };
 
         $scope.playerAway = function (id) {
             if (Status.otherPlayers[id].away) {
@@ -53,7 +53,7 @@ angular.module('homeVisitMCApp')
             } else {
                 return gettextCatalog.getString('Leave Table!');
             }
-        }
+        };
 
         $scope.myTurn = function (id) {
             if (Status.otherPlayers[id].onTurn) {
@@ -63,7 +63,7 @@ angular.module('homeVisitMCApp')
             } else {
                 return '';
             }
-        }
+        };
 
         $scope.awayColor = function (id) {
             if (Status.otherPlayers[id].away) {
@@ -71,31 +71,31 @@ angular.module('homeVisitMCApp')
             } else {
                 return ''
             }
-        }
+        };
         
         $scope.isOnTurn = function(id) {
             return Status.otherPlayers[id].onTurn;
-        }
+        };
         
         $scope.isUpcoming = function(id) {
             return Status.otherPlayers[id].upcoming;
-        }
+        };
         
         $scope.wantsToBeNext = function(id) {
             if (!Status.otherPlayers[id].onTurn && !Status.otherPlayers[id].away && Status.otherPlayers[id].joined) {
                 return true;
             }
             return false;
-        }
+        };
         
         $scope.upcomingPlayer = function(id) {
             Socket.emit("setPlayerStatus", {cmd: "setUpcoming", id: id});
             console.log("Ich bin als naechstes dran: Player " + id);
-        }
+        };
         
         $scope.showInfoOfTeam = function(playerId) {
             return TeamActionInfo.actionInfo[playerId];
-        }
+        };
     })
     .controller("PlayerDetailsCtrl", function ($scope, Socket, playerColors) {
 
@@ -107,4 +107,8 @@ angular.module('homeVisitMCApp')
             //Socket.emit("setPlayerStatus", {cmd: "score", id: id, value: val});
             Socket.emit("score", {playerId: id, score: val, reason: 'mc'});
         };
+    })
+    .controller("ResultsController", function ($scope, Socket) {
+
+        $scope.socket = Socket;
     });
