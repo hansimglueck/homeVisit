@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-02 23:58+0100\n"
+"PO-Revision-Date: 2015-05-03 21:43+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.7.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: player/partials/deals/deal.html:3
@@ -38,7 +38,7 @@ msgstr ""
 "                  <player-icon pid=\"pid\"></player-icon>\n"
 "                </li>\n"
 "              </ul>\n"
-"              soll {{score}} Punkt von Euch bekommen?"
+"              {{score}} Punkt vergeben?"
 
 #: game/playerManager.js:676
 msgid "A new %s"
@@ -106,7 +106,7 @@ msgstr "Ziel auswählen wo Eintrag angehängt werden soll."
 
 #: player/partials/deals/deal.choosePlayer.html:1
 msgid "Choose team to offer treaty:"
-msgstr "Wählt das Team dem Ihr ein Abkommen anbieten möchtet:"
+msgstr "Wählt das Team, mit dem ihr ein Abkommen schließen möchtet."
 
 #: player/partials/deals/deal.chooseSubject.html:1
 msgid "Choose type of deal:"
@@ -402,7 +402,7 @@ msgstr "Nein"
 
 #: player/partials/assholes.html:12
 msgid "Nobody was mean to you."
-msgstr "Niemand war gemein zu Euch."
+msgstr "Niemand hat euch Punkte abgezogen."
 
 #: homevisit_components/hvLanguage.js:11
 msgid "Norwegian"
@@ -452,11 +452,11 @@ msgstr "Die Teams stimmen ab"
 
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
-msgstr "Bitte bewerten Sie ein Team! Geben Sie {{score}} Punkte!"
+msgstr "{{score}} Punkt abziehen!"
 
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr "Punkt vergeben!"
+msgstr "Die Stimme wurde gezählt!"
 
 #: homevisit_components/hvLanguage.js:12
 msgid "Polish"
@@ -580,7 +580,7 @@ msgid ""
 "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
 "is reading:"
 msgstr ""
-"Ruhe bitte. Jetzt liest: <player-icon pid=\"status.playerOnTurn\"></player-"
+"Ruhe bitte! Jetzt liest <player-icon pid=\"status.playerOnTurn\"></player-"
 "icon>"
 
 #: admin/views/admin/show-sequence-item.html:36
@@ -605,11 +605,11 @@ msgstr "Teams"
 
 #: game/polls/Agreement.js:34
 msgid "The agreement on %s is fullfilled."
-msgstr "Die %s ist erfüllt."
+msgstr "Die %s wurde geschlossen."
 
 #: game/polls/Agreement.js:38
 msgid "The agreement on %s is neglected."
-msgstr "Die %s ist nicht zustande gekommen."
+msgstr "Keine %s geschlossen."
 
 #: game/items/includes/results.js:21
 msgid "The division of the cake"
@@ -617,7 +617,7 @@ msgstr "Die Verteilung des Kuchens"
 
 #: player/partials/assholes.html:2
 msgid "These teams were mean to you:"
-msgstr "Diese Teams waren gemein zu Euch:"
+msgstr "Diese Teams haben euch Punkte abgezogen:"
 
 #: player/partials/deals/deal.details.html:2
 msgid "This deal does not exist!"
@@ -662,7 +662,7 @@ msgstr "Abkommen"
 
 #: player/partials/deals/deal.details.html:50
 msgid "Try Again"
-msgstr "Versucht nochmal"
+msgstr "Zurück"
 
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:4
 msgid "Type"
@@ -772,7 +772,7 @@ msgstr "Nicht dem Spiel beigetreten!"
 
 #: player/partials/voteConfirm.html:1
 msgid "You are voting for:"
-msgstr "Sie stimmen für:"
+msgstr "Ihr stimmt für:"
 
 #: player/partials/rating/rating.score.html:2
 msgid "You can rate these Teams up or down!"
@@ -784,7 +784,7 @@ msgstr "Die Zeit ist abgelaufen. Einen Punkt abgezogen!"
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr "Ihre Stimme wurde abgeschickt!"
+msgstr "Die Stimme wurde gezählt!"
 
 #: player/partials/vote.html:5
 msgid "Your voting weight depends on your rank!"
@@ -808,7 +808,7 @@ msgstr "Vertrauen in Demokratie"
 
 #: game/playerManager.js:32 homevisit_components/hvPlayerColors.js:28
 msgid "dark blue"
-msgstr "dunkelblau"
+msgstr "Dunkelblau"
 
 #: mc/js/services/mcAppServices.js:120
 msgid "denied origin"
@@ -824,15 +824,15 @@ msgstr "gefühlter Europäer"
 
 #: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:31
 msgid "green"
-msgstr "grün"
+msgstr "Grün"
 
 #: game/playerManager.js:31 homevisit_components/hvPlayerColors.js:27
 msgid "light blue"
-msgstr "hellblau"
+msgstr "Hellblau"
 
 #: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:32
 msgid "lilac"
-msgstr "lila"
+msgstr "Lila"
 
 #: mc/js/services/mcAppServices.js:80
 msgid "member of political party"
@@ -840,7 +840,7 @@ msgstr "Parteimitglied"
 
 #: game/playerManager.js:33 homevisit_components/hvPlayerColors.js:29
 msgid "orange"
-msgstr "orange"
+msgstr "Orange"
 
 #: player/views/game-events.html:24
 msgid "other Player"
@@ -856,7 +856,7 @@ msgstr "körperlicher Konflikt"
 
 #: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:33
 msgid "pink"
-msgstr "rosa"
+msgstr "Rosa"
 
 #: player/js/services/playerAppServices.js:136
 msgid "point"
@@ -866,7 +866,7 @@ msgstr[1] "Punkte"
 
 #: game/playerManager.js:30 homevisit_components/hvPlayerColors.js:26
 msgid "red"
-msgstr "rot"
+msgstr "Rot"
 
 #: mc/js/services/mcAppServices.js:136
 msgid "scared of the future"
@@ -883,8 +883,8 @@ msgstr "vertrauenswürdig"
 #: player/js/services/playerAppServices.js:145
 msgid "vote"
 msgid_plural "votes"
-msgstr[0] "Stimme"
-msgstr[1] "Stimmen"
+msgstr[0] "Team"
+msgstr[1] "Teams"
 
 #: mc/js/services/mcAppServices.js:152
 msgid "willingness of solidarity"
@@ -900,7 +900,7 @@ msgstr "arbeitet im Ausland"
 
 #: game/playerManager.js:34 homevisit_components/hvPlayerColors.js:30
 msgid "yellow"
-msgstr "gelb"
+msgstr "Gelb"
 
 #: player/partials/assholes.html:7
 msgid "{{minuspoints}} minus point"
