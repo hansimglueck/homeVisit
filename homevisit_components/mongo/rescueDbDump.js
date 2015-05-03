@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // rescue script for processing a db dump file
 // 1) picks a single deck
 // 2) deletes all items which are either

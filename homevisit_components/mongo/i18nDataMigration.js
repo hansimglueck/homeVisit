@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 // data migration: move translatable texts into new data structure:
 // e.g. item.text = '' -> item.text.de = ''
 
