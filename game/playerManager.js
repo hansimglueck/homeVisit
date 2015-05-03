@@ -730,11 +730,16 @@
             this.sendPlayerStatus(-1);
         },
         setAgreement: function (agreement) {
+            var self = this;
             this.setRelation({
                 id: agreement.id,
                 playerIds: agreement.playerIds,
                 type: agreement.agreementType
             });
+            agreement.playerIds.forEach(function(playerId){
+                self.score(playerId, -1, "alliance");
+            })
+
         },
         setRelation: function (relation) {
             this.relations[relation.id] = relation;

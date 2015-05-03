@@ -118,7 +118,7 @@ angular.module('playerAppServices', [])
                                 $location.path('/black');
                                 break;
                             case "deal":
-                                showDeal();
+                                showDeal(data);
                                 break;
                             case "showAssholes":
                                 homeFactory.assholeData = data.data[Status.player.playerId];
@@ -266,6 +266,7 @@ angular.module('playerAppServices', [])
         var statusFactory = {};
         statusFactory.player = emptyPlayer;
         statusFactory.otherPlayers = [];
+        statusFactory.otherJoinedPlayers = [];
         statusFactory.maxPlayers = 0;
         statusFactory.ratingActive = true;
         statusFactory.joined = false;
@@ -293,6 +294,7 @@ angular.module('playerAppServices', [])
                 statusFactory.player.timeRank = data.otherPlayers[statusFactory.player.playerId].timeRank;
                 statusFactory.availablePlayers = statusFactory.getAvailablePlayers();
                 statusFactory.playerOnTurn = statusFactory.getPlayerOnTurn();
+                statusFactory.otherJoinedPlayers = statusFactory.getOtherPlayers();
             }
             if (data.maxPlayers) statusFactory.maxPlayers = data.maxPlayers;
         });

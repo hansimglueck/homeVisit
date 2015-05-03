@@ -5,6 +5,7 @@ angular.module("gameControllers", [])
         $scope.status = {};
         $scope.minScore = 0;
         $scope.maxScore = 0;
+        $scope.playerColors = playerColors;
 
         $scope.status.player = {
             playerId: 1,
@@ -16,7 +17,7 @@ angular.module("gameControllers", [])
             return playerColors[Status.player.playerId];
         };
         $scope.showScore = function () {
-            return (Status.getOtherPlayers().filter(function (player) {
+            return (Status.otherPlayers.filter(function (player) {
                 return player.score != 0
             }).length > 0);
         };
@@ -26,14 +27,14 @@ angular.module("gameControllers", [])
         };
 
         $scope.getLinePos = function (index) {
-            $scope.minScore = $scope.status.getOtherPlayers()[0].score;
-            $scope.maxScore = $scope.status.getOtherPlayers()[0].score;
-            for (var i = 0; i < $scope.status.getOtherPlayers().length; i++) {
-                if ($scope.status.getOtherPlayers()[i].score < $scope.minScore) {
-                    $scope.minScore = $scope.status.getOtherPlayers()[i].score;
+            $scope.minScore = $scope.status.otherJoinedPlayers[0].score;
+            $scope.maxScore = $scope.status.otherJoinedPlayers[0].score;
+            for (var i = 0; i < $scope.status.otherJoinedPlayers.length; i++) {
+                if ($scope.status.otherJoinedPlayers[i].score < $scope.minScore) {
+                    $scope.minScore = $scope.status.otherJoinedPlayers[i].score;
                 }
-                if ($scope.status.getOtherPlayers()[i].score > $scope.maxScore) {
-                    $scope.maxScore = $scope.status.getOtherPlayers()[i].score;
+                if ($scope.status.otherJoinedPlayers[i].score > $scope.maxScore) {
+                    $scope.maxScore = $scope.status.otherJoinedPlayers[i].score;
                 }
             }
             if ($scope.status.player.score < $scope.minScore) {
@@ -42,7 +43,7 @@ angular.module("gameControllers", [])
             if ($scope.status.player.score > $scope.maxScore) {
                 $scope.maxScore = $scope.status.player.score;
             }
-            var myScore = $scope.status.getOtherPlayers()[index].score;
+            var myScore = $scope.status.otherJoinedPlayers[index].score;
             return ($scope.linePosFromScore(myScore)).toString() + "px";
         };
         $scope.getMyLinePos = function () {
