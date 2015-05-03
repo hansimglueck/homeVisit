@@ -1,7 +1,11 @@
-var gameConf = require('../../gameConf.js');
+(function() {
+    'use strict';
 
-module.exports = {
-    executeItem: function () {
-        gameConf.setOption(this.configField, this.value);
-    }
-};
+    var gameConf = require('../../gameConf.js');
+
+    module.exports = {
+        executeItem: function () {
+            gameConf.setOption(this.configField, this.value);
+        }
+    };
+})();
