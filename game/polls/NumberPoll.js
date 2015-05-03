@@ -22,11 +22,18 @@
         this.sum += vote.choice;
     };
     NumberPoll.prototype.getResult = function () {
+        var minVal = this.getMin(), maxVal = this.getMax();
+        if (typeof minVal === 'undefined') {
+            minVal = 0;
+        }
+        if (typeof maxVal === 'undefined') {
+            maxVal = 0;
+        }
         return {
             sum: this.sum,
             average: this.getAverage().toFixed(2),
-            minVal: this.getMin().toFixed(2),
-            maxVal: this.getMax().toFixed(2),
+            minVal: minVal.toFixed(2),
+            maxVal: maxVal.toFixed(2),
             votes: this.votes
         };
     };
@@ -34,14 +41,20 @@
         return this.sum/this.votes.length;
     };
     NumberPoll.prototype.getMin = function() {
-        return this.votes.sort(function (a, b) {
+        var min = this.votes.sort(function (a, b) {
             return a.choice - b.choice;
-        })[0].choice;
+        })[0];
+        if (typeof min !== 'undefined') {
+            return min.choice;
+        }
     };
     NumberPoll.prototype.getMax = function() {
-        return this.votes.sort(function (b, a) {
+        var max = this.votes.sort(function (b, a) {
             return a.choice - b.choice;
-        })[0].choice;
+        })[0];
+        if (typeof max !== 'undefined') {
+            return max.choice;
+        }
     };
 
     module.exports = NumberPoll;

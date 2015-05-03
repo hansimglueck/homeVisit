@@ -179,6 +179,14 @@ angular.module('playerAppServices', [])
                     labels.push(option.playercolor + ': ' + option.percent + '% (' + option.result + ' ' + gettextCatalog.getPlural(option.result, 'point', 'points') + ')');
                 } else {
                     var t;
+                    if (typeof option.text === 'undefined') {
+                        console.warn('option.text is undefined!');
+                        return;
+                    }
+                    if (option.text === null) {
+                        console.warn('option.text is null!');
+                        return;
+                    }
                     if (option.text.length > 20) {
                         t = option.text.substr(0, 20) + '...';
                     }
