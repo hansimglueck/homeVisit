@@ -1,118 +1,117 @@
 #!/usr/bin/env node
 
-var express = require('express');
-var path = require('path');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
-var session = require('express-session');
+(function() {
+    'use strict';
 
-var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
-var playerManager = require('../game/playerManager.js');
+    var express = require('express');
+    var path = require('path');
+    var logger = require('morgan');
+    var cookieParser = require('cookie-parser');
+    var bodyParser = require('body-parser');
+    var session = require('express-session');
 
-var conf = require('../homevisitConf');
-var app = express();
+    var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
+    var playerManager = require('../game/playerManager.js');
 
-// HTTP server
-var server = require('http').createServer(app);
+    var conf = require('../homevisitConf');
+    var app = express();
 
-// websocket
-var WebSocketServer = require('ws').Server;
-var wss = new WebSocketServer({server: server});
-var wsManager = require('../game/wsManager.js');
-wsManager.setSocketServer(wss);
+    // HTTP server
+    var server = require('http').createServer(app);
 
-wsManager.onRole("player", playerManager, playerManager.playerMessage);
-wsManager.onType("register", playerManager, playerManager.requestStatus);
-wsManager.onType("score", playerManager, playerManager.scoreMessage);
-wsManager.onType("setPlayerStatus", playerManager, playerManager.setStatusMessage);
+    // websocket
+    var WebSocketServer = require('ws').Server;
+    var wss = new WebSocketServer({server: server});
+    var wsManager = require('../game/wsManager.js');
+    wsManager.setSocketServer(wss);
 
-var game = require('../game/game.js');
-wsManager.onType("playbackAction", game, game.trigger);
-wsManager.onType("alert", game, game.alert);
-wsManager.onType("register", game, game.sendPlayBackStatus);
+    wsManager.onRole("player", playerManager, playerManager.playerMessage);
+    wsManager.onType("register", playerManager, playerManager.requestStatus);
+    wsManager.onType("score", playerManager, playerManager.scoreMessage);
+    wsManager.onType("setPlayerStatus", playerManager, playerManager.setStatusMessage);
 
-var raspiTools = require('../game/raspiTools.js');
-wsManager.onRole("master", raspiTools, raspiTools.newMessage);
+    var game = require('../game/game.js');
+    wsManager.onType("playbackAction", game, game.trigger);
+    wsManager.onType("alert", game, game.alert);
+    wsManager.onType("register", game, game.sendPlayBackStatus);
 
-var gameConf = require('../game/gameConf.js');
-wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
-wsManager.onType('getLanguage', gameConf, gameConf.languageRequest);
-wsManager.onType('changeLanguage', gameConf, gameConf.changeLanguage);
+    var raspiTools = require('../game/raspiTools.js');
+    wsManager.onRole("master", raspiTools, raspiTools.newMessage);
 
-mongoConnection(function (db) {
-    console.log("Database connection established");
-    gameConf.syncFromDb();
-});
+    var gameConf = require('../game/gameConf.js');
+    wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
+    wsManager.onType('getLanguage', gameConf, gameConf.languageRequest);
+    wsManager.onType('changeLanguage', gameConf, gameConf.changeLanguage);
 
-// app views
-app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+    mongoConnection(function (db) {
+        console.log("Database connection established");
+        gameConf.syncFromDb();
+    });
 
-// middlewares
-app.use(logger('dev'));
-app.use(bodyParser.json({ limit: '50mb' }));
-app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
-app.use(cookieParser());
-app.use(session({
-    secret: '1234',
-    resave: false,
-    saveUninitialized: true,
-    cookie: { httpOnly: false }    //damit angular drauf zugreifen kann
-}));
+    // app views
+    app.set('views', __dirname + '/views');
+    app.set('view engine', 'ejs');
 
-app.use(function (req, res, next) {
-    var pid = req.session.pid;
-    //wsManager.registerSID(req.sessionID);
-    next();
-});
+    // middlewares
+    app.use(logger('dev'));
+    app.use(bodyParser.json({ limit: '50mb' }));
+    app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
+    app.use(cookieParser());
+    app.use(session({
+        secret: '1234',
+        resave: false,
+        saveUninitialized: true,
+        cookie: { httpOnly: false }    //damit angular drauf zugreifen kann
+    }));
 
-// static routes
-app.use('/bower_components', express.static(path.join(__dirname, '/../bower_components')));
-app.use('/homevisit_components', express.static(path.join(__dirname, '/../homevisit_components')));
-app.use('/admin', express.static(path.join(__dirname, '/../admin')));
-app.use('/player', express.static(path.join(__dirname, '/../player')));
-app.use('/mc', express.static(path.join(__dirname, '/../mc')));
+    // static routes
+    app.use('/bower_components', express.static(path.join(__dirname, '/../bower_components')));
+    app.use('/homevisit_components', express.static(path.join(__dirname, '/../homevisit_components')));
+    app.use('/admin', express.static(path.join(__dirname, '/../admin')));
+    app.use('/player', express.static(path.join(__dirname, '/../player')));
+    app.use('/mc', express.static(path.join(__dirname, '/../mc')));
 
-// resource routes
-app.use('/decks', require('./routes/decks'));
-app.use('/gameConf', require('./routes/gameConf'));
+    // resource routes
+    app.use('/decks', require('./routes/decks'));
+    app.use('/gameConf', require('./routes/gameConf'));
 
-// app routes
-app.use('/', require('./routes/main'));
+    // app routes
+    app.use('/', require('./routes/main'));
 
-// error handling
+    // error handling
 
-// catch 404 and forward to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
-});
+    // catch 404 and forward to error handler
+    app.use(function(req, res, next) {
+        var err = new Error('Not Found');
+        err.status = 404;
+        next(err);
+    });
 
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
+    // development error handler
+    // will print stacktrace
+    if (app.get('env') === 'development') {
+        app.use(function(err, req, res, next) {
+            res.status(err.status || 500);
+            res.render('error', {
+                message: err.message,
+                error: err
+            });
+        });
+    }
+
+    // production error handler
+    // no stacktraces leaked to user
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
-            error: err
+            error: {}
         });
     });
-}
 
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
+    // tschacka!
+    server.listen(conf.port, function() {
+        console.log('Listening on port ' + conf.port);
     });
-});
 
-// tschacka!
-server.listen(conf.port, function() {
-    console.log('Listening on port ' + conf.port);
-});
+})();
