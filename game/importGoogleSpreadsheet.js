@@ -275,8 +275,8 @@
             // more than 1 deck with this title
             if (count > 1) {
                 throw new Error(
-                    ("Sorry... but there is more than one deck with this title. " +
-                     "Don't know which one you mean!").red);
+                    "Sorry... but there is more than one deck with this title. " +
+                    "Don't know which one you mean!".red);
             }
 
             var itemData = { title: deckTitle, items: seqItems };
@@ -298,11 +298,12 @@
     // extract translations from row
     function setTranslations(item, row) {
         _.forEach(langCodes, function(langCode) {
+            var propName;
             // inline switch
             if (item.type === 'inlineSwitch') {
                 var voteItem = item.inlineDecks[0].items[0];
                 // text
-                var propName = langCode === 'de' ? 'text' : 'text_%s'.format(langCode);
+                propName = langCode === 'de' ? 'text' : 'text_%s'.format(langCode);
                 voteItem.text[langCode] = row[propName];
                 // voteOptions
                 if (voteItem.type === 'vote') {
@@ -315,7 +316,7 @@
             // normal item
             else {
                 // text
-                var propName = langCode === 'de' ? 'text' : 'text_%s'.format(langCode);
+                propName = langCode === 'de' ? 'text' : 'text_%s'.format(langCode);
                 item.text[langCode] = row[propName];
                 // mcnote
                 propName = langCode === 'de' ? 'mcnote' : 'mcnote_%s'.format(langCode);
