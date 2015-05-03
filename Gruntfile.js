@@ -1,4 +1,5 @@
 module.exports = function(grunt) {
+    'use strict';
 
     // loads task automatically from package.json
     require('load-grunt-tasks')(grunt);
@@ -81,6 +82,7 @@ module.exports = function(grunt) {
                 unused: 'vars',
                 expr: true,
                 eqnull: true,
+                strict: true,
                 reporter: require('jshint-stylish')
             },
             nodestuff: {
