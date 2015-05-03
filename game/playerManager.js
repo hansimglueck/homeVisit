@@ -522,6 +522,12 @@
                     }).join("");
                 });
             }
+
+            players.forEach(function (player) {
+                self.sendMessage(player.playerId, type, content);
+            });
+            return players.length;
+
         },
 
         getPlayerGroup: function (identifier) {
