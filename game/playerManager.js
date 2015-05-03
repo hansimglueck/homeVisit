@@ -841,7 +841,7 @@ PlayerManager.prototype = {
         }
         this.sendPlayerStatus(-1);
         console.log("Next on turn: " + this.upcoming);
-    },
+    }
 
 };
 

@@ -1,7 +1,6 @@
 <div class="results">
     <div class="results-text">
         <div class="correct-answer" ng-if="home.correctAnswer !== ''" translate>Correct: {{home.correctAnswer}}</div>
-        <div ng-if="home.ratedVote" translate>Results are weighted by ranking. See actual votes in braces.</div>
     </div>
 
     <div class="results-content" ng-if="home.resultType == 'europeMap'">
@@ -29,4 +28,8 @@
                 width="200px">
         </canvas>
     </div>
+    <div class="results-text">
+        <div ng-if="home.ratedVote" translate>Results are weighted by ranking. See actual votes in braces.</div>
+    </div>
+
 </div>
