@@ -1,22 +1,29 @@
-var MongoClient = require('mongodb').MongoClient;
+(function() {
+    'use strict';
 
-var mongoUri = require('../../homevisitConf').mongoUri;
-var db;
+    var MongoClient = require('mongodb').MongoClient;
 
-module.exports = function(cb){
-    if(db && cb) {
-        cb(db);
-        return true;
-    }
+    var mongoUri = require('../../homevisitConf').mongoUri;
+    var db;
 
-    MongoClient.connect(mongoUri, function(err, conn) {
-        if(err){
-            console.log(err.message);
-            return false;
-        } else {
-            db = conn;
-            if (cb) cb(db);
+    module.exports = function(cb){
+        if (db && cb) {
+            cb(db);
             return true;
         }
-    });
-};
+
+        MongoClient.connect(mongoUri, function(err, conn) {
+            if(err){
+                console.log(err.message);
+                return false;
+            } else {
+                db = conn;
+                if (cb) {
+                    cb(db);
+                }
+                return true;
+            }
+        });
+    };
+
+})();
