@@ -83,9 +83,7 @@ angular.module("playerControllers", [])
         $scope.smaller = false;
         if ($scope.home.voteType === 'customOptions') {
             var totalLength = 0;
-            Home.text.forEach(function(t) {
-                totalLength += t.length;
-            });
+            totalLength += Home.text.length;
             Home.options.forEach(function(o) {
                 console.log(o);
                 totalLength += o.text.length;
