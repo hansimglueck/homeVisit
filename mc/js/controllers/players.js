@@ -8,11 +8,10 @@
  * Controller of the homeVisitMCApp
  */
 angular.module('homeVisitMCApp')
-    .controller('PlayersCtrl', function ($scope, Status, Socket, playerColors, $routeParams, gettextCatalog) {
+    .controller('PlayersCtrl', function ($scope, Status, Socket, playerColors, $routeParams, gettextCatalog, TeamActionInfo) {
         $scope.tableDisplayType = "playerDetails";
         $scope.playerId = $routeParams.playerId;
         if (typeof $scope.playerId === "undefined") $scope.tableDisplayType = "playback";
-
         $scope.socket = Socket;
         $scope.status = Status;
         $scope.playerColors = playerColors;
@@ -92,6 +91,10 @@ angular.module('homeVisitMCApp')
         $scope.upcomingPlayer = function(id) {
             Socket.emit("setPlayerStatus", {cmd: "setUpcoming", id: id});
             console.log("Ich bin als naechstes dran: Player " + id);
+        }
+        
+        $scope.showInfoOfTeam = function(playerId) {
+            return TeamActionInfo.actionInfo[playerId];
         }
     })
     .controller("PlayerDetailsCtrl", function ($scope, Socket, playerColors) {

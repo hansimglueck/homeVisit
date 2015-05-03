@@ -347,3 +347,8 @@ ul.follow-items > li {
     margin-top: 5px;
     border-radius: 4px;
 }
+
+.teamActionInfo {
+  background: transparent;
+  color: #fff;
+}

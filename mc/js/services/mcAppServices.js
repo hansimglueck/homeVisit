@@ -334,6 +334,40 @@ angular.module('mcAppServices', [])
         };
         return deckFactory;
     })
+    .factory('TeamActionInfo', function(Socket, gettext) {
+        var teamActionInfo = {};
+        
+        teamActionInfo.actionInfo = [
+            '','','','','','','',''
+        ];
+        
+        Socket.on("startvote", function(info) {
+            console.log("STARTVOTE EMPFANGEN");
+            for (var i = 0; i < teamActionInfo.actionInfo.length; i++) {
+                teamActionInfo.actionInfo[i] = gettext("waiting ...");
+            }
+        });
+        
+        Socket.on("vote", function(msg) {
+            console.log("VOTE EMPFANGEN");
+            //console.log(msg);
+            teamActionInfo.actionInfo[msg.playerId] = gettext("Voted for: ") + msg.text[0];
+        });
+        
+        Socket.on("results", function(info) {
+            console.log("RESULT EMPFANGEN");
+        });
+        
+        Socket.on("card", function(info) {
+            console.log("CARD EMPFANGEN");
+            for (var i = 0; i < teamActionInfo.actionInfo.length; i++) {
+                teamActionInfo.actionInfo[i] = '';
+            }
+        });
+        
+        
+        return teamActionInfo;
+    })
     .factory('Playback', function(Socket, gettextCatalog) {
 
         var playbackFactory = {

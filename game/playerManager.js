@@ -159,7 +159,10 @@ PlayerManager.prototype = {
         var playerId = data.playerId;
         var pollId = data.pollId;
         console.log("Got Vote for " + pollId + " from Player " + playerId);
-
+        
+        wsManager.msgDevicesByRole('MC', 'vote', data);
+        console.log("VOTE GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        
         var poll = this.polls[pollId];
         if (typeof poll == "undefined") {
             this.sendMessage(playerId, "display", {
@@ -294,12 +297,18 @@ PlayerManager.prototype = {
                 case "vote":
                     this.polls[item.poll.id] = item.poll;
                     item.poll.setMaxVotes(this.deliverMessage(device, "display", item.getWsContent()));
+                    wsManager.msgDevicesByRole('MC', 'startvote', item.getWsContent());
+                    console.log("STARTVOTE GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     break;
                 case "card":
                     this.deliverMessage(device, "display", item.getWsContent());
+                    wsManager.msgDevicesByRole('MC', 'card', item.getWsContent());
+                    console.log("CARD GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     break;
                 case "results":
                     this.deliverMessage(device, "display", item.getWsContent());
+                    wsManager.msgDevicesByRole('MC', 'results', item.getWsContent());
+                    console.log("RESULTS GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                     //this.results(item);
                     break;
                 case "eval":
@@ -364,6 +373,7 @@ PlayerManager.prototype = {
         var msg = result.text;
         var labels = [];
         var resData = [];
+        
         //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
         //console.log("maxVoteCount=" + voteItem.maxCount);
         if (resultType == "numberStats") {

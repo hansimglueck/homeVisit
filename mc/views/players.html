@@ -21,6 +21,11 @@
             <button class="btn btn-default" ng-click="toggleSelected(player.playerId)">{{playerSelected(player.playerId)}}</button>
             <button class="btn btn-default" ng-click="toggleAway(player.playerId)">{{playerAway(player.playerId)}}</button>
           </li>
+          <li class="list-group-item content teamActionInfo">
+            <div>
+                {{showInfoOfTeam(player.playerId)}}
+            </div>
+          </li>
         </ul>
       </div>
 
