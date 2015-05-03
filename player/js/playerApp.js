@@ -105,6 +105,10 @@ angular.module('playerApp', [
                     templateUrl: 'partials/freeze.html',
                     controller: 'FreezeController'
                 }).
+                when('/card', {
+                    templateUrl: 'partials/card.html',
+                    controller: 'CardController'
+                }).
                 otherwise({
                     redirectTo: '/home'
                 });

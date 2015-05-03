@@ -1,6 +1,9 @@
 <div ng-if="notBeingRatedMyself()">
-    <div translate>
+    <div ng-if="home.text.length === 0" translate>
         You can rate these Teams up or down!
+    </div>
+    <div ng-if="home.text.length > 0" translate>
+        {{home.text}}
     </div>
     <div ng-if="playerIds.length == 0">Der MC muss jemanden auswählen!!</div>
     <ul class="list-inline">

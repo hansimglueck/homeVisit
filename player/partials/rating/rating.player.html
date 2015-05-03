@@ -1,6 +1,9 @@
 <div>
-    <div translate>
+    <div ng-if="home.text.length === 0" translate>
         Please rate a team! Give {{score}} point!
+    </div>
+    <div ng-if="home.text.length > 0" translate>
+        {{home.text}}
     </div>
     <ul class="list-inline list-unstyled">
         <li ng-repeat="player in status.availablePlayers">

@@ -1,12 +1,5 @@
 <div class="playback-control" ng-if="home.showGo"><button class="btn btn-success btn-lg" ng-click="go()" translate>Next</button></div>
 <div class="section content" ng-switch="home.type" ng-show="status.joined">
-
-    <div ng-switch-when="card" class="card-text">
-        <ul class="list-unstyled">
-            <li ng-repeat="t in home.text track by $index">{{t}}</li>
-        </ul>
-    </div>
-
     <div ng-switch-when="home" translate>EUROPE</div>
 
     <div ng-switch-when="browser">

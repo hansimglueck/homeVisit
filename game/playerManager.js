@@ -159,10 +159,10 @@ PlayerManager.prototype = {
         var playerId = data.playerId;
         var pollId = data.pollId;
         console.log("Got Vote for " + pollId + " from Player " + playerId);
-        
+
         wsManager.msgDevicesByRole('MC', 'vote', data);
         console.log("VOTE GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        
+
         var poll = this.polls[pollId];
         if (typeof poll == "undefined") {
             this.sendMessage(playerId, "display", {
@@ -373,7 +373,7 @@ PlayerManager.prototype = {
         var msg = result.text;
         var labels = [];
         var resData = [];
-        
+
         //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
         //console.log("maxVoteCount=" + voteItem.maxCount);
         if (resultType == "numberStats") {
@@ -490,6 +490,12 @@ PlayerManager.prototype = {
     deliverMessage: function (device, type, content) {
         var specialPlayer = device.split(":")[1];
         var self = this;
+        if (typeof content.text !== "undefined") {
+            content.text = content.text.replace(/<player:(\w*)>/g, function(match,$1){
+                var players = self.getPlayerGroup($1);
+                return players.map(function(player){return "<player-icon pid='"+player.playerId+"'></player-icon>"}).join("");
+            });
+        }
         if (typeof specialPlayer == "undefined") specialPlayer = "all";
         if (specialPlayer === "next") {
             this.broadcastMessage("display", {type:"black"});
@@ -837,29 +843,6 @@ PlayerManager.prototype = {
         console.log("Next on turn: " + this.upcoming);
     },
 
-    getCheckedVotes: function (voteId) {
-        //soll ein array geben mit id=playerId und inhalt array of checked Item-ids
-        return this.voteItems[voteId].votes.map(function (vote) {
-            return vote.filter(function (opt, id) {
-                opt.id = id;
-                return opt.checked;
-            }).map(function (v) {
-                return v.id
-            });
-        });
-    },
-    getVoteNumbers: function (voteId) {
-        return this.voteItems[voteId].votes.map(function (vote) {
-            return vote.filter(function (opt, id) {
-                return opt.checked;
-            }).map(function (v) {
-                return parseInt(v.val)
-            });
-        });
-    },
-    getResultStats: function (resultId) {
-        return this.resultItems[resultId].data;
-    }
 };
 
 var playerManagerObj = new PlayerManager();

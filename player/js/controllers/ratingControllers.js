@@ -1,12 +1,14 @@
 angular.module("ratingControllers", [])
-    .controller('RatePlayerController', function ($scope, Status, Rating, $routeParams) {
+    .controller('RatePlayerController', function ($scope, Status, Rating, $routeParams, Home) {
         $scope.status = Status;
         $scope.rating = Rating;
+        $scope.home = Home;
         $scope.score = $routeParams.score;
     })
-    .controller('RateScoreController', function ($scope, Status, Rating, $routeParams) {
+    .controller('RateScoreController', function ($scope, Status, Rating, $routeParams, Home) {
         $scope.status = Status;
         $scope.rating = Rating;
+        $scope.home = Home;
         $scope.playerId = $routeParams.playerId;
         $scope.playerIds = $routeParams.playerId.split(":");
                 
@@ -29,6 +31,7 @@ angular.module("ratingControllers", [])
         $scope.status = Status;
         $scope.rating = Rating;
         $scope.score = $routeParams.score;
+        $scope.home = Home;
         $scope.playerIds = [];
         if ($routeParams.playerId) $scope.playerIds = $routeParams.playerId.split(":");
         $scope.traitor = false;

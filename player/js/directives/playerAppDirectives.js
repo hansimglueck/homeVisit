@@ -44,11 +44,15 @@ angular.module('playerAppDirectives', [])
         return {
             restrict: 'E',
             scope: {text: '='},
-            template: "<li></li>",
+            template: "<div></div>",
             link: function(scope, element, attrs) {
-                element.append = scope.text;
+                console.log("text="+scope.text);
+                scope.$watch( 'text' , function(html){
+                    element.html(html);
+                    $compile(element.contents())(scope);
+                });
                 console.log(element);
-                $compile(element.contents())(scope);
+                //$compile(element.contents())(scope);
             }
         }
     })

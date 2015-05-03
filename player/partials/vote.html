@@ -1,7 +1,7 @@
 <div ng-class="{ smaller: smaller }">
     <div class="left-pane">
         <ul class="list-unstyled">
-            <li ng-repeat="t in home.text track by $index">{{t}}</li>
+            <li>{{home.text}}</li>
             <li ng-if="home.ratedVote" class="red" translate>Your voting weight depends on your rank!</li>
         </ul>
     </div>

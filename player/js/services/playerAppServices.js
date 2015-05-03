@@ -11,7 +11,7 @@ angular.module('playerAppServices', [])
         homeFactory.done = false;
         homeFactory.timeout;
 
-        homeFactory.doneTask = function() {
+        homeFactory.doneTask = function () {
             homeFactory.done = true;
             console.log(homeFactory.done);
         };
@@ -89,9 +89,7 @@ angular.module('playerAppServices', [])
                 fxService.cancelCountdown();
                 homeFactory.labels = [];
                 if (data) {
-                    if (typeof data.text !== 'undefined') {
-                        homeFactory.text = data.text.split("::");
-                    }
+                    homeFactory.text = data.text;
                     //homeFactory.showGo = false;
                     if (typeof data.showGo != "undefined") homeFactory.showGo = data.showGo;
                     homeFactory.displayData = data;
@@ -101,113 +99,26 @@ angular.module('playerAppServices', [])
                             case "roulette":
                             case "agreement":
                             case "vote":
-                                homeFactory.type = "vote";
-                                homeFactory.voteType = data.voteType;
-                                homeFactory.options = data.voteOptions || [{value: 0}];
-                                if (homeFactory.voteType == "enterNumber") homeFactory.options[0].checked = true;
-                                homeFactory.limit = (homeFactory.voteType == "customOptions") ? 1 : data.voteMulti;
-                                homeFactory.checked = 0;
-                                homeFactory.votelast = "vote";
-                                homeFactory.pollId = data.pollId;
-                                homeFactory.ratedVote = data.ratedVote;
-                                homeFactory.time = parseInt(data.time);
-                                homeFactory.timedVote(homeFactory.confirmVote);
-                                $location.path("/vote");
-                                return;
+                                showVote(data);
                                 break;
                             case "results":
-                                var resultType = data.resultType;
-                                var result = data.data;
-                                var msg = data.data.text;
-
-                                var labels = [];
-                                var resData = [];
-                                var labels2 = [];
-                                homeFactory.correctAnswer = "";
-                                homeFactory.ratedVote = result.ratedVote;
-                                //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
-                                if (resultType == "numberStats") {
-                                    //send stats as array: [sum, avg]
-                                    resData = [result.sum, result.average, result.minVal, result.maxVal];
-                                }
-                                else result.voteOptions.forEach(function (option) {
-                                    if (option.correctAnswer) homeFactory.correctAnswer = option.text;
-                                    if (data.data.dataSource == "positivePlayerScore") {
-                                        labels.push(option.playercolor + ': ' + option.percent + '% (' + option.result + ' ' + gettextCatalog.getPlural(option.result, 'point', 'points') + ')');
-                                    } else {
-                                        var t;
-                                        if (option.text.length > 20) {
-                                            t = option.text.substr(0, 20) + '...';
-                                        }
-                                        else {
-                                            t = option.text;
-                                        }
-                                        labels.push(t + ': ' + option.percent + '% (' + option.votes + ' ' + gettextCatalog.getPlural(option.votes, 'vote', 'votes') + ')');
-                                    }
-                                    if (resultType == "europeMap") resData.push({
-                                        id: option.value,
-                                        val: option.percent
-                                    });
-                                    else resData.push(option.result);
-                                });
-                                if (resultType === "firstVote") {
-                                    resData = result.votes[0].playerId;
-                                    console.log(resData);
-                                }
-
-                                homeFactory.resultType = resultType;
-                                (homeFactory.resultType == 'Bar' || homeFactory.resultType == 'Line') ? homeFactory.data = [resData] : homeFactory.data = resData;
-                                homeFactory.labels = labels;
-                                homeFactory.votelast = "result";
-                                homeFactory.type = "result";
-                                if (data.resultColors) {
-                                    if (data.resultColors == "playerColors") {
-                                        homeFactory.resultColors = [];
-                                        result.voteOptions.forEach(function (option) {
-                                            homeFactory.resultColors.push(playerColors[option.value]);
-                                        });
-                                    }
-                                }
-                                $location.path("/results");
-                                return;
+                                showResults(data);
                                 break;
                             case "rating":
-                                homeFactory.type = "rating";
-                                var path = "/rating";
-                                if (data.ratingType === "allTeams") {
-                                    path += "/player";
-                                    if (data.posNeg == "+1") path += "/1";
-                                    else path += "/-1";
-                                }
-                                if (data.ratingType === "oneTeam") {
-                                    path += "/score/" + data.playerId.join(":");
-                                }
-                                $location.path(path);
-                                return;
+                                showRating(data);
                                 break;
                             case "card":
-                                homeFactory.type = "card";
-                                console.log("we have to show a card!");
+                                showCard();
                                 break;
                             case "browser":
                                 homeFactory.type = "browser";
                                 break;
-                            case "seatOrder":
-                                $location.path('/rating');
-                                return;
-                                break;
                             case "black":
                                 homeFactory.type = "card";
                                 $location.path('/black');
-                                return;
                                 break;
                             case "deal":
-                                homeFactory.type = "deal";
-                                var dealType = "";
-                                if (typeof data.dealType !== "undefined") dealType = data.dealType;
-                                //DealFactory.subject = dealType;
-                                $location.path('/deals/new/' + dealType);
-                                return;
+                                showDeal();
                                 break;
                             case "showAssholes":
                                 homeFactory.assholeData = data.data[Status.player.playerId];
@@ -215,33 +126,138 @@ angular.module('playerAppServices', [])
                                 return;
                                 break;
                             case "alert":
-                                switch (data.param) {
-                                    case 0:
-                                        homeFactory.cancelCountdown();
-                                        break;
-                                    case 1:
-                                        if (!homeFactory.done) fxService.playSound('alert');
-                                        break;
-                                    case 2:
-                                        console.log(homeFactory.type);
-                                        if (["agreement","rating","vote","deal"].indexOf(homeFactory.type) === -1) return;
-                                        homeFactory.time = 12;
-                                        if (!homeFactory.done) {
-                                            if (homeFactory.type == "vote") homeFactory.timedVote(homeFactory.confirmVote);
-                                            else homeFactory.timedVote(homeFactory.freeze);
-                                        }
-                                        break;
-                                }
-                                return;
+                                showAlert(data);
                                 break;
 
                         }
-                        $location.path('/home');
+                        //$location.path('/home');
 
                     }
                 }
             });
         };
+
+        function showAlert(data) {
+            switch (data.param) {
+                case 0:
+                    homeFactory.cancelCountdown();
+                    break;
+                case 1:
+                    if (!homeFactory.done) fxService.playSound('alert');
+                    break;
+                case 2:
+                    console.log(homeFactory.type);
+                    if (["agreement", "rating", "vote", "deal"].indexOf(homeFactory.type) === -1) return;
+                    homeFactory.time = 12;
+                    if (!homeFactory.done) {
+                        if (homeFactory.type == "vote") homeFactory.timedVote(homeFactory.confirmVote);
+                        else homeFactory.timedVote(homeFactory.freeze);
+                    }
+                    break;
+            }
+        }
+
+        function showResults(data) {
+            var resultType = data.resultType;
+            var result = data.data;
+            var msg = data.data.text;
+
+            var labels = [];
+            var resData = [];
+            var labels2 = [];
+            homeFactory.correctAnswer = "";
+            homeFactory.ratedVote = result.ratedVote;
+            //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
+            if (resultType == "numberStats") {
+                //send stats as array: [sum, avg]
+                resData = [result.sum, result.average, result.minVal, result.maxVal];
+            }
+            else result.voteOptions.forEach(function (option) {
+                if (option.correctAnswer) homeFactory.correctAnswer = option.text;
+                if (data.data.dataSource == "positivePlayerScore") {
+                    labels.push(option.playercolor + ': ' + option.percent + '% (' + option.result + ' ' + gettextCatalog.getPlural(option.result, 'point', 'points') + ')');
+                } else {
+                    var t;
+                    if (option.text.length > 20) {
+                        t = option.text.substr(0, 20) + '...';
+                    }
+                    else {
+                        t = option.text;
+                    }
+                    labels.push(t + ': ' + option.percent + '% (' + option.votes + ' ' + gettextCatalog.getPlural(option.votes, 'vote', 'votes') + ')');
+                }
+                if (resultType == "europeMap") resData.push({
+                    id: option.value,
+                    val: option.percent
+                });
+                else resData.push(option.result);
+            });
+            if (resultType === "firstVote") {
+                resData = result.votes[0].playerId;
+                console.log(resData);
+            }
+
+            homeFactory.resultType = resultType;
+            (homeFactory.resultType == 'Bar' || homeFactory.resultType == 'Line') ? homeFactory.data = [resData] : homeFactory.data = resData;
+            homeFactory.labels = labels;
+            homeFactory.votelast = "result";
+            homeFactory.type = "result";
+            if (data.resultColors) {
+                if (data.resultColors == "playerColors") {
+                    homeFactory.resultColors = [];
+                    result.voteOptions.forEach(function (option) {
+                        homeFactory.resultColors.push(playerColors[option.value]);
+                    });
+                }
+            }
+            $location.path("/results");
+            return;
+
+        }
+
+        function showVote(data) {
+            homeFactory.type = "vote";
+            homeFactory.voteType = data.voteType;
+            homeFactory.options = data.voteOptions || [{value: 0}];
+            if (homeFactory.voteType == "enterNumber") homeFactory.options[0].checked = true;
+            homeFactory.limit = (homeFactory.voteType == "customOptions") ? 1 : data.voteMulti;
+            homeFactory.checked = 0;
+            homeFactory.votelast = "vote";
+            homeFactory.pollId = data.pollId;
+            homeFactory.ratedVote = data.ratedVote;
+            homeFactory.time = parseInt(data.time);
+            homeFactory.timedVote(homeFactory.confirmVote);
+            $location.path("/vote");
+        }
+
+        function showRating(data) {
+            homeFactory.type = "rating";
+            var path = "/rating";
+            if (data.ratingType === "allTeams") {
+                path += "/player";
+                if (data.posNeg == "+1") path += "/1";
+                else path += "/-1";
+            }
+            if (data.ratingType === "oneTeam") {
+                path += "/score/" + data.playerId.join(":");
+            }
+            $location.path(path);
+        }
+
+        function showCard() {
+            homeFactory.type = "card";
+            console.log("we have to show a card!");
+            $location.path('/card');
+        }
+
+        function showDeal(data) {
+            homeFactory.type = "deal";
+            var dealType = "";
+            if (typeof data.dealType !== "undefined") dealType = data.dealType;
+            //DealFactory.subject = dealType;
+            $location.path('/deals/new/' + dealType);
+        }
+
         return homeFactory;
     })
     .factory('Status', function ($rootScope, Socket, $location) {
