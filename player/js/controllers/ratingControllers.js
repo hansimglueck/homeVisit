@@ -10,14 +10,18 @@ angular.module("ratingControllers", [])
         $scope.rating = Rating;
         $scope.home = Home;
         $scope.playerId = $routeParams.playerId;
-        $scope.playerIds = $routeParams.playerId.split(":");
-                
+        if ($scope.playerId) {
+            $scope.playerIds = $routeParams.playerId.split(":");
+        } else {
+            $scope.playerIds = [];
+        }
+
         //if($scope.playerId.indexOf(':') === -1) {
         //    console.log("Nur einer selektiert");
         //} else {
         //    console.log("Mehrere selektiert");
         //}
-        
+
         $scope.notBeingRatedMyself = function() {
             for (var i = 0; i < $scope.playerIds.length; i++) {
                 if ($scope.playerIds[i] == Status.player.playerId) {

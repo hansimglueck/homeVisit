@@ -523,8 +523,12 @@
                 });
             }
 
-            players.forEach(function (player) {
-                self.sendMessage(player.playerId, type, content);
+        if (typeof content.text !== "undefined") {
+            content.text = content.text.replace(/<player:([!]*\w*)>/g, function (match, $1) {
+                var players = self.getPlayerGroup($1);
+                return players.map(function (player) {
+                    return "<player-icon pid='" + player.playerId + "'></player-icon>"
+                }).join("");
             });
             return players.length;
         },

@@ -37,6 +37,10 @@ angular.module('playerApp', [
                     templateUrl: 'partials/rating/rating.score.html',
                     controller: 'RateScoreController'
                 }).
+                when('/rating/score', {
+                    templateUrl: 'partials/rating/rating.score.html',
+                    controller: 'RateScoreController'
+                }).
                 when('/rating/player/:score', {
                     templateUrl: 'partials/rating/rating.player.html',
                     controller: 'RatePlayerController'

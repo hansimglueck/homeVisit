@@ -1,12 +1,17 @@
 <div ng-if="!nothing">
-  <h3 translate>These teams were mean to you:</h3>
-  <ul class="list-unstyled">
-      <li ng-repeat="minuspoints in home.assholeData track by $index">
-          <div class="mean_list" ng-hide="(minuspoints === 0) || ($index === status.player.playerId)">
-            <player-icon pid="$index"></player-icon>
-            <div translate translate-n="minuspoints" translate-plural="{{minuspoints}} minus points">{{minuspoints}} minus point</div>
-          </div>
-      </li>
-  </ul>
+    <h3 ng-if="home.assholeOptions !== 'worst'" translate>These teams were mean to you:</h3>
+
+    <h3 ng-if="home.assholeOptions === 'worst'" translate>These worst team was mean to you:</h3>
+    <ul class="list-unstyled">
+        <li ng-repeat="minuspoints in home.assholeData track by $index">
+            <div class="mean_list" ng-hide="(minuspoints === 0) || ($index === status.player.playerId)">
+                <player-icon pid="$index"></player-icon>
+                <div translate translate-n="minuspoints" translate-plural="{{minuspoints}} minus points">{{minuspoints}}
+                    minus point
+                </div>
+            </div>
+        </li>
+    </ul>
 </div>
-<p ng-if="nothing" translate>Nobody was mean to you.</p>
+<p ng-if="nothing && home.assholeOptions !== 'worst'" translate>Nobody was mean to you.</p>
+<p ng-if="nothing && home.assholeOptions === 'worst'" translate>The worst team was not mean to you.</p>

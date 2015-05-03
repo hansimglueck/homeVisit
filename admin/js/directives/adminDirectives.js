@@ -182,8 +182,16 @@
                 templateUrl: 'views/admin/show-item-contents/show-rating-content.html'
             };
         })
+        .directive('showAssholeContent', function () {
+            return {
+                restrict: 'AE',
+                replace: 'true',
+                templateUrl: 'views/admin/show-item-contents/show-asshole-content.html'
+            };
+        })
 
-         .directive('itemMapping', function () {
+
+        .directive('itemMapping', function () {
             return {
                 restrict: 'AE',
                 replace: 'true',

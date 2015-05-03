@@ -1,24 +1,26 @@
 <div ng-if="notBeingRatedMyself()">
-    <div ng-if="home.text.length === 0" translate>
-        You can rate these Teams up or down!
-    </div>
-    <div ng-if="home.text.length > 0">
-        {{home.text}}
-    </div>
     <div ng-if="playerIds.length == 0" translate>The MC has to select somebody!!</div>
-    <ul class="list-inline">
-        <li ng-repeat="pid in playerIds">
-            <player-icon pid="pid"></player-icon>
-        </li>
-    </ul>
-    <ul class="wide-list list-unstyled">
-        <li>
-            <a class="btn btn-default button" href="#/rating/{{playerId}}/1">+1</a>
-        </li>
-        <li>
-            <a class="btn btn-default button" href="#/rating/{{playerId}}/-1">-1</a>
-        </li>
-    </ul>
+    <div ng-if="playerIds.length > 0">
+        <div ng-if="home.text.length === 0" translate>
+            You can rate these Teams up or down!
+        </div>
+        <div ng-if="home.text.length > 0">
+            {{home.text}}
+        </div>
+        <ul class="list-inline">
+            <li ng-repeat="pid in playerIds">
+                <player-icon pid="pid"></player-icon>
+            </li>
+        </ul>
+        <ul class="wide-list list-unstyled">
+            <li>
+                <a class="btn btn-default button" href="#/rating/{{playerId}}/1">+1</a>
+            </li>
+            <li>
+                <a class="btn btn-default button" href="#/rating/{{playerId}}/-1">-1</a>
+            </li>
+        </ul>
+    </div>
 </div>
 <div ng-if="!notBeingRatedMyself()">
     <div translate>

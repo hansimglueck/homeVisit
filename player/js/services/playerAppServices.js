@@ -122,6 +122,7 @@ angular.module('playerAppServices', [])
                                 break;
                             case "showAssholes":
                                 homeFactory.assholeData = data.data[Status.player.playerId];
+                                homeFactory.assholeOptions = data.assholeOptions;
                                 $location.path('/assholes');
                                 return;
                                 break;
@@ -239,7 +240,11 @@ angular.module('playerAppServices', [])
                 else path += "/-1";
             }
             if (data.ratingType === "oneTeam") {
-                path += "/score/" + data.playerId.join(":");
+                if (data.playerId) {
+                    path += "/score/" + data.playerId.join(":");
+                } else {
+                    path += "/score/"
+                }
             }
             $location.path(path);
         }

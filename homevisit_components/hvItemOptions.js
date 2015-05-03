@@ -83,6 +83,10 @@ angular.module('hvItemOptions', [])
             {value: 'alliance', text: 'Allianz'}
 
         ],
+        'assholeOptions': [
+            {value: 'all', text: 'Alle'},
+            {value: 'worst', text: 'Schlechtester'}
+        ],
         'agreementOption': [
             {value: "topTwo", text: "besten zwei"},
 //            {value: "closest", text: "Rangnachbarn"}
