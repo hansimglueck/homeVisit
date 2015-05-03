@@ -56,10 +56,10 @@ PlayerManager.prototype = {
         }
         //this.calcAvgRate();
     },
-    resetPlayers: function() {
+    resetPlayers: function () {
         this.deals = {};
         this.relations = {};
-        this.players.forEach(function(player){
+        this.players.forEach(function (player) {
             player.score = 0;
             player.rank = -1;
             player.selcted = false;
@@ -217,7 +217,7 @@ PlayerManager.prototype = {
                 this.players[deal.player1Id].busy = true;
                 break;
             case 3:
-                var value = deal.messages[deal.messages.length-2].value;
+                var value = deal.messages[deal.messages.length - 2].value;
                 this.score(deal.player0Id, -value, deal.subject);
                 this.score(deal.player1Id, value, deal.subject);
                 this.sendMessage(deal.player0Id, "deal", deal);
@@ -450,7 +450,7 @@ PlayerManager.prototype = {
         });
         console.log(result.positivePlayerIds);
         if (result.positivePlayerIds.length == 0) return;
-        result.positivePlayerIds.forEach(function(playerId) {
+        result.positivePlayerIds.forEach(function (playerId) {
             self.sendMessage(playerId, "display", {
                 type: 'card',
                 text: self.gettext.gettext('You are in the game!')
@@ -459,27 +459,29 @@ PlayerManager.prototype = {
         var self = this;
         var steps = Math.floor(Math.random() * result.positivePlayerIds.length) + 23;
 
-        this.rouletteStep(steps, result, function(item, winner) {self.finishRoulette(item, winner)});
+        this.rouletteStep(steps, result, function (item, winner) {
+            self.finishRoulette(item, winner)
+        });
 
     },
 
     rouletteStep: function (steps, item, cb) {
         var cnt = item.positivePlayerIds.length;
-        var turn = item.positivePlayerIds[steps%cnt];
+        var turn = item.positivePlayerIds[steps % cnt];
         var self = this;
-        console.log("step "+steps+ "turn="+turn);
+        console.log("step " + steps + "turn=" + turn);
         if (steps == 0) cb.call(self, item, turn);
         else setTimeout(function () {
             self.sendMessage(turn, "fx", {type: "flashAndSound", color: "#ff0000", sound: "zip", time: 500});
-            self.rouletteStep(steps-1, item, cb);
-        }, Math.pow(((35 - steps) * 30),2)/1000)
+            self.rouletteStep(steps - 1, item, cb);
+        }, Math.pow(((35 - steps) * 30), 2) / 1000)
     },
 
-    finishRoulette: function(item, winner) {
-        console.log("and the winner is: "+winner);
+    finishRoulette: function (item, winner) {
+        console.log("and the winner is: " + winner);
         this.sendMessage(winner, "fx", {type: "flashAndSound", color: "green", sound: "win", time: 2000});
         var self = this;
-        item.positivePlayerIds.forEach(function(player){
+        item.positivePlayerIds.forEach(function (player) {
             if (player === winner) self.score(player, item.win, "roulette");
             else self.score(player, -item.cost, "roulette");
         })
@@ -490,15 +492,9 @@ PlayerManager.prototype = {
     deliverMessage: function (device, type, content) {
         var specialPlayer = device.split(":")[1];
         var self = this;
-        if (typeof content.text !== "undefined") {
-            content.text = content.text.replace(/<player:(\w*)>/g, function(match,$1){
-                var players = self.getPlayerGroup($1);
-                return players.map(function(player){return "<player-icon pid='"+player.playerId+"'></player-icon>"}).join("");
-            });
-        }
         if (typeof specialPlayer == "undefined") specialPlayer = "all";
         if (specialPlayer === "next") {
-            this.broadcastMessage("display", {type:"black"});
+            this.broadcastMessage("display", {type: "black"});
             if (this.upcoming === this.onTurn + 1 || this.upcoming === -1) {
                 this.advanceTurn(1);
             } else {
@@ -509,6 +505,14 @@ PlayerManager.prototype = {
         var players = this.getPlayerGroup(specialPlayer);
         //                this.broadcastMessage(type, {type: "black"});
 
+        if (typeof content.text !== "undefined") {
+            content.text = content.text.replace(/<player:(\w*)>/g, function (match, $1) {
+                var players = self.getPlayerGroup($1);
+                return players.map(function (player) {
+                    return "<player-icon pid='" + player.playerId + "'></player-icon>"
+                }).join("");
+            });
+        }
         players.forEach(function (player) {
             self.sendMessage(player.playerId, type, content);
         });
@@ -565,7 +569,7 @@ PlayerManager.prototype = {
                 ret = this.players;
                 break;
         }
-        ret = ret.filter(function(player) {
+        ret = ret.filter(function (player) {
             return player.joined === true;
         });
         console.log(ret.map(function (player) {
@@ -622,8 +626,16 @@ PlayerManager.prototype = {
         wsManager.msgDevicesByRole("MC", "status", msg);
     },
     sendGameEvent: function (playerId, type, value, reason, otherPlayerId) {
-        this.sendMessage(playerId, "gameEvent", {type: type, value: value, reason: reason, otherPlayerId: otherPlayerId});
-        this.gameEvents.push({playerId: playerId, event:{type: type, value: value, reason: reason, otherPlayerId: otherPlayerId}});
+        this.sendMessage(playerId, "gameEvent", {
+            type: type,
+            value: value,
+            reason: reason,
+            otherPlayerId: otherPlayerId
+        });
+        this.gameEvents.push({
+            playerId: playerId,
+            event: {type: type, value: value, reason: reason, otherPlayerId: otherPlayerId}
+        });
     },
     getPlayerIdForClientId: function (clientId) {
         var playerId = -1;
@@ -656,7 +668,7 @@ PlayerManager.prototype = {
 
         var self = this;
         if (deals.length > 0) {
-            deals.filter(function(deal) {
+            deals.filter(function (deal) {
                 return (deal.state === 3) && ((deal.player0Id === playerId) || (deal.player1Id === playerId));
             }).forEach(function (deal) {
                 var otherPlayerId = deal.player0Id;
@@ -687,9 +699,9 @@ PlayerManager.prototype = {
         var self = this;
         relation.playerIds.forEach(function (playerId) {
             self.sendGameEvent(playerId,
-                               relation.type,
-                               relation.playerIds,
-                               self.gettext.gettext('A new %s').format(relation.type)
+                relation.type,
+                relation.playerIds,
+                self.gettext.gettext('A new %s').format(relation.type)
             );
         });
         this.sendPlayerStatus(-1);
