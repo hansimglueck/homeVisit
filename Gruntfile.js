@@ -90,8 +90,9 @@ module.exports = function(grunt) {
                     src: [
                         'Gruntfile.js',
                         'game/**/*.js',
-                        'homevisit_components/**/*.js',
-                        'server/**/*.js'
+                        'server/**/*.js',
+                        'homevisit_components/stringFormat.js',
+                        'homevisit_components/mongo/*.js'
                     ]
                 },
                 options: {
@@ -102,9 +103,10 @@ module.exports = function(grunt) {
                 files: {
                     src: [
                         'admin/**/*.js',
-                        'homevisit_components/**/*.js',
                         'mc/**/*.js',
-                        'player/**/*.js'
+                        'player/**/*.js',
+                        'homevisit_components/hv*.js',
+                        'homevisit_components/websocketServices.js'
                     ],
                 },
                 options: {
