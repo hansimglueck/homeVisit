@@ -12,7 +12,7 @@ gameServices.factory('Game', ['$resource', function ($resource) {
     //    query: {method:'GET', params:{}, isArray:true}
     //});
 }])
-    .factory('gameConf', ['$resource', function ($resource) {
+    .factory('GameConf', ['$resource', function ($resource) {
         return $resource('/gameConf/:id', null, {
             'update': {
                 method: 'PUT',
