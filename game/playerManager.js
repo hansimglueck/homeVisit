@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     var wsManager = require('./wsManager.js');
@@ -58,10 +58,10 @@
             }
             //this.calcAvgRate();
         },
-        resetPlayers: function() {
+        resetPlayers: function () {
             this.deals = {};
             this.relations = {};
-            this.players.forEach(function(player){
+            this.players.forEach(function (player) {
                 player.score = 0;
                 player.rank = -1;
                 player.selcted = false;
@@ -168,7 +168,7 @@
             data.multiplier = this.players.filter(function (p) {
                 return p.joined;
             }).length - this.players[playerId].rank + 1;
-    //        vote.multiplier = this.avgRatings[playerId];
+            //        vote.multiplier = this.avgRatings[playerId];
 
             poll.vote(data);
 
@@ -243,9 +243,9 @@
         scoreMessage: function (clientId, role, msg) {
             if (msg.type === "score") {
                 this.score(msg.data.playerId,
-                           msg.data.score,
-                           msg.data.reason,
-                           msg.data.otherPlayerId);
+                    msg.data.score,
+                    msg.data.reason,
+                    msg.data.otherPlayerId);
             }
         },
 
@@ -451,7 +451,7 @@
             if (result.positivePlayerIds.length === 0) {
                 return;
             }
-            result.positivePlayerIds.forEach(function(playerId) {
+            result.positivePlayerIds.forEach(function (playerId) {
                 self.sendMessage(playerId, "display", {
                     type: 'card',
                     text: self.gettext.gettext('You are in the game!')
@@ -459,7 +459,7 @@
             });
             var steps = Math.floor(Math.random() * result.positivePlayerIds.length) + 23;
 
-            this.rouletteStep(steps, result, function(item, winner) {
+            this.rouletteStep(steps, result, function (item, winner) {
                 self.finishRoulette(item, winner);
             });
         },
@@ -480,11 +480,11 @@
             }
         },
 
-        finishRoulette: function(item, winner) {
-            console.log("and the winner is: "+winner);
+        finishRoulette: function (item, winner) {
+            console.log("and the winner is: " + winner);
             this.sendMessage(winner, "fx", {type: "flashAndSound", color: "green", sound: "win", time: 2000});
             var self = this;
-            item.positivePlayerIds.forEach(function(player) {
+            item.positivePlayerIds.forEach(function (player) {
                 if (player === winner) {
                     self.score(player, item.win, "roulette");
                 }
@@ -503,7 +503,7 @@
                 specialPlayer = "all";
             }
             if (specialPlayer === "next") {
-                this.broadcastMessage("display", {type: "black" });
+                this.broadcastMessage("display", {type: "black"});
                 if (this.upcoming === this.onTurn + 1 || this.upcoming === -1) {
                     this.advanceTurn(1);
                 } else {
@@ -515,22 +515,13 @@
             //                this.broadcastMessage(type, {type: "black"});
 
             if (typeof content.text !== "undefined") {
-                content.text = content.text.replace(/<player:(\w*)>/g, function (match, $1) {
+                content.text = content.text.replace(/<player:([!]*\w*)>/g, function (match, $1) {
                     var players = self.getPlayerGroup($1);
                     return players.map(function (player) {
                         return "<player-icon pid='" + player.playerId + "'></player-icon>";
                     }).join("");
                 });
             }
-
-        if (typeof content.text !== "undefined") {
-            content.text = content.text.replace(/<player:([!]*\w*)>/g, function (match, $1) {
-                var players = self.getPlayerGroup($1);
-                return players.map(function (player) {
-                    return "<player-icon pid='" + player.playerId + "'></player-icon>"
-                }).join("");
-            });
-            return players.length;
         },
 
         getPlayerGroup: function (identifier) {
@@ -585,7 +576,7 @@
                     ret = this.players;
                     break;
             }
-            ret = ret.filter(function(player) {
+            ret = ret.filter(function (player) {
                 return player.joined === true;
             });
             console.log(ret.map(function (player) {
@@ -658,7 +649,7 @@
             });
             this.gameEvents.push({
                 playerId: playerId,
-                event:{
+                event: {
                     type: type,
                     value: value,
                     reason: reason,
@@ -708,7 +699,7 @@
 
             var self = this;
             if (deals.length > 0) {
-                deals.filter(function(deal) {
+                deals.filter(function (deal) {
                     return deal.state === 3 &&
                         (deal.player0Id === playerId || deal.player1Id === playerId);
                 }).forEach(function (deal) {
@@ -740,7 +731,7 @@
                 playerIds: agreement.playerIds,
                 type: agreement.agreementType
             });
-            agreement.playerIds.forEach(function(playerId){
+            agreement.playerIds.forEach(function (playerId) {
                 self.score(playerId, -1, "alliance");
             })
 
@@ -750,9 +741,9 @@
             var self = this;
             relation.playerIds.forEach(function (playerId) {
                 self.sendGameEvent(playerId,
-                                   relation.type,
-                                   relation.playerIds,
-                                   self.gettext.gettext('A new %s').format(relation.type)
+                    relation.type,
+                    relation.playerIds,
+                    self.gettext.gettext('A new %s').format(relation.type)
                 );
             });
             this.sendPlayerStatus(-1);
@@ -872,8 +863,8 @@
                 return b.result - a.result;
             });
             var game = require('./game.js');
-            game.trigger(-1, { data: 'go' });
-    //        this.sendVoteResults(voteId);
+            game.trigger(-1, {data: 'go'});
+            //        this.sendVoteResults(voteId);
         },
 
         //der nächste ist dran...

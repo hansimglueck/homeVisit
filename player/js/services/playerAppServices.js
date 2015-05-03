@@ -233,6 +233,8 @@ angular.module('playerAppServices', [])
 
         function showRating(data) {
             homeFactory.type = "rating";
+            homeFactory.time = parseInt(data.time);
+            homeFactory.timedVote(homeFactory.freeze);
             var path = "/rating";
             if (data.ratingType === "allTeams") {
                 path += "/player";
@@ -257,6 +259,8 @@ angular.module('playerAppServices', [])
 
         function showDeal(data) {
             homeFactory.type = "deal";
+            homeFactory.time = parseInt(data.time);
+            homeFactory.timedVote(homeFactory.freeze);
             var dealType = "";
             if (typeof data.dealType !== "undefined") dealType = data.dealType;
             //DealFactory.subject = dealType;
