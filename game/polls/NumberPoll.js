@@ -1,43 +1,49 @@
-/*
- so ein NumberPoll erwartet nur votes mit genau einer choice...
- ich denke, falls mehrere Zahlen abgefragt werden, werden das einzelne Polls
+(function() {
+    'use strict';
 
- der multiplier macht auch nicht wirklich sinn, wird deshalb ausser acht gelassen
- */
+    /*
+     so ein NumberPoll erwartet nur votes mit genau einer choice...
+     ich denke, falls mehrere Zahlen abgefragt werden, werden das einzelne Polls
 
-var Poll = require('./Poll');
+     der multiplier macht auch nicht wirklich sinn, wird deshalb ausser acht gelassen
+     */
 
-NumberPoll = function (item) {
-    this.sum = 0;
-    Poll.call(this, item);
-};
-NumberPoll.prototype = new Poll;
-NumberPoll.prototype.constructor = OptionPoll;
-NumberPoll.prototype.evalVote = function (vote) {
-    vote.choice = parseFloat(vote.choice[0])
-    this.sum += vote.choice;
-};
-NumberPoll.prototype.getResult = function () {
-    return {
-        sum: this.sum,
-        average: this.getAverage().toFixed(2),
-        minVal: this.getMin().toFixed(2),
-        maxVal: this.getMax().toFixed(2),
-        votes: this.votes
-    }
-};
-NumberPoll.prototype.getAverage = function() {
-    return this.sum/this.votes.length;
-};
-NumberPoll.prototype.getMin = function() {
-    return this.votes.sort(function (a, b) {
-        return a.choice - b.choice;
-    })[0].choice;
-};
-NumberPoll.prototype.getMax = function() {
-    return this.votes.sort(function (b, a) {
-        return a.choice - b.choice;
-    })[0].choice;
-};
+    var Poll = require('./Poll');
+    var OptionPoll = require('./OptionPoll');
 
-module.exports = NumberPoll;
+    var NumberPoll = function (item) {
+        this.sum = 0;
+        Poll.call(this, item);
+    };
+    NumberPoll.prototype = new Poll();
+    NumberPoll.prototype.constructor = OptionPoll;
+    NumberPoll.prototype.evalVote = function (vote) {
+        vote.choice = parseFloat(vote.choice[0]);
+        this.sum += vote.choice;
+    };
+    NumberPoll.prototype.getResult = function () {
+        return {
+            sum: this.sum,
+            average: this.getAverage().toFixed(2),
+            minVal: this.getMin().toFixed(2),
+            maxVal: this.getMax().toFixed(2),
+            votes: this.votes
+        };
+    };
+    NumberPoll.prototype.getAverage = function() {
+        return this.sum/this.votes.length;
+    };
+    NumberPoll.prototype.getMin = function() {
+        return this.votes.sort(function (a, b) {
+            return a.choice - b.choice;
+        })[0].choice;
+    };
+    NumberPoll.prototype.getMax = function() {
+        return this.votes.sort(function (b, a) {
+            return a.choice - b.choice;
+        })[0].choice;
+    };
+
+    module.exports = NumberPoll;
+
+})();
