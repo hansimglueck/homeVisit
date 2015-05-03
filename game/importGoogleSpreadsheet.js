@@ -298,22 +298,28 @@
     // extract translations from row
     function setTranslations(item, row) {
         _.forEach(langCodes, function(langCode) {
-            // text
-            var propName = langCode === 'de' ? 'text' : 'text_%s'.format(langCode);
-            item.text[langCode] = row[propName];
-            // mcnote
-            propName = langCode === 'de' ? 'mcnote' : 'mcnote_%s'.format(langCode);
-            item.mcnote[langCode] = row[propName];
-            // voteOptions
+            // inline switch
             if (item.type === 'inlineSwitch') {
                 var voteItem = item.inlineDecks[0].items[0];
+                // text
+                var propName = langCode === 'de' ? 'text' : 'text_%s'.format(langCode);
+                voteItem.text[langCode] = row[propName];
+                // voteOptions
                 if (voteItem.type === 'vote') {
-                    propName = langCode === 'de' ? 'voteOptions' : 'voteOptions_%s'.format(langCode);
                     var voteOptions = parseVoteOptions(row[propName]);
                     _.each(voteItem.voteOptions, function(option, i) {
                         option.text[langCode] = voteOptions[i];
                     });
                 }
+            }
+            // normal item
+            else {
+                // text
+                var propName = langCode === 'de' ? 'text' : 'text_%s'.format(langCode);
+                item.text[langCode] = row[propName];
+                // mcnote
+                propName = langCode === 'de' ? 'mcnote' : 'mcnote_%s'.format(langCode);
+                item.mcnote[langCode] = row[propName];
             }
         });
         return item;
