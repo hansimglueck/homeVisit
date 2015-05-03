@@ -15,11 +15,11 @@
                 {{ item[field] || '-' }}
             </span>
         </div>
-        <div ng-switch-when="textarea_pre">
-            <span editable-textarea="item[field]"
+        <div ng-switch-when="localized-textarea_pre">
+            <span editable-textarea="item[field][lang]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
-           <pre><code>{{ item[field] || '-' }}</code></pre>
+           <pre><code>{{ item[field][lang] || '-' }}</code></pre>
            </span>
         </div>
         <div ng-switch-when="select_editable">
