@@ -14,13 +14,13 @@
         ])
         .value('playerTextColors', [
             '#FFFFFF',     //rot
-            '#000000',     //hellblau
+            '#FFFFFF',     //hellblau
             '#FFFFFF',     //dunkelblau
-            '#000000',     //orange
-            '#000000',     //gelb
-            '#000000',     //gruen
-            '#000000',     //lila
-            '#000000'      //pink
+            '#FFFFFF',     //orange
+            '#FFFFFF',     //gelb
+            '#FFFFFF',     //gruen
+            '#FFFFFF',     //lila
+            '#FFFFFF'      //pink
         ])
         .factory('playerColornamesFactory', function(gettext) {
 

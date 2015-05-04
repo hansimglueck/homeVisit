@@ -47,7 +47,7 @@ body {
     font-size: 1.5em;
 }
 
-.player-icon {
+.player-icon-mirko {
     width: 50px;
     height: 50px;
     margin-left: 5px;
@@ -55,6 +55,35 @@ body {
     display: inline-block;
     border-radius: 10px;
     vertical-align: middle;
+}
+
+.player-icon {
+    width: 50px;
+    height: 40px;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 8px;
+    display: inline-block;
+    vertical-align: middle;
+    -webkit-mask-image: url('../svg/player-icon.svg');
+}
+
+.player-icon-big {
+    width: 80px;
+    height: 64px;
+    font-size: 1.6em;
+}
+
+.player-icon-container {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.player-icon-text {
+    width: 100%;
+    font-size: 0.7em;
 }
 
 .player-icon-med {
@@ -71,6 +100,10 @@ body {
     margin-top: 5px;
     margin-right: 5px;
     display: inline-block;
+}
+
+.player-icon-xs .player-icon-text {
+    display: none;
 }
 
 .rotDiv {

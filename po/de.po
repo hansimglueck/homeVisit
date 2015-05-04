@@ -816,7 +816,7 @@ msgstr "Vertrauen in Demokratie"
 
 #: game/playerManager.js:34 homevisit_components/hvPlayerColors.js:28
 msgid "dark blue"
-msgstr "Dunkelblau"
+msgstr "Blau"
 
 #: mc/js/services/mcAppServices.js:120
 msgid "denied origin"

@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('playerAppServices', [])
@@ -99,6 +99,7 @@
                     console.log("new display: " + data.type);
                     homeFactory.cancelCountdown();
                     homeFactory.labels = [];
+                    homeFactory.icon = "";
                     if (data) {
                         homeFactory.text = data.text;
                         //homeFactory.showGo = false;
@@ -111,38 +112,41 @@
                                 fxService.playSound(data.type);
                             }
                             switch (data.type) {
-                            case "roulette":
-                            case "agreement":
-                            case "vote":
-                                showVote(data);
-                                break;
-                            case "results":
-                                showResults(data);
-                                break;
-                            case "rating":
-                                showRating(data);
-                                break;
-                            case "card":
-                                showCard();
-                                break;
-                            case "browser":
-                                homeFactory.type = "browser";
-                                break;
-                            case "black":
-                                homeFactory.type = "card";
-                                $location.path('/black');
-                                break;
-                            case "deal":
-                                showDeal(data);
-                                break;
-                            case "showAssholes":
-                                homeFactory.assholeData = data.data[Status.player.playerId];
-                                homeFactory.assholeOptions = data.assholeOptions;
-                                $location.path('/assholes');
-                                break;
-                            case "alert":
-                                showAlert(data);
-                                break;
+                                case "agreement":
+                                    homeFactory.icon = "alliance";
+                                    showVote(data);
+                                    break;
+                                case "roulette":
+                                case "vote":
+                                    showVote(data);
+                                    break;
+                                case "results":
+                                    showResults(data);
+                                    break;
+                                case "rating":
+                                    showRating(data);
+                                    break;
+                                case "card":
+                                    showCard();
+                                    break;
+                                case "browser":
+                                    homeFactory.type = "browser";
+                                    break;
+                                case "black":
+                                    homeFactory.type = "card";
+                                    $location.path('/black');
+                                    break;
+                                case "deal":
+                                    showDeal(data);
+                                    break;
+                                case "showAssholes":
+                                    homeFactory.assholeData = data.data[Status.player.playerId];
+                                    homeFactory.assholeOptions = data.assholeOptions;
+                                    $location.path('/assholes');
+                                    break;
+                                case "alert":
+                                    showAlert(data);
+                                    break;
                             }
                         }
                     }
@@ -151,29 +155,29 @@
 
             function showAlert(data) {
                 switch (data.param) {
-                case 0:
-                    homeFactory.cancelCountdown();
-                    break;
-                case 1:
-                    if (!homeFactory.done) {
-                        fxService.playSound('alert');
-                    }
-                    break;
-                case 2:
-                    console.log(homeFactory.type);
-                    if (["agreement", "rating", "vote", "deal"].indexOf(homeFactory.type) === -1) {
-                        return;
-                    }
-                    homeFactory.time = 12;
-                    if (!homeFactory.done) {
-                        if (homeFactory.type === "vote") {
-                            homeFactory.timedVote(homeFactory.confirmVote);
+                    case 0:
+                        homeFactory.cancelCountdown();
+                        break;
+                    case 1:
+                        if (!homeFactory.done) {
+                            fxService.playSound('alert');
                         }
-                        else {
-                            homeFactory.timedVote(homeFactory.freeze);
+                        break;
+                    case 2:
+                        console.log(homeFactory.type);
+                        if (["agreement", "rating", "vote", "deal"].indexOf(homeFactory.type) === -1) {
+                            return;
                         }
-                    }
-                    break;
+                        homeFactory.time = 12;
+                        if (!homeFactory.done) {
+                            if (homeFactory.type === "vote") {
+                                homeFactory.timedVote(homeFactory.confirmVote);
+                            }
+                            else {
+                                homeFactory.timedVote(homeFactory.freeze);
+                            }
+                        }
+                        break;
                 }
             }
 
@@ -551,10 +555,10 @@
             };
             Socket.on("fx", function (fx) {
                 switch (fx.type) {
-                case "flashAndSound":
-                    fxService.playSound(fx.sound);
-                    fxService.flash(fx.color, fx.time);
-                    break;
+                    case "flashAndSound":
+                        fxService.playSound(fx.sound);
+                        fxService.flash(fx.color, fx.time);
+                        break;
                 }
             });
             fxService.flash = function (col, time) {
@@ -573,22 +577,22 @@
             };
             dealFactory.message = "";
 
-            Socket.on("deal", function(deal){
+            Socket.on("deal", function (deal) {
                 switch (deal.status) {
                     case "request":
                         dealFactory.deal = deal;
                         if (parseInt(deal.player0Id) === Status.player.playerId) {
-                            $location.path("/deal/wait/"+deal.player1Id);
+                            $location.path("/deal/wait/" + deal.player1Id);
                         } else {
-                            $location.path("/deal/answer/"+deal.player0Id);
+                            $location.path("/deal/answer/" + deal.player0Id);
                         }
                         break;
                     case "confirm":
                         Home.doneTask();
                         if (parseInt(deal.player0Id) === Status.player.playerId) {
-                            $location.path("/deal/finish/"+deal.player1Id);
+                            $location.path("/deal/finish/" + deal.player1Id);
                         } else {
-                            $location.path("/deal/finish/"+deal.player0Id);
+                            $location.path("/deal/finish/" + deal.player0Id);
                         }
                         break;
                     case "deny":
@@ -601,16 +605,16 @@
                         break;
                 }
             });
-            dealFactory.requestDeal = function(playerId) {
-                console.log("request deal with "+playerId);
-                Socket.emit("deal", {player0Id: Status.player.playerId, player1Id:playerId, status: "request"});
+            dealFactory.requestDeal = function (playerId) {
+                console.log("request deal with " + playerId);
+                Socket.emit("deal", {player0Id: Status.player.playerId, player1Id: playerId, status: "request"});
             };
-            dealFactory.confirm = function() {
+            dealFactory.confirm = function () {
                 console.log("comfirm deal");
                 dealFactory.deal.status = "confirm";
                 Socket.emit("deal", dealFactory.deal);
             };
-            dealFactory.deny = function() {
+            dealFactory.deny = function () {
                 console.log("deny deal");
                 dealFactory.deal.status = "deny";
                 Socket.emit("deal", dealFactory.deal);

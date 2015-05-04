@@ -1,7 +1,8 @@
 <div ng-class="{ smaller: smaller }">
     <div class="left-pane">
         <ul class="list-unstyled">
-            <li>{{home.text}}</li>
+            <li>{{home.text}} <player-app-icon icon="home.icon"></player-app-icon>
+            </li>
             <li ng-if="home.ratedVote" class="red" translate>Your voting weight depends on your rank!</li>
         </ul>
     </div>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     version="1.1" baseProfile="full"
+     viewBox="0 0 150 120">
+
+    <polygon ng-attr-fill="{{playerColors[playerId]}}" points="22 0 0 22 0 98 22 120 128 120 150 98 150 22 128 0"/>
+</svg>

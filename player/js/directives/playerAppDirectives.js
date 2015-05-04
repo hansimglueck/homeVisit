@@ -24,10 +24,25 @@
                 scope: {
                     playerId: '=pid'
                 },
-                controller: function ($scope, playerColors) {
+                controller: function ($scope, playerColors, playerColornamesFactory, playerTextColors, gettextCatalog) {
                     $scope.playerColors = playerColors;
+                    $scope.playerColornames = playerColornamesFactory.playercolornames;
+                    $scope.playerTextColors = playerTextColors;
+                    $scope.getColorName = function(color) {
+                        return gettextCatalog.getString(color);
+                    }
                 },
                 templateUrl: 'views/player-icon.html'
+            };
+        })
+        .directive('playerAppIcon', function () {
+            return {
+                restrict: 'AE',
+                replace: 'true',
+                scope: {
+                    icon: '='
+                },
+                templateUrl: 'views/player-app-icon.html'
             };
         })
         .directive('dealHeader', function () {
