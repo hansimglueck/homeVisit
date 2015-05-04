@@ -6,7 +6,7 @@
     var OptionPoll = function (item) {
         Poll.call(this, item);
     };
-    OptionPoll.prototype = new Poll();
+    OptionPoll.prototype = new Poll;
     OptionPoll.prototype.constructor = OptionPoll;
     OptionPoll.prototype.init = function () {
         this.voteOptions = this.voteOptions ? JSON.parse(JSON.stringify(this.voteOptions)) : [];    //deep clone

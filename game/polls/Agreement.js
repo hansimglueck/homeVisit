@@ -19,7 +19,7 @@
         this.voteType = "customOptions";
         OptionPoll.call(this, item);
     };
-    Agreement.prototype = new OptionPoll();
+    Agreement.prototype = new OptionPoll;
     Agreement.prototype.constructor = Agreement;
     Agreement.prototype.init = function () {
         OptionPoll.prototype.init.call(this);

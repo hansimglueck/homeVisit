@@ -15,7 +15,7 @@
         this.sum = 0;
         Poll.call(this, item);
     };
-    NumberPoll.prototype = new Poll();
+    NumberPoll.prototype = new Poll;
     NumberPoll.prototype.constructor = OptionPoll;
     NumberPoll.prototype.evalVote = function (vote) {
         vote.choice = parseFloat(vote.choice[0]);
