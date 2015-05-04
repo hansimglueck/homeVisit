@@ -146,7 +146,6 @@
             var g = this;
             this.clock.reset();
             this.recording.reset();
-            this.recording.start();
             mongoConnection(function (db) {
                 db.collection('decks').find({}).toArray(function (err, decks) {
                     if (err) {

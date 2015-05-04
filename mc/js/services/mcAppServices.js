@@ -535,14 +535,9 @@
 
     .factory('gameSessionsFactory', function(Socket) {
 
-        Socket.on('gameSessions', function(sessions) {
-            gameSessionsFactory.sessions = sessions;
-        });
-
         var gameSessionsFactory = {
             sessions: [],
-            currentSession: null,
-            currentSessionName: null
+            currentSession: null
         };
 
         gameSessionsFactory.getSessionName = function(id) {
@@ -553,6 +548,14 @@
                 }
             }
         };
+
+        Socket.on('gameSessions', function(data) {
+            console.warn('gameSessions', data);
+            gameSessionsFactory.sessions = data.sessions;
+            if (typeof data.currentSession !== 'undefined' && data.currentSession !== null) {
+                gameSessionsFactory.currentSession = data.currentSession;
+            }
+        });
 
         return gameSessionsFactory;
     });

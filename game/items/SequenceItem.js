@@ -4,6 +4,7 @@
     var Q = require('q');
     var gameConf = require('../gameConf');
     var gameClock = require('../clock');
+    var gameRecording = require('../gameRecording');
     var wsManager = require('../wsManager.js');
     var playerManager = require('../playerManager.js');
     var _ = require('underscore');
@@ -171,7 +172,7 @@
                 this.param = param;
                 var self = this;
 
-                // game clock starts at card number 2!
+                // game officially starts at card number 2!
                 if (this.index === 1) {
                     gameClock.start();
                 }

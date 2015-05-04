@@ -65,12 +65,16 @@
             wsManager.msgDeviceByIds([clientId], "gameConf", {startDeckId: self.conf.startDeckId});
         },
         gameSessionsRequest: function(clientId, role) {
+            var self = this;
             mongoConnection(function (db) {
                 db.collection('sessions').find().toArray(function(err, sessions) {
                     if (err !== null) {
                         throw new Error(err.stack);
                     }
-                    wsManager.msgDeviceByIds([clientId], 'gameSessions', sessions);
+                    wsManager.msgDeviceByIds([clientId], 'gameSessions', {
+                        currentSession: self.conf.session,
+                        sessions: sessions
+                    });
                 });
             });
         },
@@ -84,6 +88,7 @@
                         if (err !== null) {
                             throw new Error(err.stack);
                         }
+                        self.conf.session = sessionId;
                         console.log('Setting session to: %s'.format(sessionId));
                     }
                 );

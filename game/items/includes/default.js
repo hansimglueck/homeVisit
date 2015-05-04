@@ -1,8 +1,11 @@
 (function() {
     'use strict';
 
+    var gameRecording = require('../../gameRecording');
+
     module.exports = {
         executeItem: function () {
+            gameRecording.go(this);
             this.mapToDevice();
         },
         getWsContent: function() {

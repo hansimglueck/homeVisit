@@ -17,15 +17,17 @@
             console.log('gameRecording reset');
         },
 
-        start: function() {
-            this._recordEvent('gameStart');
+        go: function(item) {
+            this._recordEvent('go', {
+                type: item.type,
+                index: item.index
+            });
         },
 
         _recordEvent: function(name, data) {
             var deferred = Q.defer(), self = this,
                 sessionId = this.gameConf.conf.session;
-            console.log('sessionId'.red, sessionId);
-            if (typeof sessionId === 'undefined') {
+            if (typeof sessionId === 'undefined' || sessionId === null) {
                 console.log('No session set. Not recording game!'.red);
                 return;
             }
