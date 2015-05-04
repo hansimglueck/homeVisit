@@ -584,7 +584,7 @@
                     if (deal.state === 3) {
                         Home.cancelCountdown();
                     }
-                    dealFactory.deals[deal.id].state = deal.state;
+                    dealFactory.deals[deal.id].state = parseInt(deal.state);
                     dealFactory.deals[deal.id].messages = deal.messages;
                 }
                 else {
@@ -665,10 +665,10 @@
                 if (message.type === "deny") {
                     deal.state = 4;
                 }
-                if (deal.state === 0 || deal.state === 2) {
+                if (deal.state == 0 || deal.state == 2) {
                     deal.state = 1;
                 }
-                else if (deal.state === 1) {
+                else if (deal.state == 1) {
                     deal.state = 2;
                 }
                 Socket.emit("deal", deal);
@@ -679,11 +679,11 @@
                     return 0;
                 }
                 var myState = deal.state;
-                if (deal.player1Id === Status.player.playerId) {
-                    if (deal.state === 1) {
+                if (deal.player1Id == Status.player.playerId) {
+                    if (deal.state == 1) {
                         myState = 2;
                     }
-                    if (deal.state === 2) {
+                    if (deal.state == 2) {
                         myState = 1;
                     }
                 }
