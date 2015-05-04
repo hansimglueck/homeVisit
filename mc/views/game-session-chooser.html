@@ -5,4 +5,5 @@
             ng-options="s._id as sessions.getSessionName(s._id) for s in sessions.sessions"
             ng-change="setSession()">
     </select>
+    <p ng-if="!sessions.currentSession" class="text-danger" translate>Please select a session before starting the game!</p>
 </div>

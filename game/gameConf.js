@@ -29,7 +29,8 @@
                             autostart: false, //not used???
                             playerCnt: 1,  //not used
                             typeMapping: [],
-                            language: 'en'
+                            language: 'en',
+                            session: null
                         };
                         db.collection('gameconfs').insertOne(self.conf, function(err, conf) {
                             if (err !== null) {

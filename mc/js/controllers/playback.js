@@ -6,14 +6,7 @@
             $scope.playback = Playback.playback;
             $scope.alert = Playback.alert;
             $scope.clock = Clock;
-            $scope.session = gameSessionsFactory;
-            // $scope.$watch('session', function() {
-            //     console.log('111 session change!');
-            // });
-            // $scope.$on('sessionChange', function() {
-            //     console.log('session change!');
-            //     $scope.session = gameSessionsFactory.currentSession;
-            // });
+            $scope.sessions = gameSessionsFactory;
         });
 
 })();
