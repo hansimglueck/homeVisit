@@ -1,17 +1,9 @@
 <div class="deal">
-    <div class="" ng-if="deal == null" translate>
-        This deal does not exist!
-    </div>
-    <div class="deal-details" ng-if="deal != null">
+    <div class="deal-details">
         <div class="deal-title" translate>Treaty</div>
 
         <div class="deal-content">
-            <div>
-                <player-icon class="player-icon-med" pid="deal.player0Id"></player-icon>
-                <i class="fa fa-2x fa-exchange"></i>
-                <player-icon class="player-icon-med" pid="deal.player1Id"></player-icon>
-            </div>
-
+            <deal-header pid0="status.player.playerId" pid1="playerId"></deal-header>
             <div class="deal-messages-outer1" ng-switch="getMyDealState()<3">
                 <div class="deal-messages-outer2" ng-switch-when="true">
                     <div class="deal-messages">

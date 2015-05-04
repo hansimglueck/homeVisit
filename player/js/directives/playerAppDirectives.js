@@ -30,6 +30,17 @@
                 templateUrl: 'views/player-icon.html'
             };
         })
+        .directive('dealHeader', function () {
+            return {
+                restrict: 'AE',
+                replace: 'true',
+                scope: {
+                    pid0: '=',
+                    pid1: '='
+                },
+                 templateUrl: 'views/deal-header.html'
+            };
+        })
         .directive('test', function ($compile) {
             return {
                 restrict: 'E',

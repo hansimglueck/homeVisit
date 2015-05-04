@@ -4,18 +4,16 @@
 
         <div class="deal-content">
             <deal-header pid0="status.player.playerId" pid1="playerId"></deal-header>
+            <div translate>Do you want to accept this treaty?</div>
             <ul class="list-unstyled wide-list">
                 <li>
-                    <button class="btn btn-primary" ng-click="requestDeal()">
-                        Request
-                    </button>
+                    <button class="btn btn-primary btn-lg" ng-click="confirm()" translate>Confirm</button>
                 </li>
                 <li>
-                    <a class="btn btn-danger" href="#/deal">
-                        Cancel
-                    </a>
+                    <button class="btn btn-danger btn-lg" ng-click="deny()" translate>Deny</button>
                 </li>
             </ul>
+
         </div>
     </div>
 </div>

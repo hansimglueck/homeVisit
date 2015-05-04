@@ -194,36 +194,34 @@
         //wenn es den deal noch nicht gibt im deal-array, dann füge ihn ein, sonst update ihn.
         //je nach state an .playerId0 oder .playerId1 schicken
         deal: function (clientId, deal) {
-            this.deals[deal.id] = deal;
-            this.players[deal.player0Id].deals[deal.id] = deal;
-            this.players[deal.player1Id].deals[deal.id] = deal;
-            switch (deal.state) {
-                case 1:
-                    this.sendMessage(deal.player1Id, "deal", deal);
-                    this.players[deal.player0Id].busy = true;
-                    this.players[deal.player1Id].busy = true;
+            switch (deal.status) {
+                case "request":
+                    if (deal.player1Id.busy) {
+                        this.sendMessage(player0Id, "deal", {status: "busy"});
+                    } else {
+                        var newDealId = require('hat')();
+                        deal.id = newDealId;
+                        this.deals[deal.id] = deal;
+                        this.players[deal.player0Id].busy = true;
+                        this.players[deal.player1Id].busy = true;
+                        this.sendMessage(deal.player0Id, "deal", deal);
+                        this.sendMessage(deal.player1Id, "deal", deal);
+                    }
                     break;
-                case 2:
-                    this.sendMessage(deal.player0Id, "deal", deal);
-                    this.players[deal.player0Id].busy = true;
-                    this.players[deal.player1Id].busy = true;
-                    break;
-                case 3:
-                    var value = deal.messages[deal.messages.length - 2].value;
-                    this.score(deal.player0Id, -value, deal.subject);
-                    this.score(deal.player1Id, value, deal.subject);
+                case "confirm":
+                    this.players[deal.player0Id].deals[deal.id] = deal;
+                    this.players[deal.player1Id].deals[deal.id] = deal;
                     this.sendMessage(deal.player0Id, "deal", deal);
                     this.sendMessage(deal.player1Id, "deal", deal);
                     this.sendGameEvent(deal.player0Id, deal.subject, deal.player1Id, "");
                     this.sendGameEvent(deal.player1Id, deal.subject, deal.player0Id, "");
-                    this.players[deal.player0Id].busy = true;
-                    this.players[deal.player1Id].busy = true;
                     break;
                 default:
-                    this.sendMessage(deal.player0Id, "deal", deal);
-                    this.sendMessage(deal.player1Id, "deal", deal);
+                case "deny":
                     this.players[deal.player0Id].busy = false;
                     this.players[deal.player1Id].busy = false;
+                    this.sendMessage(deal.player0Id, "deal", deal);
+                    this.sendMessage(deal.player1Id, "deal", deal);
                     break;
             }
             this.sendPlayerStatus(-1);
@@ -484,14 +482,14 @@
             var amount = item.positivePlayerIds.length;
             var winners = [winner];
             var self = this;
-            if (amount>3) {
+            if (amount > 3) {
                 //zwei gewinner
                 var id0 = item.positivePlayerIds.indexOf(winner);
-                var id1 = id0 + Math.floor(amount/2) % amount;
+                var id1 = id0 + Math.floor(amount / 2) % amount;
                 winners.push(item.positivePlayerIds[id1]);
             }
             console.log("and the winner is: " + winners);
-            winners.forEach(function(win){
+            winners.forEach(function (win) {
                 self.sendMessage(win, "fx", {type: "flashAndSound", color: "green", sound: "win", time: 2000});
             });
             item.positivePlayerIds.forEach(function (player) {

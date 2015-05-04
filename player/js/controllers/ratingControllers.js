@@ -44,7 +44,6 @@
                 }
             });
             $scope.confirm = function () {
-                Home.cancelCountdown();
                 Home.doneTask();
                 $scope.playerIds.forEach(function (playerId) {
                     Socket.emit("score", {playerId: playerId, score: $scope.score, reason: "rating", otherPlayerId:Status.player.playerId});

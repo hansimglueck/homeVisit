@@ -68,24 +68,28 @@
                              templateUrl: 'partials/voteFinished.html',
                              controller: 'VoteController'
                          }).
-                         when('/deals', {
-                             templateUrl: 'partials/deals/deal.html',
-                             controller: 'DealsController'
-                         }).
-                         when('/deals/new', {
-                             templateUrl: 'partials/deals/deal.chooseSubject.html',
-                             controller: 'ChooseDealSubjectController'
-                         }).
-                         when('/deals/new/:subject', {
+                         when('/deal', {
                              templateUrl: 'partials/deals/deal.choosePlayer.html',
                              controller: 'ChooseDealPlayerController'
                          }).
-                         when('/deals/new/:subject/:playerId', {
-                             templateUrl: 'partials/deals/deal.new.html',
-                             controller: 'NewDealController'
+                         when('/deal/messageSent/:playerId', {
+                             templateUrl: 'partials/deals/deal.messageSent.html',
+                             controller: 'DealDetailsController'
                          }).
-                         when('/deals/:id', {
-                             templateUrl: 'partials/deals/deal.details.html',
+                         when('/deal/new/:playerId', {
+                             templateUrl: 'partials/deals/deal.new.html',
+                             controller: 'DealDetailsController'
+                         }).
+                         when('/deal/answer/:playerId', {
+                             templateUrl: 'partials/deals/deal.answer.html',
+                             controller: 'DealDetailsController'
+                         }).
+                         when('/deal/wait/:playerId', {
+                             templateUrl: 'partials/deals/deal.wait.html',
+                             controller: 'DealDetailsController'
+                         }).
+                         when('/deal/finish/:playerId', {
+                             templateUrl: 'partials/deals/deal.finish.html',
                              controller: 'DealDetailsController'
                          }).
                          when('/sound', {

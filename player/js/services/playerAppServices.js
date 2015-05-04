@@ -16,6 +16,8 @@
 
             homeFactory.doneTask = function () {
                 homeFactory.done = true;
+                homeFactory.cancelCountdown();
+
                 console.log(homeFactory.done);
             };
 
@@ -95,7 +97,7 @@
                         homeFactory.done = false;
                     }
                     console.log("new display: " + data.type);
-                    fxService.cancelCountdown();
+                    homeFactory.cancelCountdown();
                     homeFactory.labels = [];
                     if (data) {
                         homeFactory.text = data.text;
@@ -248,7 +250,6 @@
                     }
                 }
                 $location.path("/results");
-                return;
             }
 
             function showVote(data) {
@@ -302,12 +303,7 @@
                 homeFactory.type = "deal";
                 homeFactory.time = parseInt(data.time);
                 homeFactory.timedVote(homeFactory.freeze);
-                var dealType = "";
-                if (typeof data.dealType !== "undefined") {
-                    dealType = data.dealType;
-                }
-                //DealFactory.subject = dealType;
-                $location.path('/deals/new/' + dealType);
+                $location.path('/deal');
             }
 
             return homeFactory;
@@ -570,124 +566,54 @@
             };
             return fxService;
         })
-        .factory('DealFactory', function (Socket, Status, rfc4122, $location, Home) {
-            // deal.states entspricht ["just opened", "waiting for answer", "have to reply", "confirmed", "denied"]
+        .factory('DealFactory', function (Socket, Status, $location, Home, gettextCatalog) {
             var dealFactory = {};
-            dealFactory.deals = {};
-            dealFactory.subject = "insurance";
-            dealFactory.busy = false;
-            Socket.on('deal', function (deal) {
-                if (dealFactory.busy) {
-                    dealFactory.sendMessage(deal, {type: "deny"});
-                }
-                if (dealFactory.deals.hasOwnProperty(deal.id)) {
-                    if (deal.state === 3) {
-                        Home.cancelCountdown();
-                    }
-                    dealFactory.deals[deal.id].state = parseInt(deal.state);
-                    dealFactory.deals[deal.id].messages = deal.messages;
-                }
-                else {
-                    dealFactory.deals[deal.id] = deal;
-                }
-                $location.path("/deals/" + deal.id);
-            });
-            Socket.on('dealStatus', function (deals) {
-                console.log("dealStatus coming in");
-                var activeDealId = -1;
-                for (var dealId in deals) {
-                    if (deals.hasOwnProperty(dealId)) {
-                        if (dealFactory.deals.hasOwnProperty(dealId)) {
-                            dealFactory.deals[dealId].state = deals[dealId].state;
-                            dealFactory.deals[dealId].messages = deals[dealId].messages;
+            dealFactory.deal = {
+                id: ""
+            };
+            dealFactory.message = "";
+
+            Socket.on("deal", function(deal){
+                switch (deal.status) {
+                    case "request":
+                        dealFactory.deal = deal;
+                        if (parseInt(deal.player0Id) === Status.player.playerId) {
+                            $location.path("/deal/wait/"+deal.player1Id);
+                        } else {
+                            $location.path("/deal/answer/"+deal.player0Id);
                         }
-                        else {
-                            dealFactory.deals[dealId] = deals[dealId];
+                        break;
+                    case "confirm":
+                        Home.doneTask();
+                        if (parseInt(deal.player0Id) === Status.player.playerId) {
+                            $location.path("/deal/finish/"+deal.player1Id);
+                        } else {
+                            $location.path("/deal/finish/"+deal.player0Id);
                         }
-                        if (deals[dealId].state <= 2) {
-                            console.log("set activDeal");
-                            activeDealId = dealId;
-                        }
-                    }
-                }
-                if (activeDealId !== -1) {
-                    $location.path("/deals/" + activeDealId);
+                        break;
+                    case "deny":
+                        dealFactory.message = gettextCatalog.getString("The deal was denied");
+                        $location.path("/deal");
+                        break;
+                    case "busy":
+                        dealFactory.message = gettextCatalog.getString("The other player is busy");
+                        $location.path("/deal");
+                        break;
                 }
             });
-
-            dealFactory.addDeal = function (subject, player1Id) {
-                console.log("new Deal");
-                var added = {
-                    id: rfc4122.v4(),
-                    subject: subject,
-                    player0Id: Status.player.playerId,
-                    player1Id: player1Id,
-                    state: 0,
-                    messages: [],
-                    maxMessages: 2
-                };
-                dealFactory.deals[added.id] = added;
-                return added.id;
+            dealFactory.requestDeal = function(playerId) {
+                console.log("request deal with "+playerId);
+                Socket.emit("deal", {player0Id: Status.player.playerId, player1Id:playerId, status: "request"});
             };
-            dealFactory.deleteDeal = function (deal) {
-                console.log("delete deal " + deal.id);
-                delete dealFactory.deals[deal.id];
-                $location.path("/deals/new");
+            dealFactory.confirm = function() {
+                console.log("comfirm deal");
+                dealFactory.deal.status = "confirm";
+                Socket.emit("deal", dealFactory.deal);
             };
-            dealFactory.sendMessage = function (deal, message) {
-                //wenn gecancelled wird: deal löschen ODER wenn er schon state > 0 auch eine deny-message machen
-                if (message.type === "cancel") {
-                    if (deal.state === 0) {
-                        dealFactory.deleteDeal(deal);
-                        return;
-                    }
-                    else {
-                        message.type = "deny";
-                    }
-                }
-
-                //wenn der value einer request-message gleich dem value der letzten message im deal ist, wird ein confirm daraus gemacht
-                if (message.type === "request" &&
-                    deal.messages.length > 0 &&
-                    message.value === deal.messages[deal.messages.length - 1].value) {
-                    message.type = "confirm";
-                }
-
-                deal.messages.push({
-                    playerId: Status.player.playerId,
-                    type: message.type,
-                    value: message.value
-                });
-                if (message.type === "confirm") {
-                    deal.state = 3;
-                    Home.cancelCountdown();
-                }
-                if (message.type === "deny") {
-                    deal.state = 4;
-                }
-                if (deal.state == 0 || deal.state == 2) {
-                    deal.state = 1;
-                }
-                else if (deal.state == 1) {
-                    deal.state = 2;
-                }
-                Socket.emit("deal", deal);
-            };
-
-            dealFactory.getMyDealState = function (deal) {
-                if (deal === null) {
-                    return 0;
-                }
-                var myState = deal.state;
-                if (deal.player1Id == Status.player.playerId) {
-                    if (deal.state == 1) {
-                        myState = 2;
-                    }
-                    if (deal.state == 2) {
-                        myState = 1;
-                    }
-                }
-                return myState;
+            dealFactory.deny = function() {
+                console.log("deny deal");
+                dealFactory.deal.status = "deny";
+                Socket.emit("deal", dealFactory.deal);
             };
             return dealFactory;
         });
