@@ -63,6 +63,16 @@
             var self = this;
             wsManager.msgDeviceByIds([clientId], "gameConf", {startDeckId: self.conf.startDeckId});
         },
+        gameSessionsRequest: function(clientId, role) {
+            mongoConnection(function (db) {
+                db.collection('sessions').find().toArray(function(err, sessions) {
+                    if (err !== null) {
+                        throw new Error(err.stack);
+                    }
+                    wsManager.msgDeviceByIds([clientId], 'gameSessions', sessions);
+                });
+            });
+        },
         languageRequest: function(clientId, role) {
             wsManager.msgDeviceByIds([clientId], 'languageChange', {
                 language: this.conf.language

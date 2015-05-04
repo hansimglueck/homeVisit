@@ -11,6 +11,7 @@
     var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
     var gameConf = require('./gameConf');
     var gameClock = require('./clock');
+    var gameRecording = require('./gameRecording');
 
 
     function Game() {
@@ -23,6 +24,7 @@
         this.sequence = null;
         this.alertState = 0;    //0: Alarmstufe off,  1: Alarmstufe an, 2: Alarmstufe blink
         this.clock = gameClock;
+        this.recording = gameRecording;
     }
 
     Game.prototype = {
@@ -143,6 +145,7 @@
             }
             var g = this;
             this.clock.reset();
+            this.recording.start();
             mongoConnection(function (db) {
                 db.collection('decks').find({}).toArray(function (err, decks) {
                     if (err) {

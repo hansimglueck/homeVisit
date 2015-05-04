@@ -531,6 +531,30 @@
         };
 
         return clockFactory;
+    })
+
+    .factory('gameSessionsFactory', function(Socket) {
+
+        Socket.on('gameSessions', function(sessions) {
+            gameSessionsFactory.sessions = sessions;
+        });
+
+        var gameSessionsFactory = {
+            sessions: [],
+            currentSession: null,
+            currentSessionName: null
+        };
+
+        gameSessionsFactory.getSessionName = function(id) {
+            for (var i = 0; i < gameSessionsFactory.sessions.length; i++) {
+                var s = gameSessionsFactory.sessions[i];
+                if (s._id === id) {
+                    return s.date + ' ' + s.time + ' ' + s.bezirk + ' ' + s.city;
+                }
+            }
+        };
+
+        return gameSessionsFactory;
     });
 
 })();

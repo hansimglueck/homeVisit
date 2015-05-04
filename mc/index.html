@@ -33,8 +33,13 @@
                     <li ng-class="{active: isActive('/matching')}">
                         <a ng-href="#/matching" translate>Matching</a>
                     </li>
-                    <li ng-class="{active: isActive('/maintenance')}">
-                        <a ng-href="#/maintenance" translate>Maintenance</a>
+                    <li ng-class="{active: isActive('/settings')}">
+                        <a ng-href="#/settings" translate>Settings</a>
+                    </li>
+                    <li ng-controller="PlaybackCtrl">
+                        <p ng-if="!session.currentSession" class="navbar-text session-warning" transate>
+                            Select game session!
+                        </p>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-controller="PlaybackCtrl" ng-hide="isActive('/players')">

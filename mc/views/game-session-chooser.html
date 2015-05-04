@@ -1,0 +1,8 @@
+<div class="form-group">
+    <label translate>Game session</label>
+    <select class="form-control"
+            ng-model="sessions.currentSession"
+            ng-options="s._id as sessions.getSessionName(s._id) for s in sessions.sessions"
+            ng-change="setSession()">
+    </select>
+</div>

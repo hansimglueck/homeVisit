@@ -40,6 +40,7 @@
 
     var gameConf = require('../game/gameConf.js');
     wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
+    wsManager.onType('getGameSessions', gameConf, gameConf.gameSessionsRequest);
     wsManager.onType('getLanguage', gameConf, gameConf.languageRequest);
     wsManager.onType('changeLanguage', gameConf, gameConf.changeLanguage);
 
