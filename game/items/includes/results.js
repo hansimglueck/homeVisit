@@ -52,7 +52,7 @@
                             score = -1;
                             vote.choice.forEach(function (ch) {
                                 if (correct.indexOf(ch) !== -1) {
-                                    score = 1;
+                                    score = 2;
                                 }
                             });
                             // TODO translation
@@ -63,12 +63,15 @@
                         //checke, welche votes die voteOption[0] der results (sortiert) in der choice haben
                         //und verteile +1 dafür, -1 für die anderen
                         //TODO: bei zwei gleichguten Antworten wird nur eine berücksichtigt...
-                        best = this.data.voteOptions[0].value;
+                        best = [this.data.voteOptions[0].value];
+                        if (this.data.voteOptions[0].votes === this.data.voteOptions[1].votes) {
+                            best.push(this.data.voteOptions[1].value);
+                        }
                         this.data.votes.forEach(function (vote) {
                             score = -1;
                             vote.choice.forEach(function (ch) {
-                                if (best === ch) {
-                                    score = 1;
+                                if (best.indexOf(ch)>-1) {
+                                    score = 2;
                                 }
                             });
                             // TODO translation

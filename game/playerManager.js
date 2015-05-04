@@ -481,11 +481,21 @@
         },
 
         finishRoulette: function (item, winner) {
-            console.log("and the winner is: " + winner);
-            this.sendMessage(winner, "fx", {type: "flashAndSound", color: "green", sound: "win", time: 2000});
+            var amount = item.positivePlayerIds.length;
+            var winners = [winner];
             var self = this;
+            if (amount>3) {
+                //zwei gewinner
+                var id0 = item.positivePlayerIds.indexOf(winner);
+                var id1 = id0 + Math.floor(amount/2) % amount;
+                winners.push(item.positivePlayerIds[id1]);
+            }
+            console.log("and the winner is: " + winners);
+            winners.forEach(function(win){
+                self.sendMessage(win, "fx", {type: "flashAndSound", color: "green", sound: "win", time: 2000});
+            });
             item.positivePlayerIds.forEach(function (player) {
-                if (player === winner) {
+                if (winners.indexOf(player) > -1) {
                     self.score(player, item.win, "roulette");
                 }
                 else {

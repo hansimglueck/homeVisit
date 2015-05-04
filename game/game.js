@@ -98,6 +98,8 @@
             this.alertState %= 3;
             var self = this;
             var recipients = gameConf.getOption("alertRecipients").split(",");
+            console.log("alertRecipients:");
+            console.log(recipients);
 
             recipients.forEach(function(recipient) {
                 recipient = recipient.trim();
