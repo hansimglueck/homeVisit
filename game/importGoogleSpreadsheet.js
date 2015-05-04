@@ -38,6 +38,8 @@
         'voteOptions',
         'techNotes',
         'website',
+        'id_website',
+        'answer_type',
         // translation fields
         'text_en',
         'mcnote_en',
