@@ -4,6 +4,7 @@
     var Q = require('q');
     var gameConf = require('../gameConf');
     var gameClock = require('../clock');
+    var gameRecording = require('../gameRecording');
     var wsManager = require('../wsManager.js');
     var playerManager = require('../playerManager.js');
     var _ = require('underscore');
@@ -311,6 +312,7 @@
                 this.log("ERROR in execute: "+ e.message);
                 this.log(e.stack);
             }
+            gameRecording.go(this);
             //checken, wie der nächste step getriggert wird
             if (this.next !== null) {
                 if (this.next.trigger === "follow") {

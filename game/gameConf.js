@@ -29,7 +29,8 @@
                             autostart: false, //not used???
                             playerCnt: 1,  //not used
                             typeMapping: [],
-                            language: 'en'
+                            language: 'en',
+                            session: null
                         };
                         db.collection('gameconfs').insertOne(self.conf, function(err, conf) {
                             if (err !== null) {
@@ -62,6 +63,36 @@
         confRequest: function(clientId, role, message) {
             var self = this;
             wsManager.msgDeviceByIds([clientId], "gameConf", {startDeckId: self.conf.startDeckId});
+        },
+        gameSessionsRequest: function(clientId, role) {
+            var self = this;
+            mongoConnection(function (db) {
+                db.collection('sessions').find().toArray(function(err, sessions) {
+                    if (err !== null) {
+                        throw new Error(err.stack);
+                    }
+                    wsManager.msgDeviceByIds([clientId], 'gameSessions', {
+                        currentSession: self.conf.session,
+                        sessions: sessions
+                    });
+                });
+            });
+        },
+        setGameSession: function(clientId, role, data) {
+            var sessionId = data.data, self = this;
+            mongoConnection(function (db) {
+                db.collection('gameconfs').updateOne(
+                    { _id: self.conf._id },
+                    { $set: { session: sessionId } }, {},
+                    function(err, conf) {
+                        if (err !== null) {
+                            throw new Error(err.stack);
+                        }
+                        self.conf.session = sessionId;
+                        console.log('Setting session to: %s'.format(sessionId));
+                    }
+                );
+            });
         },
         languageRequest: function(clientId, role) {
             wsManager.msgDeviceByIds([clientId], 'languageChange', {

@@ -34,12 +34,15 @@
     wsManager.onType("playbackAction", game, game.trigger);
     wsManager.onType("alert", game, game.alert);
     wsManager.onType("register", game, game.sendPlayBackStatus);
+    wsManager.onType("pollResults", game, game.pollResults);
 
     var raspiTools = require('../game/raspiTools.js');
     wsManager.onRole("master", raspiTools, raspiTools.newMessage);
 
     var gameConf = require('../game/gameConf.js');
     wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
+    wsManager.onType('getGameSessions', gameConf, gameConf.gameSessionsRequest);
+    wsManager.onType('setGameSession', gameConf, gameConf.setGameSession);
     wsManager.onType('getLanguage', gameConf, gameConf.languageRequest);
     wsManager.onType('changeLanguage', gameConf, gameConf.changeLanguage);
 

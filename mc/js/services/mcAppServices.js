@@ -301,7 +301,7 @@
 
             return playerNamesFactory;
         })
-        .factory('Deck', function(Socket, setFactory, $interval){
+        .factory('Deck', function(Socket, setFactory, $interval, Polls, PlayerNames){
             var playbackStatus = {stepIndex: -1, type:"nix", deckId: null};
             // var deck = null;
             var deckFactory = {
@@ -317,6 +317,8 @@
             deckFactory.get = function(index) {
                 return deckFactory.deck.items[index];
             };
+
+            var pollDataSent = false;
 
             deckFactory.start = function() {
                 Socket.on("playBackStatus", function(status) {
@@ -341,6 +343,23 @@
                     deckFactory.nextJump = status.nextJump;
                     console.log("next Jump = "+deckFactory.nextJump);
                     deckFactory.clockSeconds = playbackStatus.clockSeconds;
+
+                    // send poll data to mc when printer phase is over
+                    // 81: last printed card
+                    if (!pollDataSent && deckFactory.stepIndex === 81) {
+                        pollDataSent = true;
+                        var defaultNames = PlayerNames.getNames();
+                        var customNames = PlayerNames.customPlayerNames;
+                        var playerNames = [];
+                        defaultNames.forEach(function(name, i) {
+                            playerNames.push(customNames[i] || name);
+                        });
+                        var data = {
+                            playerNames: playerNames,
+                            answers: Polls.polls
+                        };
+                        Socket.emit('pollResults', data);
+                    }
                 });
             };
 
@@ -533,6 +552,32 @@
         };
 
         return clockFactory;
+    })
+
+    .factory('gameSessionsFactory', function(Socket) {
+
+        var gameSessionsFactory = {
+            sessions: [],
+            currentSession: null
+        };
+
+        gameSessionsFactory.getSessionName = function(id) {
+            for (var i = 0; i < gameSessionsFactory.sessions.length; i++) {
+                var s = gameSessionsFactory.sessions[i];
+                if (s._id === id) {
+                    return s.date + ' ' + s.time + ' ' + s.bezirk + ' ' + s.city;
+                }
+            }
+        };
+
+        Socket.on('gameSessions', function(data) {
+            gameSessionsFactory.sessions = data.sessions;
+            if (typeof data.currentSession !== 'undefined' && data.currentSession !== null) {
+                gameSessionsFactory.currentSession = data.currentSession;
+            }
+        });
+
+        return gameSessionsFactory;
     });
 
 })();
