@@ -232,6 +232,7 @@
                     try {
                         cb.fn.call(cb.self, ws.clientId, ws.role, msg);
                     } catch (e) {
+                        console.log('ws.clientId, ws.role, msg',ws.clientId, ws.role, msg);
                         console.log("ERROR in wsManager.applyTypeCallback: " + e.stack);
                     }
                 }

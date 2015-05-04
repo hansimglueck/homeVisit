@@ -74,6 +74,21 @@
                 });
             });
         },
+        setGameSession: function(clientId, role, data) {
+            var sessionId = data.data, self = this;
+            mongoConnection(function (db) {
+                db.collection('gameconfs').updateOne(
+                    { _id: self.conf._id },
+                    { $set: { session: sessionId } }, {},
+                    function(err, conf) {
+                        if (err !== null) {
+                            throw new Error(err.stack);
+                        }
+                        console.log('Setting session to: %s'.format(sessionId));
+                    }
+                );
+            });
+        },
         languageRequest: function(clientId, role) {
             wsManager.msgDeviceByIds([clientId], 'languageChange', {
                 language: this.conf.language
