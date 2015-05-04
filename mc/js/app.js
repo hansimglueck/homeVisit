@@ -22,7 +22,8 @@ angular
         'hvItemOptions',
         'hvLanguage',
         'angularModalService',
-        'gettext'
+        'gettext',
+        'chart.js'
     ])
     .config(function ($routeProvider) {
         $routeProvider
@@ -61,16 +62,21 @@ angular
                 templateUrl: '/mc/views/maintenance.html',
                 controller: 'PlaybackCtrl'
             })
+            .when('/results', {
+                templateUrl: '/mc/views/results.html',
+                controller: 'ResultsController'
+            })
             .otherwise({
                 redirectTo: '/'
             });
     })
-    .run(function (Socket, Status, Deck, gettextCatalog) {
+    .run(function (Socket, Status, Deck, TeamActionInfo, gettextCatalog) {
         Socket.connect('MC', function() {
             Socket.emit('getLanguage');
         });
         Status.start();
         Deck.start();
+        TeamActionInfo.start();
         Socket.on('languageChange', function (data) {
             gettextCatalog.setCurrentLanguage(data.language);
         });

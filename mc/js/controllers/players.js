@@ -108,7 +108,8 @@ angular.module('homeVisitMCApp')
             Socket.emit("score", {playerId: id, score: val, reason: 'mc'});
         };
     })
-    .controller("ResultsController", function ($scope, Socket) {
+    .controller("ResultsController", function ($scope, Socket, TeamActionInfo) {
 
         $scope.socket = Socket;
+        $scope.teamActionInfo = TeamActionInfo;
     });

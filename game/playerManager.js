@@ -306,8 +306,8 @@
                         break;
                     case "results":
                         this.deliverMessage(device, "display", item.getWsContent());
-                        wsManager.msgDevicesByRole('MC', 'results', item.getWsContent());
-                        console.log("RESULTS GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        //wsManager.msgDevicesByRole('MC', 'results', item.getWsContent());
+                        //console.log("RESULTS GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                         //this.results(item);
                         break;
                     case "eval":

@@ -334,28 +334,112 @@ angular.module('mcAppServices', [])
         };
         return deckFactory;
     })
-    .factory('TeamActionInfo', function(Socket, gettext, ModalService) {
+    .factory('TeamActionInfo', function(Socket, gettext, ModalService, gettextCatalog, playerColors) {
         var teamActionInfo = {};
         
         teamActionInfo.actionInfo = [
             '','','','','','','',''
         ];
         
-        Socket.on("startvote", function(info) {
-            console.log("STARTVOTE EMPFANGEN");
-            for (var i = 0; i < teamActionInfo.actionInfo.length; i++) {
-                teamActionInfo.actionInfo[i] = gettext("waiting ...");
+        teamActionInfo.start = function () {
+            Socket.on('display', function (data) {
+                //teamActionInfo.labels = [];
+                if (data) {
+                    teamActionInfo.displayData = data;
+                    if (data.type) {
+                        if (data.type == "results") {
+                            
+                            showResults(data);
+                        }
+                        //$location.path('/home');
+
+                    }
+                }
+            });
+            
+            Socket.on("startvote", function(msg) {
+                console.log("STARTVOTE EMPFANGEN");
+                for (var i = 0; i < teamActionInfo.actionInfo.length; i++) {
+                    teamActionInfo.actionInfo[i] = gettext("waiting ...");
+                }
+            });
+            
+            Socket.on("vote", function(msg) {
+                console.log("VOTE EMPFANGEN");
+                //console.log(msg);
+                teamActionInfo.actionInfo[msg.playerId] = gettext("Voted for: ") + msg.text[0];
+            });
+            
+
+            
+            Socket.on("card", function(msg) {
+                console.log("CARD EMPFANGEN");
+                for (var i = 0; i < teamActionInfo.actionInfo.length; i++) {
+                    teamActionInfo.actionInfo[i] = '';
+                }
+            });
+            
+        };
+        
+        function showResults(data) {
+            var resultType = data.resultType;
+            var result = data.data;
+            
+            console.log(resultType);
+            console.log(result);
+
+            var labels = [];
+            var resData = [];
+            var labels2 = [];
+            teamActionInfo.correctAnswer = "";
+            teamActionInfo.ratedVote = result.ratedVote;
+            //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
+            if (resultType == "numberStats") {
+                //send stats as array: [sum, avg]
+                resData = [result.sum, result.average, result.minVal, result.maxVal];
             }
-        });
-        
-        Socket.on("vote", function(msg) {
-            console.log("VOTE EMPFANGEN");
-            //console.log(msg);
-            teamActionInfo.actionInfo[msg.playerId] = gettext("Voted for: ") + msg.text[0];
-        });
-        
-        Socket.on("results", function(info) {
-            console.log("RESULT EMPFANGEN");
+            else result.voteOptions.forEach(function (option) {
+                if (option.correctAnswer) teamActionInfo.correctAnswer = option.text;
+                if (data.data.dataSource == "positivePlayerScore") {
+                    labels.push(option.playercolor + ': ' + option.percent + '% (' + option.result + ' ' + gettextCatalog.getPlural(option.result, 'point', 'points') + ')');
+                } else {
+                    var t;
+                    if (option.text.length > 20) {
+                        t = option.text.substr(0, 20) + '...';
+                    }
+                    else {
+                        t = option.text;
+                    }
+                    labels.push(t + ': ' + option.percent + '% (' + option.votes + ' ' + gettextCatalog.getPlural(option.votes, 'vote', 'votes') + ')');
+                }
+                if (resultType == "europeMap") resData.push({
+                    id: option.value,
+                    val: option.percent
+                });
+                else resData.push(option.result);
+            });
+            if (resultType === "firstVote") {
+                resData = result.votes[0].playerId;
+                console.log(resData);
+            }
+            
+            teamActionInfo.resultType = resultType;
+            
+            console.log("TYPE: " + teamActionInfo.resultType);
+            
+            (teamActionInfo.resultType == 'Bar' || teamActionInfo.resultType == 'Line') ? teamActionInfo.data = [resData] : teamActionInfo.data = resData;
+            teamActionInfo.labels = labels;
+            teamActionInfo.votelast = "result";
+            teamActionInfo.type = "result";
+            if (data.resultColors) {
+                if (data.resultColors == "playerColors") {
+                    teamActionInfo.resultColors = [];
+                    result.voteOptions.forEach(function (option) {
+                        teamActionInfo.resultColors.push(playerColors[option.value]);
+                    });
+                }
+            }
+            
             // Just provide a template url, a controller and call 'showModal'.
             ModalService.showModal({
                 templateUrl: "views/results.html",
@@ -366,15 +450,8 @@ angular.module('mcAppServices', [])
                 // it as you need to.
                 modal.element.modal();
             });
-        });
-        
-        Socket.on("card", function(info) {
-            console.log("CARD EMPFANGEN");
-            for (var i = 0; i < teamActionInfo.actionInfo.length; i++) {
-                teamActionInfo.actionInfo[i] = '';
-            }
-        });
-        
+
+        };
         
         return teamActionInfo;
     })
