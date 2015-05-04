@@ -25,7 +25,8 @@
                 posNeg: this.posNeg,
                 playerId: bestWorst,
                 silent: this.silent,
-                text: this.text[lang]
+                text: this.text[lang],
+                time: this.time
             };
         }
     };

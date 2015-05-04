@@ -1,4 +1,5 @@
-'use strict';
+(function() {
+    'use strict';
 
 /**
  * @ngdoc overview
@@ -72,12 +73,14 @@ angular
     })
     .run(function (Socket, Status, Deck, TeamActionInfo, gettextCatalog) {
         Socket.connect('MC', function() {
-            Socket.emit('getLanguage');
+                Socket.emit('getLanguage');
+            });
+            Status.start();
+            Deck.start();
+            TeamActionInfo.start();
+            Socket.on('languageChange', function (data) {
+                gettextCatalog.setCurrentLanguage(data.language);
+            });
         });
-        Status.start();
-        Deck.start();
-        TeamActionInfo.start();
-        Socket.on('languageChange', function (data) {
-            gettextCatalog.setCurrentLanguage(data.language);
-        });
-    });
+
+})();

@@ -14,7 +14,8 @@
                 text: this.text[lang],
                 silent: this.silent,
                 dealType: this.dealType,
-                maxSteps: this.maxSteps
+                maxSteps: this.maxSteps,
+                time: this.time
             };
         },
         finishItem: function() {
