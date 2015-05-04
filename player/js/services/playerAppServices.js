@@ -342,7 +342,7 @@
             });
 
             Socket.on('status', function (data) {
-                console.log(data);
+                //console.log(data);
                 if (data.otherPlayers) {
                     statusFactory.otherPlayers = data.otherPlayers;
                     statusFactory.player.score = data.otherPlayers[statusFactory.player.playerId].score;

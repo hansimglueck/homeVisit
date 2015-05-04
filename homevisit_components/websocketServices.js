@@ -82,7 +82,8 @@
                 var now = d.getTime();
                 console.log("client lost connection " + (now - lastPong));
                 server.connected = false;
-                // $rootScope.$broadcast("disconnected");
+                //wenn das hier raus soll, bitte eine andere lösung finden, dass der player grau wird, wenn die verbindung closed
+                $rootScope.$broadcast("disconnected");
                 if (really) {
                     $timeout(function () {
                         started = false;
