@@ -6,7 +6,7 @@
     var wsManager = require('../wsManager');
 
     var Poll = function (item) {
-        //if (typeof item == "undefined") return;
+        if (typeof item == "undefined") return;
         this.votes = [];            //Objekte mit Eigenschaften .multiplier, .playerId, .choice (array of ids bei optionpoll, number bei numberPoll
         this.voteCount = 0;
         this.invalidVotes = 0;

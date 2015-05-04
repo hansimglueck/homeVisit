@@ -181,7 +181,7 @@
                 var itemRequire = {};
                 try {
                     itemRequire = require('./includes/' + this.type);
-                    console.log(require('./includes/' + this.type));
+                    //console.log(require('./includes/' + this.type));
                 } catch (e) {
                     itemRequire = require('./includes/default');
                 }

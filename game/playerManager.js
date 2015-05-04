@@ -535,12 +535,17 @@
             var ret;
             var self = this;
             var inverse = false;
+            var param;
             if (typeof identifier === 'undefined') {
                 return;
             }
             if (identifier.indexOf("!") === 0) {
                 inverse = true;
                 identifier = identifier.substring(1);
+            }
+            if (identifier.indexOf("rank") == 0) {
+                param = parseInt(identifier.substring(4));
+                identifier = identifier.substring(0, 4);
             }
             switch (identifier) {
                 case "act":
@@ -577,6 +582,11 @@
                     return this.players.filter(function (player) {
                         return player.joined;
                     });
+                case "rank":
+                    return this.players.filter(function (player) {
+                        return player.rank === param ^ inverse;
+                    });
+                    break;
                 default:
                 case "all":
                     ret = this.players;
