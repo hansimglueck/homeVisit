@@ -39,7 +39,7 @@
             }
             $scope.traitor = false;
             $scope.playerIds.forEach(function (pid) {
-                if ($scope.score < 0 && Status.getAllied().indexOf(parseInt(pid) !== -1)) {
+                if ($scope.score < 0 && Status.getAllied().indexOf(parseInt(pid)) !== -1) {
                     $scope.traitor = true;
                 }
             });
