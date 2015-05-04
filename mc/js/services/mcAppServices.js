@@ -343,7 +343,9 @@
             };
 
             $interval(function() {
-                deckFactory.clockSeconds += 1;
+                if (deckFactory.stepIndex > 0) {
+                    deckFactory.clockSeconds += 1;
+                }
             }, 1000);
 
             return deckFactory;
