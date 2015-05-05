@@ -197,8 +197,8 @@
         deal: function (clientId, deal) {
             switch (deal.status) {
                 case "request":
-                    if (deal.player1Id.busy) {
-                        this.sendMessage(player0Id, "deal", {status: "busy"});
+                    if (this.players[deal.player1Id].busy) {
+                        this.sendMessage(deal.player0Id, "deal", {status: "busy"});
                     } else {
                         var newDealId = require('hat')();
                         deal.id = newDealId;
@@ -215,8 +215,8 @@
                     this.players[deal.player1Id].deals[deal.id] = deal;
                     this.sendMessage(deal.player0Id, "deal", deal);
                     this.sendMessage(deal.player1Id, "deal", deal);
-                    this.sendGameEvent(deal.player0Id, deal.subject, deal.player1Id, "");
-                    this.sendGameEvent(deal.player1Id, deal.subject, deal.player0Id, "");
+                    this.sendGameEvent(deal.player0Id, "insurance", deal.player1Id, "");
+                    this.sendGameEvent(deal.player1Id, "insurance", deal.player0Id, "");
                     break;
                 default:
                 case "deny":
