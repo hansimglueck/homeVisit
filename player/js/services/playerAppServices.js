@@ -211,13 +211,13 @@
                                 console.warn('option.text is null!');
                                 return;
                             }
-                            if (option.text.length > 20) {
-                                t = option.text.substr(0, 20) + '...';
+                            if (option.text.length > 100) {
+                                t = option.text.substr(0, 100) + '...';
                             }
                             else {
                                 t = option.text;
                             }
-                            labels.push(t + ': ' + option.percent + '% (' + option.votes + ' ' + gettextCatalog.getPlural(option.votes, 'vote', 'votes') + ')');
+                            labels.push(t + ' <br/><strong>' + option.percent + '% (' + option.votes + ' ' + gettextCatalog.getPlural(option.votes, 'vote', 'votes') + ')</strong>');
                         }
                         if (resultType === "europeMap") {
                             resData.push({

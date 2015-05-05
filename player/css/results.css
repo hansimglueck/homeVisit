@@ -46,6 +46,10 @@ chart-legend {
     flex: 1 1 auto;
 }
 
+ul {
+    padding-left: 10px;
+}
+
 
 .chart-container .pie-legend {
      text-align: left;
