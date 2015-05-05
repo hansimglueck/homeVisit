@@ -176,6 +176,41 @@
         getNext: function () {
             return this.next;
         },
+        getNextJump: function() {
+            if (this.done && this.next !== null) {
+                return this.next.getNextJump();
+            }
+            if (this.jump) {
+                return this.index;
+            }
+            else {
+                if (this.next !== null) {
+                    return this.next.getNextJump();
+                }
+            }
+            return null;
+        },
+        jumpStep: function(param) {
+            if (!this.done) {
+                if (this.previous !== null) {
+                    this.previous.finish();
+                }
+                if (this.jump) {
+                    this.step(param);
+                }
+                else {
+                    this.done = true;
+                    if (this.next !== null) {
+                        this.next.jumpStep(param);
+                    }
+                }
+            }
+            else {
+                if (this.next !== null) {
+                    this.next.jumpStep(param);
+                }
+            }
+        },
         //falls nötig, kann dem step etwas param mitgegeben werden - zB der index eines go-buttons
         step: function (param) {
             if (!this.done) {
@@ -326,7 +361,8 @@
                     stepIndex: this.index,
                     type: this.type,
                     deckId: gameConf.conf.startDeckId,
-                    clockSeconds: gameClock.getCurrentSeconds()
+                    clockSeconds: gameClock.getCurrentSeconds(),
+                    nextJump: this.getNextJump()
                 };
                 wsManager.msgDevicesByRole('master', 'playBackStatus', playbackStatus);
                 wsManager.msgDevicesByRole('MC', 'playBackStatus', playbackStatus);

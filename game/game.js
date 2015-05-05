@@ -65,6 +65,16 @@
                         this.step(param);
                         break;
 
+                    case "jump":
+                        if (this.alertState !== 0) {
+                            this.alertState = 2;
+                            this.alert();
+                        }
+                        if (this.sequence !== null) {
+                            this.sequence.jumpStep(parseInt(param));
+                        }
+                        break;
+
                     case "rego":
                         console.log('rego');
                         if (this.sequence !== null) {

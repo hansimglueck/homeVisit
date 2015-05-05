@@ -1,7 +1,7 @@
 <li class="list-group-item game_sequence_item game_sequence_item_current">
     <div class="header" ng-if="getIndex() >= 0 && getIndex() < deck.stepCount">
-        <button class="btn btn-default" ng-click="playback('back')" ng-if="isPrevious()" translate>BACK</button>
-        <button class="btn btn-default" ng-click="playback('rego')" ng-if="isCurrent()">REGO</button>
+        <button class="btn btn-default" ng-click="playback('back','0')" ng-if="isPrevious()" translate>BACK</button>
+        <button class="btn btn-default" ng-click="playback('rego','0')" ng-if="isCurrent()">REGO</button>
         <button class="btn btn-success" ng-click="playback('go','0')" ng-if="isNext()">GO</button>
         <label class="sequence-type">{{ getItem().type }}</label>
         <button class="btn btn-warning btn-skip pull-right" ng-click="playback('goto',skipStep())" ng-if="isNext()">SKIP</button>

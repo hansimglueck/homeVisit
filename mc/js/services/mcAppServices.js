@@ -312,6 +312,7 @@
                 previous: null,
                 next: null
             };
+            deckFactory.nextJump = null;
 
             deckFactory.get = function(index) {
                 return deckFactory.deck.items[index];
@@ -337,7 +338,8 @@
                     deckFactory.current = deck.items[stepIndex];
                     deckFactory.previous = deck.items[stepIndex - 1];
                     deckFactory.next = deck.items[stepIndex + 1];
-
+                    deckFactory.nextJump = status.nextJump;
+                    console.log("next Jump = "+deckFactory.nextJump);
                     deckFactory.clockSeconds = playbackStatus.clockSeconds;
                 });
             };
