@@ -314,7 +314,7 @@
             this.clients.forEach(function each(client) {
                 if (client.role === role &&
                     client.connected &&
-                    client.name === name || typeof name === "undefined") {
+                    (client.name === name || typeof name === "undefined")) {
                     client.socket.send(JSON.stringify({
                         type: type,
                         data: message
