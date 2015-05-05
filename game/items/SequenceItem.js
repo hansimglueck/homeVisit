@@ -222,8 +222,8 @@
                 this.param = param;
                 var self = this;
 
-                // game clock starts at card number 2!
-                if (this.index === 1) {
+                // game officially starts at card number X!
+                if (this.index === 3) {
                     gameClock.start();
                 }
 
