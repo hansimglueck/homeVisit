@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-05 13:11+0100\n"
+"PO-Revision-Date: 2015-05-05 15:34+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.7.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: player/partials/rating/rating.html:4
@@ -229,7 +229,8 @@ msgstr "Rest ausfüllen"
 msgid "French"
 msgstr "Französisch"
 
-#: admin/views/master-buttons.html:6 mc/index.html:56 mc/views/players.html:39
+#: admin/views/master-buttons.html:6 mc/index.html:56
+#: mc/views/players.html:39
 msgid "GO"
 msgstr ""
 
@@ -738,7 +739,8 @@ msgstr "Warten auf Antwort ..."
 
 #: mc/js/services/mcAppServices.js:104
 msgid "Who at the table has a job of which he or she can live?"
-msgstr "Wer am Tisch hat eine Arbeit, von der er oder sie leben kann?"
+msgstr ""
+"Wer am Tisch hat eine Arbeit, von der er oder sie leben kann? (+ Rückfrage)"
 
 #: mc/js/services/mcAppServices.js:72
 msgid "Who at this table has been class spokesman?"
@@ -764,11 +766,12 @@ msgstr ""
 
 #: mc/js/services/mcAppServices.js:128
 msgid "Who has ever consciously denied his national origin?"
-msgstr "Wer hat schon mal bewusst seine nationale Herkunft verleugnet?"
+msgstr ""
+"Wer hat schon mal bewusst seine nationale Herkunft verleugnet? (+ Rückfrage)"
 
 #: mc/js/services/mcAppServices.js:96
 msgid "Who is involved in a association or in an NGO?"
-msgstr "Wer engagiert sich in einem Verein oder in einer NGO?"
+msgstr "Wer engagiert sich in einem Verein oder in einer NGO? (+ Rückfrage)"
 
 #: mc/js/services/mcAppServices.js:144
 msgid "Who is scared of the future?"
@@ -776,11 +779,11 @@ msgstr "Wer hat Angst vor der Zukunft?"
 
 #: mc/js/services/mcAppServices.js:88
 msgid "Who was or is a member of a political party?"
-msgstr "Wer war oder ist Parteimitglied?"
+msgstr "Wer war oder ist Parteimitglied? (+ Rückfrage)"
 
 #: mc/js/services/mcAppServices.js:112
 msgid "Who works regularly outside the country?"
-msgstr "Wer arbeitet regelmäßig außerhalb des Landes?"
+msgstr "Wer arbeitet regelmäßig außerhalb des Landes? (+ Rückfrage)"
 
 #: admin/views/raspi-manager.html:75
 msgid "Wi-Fi name:"
@@ -796,11 +799,11 @@ msgstr "Ja"
 
 #: game/playerManager.js:446
 msgid "You are NOT in the game!"
-msgstr "Du spielst NICHT mit!"
+msgstr "Du investierst nicht!"
 
 #: game/playerManager.js:455
 msgid "You are in the game!"
-msgstr "Du spielst mit!"
+msgstr "Du investierst 1 Punkt!"
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
