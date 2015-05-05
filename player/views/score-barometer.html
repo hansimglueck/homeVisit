@@ -1,8 +1,11 @@
-<div class="score" ng-show="showScore()" ng-controller="ScoreController" ng-click="openGameEventModal()">
+<div ng-show="showScore()" ng-controller="ScoreController" ng-click="openGameEventModal()">
     <div id="score_stats">
         <p class="score_stats_entry">
             <span class="rank_display" translate>Rank: {{status.player.rank}}</span><br/>
             <span class="score_display" translate>Score: {{status.player.score}}</span><br/>
+            <span ng-repeat="icon in status.playerAppIcons">
+                <player-app-icon-full icon="icon.name" pid="icon.playerId"></player-app-icon-full>
+            </span>
         </p>
     </div>
     <div id="score_barometer" ng-style="{'height': getBaroHeight()}">

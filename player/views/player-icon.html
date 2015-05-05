@@ -1,5 +1,6 @@
 <span class="player-icon" ng-style="{'background-color':playerColors[playerId]}">
 <div class="player-icon-container">
     <div class="player-icon-text" ng-style="{'color':playerTextColors[playerId]}">{{getColorName(playerColornames[playerId])}}</div>
+    <div class="player-icon-transclude" ng-style="{'color':playerTextColors[playerId]}" ng-transclude></div>
 </div>
 </span>

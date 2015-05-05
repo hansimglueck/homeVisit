@@ -24,7 +24,7 @@
                     return player.score !== 0;
                 }).length > 0;
             };
-            $scope.baromaterHeight = 200;
+            $scope.baromaterHeight = 190;
             $scope.getBaroHeight = function () {
                 return $scope.baromaterHeight.toString() + "px";
             };
@@ -81,6 +81,8 @@
                 });
 
             };
+
+
         })
         .controller('GameEventController', function ($scope, Status) {
             $scope.status = Status;

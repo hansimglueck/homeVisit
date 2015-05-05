@@ -24,6 +24,7 @@
                 scope: {
                     playerId: '=pid'
                 },
+                transclude: true,
                 controller: function ($scope, playerColors, playerColornamesFactory, playerTextColors, gettextCatalog) {
                     $scope.playerColors = playerColors;
                     $scope.playerColornames = playerColornamesFactory.playercolornames;
@@ -33,6 +34,17 @@
                     }
                 },
                 templateUrl: 'views/player-icon.html'
+            };
+        })
+        .directive('playerAppIconFull', function () {
+            return {
+                restrict: 'AE',
+                replace: 'true',
+                scope: {
+                    icon: '=',
+                    playerId: '=pid'
+                },
+                templateUrl: 'views/player-app-icon-full.html'
             };
         })
         .directive('playerAppIcon', function () {

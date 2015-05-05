@@ -328,6 +328,7 @@
             statusFactory.gameEvents = [];
             statusFactory.playerOnTurn = null;
             statusFactory.gameEventTypes = [];
+            statusFactory.playerAppIcons = [];
 
             //diese eigenschaft wird hier geführt, da sie im view
             //benötigt wird und sonst im digest-cycle immerwieder neu
@@ -362,6 +363,17 @@
                 if (statusFactory.gameEventTypes.indexOf(data.type) === -1) {
                     statusFactory.gameEventTypes.push(data.type);
                 }
+                if (data.type === "insurance") {
+                    statusFactory.playerAppIcons.push({name: "deal", playerId: data.value});
+                }
+                if (data.type === "alliance") {
+                    var playerId = data.value.filter(function(id){
+                        return id !== statusFactory.player.playerId;
+                    })[0];
+                    statusFactory.playerAppIcons.push({name: "alliance", playerId: playerId});
+                }
+
+
             });
             Socket.on('inventory', function (data) {
                 console.log(data);

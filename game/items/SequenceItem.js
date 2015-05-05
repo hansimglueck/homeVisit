@@ -269,7 +269,12 @@
         restep: function (param) {
             if (this.next === null || !this.next.done && this.done) {
                 this.reset();
-                this.previous.step(param);
+                if (this.previous !== null) {
+                    this.previous.step(param);
+                }
+                else {
+                    this.step(param);
+                }
             }
             else if (this.next !== null) {
                 this.next.restep(param);

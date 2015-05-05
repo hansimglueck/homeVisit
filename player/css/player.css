@@ -81,6 +81,19 @@ body {
     font-size: 1.6em;
 }
 
+.player-icon-xs {
+    width: 25px;
+    height: 20px;
+    margin-top: 3px;
+    margin-right: 2px;
+    margin-left: 2px;
+    display: inline-block;
+}
+
+.player-icon-xs .player-icon-text {
+    display: none;
+}
+
 .player-icon-container {
     height: 100%;
     display: flex;
@@ -93,17 +106,21 @@ body {
     font-size: 0.7em;
 }
 
-.player-icon-xs {
-    width: 30px;
-    height: 24px;
-    margin-top: 5px;
-    margin-right: 5px;
-    display: inline-block;
-}
 
-.player-icon-xs .player-icon-text {
+.player-icon-transclude {
+    width: 100%;
     display: none;
 }
+
+.player-icon-badge .player-icon-transclude {
+    display: block;
+    text-align: center;
+}
+
+.player-icon-badge .player-icon-text {
+    display: none;
+}
+
 
 .rotDiv {
     position: relative;

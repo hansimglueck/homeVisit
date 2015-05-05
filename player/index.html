@@ -22,10 +22,10 @@
     <script src="/bower_components/angular/angular.js"></script>
     <script src="/bower_components/angular-route/angular-route.js"></script>
     <script src="/bower_components/angular-cookies/angular-cookies.js"></script>
-<!--
-        <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
-        <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
-        -->
+    <!--
+            <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.js"></script>
+            <script src="/bower_components/mobile-angular-ui/dist/js/mobile-angular-ui.gestures.min.js"></script>
+            -->
     <script src="/bower_components/bootstrap/dist/js/bootstrap.js"></script>
     <script src="/bower_components/angular-modal-service/dst/angular-modal-service.min.js"></script>
     <script src="/bower_components/Chart.js/Chart.js"></script>
@@ -55,7 +55,8 @@
       ng-app="playerApp">
 
 <div ng-class="{'turn':turn, 'no-turn':!turn}">
-    <div id="animation-overlay" ng-style="{'background':fx.class.background}" ng-class="fx.classes" ng-controller="overlayController">
+    <div id="animation-overlay" ng-style="{'background':fx.class.background}" ng-class="fx.classes"
+         ng-controller="overlayController">
         <div class="animation-element score-alert score-up-animate green" ng-repeat="a in fx.posAlerts track by $index">
             <span class="fa-stack">
                 <i class="fa fa-circle fa-stack-2x semi-transparent"></i>
@@ -70,50 +71,24 @@
 
         </div>
         <div class="animation-element countdown countdown-animate red" ng-if="fx.countdown.display">
-                       {{fx.countdown.count}}
+            {{fx.countdown.count}}
         </div>
     </div>
 
-<div class="app" ng-style="{'border-color':playerColors[status.player.playerId]}">
-    <div class="score" ng-show="showScore()" ng-controller="ScoreController" ng-click="openGameEventModal()">
-        <div id="score_stats">
-            <p class="score_stats_entry">
-                <span class="rank_display" translate>Rank: {{status.player.rank}}</span><br/>
-                <span class="score_display" translate>Score: {{status.player.score}}</span><br/>
-            </p>
-        </div>
-        <div id="score_barometer" ng-style="{'height': getBaroHeight()}">
-            <div id="baro_vert_line" ng-style="{'height': getBaroHeight()}"></div>
-            <!--<div id="baro_top_line"></div>-->
-            <!--<div id="baro_bottom_line" ng-style="{'top': getBaroHeight()}"></div>-->
-            <div class="baro_others_line" ng-repeat="player in status.otherJoinedPlayers track by $index"
-                 ng-style="{'top': getLinePos($index)}">
-                <div class="score_label" ng-style="{'background':player.relations.length > 0 ? playerColors[player.playerId] : '#737373'}">
-                    {{player.score}}
-                </div>
-            </div>
+    <div class="app" ng-style="{'border-color':playerColors[status.player.playerId]}">
+        <div class="score" ng-include="'views/score-barometer.html'"></div>
+        <!-- App body -->
+        <div class='content text-center scrollable-content'>
 
-            <div class="baro_my_line" ng-style="{'top': getMyLinePos()}">
-                <div class="my_score_label_top" ng-style="{'background':myColor()}"></div>
-                <div class="my_score_label">
-                    {{status.player.score}}
-                </div>
+            <div ng-show="debug">
+                DEBUG: {{type}}, {{player}}, {{col1}}, {{avgRating}}
             </div>
-            <div id="baro_zero_line" ng-style="{'top': getPosHeight()}"></div>
-            <div id="baro_zero" ng-style="{'top': getPosHeight()}">0</div>
+            <not-joined ng-hide="status.joined"></not-joined>
+            <div class="view-content" ng-view>
+            </div>
         </div>
     </div>
-     <!-- App body -->
-    <div class='content text-center scrollable-content'>
-        <div ng-show="debug">
-            DEBUG: {{type}}, {{player}}, {{col1}}, {{avgRating}}
-        </div>
-        <not-joined ng-hide="status.joined"></not-joined>
-        <div class="view-content" ng-view>
-        </div>
-    </div>
-</div>
-<!-- ~ .app -->
+    <!-- ~ .app -->
 
 </div>
 </body>
