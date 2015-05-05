@@ -84,7 +84,7 @@
                             score = -1;
                             vote.choice.forEach(function (ch) {
                                 if (best === ch) {
-                                    score = 1;
+                                    score = 3;
                                 }
                             });
                             // TODO translation

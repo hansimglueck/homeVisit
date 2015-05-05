@@ -189,6 +189,13 @@
                 templateUrl: 'views/admin/show-item-contents/show-asshole-content.html'
             };
         })
+        .directive('showScoreContent', function () {
+            return {
+                restrict: 'AE',
+                replace: 'true',
+                templateUrl: 'views/admin/show-item-contents/show-score-content.html'
+            };
+        })
 
 
         .directive('itemMapping', function () {

@@ -145,6 +145,7 @@
             this.players[playerId].joined = true;
             this.sendPlayerStatus(playerId);
             if (!!this.players[playerId].lastDisplayMessage) {
+                this.players[playerId].lastDisplayMessage.silent = true;
                 wsManager.msgDeviceByIds([clientId], "display", this.players[playerId].lastDisplayMessage);
                 //this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
             }
@@ -196,8 +197,8 @@
         deal: function (clientId, deal) {
             switch (deal.status) {
                 case "request":
-                    if (deal.player1Id.busy) {
-                        this.sendMessage(player0Id, "deal", {status: "busy"});
+                    if (this.players[deal.player1Id].busy) {
+                        this.sendMessage(deal.player0Id, "deal", {status: "busy"});
                     } else {
                         var newDealId = require('hat')();
                         deal.id = newDealId;
@@ -209,15 +210,17 @@
                     }
                     break;
                 case "confirm":
+                    this.deals[deal.id] = deal;
                     this.players[deal.player0Id].deals[deal.id] = deal;
                     this.players[deal.player1Id].deals[deal.id] = deal;
                     this.sendMessage(deal.player0Id, "deal", deal);
                     this.sendMessage(deal.player1Id, "deal", deal);
-                    this.sendGameEvent(deal.player0Id, deal.subject, deal.player1Id, "");
-                    this.sendGameEvent(deal.player1Id, deal.subject, deal.player0Id, "");
+                    this.sendGameEvent(deal.player0Id, "insurance", deal.player1Id, "");
+                    this.sendGameEvent(deal.player1Id, "insurance", deal.player0Id, "");
                     break;
                 default:
                 case "deny":
+                    this.deals[deal.id] = deal;
                     this.players[deal.player0Id].busy = false;
                     this.players[deal.player1Id].busy = false;
                     this.sendMessage(deal.player0Id, "deal", deal);
@@ -724,7 +727,7 @@
             var self = this;
             if (deals.length > 0) {
                 deals.filter(function (deal) {
-                    return deal.state === 3 &&
+                    return deal.status === "confirm" &&
                         (deal.player0Id === playerId || deal.player1Id === playerId);
                 }).forEach(function (deal) {
                     var otherPlayerId = deal.player0Id;

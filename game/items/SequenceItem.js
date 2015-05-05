@@ -196,6 +196,7 @@
                     this.previous.finish();
                 }
                 if (this.jump) {
+                    wsManager.msgDevicesByRole("speaker", "display", {text: "stop"});
                     this.step(param);
                 }
                 else {
