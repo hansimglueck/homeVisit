@@ -39,6 +39,7 @@
       <div class="clock">{{ clock.getClock() }}</div>
       <button class="btn btn-block btn-success btn-go" ng-show="deck.mcTasks.go" ng-click="playback('go', 0)" translate>GO</button>
       <button class="btn btn-block btn-danger btn-alarm" ng-show="deck.mcTasks.alert" ng-click="alert()" translate>ALARM</button>
+      <button class="btn btn-block btn-warning btn-alarm" ng-show="deck.mcTasks.jump" ng-click="playback('jump', 0)" translate>JUMP</button>
     </div>
   </div>
 </div>
