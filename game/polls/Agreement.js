@@ -36,12 +36,10 @@
         }
         var resText;
         if (fullfilled) {
-            resText = this.gettext.gettext(
-                'The agreement on %s is fullfilled.').format(this.agreementType);
+            resText = this.gettext.gettext('The alliance is fullfilled.');
         }
         else {
-            resText = this.gettext.gettext(
-                'The agreement on %s is neglected.').format(this.agreementType);
+            resText = this.gettext.gettext('The alliance is neglected.');
         }
         var positivePlayerIds = result.votes.filter(function(vote){
             return vote.choice.indexOf('yes') !== -1;

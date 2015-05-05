@@ -23,7 +23,7 @@ msgid ""
 "              should get {{score}} point from you?"
 msgstr ""
 
-#: game/playerManager.js:770
+#: game/playerManager.js:779
 msgid "A new %s"
 msgstr ""
 
@@ -392,6 +392,10 @@ msgstr ""
 msgid "No"
 msgstr ""
 
+#: player/partials/deals/deal.choosePlayer.html:8
+msgid "No Deal with me!"
+msgstr ""
+
 #: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
 msgstr ""
@@ -522,7 +526,7 @@ msgstr ""
 msgid "Rank: {{player.rank}}"
 msgstr ""
 
-#: player/index.html:82
+#: player/index.html:81 player/views/score-barometer.html:4
 msgid "Rank: {{status.player.rank}}"
 msgstr ""
 
@@ -573,7 +577,7 @@ msgstr ""
 msgid "Score: {{player.score}}"
 msgstr ""
 
-#: player/index.html:83
+#: player/index.html:82 player/views/score-barometer.html:5
 msgid "Score: {{status.player.score}}"
 msgstr ""
 
@@ -612,11 +616,11 @@ msgid "The MC has to select somebody!!"
 msgstr ""
 
 #: game/polls/Agreement.js:39
-msgid "The agreement on %s is fullfilled."
+msgid "The alliance is fullfilled."
 msgstr ""
 
-#: game/polls/Agreement.js:43
-msgid "The agreement on %s is neglected."
+#: game/polls/Agreement.js:42
+msgid "The alliance is neglected."
 msgstr ""
 
 #: player/js/services/playerAppServices.js:599
@@ -651,7 +655,7 @@ msgstr ""
 msgid "This is the about view."
 msgstr ""
 
-#: game/playerManager.js:163
+#: game/playerManager.js:164
 msgid "This poll doesn't exist!"
 msgstr ""
 
@@ -784,11 +788,11 @@ msgstr ""
 msgid "Yes"
 msgstr ""
 
-#: game/playerManager.js:446
+#: game/playerManager.js:455
 msgid "You are NOT in the game!"
 msgstr ""
 
-#: game/playerManager.js:455
+#: game/playerManager.js:464
 msgid "You are in the game!"
 msgstr ""
 
@@ -802,6 +806,10 @@ msgstr ""
 
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
+msgstr ""
+
+#: player/partials/deals/deal.noDealing.html:1
+msgid "You decided not to deal at all!"
 msgstr ""
 
 #: player/partials/freeze.html:1

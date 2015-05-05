@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-05 15:34+0100\n"
+"PO-Revision-Date: 2015-05-05 16:52+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.5.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: player/partials/rating/rating.html:4
@@ -29,7 +29,7 @@ msgstr ""
 "              </ul>\n"
 "              {{score}} Punkt vergeben?"
 
-#: game/playerManager.js:770
+#: game/playerManager.js:779
 msgid "A new %s"
 msgstr "Ein neuer %s"
 
@@ -229,8 +229,7 @@ msgstr "Rest ausfüllen"
 msgid "French"
 msgstr "Französisch"
 
-#: admin/views/master-buttons.html:6 mc/index.html:56
-#: mc/views/players.html:39
+#: admin/views/master-buttons.html:6 mc/index.html:56 mc/views/players.html:39
 msgid "GO"
 msgstr ""
 
@@ -399,6 +398,10 @@ msgstr "Nächster!"
 msgid "No"
 msgstr "Nein"
 
+#: player/partials/deals/deal.choosePlayer.html:8
+msgid "No Deal with me!"
+msgstr "Keine Versicherung mit mir!"
+
 #: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
 msgstr "Niemand hat euch Punkte abgezogen."
@@ -529,7 +532,7 @@ msgstr "Rang"
 msgid "Rank: {{player.rank}}"
 msgstr "Rang: {{player.rank}}"
 
-#: player/index.html:82
+#: player/index.html:81 player/views/score-barometer.html:4
 msgid "Rank: {{status.player.rank}}"
 msgstr "Rang: {{status.player.rank}}"
 
@@ -580,7 +583,7 @@ msgstr "Punkte für Team {{playerId}}"
 msgid "Score: {{player.score}}"
 msgstr "Punkte: {{player.score}}"
 
-#: player/index.html:83
+#: player/index.html:82 player/views/score-barometer.html:5
 msgid "Score: {{status.player.score}}"
 msgstr "Punkte: {{status.player.score}}"
 
@@ -621,12 +624,12 @@ msgid "The MC has to select somebody!!"
 msgstr "Der MC muss jemanden auswählen!!"
 
 #: game/polls/Agreement.js:39
-msgid "The agreement on %s is fullfilled."
-msgstr "Die %s wurde geschlossen."
+msgid "The alliance is fullfilled."
+msgstr "Die Allianz wurde geschlossen."
 
-#: game/polls/Agreement.js:43
-msgid "The agreement on %s is neglected."
-msgstr "Keine %s geschlossen."
+#: game/polls/Agreement.js:42
+msgid "The alliance is neglected."
+msgstr "Keine Allianz geschlossen."
 
 #: player/js/services/playerAppServices.js:599
 msgid "The deal was denied"
@@ -660,7 +663,7 @@ msgstr "Das Abkommen wurde geschlossen."
 msgid "This is the about view."
 msgstr "Das ist die About-Ansicht."
 
-#: game/playerManager.js:163
+#: game/playerManager.js:164
 msgid "This poll doesn't exist!"
 msgstr "Diesen Frage gibt es nicht!"
 
@@ -739,8 +742,7 @@ msgstr "Warten auf Antwort ..."
 
 #: mc/js/services/mcAppServices.js:104
 msgid "Who at the table has a job of which he or she can live?"
-msgstr ""
-"Wer am Tisch hat eine Arbeit, von der er oder sie leben kann? (+ Rückfrage)"
+msgstr "Wer am Tisch hat eine Arbeit, von der er oder sie leben kann?"
 
 #: mc/js/services/mcAppServices.js:72
 msgid "Who at this table has been class spokesman?"
@@ -766,12 +768,11 @@ msgstr ""
 
 #: mc/js/services/mcAppServices.js:128
 msgid "Who has ever consciously denied his national origin?"
-msgstr ""
-"Wer hat schon mal bewusst seine nationale Herkunft verleugnet? (+ Rückfrage)"
+msgstr "Wer hat schon mal bewusst seine nationale Herkunft verleugnet?"
 
 #: mc/js/services/mcAppServices.js:96
 msgid "Who is involved in a association or in an NGO?"
-msgstr "Wer engagiert sich in einem Verein oder in einer NGO? (+ Rückfrage)"
+msgstr "Wer engagiert sich in einem Verein oder in einer NGO?"
 
 #: mc/js/services/mcAppServices.js:144
 msgid "Who is scared of the future?"
@@ -779,11 +780,11 @@ msgstr "Wer hat Angst vor der Zukunft?"
 
 #: mc/js/services/mcAppServices.js:88
 msgid "Who was or is a member of a political party?"
-msgstr "Wer war oder ist Parteimitglied? (+ Rückfrage)"
+msgstr "Wer war oder ist Parteimitglied?"
 
 #: mc/js/services/mcAppServices.js:112
 msgid "Who works regularly outside the country?"
-msgstr "Wer arbeitet regelmäßig außerhalb des Landes? (+ Rückfrage)"
+msgstr "Wer arbeitet regelmäßig außerhalb des Landes?"
 
 #: admin/views/raspi-manager.html:75
 msgid "Wi-Fi name:"
@@ -797,13 +798,13 @@ msgstr "Wi-Fi Passwort"
 msgid "Yes"
 msgstr "Ja"
 
-#: game/playerManager.js:446
-msgid "You are NOT in the game!"
-msgstr "Du investierst nicht!"
-
 #: game/playerManager.js:455
+msgid "You are NOT in the game!"
+msgstr "Du spielst NICHT mit!"
+
+#: game/playerManager.js:464
 msgid "You are in the game!"
-msgstr "Du investierst 1 Punkt!"
+msgstr "Du spielst mit!"
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
@@ -816,6 +817,10 @@ msgstr "Ihr stimmt für:"
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
 msgstr "Du kannst diese Teams positiv oder negativ bewerten!"
+
+#: player/partials/deals/deal.noDealing.html:1
+msgid "You decided not to deal at all!"
+msgstr "Ihr habt Euch entschieden keine Versicherung abzuschließen!"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
