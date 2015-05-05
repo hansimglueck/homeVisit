@@ -176,7 +176,7 @@
             Socket.emit("os",  {cmd: "restartwlan1", param:{ssid:$scope.wlanId, passwd:$scope.wlanPasswd}});
         };
         $scope.dbAction = function(action) {
-            if (!confirm("Wirklich DB:"+action+"?")) {
+            if (!confirm(gettextCatalog.getString('Really DB: {{action}}?', { action: action }))) {
                 return;
             }
             Socket.emit("database", action);
