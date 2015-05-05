@@ -334,8 +334,8 @@
 
             var pollDataSent = false;
 
-            deckFactory.start = function() {
-                Socket.on("playBackStatus", function(status) {
+            deckFactory.start = function () {
+                Socket.on("playBackStatus", function (status) {
                     playbackStatus = status;
                     console.log("got playbackStatus info: " + JSON.stringify(status));
 
@@ -378,7 +378,8 @@
                         Status.deselectAll();
                     }
                     //TODO: ist das die richtige art und weise, rauszufinden, ob es mc-notes (in der aktuellen sprache) gibt?
-                    var lang = gettextCatalog.currentLanguage;;
+                    var lang = gettextCatalog.currentLanguage;
+                    ;
                     if (deckFactory.currentDetailed.mcnote) {
                         if (deckFactory.currentDetailed.mcnote[lang].trim().length > 0) {
                             mcPopUp();
@@ -395,7 +396,7 @@
                         var defaultNames = PlayerNames.getNames();
                         var customNames = PlayerNames.customPlayerNames;
                         var playerNames = [];
-                        defaultNames.forEach(function(name, i) {
+                        defaultNames.forEach(function (name, i) {
                             playerNames.push(customNames[i] || name);
                         });
                         var data = {
@@ -621,19 +622,17 @@
 
             };
 
-        };
+            return clockFactory;
+        })
 
-        return clockFactory;
-    })
-
-    .factory('gameSessionsFactory', function(Socket) {
+    .factory('gameSessionsFactory', function (Socket) {
 
         var gameSessionsFactory = {
             sessions: [],
             currentSession: null
         };
 
-        gameSessionsFactory.getSessionName = function(id) {
+        gameSessionsFactory.getSessionName = function (id) {
             for (var i = 0; i < gameSessionsFactory.sessions.length; i++) {
                 var s = gameSessionsFactory.sessions[i];
                 if (s._id === id) {
@@ -642,7 +641,7 @@
             }
         };
 
-        Socket.on('gameSessions', function(data) {
+        Socket.on('gameSessions', function (data) {
             gameSessionsFactory.sessions = data.sessions;
             if (typeof data.currentSession !== 'undefined' && data.currentSession !== null) {
                 gameSessionsFactory.currentSession = data.currentSession;
@@ -650,6 +649,6 @@
         });
 
         return gameSessionsFactory;
-    });
+    })
 
 })();
