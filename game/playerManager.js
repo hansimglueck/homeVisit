@@ -280,6 +280,12 @@
                             this.players[data.id].selected ^= true;
                             console.log("Set Player #: " + data.id + " .selected = " + this.players[data.id].selected);
                             break;
+                        case "deselectAll":
+                            this.players.forEach(function(player){
+                                player.selected = false;
+                            });
+                            console.log("Deselect All Players");
+                            break;
                         case "toggleAway":
                             this.players[data.id].away ^= true;
                             console.log("Set Player #: " + data.id + " .away = " + this.players[data.id].away);

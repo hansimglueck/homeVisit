@@ -19,7 +19,8 @@
         'uuid',
         'hvPlayerColors',
         'angularModalService',
-        'gettext'
+        'gettext',
+        'hvDirectives'
     ])
         .config(['$routeProvider',
                  function ($routeProvider) {

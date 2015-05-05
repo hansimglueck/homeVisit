@@ -24,7 +24,8 @@ angular
         'hvLanguage',
         'angularModalService',
         'gettext',
-        'chart.js'
+        'chart.js',
+        'hvDirectives'
     ])
     .config(function ($routeProvider) {
         $routeProvider

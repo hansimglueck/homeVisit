@@ -55,11 +55,20 @@
                 statusFactory.joined = false;
                 $rootScope.$digest();
             };
+            statusFactory.deselectAll = function() {
+                Socket.emit("setPlayerStatus", {cmd: "deselectAll"});
+            };
+            statusFactory.toggleSelected = function (id) {
+                console.log("select player " + id);
+                Socket.emit("setPlayerStatus", {cmd: "toggleSelected", id: id});
+            };
+
             statusFactory.getOtherPlayers = function () {
                 return statusFactory.otherPlayers.filter(function (player) {
                     return player.joined && player.playerId !== statusFactory.player.playerId;
                 });
             };
+
             return statusFactory;
 
         })
@@ -301,7 +310,7 @@
 
             return playerNamesFactory;
         })
-        .factory('Deck', function(Socket, setFactory, $interval, Polls, PlayerNames){
+        .factory('Deck', function(Socket, setFactory, $interval, ModalService, Status, Polls, PlayerNames){
             var playbackStatus = {stepIndex: -1, type:"nix", deckId: null};
             // var deck = null;
             var deckFactory = {
@@ -310,7 +319,12 @@
                 stepCount: 0,
                 current: null,
                 previous: null,
-                next: null
+                next: null,
+                mcTasks: {
+                    go: false,
+                    alert: false,
+                    select: false
+                }
             };
             deckFactory.nextJump = null;
 
@@ -334,15 +348,36 @@
 
                     deckFactory.deck = deck;
                     var stepIndex = parseInt(playbackStatus.stepIndex);
+                    var inlineIndex = playbackStatus.stepIndex.toString().split(":");
+
                     deckFactory.stepIndex = stepIndex;
                     deckFactory.stepCount = deck.items.length;
 
                     deckFactory.current = deck.items[stepIndex];
+                    deckFactory.currentDetailed = deck.items[stepIndex];
+                    if (inlineIndex.length >= 3) {
+                        deckFactory.currentDetailed = deckFactory.currentDetailed.inlineDecks[inlineIndex[1]].items[inlineDecks[2]];
+                    }
+                    if (inlineIndex.length >= 5) {
+                        deckFactory.currentDetailed = deckFactory.currentDetailed.inlineDecks[inlineIndex[3]].items[inlineDecks[4]];
+                    }
+                    if (inlineIndex.length === 7) {
+                        deckFactory.currentDetailed = deckFactory.currentDetailed.inlineDecks[inlineIndex[5]].items[inlineDecks[6]];
+                    }
+
                     deckFactory.previous = deck.items[stepIndex - 1];
                     deckFactory.next = deck.items[stepIndex + 1];
                     deckFactory.nextJump = status.nextJump;
                     console.log("next Jump = "+deckFactory.nextJump);
                     deckFactory.clockSeconds = playbackStatus.clockSeconds;
+                    deckFactory.mcTasks.go = deckFactory.currentDetailed.mcGo;
+                    deckFactory.mcTasks.alert = deckFactory.currentDetailed.mcAlert;
+                    deckFactory.mcTasks.select = deckFactory.currentDetailed.mcSelect;
+                    if (deckFactory.mcTasks.select) {
+                        Status.deselectAll();
+                    }
+                    //TODO: ist das die richtige art und weise, rauszufinden, ob es mc-notes (in der aktuellen sprache) gibt?
+                    if (deckFactory.currentDetailed.mcnote || deckFactory.mcTasks.select) mcPopUp();
 
                     // send poll data to mc when printer phase is over
                     // 81: last printed card
@@ -363,6 +398,19 @@
                 });
             };
 
+            function mcPopUp() {
+                ModalService.showModal({
+                    templateUrl: "views/notes.html",
+                    controller: "NotesController"
+                }).then(function (modal) {
+                    // The modal object has the element built, if this is a bootstrap modal
+                    // you can call 'modal' to show it, if it's a custom modal just show or hide
+                    // it as you need to.
+                    modal.element.modal({backdrop: 'static'
+                    });
+                });
+
+            }
             $interval(function() {
                 if (deckFactory.stepIndex > 0) {
                     deckFactory.clockSeconds += 1;
@@ -374,11 +422,11 @@
 
     .factory('TeamActionInfo', function(Socket, gettext, ModalService, gettextCatalog, playerColors) {
         var teamActionInfo = {};
-        
+
         teamActionInfo.actionInfo = [
             '','','','','','','',''
         ];
-        
+
         teamActionInfo.start = function () {
             Socket.on('display', function (data) {
                 //teamActionInfo.labels = [];
@@ -386,7 +434,7 @@
                     teamActionInfo.displayData = data;
                     if (data.type) {
                         if (data.type == "results") {
-                            
+
                             showResults(data);
                         }
                         //$location.path('/home');
@@ -394,33 +442,33 @@
                     }
                 }
             });
-            
+
             Socket.on("startvote", function(msg) {
                 console.log("STARTVOTE EMPFANGEN");
                 for (var i = 0; i < teamActionInfo.actionInfo.length; i++) {
                     teamActionInfo.actionInfo[i] = gettext("waiting ...");
                 }
             });
-            
+
             Socket.on("vote", function(msg) {
                 console.log("VOTE EMPFANGEN");
                 //console.log(msg);
                 teamActionInfo.actionInfo[msg.playerId] = gettext("Voted for: ") + msg.text[0];
             });
-            
+
             Socket.on("card", function(msg) {
                 console.log("CARD EMPFANGEN");
                 for (var i = 0; i < teamActionInfo.actionInfo.length; i++) {
                     teamActionInfo.actionInfo[i] = '';
                 }
             });
-            
+
         };
-        
+
         function showResults(data) {
             var resultType = data.resultType;
             var result = data.data;
-            
+
             console.log(resultType);
             console.log(result);
 
@@ -458,11 +506,11 @@
                 resData = result.votes[0].playerId;
                 console.log(resData);
             }
-            
+
             teamActionInfo.resultType = resultType;
-            
+
             console.log("TYPE: " + teamActionInfo.resultType);
-            
+
             (teamActionInfo.resultType == 'Bar' || teamActionInfo.resultType == 'Line') ? teamActionInfo.data = [resData] : teamActionInfo.data = resData;
             teamActionInfo.labels = labels;
             teamActionInfo.votelast = "result";
@@ -475,7 +523,7 @@
                     });
                 }
             }
-            
+
             // Just provide a template url, a controller and call 'showModal'.
             ModalService.showModal({
                 templateUrl: "views/results.html",
@@ -488,10 +536,10 @@
             });
 
         };
-        
+
         return teamActionInfo;
     })
-    
+
     .factory('Playback', function(Socket, gettextCatalog) {
         var playbackFactory = {
             playback: function(cmd, param) {

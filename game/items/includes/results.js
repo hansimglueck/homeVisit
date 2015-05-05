@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     var playerManager = require('../../playerManager');
@@ -11,7 +11,9 @@
             switch (this.sourceType) {
                 case "previousStep":
                     this.data = this.previous.getData();
-                    this.data.dataSource = this.sourceType;
+                    if (this.data !== null) {
+                        this.data.dataSource = this.sourceType
+                    };
                     break;
                 case "positivePlayerScore":
                     var posScoreArr = playerManager.players.filter(function (player, id) {
@@ -70,7 +72,7 @@
                         this.data.votes.forEach(function (vote) {
                             score = -1;
                             vote.choice.forEach(function (ch) {
-                                if (best.indexOf(ch)>-1) {
+                                if (best.indexOf(ch) > -1) {
                                     score = 2;
                                 }
                             });
@@ -111,7 +113,7 @@
                 resultColors: this.resultColors
             };
         },
-        getData: function() {
+        getData: function () {
             return this.data;
         }
     };
