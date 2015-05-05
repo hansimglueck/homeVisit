@@ -133,12 +133,11 @@
                 datasetStroke: true,
                 datasetStrokeWidth: 2,
                 datasetFill: true,
-                animation: true,
-                animationSteps: 60,
+                animation: false,
+                animationSteps: 0,
                 //animationEasing: "easeOutQuart",
                 onAnimationComplete: null,
-                responsive: true,
-                colours: playerColors
+                responsive: true
             };
 
         })

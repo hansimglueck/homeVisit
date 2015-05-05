@@ -310,8 +310,8 @@
 
             return playerNamesFactory;
         })
-        .factory('Deck', function(Socket, setFactory, $interval, ModalService, Status, Polls, PlayerNames){
-            var playbackStatus = {stepIndex: -1, type:"nix", deckId: null};
+        .factory('Deck', function (Socket, setFactory, $interval, ModalService, Status, gettextCatalog, Polls, PlayerNames) {
+            var playbackStatus = {stepIndex: -1, type: "nix", deckId: null};
             // var deck = null;
             var deckFactory = {
                 deck: {items: []},
@@ -378,7 +378,15 @@
                         Status.deselectAll();
                     }
                     //TODO: ist das die richtige art und weise, rauszufinden, ob es mc-notes (in der aktuellen sprache) gibt?
-                    if (deckFactory.currentDetailed.mcnote || deckFactory.mcTasks.select) mcPopUp();
+                    var lang = gettextCatalog.currentLanguage;;
+                    if (deckFactory.currentDetailed.mcnote) {
+                        if (deckFactory.currentDetailed.mcnote[lang].trim().length > 0) {
+                            mcPopUp();
+                        }
+                    }
+                    if (deckFactory.mcTasks.select) {
+                        mcPopUp();
+                    }
 
                     // send poll data to mc when printer phase is over
                     // 81: last printed card
