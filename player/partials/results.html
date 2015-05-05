@@ -13,10 +13,10 @@
     </div>
 
     <ul class="list-unstyled results-content noflex" ng-if="home.resultType == 'numberStats'">
-        <li translate>Total: {{home.data[0]}}</li>
-        <li translate>Average: {{home.data[1]}}</li>
-        <li translate>Min: {{home.data[2]}}</li>
-        <li translate>Max: {{home.data[3]}}</li>
+        <li translate>Total: {{home.data[0] | number : 2}}</li>
+        <li translate>Average: {{home.data[1] | number : 2}}</li>
+        <li translate>Min: {{home.data[2] | number : 2}}</li>
+        <li translate>Max: {{home.data[3] | number : 2}}</li>
     </ul>
 
     <div class="results-content"  ng-if="['europeMap','numberStats'].indexOf(home.resultType) == -1">

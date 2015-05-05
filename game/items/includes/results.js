@@ -64,7 +64,7 @@
                         //und verteile +1 dafür, -1 für die anderen
                         //TODO: bei zwei gleichguten Antworten wird nur eine berücksichtigt...
                         best = [this.data.voteOptions[0].value];
-                        if (this.data.voteOptions[0].votes === this.data.voteOptions[1].votes) {
+                        if (typeof this.data.voteOptions[1] !== "undefined") if (this.data.voteOptions[0].votes === this.data.voteOptions[1].votes) {
                             best.push(this.data.voteOptions[1].value);
                         }
                         this.data.votes.forEach(function (vote) {

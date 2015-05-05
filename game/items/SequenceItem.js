@@ -305,7 +305,12 @@
             this.executeTime = new Date();
             console.log(this.executeTime);
             this.sendPlaybackStatus();
-            this.executeItem();
+            try {
+                this.executeItem();
+            } catch(e) {
+                this.log("ERROR in execute: "+ e.message);
+                this.log(e.stack);
+            }
             //checken, wie der nächste step getriggert wird
             if (this.next !== null) {
                 if (this.next.trigger === "follow") {
