@@ -1,24 +1,26 @@
-<div ng-repeat="player in resultTeams track by $index">
-    <span ng-repeat="crit in player track by $index">
-        <span ng-if="$index == 0">
-            {{ customPlayerNames[crit] || playerNames()[crit] }}:
+<div class="scrolling-display" >
+    <div class="match-view" ng-repeat="player in resultTeams track by $index">
+        <span ng-repeat="crit in player track by $index">
+            <span ng-if="$index == 0">
+                {{ customPlayerNames[crit] || playerNames()[crit] }}:
+            </span>
+            <span ng-if="$index > 0 && $parent.$index % 2 != 0">
+                <button ng-if="!isMarked($parent.$parent.$index,crit)" class="btn" ng-class="{used_crit:isUsed($parent.$parent.$parent.$index,crit)}" ng-click="mark($parent.$parent.$parent.$index,crit)">
+                    {{getCritNote(player,crit)}}
+                </button>
+                <button ng-if="isMarked($parent.$parent.$index,crit)" class="btn marked_crit" ng-click="unmark($parent.$parent.$parent.$index,crit)">
+                    {{getCritNote(player,crit)}}
+                </button>
+            </span>
         </span>
-        <span ng-if="$index > 0 && $parent.$index % 2 != 0">
-            <button ng-if="!isMarked($parent.$parent.$index,crit)" class="btn" ng-class="{used_crit:isUsed($parent.$parent.$parent.$index,crit)}" ng-click="mark($parent.$parent.$parent.$index,crit)">
-                {{getCritNote(player,crit)}}
-            </button>
-            <button ng-if="isMarked($parent.$parent.$index,crit)" class="btn marked_crit" ng-click="unmark($parent.$parent.$parent.$index,crit)">
-                {{getCritNote(player,crit)}}
-            </button>
-        </span>
-    </span>
-
-    <div ng-if="$index % 2 != 0">
-        ------------------------------------------------------------------------------
-        <br/>
-    </div>
-    <div ng-if="$index == resultTeams.length - 1">
-        {{matchLastPlayer()}}
+    
+        <div ng-if="$index % 2 != 0">
+            ------------------------------------------------------------------------------
+            <br/>
+        </div>
+        <div ng-if="$index == resultTeams.length - 1">
+            {{matchLastPlayer()}}
+        </div>
     </div>
 </div>
 
