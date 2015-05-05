@@ -145,6 +145,7 @@
             this.players[playerId].joined = true;
             this.sendPlayerStatus(playerId);
             if (!!this.players[playerId].lastDisplayMessage) {
+                this.players[playerId].lastDisplayMessage.silent = true;
                 wsManager.msgDeviceByIds([clientId], "display", this.players[playerId].lastDisplayMessage);
                 //this.msgDevicesByRole('player', 'rates', {avgRating: this.avgRating});
             }
@@ -209,6 +210,7 @@
                     }
                     break;
                 case "confirm":
+                    this.deals[deal.id] = deal;
                     this.players[deal.player0Id].deals[deal.id] = deal;
                     this.players[deal.player1Id].deals[deal.id] = deal;
                     this.sendMessage(deal.player0Id, "deal", deal);
@@ -218,6 +220,7 @@
                     break;
                 default:
                 case "deny":
+                    this.deals[deal.id] = deal;
                     this.players[deal.player0Id].busy = false;
                     this.players[deal.player1Id].busy = false;
                     this.sendMessage(deal.player0Id, "deal", deal);
@@ -724,7 +727,7 @@
             var self = this;
             if (deals.length > 0) {
                 deals.filter(function (deal) {
-                    return deal.state === 3 &&
+                    return deal.status === "confirm" &&
                         (deal.player0Id === playerId || deal.player1Id === playerId);
                 }).forEach(function (deal) {
                     var otherPlayerId = deal.player0Id;

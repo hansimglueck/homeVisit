@@ -18,7 +18,8 @@
                 {value: 'dummy', text: 'Dummy', mappable: false},
                 {value: 'agreement', text: 'Agreement', mappable: true},
                 {value: 'roulette', text: 'Roulette', mappable: true},
-                {value: 'showAssholes', text: 'Show Assholes', mappable: true}
+                {value: 'showAssholes', text: 'Show Assholes', mappable: true},
+                {value: 'score', text: 'Score', mappable: false}
             ],
             'color': [
                 {value: '0', text: 'Rot'},
