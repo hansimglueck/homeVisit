@@ -29,7 +29,9 @@
             return null;
         },
         getWsContent: function () {
-            return this.poll.getPollWsContent();
+            var ret = this.poll.getPollWsContent();
+            ret.type = "roulette";
+            return ret;
         }
     };
 
