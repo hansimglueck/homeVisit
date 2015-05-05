@@ -227,6 +227,9 @@
                     this.sendMessage(deal.player1Id, "deal", deal);
                     break;
                 case "denyDealing":
+                    var newDealId = require('hat')();
+                    deal.id = newDealId;
+                    this.deals[deal.id] = deal;
                     this.players[deal.player0Id].busy = true;
                     break;
             }
