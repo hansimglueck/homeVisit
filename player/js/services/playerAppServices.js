@@ -609,6 +609,10 @@
                 console.log("request deal with " + playerId);
                 Socket.emit("deal", {player0Id: Status.player.playerId, player1Id: playerId, status: "request"});
             };
+            dealFactory.denyDealing = function () {
+                console.log("denying deals at all");
+                Socket.emit("deal", {status: "denyDealing", player0Id: Status.player.playerId});
+            };
             dealFactory.confirm = function () {
                 console.log("comfirm deal");
                 dealFactory.deal.status = "confirm";

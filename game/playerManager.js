@@ -226,6 +226,9 @@
                     this.sendMessage(deal.player0Id, "deal", deal);
                     this.sendMessage(deal.player1Id, "deal", deal);
                     break;
+                case "denyDealing":
+                    this.players[deal.player0Id].busy = true;
+                    break;
             }
             this.sendPlayerStatus(-1);
         },

@@ -72,6 +72,10 @@
                              templateUrl: 'partials/deals/deal.choosePlayer.html',
                              controller: 'ChooseDealPlayerController'
                          }).
+                         when('/deal/noDealing', {
+                             templateUrl: 'partials/deals/deal.noDealing.html',
+                             controller: 'ChooseDealPlayerController'
+                         }).
                          when('/deal/messageSent/:playerId', {
                              templateUrl: 'partials/deals/deal.messageSent.html',
                              controller: 'DealDetailsController'
