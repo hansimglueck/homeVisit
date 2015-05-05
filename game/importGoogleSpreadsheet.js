@@ -309,6 +309,7 @@
                 voteItem.text[langCode] = row[propName];
                 // voteOptions
                 if (voteItem.type === 'vote') {
+                    propName = langCode === 'de' ? 'voteOptions' : 'voteOptions_%s'.format(langCode);
                     var voteOptions = parseVoteOptions(row[propName]);
                     _.each(voteItem.voteOptions, function(option, i) {
                         option.text[langCode] = voteOptions[i];
