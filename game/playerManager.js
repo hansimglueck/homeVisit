@@ -297,6 +297,10 @@
                         case "setAct":
                             console.log("Set Player #: " + data.id + " as active");
                             break;
+                        case "throwOut":
+                            console.log("Remove Player #: " + data.id + " from game");
+                            this.leaveGame(this.players[data.id].clientId);
+                            break;
                         default:
                             console.log("unknown message-type");
                             break;
@@ -732,6 +736,7 @@
             });
         },
         score: function (playerId, score, reason, otherPlayerId) {
+            if (score === 0) return;
             if (typeof reason === "undefined") {
                 reason = "?";
             }
