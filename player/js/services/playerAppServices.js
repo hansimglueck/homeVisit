@@ -600,7 +600,7 @@
                         $location.path("/deal");
                         break;
                     case "busy":
-                        dealFactory.message = gettextCatalog.getString("The other player is busy");
+                        dealFactory.message = gettextCatalog.getString("The other team is busy");
                         $location.path("/deal");
                         break;
                 }

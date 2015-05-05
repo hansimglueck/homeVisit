@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-03 22:16+0100\n"
+"PO-Revision-Date: 2015-05-05 13:11+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -12,23 +12,12 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: player/partials/deals/deal.html:3
-msgid ""
-"<td><a href=\"#/deals/{{deal.id}}\">Treaty</a></td>\n"
-"            <td>with team <player-icon pid=\"deal.player1Id\"></player-"
-"icon></td>\n"
-"            <td>{{getDealStateText(deal)}}</td>"
-msgstr ""
-"<td><a href=\"#/deals/{{deal.id}}\">Abkommen</a></td>\n"
-"            <td>mit Team <player-icon pid=\"deal.player1Id\"></player-icon></"
-"td>\n"
-"            <td>{{getDealStateText(deal)}}</td>"
-
 #: player/partials/rating/rating.html:4
 msgid ""
 "<ul class=\"list-inline\">\n"
 "                <li ng-repeat=\"pid in playerIds\">\n"
-"                  <player-icon pid=\"pid\"></player-icon>\n"
+"                  <player-icon class=\"player-icon-big\" pid=\"pid\"></"
+"player-icon>\n"
 "                </li>\n"
 "              </ul>\n"
 "              should get {{score}} point from you?"
@@ -40,24 +29,20 @@ msgstr ""
 "              </ul>\n"
 "              {{score}} Punkt vergeben?"
 
-#: game/playerManager.js:746
+#: game/playerManager.js:770
 msgid "A new %s"
 msgstr "Ein neuer %s"
 
-#: admin/views/master-buttons.html:12 mc/index.html:40
+#: admin/views/master-buttons.html:13 mc/index.html:47
 #: mc/views/players.html:40
 msgid "ALARM"
 msgstr ""
-
-#: player/partials/deals/deal.new.html:1
-msgid "Accept treaty"
-msgstr "Abkommen akzeptieren"
 
 #: admin/views/admin/show-deck.html:27
 msgid "Add new item"
 msgstr "Neuen Eintrag hinzufügen"
 
-#: admin/js/controllers/masterControllers.js:160
+#: admin/js/controllers/masterControllers.js:166
 msgid "Are you sure?"
 msgstr "Bist Du sicher?"
 
@@ -65,11 +50,15 @@ msgstr "Bist Du sicher?"
 msgid "Average: {{home.data[1]}}"
 msgstr "Durchschnitt: {{home.data[1]}}"
 
-#: mc/js/controllers/players.js:62
+#: mc/views/results.html:28
+msgid "Average: {{teamActionInfo.data[1]}}"
+msgstr "Durchschnitt: {{teamActionInfo.data[1]}}"
+
+#: mc/js/controllers/players.js:58
 msgid "Away"
 msgstr "Weg"
 
-#: admin/views/master-buttons.html:11 mc/views/item.html:3
+#: admin/views/master-buttons.html:12 mc/views/item.html:3
 msgid "BACK"
 msgstr "Zurück"
 
@@ -85,14 +74,12 @@ msgstr "Zurück"
 msgid "CONNECT DB"
 msgstr "VERBINDE MIT DATENBANK"
 
-#: admin/views/admin/move-item.html:23
-#: player/js/controllers/dealControllers.js:28
-#: player/partials/deals/deal.new.html:11
+#: admin/views/admin/move-item.html:23 player/partials/deals/deal.wait.html:8
 #: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:5
 msgid "Cancel"
 msgstr "Abbrechen"
 
-#: mc/js/controllers/dummies.js:61
+#: mc/js/controllers/dummies.js:68
 msgid "Change name"
 msgstr "Namen ändern"
 
@@ -104,19 +91,15 @@ msgstr "Punkte ändern"
 msgid "Choose target where item will be appended."
 msgstr "Ziel auswählen wo Eintrag angehängt werden soll."
 
-#: player/partials/deals/deal.choosePlayer.html:1
+#: player/partials/deals/deal.choosePlayer.html:2
 msgid "Choose team to offer treaty:"
 msgstr "Wählt das Team, mit dem ihr ein Abkommen schließen möchtet."
-
-#: player/partials/deals/deal.chooseSubject.html:1
-msgid "Choose type of deal:"
-msgstr "Wählen Sie Art des Deals:"
 
 #: admin/views/player-list.html:9
 msgid "Color"
 msgstr "Farbe"
 
-#: mc/js/controllers/players.js:52
+#: mc/js/controllers/players.js:48
 msgid "Come Back!"
 msgstr "Komm zurück!"
 
@@ -128,9 +111,8 @@ msgstr "Kommando"
 msgid "Configuration"
 msgstr "Konfiguration"
 
-#: player/js/controllers/dealControllers.js:25
-#: player/partials/deals/deal.new.html:8 player/partials/rating/rating.html:13
-#: player/partials/voteConfirm.html:4
+#: player/partials/deals/deal.answer.html:10
+#: player/partials/rating/rating.html:13 player/partials/voteConfirm.html:4
 msgid "Confirm"
 msgstr "Bestätigen"
 
@@ -150,6 +132,10 @@ msgstr "Richtig"
 msgid "Correct: {{home.correctAnswer}}"
 msgstr "Richtig: {{home.correctAnswer}}"
 
+#: mc/views/results.html:11
+msgid "Correct: {{teamActionInfo.correctAnswer}}"
+msgstr "Richtig: {{teamActionInfo.correctAnswer}}"
+
 #: admin/views/game-conf.html:19
 msgid "Current deck:"
 msgstr "Ausgewählter Strang:"
@@ -162,11 +148,11 @@ msgstr "Aktueller Eintrag:"
 msgid "Current:"
 msgstr "Aktuell:"
 
-#: homevisit_components/hvLanguage.js:7
+#: homevisit_components/hvLanguage.js:10
 msgid "Czech"
 msgstr "Tschechisch"
 
-#: homevisit_components/hvLanguage.js:8
+#: homevisit_components/hvLanguage.js:11
 msgid "Danish"
 msgstr "Dänisch"
 
@@ -191,7 +177,7 @@ msgstr "Löschen"
 msgid "Delete deck"
 msgstr "Lösche Strang"
 
-#: player/js/controllers/dealControllers.js:22
+#: player/partials/deals/deal.answer.html:13
 msgid "Deny"
 msgstr "Ablehnen"
 
@@ -199,7 +185,7 @@ msgstr "Ablehnen"
 msgid "Description:"
 msgstr "Beschreibung:"
 
-#: mc/js/controllers/players.js:39
+#: mc/js/controllers/players.js:35
 msgid "Deselect"
 msgstr "Deselektieren"
 
@@ -211,23 +197,19 @@ msgstr "Details"
 msgid "Device Manager"
 msgstr "Gerätemanager"
 
-#: admin/js/controllers/masterControllers.js:156
+#: admin/js/controllers/masterControllers.js:160
 msgid "Do you really want to restart the server?"
 msgstr "Willst Du den Server wirklich neustarten?"
 
-#: player/partials/deals/deal.new.html:3
-msgid ""
-"Do you want to accept a treaty with <player-icon class=\"player-icon-med\" "
-"pid=\"player1Id\"></player-icon>?"
-msgstr ""
-"Möchtest du ein Abkommen mit <player-icon class=\"player-icon-med\" pid="
-"\"player1Id\"></player-icon> schließen?"
+#: player/partials/deals/deal.answer.html:7
+msgid "Do you want to accept this treaty?"
+msgstr "Möchtet Ihr dieses Abkommen akzeptieren?"
 
-#: mc/js/controllers/matching.js:178
+#: mc/js/controllers/matching.js:188
 msgid "Doesn't match well. Should play alone."
 msgstr "Keine Übereinstimmungen. Sollte alleine spielen."
 
-#: homevisit_components/hvLanguage.js:10
+#: homevisit_components/hvLanguage.js:13
 msgid "Dutch"
 msgstr "Niederländisch"
 
@@ -235,7 +217,7 @@ msgstr "Niederländisch"
 msgid "EUROPE"
 msgstr "EUROPA"
 
-#: homevisit_components/hvLanguage.js:5
+#: homevisit_components/hvLanguage.js:8
 msgid "English"
 msgstr "Englisch"
 
@@ -243,15 +225,11 @@ msgstr "Englisch"
 msgid "Fill the rest"
 msgstr "Rest ausfüllen"
 
-#: player/js/controllers/dealControllers.js:53
-msgid "For 0 points."
-msgstr "Für 0 Punkte."
-
-#: homevisit_components/hvLanguage.js:9
+#: homevisit_components/hvLanguage.js:12
 msgid "French"
 msgstr "Französisch"
 
-#: admin/views/master-buttons.html:6 mc/index.html:49 mc/views/players.html:39
+#: admin/views/master-buttons.html:6 mc/index.html:56 mc/views/players.html:39
 msgid "GO"
 msgstr ""
 
@@ -259,11 +237,11 @@ msgstr ""
 msgid "GO 2"
 msgstr ""
 
-#: admin/views/master-buttons.html:21
+#: admin/views/master-buttons.html:22
 msgid "GOTO"
 msgstr ""
 
-#: mc/index.html:29
+#: mc/index.html:31
 msgid "Game"
 msgstr "Spiel"
 
@@ -271,7 +249,7 @@ msgstr "Spiel"
 msgid "Game stopped"
 msgstr "Spiel gestoppt"
 
-#: homevisit_components/hvLanguage.js:6
+#: homevisit_components/hvLanguage.js:9
 msgid "German"
 msgstr "Deutsch"
 
@@ -291,6 +269,14 @@ msgstr "Importieren:"
 msgid "Interfaces"
 msgstr "Schnittstellen"
 
+#: admin/views/master-buttons.html:8
+msgid "JUMP"
+msgstr "SPRINGEN"
+
+#: mc/index.html:42
+msgid "JUMP to {{deck.nextJump}}"
+msgstr "SPRINGEN zu {{deck.nextJump}}"
+
 #: admin/views/player-list.html:6
 msgid "Joined"
 msgstr "Verbunden"
@@ -299,7 +285,7 @@ msgstr "Verbunden"
 msgid "Language"
 msgstr "Sprache"
 
-#: mc/js/controllers/players.js:54
+#: mc/js/controllers/players.js:50
 msgid "Leave Table!"
 msgstr "Tisch verlassen!"
 
@@ -311,7 +297,7 @@ msgstr ""
 msgid "Log"
 msgstr ""
 
-#: mc/index.html:35
+#: mc/index.html:37
 msgid "Maintenance"
 msgstr "Wartung"
 
@@ -319,11 +305,11 @@ msgstr "Wartung"
 msgid "Mapped:"
 msgstr "Zugeordnet:"
 
-#: mc/js/controllers/matching.js:180
+#: mc/js/controllers/matching.js:190
 msgid "Matches best with the team of {{name1}} and {{name2}}."
 msgstr "Passt am Besten zu Team {{name1}} und {{name2}}."
 
-#: mc/index.html:32
+#: mc/index.html:34
 msgid "Matching"
 msgstr "Übereinstimmung"
 
@@ -331,13 +317,25 @@ msgstr "Übereinstimmung"
 msgid "Max: {{home.data[3]}}"
 msgstr "Max: {{home.data[3]}}"
 
+#: mc/views/results.html:30
+msgid "Max: {{teamActionInfo.data[3]}}"
+msgstr "Max: {{teamActionInfo.data[3]}}"
+
 #: admin/views/raspi-manager.html:36
 msgid "Memory"
 msgstr "Speicher"
 
+#: player/partials/deals/deal.messageSent.html:7
+msgid "Message sent"
+msgstr "Nachricht gesendet"
+
 #: player/partials/results.html:18
 msgid "Min: {{home.data[2]}}"
 msgstr "Min: {{home.data[2]}}"
+
+#: mc/views/results.html:29
+msgid "Min: {{teamActionInfo.data[2]}}"
+msgstr "Min: {{teamActionInfo.data[2]}}"
 
 #: admin/views/admin/move-item.html:21
 msgid "Move"
@@ -347,25 +345,29 @@ msgstr "Verschieben"
 msgid "Move item"
 msgstr "Eintrag verschieben"
 
-#: mc/js/controllers/players.js:60
+#: mc/js/controllers/players.js:56
 msgid "My Turn!"
 msgstr "Dran!"
 
-#: mc/js/services/mcAppServices.js:159
+#: mc/js/services/mcAppServices.js:168
 msgid "My ambition"
 msgstr "Mein Ehrgeiz"
 
-#: mc/js/services/mcAppServices.js:167
+#: mc/js/services/mcAppServices.js:176
 msgid "My confidence in democracy"
 msgstr "Mein Vertrauen in die Demokratie"
 
-#: mc/js/services/mcAppServices.js:175
+#: mc/js/services/mcAppServices.js:184
 msgid "My earnings from the game of the markets"
 msgstr "Mein Gewinn aus dem Spiel der Märkte"
 
-#: mc/js/services/mcAppServices.js:151
+#: mc/js/services/mcAppServices.js:160
 msgid "My willingness of solidarity"
 msgstr "Meine Solidaritätsbereitschaft"
+
+#: admin/js/controllers/masterControllers.js:186
+msgid "N/A"
+msgstr "n.a."
 
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:22
 msgid "New Deck"
@@ -384,10 +386,6 @@ msgstr "Neue Option"
 msgid "New title:"
 msgstr "Neuer Titel:"
 
-#: player/partials/deals/deal.html:10
-msgid "New treaty"
-msgstr "Neues Abkommen"
-
 #: player/partials/home.html:1
 msgid "Next"
 msgstr "Nächster"
@@ -400,13 +398,21 @@ msgstr "Nächster!"
 msgid "No"
 msgstr "Nein"
 
-#: player/partials/assholes.html:12
+#: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
 msgstr "Niemand hat euch Punkte abgezogen."
 
-#: homevisit_components/hvLanguage.js:11
+#: homevisit_components/hvLanguage.js:14
 msgid "Norwegian"
 msgstr "Norwegisch"
+
+#: admin/js/controllers/adminControllers.js:357
+msgid "Not set"
+msgstr "Nicht gesetzt"
+
+#: admin/js/controllers/adminControllers.js:22
+msgid "Null Problemo!"
+msgstr "Null Problemo!"
 
 #: admin/views/raspi-manager.html:14
 msgid "OS Info for {{osInfo.hostname}}"
@@ -434,7 +440,7 @@ msgstr "Spiel"
 msgid "Player"
 msgstr "Spieler"
 
-#: mc/js/services/mcAppServices.js:279
+#: mc/js/services/mcAppServices.js:288
 msgid "Player {{ playerNumber }}"
 msgstr "Spieler {{ playerNumber }}"
 
@@ -458,15 +464,15 @@ msgstr "{{score}} Punkt abziehen!"
 msgid "Point given!"
 msgstr "Die Stimme wurde gezählt!"
 
-#: homevisit_components/hvLanguage.js:12
+#: homevisit_components/hvLanguage.js:15
 msgid "Polish"
 msgstr "Polnisch"
 
-#: mc/index.html:26
+#: mc/index.html:28
 msgid "Polls"
 msgstr "Abstimmung"
 
-#: homevisit_components/hvLanguage.js:13
+#: homevisit_components/hvLanguage.js:16
 msgid "Portuguese"
 msgstr "Portugiesisch"
 
@@ -478,7 +484,7 @@ msgstr "Prozess"
 msgid "RASPI Control"
 msgstr ""
 
-#: admin/js/controllers/masterControllers.js:161
+#: admin/js/controllers/masterControllers.js:169
 msgid "REALLY REALLY SURE??????????"
 msgstr "WIRKLICH WIRKLICH SICHER????????"
 
@@ -486,7 +492,7 @@ msgstr "WIRKLICH WIRKLICH SICHER????????"
 msgid "REBOOT"
 msgstr ""
 
-#: admin/views/master-buttons.html:10
+#: admin/views/master-buttons.html:11
 msgid "REGO"
 msgstr ""
 
@@ -522,15 +528,21 @@ msgstr "Rang"
 msgid "Rank: {{player.rank}}"
 msgstr "Rang: {{player.rank}}"
 
-#: player/index.html:158
+#: player/index.html:82
 msgid "Rank: {{status.player.rank}}"
 msgstr "Rang: {{status.player.rank}}"
 
-#: admin/js/controllers/masterControllers.js:90
+#: admin/js/controllers/masterControllers.js:179
+msgid "Really DB: {{action}}?"
+msgstr ""
+
+#: admin/js/controllers/adminControllers.js:113
+#: admin/js/controllers/adminControllers.js:269
+#: admin/js/controllers/masterControllers.js:93
 msgid "Really delete???"
 msgstr "Wirklich löschen???"
 
-#: mc/js/services/mcAppServices.js:387
+#: mc/js/services/mcAppServices.js:481
 msgid "Really restart?"
 msgstr "Wirklich neustarten?"
 
@@ -542,7 +554,7 @@ msgstr "Neuladen"
 msgid "Results are displayed"
 msgstr "Ergebnisse werden angezeigt"
 
-#: player/partials/results.html:32
+#: mc/views/results.html:44 player/partials/results.html:32
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr "Ergebnisse sind nach Rang gewichtet. Die Stimmen stehen in Klammern."
 
@@ -567,11 +579,11 @@ msgstr "Punkte für Team {{playerId}}"
 msgid "Score: {{player.score}}"
 msgstr "Punkte: {{player.score}}"
 
-#: player/index.html:159
+#: player/index.html:83
 msgid "Score: {{status.player.score}}"
 msgstr "Punkte: {{status.player.score}}"
 
-#: mc/js/controllers/players.js:41
+#: mc/js/controllers/players.js:37
 msgid "Select"
 msgstr "Auswählen"
 
@@ -603,7 +615,7 @@ msgstr "Team ID"
 msgid "Teams"
 msgstr "Teams"
 
-#: player/partials/rating/rating.score.html:8
+#: player/partials/rating/rating.score.html:2
 msgid "The MC has to select somebody!!"
 msgstr "Der MC muss jemanden auswählen!!"
 
@@ -615,17 +627,33 @@ msgstr "Die %s wurde geschlossen."
 msgid "The agreement on %s is neglected."
 msgstr "Keine %s geschlossen."
 
+#: player/js/services/playerAppServices.js:599
+msgid "The deal was denied"
+msgstr "Das Abkommen kam nicht zustande."
+
 #: game/items/includes/results.js:24
 msgid "The division of the cake"
 msgstr "Die Verteilung des Kuchens"
+
+#: player/js/services/playerAppServices.js:603
+msgid "The other team is busy"
+msgstr "Das andere Team is beschäftigt."
+
+#: player/partials/assholes.html:15
+msgid "The worst team was not mean to you."
+msgstr "Das schlechteste Team war nicht gemein zu Euch."
 
 #: player/partials/assholes.html:2
 msgid "These teams were mean to you:"
 msgstr "Diese Teams haben euch Punkte abgezogen:"
 
-#: player/partials/deals/deal.details.html:2
-msgid "This deal does not exist!"
-msgstr "Diesen Deal gibt es nicht!"
+#: player/partials/assholes.html:4
+msgid "These worst team was mean to you:"
+msgstr "Das schlechteste Team war gemein zu Euch."
+
+#: player/partials/deals/deal.finish.html:7
+msgid "This deal is active"
+msgstr "Das Abkommen wurde geschlossen."
 
 #: mc/views/about.html:1
 msgid "This is the about view."
@@ -635,11 +663,11 @@ msgstr "Das ist die About-Ansicht."
 msgid "This poll doesn't exist!"
 msgstr "Diesen Frage gibt es nicht!"
 
-#: player/partials/deals/deal.details.html:46
+#: player/partials/deals/deal.details.html:38
 msgid "This treaty was ACCEPTED."
 msgstr "Dieses Abkommen wurde ANGENOMMEN."
 
-#: player/partials/deals/deal.details.html:47
+#: player/partials/deals/deal.details.html:39
 msgid "This treaty was DENIED."
 msgstr "Dieses Abkommen wurde ABGELEHNT."
 
@@ -655,16 +683,24 @@ msgstr "Gesamtdauer: {{getTimeForDeck()}}"
 msgid "Total: {{home.data[0]}}"
 msgstr "Gesamt: {{home.data[0]}}"
 
+#: mc/views/results.html:27
+msgid "Total: {{teamActionInfo.data[0]}}"
+msgstr "Gesamt: {{teamActionInfo.data[0]}}"
+
 #: player/partials/rating/rating.html:18
 msgid "Traitor! You can't score down your allied!"
 msgstr "Verräter! Ihr könnt Euren Allianzpartner nicht negativ bewerten!"
 
-#: player/js/controllers/dealControllers.js:96
-#: player/partials/deals/deal.details.html:6
+#: player/partials/deals/deal.answer.html:3
+#: player/partials/deals/deal.details.html:3
+#: player/partials/deals/deal.finish.html:3
+#: player/partials/deals/deal.messageSent.html:3
+#: player/partials/deals/deal.new.html:3
+#: player/partials/deals/deal.wait.html:3
 msgid "Treaty"
 msgstr "Abkommen"
 
-#: player/partials/deals/deal.details.html:50
+#: player/partials/deals/deal.details.html:42
 msgid "Try Again"
 msgstr "Zurück"
 
@@ -676,11 +712,11 @@ msgstr "Art"
 msgid "Uptime"
 msgstr ""
 
-#: admin/views/master-content.html:8 player/partials/vote.html:18
+#: admin/views/master-content.html:8 player/partials/vote.html:19
 msgid "VOTE"
 msgstr "ABSTIMMUNG"
 
-#: mc/js/services/mcAppServices.js:354
+#: mc/js/services/mcAppServices.js:389
 msgid "Voted for:"
 msgstr "Gestimmt für:"
 
@@ -688,69 +724,61 @@ msgstr "Gestimmt für:"
 msgid "Wait"
 msgstr "Warten"
 
-#: player/partials/rating/rating.score.html:24
+#: player/partials/rating/rating.score.html:26
 msgid "Waiting for being rated."
 msgstr "Auf Bewertung warten."
 
-#: player/partials/deals/deal.details.html:26
+#: player/partials/deals/deal.details.html:18
 msgid "Waiting for reply..."
 msgstr "Warten auf Antwort ..."
 
-#: player/js/controllers/dealControllers.js:41
-msgid "We like to deal!"
-msgstr "Wir wollen ein Abkommen schließen!"
+#: player/partials/deals/deal.wait.html:7
+msgid "We are waiting for reply."
+msgstr "Warten auf Antwort ..."
 
-#: player/js/controllers/dealControllers.js:44
-msgid "We offer {{points}} points."
-msgstr "Wir bieten {{points}} Punkte."
-
-#: player/js/controllers/dealControllers.js:49
-msgid "We want {{points}} points."
-msgstr "Wir wollen {{points}} Punkte."
-
-#: mc/js/services/mcAppServices.js:95
+#: mc/js/services/mcAppServices.js:104
 msgid "Who at the table has a job of which he or she can live?"
 msgstr "Wer am Tisch hat eine Arbeit, von der er oder sie leben kann?"
 
-#: mc/js/services/mcAppServices.js:63
+#: mc/js/services/mcAppServices.js:72
 msgid "Who at this table has been class spokesman?"
 msgstr "Wer an diesem Tisch war einmal Klassensprecher?"
 
-#: mc/js/services/mcAppServices.js:71
+#: mc/js/services/mcAppServices.js:80
 msgid "Who at this table has ever won a lot?"
 msgstr "Wer an diesem Tisch hat schon mal viel gewonnen?"
 
-#: mc/js/services/mcAppServices.js:127
+#: mc/js/services/mcAppServices.js:136
 msgid "Who feels more as an European than a citizens of his country?"
 msgstr "Wer fühlt sich mehr als Europäer denn als Bürger seines Landes?"
 
-#: mc/js/services/mcAppServices.js:143
+#: mc/js/services/mcAppServices.js:152
 msgid "Who finds the people here in general trustworthy?"
 msgstr "Wer findet die Menschen hier grundsätzlich vertrauenswürdig?"
 
-#: mc/js/services/mcAppServices.js:111
+#: mc/js/services/mcAppServices.js:120
 msgid "Who had a physical conflict in the past 10 years?"
 msgstr ""
 "Wer hat in den vergangenen 10 Jahren einen Konflikt schon mal körperlich "
 "ausgetragen?"
 
-#: mc/js/services/mcAppServices.js:119
+#: mc/js/services/mcAppServices.js:128
 msgid "Who has ever consciously denied his national origin?"
 msgstr "Wer hat schon mal bewusst seine nationale Herkunft verleugnet?"
 
-#: mc/js/services/mcAppServices.js:87
+#: mc/js/services/mcAppServices.js:96
 msgid "Who is involved in a association or in an NGO?"
 msgstr "Wer engagiert sich in einem Verein oder in einer NGO?"
 
-#: mc/js/services/mcAppServices.js:135
+#: mc/js/services/mcAppServices.js:144
 msgid "Who is scared of the future?"
 msgstr "Wer hat Angst vor der Zukunft?"
 
-#: mc/js/services/mcAppServices.js:79
+#: mc/js/services/mcAppServices.js:88
 msgid "Who was or is a member of a political party?"
 msgstr "Wer war oder ist Parteimitglied?"
 
-#: mc/js/services/mcAppServices.js:103
+#: mc/js/services/mcAppServices.js:112
 msgid "Who works regularly outside the country?"
 msgstr "Wer arbeitet regelmäßig außerhalb des Landes?"
 
@@ -766,11 +794,11 @@ msgstr "Wi-Fi Passwort"
 msgid "Yes"
 msgstr "Ja"
 
-#: game/playerManager.js:448
+#: game/playerManager.js:446
 msgid "You are NOT in the game!"
 msgstr "Du spielst NICHT mit!"
 
-#: game/playerManager.js:457
+#: game/playerManager.js:455
 msgid "You are in the game!"
 msgstr "Du spielst mit!"
 
@@ -782,7 +810,7 @@ msgstr "Nicht dem Spiel beigetreten!"
 msgid "You are voting for:"
 msgstr "Ihr stimmt für:"
 
-#: player/partials/rating/rating.score.html:2
+#: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
 msgstr "Du kannst diese Teams positiv oder negativ bewerten!"
 
@@ -794,59 +822,63 @@ msgstr "Die Zeit ist abgelaufen. Einen Punkt abgezogen!"
 msgid "Your choice is sent!"
 msgstr "Die Stimme wurde gezählt!"
 
-#: player/partials/vote.html:5
+#: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
 msgstr "Das Stimmgewicht hängt vom aktuellen Rang ab!"
 
-#: mc/js/services/mcAppServices.js:160
+#: mc/js/services/mcAppServices.js:169
 msgid "ambition"
 msgstr "Ehrgeiz"
 
-#: mc/js/services/mcAppServices.js:88
+#: mc/js/services/mcAppServices.js:97
 msgid "association/NGO"
 msgstr "Verein/NGO"
 
-#: mc/js/services/mcAppServices.js:64
+#: admin/js/controllers/adminControllers.js:343
+msgid "cancel"
+msgstr "Abbrechen"
+
+#: mc/js/services/mcAppServices.js:73
 msgid "class spokesman"
 msgstr "Klassensprecher"
 
-#: mc/js/services/mcAppServices.js:168
+#: mc/js/services/mcAppServices.js:177
 msgid "confidence in democracy"
 msgstr "Vertrauen in Demokratie"
 
-#: game/playerManager.js:34 homevisit_components/hvPlayerColors.js:28
+#: game/playerManager.js:34 homevisit_components/hvPlayerColors.js:30
 msgid "dark blue"
 msgstr "Blau"
 
-#: mc/js/services/mcAppServices.js:120
+#: mc/js/services/mcAppServices.js:129
 msgid "denied origin"
 msgstr "Herkunft verleugnet"
 
-#: mc/js/services/mcAppServices.js:176
+#: mc/js/services/mcAppServices.js:185
 msgid "earnings"
 msgstr "Gewinn aus Spiel der Märkte"
 
-#: mc/js/services/mcAppServices.js:128
+#: mc/js/services/mcAppServices.js:137
 msgid "feeling European"
 msgstr "gefühlter Europäer"
 
-#: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:31
+#: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:33
 msgid "green"
 msgstr "Grün"
 
-#: game/playerManager.js:33 homevisit_components/hvPlayerColors.js:27
+#: game/playerManager.js:33 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
 msgstr "Hellblau"
 
-#: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:32
+#: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
 msgstr "Lila"
 
-#: mc/js/services/mcAppServices.js:80
+#: mc/js/services/mcAppServices.js:89
 msgid "member of political party"
 msgstr "Parteimitglied"
 
-#: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:29
+#: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
 msgstr "Orange"
 
@@ -854,29 +886,30 @@ msgstr "Orange"
 msgid "other Player"
 msgstr "anderer Spieler"
 
-#: mc/js/services/mcAppServices.js:96
+#: mc/js/services/mcAppServices.js:105
 msgid "paid job"
 msgstr "bezahlte Arbeit"
 
-#: mc/js/services/mcAppServices.js:112
+#: mc/js/services/mcAppServices.js:121
 msgid "physical conflict"
 msgstr "körperlicher Konflikt"
 
-#: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:33
+#: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:35
 msgid "pink"
 msgstr "Rosa"
 
-#: player/js/services/playerAppServices.js:178
+#: mc/js/services/mcAppServices.js:421
+#: player/js/services/playerAppServices.js:203
 msgid "point"
 msgid_plural "points"
 msgstr[0] "Punkt"
 msgstr[1] "Punkte"
 
-#: game/playerManager.js:32 homevisit_components/hvPlayerColors.js:26
+#: game/playerManager.js:32 homevisit_components/hvPlayerColors.js:28
 msgid "red"
 msgstr "Rot"
 
-#: mc/js/services/mcAppServices.js:136
+#: mc/js/services/mcAppServices.js:145
 msgid "scared of the future"
 msgstr "Angst vor Zukunft"
 
@@ -884,47 +917,87 @@ msgstr "Angst vor Zukunft"
 msgid "sec"
 msgstr "Sek."
 
-#: mc/js/services/mcAppServices.js:144
+#: mc/js/services/mcAppServices.js:153
 msgid "trustworthy"
 msgstr "vertrauenswürdig"
 
-#: player/js/services/playerAppServices.js:187
+#: mc/js/services/mcAppServices.js:430
+#: player/js/services/playerAppServices.js:220
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "Team"
 msgstr[1] "Teams"
 
-#: mc/js/services/mcAppServices.js:347
+#: mc/js/services/mcAppServices.js:382
 msgid "waiting ..."
 msgstr "Warten..."
 
-#: mc/js/services/mcAppServices.js:152
+#: mc/js/services/mcAppServices.js:161
 msgid "willingness of solidarity"
 msgstr "Solidaritätsbereitschaft"
 
-#: mc/js/services/mcAppServices.js:72
+#: mc/js/services/mcAppServices.js:81
 msgid "won a lot"
 msgstr "viel gewonnen"
 
-#: mc/js/services/mcAppServices.js:104
+#: mc/js/services/mcAppServices.js:113
 msgid "working outside the country"
 msgstr "arbeitet im Ausland"
 
-#: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:30
+#: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
 msgstr "Gelb"
 
-#: player/partials/assholes.html:7
+#: player/partials/assholes.html:9
 msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
 msgstr[0] "{{minuspoints}} Minuspunkt"
 msgstr[1] "{{minuspoints}} Minuspunkte"
 
+#~ msgid ""
+#~ "<td><a href=\"#/deals/{{deal.id}}\">Treaty</a></td>\n"
+#~ "            <td>with team <player-icon pid=\"deal.player1Id\"></player-"
+#~ "icon></td>\n"
+#~ "            <td>{{getDealStateText(deal)}}</td>"
+#~ msgstr ""
+#~ "<td><a href=\"#/deals/{{deal.id}}\">Abkommen</a></td>\n"
+#~ "            <td>mit Team <player-icon pid=\"deal.player1Id\"></player-"
+#~ "icon></td>\n"
+#~ "            <td>{{getDealStateText(deal)}}</td>"
+
+#~ msgid "Accept treaty"
+#~ msgstr "Abkommen akzeptieren"
+
+#~ msgid "Choose type of deal:"
+#~ msgstr "Wählen Sie Art des Deals:"
+
+#~ msgid ""
+#~ "Do you want to accept a treaty with <player-icon class=\"player-icon-med"
+#~ "\" pid=\"player1Id\"></player-icon>?"
+#~ msgstr ""
+#~ "Möchtest du ein Abkommen mit <player-icon class=\"player-icon-med\" pid="
+#~ "\"player1Id\"></player-icon> schließen?"
+
+#~ msgid "For 0 points."
+#~ msgstr "Für 0 Punkte."
+
+#~ msgid "New treaty"
+#~ msgstr "Neues Abkommen"
+
+#~ msgid "This deal does not exist!"
+#~ msgstr "Diesen Deal gibt es nicht!"
+
+#~ msgid "We like to deal!"
+#~ msgstr "Wir wollen ein Abkommen schließen!"
+
+#~ msgid "We offer {{points}} points."
+#~ msgstr "Wir bieten {{points}} Punkte."
+
+#~ msgid "We want {{points}} points."
+#~ msgstr "Wir wollen {{points}} Punkte."
+
 #~ msgid "Choose team to deal {{subject}} with:"
 #~ msgstr "Team wählen um {{subject}} zu vereinbaren:"
-
-#~ msgid "This deal is ACTIVE."
-#~ msgstr "Dieser Deal ist AKTIV."
 
 #~ msgid "Next:"
 #~ msgstr "Nächster:"

@@ -110,7 +110,7 @@
             //     });
             // };
             $scope.deleteDeck = function (index) {
-                if (!confirm(gettextCatalog.getString("Wirklich Löschen???"))) {
+                if (!confirm(gettextCatalog.getString("Really delete???"))) {
                     return;
                 }
                 setFactory.deleteDeck(index);
@@ -266,7 +266,7 @@
                 return $scope.updateDeck($scope.deck);
             };
             $scope.deleteItem = function (deckId, index) {
-                if (!confirm(gettextCatalog.getString("Wirklich Löschen???"))) {
+                if (!confirm(gettextCatalog.getString("Really delete???"))) {
                     return;
                 }
 
