@@ -19,10 +19,10 @@
                 {top: 8, left: 330},
                 {top: 8, left: 645},
                 {top: 8, left: 960},
-                {top: 480, left: 960},
-                {top: 480, left: 645},
-                {top: 480, left: 330},
-                {top: 480, left: 15}
+                {top: 560, left: 960},
+                {top: 560, left: 645},
+                {top: 560, left: 330},
+                {top: 560, left: 15}
             ];
 
             $scope.toggleSelected = function (id) {

@@ -104,7 +104,7 @@ body {
   top: 164px;
   left: 15px;
   width: 986px;
-  height: 310px;
+  height: 390px;
   border: solid 1px;
   font-size: 1.3em;
   overflow: hidden;
@@ -118,7 +118,7 @@ body {
 }
 
 .playback-controls .btn-block {
-    height: 113px;
+    height: 153px;
     font-weight: bold;
 }
 
@@ -217,7 +217,7 @@ body {
 }
 
 .playback {
-  height: 310px;
+  height: 390px;
   position: relative;
 }
 
@@ -301,7 +301,7 @@ body {
 }
 
 .game_sequence_item .content {
-    height: 262px;
+    height: 364px;
     display: flex;
     flex-direction: column;
 }
