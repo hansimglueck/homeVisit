@@ -68,7 +68,7 @@
                     case "rego":
                         console.log('rego');
                         if (this.sequence !== null) {
-                            this.sequence.restep();
+                            this.sequence.restep(parseInt(param));
                         }
                         break;
 
@@ -82,7 +82,7 @@
                     case "back":
                         console.log('back');
                         if (this.sequence !== null) {
-                            this.sequence.back(param);
+                            this.sequence.back(parseInt(param));
                         }
                         break;
 

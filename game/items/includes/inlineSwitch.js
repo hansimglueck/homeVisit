@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     var SequenceItem = require('../SequenceItem');
@@ -7,6 +7,7 @@
         executeItem: function () {
             var option = this.param;
             if (this.inlineSwitchSource === 'previousStep') {
+                this.log("source = previousStep");
                 var data = this.previous.getData();
                 if (data !== null) {
                     option = data.complete ? data.voteOptions[0].value : -1;
@@ -26,10 +27,20 @@
                 var oldNext = this.next;
                 this.next = null;
                 for (var i = 0; i < deck.items.length; i++) {
-                    this.appendItem(new SequenceItem(null, deck.items[i], this.index + ":" + option + ":" + i, true));
+                    var newItem = new SequenceItem(null, deck.items[i], this.index + ":" + option + ":" + i, true);
+                    newItem.resetItem = function () {
+                        this.log("resetting inline item "+this.index);
+                        this.previous.reset();
+                    };
+                    this.appendItem(newItem);
                 }
                 this.appendItem(oldNext);
                 this.step();
+            }
+            this.resetItem = function() {
+                while (this.next.index.toString().indexOf(":")>-1) {
+                    this.next.deleteItem();
+                }
             }
         }
     };

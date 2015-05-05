@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     var Q = require('q');
@@ -117,11 +117,19 @@
         polls: {},
 
         reset: function () {
+            this.log("resetting item " + this.index);
             this.done = false;
             this.finished = false;
+            this.resetItem();
             if (this.next !== null) {
-                this.next.reset();
+                if (this.next.done) {
+                    this.next.reset();
+                }
             }
+        },
+        resetItem: function () {
+            //nothing here, just for special reset-functionality of special items (aka inlineSwitch-items)
+            return this;
         },
         log: function (message, ws) {
             console.log("Sequence.log: " + message);
@@ -148,6 +156,13 @@
             item.setNext(this.next);
             item.setPrevious(this);
             this.next = item;
+        },
+        deleteItem: function () {
+            this.log("deleting item " + this.index);
+            if (this.previous !== null) {
+                this.previous.setNext(this.next);
+                if (this.next !== null) this.next.setPrevious(this.previous);
+            }
         },
         setPrevious: function (previousItem) {
             this.previous = previousItem;
@@ -215,26 +230,33 @@
                 this.next.stepToIndex(param, index);
             }
         },
-        restep: function () {
+        restep: function (param) {
             if (this.next === null || !this.next.done && this.done) {
                 this.reset();
-                this.step();
+                this.previous.step(param);
             }
             else if (this.next !== null) {
-                this.next.restep();
+                this.next.restep(param);
             }
         },
-        back: function () {
+        back: function (param) {
+            this.log("back on item " + this.index);
             if (this.next === null || !this.next.done && this.done) {
                 if (this.previous !== null) {
-                    this.previous.reset();
-                }
-                if (this.previous !== null) {
-                    this.previous.step();
+                    //wenn .previous ein inlineSwitch IST, dann resetten und noch einen zurückgehen
+                    if (this.previous.type === "inlineSwitch") {
+                        this.previous.reset();
+                        this.previous.previous.reset();
+                        this.previous.previous.step(param);
+                    }
+                    else {
+                        this.previous.reset();
+                        this.previous.step(param);
+                    }
                 }
             }
             else if (this.next !== null) {
-                this.next.back();
+                this.next.back(param);
             }
         },
         execute: function () {
@@ -294,7 +316,7 @@
             });
 
         },
-        sendPlaybackStatus: function() {
+        sendPlaybackStatus: function () {
             if (!this.isOnTurn()) {
                 this.next.sendPlaybackStatus();
             }
@@ -340,14 +362,14 @@
             }
         },
 
-        isOnTurn: function() {
+        isOnTurn: function () {
             if (this.next === null) {
                 return true;
             }
             return this.done && !this.next.done;
         },
 
-        getData: function() {
+        getData: function () {
             if (this.previous !== null) {
                 return this.previous.getData();
             }
