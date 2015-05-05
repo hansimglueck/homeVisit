@@ -27,7 +27,7 @@
                 //playerManager.sendMessage(deal.player0Id, "deal", deal);
                 //playerManager.sendMessage(deal.player1Id, "deal", deal);
                 playerManager.players[deal.player0Id].busy = false;
-                playerManager.players[deal.player1Id].busy = false;
+                if (typeof deal.player1Id !== "undefined") playerManager.players[deal.player1Id].busy = false;
                 playerManager.sendPlayerStatus(-1);
             });
 
