@@ -10,6 +10,7 @@
             var statusFactory = {};
             statusFactory.player = emptyPlayer;
             statusFactory.otherPlayers = [];
+            statusFactory.joinedPlayers = [];
             statusFactory.maxPlayers = 0;
             statusFactory.ratingActive = true;
             statusFactory.joined = false;
@@ -27,6 +28,7 @@
                 Socket.on('status', function (data) {
                     if (data.otherPlayers) {
                         statusFactory.otherPlayers = data.otherPlayers;
+                        statusFactory.joinedPlayers = data.otherPlayers.filter(function(player){return player.joined});
                     }
                     if (data.maxPlayers) {
                         statusFactory.maxPlayers = data.maxPlayers;
@@ -382,15 +384,16 @@
                     }
                     //TODO: ist das die richtige art und weise, rauszufinden, ob es mc-notes (in der aktuellen sprache) gibt?
                     var lang = gettextCatalog.currentLanguage;
-                    ;
+                    var popUp = false;
                     if (deckFactory.currentDetailed.mcnote) {
                         if (deckFactory.currentDetailed.mcnote[lang].trim().length > 0) {
-                            mcPopUp();
+                            popUp = true;
                         }
                     }
                     if (deckFactory.mcTasks.select) {
-                        mcPopUp();
+                        popUp = true;
                     }
+                    if (popUp) mcPopUp();
 
                     // send poll data to mc when printer phase is over
                     // 81: last printed card
