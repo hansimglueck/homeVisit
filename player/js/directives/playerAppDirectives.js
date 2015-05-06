@@ -57,6 +57,22 @@
                 }
             };
         })
+        .directive('slideshow', function() {
+            return {
+                restrict: 'E',
+                scope: {},
+                templateUrl: 'views/slideshow.html',
+                link: function(scope, element, attrs) {
+                    var images = scope.$parent.home.slideshowImages;
+                    if (typeof images !== 'undefined') {
+                        element.find('#slideshow').fadeShow({
+                            images: images,
+                            speed: 4600
+                        });
+                    }
+                }
+            };
+        })
         .directive('keypad', function() {
             return {
                 restrict: 'E',

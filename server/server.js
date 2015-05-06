@@ -73,6 +73,7 @@
     app.use('/admin', express.static(path.join(__dirname, '/../admin')));
     app.use('/player', express.static(path.join(__dirname, '/../player')));
     app.use('/mc', express.static(path.join(__dirname, '/../mc')));
+    app.use('/slideshow', express.static(path.join(__dirname, '/../slideshow')));
 
     // resource routes
     app.use('/decks', require('./routes/decks'));

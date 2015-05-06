@@ -31,6 +31,10 @@
     font-size: 130%;
 }
 
+.results .table.results tr:first-child > td {
+    border-top: none;
+}
+
 .results .table.results .resultslabel {
     text-align: left;
 }

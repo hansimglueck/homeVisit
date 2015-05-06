@@ -113,6 +113,10 @@
                              templateUrl: 'partials/freeze.html',
                              controller: 'FreezeController'
                          }).
+                         when('/slideshow', {
+                             templateUrl: 'partials/slideshow.html',
+                             controller: 'SlideshowController'
+                         }).
                          when('/card', {
                              templateUrl: 'partials/card.html',
                              controller: 'CardController'

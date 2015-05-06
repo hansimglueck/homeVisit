@@ -144,6 +144,10 @@
                                     homeFactory.assholeOptions = data.assholeOptions;
                                     $location.path('/assholes');
                                     break;
+                                case "slideshow":
+                                    homeFactory.slideshowImages = data.images;
+                                    $location.path('/slideshow');
+                                    break;
                                 case "alert":
                                     showAlert(data);
                                     break;

@@ -219,6 +219,9 @@
         .controller('CardController', function($scope, Home){
             $scope.home = Home;
         })
+        .controller('SlideshowController', function($scope, Home){
+            $scope.home = Home;
+        })
         .filter('isOtherPlayerThan', function () {
             return function (players, self) {
                 return players.filter(function (p) {
