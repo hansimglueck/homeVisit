@@ -203,6 +203,7 @@
                     } else {
                         var newDealId = require('hat')();
                         deal.id = newDealId;
+                        deal.player1Id = parseInt(deal.player1Id);
                         this.deals[deal.id] = deal;
                         this.players[deal.player0Id].busy = true;
                         this.players[deal.player1Id].busy = true;
@@ -211,6 +212,7 @@
                     }
                     break;
                 case "confirm":
+                    deal.player1Id = parseInt(deal.player1Id);
                     this.deals[deal.id] = deal;
                     this.players[deal.player0Id].deals[deal.id] = deal;
                     this.players[deal.player1Id].deals[deal.id] = deal;
@@ -218,6 +220,8 @@
                     this.sendMessage(deal.player1Id, "deal", deal);
                     this.sendGameEvent(deal.player0Id, "insurance", deal.player1Id, "");
                     this.sendGameEvent(deal.player1Id, "insurance", deal.player0Id, "");
+                    this.calcInsurance(deal.player0Id);
+                    this.calcInsurance(deal.player1Id);
                     gameRecording.deal({
                         type: 'insurance',
                         playerIds: [parseInt(deal.player0Id), parseInt(deal.player1Id)],
@@ -226,6 +230,7 @@
                     break;
                 default:
                 case "deny":
+                    deal.player1Id = parseInt(deal.player1Id);
                     this.deals[deal.id] = deal;
                     this.players[deal.player0Id].busy = false;
                     this.players[deal.player1Id].busy = false;
@@ -281,7 +286,7 @@
                             console.log("Set Player #: " + data.id + " .selected = " + this.players[data.id].selected);
                             break;
                         case "deselectAll":
-                            this.players.forEach(function(player){
+                            this.players.forEach(function (player) {
                                 player.selected = false;
                             });
                             console.log("Deselect All Players");
@@ -750,80 +755,83 @@
                 this.sendGameEvent(otherPlayerId, "rating", score, "player", playerId);
             }
             this.sendGameEvent(playerId, "score", score, reason, otherPlayerId);
-            var deals = [];
-            for (var deal in this.deals) {
-                if (this.deals.hasOwnProperty(deal)) {
-                    deals.push(this.deals[deal]);
-                }
-            }
-
-            var self = this;
-            if (deals.length > 0) {
-                deals.filter(function (deal) {
-                    return deal.status === "confirm" &&
-                        (deal.player0Id === playerId || deal.player1Id === playerId);
-                }).forEach(function (deal) {
-                    var otherPlayerId = deal.player0Id;
-                    if (otherPlayerId === playerId) {
-                        otherPlayerId = deal.player1Id;
-                    }
-                    while (self.players[playerId].score - self.players[otherPlayerId].score > 4) {
-                        self.players[playerId].score--;
-                        self.sendGameEvent(playerId, "score", -1, "insurance", otherPlayerId);
-                        gameRecording.score({
-                            playerId: parseInt(playerId),
-                            scoreDiff: -1,
-                            score: self.players[playerId].score,
-                            rank: self.players[playerId].rank,
-                            type: 'insurance',
-                            otherPlayerId: otherPlayerId
-                        });
-                        self.players[otherPlayerId].score++;
-                        self.sendGameEvent(otherPlayerId, "score", +1, "insurance", playerId);
-                        gameRecording.score({
-                            playerId: parseInt(otherPlayerId),
-                            scoreDiff: 1,
-                            score: self.players[otherPlayerId].score,
-                            rank: self.players[otherPlayerId].rank,
-                            type: 'insurance',
-                            otherPlayerId: playerId
-                        });
-                    }
-                    while (self.players[otherPlayerId].score - self.players[playerId].score > 4) {
-                        self.players[playerId].score++;
-                        self.sendGameEvent(playerId, "score", 1, "insurance", otherPlayerId);
-                        gameRecording.score({
-                            playerId: parseInt(playerId),
-                            scoreDiff: 1,
-                            score: self.players[playerId].score,
-                            rank: self.players[playerId].rank,
-                            type: 'insurance',
-                            otherPlayerId: otherPlayerId
-                        });
-                        self.players[otherPlayerId].score--;
-                        self.sendGameEvent(otherPlayerId, "score", -1, "insurance", playerId);
-                        gameRecording.score({
-                            playerId: parseInt(otherPlayerId),
-                            scoreDiff: -1,
-                            score: self.players[otherPlayerId].score,
-                            rank: self.players[otherPlayerId].rank,
-                            type: 'insurance',
-                            otherPlayerId: playerId
-                        });
-                    }
-                });
-            }
+            this.calcInsurance(playerId);
             this.calcRanking();
             this.sendPlayerStatus(-1);
 
             gameRecording.score({
                 playerId: parseInt(playerId),
                 scoreDiff: score,
-                score: self.players[playerId].score,
-                rank: self.players[playerId].rank,
+                score: this.players[playerId].score,
+                rank: this.players[playerId].rank,
                 type: reason,
                 otherPlayerId: otherPlayerId
             });
+        },
+        calcInsurance: function (playerId) {
+            playerId = parseInt(playerId);
+            var deals = [];
+            for (var deal in this.deals) {
+                if (this.deals.hasOwnProperty(deal)) {
+                    if (this.deals[deal].status === "confirm" &&
+                        (this.deals[deal].player0Id === playerId || this.deals[deal].player1Id === playerId)) {
+                        deals.push(this.deals[deal]);
+                    }
+                }
+            }
+            var self = this;
+            if (deals.length > 0) {
+                deals.forEach(function (deal) {
+                    var otherPlayerId = deal.player0Id;
+                    if (otherPlayerId === playerId) {
+                        otherPlayerId = deal.player1Id;
+                    }
+                    while (self.players[deal.player0Id].score - self.players[deal.player1Id].score > 4) {
+                        self.players[deal.player0Id].score--;
+                        self.sendGameEvent(deal.player0Id, "score", -1, "insurance", deal.player1Id);
+                        gameRecording.score({
+                            playerId: parseInt(deal.player0Id),
+                            scoreDiff: -1,
+                            score: self.players[deal.player0Id].score,
+                            rank: self.players[deal.player0Id].rank,
+                            type: 'insurance',
+                            otherPlayerId: deal.player1Id
+                        });
+                        self.players[deal.player1Id].score++;
+                        self.sendGameEvent(deal.player1Id, "score", +1, "insurance", deal.player0Id);
+                        gameRecording.score({
+                            playerId: parseInt(deal.player1Id),
+                            scoreDiff: 1,
+                            score: self.players[deal.player1Id].score,
+                            rank: self.players[deal.player1Id].rank,
+                            type: 'insurance',
+                            otherPlayerId: deal.player0Id
+                        });
+                    }
+                    while (self.players[deal.player1Id].score - self.players[deal.player0Id].score > 4) {
+                        self.players[deal.player0Id].score++;
+                        self.sendGameEvent(deal.player0Id, "score", 1, "insurance", deal.player1Id);
+                        gameRecording.score({
+                            playerId: parseInt(deal.player0Id),
+                            scoreDiff: 1,
+                            score: self.players[deal.player0Id].score,
+                            rank: self.players[deal.player0Id].rank,
+                            type: 'insurance',
+                            otherPlayerId: deal.player1Id
+                        });
+                        self.players[deal.player1Id].score--;
+                        self.sendGameEvent(deal.player1Id, "score", -1, "insurance", deal.player0Id);
+                        gameRecording.score({
+                            playerId: parseInt(deal.player1Id),
+                            scoreDiff: -1,
+                            score: self.players[deal.player1Id].score,
+                            rank: self.players[deal.player1Id].rank,
+                            type: 'insurance',
+                            otherPlayerId: deal.player0Id
+                        });
+                    }
+                });
+            }
         },
         setAgreement: function (agreement) {
             var self = this;
