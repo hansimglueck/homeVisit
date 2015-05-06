@@ -389,3 +389,7 @@ ul.follow-items > li {
       color: rgba(212, 63, 58, 1.0);
   }
 }
+
+.modal {
+    font-size:1.5em;
+}
