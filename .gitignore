@@ -27,6 +27,9 @@ build/Release
 # lokale settings
 homevisitConf.local.js
 
+# slideshow images
+slideshow
+
 # common stuff
 .DS_Store
 ThumbsDB
