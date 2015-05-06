@@ -886,7 +886,7 @@ msgstr "Vertrauen in Demokratie"
 
 #: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:30
 msgid "dark blue"
-msgstr "Blau"
+msgstr "BLAU"
 
 #: mc/js/services/mcAppServices.js:129
 msgid "denied origin"
@@ -902,15 +902,15 @@ msgstr "gefühlter Europäer"
 
 #: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:33
 msgid "green"
-msgstr "Grün"
+msgstr "GRÜN"
 
 #: game/playerManager.js:34 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
-msgstr "Hellblau"
+msgstr "HELL BLAU"
 
 #: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
-msgstr "Lila"
+msgstr "LILA"
 
 #: mc/js/services/mcAppServices.js:89
 msgid "member of political party"
@@ -918,7 +918,7 @@ msgstr "Parteimitglied"
 
 #: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
-msgstr "Orange"
+msgstr "ORANGE"
 
 #: player/views/game-events.html:24
 msgid "other Player"
@@ -934,7 +934,7 @@ msgstr "körperlicher Konflikt"
 
 #: game/playerManager.js:40 homevisit_components/hvPlayerColors.js:35
 msgid "pink"
-msgstr "Rosa"
+msgstr "ROSA"
 
 #: mc/js/services/mcAppServices.js:440
 #: player/js/services/playerAppServices.js:219
@@ -945,7 +945,7 @@ msgstr[1] "Punkte"
 
 #: game/playerManager.js:33 homevisit_components/hvPlayerColors.js:28
 msgid "red"
-msgstr "Rot"
+msgstr "ROT"
 
 #: mc/js/services/mcAppServices.js:145
 msgid "scared of the future"
@@ -984,7 +984,7 @@ msgstr "arbeitet im Ausland"
 
 #: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
-msgstr "Gelb"
+msgstr "GELB"
 
 #: player/partials/assholes.html:9
 msgid "{{minuspoints}} minus point"
