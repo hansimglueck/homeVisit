@@ -309,13 +309,13 @@
             playerNamesFactory.getNames().forEach(function () {
                 playerNamesFactory.customPlayerNames.push(undefined);
             });
-            
+
             // When there are less than 15 players, deactivate them to ignore them in matching calc
             // 1 if player is in game, 0 if player is absent
             playerNamesFactory.inGame = [
                 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
             ]
-            
+
             playerNamesFactory.getPlayerCount = function() {
                 var sum = 0;
                 for (var i = 0; i < playerNamesFactory.inGame.length; i++) {
@@ -337,8 +337,8 @@
                 previous: null,
                 next: null,
                 mcTasks: {
-                    go: false,
-                    alert: false,
+                    go: true,
+                    alert: true,
                     select: false
                 }
             };
@@ -452,7 +452,7 @@
             return deckFactory;
         })
 
-        .factory('TeamActionInfo', function (Socket, gettext, ModalService, gettextCatalog, playerColors) {
+        .factory('TeamActionInfo', function (Socket, gettext, ModalService, gettextCatalog, playerColors, playerColornamesFactory) {
             var teamActionInfo = {};
 
             teamActionInfo.actionInfo = [
@@ -488,8 +488,22 @@
                     teamActionInfo.actionInfo[msg.playerId] = gettext("Voted for: ") + msg.text[0];
                 });
 
-                Socket.on("card", function (msg) {
-                    console.log("CARD EMPFANGEN");
+                Socket.on("score", function (msg) {
+                    console.log("SCORE EMPFANGEN");
+                    //console.log(msg);
+                    teamActionInfo.actionInfo[msg.otherPlayerId] = gettext("Score ") + msg.value + gettext(" to ")+ playerColornamesFactory.playercolornames[msg.playerId];
+                });
+
+                Socket.on("insurance", function (msg) {
+                    console.log("DEAL EMPFANGEN");
+                    //console.log(msg);
+                    teamActionInfo.actionInfo[msg.playerId] = gettext("Deal with ") + playerColornamesFactory.playercolornames[msg.value];
+                });
+
+
+
+                Socket.on("playBackStatus", function (msg) {
+                    console.log("PLAYBACKstatus EMPFANGEN");
                     for (var i = 0; i < teamActionInfo.actionInfo.length; i++) {
                         teamActionInfo.actionInfo[i] = '';
                     }

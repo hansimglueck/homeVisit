@@ -695,21 +695,26 @@
             wsManager.msgDevicesByRole("MC", "status", msg);
         },
         sendGameEvent: function (playerId, type, value, reason, otherPlayerId) {
-            this.sendMessage(playerId, "gameEvent", {
+            var event = {
                 type: type,
                 value: value,
                 reason: reason,
-                otherPlayerId: otherPlayerId
-            });
+                otherPlayerId: otherPlayerId,
+                playerId: playerId
+            };
+            this.sendMessage(playerId, "gameEvent", event);
             this.gameEvents.push({
                 playerId: playerId,
-                event: {
-                    type: type,
-                    value: value,
-                    reason: reason,
-                    otherPlayerId: otherPlayerId
-                }
+                event: event
             });
+            if (reason === "rating") {
+                wsManager.msgDevicesByRole("MC", "score", event);
+            }
+
+            if (type === "insurance") {
+                wsManager.msgDevicesByRole("MC", "insurance", event);
+            }
+
         },
         getPlayerIdForClientId: function (clientId) {
             var playerId = -1;
