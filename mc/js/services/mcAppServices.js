@@ -355,14 +355,17 @@
 
                     deckFactory.current = deck.items[stepIndex];
                     deckFactory.currentDetailed = deck.items[stepIndex];
+                    console.log("------");
+                    console.log(inlineIndex);
+                    console.log(deckFactory.currentDetailed.inlineDecks);
                     if (inlineIndex.length >= 3) {
-                        deckFactory.currentDetailed = deckFactory.currentDetailed.inlineDecks[inlineIndex[1]].items[inlineDecks[2]];
+                        deckFactory.currentDetailed = deckFactory.currentDetailed.inlineDecks[inlineIndex[1]].items[inlineIndex[2]];
                     }
                     if (inlineIndex.length >= 5) {
-                        deckFactory.currentDetailed = deckFactory.currentDetailed.inlineDecks[inlineIndex[3]].items[inlineDecks[4]];
+                        deckFactory.currentDetailed = deckFactory.currentDetailed.inlineDecks[inlineIndex[3]].items[inlineIndex[4]];
                     }
                     if (inlineIndex.length === 7) {
-                        deckFactory.currentDetailed = deckFactory.currentDetailed.inlineDecks[inlineIndex[5]].items[inlineDecks[6]];
+                        deckFactory.currentDetailed = deckFactory.currentDetailed.inlineDecks[inlineIndex[5]].items[inlineIndex[6]];
                     }
 
                     deckFactory.previous = deck.items[stepIndex - 1];

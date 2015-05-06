@@ -114,6 +114,37 @@
 
         $scope.socket = Socket;
         $scope.teamActionInfo = TeamActionInfo;
-    });
+            $scope.pieChartOptions = {
+                scaleOverlay: false,
+                scaleOverride: false,
+                scaleSteps: null,
+                scaleStepWidth: null,
+                scaleStartValue: null,
+                scaleLineColor: "rgba(0,0,0,.1)",
+                scaleLineWidth: 1,
+                scaleShowLabels: true,
+                scaleLabel: "<%=value%>",
+                scaleFontFamily: "'proxima-nova'",
+                scaleFontSize: 10,
+                scaleFontStyle: "normal",
+                scaleFontColor: "#909090",
+                scaleShowGridLines: true,
+                scaleGridLineColor: "rgba(0,0,0,.05)",
+                scaleGridLineWidth: 1,
+                bezierCurve: true,
+                pointDot: true,
+                pointDotRadius: 3,
+                pointDotStrokeWidth: 1,
+                datasetStroke: true,
+                datasetStrokeWidth: 2,
+                datasetFill: true,
+                animation: true,
+                animationSteps: 1,
+                //animationEasing: "easeOutQuart",
+                onAnimationComplete: null,
+                responsive: true
+            };
+
+        });
 
 })();

@@ -38,6 +38,7 @@ body {
 
 .view-content {
     overflow: auto;
+    padding: 10px;
 }
 
 .wide-list li {

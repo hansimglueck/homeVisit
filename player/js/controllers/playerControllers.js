@@ -134,8 +134,8 @@
                 datasetStroke: true,
                 datasetStrokeWidth: 2,
                 datasetFill: true,
-                animation: false,
-                animationSteps: 0,
+                animation: true,
+                animationSteps: 60,
                 //animationEasing: "easeOutQuart",
                 onAnimationComplete: null,
                 responsive: true
