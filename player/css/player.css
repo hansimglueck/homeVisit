@@ -95,13 +95,18 @@ body {
     position: static;
 }
 
-.ui-keyboard .disp {
+.ui-keyboard .well {
     border: 1px solid grey;
     margin: 8px auto;
     height: 28px;
     line-height: 28px;
-    width: 40%;
+    width: 36%;
     padding: 0;
+    text-align: right;
+}
+
+.ui-keyboard .currency-symbol {
+    padding: 0 10px;
 }
 
 .ui-keyboard .btn {

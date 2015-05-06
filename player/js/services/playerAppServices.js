@@ -191,8 +191,24 @@
                 homeFactory.ratedVote = result.ratedVote;
                 //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
                 if (resultType === "numberStats") {
+                    function f(s) {
+                        return parseFloat(s).toLocaleString(
+                            gettextCatalog.currentLanguage,
+                            {
+                                style: 'currency',
+                                currency: gettextCatalog.getString('EUR'),
+                                maximumFractionDigits: 2,
+                                minimumFractionDigits: 2
+                            })
+                    }
                     //send stats as array: [sum, avg]
-                    resData = [result.sum, result.average, result.minVal, result.maxVal];
+                    resData = [
+                       // result.sum,
+                        f(result.sum),
+                        f(result.average),
+                        f(result.minVal),
+                        f(result.maxVal)
+                    ];
                 }
                 else {
                     result.voteOptions.forEach(function (option) {

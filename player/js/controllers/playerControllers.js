@@ -106,9 +106,10 @@
             }
 
         })
-        .controller('ResultsController', function($scope, Home, playerColors){
+        .controller('ResultsController', function($scope, Home, playerColors, gettextCatalog){
             $scope.playerColors = playerColors;
             $scope.home = Home;
+            $scope.gettextCatalog = gettextCatalog;
             $scope.pieChartOptions = {
                 scaleOverlay: false,
                 scaleOverride: false,

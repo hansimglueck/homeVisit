@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-05 23:29+0100\n"
+"PO-Revision-Date: 2015-05-06 01:32+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -46,9 +46,9 @@ msgstr "Neuen Eintrag hinzufügen"
 msgid "Are you sure?"
 msgstr "Bist Du sicher?"
 
-#: player/partials/results.html:17
-msgid "Average: {{home.data[1] | number : 2}}"
-msgstr ""
+#: player/partials/results.html:22
+msgid "Average:"
+msgstr "Durchschnitt:"
 
 #: mc/views/results.html:28
 msgid "Average: {{teamActionInfo.data[1]}}"
@@ -213,6 +213,10 @@ msgstr "Keine Übereinstimmungen. Sollte alleine spielen."
 msgid "Dutch"
 msgstr "Niederländisch"
 
+#: player/js/services/playerAppServices.js:199
+msgid "EUR"
+msgstr "EUR"
+
 #: player/partials/home.html:3
 msgid "EUROPE"
 msgstr "EUROPA"
@@ -321,8 +325,8 @@ msgstr "Passt am Besten zu Team {{name1}} und {{name2}}."
 msgid "Matching"
 msgstr "Übereinstimmung"
 
-#: player/partials/results.html:19
-msgid "Max: {{home.data[3] | number : 2}}"
+#: player/partials/results.html:30
+msgid "Max:"
 msgstr ""
 
 #: mc/views/results.html:30
@@ -337,8 +341,8 @@ msgstr "Speicher"
 msgid "Message sent"
 msgstr "Nachricht gesendet"
 
-#: player/partials/results.html:18
-msgid "Min: {{home.data[2] | number : 2}}"
+#: player/partials/results.html:26
+msgid "Min:"
 msgstr ""
 
 #: mc/views/results.html:29
@@ -578,7 +582,7 @@ msgstr "Ersuchen"
 msgid "Results are displayed"
 msgstr "Ergebnisse werden angezeigt"
 
-#: mc/views/results.html:44 player/partials/results.html:32
+#: mc/views/results.html:44 player/partials/results.html:46
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr "Ergebnisse sind nach Rang gewichtet. Die Stimmen stehen in Klammern."
 
@@ -655,7 +659,7 @@ msgstr "Die Allianz wurde geschlossen."
 msgid "The alliance is neglected."
 msgstr "Keine Allianz geschlossen."
 
-#: player/js/services/playerAppServices.js:611
+#: player/js/services/playerAppServices.js:627
 msgid "The deal was denied"
 msgstr "Das Abkommen kam nicht zustande."
 
@@ -663,7 +667,7 @@ msgstr "Das Abkommen kam nicht zustande."
 msgid "The division of the cake"
 msgstr "Die Verteilung des Kuchens"
 
-#: player/js/services/playerAppServices.js:615
+#: player/js/services/playerAppServices.js:631
 msgid "The other team is busy"
 msgstr "Das andere Team is beschäftigt."
 
@@ -707,9 +711,9 @@ msgstr "Titel:"
 msgid "Total duration: {{getTimeForDeck()}}"
 msgstr "Gesamtdauer: {{getTimeForDeck()}}"
 
-#: player/partials/results.html:16
-msgid "Total: {{home.data[0] | number : 2}}"
-msgstr "Gesamt: {{home.data[0] | number : 2}}"
+#: player/partials/results.html:18
+msgid "Total:"
+msgstr "Summe:"
 
 #: mc/views/results.html:27
 msgid "Total: {{teamActionInfo.data[0]}}"
@@ -933,7 +937,7 @@ msgid "pink"
 msgstr "Rosa"
 
 #: mc/js/services/mcAppServices.js:440
-#: player/js/services/playerAppServices.js:203
+#: player/js/services/playerAppServices.js:219
 msgid "point"
 msgid_plural "points"
 msgstr[0] "Punkt"
@@ -956,7 +960,7 @@ msgid "trustworthy"
 msgstr "vertrauenswürdig"
 
 #: mc/js/services/mcAppServices.js:449
-#: player/js/services/playerAppServices.js:220
+#: player/js/services/playerAppServices.js:236
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] "Team"
@@ -988,9 +992,16 @@ msgid_plural "{{minuspoints}} minus points"
 msgstr[0] "{{minuspoints}} Minuspunkt"
 msgstr[1] "{{minuspoints}} Minuspunkte"
 
+#: player/views/keyboard.html:4
+msgid "€"
+msgstr ""
+
 #: mc/index.html:40
 msgid "← Select game session!"
 msgstr "← Spielsitzung wählen!"
+
+#~ msgid "Total: {{home.data[0] | number : 2}}"
+#~ msgstr "Gesamt: {{home.data[0] | number : 2}}"
 
 #~ msgid "Average: {{home.data[1]}}"
 #~ msgstr "Durchschnitt: {{home.data[1]}}"
