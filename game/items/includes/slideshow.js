@@ -8,19 +8,17 @@
             this.mapToDevice();
         },
         getWsContent: function() {
-            var images = [];
-            var folder = this.text;
-            if (this.text.hasOwnProperty("de")) {
-                folder = this.text['de'];
-            }
-            try {
-                fs.readdirSync(__dirname + '/../../../slideshow/'+folder).forEach(function(imageFile) {
-                    images.push('/slideshow/%s'.format(imageFile));
-                    console.log(imageFile);
-                });
-            }
-            catch (e) {
-                console.log(e.stack);
+            var lang = require('../../gameConf').conf.language, images = [], folder;
+            if (typeof this.text[lang] !== 'undefined') {
+                folder = this.text[lang];
+                try {
+                    fs.readdirSync(__dirname + '/../../../slideshow/%s'.format(folder)).forEach(function(imageFile) {
+                        images.push('/slideshow/%s/%s'.format(folder, encodeURI(imageFile)));
+                    });
+                }
+                catch (e) {
+                    console.log(e.stack);
+                }
             }
 
             return {
