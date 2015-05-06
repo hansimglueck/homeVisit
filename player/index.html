@@ -78,7 +78,7 @@
     </div>
 
     <div class="app" ng-style="{'border-color':playerColors[status.player.playerId]}">
-        <div class="score" ng-include="'views/score-barometer.html'"></div>
+        <div class="score" ng-show="showScore()" ng-include="'views/score-barometer.html'"></div>
         <!-- App body -->
         <div class='content text-center scrollable-content'>
 
