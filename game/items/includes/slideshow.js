@@ -10,7 +10,7 @@
         getWsContent: function() {
             var images = [];
             try {
-                fs.readdirSync(__dirname + '/../../../slideshow').forEach(function(imageFile) {
+                fs.readdirSync(__dirname + '/../../../slideshow/'+this.text['de']).forEach(function(imageFile) {
                     images.push('/slideshow/%s'.format(imageFile));
                     console.log(imageFile);
                 });
