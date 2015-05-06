@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// DEPRECATED IN FAVOR OF importSessions.js
 
 (function() {
     'use strict';

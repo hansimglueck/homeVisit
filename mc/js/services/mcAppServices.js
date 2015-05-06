@@ -670,7 +670,14 @@
             for (var i = 0; i < gameSessionsFactory.sessions.length; i++) {
                 var s = gameSessionsFactory.sessions[i];
                 if (s._id === id) {
-                    return s.date + ' ' + s.time + ' ' + s.bezirk + ' ' + s.city;
+                    var name = s.date + ' ' + s.city;
+                    if (typeof s.adresse !== 'undefined' && s.adresse.trim().length > 0) {
+                        name += ' - ' + s.adresse + ',';
+                    }
+                    if (typeof s.bezirk !== 'undefined' && s.bezirk.trim().length > 0) {
+                        name += ' (' + s.bezirk + ')';
+                    }
+                    return name;
                 }
             }
         };
