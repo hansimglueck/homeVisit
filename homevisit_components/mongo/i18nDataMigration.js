@@ -12,15 +12,17 @@
     require('../stringFormat');
 
     function transformItem(item) {
-        if (typeof item.text !== 'undefined') {
+        if (typeof item.text === 'string') {
             item.text = { de: item.text };
         }
-        if (typeof item.mcnote !== 'undefined') {
+        if (typeof item.mcnote === 'string') {
             item.mcnote = { de: item.mcnote };
         }
         if (typeof item.voteOptions !== 'undefined') {
             _.forEach(item.voteOptions, function(voteOption) {
-                voteOption.text = { de: voteOption.text };
+                if (typeof voteOption.text === 'string') {
+                    voteOption.text = { de: voteOption.text };
+                }
             });
         }
         if (typeof item.inlineDecks !== 'undefined') {
