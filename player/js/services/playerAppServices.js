@@ -195,11 +195,9 @@
                         return parseFloat(s).toLocaleString(
                             gettextCatalog.currentLanguage,
                             {
-                                style: 'currency',
-                                currency: gettextCatalog.getString('EUR'),
                                 maximumFractionDigits: 2,
                                 minimumFractionDigits: 2
-                            })
+                            }) + ' ' + gettextCatalog.getString('€');
                     }
                     //send stats as array: [sum, avg]
                     resData = [

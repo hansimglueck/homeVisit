@@ -28,7 +28,11 @@
 
 .results .table.results {
     width: 50%;
-    font-size: 130%;
+<<<<<<< Updated upstream
+    font-size: 1.4em;
+=======
+    font-size: 150%;
+>>>>>>> Stashed changes
 }
 
 .results .table.results .resultslabel {
@@ -38,6 +42,7 @@
 .results .table.results .value {
     text-align: right;
     font-weight: bold;
+    font-family: monospace !important;
 }
 
 .results-content {
