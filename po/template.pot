@@ -32,8 +32,8 @@ msgstr ""
 msgid "Are you sure?"
 msgstr ""
 
-#: player/partials/results.html:17
-msgid "Average: {{home.data[1] | number : 2}}"
+#: player/partials/results.html:22
+msgid "Average:"
 msgstr ""
 
 #: mc/views/results.html:28
@@ -204,6 +204,10 @@ msgstr ""
 msgid "Dutch"
 msgstr ""
 
+#: player/js/services/playerAppServices.js:199
+msgid "EUR"
+msgstr ""
+
 #: player/partials/home.html:3
 msgid "EUROPE"
 msgstr ""
@@ -314,8 +318,8 @@ msgstr ""
 msgid "Matching"
 msgstr ""
 
-#: player/partials/results.html:19
-msgid "Max: {{home.data[3] | number : 2}}"
+#: player/partials/results.html:30
+msgid "Max:"
 msgstr ""
 
 #: mc/views/results.html:30
@@ -330,8 +334,8 @@ msgstr ""
 msgid "Message sent"
 msgstr ""
 
-#: player/partials/results.html:18
-msgid "Min: {{home.data[2] | number : 2}}"
+#: player/partials/results.html:26
+msgid "Min:"
 msgstr ""
 
 #: mc/views/results.html:29
@@ -573,7 +577,7 @@ msgid "Results are displayed"
 msgstr ""
 
 #: mc/views/results.html:44
-#: player/partials/results.html:32
+#: player/partials/results.html:46
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr ""
 
@@ -647,7 +651,7 @@ msgstr ""
 msgid "The alliance is neglected."
 msgstr ""
 
-#: player/js/services/playerAppServices.js:611
+#: player/js/services/playerAppServices.js:627
 msgid "The deal was denied"
 msgstr ""
 
@@ -655,7 +659,7 @@ msgstr ""
 msgid "The division of the cake"
 msgstr ""
 
-#: player/js/services/playerAppServices.js:615
+#: player/js/services/playerAppServices.js:631
 msgid "The other team is busy"
 msgstr ""
 
@@ -699,8 +703,8 @@ msgstr ""
 msgid "Total duration: {{getTimeForDeck()}}"
 msgstr ""
 
-#: player/partials/results.html:16
-msgid "Total: {{home.data[0] | number : 2}}"
+#: player/partials/results.html:18
+msgid "Total:"
 msgstr ""
 
 #: mc/views/results.html:27
@@ -928,7 +932,7 @@ msgid "pink"
 msgstr ""
 
 #: mc/js/services/mcAppServices.js:440
-#: player/js/services/playerAppServices.js:203
+#: player/js/services/playerAppServices.js:219
 msgid "point"
 msgid_plural "points"
 msgstr[0] ""
@@ -952,7 +956,7 @@ msgid "trustworthy"
 msgstr ""
 
 #: mc/js/services/mcAppServices.js:449
-#: player/js/services/playerAppServices.js:220
+#: player/js/services/playerAppServices.js:236
 msgid "vote"
 msgid_plural "votes"
 msgstr[0] ""
@@ -984,6 +988,10 @@ msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
 msgstr[0] ""
 msgstr[1] ""
+
+#: player/views/keyboard.html:4
+msgid "€"
+msgstr ""
 
 #: mc/index.html:40
 msgid "← Select game session!"

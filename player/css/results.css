@@ -26,6 +26,19 @@
     text-overflow: ellipsis;
 }
 
+.results .table.results {
+    width: 50%;
+}
+
+.results .table.results .resultslabel {
+    text-align: left;
+}
+
+.results .table.results .value {
+    text-align: right;
+    font-weight: bold;
+}
+
 .results-content {
     display: flex;
     #background: #e838ff;
