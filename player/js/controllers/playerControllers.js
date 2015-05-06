@@ -106,9 +106,10 @@
             }
 
         })
-        .controller('ResultsController', function($scope, Home, playerColors){
+        .controller('ResultsController', function($scope, Home, playerColors, gettextCatalog){
             $scope.playerColors = playerColors;
             $scope.home = Home;
+            $scope.gettextCatalog = gettextCatalog;
             $scope.pieChartOptions = {
                 scaleOverlay: false,
                 scaleOverride: false,
@@ -137,8 +138,7 @@
                 animationSteps: 60,
                 //animationEasing: "easeOutQuart",
                 onAnimationComplete: null,
-                responsive: true,
-                colours: playerColors
+                responsive: true
             };
 
         })
@@ -217,6 +217,9 @@
             $scope.status = Status;
         })
         .controller('CardController', function($scope, Home){
+            $scope.home = Home;
+        })
+        .controller('SlideshowController', function($scope, Home){
             $scope.home = Home;
         })
         .filter('isOtherPlayerThan', function () {

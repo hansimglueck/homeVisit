@@ -24,7 +24,8 @@ angular
         'hvLanguage',
         'angularModalService',
         'gettext',
-        'chart.js'
+        'chart.js',
+        'hvDirectives'
     ])
     .config(function ($routeProvider) {
         $routeProvider
@@ -59,8 +60,8 @@ angular
                 templateUrl: '/mc/views/about.html',
                 controller: 'MatchingCtrl'
             })
-            .when('/maintenance', {
-                templateUrl: '/mc/views/maintenance.html',
+            .when('/settings', {
+                templateUrl: '/mc/views/settings.html',
                 controller: 'PlaybackCtrl'
             })
             .when('/results', {
@@ -72,15 +73,16 @@ angular
             });
     })
     .run(function (Socket, Status, Deck, TeamActionInfo, gettextCatalog) {
-        Socket.connect('MC', function() {
-                Socket.emit('getLanguage');
-            });
-            Status.start();
-            Deck.start();
-            TeamActionInfo.start();
-            Socket.on('languageChange', function (data) {
-                gettextCatalog.setCurrentLanguage(data.language);
-            });
+        Socket.on('languageChange', function (data) {
+            gettextCatalog.setCurrentLanguage(data.language);
         });
+        Socket.connect('MC', function() {
+            Socket.emit('getLanguage');
+            Socket.emit('getGameSessions');
+        });
+        Status.start();
+        Deck.start();
+        TeamActionInfo.start();
+    });
 
 })();

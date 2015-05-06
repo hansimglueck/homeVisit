@@ -10,18 +10,18 @@
                     <div class="results-text">
                         <div class="correct-answer" ng-if="teamActionInfo.correctAnswer !== ''" translate>Correct: {{teamActionInfo.correctAnswer}}</div>
                     </div>
-                
+
                     <div class="results-content" ng-if="teamActionInfo.resultType == 'europeMap'">
                         <div class="overlayText">{{teamActionInfo.text[0]}}</div>
                         Hello Map
                         <europe-map></europe-map>
                     </div>
-                
+
                     <div class="results-content" ng-if="teamActionInfo.resultType == 'firstVote'">
                         <player-icon pid="teamActionInfo.data">{{teamActionInfo.data}}</player-icon>
                         Hello Speedy
                     </div>
-                
+
                     <ul class="list-unstyled results-content noflex" ng-if="teamActionInfo.resultType == 'numberStats'">
                         Hello Numbers
                         <li translate>Total: {{teamActionInfo.data[0]}}</li>
@@ -29,7 +29,7 @@
                         <li translate>Min: {{teamActionInfo.data[2]}}</li>
                         <li translate>Max: {{teamActionInfo.data[3]}}</li>
                     </ul>
-                
+
                     <div class="results-content"  ng-if="['europeMap','numberStats'].indexOf(teamActionInfo.resultType) == -1">
                         <canvas id="base" class="chart chart-base" chart-type="teamActionInfo.resultType" data="teamActionInfo.data"
                             labels="teamActionInfo.labels"
@@ -43,8 +43,12 @@
                     <div class="results-text">
                         <div ng-if="teamActionInfo.ratedVote" translate>Results are weighted by ranking. See actual votes in braces.</div>
                     </div>
-                
+
                 </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Close</button>
             </div>
         </div>
     </div>

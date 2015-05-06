@@ -48,6 +48,9 @@
             sound: {
                 name: 'Sound'
             },
+            slideshow: {
+                name: 'Slideshow'
+            },
             vote: {
                 name: 'Abstimmung',
                 options: {
@@ -60,10 +63,6 @@
                     }
                 }
             },
-
-
-
-
             'type': [
                 {value: 'card', text: 'Karte', mappable: true},
                 {value: 'sound', text: 'Sound', mappable: true},
@@ -78,7 +77,8 @@
                 {value: 'eval', text: 'eval', mappable: false},
                 {value: 'dummy', text: 'Dummy', mappable: false},
                 {value: 'agreement', text: 'Agreement', mappable: true},
-                {value: 'roulette', text: 'Roulette', mappable: true}
+                {value: 'roulette', text: 'Roulette', mappable: true},
+                {value: 'slideshow', text: 'Slideshow', mappable: true}
             ],
             'color': [
                 {value: '0', text: 'Rot'},

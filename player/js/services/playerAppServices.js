@@ -144,6 +144,10 @@
                                     homeFactory.assholeOptions = data.assholeOptions;
                                     $location.path('/assholes');
                                     break;
+                                case "slideshow":
+                                    homeFactory.slideshowImages = data.images;
+                                    $location.path('/slideshow');
+                                    break;
                                 case "alert":
                                     showAlert(data);
                                     break;
@@ -191,8 +195,22 @@
                 homeFactory.ratedVote = result.ratedVote;
                 //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
                 if (resultType === "numberStats") {
+                    function f(s) {
+                        return parseFloat(s).toLocaleString(
+                            gettextCatalog.currentLanguage,
+                            {
+                                maximumFractionDigits: 2,
+                                minimumFractionDigits: 2
+                            }) + ' ' + gettextCatalog.getString('€');
+                    }
                     //send stats as array: [sum, avg]
-                    resData = [result.sum, result.average, result.minVal, result.maxVal];
+                    resData = [
+                       // result.sum,
+                        f(result.sum),
+                        f(result.average),
+                        f(result.minVal),
+                        f(result.maxVal)
+                    ];
                 }
                 else {
                     result.voteOptions.forEach(function (option) {

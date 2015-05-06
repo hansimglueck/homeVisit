@@ -3,8 +3,14 @@ body {
   overflow: hidden;
 }
 
-.navbar {
+.header > .navbar {
   margin-bottom: 0px;
+  height: 53px;
+  overflow: hidden;
+}
+
+.header > .navbar > .container {
+    width: auto !important;
 }
 
 .btn-alarm, .btn-go {
@@ -376,4 +382,26 @@ ul.follow-items > li {
 .teamActionInfo {
   background: transparent;
   color: #fff;
+}
+
+.session-warning {
+    font-weight: bold;
+    -webkit-animation-duration: 0.5s;
+    -webkit-animation-name: blink-warning;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-direction: alternate;
+}
+
+@-webkit-keyframes blink-warning {
+  0% {
+      color: rgba(212, 63, 58, 0.6);
+  }
+
+  100% {
+      color: rgba(212, 63, 58, 1.0);
+  }
+}
+
+.modal {
+    font-size:1.5em;
 }

@@ -17,46 +17,6 @@
                 templateUrl: 'views/europe.html'
             };
         })
-        .directive('playerIcon', function () {
-            return {
-                restrict: 'AE',
-                replace: 'true',
-                scope: {
-                    playerId: '=pid'
-                },
-                transclude: true,
-                controller: function ($scope, playerColors, playerColornamesFactory, playerTextColors, gettextCatalog) {
-                    $scope.playerColors = playerColors;
-                    $scope.playerColornames = playerColornamesFactory.playercolornames;
-                    $scope.playerTextColors = playerTextColors;
-                    $scope.getColorName = function(color) {
-                        return gettextCatalog.getString(color);
-                    }
-                },
-                templateUrl: 'views/player-icon.html'
-            };
-        })
-        .directive('playerAppIconFull', function () {
-            return {
-                restrict: 'AE',
-                replace: 'true',
-                scope: {
-                    icon: '=',
-                    playerId: '=pid'
-                },
-                templateUrl: 'views/player-app-icon-full.html'
-            };
-        })
-        .directive('playerAppIcon', function () {
-            return {
-                restrict: 'AE',
-                replace: 'true',
-                scope: {
-                    icon: '='
-                },
-                templateUrl: 'views/player-app-icon.html'
-            };
-        })
         .directive('dealHeader', function () {
             return {
                 restrict: 'AE',
@@ -94,6 +54,22 @@
                     });
                     console.log(element);
                     //$compile(element.contents())(scope);
+                }
+            };
+        })
+        .directive('slideshow', function() {
+            return {
+                restrict: 'E',
+                scope: {},
+                templateUrl: 'views/slideshow.html',
+                link: function(scope, element, attrs) {
+                    var images = scope.$parent.home.slideshowImages;
+                    if (typeof images !== 'undefined') {
+                        element.find('#slideshow').fadeShow({
+                            images: images,
+                            speed: 4600
+                        });
+                    }
                 }
             };
         })

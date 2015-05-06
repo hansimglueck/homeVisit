@@ -12,12 +12,26 @@
         <player-icon pid="home.data">{{home.data}}</player-icon>
     </div>
 
-    <ul class="list-unstyled results-content noflex" ng-if="home.resultType == 'numberStats'">
-        <li translate>Total: {{home.data[0] | number : 2}}</li>
-        <li translate>Average: {{home.data[1] | number : 2}}</li>
-        <li translate>Min: {{home.data[2] | number : 2}}</li>
-        <li translate>Max: {{home.data[3] | number : 2}}</li>
-    </ul>
+    <table class="table results" ng-if="home.resultType == 'numberStats'">
+        <tbody>
+            <tr>
+                <td class="resultslabel" translate>Total:</td>
+                <td class="value">{{ home.data[0] }}</td>
+            </tr>
+            <tr>
+                <td class="resultslabel" translate>Average:</td>
+                <td class="value">{{ home.data[1] }}</td>
+            </tr>
+            <tr>
+                <td class="resultslabel" translate>Min:</td>
+                <td class="value">{{ home.data[2] }}</td>
+            </tr>
+            <tr>
+                <td class="resultslabel" translate>Max:</td>
+                <td class="value">{{ home.data[3] }}</td>
+            </tr>
+        </tbody>
+    </table>
 
     <div class="results-content"  ng-if="['europeMap','numberStats'].indexOf(home.resultType) == -1">
         <canvas id="base" class="chart chart-base" chart-type="home.resultType" data="home.data"
@@ -25,7 +39,8 @@
                 legend="true"
                 options="pieChartOptions"
                 colours="home.resultColors"
-                width="200px">
+                width="200px"
+                height="200px">
         </canvas>
     </div>
     <div class="results-text">

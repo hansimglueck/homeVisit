@@ -4,6 +4,7 @@
     var Q = require('q');
     var gameConf = require('../gameConf');
     var gameClock = require('../clock');
+    var gameRecording = require('../gameRecording');
     var wsManager = require('../wsManager.js');
     var playerManager = require('../playerManager.js');
     var _ = require('underscore');
@@ -222,8 +223,8 @@
                 this.param = param;
                 var self = this;
 
-                // game clock starts at card number 2!
-                if (this.index === 1) {
+                // game officially starts at card number X!
+                if (this.index === 3) {
                     gameClock.start();
                 }
 
@@ -311,6 +312,7 @@
                 this.log("ERROR in execute: "+ e.message);
                 this.log(e.stack);
             }
+            gameRecording.go(this);
             //checken, wie der nächste step getriggert wird
             if (this.next !== null) {
                 if (this.next.trigger === "follow") {

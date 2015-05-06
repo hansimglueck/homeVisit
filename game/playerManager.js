@@ -3,6 +3,7 @@
 
     var wsManager = require('./wsManager.js');
     var gameConf = require('./gameConf');
+    var gameRecording = require('./gameRecording');
     require('../homevisit_components/stringFormat');
 
     var PlayerManager = function () {
@@ -217,6 +218,11 @@
                     this.sendMessage(deal.player1Id, "deal", deal);
                     this.sendGameEvent(deal.player0Id, "insurance", deal.player1Id, "");
                     this.sendGameEvent(deal.player1Id, "insurance", deal.player0Id, "");
+                    gameRecording.deal({
+                        type: 'insurance',
+                        playerIds: [parseInt(deal.player0Id), parseInt(deal.player1Id)],
+                        state: 'confirmed'
+                    });
                     break;
                 default:
                 case "deny":
@@ -225,6 +231,11 @@
                     this.players[deal.player1Id].busy = false;
                     this.sendMessage(deal.player0Id, "deal", deal);
                     this.sendMessage(deal.player1Id, "deal", deal);
+                    gameRecording.deal({
+                        type: 'insurance',
+                        playerIds: [parseInt(deal.player0Id), parseInt(deal.player1Id)],
+                        state: 'denied'
+                    });
                     break;
                 case "denyDealing":
                     var newDealId = require('hat')();
@@ -269,6 +280,12 @@
                             this.players[data.id].selected ^= true;
                             console.log("Set Player #: " + data.id + " .selected = " + this.players[data.id].selected);
                             break;
+                        case "deselectAll":
+                            this.players.forEach(function(player){
+                                player.selected = false;
+                            });
+                            console.log("Deselect All Players");
+                            break;
                         case "toggleAway":
                             this.players[data.id].away ^= true;
                             console.log("Set Player #: " + data.id + " .away = " + this.players[data.id].away);
@@ -279,6 +296,10 @@
                             break;
                         case "setAct":
                             console.log("Set Player #: " + data.id + " as active");
+                            break;
+                        case "throwOut":
+                            console.log("Remove Player #: " + data.id + " from game");
+                            this.leaveGame(this.players[data.id].clientId);
                             break;
                         default:
                             console.log("unknown message-type");
@@ -715,6 +736,7 @@
             });
         },
         score: function (playerId, score, reason, otherPlayerId) {
+            if (score === 0) return;
             if (typeof reason === "undefined") {
                 reason = "?";
             }
@@ -743,19 +765,60 @@
                     while (self.players[playerId].score - self.players[otherPlayerId].score > 4) {
                         self.players[playerId].score--;
                         self.sendGameEvent(playerId, "score", -1, "insurance", otherPlayerId);
+                        gameRecording.score({
+                            playerId: parseInt(playerId),
+                            scoreDiff: -1,
+                            score: self.players[playerId].score,
+                            rank: self.players[playerId].rank,
+                            type: 'insurance',
+                            otherPlayerId: otherPlayerId
+                        });
                         self.players[otherPlayerId].score++;
                         self.sendGameEvent(otherPlayerId, "score", +1, "insurance", playerId);
+                        gameRecording.score({
+                            playerId: parseInt(otherPlayerId),
+                            scoreDiff: 1,
+                            score: self.players[otherPlayerId].score,
+                            rank: self.players[otherPlayerId].rank,
+                            type: 'insurance',
+                            otherPlayerId: playerId
+                        });
                     }
                     while (self.players[otherPlayerId].score - self.players[playerId].score > 4) {
                         self.players[playerId].score++;
                         self.sendGameEvent(playerId, "score", 1, "insurance", otherPlayerId);
+                        gameRecording.score({
+                            playerId: parseInt(playerId),
+                            scoreDiff: 1,
+                            score: self.players[playerId].score,
+                            rank: self.players[playerId].rank,
+                            type: 'insurance',
+                            otherPlayerId: otherPlayerId
+                        });
                         self.players[otherPlayerId].score--;
                         self.sendGameEvent(otherPlayerId, "score", -1, "insurance", playerId);
+                        gameRecording.score({
+                            playerId: parseInt(otherPlayerId),
+                            scoreDiff: -1,
+                            score: self.players[otherPlayerId].score,
+                            rank: self.players[otherPlayerId].rank,
+                            type: 'insurance',
+                            otherPlayerId: playerId
+                        });
                     }
                 });
             }
             this.calcRanking();
             this.sendPlayerStatus(-1);
+
+            gameRecording.score({
+                playerId: parseInt(playerId),
+                scoreDiff: score,
+                score: self.players[playerId].score,
+                rank: self.players[playerId].rank,
+                type: reason,
+                otherPlayerId: otherPlayerId
+            });
         },
         setAgreement: function (agreement) {
             var self = this;
@@ -767,7 +830,7 @@
             agreement.playerIds.forEach(function (playerId) {
                 self.score(playerId, -1, "alliance");
             })
-
+            gameRecording.agreement(agreement);
         },
         setRelation: function (relation) {
             this.relations[relation.id] = relation;

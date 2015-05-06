@@ -68,27 +68,27 @@
                     return '';
                 }
             };
-            
+
             $scope.isOnTurn = function(id) {
                 return Status.otherPlayers[id].onTurn;
             };
-            
+
             $scope.isUpcoming = function(id) {
                 return Status.otherPlayers[id].upcoming;
             };
-            
+
             $scope.wantsToBeNext = function(id) {
                 if (!Status.otherPlayers[id].onTurn && !Status.otherPlayers[id].away && Status.otherPlayers[id].joined) {
                     return true;
                 }
                 return false;
             };
-            
+
             $scope.upcomingPlayer = function(id) {
                 Socket.emit("setPlayerStatus", {cmd: "setUpcoming", id: id});
                 console.log("Ich bin als naechstes dran: Player " + id);
             };
-            
+
             $scope.showInfoOfTeam = function(playerId) {
                 return TeamActionInfo.actionInfo[playerId];
             };
@@ -103,12 +103,48 @@
                 //Socket.emit("setPlayerStatus", {cmd: "score", id: id, value: val});
                 Socket.emit("score", {playerId: id, score: val, reason: 'mc'});
             };
+
+            $scope.throwOut = function(playerId) {
+                if (!confirm("really throw out of the game?")) return;
+                Socket.emit("setPlayerStatus", {cmd: "throwOut", id: playerId});
+            }
         })
 
     .controller("ResultsController", function ($scope, Socket, TeamActionInfo) {
 
         $scope.socket = Socket;
         $scope.teamActionInfo = TeamActionInfo;
-    });
+            $scope.pieChartOptions = {
+                scaleOverlay: false,
+                scaleOverride: false,
+                scaleSteps: null,
+                scaleStepWidth: null,
+                scaleStartValue: null,
+                scaleLineColor: "rgba(0,0,0,.1)",
+                scaleLineWidth: 1,
+                scaleShowLabels: true,
+                scaleLabel: "<%=value%>",
+                scaleFontFamily: "'proxima-nova'",
+                scaleFontSize: 10,
+                scaleFontStyle: "normal",
+                scaleFontColor: "#909090",
+                scaleShowGridLines: true,
+                scaleGridLineColor: "rgba(0,0,0,.05)",
+                scaleGridLineWidth: 1,
+                bezierCurve: true,
+                pointDot: true,
+                pointDotRadius: 3,
+                pointDotStrokeWidth: 1,
+                datasetStroke: true,
+                datasetStrokeWidth: 2,
+                datasetFill: true,
+                animation: true,
+                animationSteps: 1,
+                //animationEasing: "easeOutQuart",
+                onAnimationComplete: null,
+                responsive: true
+            };
+
+        });
 
 })();

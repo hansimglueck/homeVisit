@@ -38,6 +38,7 @@ body {
 
 .view-content {
     overflow: auto;
+    padding: 10px;
 }
 
 .wide-list li {
@@ -48,78 +49,6 @@ body {
     font-size: 1.5em;
 }
 
-.player-icon-mirko {
-    width: 50px;
-    height: 50px;
-    margin-left: 5px;
-    margin-right: 5px;
-    display: inline-block;
-    border-radius: 10px;
-    vertical-align: middle;
-}
-
-.player-icon {
-    width: 50px;
-    height: 40px;
-    margin-left: 5px;
-    margin-right: 5px;
-    margin-top: 8px;
-    display: inline-block;
-    vertical-align: middle;
-    -webkit-mask-image: url('../svg/player-icon.svg');
-}
-
-.player-icon-big {
-    width: 100px;
-    height: 80px;
-    font-size: 2em;
-}
-
-.player-icon-med {
-    width: 80px;
-    height: 64px;
-    font-size: 1.6em;
-}
-
-.player-icon-xs {
-    width: 25px;
-    height: 20px;
-    margin-top: 3px;
-    margin-right: 2px;
-    margin-left: 2px;
-    display: inline-block;
-}
-
-.player-icon-xs .player-icon-text {
-    display: none;
-}
-
-.player-icon-container {
-    height: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-.player-icon-text {
-    width: 100%;
-    font-size: 0.7em;
-}
-
-
-.player-icon-transclude {
-    width: 100%;
-    display: none;
-}
-
-.player-icon-badge .player-icon-transclude {
-    display: block;
-    text-align: center;
-}
-
-.player-icon-badge .player-icon-text {
-    display: none;
-}
 
 
 .rotDiv {
@@ -167,13 +96,18 @@ body {
     position: static;
 }
 
-.ui-keyboard .disp {
+.ui-keyboard .well {
     border: 1px solid grey;
     margin: 8px auto;
     height: 28px;
     line-height: 28px;
-    width: 40%;
+    width: 36%;
     padding: 0;
+    text-align: right;
+}
+
+.ui-keyboard .currency-symbol {
+    padding: 0 10px;
 }
 
 .ui-keyboard .btn {
@@ -187,4 +121,13 @@ body {
 
 .view-content .smaller .right-pane button {
     line-height: 1.2em;
+}
+
+#slideshow {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 99999;
+    width: 100%;
+    height: 100%;
 }
