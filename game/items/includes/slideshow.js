@@ -9,8 +9,12 @@
         },
         getWsContent: function() {
             var images = [];
+            var folder = this.text;
+            if (this.text.hasOwnProperty("de")) {
+                folder = this.text['de'];
+            }
             try {
-                fs.readdirSync(__dirname + '/../../../slideshow/'+this.text['de']).forEach(function(imageFile) {
+                fs.readdirSync(__dirname + '/../../../slideshow/'+folder).forEach(function(imageFile) {
                     images.push('/slideshow/%s'.format(imageFile));
                     console.log(imageFile);
                 });
