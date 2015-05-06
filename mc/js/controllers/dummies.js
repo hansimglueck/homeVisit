@@ -26,12 +26,20 @@
                 {top: 440, left: 20},
                 {top: 250, left: 20}
             ];
+            
+            // When there are less than 15 players, deactivate them to ignore them in matching calc
+            // 1 if player is in game, 0 if player is absent
+            $scope.inGame = PlayerNames.inGame;
+            
             $scope.polls = Polls;
             $scope.selectRow = function(id){
                 $scope.selectedRow = id;
                 //Polls.selectedPoll = id;
             };
             $scope.selectAnswer = function(did, aid) {
+                if ($scope.inGame[did] === 0) {
+                    return;
+                }
                 if (Polls.polls[$scope.selectedRow].answers[did] === aid) {
                     $scope.polls.polls[$scope.selectedRow].answers[did] = -1;
                 } else {
@@ -40,7 +48,7 @@
             };
             $scope.selectAllUnanswered = function (val) {
                 for (var index = 0; index < Polls.polls[0].answers.length; index++) {
-                    if (Polls.polls[$scope.selectedRow].answers[index] === -1) {
+                    if (Polls.polls[$scope.selectedRow].answers[index] === -1 /*&& $scope.inGame[index] === 1*/) {
                         Polls.polls[$scope.selectedRow].answers[index] = val;
                     }
                 }
@@ -70,6 +78,21 @@
                     PlayerNames.customPlayerNames[nr] = name;
                 }
             };
+            $scope.isInGame = function(playerIndex) {
+                if ($scope.inGame[playerIndex] == 1) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            $scope.toggleIsInGame = function(playerIndex) {
+                if ($scope.inGame[playerIndex] === 1) {
+                    //$scope.polls.polls[$scope.selectedRow].answers[playerIndex] = -1;
+                    $scope.inGame[playerIndex] = 0;
+                } else {
+                    $scope.inGame[playerIndex] = 1;
+                }
+            }
         });
 
 })();

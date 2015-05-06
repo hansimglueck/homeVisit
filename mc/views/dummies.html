@@ -3,13 +3,15 @@
          ng-style="{'top':dummy.top, 'left':dummy.left}"
          ng-class="{unknownAnswer: unanswered($index)}">
         <ul class="list-group list-unstyled">
-            <li class="list-group-item">
-                <button class="btn btn-default" ng-click="setName($index)">
-                {{ customPlayerNames[$index] || playerNames()[$index] }}
+            <div class="container-fluid">
+                <span ng-click="toggleIsInGame($index)" class="fa fa-home fa-ban fa-2x ban_icon" ng-class="{banned_icon:!isInGame($index)}"></span>
+                <button class="btn btn-default" ng-class="{dummy_notingame:!isInGame($index)}" ng-click="setName($index)">
+                    {{ customPlayerNames[$index] || playerNames()[$index] }}
                 </button>
-            </li>
+                
+            </div>
             <li ng-if="polls.polls[selectedRow].type=='fingers'" class="">
-                <div class="container-fluid">
+                <div class="container-fluid" ng-if="isInGame($index)">
                     <div class="row">
                         <div class="col-xs-4">
                             <div ng-click="selectAnswer($index,0)" class="finger"
@@ -47,7 +49,7 @@
                 </div>
             </li>
             <li ng-if="polls.polls[selectedRow].type=='binary'" class="">
-                <div class="container-fluid">
+                <div class="container-fluid" ng-if="isInGame($index)">
                     <div class="col-xs-6">
                         <div ng-click="selectAnswer($index,1)" class="binary"
                              ng-class="{selectedFinger_pos:polls.polls[selectedRow].answers[$index]==1}">+
@@ -126,8 +128,10 @@
                 ng-repeat="poll in polls.polls track by $index">
                 <td>{{ gettextCatalog.getString(poll.question) }}</td>
                 <td ng-repeat="answer in poll.answers track by $index">
-                    <div ng-if="poll.type=='binary'">{{showPlusMinus(answer)}}</div>
-                    <div ng-if="poll.type=='fingers'">{{showFingers(answer)}}</div>
+                    <span ng-if="isInGame($index)">
+                        <div ng-if="poll.type=='binary'">{{showPlusMinus(answer)}}</div>
+                        <div ng-if="poll.type=='fingers'">{{showFingers(answer)}}</div>
+                    </span>
                 </td>
             </tr>
         </table>

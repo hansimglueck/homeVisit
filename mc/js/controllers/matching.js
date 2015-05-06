@@ -45,6 +45,15 @@
                 [],[],[],[],[],[],[],[],[],[],[],[],[],[],[]
             ];
             
+            $scope.getResultTeams = function() {
+                var resultTeamsInGame = [];
+                for (var i = 0; i <= PlayerNames.getPlayerCount(); i++) {
+                    resultTeamsInGame.push($scope.resultTeams[i]);
+                }
+                return resultTeamsInGame;
+            
+            }
+            
             $scope.getMatrix = function(){
                 //console.log(Polls.polls.length);
                 
@@ -77,6 +86,16 @@
                                 if (diff <= 1) {
                                     $scope.matchMatrix[playerX][playerY] += 1;
                                 }
+                            }
+                            if (PlayerNames.inGame[playerX] === 0) {
+                                $scope.matchMatrix[playerX][playerY] = -1;
+                                $scope.matchMatrix[playerY][playerX] = -1;
+                                $scope.matchMatrix[playerX][playerX] = -1;
+                            }
+                            if (PlayerNames.inGame[playerY] === 0) {
+                                $scope.matchMatrix[playerX][playerY] = -1;
+                                $scope.matchMatrix[playerY][playerX] = -1;
+                                $scope.matchMatrix[playerY][playerY] = -1;
                             }
                         }
                     }
@@ -174,17 +193,24 @@
                 }
             };
             
-            $scope.matchLastPlayer = function() {
-                var playerIndex = $scope.matchMatrix.length - 1;
+            $scope.getPlayerCount = function() {
+                return PlayerNames.getPlayerCount();
+            }
+            
+            $scope.matchLastPlayer = function(index) {
+                var playerIndex = index;
                 var bestMatch = 0;
                 var bestPartnerIndex = -1;
+                console.log("Matchmatrix: " + $scope.matchMatrix);
+                console.log("playerindex: " + playerIndex);
                 for (var playerY = 0; playerY < $scope.matchMatrix[playerIndex].length; playerY++) {
+                    console.log("matchlast i: " + playerIndex);
                     if (playerY !== playerIndex && $scope.matchMatrix[playerIndex][playerY] > bestMatch) {
                         bestMatch = $scope.matchMatrix[playerIndex][playerY];
                         bestPartnerIndex = playerY;
                     }
                 }
-                if (bestMatch === 0) {
+                if (bestMatch <= 0) {
                     return gettextCatalog.getString("Doesn't match well. Should play alone.");
                 } else {
                     return gettextCatalog.getString('Matches best with the team of {{name1}} and {{name2}}.', {

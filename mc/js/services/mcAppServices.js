@@ -298,6 +298,20 @@
             playerNamesFactory.getNames().forEach(function() {
                 playerNamesFactory.customPlayerNames.push(undefined);
             });
+            
+            // When there are less than 15 players, deactivate them to ignore them in matching calc
+            // 1 if player is in game, 0 if player is absent
+            playerNamesFactory.inGame = [
+                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+            ]
+            
+            playerNamesFactory.getPlayerCount = function() {
+                var sum = 0;
+                for (var i = 0; i < playerNamesFactory.inGame.length; i++) {
+                    sum += playerNamesFactory.inGame[i];
+                }
+                return sum;
+            };
 
             return playerNamesFactory;
         })

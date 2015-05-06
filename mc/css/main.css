@@ -47,6 +47,18 @@ body {
   border: solid 2px;
 }
 
+.ban_icon {
+  color: #000;
+}
+
+.banned_icon {
+  color: #f00;
+}
+
+.dummy_notingame {
+  color: #ddd;
+}
+
 .player {
   border-radius: 10px;
   position: absolute;
