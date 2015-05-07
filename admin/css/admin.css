@@ -39,6 +39,10 @@
     background: #D6C4EA !important;
 }
 
+.item-inlineSwitch {
+    background: #eac1a7 !important;
+}
+
 .item-highlighted {
     border: 2px solid red !important;
 }

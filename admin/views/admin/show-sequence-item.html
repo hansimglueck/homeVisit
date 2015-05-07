@@ -48,6 +48,9 @@
                     <labeled-item-option field="jump" title="" type="checkbox" item="item"
                                          saveitem="saveItem()"></labeled-item-option>
                 </li>
+                <li>
+                    <strong>{{item.uid}}</strong>
+                </li>
 
             </ul>
             <ul class="list-inline pull-right">
@@ -110,6 +113,12 @@
             <li>
                 <div class="labeled-option-group">
                     <labeled-item-option field="mcJump" title="MC-Jump" type="checkbox" item="item"
+                                         saveitem="saveItem()"></labeled-item-option>
+                </div>
+            </li>
+            <li>
+                <div class="labeled-option-group">
+                    <labeled-item-option field="uid" title="UID" type="number" item="item"
                                          saveitem="saveItem()"></labeled-item-option>
                 </div>
             </li>

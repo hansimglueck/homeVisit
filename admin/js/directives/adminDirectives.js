@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('adminDirectives', [])
@@ -43,14 +43,14 @@
                 scope: {
                     item: '='
                 },
-                controller: function($scope, gettextCatalog) {
+                controller: function ($scope, gettextCatalog) {
                     $scope.lang = gettextCatalog.currentLanguage;
-                    $scope.saveVoteOption = function() {
+                    $scope.saveVoteOption = function () {
                         console.log('saveVoteOption');
                         console.log($scope.$parent.$index);
                         return $scope.$parent.updateDeck($scope.$parent.deck);
                     };
-                    $scope.deleteVoteOption = function(i) {
+                    $scope.deleteVoteOption = function (i) {
                         console.log('.deleteVoteOption', $scope.$parent.$index, i);
                         $scope.$parent.deck.items[$scope.$parent.$index].voteOptions.splice(i, 1);
                         $scope.$parent.updateDeck($scope.$parent.deck);
@@ -221,10 +221,9 @@
                     title: '@',
                     field: '@',
                     type: '@',
-                    saveitem: '&',
-                    showtextforvalue: '&'
+                    saveitem: '&'
                 },
-                controller: function($scope, itemOptions, $filter, gettextCatalog) {
+                controller: function ($scope, itemOptions, $filter, gettextCatalog) {
                     $scope.lang = gettextCatalog.currentLanguage;
                     $scope.itemOptions = itemOptions;
                     $scope.showTextForValue = function (item, option) {
@@ -238,7 +237,6 @@
                         console.log($scope.item);
                         $scope.item[field].push("");
                     };
-
                     $scope.removeTag = function (field, id) {
                         $scope.item[field].splice(id, 1);
                     };
