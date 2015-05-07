@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.5.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: player/partials/rating/rating.html:4
@@ -227,8 +227,7 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: admin/views/master-buttons.html:6 mc/index.html:61
-#: mc/views/players.html:39
+#: admin/views/master-buttons.html:6 mc/index.html:61 mc/views/players.html:39
 msgid "GO"
 msgstr ""
 
@@ -579,7 +578,7 @@ msgstr ""
 
 #: mc/views/results.html:44 player/partials/results.html:46
 msgid "Results are weighted by ranking. See actual votes in braces."
-msgstr ""
+msgstr "Results are weighted by rank. See actual votes in brackets."
 
 #: admin/views/raspi-manager.html:99
 msgid "SHUTDOWN"
@@ -619,6 +618,8 @@ msgid ""
 "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
 "is reading:"
 msgstr ""
+"Silence please. <player-icon pid=\"status.playerOnTurn\"></player-icon> is "
+"reading now. "
 
 #: admin/views/admin/show-sequence-item.html:36
 msgid "Silent"
@@ -714,7 +715,7 @@ msgstr ""
 
 #: player/partials/rating/rating.html:18
 msgid "Traitor! You can't score down your allied!"
-msgstr ""
+msgstr "Traitor! You can't deduct points from your allies!"
 
 #: player/partials/deals/deal.answer.html:3
 #: player/partials/deals/deal.details.html:3
@@ -751,7 +752,7 @@ msgstr ""
 
 #: player/partials/rating/rating.score.html:26
 msgid "Waiting for being rated."
-msgstr ""
+msgstr "Waiting to be rated."
 
 #: player/partials/deals/deal.details.html:18
 msgid "Waiting for reply..."
@@ -763,23 +764,23 @@ msgstr ""
 
 #: mc/js/services/mcAppServices.js:104
 msgid "Who at the table has a job of which he or she can live?"
-msgstr ""
+msgstr "Who at the table has a job they can live from?"
 
 #: mc/js/services/mcAppServices.js:72
 msgid "Who at this table has been class spokesman?"
-msgstr ""
+msgstr "Who at the table was a class representative or prefect?"
 
 #: mc/js/services/mcAppServices.js:80
 msgid "Who at this table has ever won a lot?"
-msgstr ""
+msgstr "Who at this table won something big?"
 
 #: mc/js/services/mcAppServices.js:136
 msgid "Who feels more as an European than a citizens of his country?"
-msgstr ""
+msgstr "Who feels more European that a citizen of their own country?"
 
 #: mc/js/services/mcAppServices.js:152
 msgid "Who finds the people here in general trustworthy?"
-msgstr ""
+msgstr "Who finds the people here trustworty?"
 
 #: mc/js/services/mcAppServices.js:120
 msgid "Who had a physical conflict in the past 10 years?"
@@ -843,15 +844,15 @@ msgstr ""
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
-msgstr ""
+msgstr "Your time is up. One point deducted."
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr "Your vote is transmitted!"
+msgstr "Your choice has been sent!"
 
 #: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
-msgstr "The weighting of the vote depends on your rank!"
+msgstr "The weight of your vote depends on your rank!"
 
 #: mc/js/services/mcAppServices.js:169
 msgid "ambition"
@@ -867,7 +868,7 @@ msgstr ""
 
 #: mc/js/services/mcAppServices.js:73
 msgid "class spokesman"
-msgstr ""
+msgstr "class representative"
 
 #: mc/js/services/mcAppServices.js:177
 msgid "confidence in democracy"
