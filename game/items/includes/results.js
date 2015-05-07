@@ -54,7 +54,7 @@
                             score = -1;
                             vote.choice.forEach(function (ch) {
                                 if (correct.indexOf(ch) !== -1) {
-                                    score = 2;
+                                    score = 1;
                                 }
                             });
                             // TODO translation
@@ -73,7 +73,7 @@
                             score = -1;
                             vote.choice.forEach(function (ch) {
                                 if (best.indexOf(ch) > -1) {
-                                    score = 2;
+                                    score = 1;
                                 }
                             });
                             // TODO translation
