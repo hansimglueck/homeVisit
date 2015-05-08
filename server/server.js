@@ -35,6 +35,7 @@
     wsManager.onType("alert", game, game.alert);
     wsManager.onType("register", game, game.sendPlayBackStatus);
     wsManager.onType("pollResults", game, game.pollResults);
+    wsManager.onType("uploadRecording", game, game.uploadRecording);
 
     var raspiTools = require('../game/raspiTools.js');
     wsManager.onRole("master", raspiTools, raspiTools.newMessage);
@@ -78,6 +79,7 @@
     // resource routes
     app.use('/decks', require('./routes/decks'));
     app.use('/gameConf', require('./routes/gameConf'));
+    app.use('/recordings', require('./routes/recordings'));
 
     // app routes
     app.use('/', require('./routes/main'));
