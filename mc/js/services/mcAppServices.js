@@ -80,6 +80,7 @@
             pollFactory.polls = [
                 {
                     // 0
+                    rid: 13,
                     question: gettext('Who at this table has been class spokesman?'),
                     note: gettext('class spokesman'),
                     type: 'binary',
@@ -88,6 +89,7 @@
                 },
                 {
                     // 1
+                    rid: 14,
                     question: gettext('Who at this table has ever won a lot?'),
                     note: gettext('won a lot'),
                     type: 'binary',
@@ -96,6 +98,7 @@
                 },
                 {
                     // 2
+                    rid: 15,
                     question: gettext('Who was or is a member of a political party?'),
                     note: gettext('member of political party'),
                     type: 'binary',
@@ -104,6 +107,7 @@
                 },
                 {
                     // 3
+                    rid: 17,
                     question: gettext('Who is involved in a association or in an NGO?'),
                     note: gettext('association/NGO'),
                     type: 'binary',
@@ -112,6 +116,7 @@
                 },
                 {
                     // 4
+                    rid: 18,
                     question: gettext('Who at the table has a job of which he or she can live?'),
                     note: gettext('paid job'),
                     type: 'binary',
@@ -120,6 +125,7 @@
                 },
                 {
                     // 5
+                    rid: 19,
                     question: gettext('Who works regularly outside the country?'),
                     note: gettext('working outside the country'),
                     type: 'binary',
@@ -128,6 +134,7 @@
                 },
                 {
                     // 6
+                    rid: 20,
                     question: gettext('Who had a physical conflict in the past 10 years?'),
                     note: gettext('physical conflict'),
                     type: 'binary',
@@ -136,6 +143,7 @@
                 },
                 {
                     // 7
+                    rid: 21,
                     question: gettext('Who has ever consciously denied his national origin?'),
                     note: gettext('denied origin'),
                     type: 'binary',
@@ -144,6 +152,7 @@
                 },
                 {
                     // 8
+                    rid: 22,
                     question: gettext('Who feels more as an European than a citizens of his country?'),
                     note: gettext('feeling European'),
                     type: 'binary',
@@ -152,6 +161,7 @@
                 },
                 {
                     // 9
+                    rid: 23,
                     question: gettext('Who is scared of the future?'),
                     note: gettext('scared of the future'),
                     type: 'binary',
@@ -160,6 +170,7 @@
                 },
                 {
                     // 10
+                    rid: 27,
                     question: gettext('Who finds the people here in general trustworthy?'),
                     note: gettext('trustworthy'),
                     type: 'binary',
@@ -168,6 +179,7 @@
                 },
                 {
                     // 11
+                    rid: 29,
                     question: gettext('My willingness of solidarity'),
                     note: gettext('willingness of solidarity'),
                     type: 'fingers',
@@ -176,6 +188,7 @@
                 },
                 {
                     // 12
+                    rid: 30,
                     question: gettext('My ambition'),
                     note: gettext('ambition'),
                     type: 'fingers',
@@ -184,6 +197,7 @@
                 },
                 {
                     // 13
+                    rid: 31,
                     question: gettext('My confidence in democracy'),
                     note: gettext('confidence in democracy'),
                     type: 'fingers',
@@ -192,6 +206,7 @@
                 },
                 {
                     // 14
+                    rid: 32,
                     question: gettext('My earnings from the game of the markets'),
                     note: gettext('earnings'),
                     type: 'fingers',
