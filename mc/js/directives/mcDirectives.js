@@ -38,8 +38,7 @@
                 controller: function ($scope, gameSessionsFactory, $rootScope, Socket) {
                     $scope.sessions = gameSessionsFactory;
                     $scope.setSession = function() {
-                        Socket.emit('setGameSession', gameSessionsFactory.currentSession);
-                        $rootScope.$broadcast('sessionChange');
+                        gameSessionsFactory.setSession();
                     };
                 },
                 scope: {}

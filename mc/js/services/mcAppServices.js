@@ -28,7 +28,9 @@
                 Socket.on('status', function (data) {
                     if (data.otherPlayers) {
                         statusFactory.otherPlayers = data.otherPlayers;
-                        statusFactory.joinedPlayers = data.otherPlayers.filter(function(player){return player.joined});
+                        statusFactory.joinedPlayers = data.otherPlayers.filter(function (player) {
+                            return player.joined
+                        });
                     }
                     if (data.maxPlayers) {
                         statusFactory.maxPlayers = data.maxPlayers;
@@ -328,10 +330,10 @@
             // When there are less than 15 players, deactivate them to ignore them in matching calc
             // 1 if player is in game, 0 if player is absent
             playerNamesFactory.inGame = [
-                1,1,1,1,1,1,1,1,1,1,1,1,1,1,1
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
             ]
 
-            playerNamesFactory.getPlayerCount = function() {
+            playerNamesFactory.getPlayerCount = function () {
                 var sum = 0;
                 for (var i = 0; i < playerNamesFactory.inGame.length; i++) {
                     sum += playerNamesFactory.inGame[i];
@@ -506,7 +508,7 @@
                 Socket.on("score", function (msg) {
                     console.log("SCORE EMPFANGEN");
                     //console.log(msg);
-                    teamActionInfo.actionInfo[msg.otherPlayerId] = gettext("Score ") + msg.value + gettext(" to ")+ playerColornamesFactory.playercolornames[msg.playerId];
+                    teamActionInfo.actionInfo[msg.otherPlayerId] = gettext("Score ") + msg.value + gettext(" to ") + playerColornamesFactory.playercolornames[msg.playerId];
                 });
 
                 Socket.on("insurance", function (msg) {
@@ -514,7 +516,6 @@
                     //console.log(msg);
                     teamActionInfo.actionInfo[msg.playerId] = gettext("Deal with ") + playerColornamesFactory.playercolornames[msg.value];
                 });
-
 
 
                 Socket.on("playBackStatus", function (msg) {
@@ -674,37 +675,45 @@
             return clockFactory;
         })
 
-    .factory('gameSessionsFactory', function (Socket) {
+        .factory('gameSessionsFactory', function (Socket, $rootScope) {
 
-        var gameSessionsFactory = {
-            sessions: [],
-            currentSession: null
-        };
+            var gameSessionsFactory = {
+                sessions: [],
+                currentSession: null,
+                sessionSet: false
+            };
 
-        gameSessionsFactory.getSessionName = function (id) {
-            for (var i = 0; i < gameSessionsFactory.sessions.length; i++) {
-                var s = gameSessionsFactory.sessions[i];
-                if (s._id === id) {
-                    var name = s.date + ' ' + s.city;
-                    if (typeof s.adresse !== 'undefined' && s.adresse.trim().length > 0) {
-                        name += ' - ' + s.adresse + ',';
+            gameSessionsFactory.getSessionName = function (id) {
+                for (var i = 0; i < gameSessionsFactory.sessions.length; i++) {
+                    var s = gameSessionsFactory.sessions[i];
+                    if (s._id === id) {
+                        var name = s.date + ' ' + s.city;
+                        if (typeof s.adresse !== 'undefined' && s.adresse.trim().length > 0) {
+                            name += ' - ' + s.adresse + ',';
+                        }
+                        if (typeof s.bezirk !== 'undefined' && s.bezirk.trim().length > 0) {
+                            name += ' (' + s.bezirk + ')';
+                        }
+                        return name;
                     }
-                    if (typeof s.bezirk !== 'undefined' && s.bezirk.trim().length > 0) {
-                        name += ' (' + s.bezirk + ')';
-                    }
-                    return name;
                 }
-            }
-        };
+            };
 
-        Socket.on('gameSessions', function (data) {
-            gameSessionsFactory.sessions = data.sessions;
-            if (typeof data.currentSession !== 'undefined' && data.currentSession !== null) {
-                gameSessionsFactory.currentSession = data.currentSession;
-            }
-        });
+            gameSessionsFactory.start = function () {
+                Socket.on('gameSessions', function (data) {
+                    gameSessionsFactory.sessions = data.sessions;
+                    if (typeof data.currentSession !== 'undefined' && data.currentSession !== null) {
+                        gameSessionsFactory.currentSession = data.currentSession;
+                    }
+                });
+            };
 
-        return gameSessionsFactory;
-    })
+            gameSessionsFactory.setSession = function () {
+                Socket.emit('setGameSession', gameSessionsFactory.currentSession);
+                $rootScope.$broadcast('sessionChange');
+                gameSessionsFactory.sessionSet = true;
+            };
+            return gameSessionsFactory;
+        })
 
 })();

@@ -8,6 +8,7 @@
         this.sessionId = null;
         this.clock = require('./clock');
         this.gameConf = require('./gameConf');
+        this.uid = null;
     }
 
     GameRecording.prototype = {
@@ -17,6 +18,7 @@
         },
 
         go: function(item) {
+            this.uid = item.uid;
             this._recordEvent('go', {
                 type: item.type,
                 index: item.index
@@ -50,6 +52,7 @@
         },
 
         _recordEvent: function(name, data) {
+            data.uid = this.uid;
             var deferred = Q.defer(), self = this,
                 sessionId = this.gameConf.conf.session;
             if (typeof sessionId === 'undefined' || sessionId === null) {

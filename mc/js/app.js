@@ -72,7 +72,7 @@ angular
                 redirectTo: '/'
             });
     })
-    .run(function (Socket, Status, Deck, TeamActionInfo, gettextCatalog) {
+    .run(function (Socket, Status, Deck, TeamActionInfo, gettextCatalog, gameSessionsFactory) {
         Socket.on('languageChange', function (data) {
             gettextCatalog.setCurrentLanguage(data.language);
         });
@@ -83,6 +83,7 @@ angular
         Status.start();
         Deck.start();
         TeamActionInfo.start();
+        gameSessionsFactory.start();
     });
 
 })();
