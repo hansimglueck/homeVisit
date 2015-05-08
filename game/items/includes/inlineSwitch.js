@@ -28,6 +28,9 @@
                 this.next = null;
                 for (var i = 0; i < deck.items.length; i++) {
                     var newItem = new SequenceItem(null, deck.items[i], this.index + ":" + option + ":" + i, true);
+                    if (typeof newItem.uid === "undefined") {
+                        newItem.uid = this.uid;
+                    }
                     newItem.resetItem = function () {
                         this.log("resetting inline item "+this.index);
                         this.previous.reset();

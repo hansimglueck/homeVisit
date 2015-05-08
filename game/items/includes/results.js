@@ -3,6 +3,7 @@
 
     var playerManager = require('../../playerManager');
     var gettext = require('../../gettext');
+    var gameRecording = require('../gameRecording');
 
     module.exports = {
         executeItem: function () {
@@ -39,6 +40,7 @@
                 default:
                     break;
             }
+            gameRecording.poll(this.data);
             if (this.data !== null) {
                 var score, best;
                 switch (this.scoreType) {
@@ -64,7 +66,7 @@
                     case "majorityScore":
                         //checke, welche votes die voteOption[0] der results (sortiert) in der choice haben
                         //und verteile +1 dafür, -1 für die anderen
-                        //TODO: bei zwei gleichguten Antworten wird nur eine berücksichtigt...
+                        //TODO: bei mehr al zwei gleichguten Antworten werden nur zwei berücksichtigt...
                         best = [this.data.voteOptions[0].value];
                         if (typeof this.data.voteOptions[1] !== "undefined") if (this.data.voteOptions[0].votes === this.data.voteOptions[1].votes) {
                             best.push(this.data.voteOptions[1].value);

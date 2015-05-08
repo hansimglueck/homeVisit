@@ -68,7 +68,8 @@
             }),
             votes: this.votes,
             complete: !this.open,
-            ratedVote: this.ratedVote
+            ratedVote: this.ratedVote,
+            voteType: this.voteType
         };
     };
 

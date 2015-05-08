@@ -4,7 +4,6 @@
     var hat = require('hat');
 
     var wsManager = require('../wsManager');
-    var gameRecording = require('../gameRecording');
 
     var Poll = function (item) {
         if (typeof item == "undefined") return;
@@ -92,7 +91,6 @@
             this.finishCallbacks.forEach(function (cb) {
                 cb.fn.call(cb.scope, self.getResult());
             });
-            gameRecording.poll(this);
         },
         //zum callback-funktionen registrieren
         onFinish: function (scope, fn) {

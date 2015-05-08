@@ -50,7 +50,8 @@
             text: resText,
             fullfilled: fullfilled,
             complete: !this.open,
-            positivePlayerIds: positivePlayerIds
+            positivePlayerIds: positivePlayerIds,
+            voteType: this.voteType
         };
     };
 

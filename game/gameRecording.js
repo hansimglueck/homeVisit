@@ -29,10 +29,10 @@
             this._recordEvent('score', score);
         },
 
-        poll: function(poll) {
+        poll: function(data) {
             this._recordEvent('poll', {
-                type: poll.voteType,
-                results: poll.getResult()
+                type: data.voteType,
+                results: data
             });
         },
 

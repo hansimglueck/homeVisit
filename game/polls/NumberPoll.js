@@ -34,7 +34,8 @@
             average: this.getAverage().toFixed(2),
             minVal: minVal.toFixed(2),
             maxVal: maxVal.toFixed(2),
-            votes: this.votes
+            votes: this.votes,
+            voteType: this.voteType
         };
     };
     NumberPoll.prototype.getAverage = function() {
