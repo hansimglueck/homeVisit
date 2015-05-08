@@ -50,6 +50,7 @@
         },
 
         answers: function(answers) {
+            console.log("RECORDING ANSWERS-----------------------");
             this._recordEvent('answers', answers);
         },
 
