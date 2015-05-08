@@ -2,10 +2,11 @@
     'use strict';
 
     var Q = require('q'),
+        hat = require('hat'),
         mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
 
     function GameRecording() {
-        this.sessionId = null;
+        this.recordingId = null;
         this.clock = require('./clock');
         this.gameConf = require('./gameConf');
         this.uid = null;
@@ -15,6 +16,7 @@
 
         reset: function() {
             console.log('gameRecording reset');
+            this.recordingId = hat();
         },
 
         go: function(item) {
@@ -62,6 +64,7 @@
             mongoConnection(function(db) { deferred.resolve(db); });
             deferred.promise.then(function(db) {
                 var obj = {
+                    recordingId: self.recordingId,
                     sessionId: self.gameConf.conf.session,
                     name: name,
                     gameTimestamp: self.clock.getCurrentSeconds(),
