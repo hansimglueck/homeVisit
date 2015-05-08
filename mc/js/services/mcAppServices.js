@@ -716,4 +716,10 @@
             return gameSessionsFactory;
         })
 
+        .factory('Recordings', function ($resource) {
+            return $resource('/recordings/', null, {
+                'get': { method: 'GET', isArray: true },
+            });
+        });
+
 })();

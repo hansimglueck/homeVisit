@@ -10,6 +10,31 @@
         <div class="col-md-6">
             <h2 translate>Maintenance</h2>
             <button class="btn btn-danger btn-lg" ng-click="playback('restart')" translate>RESTART GAME</button>
+            <h2 translate>Game recordings</h2>
+            <table class="table table-striped" ng-controller="RecordingsCtrl">
+                <thead>
+                    <tr>
+                        <td>RecordingId</td>
+                        <td>SessionId</td>
+                        <td>Date</td>
+                        <td>Name</td>
+                        <td>City</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="r in recordings">
+                        <td>{{ r.recordingId }}</td>
+                        <td>{{ r.session._id }}</td>
+                        <td>{{ r.session.date }}</td>
+                        <td>{{ r.session.name }}</td>
+                        <td>{{ r.session.city }}</td>
+                        <td>
+                            <button class="btn btn-primary" ng-click="upload(r.recordingId)" translate>Upload</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

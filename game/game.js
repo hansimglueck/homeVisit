@@ -225,6 +225,13 @@
                 return;
             }
             this.recording.answers(data.data);
+        },
+
+        uploadRecording: function(clientId, role, data) {
+            if (role !== 'MC') {
+                return;
+            }
+            console.log('TODO: Upload recording ', data);
         }
     };
 
