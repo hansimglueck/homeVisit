@@ -231,7 +231,7 @@
             if (role !== 'MC') {
                 return;
             }
-            this.recording.upload(data.id);
+            this.recording.upload(data.data.id);
         }
     };
 

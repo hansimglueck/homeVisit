@@ -1,19 +1,21 @@
 var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
 
 function makeItTawan(recId, cb) {
+    console.log("i will make recording "+recId+" to the pleasure of tawan!");
     var tawan = [];
     mongoConnection(function (db) {
         db.collection('recordings').find({"recordingId": recId}).toArray(function (err, recs) {
             if (err) {
                 return err;
             }
+            var sid = recs[0].sessionId;
             tawan = recs.filter(function (rec) {
                 return rec.name === "poll" && rec.data.type === "customOptions" && rec.data.results.rid !== null;
             }).map(function (rec) {
                 var array = rec.data.results.voteOptions.sort(function (a, b) {
                     return a.value > b.value
                 }).map(function (opt) {
-                    return opt.percent
+                    return parseInt(opt.percent)
                 });
                 return {id: rec.data.results.rid, data: array}
             });
@@ -32,9 +34,13 @@ function makeItTawan(recId, cb) {
                     }
                     tawan.push({id: answer.rid, data: array})
                 });
-            console.dir(tawan);
+            //console.dir(tawan);
+            var realTawan = {'gruppe_ID':sid};
+            tawan.forEach(function(t){
+                realTawan[t.id.toString()] = t.data;
+            });
+            cb(realTawan);
         });
-        cb(tawan);
     });
 }
 

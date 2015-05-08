@@ -1,5 +1,6 @@
 (function() {
     'use strict';
+    var mit = require('./makeItTawan');
 
     var http = require('http'),
         url = require('url'),
@@ -86,35 +87,36 @@
         },
 
         upload: function(id) {
-            var postUrl = require('../homevisitConf').websitePostUrl;
-            var u = url.parse(postUrl);
+            mit(id, function(tawan){
+                var postUrl = require('../homevisitConf').websitePostUrl;
+                var u = url.parse(postUrl);
 
-            var postData = querystring.stringify({
-                json_daten: {
-                    foo: 'bar',
-                    id: id
-                }
-            });
-
-            var opts = {
-                host: u.host,
-                path: u.path,
-                auth: u.auth,
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded',
-                    'Content-Length': postData.length
-                }
-            };
-
-            var req = http.request(opts, function(res) {
-                res.setEncoding('utf8');
-                res.on('data', function(chunk) {
-                    console.log('Response: ' + chunk);
+                var postData = querystring.stringify({
+                    json_daten: tawan
                 });
+                console.log(tawan);
+                console.dir(postData);
+                return;
+                var opts = {
+                    host: u.host,
+                    path: u.path,
+                    auth: u.auth,
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                        'Content-Length': postData.length
+                    }
+                };
+
+                var req = http.request(opts, function(res) {
+                    res.setEncoding('utf8');
+                    res.on('data', function(chunk) {
+                        console.log('Response: ' + chunk);
+                    });
+                });
+                req.write(postData);
+                req.end();
             });
-            req.write(postData);
-            req.end();
         }
 
     };

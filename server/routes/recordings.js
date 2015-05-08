@@ -29,7 +29,7 @@
                             function(r) {
                                 var sessionsColl = db.collection('sessions');
                                 var findSession = Q.nbind(sessionsColl.findOne, sessionsColl);
-                                return findSession({ _id: r.sessionId }).then(function(session) {
+                                return findSession({ _id: ObjectID(r.sessionId) }).then(function(session) {
                                     return {
                                         recordingId: r.recordingId,
                                         session: session
