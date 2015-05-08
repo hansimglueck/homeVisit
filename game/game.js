@@ -231,7 +231,7 @@
             if (role !== 'MC') {
                 return;
             }
-            console.log('TODO: Upload recording ', data);
+            this.recording.upload(data.id);
         }
     };
 
