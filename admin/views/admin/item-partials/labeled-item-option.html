@@ -1,68 +1,69 @@
-<div class="labeled-option">
-    <div class="labeled-option-title">{{title}}</div>
-    <div class="labeled-option-content" ng-switch="type">
-        <div ng-switch-when="localized-textarea">
+<span>
+    <div class="labeled-option">
+        <div class="labeled-option-title">{{title}}</div>
+        <div class="labeled-option-content" ng-switch="type">
+            <div ng-switch-when="localized-textarea">
             <span editable-textarea="item[field][lang]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
                 {{ item[field][lang] || '-' }}
             </span>
-        </div>
-        <div ng-switch-when="textarea">
+            </div>
+            <div ng-switch-when="textarea">
             <span editable-textarea="item[field]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
                 {{ item[field] || '-' }}
             </span>
-        </div>
-        <div ng-switch-when="localized-textarea_pre">
+            </div>
+            <div ng-switch-when="localized-textarea_pre">
             <span editable-textarea="item[field][lang]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
            <pre><code>{{ item[field][lang] || '-' }}</code></pre>
            </span>
-        </div>
-        <div ng-switch-when="select_editable">
+            </div>
+            <div ng-switch-when="select_editable">
            <span editable-select="item[field]" e-name="field"
                  onaftersave="saveitem()"
                  e-ng-options="s.value as s.text for s in itemOptions[field]"
                    >
                 {{ showTextForValue(item, field) }}
             </span>
-        </div>
-        <div ng-switch-when="select">
-            <select class="form-control"
-                    ng-model="item[field]"
-                    ng-change="saveitem()"
-                    ng-options="s.value as s.text for s in itemOptions[field]">
-            </select>
-        </div>
-        <div ng-switch-when="localized-text">
+            </div>
+            <div ng-switch-when="select">
+                <select class="form-control"
+                        ng-model="item[field]"
+                        ng-change="saveitem()"
+                        ng-options="s.value as s.text for s in itemOptions[field]">
+                </select>
+            </div>
+            <div ng-switch-when="localized-text">
             <span editable-text="item[field][lang]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
             {{ item[field][lang] || '-' }}</span>
-        </div>
-        <div ng-switch-when="text">
+            </div>
+            <div ng-switch-when="text">
             <span editable-text="item[field]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
             {{ item[field] || '-' }}</span>
-        </div>
-        <div ng-switch-when="checkbox">
-            <input type="checkbox" ng-model="item[field]"
-                   ng-change="saveitem()">
-        </div>
-        <div ng-switch-when="checkbox_editable">
+            </div>
+            <div ng-switch-when="checkbox">
+                <input type="checkbox" ng-model="item[field]"
+                       ng-change="saveitem()">
+            </div>
+            <div ng-switch-when="checkbox_editable">
             <span editable-checkbox="item[field]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
             {{ item[field] || '-' }}</span>
-        </div>
-        <div ng-switch-when="tags">
-        <ul class="option-tag-list list-inline">
-            <li ng-repeat="device in item[field] track by $index">
-                <form editable-form name="deviceFrm" shown="device == ''">
+            </div>
+            <div ng-switch-when="tags">
+                <ul class="option-tag-list list-inline">
+                    <li ng-repeat="device in item[field] track by $index">
+                        <form editable-form name="deviceFrm" shown="device == ''">
                         <span class="option-tag">
                             <span ng-click="deviceFrm.$show()" e-form="deviceFrm" editable-text="item[field][$index]"
                                   onbeforesave="" onaftersave="saveitem()">
@@ -71,16 +72,43 @@
                             <span class="glyphicon glyphicon-remove" aria-hidden="true"
                                   ng-click="removeTag(field, $index)"></span>
                         </span>
-                </form>
-            </li>
-            <li>
+                        </form>
+                    </li>
+                    <li>
                     <span ng-click="addTag(field)"><span class="glyphicon glyphicon-plus"
-                                                             aria-hidden="true"></span></span>
-            </li>
-        </ul>
-        </div>
+                                                         aria-hidden="true"></span></span>
+                    </li>
+                </ul>
+            </div>
 
+        </div>
     </div>
-</div>
+
+    <div class="labeled-option" ng-if="lang!=='de' && type.indexOf('localized') > -1">
+        <div class="labeled-option-title">{{title}}(DE)</div>
+        <div class="labeled-option-content" ng-switch="type">
+            <div ng-switch-when="localized-textarea">
+            <span editable-textarea="item[field]['de']"
+                  e-rows="7" e-cols="40" e-name="field"
+                  onaftersave="saveitem()">
+                {{ item[field]['de'] || '-' }}
+            </span>
+            </div>
+            <div ng-switch-when="localized-textarea_pre">
+            <span editable-textarea="item[field]['de']"
+                  e-rows="7" e-cols="40" e-name="field"
+                  onaftersave="saveitem()">
+           <pre><code>{{ item[field]['de'] || '-' }}</code></pre>
+           </span>
+            </div>
+            <div ng-switch-when="localized-text">
+            <span editable-text="item[field]['de']"
+                  e-rows="7" e-cols="40" e-name="field"
+                  onaftersave="saveitem()">
+            {{ item[field]['de'] || '-' }}</span>
+            </div>
+        </div>
+    </div>
+</span>
 
 
