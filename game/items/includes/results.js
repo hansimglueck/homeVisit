@@ -3,7 +3,7 @@
 
     var playerManager = require('../../playerManager');
     var gettext = require('../../gettext');
-    var gameRecording = require('../gameRecording');
+    var gameRecording = require('../../gameRecording');
 
     module.exports = {
         executeItem: function () {
@@ -40,8 +40,9 @@
                 default:
                     break;
             }
-            gameRecording.poll(this.data);
             if (this.data !== null) {
+                this.data.rid = this.rid;
+                gameRecording.poll(this.data);
                 var score, best;
                 switch (this.scoreType) {
                     case "optionScore":
