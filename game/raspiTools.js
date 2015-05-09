@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     var exec = require('child_process').exec;
@@ -8,10 +8,62 @@
     var mongoUri = require('../homevisitConf').mongoUri;
     var wsManager = require('./wsManager.js');
 
-    function RaspiTools() {}
+    function RaspiTools() {
+        this.onlineTasks = [];
+        this.onlineState = false;
+        this.infoSubscribers = [];
+    }
 
     RaspiTools.prototype = {
-        newMessage: function(clientId, role, msg) {
+        addOnlineTask: function (task, interval) {
+            var id = this.onlineTasks.push({interval: interval, task: task, intervalObject: null});
+            if (this.onlineState) {
+                this.executeOnlineTask(id);
+            }
+        },
+        startOnlineObservation: function (interval) {
+            var self = this;
+            setInterval(function () {
+                self.onlineObservation()
+            }, interval);
+        },
+        onlineObservation: function () {
+            var self = this;
+            isOnline(function (err, online) {
+                if (online !== self.onlineState) {
+                    self.onlineState = online;
+                    console.log("New onlineState: " + self.onlineState);
+                    self.sendOsInfo();
+                    self.onlineTasks.forEach(function (task, id) {
+                        self.stopOnlineTask(id);
+                        if (online) self.executeOnlineTask(id);
+                    });
+                }
+             })
+        },
+        executeOnlineTask: function (id) {
+            var task = this.onlineTasks[id];
+            this.stopOnlineTask(id);
+            task.task();
+            if (task.interval !== 0) {
+                task.intervalObject = setInterval(function () {
+                    task.task()
+                }, task.interval);
+            }
+        },
+        stopOnlineTask: function (id) {
+            var task = this.onlineTasks[id];
+            if (task.intervalObject !== null) {
+                clearInterval(task.intervalObject);
+            }
+        },
+        addInfoSubscriber: function (clientId) {
+            clientId = parseInt(clientId);
+            if (this.infoSubscribers.indexOf(clientId) === -1) {
+                this.infoSubscribers.push(clientId);
+            }
+        },
+        newMessage: function (clientId, role, msg) {
             if (typeof msg !== "undefined") {
                 try {
                     switch (msg.type) {
@@ -32,24 +84,18 @@
                                     });
                                     break;
                                 case "getInfo":
-                                    this.sendOsInfo(clientId);
+                                    this.addInfoSubscriber(clientId);
+                                    this.sendOsInfo();
                                     break;
                                 case "restartwlan1":
                                     console.log("restarting wlan1");
                                     var self = this;
                                     exec("/home/pi/homeVisit/shellscripts/wlan1_conf " + msg.data.param.ssid + " " + msg.data.param.passwd, function (error, stdout, stderr) {
                                         console.log("exec1");
-                                        setTimeout(function() {
-                                            self.sendOsInfo(clientId);
-                                            setTimeout(function() {
-                                                self.sendOsInfo(clientId);
-                                            }, 10000);
-                                        }, 10000);
                                     });
                                     break;
                             }
                             break;
-
                         case "database":
                             console.log("db command", msg);
                             switch (msg.data) {
@@ -57,9 +103,9 @@
                                     break;
                                 case "repair":
                                     exec("/home/pi/homeVisit/shellscripts/repair_db", function (error, stdout, stderr) {
-                                        setTimeout(function() {
+                                        setTimeout(function () {
                                             self.sendDbStatus(role);
-                                            setTimeout(function() {
+                                            setTimeout(function () {
                                                 self.sendDbStatus(role);
                                             }, 10000);
                                         }, 10000);
@@ -78,16 +124,16 @@
                             console.log("RaspiTools: unknown message-type");
                             break;
                     }
-                } catch(e) {
+                } catch (e) {
                     console.log("ERROR in raspiTools.newMessage! " + e.stack);
                 }
             }
         },
 
-        sendDbStatus: function(role) {
-            MongoClient.connect(mongoUri, function(err, conn) {
+        sendDbStatus: function (role) {
+            MongoClient.connect(mongoUri, function (err, conn) {
                 var connected;
-                if(err){
+                if (err) {
                     connected = false;
                 } else {
                     connected = true;
@@ -98,21 +144,19 @@
                 });
             });
         },
-        sendOsInfo: function (clientId) {
-            isOnline(function(err, online) {
-                var info = {
-                    hostname: os.hostname(),
-                    type: os.type(),
-                    arch: os.arch(),
-                    uptime: os.uptime(),
-                    loadavg: os.loadavg(),
-                    totalmem: os.totalmem(),
-                    freemem: os.freemem(),
-                    interfaces: os.networkInterfaces(),
-                    online: online
-                };
-                wsManager.msgDeviceByIds([clientId], "osinfo", info);
-            });
+        sendOsInfo: function () {
+            var info = {
+                hostname: os.hostname(),
+                type: os.type(),
+                arch: os.arch(),
+                uptime: os.uptime(),
+                loadavg: os.loadavg(),
+                totalmem: os.totalmem(),
+                freemem: os.freemem(),
+                interfaces: os.networkInterfaces(),
+                online: this.onlineState
+            };
+            wsManager.msgDeviceByIds(this.infoSubscribers, "osinfo", info);
         }
 
     };

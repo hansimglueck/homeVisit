@@ -38,8 +38,10 @@
     wsManager.onType("uploadRecording", game, game.uploadRecording);
 
     var raspiTools = require('../game/raspiTools.js');
+    raspiTools.startOnlineObservation(5000);
     wsManager.onType("os", raspiTools, raspiTools.newMessage);
     wsManager.onType("database", raspiTools, raspiTools.newMessage);
+    //raspiTools.addOnlineTask(function(){console.log("ich bin ein OnlineTask alle sek!")},1000);
 
     var gameConf = require('../game/gameConf.js');
     wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
