@@ -36,7 +36,7 @@ function makeItTawan(recId, sid, cb) {
             //console.dir(tawan);
             var realTawan = {'gruppe_ID':sid};
             tawan.forEach(function(t){
-                realTawan[t.id] = t.data;
+                realTawan[t.id] = t.data.toString();
             });
             cb(realTawan);
         });

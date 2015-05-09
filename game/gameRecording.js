@@ -87,13 +87,12 @@
         },
 
         upload: function(id, sid) {
-            sid = 220;
             mit(id, sid, function(tawan){
                 var postUrl = require('../homevisitConf').websitePostUrl;
                 var u = url.parse(postUrl);
                 var json = JSON.stringify(tawan);
                 //kann scheinbar keinen objekt mit objekten drin stringifien...
-                var postData = querystring.stringify({json_daten:json});
+                var postData = querystring.stringify({json_daten:json, valide_test_2:"valide_test_2"});
                 console.log(json);
                 console.log(postData);
                 var opts = {
