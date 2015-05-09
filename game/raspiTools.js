@@ -11,7 +11,7 @@
     function RaspiTools() {}
 
     RaspiTools.prototype = {
-        newMessage: function(clientId, msg) {
+        newMessage: function(clientId, role, msg) {
             if (typeof msg !== "undefined") {
                 try {
                     switch (msg.type) {
@@ -36,8 +36,15 @@
                                     break;
                                 case "restartwlan1":
                                     console.log("restarting wlan1");
+                                    var self = this;
                                     exec("/home/pi/homeVisit/shellscripts/wlan1_conf " + msg.data.param.ssid + " " + msg.data.param.passwd, function (error, stdout, stderr) {
                                         console.log("exec1");
+                                        setTimeout(function() {
+                                            self.sendOsInfo(clientId);
+                                            setTimeout(function() {
+                                                self.sendOsInfo(clientId);
+                                            }, 3000);
+                                        }, 3000);
                                     });
                                     break;
                             }
@@ -50,10 +57,16 @@
                                     break;
                                 case "repair":
                                     exec("/home/pi/homeVisit/shellscripts/repair_db", function (error, stdout, stderr) {
+                                        setTimeout(function() {
+                                            self.sendDbStatus(role);
+                                            setTimeout(function() {
+                                                self.sendDbStatus(role);
+                                            }, 3000);
+                                        }, 3000);
                                     });
                                     break;
                                 case "getStatus":
-                                    this.sendDbStatus();
+                                    this.sendDbStatus(role);
                                     break;
 
                                 default:
@@ -71,7 +84,7 @@
             }
         },
 
-        sendDbStatus: function() {
+        sendDbStatus: function(role) {
             MongoClient.connect(mongoUri, function(err, conn) {
                 var connected;
                 if(err){
@@ -80,7 +93,7 @@
                     connected = true;
                 }
                 console.log("db connection ", connected);
-                wsManager.msgDevicesByRole('master', 'dbStatus', {
+                wsManager.msgDevicesByRole(role, 'dbStatus', {
                     connected: connected
                 });
             });
@@ -96,7 +109,7 @@
                     totalmem: os.totalmem(),
                     freemem: os.freemem(),
                     interfaces: os.networkInterfaces(),
-                    online: online,
+                    online: online
                 };
                 wsManager.msgDeviceByIds([clientId], "osinfo", info);
             });

@@ -8,6 +8,9 @@
             $scope.clock = Clock;
             $scope.session = gameSessionsFactory;
             $scope.deck = Deck;
+            $scope.collapsed = {
+                info: true
+            }
         });
 
 })();

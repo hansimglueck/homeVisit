@@ -40,14 +40,7 @@
                 templateUrl: baseUrl + '/game-conf.html'
             };
         })
-        .directive('raspiManager', function() {
-            return {
-                restrict: 'AE',
-                replace: 'true',
-                templateUrl: baseUrl + '/raspi-manager.html'
-            };
-        })
-        .directive('playerList', function() {
+         .directive('playerList', function() {
             return {
                 restrict: 'AE',
                 replace: 'true',

@@ -25,12 +25,14 @@ angular
         'angularModalService',
         'gettext',
         'chart.js',
-        'hvDirectives'
+        'hvDirectives',
+        'ui.bootstrap'
+
     ])
     .config(function ($routeProvider) {
         $routeProvider
             .when('/', {
-                redirectTo: '/polls'
+                redirectTo: '/settings'
             })
             .when('/polls', {
                 templateUrl: '/mc/views/dummies.html',

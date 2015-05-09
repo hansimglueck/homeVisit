@@ -1,18 +1,63 @@
 <div class="container-fluid">
     <div class="row">
-        <div class="col-md-6">
-            <h2 translate>Game settings</h2>
-            <form>
-                <language-chooser></language-chooser>
-                <game-session-chooser></game-session-chooser>
-            </form>
+        <div class="col-md-12">
+
+            <div class="panel panel-default">
+                <div class="panel-heading" ng-click="collapsed.info = !collapsed.info">
+                    <h3 class="panel-title" translate>Hello, MC!</h3>
+                </div>
+                <div class="panel-body" collapse="collapsed.info">
+                    <p>You should already have set up the Brain and the Wifi Access-Point. (You can see the green dot
+                        next
+                        to
+                        "Brain" in the control panel?)</p>
+
+                    <p>Now also turn on and charge the Phones and check if they got connected and play sounds (just give
+                        them
+                        some Points and turn on the Volume if necessary - afterwards "Restart Game" to reset the
+                        score).</p>
+
+                    <p> You are still having trouble: In rare cases the database gets corrupted (you see a red dot next
+                        to "DB" in Brain Control?). Then you can try to repair it by clicking "repair DB" and wait some
+                        seconds.</p>
+
+                    <p>Select your Game session to correctly record the outcomings of this homevisit - and you are ready
+                        to go!</p>
+                    <p>As soon as you can go online (use the WiFi-Internet-settings) Upload your collected data.</p>
+                    <button class="pull-right btn btn-lg btn-default" ng-click="collapsed.info = !collapsed.info">
+                        Collapse
+                    </button>
+                </div>
+            </div>
         </div>
+    </div>
+    <div class="row">
         <div class="col-md-6">
-            <h2 translate>Maintenance</h2>
-            <button class="btn btn-danger btn-lg" ng-click="playback('restart')" translate>RESTART GAME</button>
-            <h2 translate>Game recordings</h2>
-            <table class="table table-striped" ng-controller="RecordingsCtrl">
-                <thead>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title" translate>Game settings</h2>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <form>
+                            <language-chooser></language-chooser>
+                            <game-session-chooser></game-session-chooser>
+                        </form>
+
+                    </li>
+                    <li class="list-group-item">
+                        <button class="btn btn-danger btn-lg" ng-click="playback('restart')" translate>RESTART GAME
+                        </button>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h2 class="panel-title" translate>Game recordings</h2>
+                </div>
+                <table class="table table-striped" ng-controller="RecordingsCtrl">
+                    <thead>
                     <tr>
                         <td>SessionId</td>
                         <td>Date</td>
@@ -20,19 +65,29 @@
                         <td>City</td>
                         <td></td>
                     </tr>
-                </thead>
-                <tbody>
+                    </thead>
+                    <tbody>
                     <tr ng-repeat="r in recordings">
                         <td>{{ r.session.sessionId }}</td>
                         <td>{{ r.session.date }}</td>
                         <td>{{ r.session.bezirk }}</td>
                         <td>{{ r.session.city }}</td>
                         <td>
-                            <button class="btn btn-primary" ng-click="upload(r.recordingId, r.session.sessionId)" translate>Upload</button>
+                            <button class="btn btn-primary" ng-click="upload(r.recordingId, r.session.sessionId)"
+                                    translate>
+                                Upload
+                            </button>
                         </td>
                     </tr>
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
+
+
+        </div>
+        <div class="col-md-6">
+            <raspi-manager></raspi-manager>
+
         </div>
     </div>
 </div>

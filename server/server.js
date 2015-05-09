@@ -38,7 +38,8 @@
     wsManager.onType("uploadRecording", game, game.uploadRecording);
 
     var raspiTools = require('../game/raspiTools.js');
-    wsManager.onRole("master", raspiTools, raspiTools.newMessage);
+    wsManager.onType("os", raspiTools, raspiTools.newMessage);
+    wsManager.onType("database", raspiTools, raspiTools.newMessage);
 
     var gameConf = require('../game/gameConf.js');
     wsManager.onType("getGameConf", gameConf, gameConf.confRequest);

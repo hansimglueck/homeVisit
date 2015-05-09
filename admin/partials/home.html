@@ -11,15 +11,7 @@
         </div>
     </div>
     <div class="col-sm-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <div class="pull-right">
-                    <button title="{{ 'Refresh' | translate }}" class="btn btn-sm btn-default"><i class="fa fa-refresh" ng-click="requestServerInfo()"></i></button>
-                </div>
-                <h3 class="panel-title" translate>RASPI Control</h3>
-            </div>
-            <raspi-manager></raspi-manager>
-        </div>
+        <raspi-manager></raspi-manager>
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title" translate>Device Manager</h3></div>
             <show-device-list></show-device-list>

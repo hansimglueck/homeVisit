@@ -8,10 +8,6 @@
     adminControllers
         .controller('HomeController', function ($scope, Socket) {
             $scope.name = "homE";
-            $scope.requestServerInfo = function() {
-                Socket.emit("database", "getStatus");
-                Socket.emit("os", {cmd:"getInfo"});
-            };
         })
         .controller('setCtrl', function ($scope, setFactory, $location, $anchorScroll, $timeout, gettextCatalog) {
             $scope.activeDeck = {};
