@@ -43,8 +43,8 @@
                                             self.sendOsInfo(clientId);
                                             setTimeout(function() {
                                                 self.sendOsInfo(clientId);
-                                            }, 3000);
-                                        }, 3000);
+                                            }, 10000);
+                                        }, 10000);
                                     });
                                     break;
                             }
@@ -61,8 +61,8 @@
                                             self.sendDbStatus(role);
                                             setTimeout(function() {
                                                 self.sendDbStatus(role);
-                                            }, 3000);
-                                        }, 3000);
+                                            }, 10000);
+                                        }, 10000);
                                     });
                                     break;
                                 case "getStatus":
