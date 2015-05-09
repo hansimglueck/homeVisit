@@ -86,17 +86,16 @@
             });
         },
 
-        upload: function(id) {
-            mit(id, function(tawan){
+        upload: function(id, sid) {
+            sid = 220;
+            mit(id, sid, function(tawan){
                 var postUrl = require('../homevisitConf').websitePostUrl;
                 var u = url.parse(postUrl);
-
-                var postData = querystring.stringify({
-                    json_daten: tawan
-                });
-                console.log(tawan);
-                console.dir(postData);
-                return;
+                var json = JSON.stringify(tawan);
+                //kann scheinbar keinen objekt mit objekten drin stringifien...
+                var postData = querystring.stringify({json_daten:json});
+                console.log(json);
+                console.log(postData);
                 var opts = {
                     host: u.host,
                     path: u.path,

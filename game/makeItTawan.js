@@ -1,14 +1,13 @@
 var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
 
-function makeItTawan(recId, cb) {
-    console.log("i will make recording "+recId+" to the pleasure of tawan!");
+function makeItTawan(recId, sid, cb) {
+    console.log("i will make recording "+recId+" to the pleasure of tawan! withsid="+sid);
     var tawan = [];
     mongoConnection(function (db) {
         db.collection('recordings').find({"recordingId": recId}).toArray(function (err, recs) {
             if (err) {
                 return err;
             }
-            var sid = recs[0].sessionId;
             tawan = recs.filter(function (rec) {
                 return rec.name === "poll" && rec.data.type === "customOptions" && rec.data.results.rid !== null;
             }).map(function (rec) {
@@ -37,7 +36,7 @@ function makeItTawan(recId, cb) {
             //console.dir(tawan);
             var realTawan = {'gruppe_ID':sid};
             tawan.forEach(function(t){
-                realTawan[t.id.toString()] = t.data;
+                realTawan[t.id] = t.data;
             });
             cb(realTawan);
         });

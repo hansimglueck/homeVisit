@@ -28,7 +28,7 @@
                         <td>{{ r.session.bezirk }}</td>
                         <td>{{ r.session.city }}</td>
                         <td>
-                            <button class="btn btn-primary" ng-click="upload(r.recordingId)" translate>Upload</button>
+                            <button class="btn btn-primary" ng-click="upload(r.recordingId, r.session.sessionId)" translate>Upload</button>
                         </td>
                     </tr>
                 </tbody>
