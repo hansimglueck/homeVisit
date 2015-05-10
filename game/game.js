@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     var _ = require('underscore');
@@ -42,10 +42,10 @@
                     param = msg.data.param;
                 }
 
-               console.log("game.trigger: " + msg.data.cmd + " with parameter: " + param);
+                console.log("game.trigger: " + msg.data.cmd + " with parameter: " + param);
                 switch (msg.data.cmd) {
                     //TODO: das ist hier nicht korrekt. sollte als type="score" emitted werden. und wird dann entsprechend im playerManager empfangen ->.mcMessage()
-                        //evtl. ist die struktur aber auch käse ;)
+                    //evtl. ist die struktur aber auch käse ;)
                     case "rate":
                         playerManager.players[param.playerId].score = playerManager.players[param.playerId].score + param.value;
                         playerManager.sendPlayerStatus(param.playerId);
@@ -105,7 +105,7 @@
                 console.log("ERROR in game.trigger! " + e.stack);
             }
         },
-        alert: function() {
+        alert: function () {
             this.alertState += 1;
             this.alertState %= 3;
             var self = this;
@@ -113,15 +113,15 @@
             console.log("alertRecipients:");
             console.log(recipients);
 
-            recipients.forEach(function(recipient) {
+            recipients.forEach(function (recipient) {
                 recipient = recipient.trim();
                 var role = recipient.split(":")[0];
                 var name = recipient.split(":")[1];
-                if (role !== 'player'){
-                    wsManager.msgDevicesByRoleAndName(role, name, "display", {type:"alert", param:self.alertState});
+                if (role !== 'player') {
+                    wsManager.msgDevicesByRoleAndName(role, name, "display", {type: "alert", param: self.alertState});
                 }
                 else {
-                    playerManager.deliverMessage(recipient, "display", {type:"alert", param:self.alertState});
+                    playerManager.deliverMessage(recipient, "display", {type: "alert", param: self.alertState});
                 }
             });
         },
@@ -167,7 +167,7 @@
                             g.deckId = id;
                         }
                     });
-                    g.prepareSequence(db, function(sequence) {
+                    g.prepareSequence(db, function (sequence) {
                         //sequence.step();
                         //g.step("", 0);
                         sequence.sendPlaybackStatus();
@@ -181,22 +181,22 @@
             //wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRatings});
         },
 
-        prepareSequence: function(db, cb) {
+        prepareSequence: function (db, cb) {
             var deck = this.decks[this.deckId];
 
             // load items from db
             var promises = [];
-            deck.items.forEach(function(item, i) {
+            deck.items.forEach(function (item, i) {
                 promises.push(new SequenceItem(db, deck.items[i], i));
             });
 
             var self = this;
             this.sequence = [];
 
-            return Q.allSettled(promises).then(function(results) {
+            return Q.allSettled(promises).then(function (results) {
                 // unpack & respect order
                 var items = _.sortBy(_.pluck(results, 'value'), 'index');
-                items.forEach(function(item, i) {
+                items.forEach(function (item, i) {
                     if (self.sequence.length === 0) {
                         self.sequence = items[i];
                     }
@@ -205,13 +205,13 @@
                     }
                 });
                 cb(self.sequence);
-            }).catch(function(err) {
+            }).catch(function (err) {
                 console.log('Error loading items:', err);
                 throw new Error(err.stack);
             }).done();
         },
 
-        sendPlayBackStatus: function(clientId, role) {
+        sendPlayBackStatus: function (clientId, role) {
             if (role !== "MC" && role !== "master") {
                 return;
             }
@@ -220,18 +220,23 @@
             }
         },
 
-        pollResults: function(clientId, role, data) {
+        pollResults: function (clientId, role, data) {
             if (role !== 'MC') {
                 return;
             }
             this.recording.answers(data.data);
         },
 
-        uploadRecording: function(clientId, role, data) {
+        uploadRecording: function (clientId, role, data) {
             if (role !== 'MC') {
                 return;
             }
-            this.recording.upload(data.data.id, data.data.sid);
+            try {
+                this.recording.uploadAllNew();
+                //this.recording.upload(data.data.id, data.data.sid);
+            } catch (e) {
+                console.log("ERROR in uploadRecording: "+ e.stack);
+            }
         }
     };
 

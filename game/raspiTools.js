@@ -15,8 +15,8 @@
     }
 
     RaspiTools.prototype = {
-        addOnlineTask: function (task, interval) {
-            var id = this.onlineTasks.push({interval: interval, task: task, intervalObject: null});
+        addOnlineTask: function (that, task, interval) {
+            var id = this.onlineTasks.push({context: that, interval: interval, task: task, intervalObject: null});
             if (this.onlineState) {
                 this.executeOnlineTask(id);
             }
@@ -44,10 +44,11 @@
         executeOnlineTask: function (id) {
             var task = this.onlineTasks[id];
             this.stopOnlineTask(id);
-            task.task();
+            task.task.call(task.context);
             if (task.interval !== 0) {
                 task.intervalObject = setInterval(function () {
-                    task.task()
+                    console.log("starting task "+id);
+                    task.task.call(task.context);
                 }, task.interval);
             }
         },

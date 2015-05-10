@@ -9,8 +9,9 @@ function makeItTawan(recId, sid, cb) {
                 return err;
             }
             tawan = recs.filter(function (rec) {
-                return rec.name === "poll" && rec.data.type === "customOptions" && rec.data.results.rid !== null;
+                return rec.name === "poll" && rec.data.type === "customOptions" && rec.data.results.rid !== null && typeof rec.data.results.rid !== "undefined";
             }).map(function (rec) {
+                //console.dir(rec);
                 var array = rec.data.results.voteOptions.sort(function (a, b) {
                     return a.value > b.value
                 }).map(function (opt) {
@@ -18,9 +19,10 @@ function makeItTawan(recId, sid, cb) {
                 });
                 return {id: rec.data.results.rid, data: array}
             });
-            recs.filter(function (rec) {
+            var answers = recs.filter(function (rec) {
                 return rec.name === "answers"
-            })[0].data.answers.forEach(function (answer) {
+            });
+            if (answers.length > 0) answers[0].data.answers.forEach(function (answer) {
                     var array = [];
                     var cnt = (answer.type === "fingers") ? 6 : 2;
                     var j = 0;
