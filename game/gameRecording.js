@@ -94,6 +94,7 @@
                 var u = url.parse(postUrl);
                 var json = JSON.stringify(tawan);
                 //kann scheinbar keinen objekt mit objekten drin stringifien...
+                console.log(json);
                 var postData = querystring.stringify({json_daten: json, valide_test_2: "valide_test_2"});
                 var opts = {
                     host: u.host,
@@ -110,6 +111,7 @@
                     res.setEncoding('utf8');
                     var success = true;
                     var finished = false;
+                    //TODO: success wir dnicht so ichtig gesetzt
                     res.on('data', function (chunk) {
                         console.log('Response: ' + chunk);
                         success = chunk.indexOf("Error") === -1;
@@ -158,11 +160,11 @@
                         //console.log("not since "+(now-recording.lastTry));
                         if (!recording.uploaded && now-recording.lastTry > 600000) {
                             //console.log("trying to upload");
-                            self.upload(recording.recordingId, recording.sessionId);
+                            self.upload(recording.recordingId, recording.session.sessionId);
                         }
                     })
                 }
-            ).done(console.log("promise.done"));
+            ).done();
         }
     };
 
