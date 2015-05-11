@@ -7,6 +7,7 @@
     var MongoClient = require('mongodb').MongoClient;
     var mongoUri = require('../homevisitConf').mongoUri;
     var wsManager = require('./wsManager.js');
+    var conf = require('../homevisitConf');
 
     function RaspiTools() {
         this.onlineTasks = [];
@@ -158,6 +159,14 @@
                 online: this.onlineState
             };
             wsManager.msgDeviceByIds(this.infoSubscribers, "osinfo", info);
+        },
+
+        importSessions: function() {
+                exec("homevisit_components/mongo/importSessions.js "+conf.sessionsUrl, function (error, stdout, stderr) {
+                if (error) console.log ("Error in importSessions: "+error);
+                console.log("Import Sessions: "+stdout);
+            });
+
         }
 
     };

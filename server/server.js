@@ -17,6 +17,7 @@
     var app = express();
 
     var importSessions = require('../homevisit_components/mongo/importSessionsModule.js');
+    var exec = require('child_process').exec;
 
     // HTTP server
     var server = require('http').createServer(app);
@@ -45,7 +46,7 @@
     wsManager.onType("database", raspiTools, raspiTools.newMessage);
     var gameRecordings = require('../game/gameRecording.js');
     raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
-    //raspiTools.addOnlineTask(this, importSessions, 10000);
+    raspiTools.addOnlineTask(raspiTools, raspiTools.importSessions, 666000);
 
     var gameConf = require('../game/gameConf.js');
     wsManager.onType("getGameConf", gameConf, gameConf.confRequest);

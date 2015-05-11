@@ -164,7 +164,7 @@
                         }
                     })
                 }
-            ).done();
+            ).done(console.log("promise done"));
         }
     };
 
