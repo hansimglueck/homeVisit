@@ -162,7 +162,7 @@
         },
 
         importSessions: function() {
-                exec("homevisit_components/mongo/importSessions.js "+conf.sessionsUrl, function (error, stdout, stderr) {
+                exec(conf.pathToApp+"homevisit_components/mongo/importSessions.js "+conf.sessionsUrl, function (error, stdout, stderr) {
                 if (error) console.log ("Error in importSessions: "+error);
                 console.log("Import Sessions: "+stdout);
             });
