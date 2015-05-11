@@ -34,6 +34,7 @@
                 if (online !== self.onlineState) {
                     self.onlineState = online;
                     console.log("New onlineState: " + self.onlineState);
+                    wsManager.msgDevicesByRole("printer", "display", {text: online ? "Online" : "Offline"});
                     self.sendOsInfo();
                     self.onlineTasks.forEach(function (task, id) {
                         self.stopOnlineTask(id);
