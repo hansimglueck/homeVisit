@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-(function() {
+(function () {
     'use strict';
 
     var express = require('express');
@@ -18,6 +18,20 @@
 
     var importSessions = require('../homevisit_components/mongo/importSessionsModule.js');
     var exec = require('child_process').exec;
+
+    var passport = require('passport')
+    var BasicStrategy = require('passport-http').BasicStrategy;
+
+    passport.use(new BasicStrategy(
+        function (username, password, done) {
+            if (username.valueOf() === 'admin' &&
+                password.valueOf() === 'europa2015')
+                return done(null, true);
+            else
+                return done(null, false);
+        }
+    ));
+    app.use(passport.initialize());
 
     // HTTP server
     var server = require('http').createServer(app);
@@ -66,36 +80,52 @@
 
     // middlewares
     app.use(logger('dev'));
-    app.use(bodyParser.json({ limit: '50mb' }));
-    app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
+    app.use(bodyParser.json({limit: '50mb'}));
+    app.use(bodyParser.urlencoded({extended: false, limit: '50mb'}));
     app.use(cookieParser());
     app.use(session({
         secret: '1234',
         resave: false,
         saveUninitialized: true,
-        cookie: { httpOnly: false }    //damit angular drauf zugreifen kann
+        cookie: {httpOnly: false}    //damit angular drauf zugreifen kann
     }));
-
+    console.log(conf.lan ? "LAN" : "WWW");
     // static routes
-    app.use('/bower_components', express.static(path.join(__dirname, '/../bower_components')));
-    app.use('/homevisit_components', express.static(path.join(__dirname, '/../homevisit_components')));
-    app.use('/admin', express.static(path.join(__dirname, '/../admin')));
-    app.use('/player', express.static(path.join(__dirname, '/../player')));
-    app.use('/mc', express.static(path.join(__dirname, '/../mc')));
-    app.use('/slideshow', express.static(path.join(__dirname, '/../slideshow')));
+    if (conf.lan) {
+        app.use('/bower_components', express.static(path.join(__dirname, '/../bower_components')));
+        app.use('/homevisit_components', express.static(path.join(__dirname, '/../homevisit_components')));
+        app.use('/admin', express.static(path.join(__dirname, '/../admin')));
+        app.use('/player', express.static(path.join(__dirname, '/../player')));
+        app.use('/mc', express.static(path.join(__dirname, '/../mc')));
+        app.use('/slideshow', express.static(path.join(__dirname, '/../slideshow')));
 
-    // resource routes
-    app.use('/decks', require('./routes/decks'));
-    app.use('/gameConf', require('./routes/gameConf'));
-    app.use('/recordings', require('./routes/recordings'));
+        // resource routes
+        app.use('/decks', require('./routes/decks'));
+        app.use('/gameConf', require('./routes/gameConf'));
+        app.use('/recordings', require('./routes/recordings'));
 
-    // app routes
-    app.use('/', require('./routes/main'));
+        // app routes
+        app.use('/', require('./routes/main'));
+    } else {
+        app.use('/bower_components', passport.authenticate('basic', {session: false}), express.static(path.join(__dirname, '/../bower_components')));
+        app.use('/homevisit_components', passport.authenticate('basic', {session: false}), express.static(path.join(__dirname, '/../homevisit_components')));
+        app.use('/admin', passport.authenticate('basic', {session: false}), express.static(path.join(__dirname, '/../admin')));
+        app.use('/player', passport.authenticate('basic', {session: false}), express.static(path.join(__dirname, '/../player')));
+        app.use('/mc', passport.authenticate('basic', {session: false}), express.static(path.join(__dirname, '/../mc')));
+        app.use('/slideshow', passport.authenticate('basic', {session: false}), express.static(path.join(__dirname, '/../slideshow')));
 
+        // resource routes
+        app.use('/decks', passport.authenticate('basic', {session: false}), require('./routes/decks'));
+        app.use('/gameConf', passport.authenticate('basic', {session: false}), require('./routes/gameConf'));
+        app.use('/recordings', passport.authenticate('basic', {session: false}), require('./routes/recordings'));
+
+        // app routes
+        app.use('/', passport.authenticate('basic', {session: false}), require('./routes/main'));
+    }
     // error handling
 
     // catch 404 and forward to error handler
-    app.use(function(req, res, next) {
+    app.use(function (req, res, next) {
         var err = new Error('Not Found');
         err.status = 404;
         next(err);
@@ -104,7 +134,7 @@
     // development error handler
     // will print stacktrace
     if (app.get('env') === 'development') {
-        app.use(function(err, req, res, next) {
+        app.use(function (err, req, res, next) {
             res.status(err.status || 500);
             res.render('error', {
                 message: err.message,
@@ -115,7 +145,7 @@
 
     // production error handler
     // no stacktraces leaked to user
-    app.use(function(err, req, res, next) {
+    app.use(function (err, req, res, next) {
         res.status(err.status || 500);
         res.render('error', {
             message: err.message,
@@ -124,7 +154,7 @@
     });
 
     // tschacka!
-    server.listen(conf.port, function() {
+    server.listen(conf.port, function () {
         console.log('Listening on port ' + conf.port);
     });
 
