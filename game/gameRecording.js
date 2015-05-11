@@ -107,6 +107,8 @@
                     }
                 };
 
+                return;
+
                 var req = http.request(opts, function (res) {
                     res.setEncoding('utf8');
                     var success = true;
