@@ -34,7 +34,20 @@
                 if (online !== self.onlineState) {
                     self.onlineState = online;
                     console.log("New onlineState: " + self.onlineState);
-                    wsManager.msgDevicesByRole("printer", "display", {type: "card", text: online ? "Online" : "Offline"});
+                    var ip = "";
+                    var iname = "wlan1";
+                    console.dir(os.networkInterfaces());
+                    Object.keys(os.networkInterfaces()).forEach(function (i, name) {
+                        if (iname && i.indexOf(iname) === -1) {
+                            return;
+                        }
+                        os.networkInterfaces()[i].forEach(function (ver) {
+                            ip += ver.address + " ";
+                        });
+                    });
+                    var text = online ? "Online - IP = "+ip : "Offline";
+                    console.log(text);
+                    wsManager.msgDevicesByRole("printer", "display", {type: "card", text: text});
                     self.sendOsInfo();
                     self.onlineTasks.forEach(function (task, id) {
                         self.stopOnlineTask(id);
