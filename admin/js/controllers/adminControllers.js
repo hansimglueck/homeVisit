@@ -111,9 +111,11 @@
                 }
                 setFactory.deleteDeck(index);
             };
-            // $scope.renameDeck = function (deckId) {
-            //     var newName = prompt(gettextCatalog.getString("Neuer Name?"));
-            // };
+            $scope.renameDeck = function (deckId) {
+                var newName = prompt(gettextCatalog.getString("New name for "+$scope.decks[deckId].title+"?"));
+                $scope.decks[deckId].title = newName;
+                $scope.updateDeck($scope.decks[deckId]);
+            };
             $scope.textToItems = function (text) {
                 var textArray = text.split("\n\n");
                 var itemArray = [];
