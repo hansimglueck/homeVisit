@@ -469,6 +469,143 @@
             return deckFactory;
         })
 
+        .factory('Display', function(Socket, ModalService) {
+            var displayFactory = {
+                displayData: []
+            };
+            displayFactory.start = function() {
+                Socket.on('display', function (data) {
+                    if (data) {
+                        displayFactory.displayData = data;
+                        if (data.type) {
+                            if (data.type == "results") {
+                                showResults(data);
+                            }
+                            if (data.type == "vote") {
+                                showVote(data);
+                            }
+
+                        }
+                    }
+                });
+            };
+            displayFactory.vote = function () {
+                displayFactory.voteChoiceText = displayFactory.options.filter(function (opt) {
+                    return opt.checked;
+                }).map(function (opt) {
+                    return opt.text;
+                });
+                displayFactory.voteChoice = displayFactory.options.filter(function (opt) {
+                    return opt.checked;
+                }).map(function (opt) {
+                    return opt.value;
+                });
+                //displayFactory.confirmVote();
+            };
+            displayFactory.confirmVote = function () {
+                displayFactory.done = true;
+                if (typeof displayFactory.voteChoice === "undefined") {
+                    displayFactory.voteChoice = [];
+                }
+                console.log(displayFactory.voteChoice);
+                Socket.emit("vote", {
+                    choice: displayFactory.voteChoice,
+                    text: displayFactory.voteChoiceText,
+                    pollId: displayFactory.pollId,
+                    playerId: 666
+                });
+            };
+
+            function showResults(data) {
+                var resultType = data.resultType;
+                var result = data.data;
+
+                console.log(resultType);
+                console.log(result);
+
+                var labels = [];
+                var resData = [];
+                var labels2 = [];
+                displayFactory.correctAnswer = "";
+                displayFactory.ratedVote = result.ratedVote;
+                //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
+                if (resultType == "numberStats") {
+                    //send stats as array: [sum, avg]
+                    resData = [result.sum, result.average, result.minVal, result.maxVal];
+                }
+                else result.voteOptions.forEach(function (option) {
+                    if (option.correctAnswer) displayFactory.correctAnswer = option.text;
+                    if (data.data.dataSource == "positivePlayerScore") {
+                        labels.push(option.playercolor + ': ' + option.percent + '% (' + option.result + ' ' + gettextCatalog.getPlural(option.result, 'point', 'points') + ')');
+                    } else {
+                        var t;
+                        if (option.text.length > 20) {
+                            t = option.text.substr(0, 20) + '...';
+                        }
+                        else {
+                            t = option.text;
+                        }
+                        labels.push(t + ': ' + option.percent + '% (' + option.votes + ' ' + gettextCatalog.getPlural(option.votes, 'vote', 'votes') + ')');
+                    }
+                    if (resultType == "europeMap") resData.push({
+                        id: option.value,
+                        val: option.percent
+                    });
+                    else resData.push(option.result);
+                });
+                if (resultType === "firstVote") {
+                    resData = result.votes[0].playerId;
+                    console.log(resData);
+                }
+
+                displayFactory.resultType = resultType;
+
+                console.log("TYPE: " + displayFactory.resultType);
+
+                (displayFactory.resultType == 'Bar' || displayFactory.resultType == 'Line') ? displayFactory.data = [resData] : displayFactory.data = resData;
+                displayFactory.labels = labels;
+                displayFactory.votelast = "result";
+                displayFactory.type = "result";
+                if (data.resultColors) {
+                    if (data.resultColors == "playerColors") {
+                        displayFactory.resultColors = [];
+                        result.voteOptions.forEach(function (option) {
+                            displayFactory.resultColors.push(playerColors[option.value]);
+                        });
+                    }
+                }
+                showDisplayModal("views/results.html", "ResultsController");
+            }
+            function showVote(data) {
+                displayFactory.text = data.text;
+                displayFactory.type = "vote";
+                displayFactory.voteType = data.voteType;
+                displayFactory.options = data.voteOptions || [{value: 0}];
+                if (displayFactory.voteType === "enterNumber" || displayFactory.voteType === "enterText") {
+                    displayFactory.options[0].checked = true;
+                }
+                displayFactory.limit = displayFactory.voteType === "customOptions" ? 1 : data.voteMulti;
+                displayFactory.checked = 0;
+                displayFactory.pollId = data.pollId;
+                displayFactory.ratedVote = data.ratedVote;
+                showDisplayModal("views/vote.html", "VoteController");
+            }
+            function showDisplayModal(view, controller) {
+                // Just provide a template url, a controller and call 'showModal'.
+                ModalService.showModal({
+                    templateUrl: view,
+                    controller: controller
+                }).then(function (modal) {
+                    // The modal object has the element built, if this is a bootstrap modal
+                    // you can call 'modal' to show it, if it's a custom modal just show or hide
+                    // it as you need to.
+                    modal.element.modal();
+                });
+
+
+            }
+            return displayFactory;
+        })
         .factory('TeamActionInfo', function (Socket, gettext, ModalService, gettextCatalog, playerColors, playerColornamesFactory) {
             var teamActionInfo = {};
 
@@ -477,20 +614,6 @@
             ];
 
             teamActionInfo.start = function () {
-                Socket.on('display', function (data) {
-                    //teamActionInfo.labels = [];
-                    if (data) {
-                        teamActionInfo.displayData = data;
-                        if (data.type) {
-                            if (data.type == "results") {
-
-                                showResults(data);
-                            }
-                            //$location.path('/home');
-
-                        }
-                    }
-                });
 
                 Socket.on("startvote", function (msg) {
                     console.log("STARTVOTE EMPFANGEN");
@@ -523,78 +646,6 @@
                     for (var i = 0; i < teamActionInfo.actionInfo.length; i++) {
                         teamActionInfo.actionInfo[i] = '';
                     }
-                });
-
-            };
-
-            function showResults(data) {
-                var resultType = data.resultType;
-                var result = data.data;
-
-                console.log(resultType);
-                console.log(result);
-
-                var labels = [];
-                var resData = [];
-                var labels2 = [];
-                teamActionInfo.correctAnswer = "";
-                teamActionInfo.ratedVote = result.ratedVote;
-                //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
-                if (resultType == "numberStats") {
-                    //send stats as array: [sum, avg]
-                    resData = [result.sum, result.average, result.minVal, result.maxVal];
-                }
-                else result.voteOptions.forEach(function (option) {
-                    if (option.correctAnswer) teamActionInfo.correctAnswer = option.text;
-                    if (data.data.dataSource == "positivePlayerScore") {
-                        labels.push(option.playercolor + ': ' + option.percent + '% (' + option.result + ' ' + gettextCatalog.getPlural(option.result, 'point', 'points') + ')');
-                    } else {
-                        var t;
-                        if (option.text.length > 20) {
-                            t = option.text.substr(0, 20) + '...';
-                        }
-                        else {
-                            t = option.text;
-                        }
-                        labels.push(t + ': ' + option.percent + '% (' + option.votes + ' ' + gettextCatalog.getPlural(option.votes, 'vote', 'votes') + ')');
-                    }
-                    if (resultType == "europeMap") resData.push({
-                        id: option.value,
-                        val: option.percent
-                    });
-                    else resData.push(option.result);
-                });
-                if (resultType === "firstVote") {
-                    resData = result.votes[0].playerId;
-                    console.log(resData);
-                }
-
-                teamActionInfo.resultType = resultType;
-
-                console.log("TYPE: " + teamActionInfo.resultType);
-
-                (teamActionInfo.resultType == 'Bar' || teamActionInfo.resultType == 'Line') ? teamActionInfo.data = [resData] : teamActionInfo.data = resData;
-                teamActionInfo.labels = labels;
-                teamActionInfo.votelast = "result";
-                teamActionInfo.type = "result";
-                if (data.resultColors) {
-                    if (data.resultColors == "playerColors") {
-                        teamActionInfo.resultColors = [];
-                        result.voteOptions.forEach(function (option) {
-                            teamActionInfo.resultColors.push(playerColors[option.value]);
-                        });
-                    }
-                }
-
-                // Just provide a template url, a controller and call 'showModal'.
-                ModalService.showModal({
-                    templateUrl: "views/results.html",
-                    controller: "ResultsController"
-                }).then(function (modal) {
-                    // The modal object has the element built, if this is a bootstrap modal
-                    // you can call 'modal' to show it, if it's a custom modal just show or hide
-                    // it as you need to.
-                    modal.element.modal();
                 });
 
             };
@@ -718,7 +769,7 @@
 
         .factory('Recordings', function ($resource) {
             return $resource('/recordings/', null, {
-                'get': { method: 'GET', isArray: true },
+                'get': { method: 'GET', isArray: true }
             });
         });
 

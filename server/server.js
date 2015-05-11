@@ -53,13 +53,14 @@
     wsManager.onType("register", game, game.sendPlayBackStatus);
     wsManager.onType("pollResults", game, game.pollResults);
     wsManager.onType("uploadRecording", game, game.uploadRecording);
+    wsManager.onType("vote", game, game.vote);
 
     var raspiTools = require('../game/raspiTools.js');
     raspiTools.startOnlineObservation(5000);
     wsManager.onType("os", raspiTools, raspiTools.newMessage);
     wsManager.onType("database", raspiTools, raspiTools.newMessage);
     var gameRecordings = require('../game/gameRecording.js');
-    raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
+ //   raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
     raspiTools.addOnlineTask(raspiTools, raspiTools.importSessions, 666000);
 
     var gameConf = require('../game/gameConf.js');

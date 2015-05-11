@@ -173,15 +173,6 @@
             //        vote.multiplier = this.avgRatings[playerId];
 
             poll.vote(data);
-
-            /*
-             TODO: falls diese infos gesendet werden sollen, müssten dieses VOR poll.vote() ausgeführt werden.
-             Das weitersteppen nach dem letzten vote überholt sonst diese nachricht
-             var msg = "You voted: "+data.text;
-             if (poll.isWeighted()) msg += " with a weight of "+vote.multiplier;
-             this.log("Player " + playerId + ": " + msg);
-             this.sendMessage(playerId, "display", {"text": msg});
-             */
         },
         rate: function (clientId, data) {
             var playerId = data.playerId;
@@ -594,18 +585,21 @@
                 case "act":
                 case "active":
                     ret = this.players.filter(function (player) {
-                        return player.seat === self.onTurn ^ inverse;
+                        ret = player.seat === self.onTurn ^ inverse;
+                        return ret;
                     });
                     break;
                 case "sel":
                 case "selected":
                     ret = this.players.filter(function (player) {
-                        return player.selected ^ inverse;
+                        ret = player.selected ^ inverse;
+                        return ret;
                     });
                     break;
                 case "topTwo":
                     ret = this.players.filter(function (player) {
-                        return player.rank < 3 ^ inverse;
+                        ret = player.rank < 3 ^ inverse;
+                        return ret;
                     });
                     break;
                 case "best":
@@ -622,11 +616,12 @@
                     });
                     break;
                 case "joined":
-                    return this.players.filter(function (player) {
+                    ret = this.players.filter(function (player) {
                         return player.joined;
                     });
+                    break;
                 case "rank":
-                    return this.players.filter(function (player) {
+                    ret = this.players.filter(function (player) {
                         return player.rank === param ^ inverse;
                     });
                     break;
@@ -635,13 +630,13 @@
                     ret = this.players;
                     break;
             }
-            ret = ret.filter(function (player) {
-                return player.joined === true;
+            var ret2 = ret.filter(function (player) {
+                return player.joined;
             });
-            console.log(ret.map(function (player) {
+            console.log(ret2.map(function (player) {
                 return player.playerId;
             }));
-            return ret;
+            return ret2;
         },
         // Zum Verteilen von allgemeinen ws-messages an alle Player.
         // diese funktion bemüht den wsManager und sichert die letzte Message zum Ausliefern bei Client-Reload

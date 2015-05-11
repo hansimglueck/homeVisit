@@ -32,7 +32,8 @@
                 {value: 'customMultipleOptions', text: 'mehrere der Optionen hier'},
                 {value: 'playerChoice', text: 'Spielerwahl'},
                 {value: 'countryChoice', text: 'Länderwahl'},
-                {value: 'enterNumber', text: 'Zahleingabe'}
+                {value: 'enterNumber', text: 'Zahleingabe'},
+                {value: 'enterText', text: 'Texteingabe'}
             ],
             'ratingType': [
                 {value: 'allTeams', text: 'alle Teams'},
