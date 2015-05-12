@@ -23,15 +23,6 @@ def cb(msg):
 			#txt = txt.replace(picFileName,"")
 		lines = unicode.splitlines(txt.count('\n'))
 
-		### Test für Kuchenverteilung --- Das muss noch anders an den Printer geschickt werden
-		###if (lines[0] == "***PIE***\n"):
-		###	printPiePartition(lines[1].strip("\n"))
-		###	return
-		if (lines[0] == "***PICTURE***\n"):
-			p.print_from_file(lines[1].strip("\n"))
-			lines.pop(0)
-			lines.pop(0)
-		#p.print_text("\x84")
 		p.double_width(True)
 		p.set_linespacing(35)
 		char_count = 0
