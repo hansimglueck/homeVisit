@@ -44,8 +44,6 @@ function makeItTawan(recId, sid, cb) {
                     }).map(function(vote){
                         return vote.choice;
                     });
-                    console.log("sortedTextVotes=");
-                    console.log(array);
                     return {id: poll.data.results.rid, data: array}
                 });
                 tawan = tawan.concat(tawan2);

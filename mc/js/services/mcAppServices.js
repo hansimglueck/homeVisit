@@ -469,7 +469,7 @@
             return deckFactory;
         })
 
-        .factory('Display', function(Socket, ModalService) {
+        .factory('Display', function(Socket, ModalService, gettextCatalog, playerColors, playerColornamesFactory) {
             var displayFactory = {
                 displayData: []
             };
