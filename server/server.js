@@ -61,7 +61,7 @@
     wsManager.onType("database", raspiTools, raspiTools.newMessage);
     var gameRecordings = require('../game/gameRecording.js');
     raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
-    raspiTools.addOnlineTask(raspiTools, raspiTools.importSessions, 666000);
+    //raspiTools.addOnlineTask(raspiTools, raspiTools.importSessions, 666000);
 
     var gameConf = require('../game/gameConf.js');
     wsManager.onType("getGameConf", gameConf, gameConf.confRequest);

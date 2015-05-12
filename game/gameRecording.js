@@ -159,10 +159,9 @@
                 function(recordings) {
                     var now = new Date();
                     recordings.forEach(function(recording){
-                        //console.log("not since "+(now-recording.lastTry));
-                        if (!recording.uploaded && now-recording.lastTry > 600000) {
-                            //console.log("trying to upload");
-                            self.upload(recording.recordingId, recording.session.sessionId);
+                        if (recording.startTimestamp !== -1 && recording.stopTimestamp !== -1 && !recording.uploaded && now-recording.lastTry > 600000) {
+                            console.log(recording);
+                            if (recording.session !== null) self.upload(recording.recordingId, recording.session.sessionId);
                         }
                     })
                 }

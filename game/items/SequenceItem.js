@@ -224,7 +224,7 @@
                 var self = this;
 
                 // game officially starts at card number X!
-                if (this.index === 3) {
+                if (this.index === 4) {
                     gameClock.start();
                 }
 
