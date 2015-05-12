@@ -53,6 +53,7 @@
     wsManager.onType("register", game, game.sendPlayBackStatus);
     wsManager.onType("pollResults", game, game.pollResults);
     wsManager.onType("uploadRecording", game, game.uploadRecording);
+    wsManager.onType("vote", game, game.vote);
 
     var raspiTools = require('../game/raspiTools.js');
     raspiTools.startOnlineObservation(5000);

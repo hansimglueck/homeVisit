@@ -1,0 +1,70 @@
+<div class="modal" ng-class="{'turn':turn, 'no-turn':!turn}">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="myModalLabel">MC-Poll</h2>
+            </div>
+            <div class="modal-body">
+                {{display.text}}
+                <div ng-switch="state">
+                    <div ng-switch-when="vote">
+                        <div ng-if="['customOptions', 'customMultipleOptions', 'countryChoice'].indexOf(display.voteType) != -1"
+                             ng-switch="display.limit > 1">
+                            <ul class="list-unstyled wide-list" ng-switch-when="false">
+                                <li ng-repeat="opt in display.options track by $index">
+                                    <button class="btn btn-default" ng-click="vote($index)">{{opt.text}}</button>
+                                </li>
+                            </ul>
+                            <ul class="list-unstyled wide-list" ng-switch-when="true">
+                                <li>
+                                    <button ng-click="vote()" translate>VOTE</button>
+                                </li>
+                                <li ng-repeat="opt in display.options track by $index">
+                                    <input type="checkbox" id="{{opt.val}}" ng-model="opt.checked"
+                                           ng-change="checkChanged(opt)"
+                                           ng-disabled="display.checked>=display.limit && !opt.checked"/>
+                                    <label for="{{opt.val}}">{{opt.text}}</label>
+                                </li>
+                            </ul>
+                        </div>
+                        <div ng-if="display.voteType == 'playerChoice'">
+                            <ul class="list-inline list-unstyled">
+                                <li ng-repeat="player in display.options track by $index">
+                        <span ng-click="vote($index)">
+                            <player-icon pid="player.value"></player-icon>
+                        </span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div ng-if="display.voteType == 'enterText'">
+                            <textarea ng-model="enteredText.value"></textarea>
+                            <button class="btn btn-primary btn-lg" ng-click="submitText()" translate>Submit
+                            </button>
+                        </div>
+                        <keypad submit="submitNumber(number)" ng-if="display.voteType == 'enterNumber'"></keypad>
+                    </div>
+                    <div ng-switch-when="confirm">
+                        <h3 translate>You are voting for:</h3>
+
+                        <p>{{ display.voteChoiceText.join(",") }}<span
+                                ng-if="display.voteType == 'enterNumber'">&nbsp;<span class="currency-symbol" translate>€</span></span>
+                        </p>
+                        <ul class="list-unstyled wide-list">
+                            <li>
+                                <button class="btn btn-primary btn-lg" ng-click="confirmVote()" translate>Confirm
+                                </button>
+                            </li>
+                            <li>
+                                <button class="btn btn-danger btn-lg" ng-click="cancelVote()" translate>Cancel</button>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

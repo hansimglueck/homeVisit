@@ -10,7 +10,7 @@
         this.votes = [];            //Objekte mit Eigenschaften .multiplier, .playerId, .choice (array of ids bei optionpoll, number bei numberPoll
         this.voteCount = 0;
         this.invalidVotes = 0;
-        this.maxVotes = 0;
+        this.maxVotes = 1;
         this.finishCallbacks = [];
         this.open = true;
         for (var attr in item) {

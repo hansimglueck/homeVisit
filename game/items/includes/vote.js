@@ -3,6 +3,7 @@
 
     var OptionPoll = require('../../polls/OptionPoll.js');
     var NumberPoll = require('../../polls/NumberPoll.js');
+    var TextPoll = require('../../polls/TextPoll.js');
     var playerManager = require('../../playerManager.js');
 
     module.exports = {
@@ -24,6 +25,9 @@
                     break;
                 case "enterNumber":
                     poll = new NumberPoll(this);
+                    break;
+                case "enterText":
+                    poll = new TextPoll(this);
                     break;
                 default:
                     break;

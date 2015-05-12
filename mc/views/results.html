@@ -8,40 +8,40 @@
             <div class="modal-body">
                 <div class="results">
                     <div class="results-text">
-                        <div class="correct-answer" ng-if="teamActionInfo.correctAnswer !== ''" translate>Correct: {{teamActionInfo.correctAnswer}}</div>
+                        <div class="correct-answer" ng-if="display.correctAnswer !== ''" translate>Correct: {{display.correctAnswer}}</div>
                     </div>
 
-                    <div class="results-content" ng-if="teamActionInfo.resultType == 'europeMap'">
-                        <div class="overlayText">{{teamActionInfo.text[0]}}</div>
+                    <div class="results-content" ng-if="display.resultType == 'europeMap'">
+                        <div class="overlayText">{{display.text[0]}}</div>
                         Hello Map
                         <europe-map></europe-map>
                     </div>
 
-                    <div class="results-content" ng-if="teamActionInfo.resultType == 'firstVote'">
-                        <player-icon pid="teamActionInfo.data">{{teamActionInfo.data}}</player-icon>
+                    <div class="results-content" ng-if="display.resultType == 'firstVote'">
+                        <player-icon pid="display.data">{{display.data}}</player-icon>
                         Hello Speedy
                     </div>
 
-                    <ul class="list-unstyled results-content noflex" ng-if="teamActionInfo.resultType == 'numberStats'">
+                    <ul class="list-unstyled results-content noflex" ng-if="display.resultType == 'numberStats'">
                         Hello Numbers
-                        <li translate>Total: {{teamActionInfo.data[0]}}</li>
-                        <li translate>Average: {{teamActionInfo.data[1]}}</li>
-                        <li translate>Min: {{teamActionInfo.data[2]}}</li>
-                        <li translate>Max: {{teamActionInfo.data[3]}}</li>
+                        <li translate>Total: {{display.data[0]}}</li>
+                        <li translate>Average: {{display.data[1]}}</li>
+                        <li translate>Min: {{display.data[2]}}</li>
+                        <li translate>Max: {{display.data[3]}}</li>
                     </ul>
 
-                    <div class="results-content"  ng-if="['europeMap','numberStats'].indexOf(teamActionInfo.resultType) == -1">
-                        <canvas id="base" class="chart chart-base" chart-type="teamActionInfo.resultType" data="teamActionInfo.data"
-                            labels="teamActionInfo.labels"
+                    <div class="results-content"  ng-if="['europeMap','numberStats'].indexOf(display.resultType) == -1">
+                        <canvas id="base" class="chart chart-base" chart-type="display.resultType" data="display.data"
+                            labels="display.labels"
                             legend="true"
                             options="pieChartOptions"
-                            colours="teamActionInfo.resultColors"
+                            colours="display.resultColors"
                             width="200px"
                             height="200px">
                         </canvas>
                     </div>
                     <div class="results-text">
-                        <div ng-if="teamActionInfo.ratedVote" translate>Results are weighted by ranking. See actual votes in braces.</div>
+                        <div ng-if="display.ratedVote" translate>Results are weighted by ranking. See actual votes in braces.</div>
                     </div>
 
                 </div>

@@ -405,3 +405,7 @@ ul.follow-items > li {
 .modal {
     font-size:1.5em;
 }
+
+.wide-list li {
+    margin: 0.8em;
+}

@@ -25,6 +25,7 @@
         this.alertState = 0;    //0: Alarmstufe off,  1: Alarmstufe an, 2: Alarmstufe blink
         this.clock = gameClock;
         this.recording = gameRecording;
+        this.gettext = require('./gettext');
     }
 
     Game.prototype = {
@@ -237,7 +238,23 @@
             } catch (e) {
                 console.log("ERROR in uploadRecording: "+ e.stack);
             }
+        },
+        vote: function (clientId, role, data) {
+            var data = data.data;
+            //player-votes werden vom playerManager behandelt
+            if (role === "player") return;
+            var pollId = data.pollId;
+            console.log("Got Vote for " + pollId + " from " + role);
+            var poll = this.sequence.polls[pollId];
+            if (typeof poll === "undefined") {
+                wsManager.msgDeviceByIds([clientId], "display", {
+                    text: this.gettext.gettext("This poll doesn't exist!")
+                });
+                return;
+            }
+            poll.vote(data);
         }
+
     };
 
     var gameObj = new Game();

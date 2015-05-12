@@ -3,7 +3,7 @@ var _ = require('underscore');
 // defaults
 var conf = {
     port: 80,
-    lan: false, //used to check if we have to ask fpr authentication
+    lan: true, //used to check if we have to ask fpr authentication
     mongoUri: 'mongodb://localhost/homeVisit',
     pathToApp: '/home/pi/homeVisit/'
 };

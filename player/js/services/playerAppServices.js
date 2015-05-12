@@ -195,15 +195,7 @@
                 homeFactory.ratedVote = result.ratedVote;
                 //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
                 if (resultType === "numberStats") {
-                    function f(s) {
-                        return parseFloat(s).toLocaleString(
-                            gettextCatalog.currentLanguage,
-                            {
-                                maximumFractionDigits: 2,
-                                minimumFractionDigits: 2
-                            }) + ' ' + gettextCatalog.getString('€');
-                    }
-                    //send stats as array: [sum, avg]
+                     //send stats as array: [sum, avg]
                     resData = [
                        // result.sum,
                         f(result.sum),
@@ -326,6 +318,14 @@
                 homeFactory.time = parseInt(data.time);
                 homeFactory.timedVote(homeFactory.freeze);
                 $location.path('/deal');
+            }
+            function f(s) {
+                return parseFloat(s).toLocaleString(
+                        gettextCatalog.currentLanguage,
+                        {
+                            maximumFractionDigits: 2,
+                            minimumFractionDigits: 2
+                        }) + ' ' + gettextCatalog.getString('€');
             }
 
             return homeFactory;

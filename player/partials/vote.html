@@ -34,7 +34,7 @@
                     </li>
                 </ul>
             </div>
-            <keypad ng-if="home.voteType == 'enterNumber'"></keypad>
+            <keypad currency="true" submit="submitNumber(number)" ng-if="home.voteType == 'enterNumber'"></keypad>
         </div>
     </div>
 </div>

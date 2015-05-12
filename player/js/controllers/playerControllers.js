@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module("playerControllers", [])
@@ -7,7 +7,7 @@
             $scope.fxService = fxService;
             $scope.player = Status.player;
             $scope.playerColors = playerColors;
-            $scope.turn = navigator.platform.indexOf("arm")>-1;
+            $scope.turn = navigator.platform.indexOf("arm") > -1;
             console.log("onAndroid=");
             console.log($scope.turn);
             $scope.$on("disconnected", function () {
@@ -95,7 +95,7 @@
                 if (typeof Home.text !== "undefined") {
                     totalLength += Home.text.length;
                 }
-                Home.options.forEach(function(o) {
+                Home.options.forEach(function (o) {
                     totalLength += o.text.length;
                 });
                 if (totalLength > 400) {
@@ -104,9 +104,14 @@
                     $scope.smaller = true;
                 }
             }
+            $scope.submitNumber = function (v) {
+                $scope.home.options[0].value = v;
+                $scope.vote(0);
+            }
+
 
         })
-        .controller('ResultsController', function($scope, Home, playerColors, gettextCatalog){
+        .controller('ResultsController', function ($scope, Home, playerColors, gettextCatalog) {
             $scope.playerColors = playerColors;
             $scope.home = Home;
             $scope.gettextCatalog = gettextCatalog;
@@ -185,6 +190,7 @@
             function cb() {
                 console.log($scope.test);
             }
+
             $scope.playSound = function (id) {
                 fxService.playSound(id);
             };
@@ -210,16 +216,16 @@
                 return "rgb(200,200,200)";
             };
         })
-        .controller("SoundController", function($scope, fxService){
+        .controller("SoundController", function ($scope, fxService) {
             fxService.playSound(0);
         })
-        .controller("BlackController", function($scope, Status){
+        .controller("BlackController", function ($scope, Status) {
             $scope.status = Status;
         })
-        .controller('CardController', function($scope, Home){
+        .controller('CardController', function ($scope, Home) {
             $scope.home = Home;
         })
-        .controller('SlideshowController', function($scope, Home){
+        .controller('SlideshowController', function ($scope, Home) {
             $scope.home = Home;
         })
         .filter('isOtherPlayerThan', function () {
