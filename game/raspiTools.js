@@ -46,7 +46,7 @@
                     });
                     var text = online ? "Online - IP = "+ip : "Offline";
                     console.log(text);
-                    if (online) wsManager.msgDevicesByRole("printer", "display", {type: "card", text: text});
+                    //if (online) wsManager.msgDevicesByRole("printer", "display", {type: "card", text: text});
                     self.sendOsInfo();
 
                     self.onlineTasks.forEach(function (task, id) {
