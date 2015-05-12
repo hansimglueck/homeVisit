@@ -8,7 +8,6 @@
     var logger = require('morgan');
     var cookieParser = require('cookie-parser');
     var bodyParser = require('body-parser');
-    var session = require('express-session');
 
     var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
     var playerManager = require('../game/playerManager.js');
@@ -70,12 +69,6 @@
     app.use(bodyParser.json({ limit: '50mb' }));
     app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
     app.use(cookieParser());
-    app.use(session({
-        secret: '1234',
-        resave: false,
-        saveUninitialized: true,
-        cookie: { httpOnly: false }    //damit angular drauf zugreifen kann
-    }));
 
     // static routes
     app.use('/bower_components', express.static(path.join(__dirname, '/../bower_components')));
