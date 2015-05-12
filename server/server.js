@@ -155,8 +155,8 @@
     });
 
     // tschacka!
-    server.listen(conf.port, function () {
-        console.log('Listening on port ' + conf.port);
+    server.listen(conf.port, conf.bindAddress, function () {
+        console.log('Listening on ' + conf.bindAddress + ':' + conf.port);
     });
 
 })();
