@@ -11,6 +11,7 @@
 
     function RaspiTools() {
         this.onlineTasks = [];
+        this.onlineStateArr = [false, false, false];
         this.onlineState = false;
         this.infoSubscribers = [];
     }
@@ -31,30 +32,34 @@
         onlineObservation: function () {
             var self = this;
             isOnline(function (err, online) {
-                if (online !== self.onlineState) {
-                    self.onlineState = online;
-                    console.log("New onlineState: " + self.onlineState);
-                    var ip = "";
-                    var iname = "wlan1";
-                    Object.keys(os.networkInterfaces()).forEach(function (i, name) {
-                        if (iname && i.indexOf(iname) === -1) {
-                            return;
-                        }
-                        os.networkInterfaces()[i].forEach(function (ver) {
-                            ip += ver.address + " ";
+                self.onlineStateArr.push(online);
+                self.onlineStateArr.shift();
+                if (self.onlineStateArr[0] === self.onlineStateArr[1] && self.onlineStateArr[2] === self.onlineStateArr[1]) {
+                    if (online !== self.onlineState) {
+                        self.onlineState = online;
+                        console.log("New onlineState: " + self.onlineState);
+                        var ip = "";
+                        var iname = "wlan1";
+                        Object.keys(os.networkInterfaces()).forEach(function (i, name) {
+                            if (iname && i.indexOf(iname) === -1) {
+                                return;
+                            }
+                            os.networkInterfaces()[i].forEach(function (ver) {
+                                ip += ver.address + " ";
+                            });
                         });
-                    });
-                    var text = online ? "Online - IP = "+ip : "Offline";
-                    console.log(text);
-                    //if (online) wsManager.msgDevicesByRole("printer", "display", {type: "card", text: text});
-                    self.sendOsInfo();
+                        var text = online ? "Online - IP = " + ip : "Offline";
+                        console.log(text);
+                        //if (online) wsManager.msgDevicesByRole("printer", "display", {type: "card", text: text});
+                        self.sendOsInfo();
 
-                    self.onlineTasks.forEach(function (task, id) {
-                        self.stopOnlineTask(id);
-                        if (online) self.executeOnlineTask(id);
-                    });
+                        self.onlineTasks.forEach(function (task, id) {
+                            self.stopOnlineTask(id);
+                            if (online) self.executeOnlineTask(id);
+                        });
+                    }
                 }
-             })
+            })
         },
         executeOnlineTask: function (id) {
             var task = this.onlineTasks[id];
@@ -62,7 +67,7 @@
             task.task.call(task.context);
             if (task.interval !== 0) {
                 task.intervalObject = setInterval(function () {
-                    console.log("starting task "+id);
+                    console.log("starting task " + id);
                     task.task.call(task.context);
                 }, task.interval);
             }
@@ -175,10 +180,10 @@
             wsManager.msgDeviceByIds(this.infoSubscribers, "osinfo", info);
         },
 
-        importSessions: function() {
-                exec(conf.pathToApp+"homevisit_components/mongo/importSessions.js "+conf.sessionsUrl, function (error, stdout, stderr) {
-                if (error) console.log ("Error in importSessions: "+error);
-                console.log("Import Sessions: "+stdout);
+        importSessions: function () {
+            exec(conf.pathToApp + "homevisit_components/mongo/importSessions.js " + conf.sessionsUrl, function (error, stdout, stderr) {
+                if (error) console.log("Error in importSessions: " + error);
+                console.log("Import Sessions: " + stdout);
             });
 
         }
