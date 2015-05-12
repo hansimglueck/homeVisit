@@ -240,7 +240,7 @@
             }
         },
         vote: function (clientId, role, data) {
-            var data = data.data;
+            data = data.data;
             //player-votes werden vom playerManager behandelt
             if (role === "player") return;
             var pollId = data.pollId;
