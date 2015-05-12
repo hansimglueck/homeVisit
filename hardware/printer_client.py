@@ -13,6 +13,7 @@ def cb(msg):
 		return
 	if (msg["data"]["type"] == "card"):
 		txt = msg["data"]["text"]
+		print(txt)
 		unicode = txt.encode('utf-8')
 		#if (txt.startswith('***PICTURE***')):
 			#lineBreaksNum = txt.count('\n')
