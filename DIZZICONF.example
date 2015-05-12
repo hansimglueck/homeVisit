@@ -1,0 +1,2 @@
+export DIZZIPORT=10001
+export DIZZIHOST=user@hostname
