@@ -110,6 +110,7 @@ def printPiePartition(data):
 	#	percentage = float(part) / sum
 		percentage = float(part["percent"]) / 100
 		playercolor = part["playercolor"]
+		playercolor = replaceSpecialChars(playercolor)
 		lines = int(all_lines * percentage)
 		if (lines <= 2):
 			p.print_text(part["percent"] + " %")
@@ -125,7 +126,6 @@ def printPiePartition(data):
 			for x in range(0, lines-2):
 				p.print_text("\n")
 			p.print_text(cutline)
-		time.sleep(1.0)
 
 	#p.print_text(cutline)
 	p.print_text("** MATCH HERE **\n")
