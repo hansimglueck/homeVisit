@@ -95,6 +95,7 @@ def printPiePartition(data):
 		percentage = float(part["percent"]) / 100
 		playercolor = part["playercolor"]
 		playercolor_uni = playercolor.encode('utf-8')
+		playercolor_uni = replaceSpecialChars(playercolor_uni)
 		lines = int(all_lines * percentage)
 		if (lines <= 2):
 			p.print_text(part["percent"] + " %")
