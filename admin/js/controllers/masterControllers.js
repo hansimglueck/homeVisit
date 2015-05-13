@@ -136,5 +136,8 @@
         });
     });
 
+    masterControllers.controller('MasterMindCtrl', function($scope, Nodes) {
+        $scope.nodes = Nodes.get();
+    });
 
 })();

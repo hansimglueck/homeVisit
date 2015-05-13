@@ -18,43 +18,47 @@
     var importSessions = require('../homevisit_components/mongo/importSessionsModule.js');
     var exec = require('child_process').exec;
 
+    var gameConf = require('../game/gameConf.js');
+
     // HTTP server
     var server = require('http').createServer(app);
 
-    // websocket
-    var WebSocketServer = require('ws').Server;
-    var wss = new WebSocketServer({server: server});
-    var wsManager = require('../game/wsManager.js');
-    wsManager.setSocketServer(wss);
+    if (!conf.masterMind) {
+        // websocket
+        var WebSocketServer = require('ws').Server;
+        var wss = new WebSocketServer({server: server});
+        var wsManager = require('../game/wsManager.js');
+        wsManager.setSocketServer(wss);
 
-    wsManager.onRole("player", playerManager, playerManager.playerMessage);
-    wsManager.onType("register", playerManager, playerManager.requestStatus);
-    wsManager.onType("score", playerManager, playerManager.scoreMessage);
-    wsManager.onType("setPlayerStatus", playerManager, playerManager.setStatusMessage);
+        wsManager.onRole("player", playerManager, playerManager.playerMessage);
+        wsManager.onType("register", playerManager, playerManager.requestStatus);
+        wsManager.onType("score", playerManager, playerManager.scoreMessage);
+        wsManager.onType("setPlayerStatus", playerManager, playerManager.setStatusMessage);
 
-    var game = require('../game/game.js');
-    wsManager.onType("playbackAction", game, game.trigger);
-    wsManager.onType("alert", game, game.alert);
-    wsManager.onType("register", game, game.sendPlayBackStatus);
-    wsManager.onType("pollResults", game, game.pollResults);
-    wsManager.onType("uploadRecording", game, game.uploadRecording);
-    wsManager.onType("vote", game, game.vote);
+        var game = require('../game/game.js');
+        wsManager.onType("playbackAction", game, game.trigger);
+        wsManager.onType("alert", game, game.alert);
+        wsManager.onType("register", game, game.sendPlayBackStatus);
+        wsManager.onType("pollResults", game, game.pollResults);
+        wsManager.onType("uploadRecording", game, game.uploadRecording);
+        wsManager.onType("vote", game, game.vote);
 
-    var raspiTools = require('../game/raspiTools.js');
-    raspiTools.startOnlineObservation(5000);
-    wsManager.onType("os", raspiTools, raspiTools.newMessage);
-    wsManager.onType("database", raspiTools, raspiTools.newMessage);
-    var gameRecordings = require('../game/gameRecording.js');
-    raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
-    //raspiTools.addOnlineTask(raspiTools, raspiTools.importSessions, 666000);
+        var raspiTools = require('../game/raspiTools.js');
+        raspiTools.startOnlineObservation(5000);
+        wsManager.onType("os", raspiTools, raspiTools.newMessage);
+        wsManager.onType("database", raspiTools, raspiTools.newMessage);
+        var gameRecordings = require('../game/gameRecording.js');
+        raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
+        //raspiTools.addOnlineTask(raspiTools, raspiTools.importSessions, 666000);
 
-    var gameConf = require('../game/gameConf.js');
-    wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
-    wsManager.onType('getGameSessions', gameConf, gameConf.gameSessionsRequest);
-    wsManager.onType('setGameSession', gameConf, gameConf.setGameSession);
-    wsManager.onType('getLanguage', gameConf, gameConf.languageRequest);
-    wsManager.onType('changeLanguage', gameConf, gameConf.changeLanguage);
+        wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
+        wsManager.onType('getGameSessions', gameConf, gameConf.gameSessionsRequest);
+        wsManager.onType('setGameSession', gameConf, gameConf.setGameSession);
+        wsManager.onType('getLanguage', gameConf, gameConf.languageRequest);
+        wsManager.onType('changeLanguage', gameConf, gameConf.changeLanguage);
+    }
 
+    // load game conf
     mongoConnection(function (db) {
         console.log("Database connection established");
         gameConf.syncFromDb();
@@ -74,14 +78,19 @@
     app.use('/bower_components', express.static(path.join(__dirname, '/../bower_components')));
     app.use('/homevisit_components', express.static(path.join(__dirname, '/../homevisit_components')));
     app.use('/admin', express.static(path.join(__dirname, '/../admin')));
-    app.use('/player', express.static(path.join(__dirname, '/../player')));
-    app.use('/mc', express.static(path.join(__dirname, '/../mc')));
-    app.use('/slideshow', express.static(path.join(__dirname, '/../slideshow')));
+    if (!conf.masterMind) {
+        app.use('/player', express.static(path.join(__dirname, '/../player')));
+        app.use('/mc', express.static(path.join(__dirname, '/../mc')));
+        app.use('/slideshow', express.static(path.join(__dirname, '/../slideshow')));
+    }
 
     // resource routes
     app.use('/decks', require('./routes/decks'));
     app.use('/gameConf', require('./routes/gameConf'));
     app.use('/recordings', require('./routes/recordings'));
+    if (conf.masterMind) {
+        app.use('/nodes', require('./routes/nodes'));
+    }
 
     // app routes
     app.use('/', require('./routes/main'));

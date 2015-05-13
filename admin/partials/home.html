@@ -1,7 +1,7 @@
 <div class="row">
 
     <div class="col-sm-6">
-        <div class="panel panel-default">
+        <div class="panel panel-default" ng-if="!masterMind">
             <div class="panel-heading"><h3 class="panel-title" translate>Playback</h3></div>
             <master-buttons></master-buttons>
         </div>
@@ -11,6 +11,7 @@
         </div>
     </div>
     <div class="col-sm-6">
+      <div ng-if="!masterMind">
         <raspi-manager></raspi-manager>
         <div class="panel panel-default">
             <div class="panel-heading"><h3 class="panel-title" translate>Device Manager</h3></div>
@@ -24,12 +25,11 @@
             <div class="panel-heading"><h3 class="panel-title" translate>Log</h3></div>
             <log-display></log-display>
         </div>
+      </div>
+      <div ng-if="masterMind">
+        <master-mind></master-mind>
+      </div>
     </div>
-    <div class="col-sm-6">
-    </div>
-    <div class="col-sm-6">
-    </div>
-
 </div>
 
 

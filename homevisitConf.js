@@ -5,7 +5,8 @@ var conf = {
     port: 80,
     bindAddress: '0.0.0.0',
     mongoUri: 'mongodb://localhost/homeVisit',
-    pathToApp: '/home/pi/homeVisit/'
+    pathToApp: '/home/pi/homeVisit/',
+    masterMind: false
 };
 
 // load local settings if available

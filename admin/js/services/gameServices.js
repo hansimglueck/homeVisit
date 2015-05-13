@@ -24,6 +24,11 @@
                 },
                 'getRun': {method: 'GET', url: '/gameConf/run'}
             });
-        }]);
+        }])
+        .factory('Nodes', function ($resource) {
+            return $resource('/nodes/', null, {
+                'get': { method: 'GET', isArray: true }
+            });
+        });
 
 })();

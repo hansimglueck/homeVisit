@@ -6,8 +6,10 @@
     var adminControllers = angular.module('adminControllers', []);
 
     adminControllers
-        .controller('HomeController', function ($scope, Socket) {
+        .controller('HomeController', function ($scope, $location, Socket) {
             $scope.name = "homE";
+            $scope.masterMind = $location.absUrl().search(/mastermind/) >= 0;
+            console.info('masterMind', $scope.masterMind ? 'ON' : 'OFF');
         })
         .controller('setCtrl', function ($scope, setFactory, $location, $anchorScroll, $timeout, gettextCatalog) {
             $scope.activeDeck = {};

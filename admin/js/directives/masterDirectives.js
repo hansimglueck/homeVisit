@@ -46,6 +46,13 @@
                 replace: 'true',
                 templateUrl: baseUrl + '/player-list.html'
             };
+        })
+         .directive('masterMind', function() {
+            return {
+                restrict: 'E',
+                replace: 'true',
+                templateUrl: baseUrl + '/master-mind.html'
+            };
         });
 
 })();

@@ -33,15 +33,18 @@
                     redirectTo: '/home'
                 });
         });
-    app.run(function(editableOptions, Socket, gettextCatalog) {
+    app.run(function(editableOptions, Socket, gettextCatalog, $location) {
     //    editableThemes.bs3.buttonsClass = 'btn-sm';
         editableOptions.theme = 'bs3';
-        Socket.connect('master', function() {
-            Socket.emit('getLanguage');
-        });
-        Socket.on('languageChange', function (data) {
-            gettextCatalog.setCurrentLanguage(data.language);
-        });
+        var masterMind = $location.absUrl().search(/mastermind/) >= 0;
+        if (!masterMind) {
+            Socket.connect('master', function() {
+                Socket.emit('getLanguage');
+            });
+            Socket.on('languageChange', function (data) {
+                gettextCatalog.setCurrentLanguage(data.language);
+            });
+        }
     });
 
 })();

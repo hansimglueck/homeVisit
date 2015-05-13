@@ -1,20 +1,22 @@
 (function () {
     'use strict';
 
+    var baseUrl = '/admin/views';
+
     angular.module('adminDirectives', [])
 
         .directive('showSet', function () {
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-set.html'
+                templateUrl: baseUrl + '/admin/show-set.html'
             };
         })
         .directive('showDeck', function () {
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-deck.html'
+                templateUrl: baseUrl + '/admin/show-deck.html'
             };
         })
 
@@ -22,7 +24,7 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/edit-new-deck.html'
+                templateUrl: baseUrl + '/admin/edit-new-deck.html'
             };
         })
 
@@ -30,7 +32,7 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-sequence-item.html'
+                templateUrl: baseUrl + '/admin/show-sequence-item.html'
             };
         })
 
@@ -39,7 +41,7 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-vote-option.html',
+                templateUrl: baseUrl + '/admin/show-item-contents/show-vote-option.html',
                 scope: {
                     item: '='
                 },
@@ -63,7 +65,7 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/import-json.html'
+                templateUrl: baseUrl + '/admin/import-json.html'
             };
         })
 
@@ -71,7 +73,7 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-card-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-card-content.html'
             };
         })
 
@@ -79,21 +81,21 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-vote-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-vote-content.html'
             };
         })
         .directive('showDealContent', function () {
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-deal-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-deal-content.html'
             };
         })
         .directive('showAgreementContent', function () {
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-agreement-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-agreement-content.html'
             };
         })
 
@@ -101,7 +103,7 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-switch-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-switch-content.html'
             };
         })
         .directive('showInlineSwitchContent', function () {
@@ -109,7 +111,7 @@
                 scope: false,
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-inline-switch-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-inline-switch-content.html'
             };
         })
         .directive('showInlineSwitchOption', function () {
@@ -117,7 +119,7 @@
                 scope: false,
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-inline-switch-option.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-inline-switch-option.html'
             };
         })
 
@@ -125,14 +127,14 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-results-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-results-content.html'
             };
         })
         .directive('showConfigContent', function () {
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-config-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-config-content.html'
             };
         })
 
@@ -140,7 +142,7 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-sound-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-sound-content.html'
             };
         })
 
@@ -148,14 +150,14 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-cmd-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-cmd-content.html'
             };
         })
         .directive('showRouletteContent', function () {
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-roulette-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-roulette-content.html'
             };
         })
 
@@ -163,7 +165,7 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-player-direct-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-player-direct-content.html'
             };
         })
 
@@ -171,7 +173,7 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-eval-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-eval-content.html'
             };
         })
 
@@ -179,21 +181,21 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-rating-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-rating-content.html'
             };
         })
         .directive('showAssholeContent', function () {
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-asshole-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-asshole-content.html'
             };
         })
         .directive('showScoreContent', function () {
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/show-item-contents/show-score-content.html'
+                templateUrl: baseUrl + '/admin/show-item-contents/show-score-content.html'
             };
         })
 
@@ -202,14 +204,14 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/item-partials/item-mapping.html'
+                templateUrl: baseUrl + '/admin/item-partials/item-mapping.html'
             };
         })
         .directive('itemButtons', function () {
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: 'views/admin/item-partials/item-buttons.html'
+                templateUrl: baseUrl + '/admin/item-partials/item-buttons.html'
             };
         })
         .directive('labeledItemOption', function () {
@@ -243,7 +245,7 @@
 
                 },
 
-                templateUrl: 'views/admin/item-partials/labeled-item-option.html'
+                templateUrl: baseUrl + '/admin/item-partials/labeled-item-option.html'
             };
         });
 
