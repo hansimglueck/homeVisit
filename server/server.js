@@ -44,7 +44,7 @@
         wsManager.onType("vote", game, game.vote);
 
         var raspiTools = require('../game/raspiTools.js');
-        raspiTools.startOnlineObservation(5000);
+        raspiTools.startOnlineObservation(1000);
         wsManager.onType("os", raspiTools, raspiTools.newMessage);
         wsManager.onType("database", raspiTools, raspiTools.newMessage);
         var gameRecordings = require('../game/gameRecording.js');

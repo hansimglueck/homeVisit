@@ -9,6 +9,9 @@
         hat = require('hat'),
         mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
 
+    var homevisitQueries = require("./homevisitQueries");
+
+
     function GameRecording() {
         this.recordingId = null;
         this.clock = require('./clock');
@@ -27,7 +30,8 @@
             this.uid = item.uid;
             this._recordEvent('go', {
                 type: item.type,
-                index: item.index
+                index: item.index,
+                parameter: item.param
             });
         },
 
@@ -89,13 +93,13 @@
         },
 
         upload: function (id, sid) {
-            mit(id, sid, function (tawan) {
+            mit(id, function (tawan) {
                 var postUrl = require('../homevisitConf').websitePostUrl;
                 var u = url.parse(postUrl);
                 var json = JSON.stringify(tawan);
                 //kann scheinbar keinen objekt mit objekten drin stringifien...
                 console.log(json);
-                var postData = querystring.stringify({json_daten: json, valide_test_2: "valide_test_2"});
+                var postData = querystring.stringify({json_daten: json, valide_test: "valide_test"});
                 var opts = {
                     host: u.host,
                     path: u.path,
@@ -106,7 +110,6 @@
                         'Content-Length': postData.length
                     }
                 };
-
 
                 var req = http.request(opts, function (res) {
                     res.setEncoding('utf8');
@@ -152,13 +155,20 @@
 
         uploadAllNew: function () {
             console.log("uploadallnew");
+            var self = this;
+            homevisitQueries.getCompletedRecordings(function (error, recordings) {
+                recordings.forEach(function (recording) {
+                    self.upload(recording._id, recording.sessionId);
+                })
+            });
+            return;
             var queryRecordings = require('./queryRecordings.js')();
             var self = this;
             queryRecordings.then(
-                function(recordings) {
+                function (recordings) {
                     var now = new Date();
-                    recordings.forEach(function(recording){
-                        if (recording.startTimestamp !== -1 && recording.stopTimestamp !== -1 && !recording.uploaded && now-recording.lastTry > 600000) {
+                    recordings.forEach(function (recording) {
+                        if (recording.startTimestamp !== -1 && recording.stopTimestamp !== -1 && !recording.uploaded && now - recording.lastTry > 600000) {
                             console.log(recording);
                             if (recording.session !== null) self.upload(recording.recordingId, recording.session.sessionId);
                         }

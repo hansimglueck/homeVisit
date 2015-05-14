@@ -3,6 +3,7 @@
 
     var playerManager = require('../../playerManager.js');
     var Agreement = require('../../polls/Agreement.js');
+    var gameRecording = require('../../gameRecording');
 
     module.exports = {
         executeItem: function () {
@@ -15,6 +16,10 @@
             poll.onFinish(playerManager, function (result) {
                 result.win = self.win;
                 result.cost = self.cost;
+                //TODO diese beiden teile werden nur für die richtigen recordings gesetzt. sollten aber wahrscheinlich schon im agreement so gesetzt werden
+                result.voteType = "agreement";
+                results.rid = this.uid;
+                gameRecording.poll(result);
                 playerManager.playRoulette(result);
             });
             this.poll = poll;
