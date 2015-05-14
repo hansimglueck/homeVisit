@@ -6,7 +6,8 @@ var conf = {
     bindAddress: '0.0.0.0',
     mongoUri: 'mongodb://localhost/homeVisit',
     pathToApp: '/home/pi/homeVisit/',
-    masterMind: false
+    masterMind: false,
+    websitePostUri: 'http://USER:PWD@HOSTNAME/PATH'
 };
 
 // load local settings if available
