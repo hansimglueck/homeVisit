@@ -5,6 +5,7 @@ import time
 import json
 import printer_gs, textwrap
 import ws
+import socket 
 
 p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
 
@@ -125,8 +126,16 @@ def printPiePartition(data):
 def test(x):
 	print x
 
+#erstmal hallo sagen
+welcome_text = "HOWDY \n I AM ALIVE \n MY NAME IS "+socket.gethostname()
+welcome = {"type":"display", "data":{"type":"card","text":welcome_text}}
+cb(welcome)
+
+
+
 #der client wird in einem extra-thread gestartet...
 client = ws.Client(role="printer", cb = cb)
+
 
 
 #damit das programm nicht stoppt
