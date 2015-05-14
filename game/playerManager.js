@@ -973,6 +973,9 @@
 
         //der nächste ist dran...
         advanceTurn: function (x) {
+            if (this.getPlayerGroup("joined").length < 2) {
+                return;
+            }
             this.onTurn += x;
             this.onTurn %= this.players.length;
             if (!this.players[this.onTurn].joined || this.players[this.onTurn].away) {
