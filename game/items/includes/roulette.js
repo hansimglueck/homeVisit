@@ -18,7 +18,7 @@
                 result.cost = self.cost;
                 //TODO diese beiden teile werden nur für die richtigen recordings gesetzt. sollten aber wahrscheinlich schon im agreement so gesetzt werden
                 result.voteType = "agreement";
-                results.rid = this.uid;
+                result.rid = this.uid;
                 gameRecording.poll(result);
                 playerManager.playRoulette(result);
             });
