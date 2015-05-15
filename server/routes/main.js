@@ -5,25 +5,10 @@
     var game = require('../../game/game.js');
     var gameConf = require('../../game/gameConf.js');
     var conf = require('../../homevisitConf');
+    var rootRoute = '/player';
 
     // Normal mode
     if (!conf.masterMind) {
-        router.get('/', function(req, res, next) {
-            res.redirect('/player');
-        });
-
-        router.get('/admin', function(req, res, next) {
-            res.sendFile('index.html', { root: __dirname + '/../../admin' });
-        });
-
-        router.get('/player', function(req, res, next) {
-            res.sendFile('index.html', { root: __dirname + '/../../player' });
-        });
-
-        router.get('/mc', function(req, res, next) {
-            res.sendFile('mc/index.html', { root: __dirname +"/../public"  });
-        });
-
         router.get('/log', function(req, res, next) {
             var results = [];
             Object.keys(game.sequence.polls).forEach(function(poll){
@@ -43,14 +28,15 @@
     }
     // Master mind mode
     else {
-        router.get('/', function(req, res, next) {
-            res.redirect('/mastermind/');
-        });
         router.get('/mastermind', function(req, res, next) {
             res.sendFile('index.html', { root: __dirname + '/../../admin' });
         });
+        rootRoute = '/mastermind/';
     }
 
+    router.get('/', function(req, res, next) {
+        res.redirect(rootRoute);
+    });
     router.get('/emulator', function(req, res, next) {
         res.render('emulator');
     });
