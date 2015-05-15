@@ -92,94 +92,91 @@
             });
         },
 
-        upload: function (id, sid) {
-            mit(id, function (tawan) {
-                var postUrl = require('../homevisitConf').websitePostUrl;
-                var u = url.parse(postUrl);
-                var json = JSON.stringify(tawan);
-                //kann scheinbar keinen objekt mit objekten drin stringifien...
-                console.log(json);
-                var postData = querystring.stringify({json_daten: json, valide_test: "valide_test"});
-                var opts = {
-                    host: u.host,
-                    path: u.path,
-                    auth: u.auth,
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded',
-                        'Content-Length': postData.length
-                    }
+        recordUpload: function (name, recordingId, sessionId) {
+            var deferred = Q.defer();
+            if (typeof sessionId === 'undefined' || sessionId === null) {
+                console.log('No session set. Not recording game!');
+                return;
+            }
+            mongoConnection(function (db) {
+                deferred.resolve(db);
+            });
+            deferred.promise.then(function (db) {
+                var obj = {
+                    recordingId: recordingId,
+                    sessionId: sessionId,
+                    data: {
+                        uploadTime: new Date(),
+                        uid: 666
+                    },
+                    name: name
                 };
+                var recordingsColl = db.collection('recordings'),
+                    insertOne = Q.nbind(recordingsColl.insertOne, recordingsColl);
+                return insertOne(obj);
+            }).catch(function (err) {
+                throw new Error('Error recording game event: ' + err.stack);
+            }).done(function () {
+                console.log('Recorded game event %s'.format(name));
+            });
+        },
 
-                var req = http.request(opts, function (res) {
-                    res.setEncoding('utf8');
-                    var success = true;
-                    var finished = false;
-                    //TODO: success wir dnicht so ichtig gesetzt
-                    res.on('data', function (chunk) {
-                        console.log('Response: ' + chunk);
-                        success = chunk.indexOf("Error") === -1;
-                        finished = chunk.indexOf("</div>") !== -1;
-                        if (!finished) return;
-                        var deferred = Q.defer();
-                        mongoConnection(function (db) {
-                            deferred.resolve(db);
-                        });
-                        deferred.promise.then(function (db) {
-                            var obj = {
-                                recordingId: id
-                            };
-                            var update = {
-                                $set: {
-                                    success: success,
-                                    uploadTime: new Date()
-                                }
-                            };
-                            var options = {
-                                upsert: true
-                            };
-                            var uploadedRecordingsColl = db.collection('uploadedRecordings'),
-                                findOneAndUpdate = Q.nbind(uploadedRecordingsColl.findOneAndUpdate, uploadedRecordingsColl);
-                            return findOneAndUpdate(obj, update, options);
-                        }).catch(function (err) {
-                            console.log('Error recording uploaded RecordingId: ' + err.stack);
-                        }).done(function () {
-                            console.log('Recorded uploaded RecordingId');
+        upload: function (id, sessionId) {
+            var self = this;
+            mit(id, function (tawan) {
+                    var postUrl = require('../homevisitConf').websitePostUrl;
+                    var u = url.parse(postUrl);
+                    var json = JSON.stringify(tawan);
+                    //kann scheinbar keinen objekt mit objekten drin stringifien...
+                    console.log(json);
+                    var postData = querystring.stringify({json_daten: json, valide_test: "valide_test"});
+                    var opts = {
+                        host: u.host,
+                        path: u.path,
+                        auth: u.auth,
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                            'Content-Length': postData.length
+                        }
+                    };
+
+                    var req = http.request(opts, function (res) {
+                        res.setEncoding('utf8');
+                        var success = true;
+                        var finished = false;
+                        //TODO: success wir dnicht so ichtig gesetzt
+                        res.on('data', function (chunk) {
+                            console.log('Response: ' + chunk);
+                            success = chunk.indexOf("Error") === -1;
+                            finished = chunk.indexOf("</div>") !== -1;
+                            if (!finished) return;
+                            self.recordUpload(success ? "tawanUploadSuccess" : "tawanUploadError", id, sessionId);
                         });
                     });
-                });
-                req.write(postData);
-                req.end();
-            });
+                    req.write(postData);
+                    req.end();
+                }
+            )
+            ;
         },
 
         uploadAllNew: function () {
             console.log("uploadallnew");
             var self = this;
-            homevisitQueries.getCompletedRecordings(function (error, recordings) {
+            homevisitQueries.getNewCompletedRecordings(function (error, recordings) {
+                console.log(recordings);
                 recordings.forEach(function (recording) {
                     self.upload(recording._id, recording.sessionId);
                 })
             });
-            return;
-            var queryRecordings = require('./queryRecordings.js')();
-            var self = this;
-            queryRecordings.then(
-                function (recordings) {
-                    var now = new Date();
-                    recordings.forEach(function (recording) {
-                        if (recording.startTimestamp !== -1 && recording.stopTimestamp !== -1 && !recording.uploaded && now - recording.lastTry > 600000) {
-                            console.log(recording);
-                            if (recording.session !== null) self.upload(recording.recordingId, recording.session.sessionId);
-                        }
-                    })
-                }
-            ).done(console.log("promise done"));
         }
-    };
+    }
+    ;
 
     var gameRecording = new GameRecording();
 
     module.exports = gameRecording;
 
-})();
+})
+();

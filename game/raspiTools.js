@@ -185,6 +185,12 @@
                 if (error) console.log("Error in importSessions: " + error);
                 console.log("Import Sessions: " + stdout);
             });
+        },
+        exportRecordingsToDizzi: function () {
+            exec("mongoexport -d homeVisit -c recordings | ssh "+conf.dizziSSH+" mongoimport -d homeVisit -c recordings --upsert", function (error, stdout, stderr) {
+                if (error) console.log("Error in importSessions: " + error);
+                console.log("Exported Recordings to dizzi " + stdout);
+            });
 
         }
 

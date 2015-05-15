@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
@@ -8,7 +8,7 @@
     }
 
     Queries.prototype = {
-        getCompletedRecordings: function(callback) {
+        getCompletedRecordings: function (callback) {
             mongoConnection(function (db) {
                 var recColl = db.collection('recordings');
                 recColl.aggregate([
@@ -31,17 +31,54 @@
                     {
                         $sort: {sessionId: 1}
                     }
-                ], function(err, result) {
+                ], function (err, result) {
                     if (err) {
                         console.log(err);
                     }
-                    //console.log("getCompletedRecordings:");
-                    //console.log(result);
                     callback(err, result)
                 });
             });
         },
-        getRecording: function(recordingId, callback) {
+        getNewCompletedRecordings: function (callback) {
+            mongoConnection(function (db) {
+                    var recColl = db.collection('recordings');
+                    recColl.aggregate([
+                            {
+                                $group: {
+                                    _id: "$recordingId",
+                                    sessionId: {$first: "$sessionId"},
+                                    recordings: {$push: "$$CURRENT"},
+                                    count: {$sum: 1}
+                                }
+                            },
+                            {
+                                $match: {
+                                    $and: [{"recordings.data.uid": 5}, {"recordings.data.uid": 142}],
+                                    "recordings.name": {$not: {$eq: "tawanUploadSuccess"}}
+                                }
+                            },
+                            {
+                                $project: {sessionId: 1, count: 1}
+                            },
+                            {
+                                $sort: {sessionId: 1}
+                            }
+                        ],
+                        function (err, result) {
+                            if (err) {
+                                console.log(err);
+                            }
+                            //console.log("getCompletedRecordings:");
+                            //console.log(result);
+                            callback(err, result)
+                        }
+                    )
+                    ;
+                }
+            )
+            ;
+        },
+        getRecording: function (recordingId, callback) {
             mongoConnection(function (db) {
                 var recColl = db.collection('recordings');
                 recColl.aggregate([
@@ -58,13 +95,15 @@
                             count: {$sum: 1}
                         }
                     }
-                ], function(err, result) {
+                ], function (err, result) {
                     callback(err, result)
                 });
             });
         }
-    };
+    }
+    ;
 
     module.exports = new Queries();
 
-})();
+})
+();
