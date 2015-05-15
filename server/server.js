@@ -48,9 +48,9 @@
         wsManager.onType("os", raspiTools, raspiTools.newMessage);
         wsManager.onType("database", raspiTools, raspiTools.newMessage);
         var gameRecordings = require('../game/gameRecording.js');
-        raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
+        //raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
         raspiTools.addOnlineTask(raspiTools, raspiTools.importSessions, 666000);
-        raspiTools.addOnlineTask(raspiTools, raspiTools.exportRecordingsToDizzi, 622000);
+        //raspiTools.addOnlineTask(raspiTools, raspiTools.exportRecordingsToDizzi, 622000);
 
         wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
         wsManager.onType('getGameSessions', gameConf, gameConf.gameSessionsRequest);
