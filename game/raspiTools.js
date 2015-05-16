@@ -187,7 +187,7 @@
             });
         },
         exportRecordingsToDizzi: function () {
-            exec("sudo -u pi mongoexport -d homeVisit -c recordings | ssh "+conf.dizziSSH+" mongoimport -d homeVisit -c recordings --upsert", function (error, stdout, stderr) {
+            exec("sudo -u pi mongoexport -d homeVisit -c recordings | sudo -u pi ssh "+conf.dizziSSH+" mongoimport -d homeVisit -c recordings --upsert", function (error, stdout, stderr) {
                 if (error) console.log("Error in exportRecordingsToDizzi: " + error);
                 console.log("Exported Recordings to dizzi " + stdout);
             });
