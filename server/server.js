@@ -11,6 +11,8 @@
 
     var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
     var playerManager = require('../game/playerManager.js');
+    var gameRecordings = require('../game/gameRecording.js');
+    var raspiTools = require('../game/raspiTools.js');
 
     var conf = require('../homevisitConf');
     var app = express();
@@ -43,20 +45,20 @@
         wsManager.onType("uploadRecording", game, game.uploadRecording);
         wsManager.onType("vote", game, game.vote);
 
-        var raspiTools = require('../game/raspiTools.js');
         raspiTools.startOnlineObservation(1000);
         wsManager.onType("os", raspiTools, raspiTools.newMessage);
         wsManager.onType("database", raspiTools, raspiTools.newMessage);
-        var gameRecordings = require('../game/gameRecording.js');
-        //raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
         raspiTools.addOnlineTask(raspiTools, raspiTools.importSessions, 666000);
-        //raspiTools.addOnlineTask(raspiTools, raspiTools.exportRecordingsToDizzi, 622000);
+        raspiTools.addOnlineTask(raspiTools, raspiTools.exportRecordingsToDizzi, 622000);
 
         wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
         wsManager.onType('getGameSessions', gameConf, gameConf.gameSessionsRequest);
         wsManager.onType('setGameSession', gameConf, gameConf.setGameSession);
         wsManager.onType('getLanguage', gameConf, gameConf.languageRequest);
         wsManager.onType('changeLanguage', gameConf, gameConf.changeLanguage);
+    } else {
+        //raspiTools.startOnlineObservation(1000);
+        //raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
     }
 
     // load game conf

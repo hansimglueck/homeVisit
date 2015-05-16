@@ -5,7 +5,7 @@ import time
 import json
 import printer_gs, textwrap
 import ws
-import socket 
+import socket
 
 p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
 
@@ -62,7 +62,7 @@ def printPiePartition(data):
 	### Kuchenumfang 1 Gugelhupf ca. 59 cm --- 1 Zeile = 0.44 cm ---> ca. 134 Zeilen
 	### Kuchenumfang 2 rund gross ca. 76 cm --- 1 Zeile = 0.44 cm ---> ca. 173 Zeilen
 	### Kuchenumfang 3 rund klein ca. 57 cm --- 1 Zeile = 0.44 cm ---> ca. 130 Zeilen
-	
+
 	all_lines = 130
 
 	###parts = txt.split()
@@ -126,16 +126,16 @@ def printPiePartition(data):
 def test(x):
 	print x
 
-#erstmal hallo sagen
-welcome_text = "HOWDY \n I AM ALIVE \n MY NAME IS "+socket.gethostname()
-welcome = {"type":"display", "data":{"type":"card","text":welcome_text}}
-cb(welcome)
-
-
-
 #der client wird in einem extra-thread gestartet...
 client = ws.Client(role="printer", cb = cb)
 
+
+
+#erstmal hallo sagen
+time.sleep(3)
+welcome_text = "HOWDY \n I AM ALIVE \n MY NAME IS "+socket.gethostname()
+welcome = {"type":"display", "data":{"type":"card","text":welcome_text}}
+cb(welcome)
 
 
 #damit das programm nicht stoppt
