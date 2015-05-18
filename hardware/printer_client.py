@@ -10,6 +10,10 @@ import socket
 p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
 
 def cb(msg):
+	if msg["type"] == "registerConfirm":
+		#erstmal hallo sagen
+		welcome_text = "HOWDY \n I AM ALIVE \n MY NAME IS "+socket.gethostname()+"\n you can now start MC-APP"
+		msg = {"type":"display", "data":{"type":"card","text":welcome_text}}
 	if msg["type"] != "display":
 		return
 	if (msg["data"]["type"] == "card"):
@@ -53,7 +57,7 @@ def cb(msg):
 def replaceSpecialChars(txt):
 	### The "Ø" and "ø" only work with Norwegian character set, setup in printer_gs.py
         specialChars = {'“':'\x22', '”':'\x22', '„':'\x22', '‟':'\x22', '«':'\xAE', '»':'\xAF', 'Ä':'\x8E', 'ä':'\x84', 'Ö':'\x99', 'ö':'\x94', 'Ü':'\x9A', 'ü':'\x81', 'ß':'\xE1', 'Ç':'\x80', 'ç':'\x87', 'É':'\x90', 'é':'\x82', 'Â':'\x83', 'â':'\x83', 'À':'\x85', 'à':'\x85', 'Å':'\x8F', 'å':'\x86', 'Ê':'\x88', 'ê':'\x88', 'Ë':'\x89', 'ë':'\x89', 'È':'\x8A', 'è':'\x8A', 'Ï':'\x8B', 'ï':'\x8B', 'Î':'\x8C', 'î':'\x8C', 'Ì':'\x8D', 'ì':'\x8D', 'Æ':'\x92', 'æ':'\x91', 'Ô':'\x93', 'ô':'\x93', 'Ò':'\x95', 'ò':'\x95', 'Û':'\x96', 'û':'\x96', 'Ù':'\x97', 'ù':'\x97', 'Á':'\xA0', 'á':'\xA0', 'Í':'\xA1', 'í':'\xA1', 'Ó':'\xA2', 'ó':'\xA2', 'Ú':'\xA3', 'ú':'\xA3', 'Ñ':'\xA5', 'ñ':'\xA4', '¡':'\xAD', '¿':'\xA8', '‹':'\x3C', '›':'\x3E', 'Ø':'\x5C', 'ø':'\x7c', '–':'-'}
-        #specialChars = {'“':'\x22', '”':'\x22', '„':'\x22', '‟':'\x22', '«':'\xAE', '»':'\xAF', 'Ä':'\x8E', 'ä':'\x84', 'Ö':'\x99', 'ö':'\x94', 'Ü':'\x9A', 'ü':'\x81', 'ß':'\xE1', 'Ç':'\x80', 'ç':'\x87', 'É':'\x90', 'é':'\x82', 'Â':'\xB6', 'â':'\x83', 'À':'\xB7', 'à':'\x85', 'Å':'\x8F', 'å':'\x86', 'Ê':'\xD2', 'ê':'\x88', 'Ë':'\xD3', 'ë':'\x89', 'È':'\xD4', 'è':'\x8A', 'Ï':'\xD8', 'ï':'\x8B', 'Î':'\xD7', 'î':'\x8C', 'Ì':'\xDE', 'ì':'\x8D', 'Æ':'\x92', 'æ':'\x91', 'Ô':'\xE2', 'ô':'\x93', 'Ò':'\x95', 'ò':'\xE3', 'Û':'\xEA', 'û':'\x96', 'Ù':'\xEB', 'ù':'\x97', 'Á':'\xB5', 'á':'\xA0', 'Í':'\xD6', 'í':'\xA1', 'Ó':'\xE0', 'ó':'\xA2', 'Ú':'\xE9', 'ú':'\xA3', 'Ñ':'\xA5', 'ñ':'\xA4', '¡':'\xAD', '¿':'\xA8', '‹':'\x3C', '›':'\x3E', 'Ø':'\x9D', 'ø':'\x9B'} 
+        #specialChars = {'“':'\x22', '”':'\x22', '„':'\x22', '‟':'\x22', '«':'\xAE', '»':'\xAF', 'Ä':'\x8E', 'ä':'\x84', 'Ö':'\x99', 'ö':'\x94', 'Ü':'\x9A', 'ü':'\x81', 'ß':'\xE1', 'Ç':'\x80', 'ç':'\x87', 'É':'\x90', 'é':'\x82', 'Â':'\xB6', 'â':'\x83', 'À':'\xB7', 'à':'\x85', 'Å':'\x8F', 'å':'\x86', 'Ê':'\xD2', 'ê':'\x88', 'Ë':'\xD3', 'ë':'\x89', 'È':'\xD4', 'è':'\x8A', 'Ï':'\xD8', 'ï':'\x8B', 'Î':'\xD7', 'î':'\x8C', 'Ì':'\xDE', 'ì':'\x8D', 'Æ':'\x92', 'æ':'\x91', 'Ô':'\xE2', 'ô':'\x93', 'Ò':'\x95', 'ò':'\xE3', 'Û':'\xEA', 'û':'\x96', 'Ù':'\xEB', 'ù':'\x97', 'Á':'\xB5', 'á':'\xA0', 'Í':'\xD6', 'í':'\xA1', 'Ó':'\xE0', 'ó':'\xA2', 'Ú':'\xE9', 'ú':'\xA3', 'Ñ':'\xA5', 'ñ':'\xA4', '¡':'\xAD', '¿':'\xA8', '‹':'\x3C', '›':'\x3E', 'Ø':'\x9D', 'ø':'\x9B'}
 	for i, j in specialChars.iteritems():
                 txt = txt.replace(i, j)
         return txt
@@ -134,12 +138,6 @@ def test(x):
 client = ws.Client(role="printer", cb = cb)
 
 
-
-#erstmal hallo sagen
-time.sleep(3)
-welcome_text = "HOWDY \n I AM ALIVE \n MY NAME IS "+socket.gethostname()
-welcome = {"type":"display", "data":{"type":"card","text":welcome_text}}
-cb(welcome)
 
 
 #damit das programm nicht stoppt
