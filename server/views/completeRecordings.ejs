@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <style>
+    </style>
+    <title><% title %></title>
+</head>
+<body>
+<script>
+</script>
+<h1>COMPLETE RECORDINGS</h1>
+<% recordings %>
+<table>
+<% recordings.forEach(function(recording){ %>
+<tr>
+    <td>
+        <%= recording.recordingId %>
+    </td>
+</tr>
+<% }); %>
+</table>
+</body>
+</html>

@@ -26,7 +26,7 @@
                         }
                     },
                     {
-                        $project: {sessionId: 1, count: 1}
+                        $project: {sessionId: 1, count: 1, recordings: 1}
                     },
                     {
                         $sort: {sessionId: 1}
