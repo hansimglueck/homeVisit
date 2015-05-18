@@ -47,8 +47,10 @@
             
             $scope.getResultTeams = function() {
                 var resultTeamsInGame = [];
-                for (var i = 0; i <= PlayerNames.getPlayerCount(); i++) {
-                    resultTeamsInGame.push($scope.resultTeams[i]);
+                for (var i = 0; i < $scope.resultTeams.length; i++) {
+                    if (PlayerNames.inGame[$scope.resultTeams[i][0]] == 1) {
+                        resultTeamsInGame.push($scope.resultTeams[i]);
+                    }
                 }
                 return resultTeamsInGame;
             
