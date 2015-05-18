@@ -20,19 +20,21 @@ def cb(msg):
 		p.double_width(True)
 		p.set_linespacing(35)
 		char_count = 0
-		for item in lines:
-			#print item
-			item = replaceSpecialChars(item)
-			unwrapped = item
-			wrapped = textwrap.fill(unwrapped, 16)
-			char_count = char_count + len(wrapped)
-			#print "printing: "+wrapped
-			p.print_text(wrapped)
-			p.print_text("\n")
-			if (char_count > 250):
-				time.sleep(1.5)
-				print(char_count)
-				char_count = 0
+        for item in lines:
+        	#print item
+        	item = replaceSpecialChars(item)
+        	unwrapped = item
+        	wrapped = textwrap.fill(unwrapped, 16)
+        	char_count = char_count + len(wrapped)
+        	#print "printing: "+wrapped
+        	p.print_text(wrapped)
+        	p.print_text("\n")
+        	wait = 0.008 * char_count
+        	#print(char_count)
+        	#print"->"
+        	#print(wait)
+        	time.sleep(wait)
+        	char_count = 0
 		#unwrapped = txt
 		#wrapped = textwrap.fill(unwrapped, 16)
 		#p.print_text(wrapped)
