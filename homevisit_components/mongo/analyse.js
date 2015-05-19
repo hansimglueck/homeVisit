@@ -21,8 +21,8 @@
       _.each(recordings, function(rec) {
         var absDate = new Date(rec.absTimestamp * 1000),
             gameSecs = rec.gameTimestamp, type = (rec.data.type || 'N/A');
-        console.log('%4i %s (%s) %s: %s'.format(
-          parseInt(rec.data.index), absDate, gameSecs, rec.name.green, type.red));
+        console.log('%10s %s (%6s) %10s: %s'.format(
+          rec.data.index || '', absDate, parseInt(gameSecs), rec.name.green, type.red));
       });
     }).then(function() {
       db.close();
