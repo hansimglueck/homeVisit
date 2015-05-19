@@ -10,11 +10,20 @@
   require('colors');
   require('../stringFormat');
 
+  var args = process.argv.slice(2),
+      recId = args[0];
+
+  var findObj = {};
+
+  if (typeof recId !== undefined) {
+    findObj.recordingId = recId;
+  }
+  
   var deferred = Q.defer();
   mongoConnection(function(db) { deferred.resolve(db); });
   deferred.promise.then(function(db) {
 
-    var sort = db.collection('recordings').find({ sessionId: 107 }).sort({ absTimestamp: 1 });
+    var sort = db.collection('recordings').find(findObj).sort({ absTimestamp: 1 });
     var toArray = Q.nbind(sort.toArray, sort);
 
     return toArray().then(function(recordings) {
