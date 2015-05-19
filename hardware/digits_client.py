@@ -79,6 +79,7 @@ def cb(msg):
 			cmd = msg["data"]["command"]
 			#print("DIGITS GETS CMD: " + cmd)
 			if (cmd == "countdown" or cmd == "countdown_fies" or cmd == "countdown_leise"):
+				sendSound("stopmpg321")
 				if (cmd == "countdown_fies"):
 					fies = 1
 					leise = 0
@@ -154,8 +155,8 @@ while(True):
 		else:
 			# countdown complete
 			mode = ""
+			sendSound("stopmpg321")
 			if (leise != 1):
-				sendSound("stopmpg321")
 				if (fies == 1):
 					sendSound("alarm-fies-lauter.mp3")
 				else:
