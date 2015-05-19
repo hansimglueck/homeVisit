@@ -13,21 +13,6 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
 
-#: mc/views/notes.html:10
-msgid ""
-"<h4>Please Select:</h4>\n"
-"                    <ul class=\"list-inline list-unstyled\">\n"
-"                        <li ng-repeat=\"player in status.joinedPlayers\">\n"
-"                            <a ng-click=\"status.toggleSelected(player."
-"playerId)\">\n"
-"                                <player-icon ng-class=\"{'player-icon-"
-"selected': player.selected}\" class=\"player-icon-big\" pid=\"player.playerId"
-"\"></player-icon>\n"
-"                            </a>\n"
-"                        </li>\n"
-"                    </ul>"
-msgstr ""
-
 #: player/partials/rating/rating.html:4
 msgid ""
 "<ul class=\"list-inline\">\n"
@@ -328,6 +313,10 @@ msgstr ""
 msgid "Log"
 msgstr ""
 
+#: mc/views/notes.html:5
+msgid "MC-Notes"
+msgstr ""
+
 #: admin/views/admin/item-partials/item-mapping.html:2
 msgid "Mapped:"
 msgstr ""
@@ -461,6 +450,10 @@ msgstr ""
 msgid "Null Problemo!"
 msgstr ""
 
+#: mc/views/notes.html:23
+msgid "OK"
+msgstr ""
+
 #: homevisit_components/views/raspi-manager.html:65
 msgid "OS Info for {{osInfo.hostname}}"
 msgstr ""
@@ -501,6 +494,10 @@ msgstr ""
 
 #: mc/views/item.html:14
 msgid "Players are voting"
+msgstr ""
+
+#: mc/views/notes.html:10
+msgid "Please Select:"
 msgstr ""
 
 #: player/partials/rating/rating.player.html:2
