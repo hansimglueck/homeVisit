@@ -90,6 +90,9 @@
                             param: {ssid: $scope.wlanId, passwd: $scope.wlanPasswd}
                         });
                     };
+                    $scope.scanWifi = function() {
+                        Socket.emit("os", {cmd: "scanWifi"});
+                    };
                     $scope.dbAction = function (action) {
                         if (!confirm(gettextCatalog.getString('Really DB: {{action}}?', {action: action}))) {
                             return;

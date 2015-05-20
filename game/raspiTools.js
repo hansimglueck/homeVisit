@@ -117,10 +117,13 @@
                                         logger.info("exec1");
                                     });
                                     break;
-                                case "getWifis":
+                                case "scanWifi":
                                     logger.info("polling wifis");
                                     exec("sudo iwlist wlan1 scan | grep 'ESSID'", function (error, stdout, stderr) {
                                         logger.info(stdout);
+                                        var list = stdout.split("\n");
+                                        logger.info(list);
+                                        wsManager.msgDeviceByIds([clientId], "wifi-list", list);
                                     });
                                     break;
                             }
