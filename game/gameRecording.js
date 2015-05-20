@@ -129,6 +129,7 @@
                     var json = JSON.stringify(tawan);
                     //kann scheinbar keinen objekt mit objekten drin stringifien...
                     console.log(json);
+                    return;
                     var postData = querystring.stringify({json_daten: json, valide_test: "valide_test"});
                     var opts = {
                         host: u.host,

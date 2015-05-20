@@ -57,8 +57,8 @@
         wsManager.onType('getLanguage', gameConf, gameConf.languageRequest);
         wsManager.onType('changeLanguage', gameConf, gameConf.changeLanguage);
     } else {
-        //raspiTools.startOnlineObservation(1000);
-        //raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
+        raspiTools.startOnlineObservation(1000);
+        raspiTools.addOnlineTask(gameRecordings, gameRecordings.uploadAllNew,600000);
     }
 
     // load game conf
