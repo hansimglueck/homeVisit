@@ -56,39 +56,7 @@
                 </ul>
             </div>
 
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 class="panel-title" translate>Game recordings</h2>
-                </div>
-                <table class="table table-striped" ng-controller="RecordingsCtrl">
-                    <thead>
-                    <tr>
-                        <td>SessionId</td>
-                        <td>Date</td>
-                        <td>Bezirk</td>
-                        <td>City</td>
-                        <td></td>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr ng-repeat="r in recordings" ng-hide="r.uploaded">
-                        <td>{{ r.session.sessionId }}</td>
-                        <td>{{ r.session.date }}</td>
-                        <td>{{ r.session.bezirk }}</td>
-                        <td>{{ r.session.city }}</td>
-                        <td>
-                            <button class="btn btn-primary" ng-click="upload(r.recordingId, r.session.sessionId)"
-                                    translate>
-                                Upload
-                            </button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-
-
-        </div>
+         </div>
         <div class="col-md-6">
             <raspi-manager></raspi-manager>
 
