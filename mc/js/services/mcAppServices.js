@@ -468,7 +468,6 @@
 
             return deckFactory;
         })
-
         .factory('Display', function(Socket, ModalService, gettextCatalog, playerColors, playerColornamesFactory) {
             var displayFactory = {
                 displayData: []
@@ -652,7 +651,6 @@
 
             return teamActionInfo;
         })
-
         .factory('Playback', function (Socket, gettextCatalog, Deck) {
             var playbackFactory = {
                 playback: function (cmd, param) {
@@ -685,7 +683,6 @@
             };
             return playbackFactory;
         })
-
         .factory('Clock', function (Deck) {
 
             var clockFactory = {
@@ -725,7 +722,6 @@
 
             return clockFactory;
         })
-
         .factory('gameSessionsFactory', function (Socket, $rootScope) {
 
             var gameSessionsFactory = {
@@ -766,7 +762,6 @@
             };
             return gameSessionsFactory;
         })
-
         .factory('Recordings', function ($resource) {
             return $resource('/recordings/', null, {
                 'get': { method: 'GET', isArray: true }
