@@ -117,6 +117,12 @@
                                         logger.info("exec1");
                                     });
                                     break;
+                                case "getWifis":
+                                    logger.info("polling wifis");
+                                    exec("sudo iwlist wlan1 scan | grep 'ESSID'", function (error, stdout, stderr) {
+                                        logger.info(stdout);
+                                    });
+                                    break;
                             }
                             break;
                         case "database":
