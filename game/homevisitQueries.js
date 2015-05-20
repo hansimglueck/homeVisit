@@ -3,6 +3,8 @@
 
     var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
     var ObjectId = require('mongodb').ObjectID;
+    var logger = require('log4js').getLogger();
+
 
     function Queries() {
     }
@@ -28,7 +30,7 @@
                     }
                 ], function (err, result) {
                     if (err) {
-                        console.log(err);
+                        logger.error(err);
                     }
                     callback(err, result)
                 });
@@ -59,7 +61,7 @@
                     }
                 ], function (err, result) {
                     if (err) {
-                        console.log(err);
+                        logger.error(err);
                     }
                     callback(err, result)
                 });
@@ -92,10 +94,10 @@
                         ],
                         function (err, result) {
                             if (err) {
-                                console.log(err);
+                                logger.error(err);
                             }
-                            //console.log("getCompletedRecordings:");
-                            //console.log(result);
+                            //logger.error("getCompletedRecordings:");
+                            //logger.error(result);
                             callback(err, result)
                         }
                     )

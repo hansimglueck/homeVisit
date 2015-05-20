@@ -1,15 +1,17 @@
 (function() {
     'use strict';
+    var logger = require('log4js').getLogger();
+
 
     module.exports = {
         executeItem: function () {
             /* jshint evil: true */
-            console.log(this.eval);
+            logger.info(this.eval);
             var lang = require('../../gameConf').conf.language;
             try {
                 eval(this.text[lang]);
             } catch (e) {
-                console.log(e.stack);
+                logger.error(e.stack);
             }
         }
     };

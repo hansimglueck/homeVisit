@@ -5,6 +5,7 @@
     var NumberPoll = require('../../polls/NumberPoll.js');
     var TextPoll = require('../../polls/TextPoll.js');
     var playerManager = require('../../playerManager.js');
+    var logger = require('log4js').getLogger();
 
     module.exports = {
         executeItem: function () {
@@ -43,7 +44,7 @@
                 this.mapToDevice();
             }
             else {
-                console.log('Warning: Vote without voteOptions!');
+                logger.warn('Warning: Vote without voteOptions!');
             }
         },
         getData: function () {

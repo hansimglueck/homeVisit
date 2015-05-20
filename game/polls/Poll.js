@@ -4,6 +4,7 @@
     var hat = require('hat');
 
     var wsManager = require('../wsManager');
+    var logger = require('log4js').getLogger();
 
     var Poll = function (item) {
         if (typeof item == "undefined") return;
@@ -37,7 +38,7 @@
             this.prepareWsContent();
         },
         log: function (message, ws) {
-            console.log("Poll.log: " + message);
+            logger.info("Poll.log: " + message);
             if (ws) {
                 wsManager.msgDevicesByRole("master", "log", message);
             }

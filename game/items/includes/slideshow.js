@@ -2,6 +2,7 @@
     'use strict';
 
     var fs = require('fs');
+    var logger = require('log4js').getLogger();
 
     module.exports = {
         executeItem: function () {
@@ -17,7 +18,7 @@
                     });
                 }
                 catch (e) {
-                    console.log(e.stack);
+                    logger.error(e.stack);
                 }
             }
 

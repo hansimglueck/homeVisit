@@ -12,6 +12,7 @@
     var gameConf = require('./gameConf');
     var gameClock = require('./clock');
     var gameRecording = require('./gameRecording');
+    var logger = require('log4js').getLogger();
 
 
     function Game() {
@@ -43,7 +44,7 @@
                     param = msg.data.param;
                 }
 
-                console.log("game.trigger: " + msg.data.cmd + " with parameter: " + param);
+                logger.info("game.trigger: " + msg.data.cmd + " with parameter: " + param);
                 switch (msg.data.cmd) {
                     //TODO: das ist hier nicht korrekt. sollte als type="score" emitted werden. und wird dann entsprechend im playerManager empfangen ->.mcMessage()
                     //evtl. ist die struktur aber auch käse ;)
@@ -79,31 +80,31 @@
                         break;
 
                     case "rego":
-                        console.log('rego');
+                        logger.info('rego');
                         if (this.sequence !== null) {
                             this.sequence.restep(parseInt(param));
                         }
                         break;
 
                     case "goto":
-                        console.log('goto');
+                        logger.info('goto');
                         if (this.sequence !== null) {
                             this.sequence.stepToIndex(0, parseInt(param));
                         }
                         break;
 
                     case "back":
-                        console.log('back');
+                        logger.info('back');
                         if (this.sequence !== null) {
                             this.sequence.back(parseInt(param));
                         }
                         break;
 
                     default:
-                        console.log("game received unknown command: " + msg.type);
+                        logger.info("game received unknown command: " + msg.type);
                 }
             } catch (e) {
-                console.log("ERROR in game.trigger! " + e.stack);
+                logger.info("ERROR in game.trigger! " + e.stack);
             }
         },
         alert: function () {
@@ -111,8 +112,8 @@
             this.alertState %= 3;
             var self = this;
             var recipients = gameConf.getOption("alertRecipients").split(",");
-            console.log("alertRecipients:");
-            console.log(recipients);
+            logger.info("alertRecipients:");
+            logger.info(recipients);
 
             recipients.forEach(function (recipient) {
                 recipient = recipient.trim();
@@ -207,7 +208,7 @@
                 });
                 cb(self.sequence);
             }).catch(function (err) {
-                console.log('Error loading items:', err);
+                logger.info('Error loading items:', err);
                 throw new Error(err.stack);
             }).done();
         },
@@ -236,7 +237,7 @@
                 this.recording.uploadAllNew();
                 //this.recording.upload(data.data.id, data.data.sid);
             } catch (e) {
-                console.log("ERROR in uploadRecording: "+ e.stack);
+                logger.info("ERROR in uploadRecording: "+ e.stack);
             }
         },
         vote: function (clientId, role, data) {
@@ -244,7 +245,7 @@
             //player-votes werden vom playerManager behandelt
             if (role === "player") return;
             var pollId = data.pollId;
-            console.log("Got Vote for " + pollId + " from " + role);
+            logger.info("Got Vote for " + pollId + " from " + role);
             var poll = this.sequence.polls[pollId];
             if (typeof poll === "undefined") {
                 wsManager.msgDeviceByIds([clientId], "display", {

@@ -1,5 +1,6 @@
 (function() {
     'use strict';
+    var logger = require('log4js').getLogger();
 
     function GameClock() {
         this.startTime = null;
@@ -8,12 +9,12 @@
     GameClock.prototype = {
 
         reset: function() {
-            console.log('gameClock reset');
+            logger.info('gameClock reset');
             this.startTime = null;
         },
 
         start: function() {
-            console.log('gameClock started');
+            logger.info('gameClock started');
             this.startTime = new Date().getTime();
         },
 

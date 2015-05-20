@@ -4,6 +4,8 @@
     var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
     var wsManager = require('./wsManager.js');
     var clone = require('clone');
+    var logger = require('log4js').getLogger();
+
 
     function GameConf() {
         this.conf = {};         //fixe Kongiguration wie startDeck, typeMapping
@@ -36,7 +38,7 @@
                             if (err !== null) {
                                 throw new Error(err.stack);
                             }
-                            console.log('No gameConf found. Created a default.');
+                            logger.info('No gameConf found. Created a default.');
                             if (cb) {
                                 cb();
                             }
@@ -89,7 +91,7 @@
                             throw new Error(err.stack);
                         }
                         self.conf.session = sessionId;
-                        console.log('Setting session to: %s'.format(sessionId));
+                        logger.info('Setting session to: %s'.format(sessionId));
                     }
                 );
             });

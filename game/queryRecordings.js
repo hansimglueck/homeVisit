@@ -79,7 +79,7 @@ module.exports = function () {
 
         });
     }).catch(function (err) {
-        console.log('ERROR:', err);
+        logger.error(err);
     });
 
 };

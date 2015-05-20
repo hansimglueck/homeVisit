@@ -8,7 +8,7 @@
     var wsManager = require('../wsManager.js');
     var playerManager = require('../playerManager.js');
     var _ = require('underscore');
-
+    var logger = require('log4js').getLogger();
 
     /*
      Ablauf:
@@ -133,7 +133,7 @@
             return this;
         },
         log: function (message, ws) {
-            console.log("Sequence.log: " + message);
+            logger.info("Sequence.log: " + message);
             if (ws) {
                 wsManager.msgDevicesByRole("master", "log", message);
             }
@@ -233,7 +233,7 @@
                 var itemRequire = {};
                 try {
                     itemRequire = require('./includes/' + this.type);
-                    //console.log(require('./includes/' + this.type));
+                    //logger.info(require('./includes/' + this.type));
                 } catch (e) {
                     itemRequire = require('./includes/default');
                 }
@@ -304,7 +304,6 @@
         execute: function () {
             this.log("executing step " + this.index + ": " + this.type, true);
             this.executeTime = new Date();
-            console.log(this.executeTime);
             this.sendPlaybackStatus();
             try {
                 this.executeItem();
@@ -399,8 +398,8 @@
             var my = {id: this.id, time: this.executeTime};
             var rest = [];
             if (this.next === null) {
-                console.log("ende");
-                console.log();
+                logger.info("ende");
+                logger.info();
                 rest.push(my);
                 return rest;
             }

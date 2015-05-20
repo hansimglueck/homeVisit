@@ -1,7 +1,9 @@
 var homevisitQueries = require("./homevisitQueries");
+var logger = require('log4js').getLogger();
+
 
 function makeItTawan(recId, cb) {
-    console.log("i will make recording " + recId + " to the pleasure of tawan!");
+    logger.info("i will make recording " + recId + " to the pleasure of tawan!");
     var tawan = [];
     homevisitQueries.getRecording(recId, function (err, recording) {
         if (err) {
@@ -120,7 +122,7 @@ function makeItTawan(recId, cb) {
             }
         }
         tawan.push({id: 62, data: mythos});
-        console.log(sid+" -> "+mythos);
+        logger.info(sid+" -> "+mythos);
 
         //weitere Felder
         tawan.push({id: 181, data: recId});

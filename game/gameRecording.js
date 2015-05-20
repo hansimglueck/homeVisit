@@ -10,6 +10,8 @@
         mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
 
     var homevisitQueries = require("./homevisitQueries");
+    var logger = require('log4js').getLogger();
+
 
 
     function GameRecording() {
@@ -22,7 +24,7 @@
     GameRecording.prototype = {
 
         reset: function () {
-            console.log('gameRecording reset');
+            logger.info('gameRecording reset');
             this.recordingId = hat();
         },
 
@@ -58,7 +60,7 @@
         },
 
         answers: function (answers) {
-            console.log("RECORDING ANSWERS-----------------------");
+            logger.info("RECORDING ANSWERS-----------------------");
             this._recordEvent('answers', answers);
         },
 
@@ -67,7 +69,7 @@
             var deferred = Q.defer(), self = this,
                 sessionId = this.gameConf.conf.session;
             if (typeof sessionId === 'undefined' || sessionId === null) {
-                console.log('No session set. Not recording game!');
+                logger.info('No session set. Not recording game!');
                 return;
             }
             mongoConnection(function (db) {
@@ -88,14 +90,14 @@
             }).catch(function (err) {
                 throw new Error('Error recording game event: ' + err.stack);
             }).done(function () {
-                console.log('Recorded game event %s'.format(name));
+                logger.info('Recorded game event %s'.format(name));
             });
         },
 
         recordUpload: function (name, recordingId, sessionId) {
             var deferred = Q.defer();
             if (typeof sessionId === 'undefined' || sessionId === null) {
-                console.log('No session set. Not recording game!');
+                logger.info('No session set. Not recording game!');
                 return;
             }
             mongoConnection(function (db) {
@@ -117,7 +119,7 @@
             }).catch(function (err) {
                 throw new Error('Error recording game event: ' + err.stack);
             }).done(function () {
-                console.log('Recorded game event %s'.format(name));
+                logger.info('Recorded game event %s'.format(name));
             });
         },
 
@@ -128,7 +130,7 @@
                     var u = url.parse(postUrl);
                     var json = JSON.stringify(tawan);
                     //kann scheinbar keinen objekt mit objekten drin stringifien...
-                    console.log(json);
+                    logger.info(json);
                     var postData = querystring.stringify({json_daten: json, valide_test: "valide_test"});
                     var opts = {
                         host: u.host,
@@ -147,7 +149,7 @@
                         var finished = false;
                         //TODO: success wir dnicht so ichtig gesetzt
                         res.on('data', function (chunk) {
-                            console.log('Response: ' + chunk);
+                            logger.info('Response: ' + chunk);
                             success = chunk.indexOf("Error") === -1;
                             finished = chunk.indexOf("</div>") !== -1;
                             if (!finished) return;
@@ -162,10 +164,10 @@
         },
 
         uploadAllNew: function () {
-            console.log("uploadallnew");
+            logger.info("uploadallnew");
             var self = this;
             homevisitQueries.getNewCompletedRecordings(function (error, recordings) {
-                console.log(recordings);
+                logger.info(recordings);
                 recordings.forEach(function (recording) {
                     self.upload(recording._id, recording.sessionId);
                 })

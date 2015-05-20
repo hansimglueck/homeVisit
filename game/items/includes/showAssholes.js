@@ -2,12 +2,14 @@
     'use strict';
 
     var playerManager = require('../../playerManager.js');
+    var logger = require('log4js').getLogger();
+
 
     module.exports = {
         executeItem: function () {
             this.data = [];
             var self = this;
-            console.log(JSON.stringify(playerManager.gameEvents));
+            logger.info(JSON.stringify(playerManager.gameEvents));
             playerManager.players.forEach(function (player) {
                 var negs = [];
                 playerManager.players.forEach(function(player){

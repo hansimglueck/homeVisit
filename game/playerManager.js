@@ -5,6 +5,8 @@
     var gameConf = require('./gameConf');
     var gameRecording = require('./gameRecording');
     require('../homevisit_components/stringFormat');
+    var logger = require('log4js').getLogger();
+
 
     var PlayerManager = function () {
         this.players = [];
@@ -108,11 +110,11 @@
                             break;
 
                         default:
-                            console.log("unknown message-type");
+                            logger.info("unknown message-type");
                             break;
                     }
                 } catch (e) {
-                    console.log("ERROR in playerManager.newMessage! " + e.stack);
+                    logger.error("ERROR in playerManager.newMessage! " + e.stack);
                 }
             }
         },
@@ -154,10 +156,10 @@
         vote: function (clientId, data) {
             var playerId = data.playerId;
             var pollId = data.pollId;
-            console.log("Got Vote for " + pollId + " from Player " + playerId);
+            logger.info("Got Vote for " + pollId + " from Player " + playerId);
 
             wsManager.msgDevicesByRole('MC', 'vote', data);
-            console.log("VOTE GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            logger.info("VOTE GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
             var poll = this.polls[pollId];
             if (typeof poll === "undefined") {
@@ -178,7 +180,7 @@
             var playerId = data.playerId;
             var rate = data.rate;
             this.rating[playerId] = rate;
-            console.log("rate: " + this.rating);
+            logger.info("rate: " + this.rating);
             this.calcAvgRate();
 
             this.broadcastMessage('rates', {avgRatings: this.avgRatings});
@@ -265,7 +267,7 @@
 
         setStatusMessage: function (clientId, role, msg) {
             var data = msg.data;
-            console.log(data);
+            logger.info(data);
             if (typeof data !== "undefined") {
                 try {
                     switch (data.cmd) {
@@ -274,35 +276,35 @@
                         //    break;
                         case "toggleSelected":
                             this.players[data.id].selected ^= true;
-                            console.log("Set Player #: " + data.id + " .selected = " + this.players[data.id].selected);
+                            logger.info("Set Player #: " + data.id + " .selected = " + this.players[data.id].selected);
                             break;
                         case "deselectAll":
                             this.players.forEach(function (player) {
                                 player.selected = false;
                             });
-                            console.log("Deselect All Players");
+                            logger.info("Deselect All Players");
                             break;
                         case "toggleAway":
                             this.players[data.id].away ^= true;
-                            console.log("Set Player #: " + data.id + " .away = " + this.players[data.id].away);
+                            logger.info("Set Player #: " + data.id + " .away = " + this.players[data.id].away);
                             break;
                         case "setUpcoming":
                             this.setUpcoming(data.id);
-                            console.log("Set Player #: " + data.id + " as upcoming");
+                            logger.info("Set Player #: " + data.id + " as upcoming");
                             break;
                         case "setAct":
-                            console.log("Set Player #: " + data.id + " as active");
+                            logger.info("Set Player #: " + data.id + " as active");
                             break;
                         case "throwOut":
-                            console.log("Remove Player #: " + data.id + " from game");
+                            logger.info("Remove Player #: " + data.id + " from game");
                             this.leaveGame(this.players[data.id].clientId);
                             break;
                         default:
-                            console.log("unknown message-type");
+                            logger.info("unknown message-type");
                             break;
                     }
                 } catch (e) {
-                    console.log("ERROR in playerManager.newMessage! " + e.stack);
+                    logger.info("ERROR in playerManager.newMessage! " + e.stack);
                 }
             }
             this.sendPlayerStatus(-1);
@@ -321,17 +323,17 @@
                         this.polls[item.poll.id] = item.poll;
                         item.poll.setMaxVotes(this.deliverMessage(device, "display", item.getWsContent()));
                         wsManager.msgDevicesByRole('MC', 'startvote', item.getWsContent());
-                        console.log("STARTVOTE GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        logger.info("STARTVOTE GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                         break;
                     case "card":
                         this.deliverMessage(device, "display", item.getWsContent());
                         wsManager.msgDevicesByRole('MC', 'card', item.getWsContent());
-                        console.log("CARD GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        logger.info("CARD GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                         break;
                     case "results":
                         this.deliverMessage(device, "display", item.getWsContent());
                         //wsManager.msgDevicesByRole('MC', 'results', item.getWsContent());
-                        //console.log("RESULTS GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                        //logger.info("RESULTS GESENDET!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                         //this.results(item);
                         break;
                     case "eval":
@@ -361,11 +363,11 @@
                 }
             } catch (e) {
                 //TODO: einen schönen weg finden, um solche Errors nach möglichkeit im admin-log zu zeigen
-                console.log("ERROR in playerManager.addItem! " + e.stack);
+                logger.info("ERROR in playerManager.addItem! " + e.stack);
             }
         },
         results: function (resultItem) {
-            //console.log("preparing result " + resultId);
+            //logger.info("preparing result " + resultId);
             //var newestVoteId = this.voteItems.length - 1;
             //var resultItem = this.resultItems[resultId];
             if (resultItem.opts) {
@@ -392,7 +394,7 @@
             var resData = [];
 
             //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
-            //console.log("maxVoteCount=" + voteItem.maxCount);
+            //logger.info("maxVoteCount=" + voteItem.maxCount);
             if (resultType === "numberStats") {
                 //send stats as array: [sum, avg]
                 resData = [result.sum, result.average, result.minVal, result.maxVal];
@@ -458,20 +460,20 @@
                 next = answers[next];
             }
             if (!ok) {
-                console.log("Answers are not yielding an Order!");
+                logger.info("Answers are not yielding an Order!");
             }
             this.sendPlayerStatus(-1);
             this.broadcastMessage("display", {type: "seatOrder"});
         },
 
         playRoulette: function (result) {
-            console.log("play roulette");
+            logger.info("play roulette");
             var self = this;
             self.broadcastMessage("display", {
                 type: 'card',
                 text: this.gettext.gettext('You are NOT in the game!')
             });
-            console.log(result.positivePlayerIds);
+            logger.info(result.positivePlayerIds);
             if (result.positivePlayerIds.length === 0) {
                 return;
             }
@@ -492,7 +494,7 @@
             var cnt = item.positivePlayerIds.length;
             var turn = item.positivePlayerIds[steps % cnt];
             var self = this;
-            console.log("step " + steps + "turn=" + turn);
+            logger.info("step " + steps + "turn=" + turn);
             if (steps === 0) {
                 cb.call(self, item, turn);
             }
@@ -514,7 +516,7 @@
                 var id1 = id0 + Math.floor(amount / 2) % amount;
                 winners.push(item.positivePlayerIds[id1]);
             }
-            console.log("and the winner is: " + winners);
+            logger.info("and the winner is: " + winners);
             winners.forEach(function (win) {
                 self.sendMessage(win, "fx", {type: "flashAndSound", color: "green", sound: "win", time: 2000});
             });
@@ -565,7 +567,7 @@
         },
 
         getPlayerGroup: function (identifier) {
-            console.log("getPlayerGroup " + identifier);
+            logger.info("getPlayerGroup " + identifier);
             var ret;
             var self = this;
             var inverse = false;
@@ -633,7 +635,7 @@
             var ret2 = ret.filter(function (player) {
                 return player.joined;
             });
-            console.log(ret2.map(function (player) {
+            logger.info(ret2.map(function (player) {
                 return player.playerId;
             }));
             return ret2;
@@ -662,7 +664,7 @@
             }
         },
         sendPlayerStatus: function (playerId) {
-            console.log("playerManager sending playerStatus");
+            logger.info("playerManager sending playerStatus");
             if (this.players[playerId]) {
                 this.sendMessage(playerId, "joined", {
                     player: {
@@ -726,7 +728,7 @@
             return playerId;
         },
         calcRanking: function () {
-            console.log("playerManager calcs ranking");
+            logger.info("playerManager calcs ranking");
             var self = this;
             var ranking = this.players.map(function (p, id) {
                 return {
@@ -989,7 +991,7 @@
                 this.setUpcoming(this.onTurn + 1);
             }
             this.sendPlayerStatus(-1);
-            console.log("Now on turn: " + this.onTurn);
+            logger.info("Now on turn: " + this.onTurn);
         },
         advanceTurnTo: function (x) {
             this.onTurn = x;
@@ -1005,7 +1007,7 @@
                 this.setUpcoming(this.onTurn + 1);
             }
             this.sendPlayerStatus(-1);
-            console.log("Now on turn: " + this.onTurn);
+            logger.info("Now on turn: " + this.onTurn);
         },
 
         // der, der nach dem nächsten dran sein soll
@@ -1017,7 +1019,7 @@
                 return;
             }
             this.sendPlayerStatus(-1);
-            console.log("Next on turn: " + this.upcoming);
+            logger.info("Next on turn: " + this.upcoming);
         }
     };
 

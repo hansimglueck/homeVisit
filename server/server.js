@@ -5,7 +5,7 @@
 
     var express = require('express');
     var path = require('path');
-    var logger = require('morgan');
+    //var logger = require('morgan');
     var cookieParser = require('cookie-parser');
     var bodyParser = require('body-parser');
 
@@ -13,6 +13,9 @@
     var playerManager = require('../game/playerManager.js');
     var gameRecordings = require('../game/gameRecording.js');
     var raspiTools = require('../game/raspiTools.js');
+
+    var log4js = require('log4js');
+    var logger = require('log4js').getLogger();
 
     var conf = require('../homevisitConf');
     var app = express();
@@ -63,7 +66,7 @@
 
     // load game conf
     mongoConnection(function (db) {
-        console.log("Database connection established");
+        logger.info("Database connection established");
         gameConf.syncFromDb();
     });
 
@@ -72,7 +75,8 @@
     app.set('view engine', 'ejs');
 
     // middlewares
-    app.use(logger('dev'));
+//    app.use(logger('dev'));
+    app.use(log4js.connectLogger(logger, { level: 'auto' }));
     app.use(bodyParser.json({ limit: '50mb' }));
     app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
     app.use(cookieParser());
@@ -131,7 +135,7 @@
 
     // tschacka!
     server.listen(conf.port, conf.bindAddress, function () {
-        console.log('Listening on ' + conf.bindAddress + ':' + conf.port);
+        logger.info('Listening on ' + conf.bindAddress + ':' + conf.port);
     });
 
 })();

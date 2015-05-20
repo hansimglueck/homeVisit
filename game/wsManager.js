@@ -2,6 +2,8 @@
     'use strict';
 
     var hat = require('hat');
+    var logger = require('log4js').getLogger();
+
 
     function WsManager() {
         this.wss = {};
@@ -38,7 +40,7 @@
                 //oouch. die lokale variable clientId muss zu der .clientId des elements des client-array
                 //in der dieser ws steckt passen
 
-                console.info("websocket connection open");
+                logger.info("websocket connection open");
 
                 //var clientId;
                 //clientId = g.clients.length;
@@ -54,16 +56,16 @@
                 ws.pongg = function () {
                     try {
                         if (ws.readyState !== 1) {
-                            console.log("pong: disconnected! stopping pingpong");
+                            logger.info("pong: disconnected! stopping pingpong");
                             return;
                         }
-                        //console.log("pong");
-                        //console.log("pong: wss.clients.length: " + self.wss.clients.length);
-                        //console.log("pong: ws.id=" + ws._ultron.id);
+                        //logger.info("pong");
+                        //logger.info("pong: wss.clients.length: " + self.wss.clients.length);
+                        //logger.info("pong: ws.id=" + ws._ultron.id);
                         try {
                             ws.send("pong");
                         } catch (e) {
-                            console.log("Error in PONG send!");
+                            logger.error("Error in PONG send!");
                         }
                         waitingForPing = true;
                         var that = this;
@@ -71,7 +73,7 @@
                             that.checkPing();
                         }, checkDelay);
                     } catch (e) {
-                        console.log("pongg ERROR");
+                        logger.info("pongg ERROR");
                     }
                 };
 
@@ -81,43 +83,43 @@
                             return;
                         }
                         waitingForPing = false;
-                        //console.log("pong0: lastPong="+lastPong);
+                        //logger.info("pong0: lastPong="+lastPong);
                         var d = new Date();
                         var now = d.getTime();
-                        //console.log("ping: now-lastPing=" + (now - lastPing));
-                        //console.log("ping: ws.id=" + ws._ultron.id);
+                        //logger.info("ping: now-lastPing=" + (now - lastPing));
+                        //logger.info("ping: ws.id=" + ws._ultron.id);
                         lastPing = now;
                         timeouts = 0;
-                        //console.log("pong1: lastPong="+lastPong);
+                        //logger.info("pong1: lastPong="+lastPong);
                         var that = this;
                         setTimeout(function () {
                             that.pongg();
                         }, responseDelay);
                     } catch (e) {
-                        //console.log("pingg ERROR")
+                        //logger.info("pingg ERROR")
                     }
                 };
 
                 ws.checkPing = function () {
                     try {
-                        //console.log("checkPong: lastPong="+lastPong);
+                        //logger.info("checkPong: lastPong="+lastPong);
                         var d = new Date();
                         var now = d.getTime();
                         if (now - lastPing > checkDelay) {
                             timeouts++;
-                            //console.log("checkPing Timeout - " + (now - lastPing) + " timeouts=" + timeouts);
-                            //console.log("ckeckPing ws.id=" + ws._ultron.id);
+                            //logger.info("checkPing Timeout - " + (now - lastPing) + " timeouts=" + timeouts);
+                            //logger.info("ckeckPing ws.id=" + ws._ultron.id);
                             if (timeouts > maxTimeouts) {
-                                //console.log("checkPing CLOSE!");
+                                //logger.info("checkPing CLOSE!");
                                 ws.close();
                                 ws.cloosed(false);
                                 return;
                             }
                             ws.pongg();
-                        } //else console.log("checkPing: OK - " + (now - lastPing));
-                        //console.log("checkPing ws.id=" + ws._ultron.id);
+                        } //else logger.info("checkPing: OK - " + (now - lastPing));
+                        //logger.info("checkPing ws.id=" + ws._ultron.id);
                     } catch (e) {
-                        console.log("checkPing ERROR");
+                        logger.info("checkPing ERROR");
                     }
                 };
 
@@ -126,13 +128,13 @@
                         var clientId = ws.clientId;
                         var d = new Date();
                         var now = d.getTime();
-                        console.log("closed: websocket connection closed " + (now - lastPing));
-                        console.log("closed: ws.id=" + ws._ultron.id);
+                        logger.info("closed: websocket connection closed " + (now - lastPing));
+                        logger.info("closed: ws.id=" + ws._ultron.id);
                         self.clients[clientId].connected = false;
                         self.applyRoleCallbacks(ws, {type: "disconnected"});
                         self.sendDeviceList();
                     } catch (e) {
-                        console.log("ERROR: " + e.message);
+                        logger.info("ERROR: " + e.message);
                     }
 
                 };
@@ -145,10 +147,10 @@
                     try {
                         var clientId = ws.clientId;
 
-                        console.log("websocket received a message from " + clientId + ": " + data);
+                        logger.info("websocket received a message from " + clientId + ": " + data);
                         //var msg = (typeof data == "Object") ? JSON.parse(data) : data;
                         var msg = JSON.parse(data);
-                        //console.log(typeof data);
+                        //logger.info(typeof data);
 
                         if (msg.type) {
                             switch (msg.type) {
@@ -169,7 +171,7 @@
                                     break;
 
                                 default:
-                                    console.log("unknown message-type");
+                                    logger.info("unknown message-type");
                                     break;
 
                             }
@@ -178,20 +180,20 @@
                         }
 
                     } catch (err) {
-                        console.log("ERRROR: " + err.stack);
+                        logger.info("ERRROR: " + err.stack);
                     }
                     //ws.send(JSON.stringify({msg:{connectionId:userId}}));
                 });
                 ws.on("error", function () {
-                    console.log("websocket error!");
+                    logger.error("websocket error!");
                 });
 
                 ws.on("close", function () {
-                    console.log("ws.onClose!");
+                    logger.info("ws.onClose!");
                     ws.cloosed(true);
                 });
             });
-            console.log("websocket server created");
+            logger.info("websocket server created");
 
         },
 
@@ -221,7 +223,7 @@
                     try {
                         cb.fn.call(cb.self, ws.clientId, msg);
                     } catch (e) {
-                        console.log("ERROR in wsManager.applyRoleCallback: " + e.stack);
+                        logger.info("ERROR in wsManager.applyRoleCallback: " + e.stack);
                     }
                 }
             });
@@ -232,7 +234,7 @@
                     try {
                         cb.fn.call(cb.self, ws.clientId, ws.role, msg);
                     } catch (e) {
-                        console.log("ERROR in wsManager.applyTypeCallback: " + e.stack);
+                        logger.info("ERROR in wsManager.applyTypeCallback: " + e.stack);
                     }
                 }
             });
@@ -266,15 +268,15 @@
                     name = dd.name;
                 }
             }
-            //console.log("ws-sid: " + sid);
+            //logger.info("ws-sid: " + sid);
             if (this.sids.indexOf(sid) === -1 && sid !== "NN") {
                 sid = hat();
                 this.registerSID(sid);
                 //ws.send(JSON.stringify({type: "reload"}));
                 //return;
             }
-            //console.log(this.sids);
-            //console.log("ws-sid: " + sid);
+            //logger.info(this.sids);
+            //logger.info("ws-sid: " + sid);
             var client;
             //schau mal, ob es schon einen client mit der sid gibt...
             //wenn ja: ws darein schreiben und den dazugehörigen player im data senden

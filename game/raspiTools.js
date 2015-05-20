@@ -8,6 +8,8 @@
     var mongoUri = require('../homevisitConf').mongoUri;
     var wsManager = require('./wsManager.js');
     var conf = require('../homevisitConf');
+    var logger = require('log4js').getLogger();
+
 
     function RaspiTools() {
         this.onlineTasks = [];
@@ -37,7 +39,7 @@
                 if (self.onlineStateArr[0] === self.onlineStateArr[1] && self.onlineStateArr[2] === self.onlineStateArr[1]) {
                     if (online !== self.onlineState) {
                         self.onlineState = online;
-                        console.log("New onlineState: " + self.onlineState);
+                        logger.info("New onlineState: " + self.onlineState);
                         var ip = "";
                         var iname = "wlan1";
                         Object.keys(os.networkInterfaces()).forEach(function (i, name) {
@@ -49,7 +51,7 @@
                             });
                         });
                         var text = online ? "Online - IP = " + ip : "Offline";
-                        console.log(text);
+                        logger.info(text);
                         //if (online) wsManager.msgDevicesByRole("printer", "display", {type: "card", text: text});
                         self.sendOsInfo();
 
@@ -67,7 +69,7 @@
             task.task.call(task.context);
             if (task.interval !== 0) {
                 task.intervalObject = setInterval(function () {
-                    console.log("starting task " + id);
+                    logger.info("starting task " + id);
                     task.task.call(task.context);
                 }, task.interval);
             }
@@ -91,7 +93,7 @@
                         case "os":
                             switch (msg.data.cmd) {
                                 case "shutdown":
-                                    console.log("shutdown!!!");
+                                    logger.info("shutdown!!!");
                                     exec("sudo shutdown -h now", function (error, stdout, stderr) {
                                     });
                                     break;
@@ -100,7 +102,7 @@
                                     });
                                     break;
                                 case "restartServer":
-                                    console.log("restarting server");
+                                    logger.info("restarting server");
                                     exec("sudo /home/pi/homeVisit/shellscripts/restart_homevisit", function (error, stdout, stderr) {
                                     });
                                     break;
@@ -109,16 +111,16 @@
                                     this.sendOsInfo();
                                     break;
                                 case "restartwlan1":
-                                    console.log("restarting wlan1");
+                                    logger.info("restarting wlan1");
                                     var self = this;
                                     exec("/home/pi/homeVisit/shellscripts/wlan1_conf " + msg.data.param.ssid + " " + msg.data.param.passwd, function (error, stdout, stderr) {
-                                        console.log("exec1");
+                                        logger.info("exec1");
                                     });
                                     break;
                             }
                             break;
                         case "database":
-                            console.log("db command", msg);
+                            logger.info("db command", msg);
                             switch (msg.data) {
                                 case "connect":
                                     break;
@@ -142,11 +144,11 @@
                             break;
 
                         default:
-                            console.log("RaspiTools: unknown message-type");
+                            logger.info("RaspiTools: unknown message-type");
                             break;
                     }
                 } catch (e) {
-                    console.log("ERROR in raspiTools.newMessage! " + e.stack);
+                    logger.info("ERROR in raspiTools.newMessage! " + e.stack);
                 }
             }
         },
@@ -159,7 +161,7 @@
                 } else {
                     connected = true;
                 }
-                console.log("db connection ", connected);
+                logger.info("db connection ", connected);
                 wsManager.msgDevicesByRole(role, 'dbStatus', {
                     connected: connected
                 });
@@ -182,14 +184,14 @@
 
         importSessions: function () {
             exec(conf.pathToApp + "homevisit_components/mongo/importSessions.js " + conf.sessionsUrl, function (error, stdout, stderr) {
-                if (error) console.log("Error in importSessions: " + error);
-                console.log("Import Sessions: " + stdout);
+                if (error) logger.error("Error in importSessions: " + error);
+                logger.info("Import Sessions: " + stdout);
             });
         },
         exportRecordingsToDizzi: function () {
             exec("sudo -u pi mongoexport -d homeVisit -c recordings | sudo -u pi ssh "+conf.dizziSSH+" mongoimport -d homeVisit -c recordings --upsert", function (error, stdout, stderr) {
-                if (error) console.log("Error in exportRecordingsToDizzi: " + error);
-                console.log("Exported Recordings to dizzi " + stdout);
+                if (error) logger.error("Error in exportRecordingsToDizzi: " + error);
+                logger.info("Exported Recordings to dizzi " + stdout);
             });
 
         }
