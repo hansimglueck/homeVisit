@@ -5,12 +5,13 @@
                 <h2 class="modal-title" id="myModalLabel" translate>WIFI login</h2>
             </div>
             <div class="modal-body">
-                Connect {{ssid}}:
+                Enter password for {{ssid}}:
                 <input type="text" ng-model="password">
             </div>
             <div class="modal-footer">
                 <h3 class="pull-left text-danger">{{message}}</h3>
                 <button type="button" class="btn btn-lg btn-primary" ng-click="closeModal()" translate>OK</button>
+                <button type="button" class="btn btn-lg btn-danger" data-dismiss="modal" translate>Close</button>
             </div>
         </div>
     </div>

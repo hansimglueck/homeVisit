@@ -88,7 +88,7 @@
                             // it as you need to.
                             modal.element.modal();
                             modal.close.then(function (result) {
-                                SystemInfo.connectWifi(result);
+                                SystemInfo.restartWlan1(result);
                             });
                         });
 
@@ -128,10 +128,10 @@
             infoFactory.shutdown = function (reboot) {
                 Socket.emit("os", {cmd: d});
             };
-            infoFactory.restartWlan1 = function () {
+            infoFactory.restartWlan1 = function (wifi) {
                 Socket.emit("os", {
                     cmd: "restartwlan1",
-                    param: {ssid: $scope.wlanId, passwd: $scope.wlanPasswd}
+                    param: {ssid: wifi.ssid, passwd: wifi.password}
                 });
             };
             infoFactory.dbAction = function (action) {
@@ -140,10 +140,6 @@
             infoFactory.requestServerInfo = function () {
                 Socket.emit("database", "getStatus");
                 Socket.emit("os", {cmd: "getInfo"});
-            };
-            infoFactory.connectWifi = function (wlan) {
-
-                console.log(wlan);
             };
             return infoFactory;
         });

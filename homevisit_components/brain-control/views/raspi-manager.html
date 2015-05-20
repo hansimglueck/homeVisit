@@ -50,13 +50,15 @@
             </div>
             <ul class="list-group" collapse="collapsed.wlan1">
                 <li class="list-group-item">
-                    Available Networks:
-                    <ul class="list-unstyled">
-                        <li ng-repeat="wifi in systemInfo.wifiList track by $index">
-                            <a ng-click="connectWifi($index)">{{wifi}}</a>
-                        </li>
-                    </ul>
-                    <button class="btn btn-primary" ng-click="scanWifi()" translate>SCAN</button>
+                    <h4>Available Networks:</h4>
+                    <p ng-repeat="wifi in systemInfo.wifiList track by $index">
+                        <button class="btn btn-default" ng-click="connectWifi($index)" translate>CONNECT</button>
+                        {{wifi}}
+                    </p>
+
+                    <p>
+                        <button class="btn btn-primary" ng-click="scanWifi()" translate>SCAN</button>
+                    </p>
                 </li>
                 <li class="list-group-item">
                     <label for="raspi-wlan-ssid" translate>Wi-Fi name:</label>
@@ -86,7 +88,8 @@
                         <tbody>
                         <tr>
                             <td translate>System</td>
-                            <td><samp>{{systemInfo.osInfo.hostname}} / {{systemInfo.osInfo.type}} {{systemInfo.osInfo.arch}}</samp></td>
+                            <td><samp>{{systemInfo.osInfo.hostname}} / {{systemInfo.osInfo.type}}
+                                {{systemInfo.osInfo.arch}}</samp></td>
                         </tr>
                         <tr>
                             <td translate>Uptime</td>

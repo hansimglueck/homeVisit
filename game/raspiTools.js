@@ -111,10 +111,16 @@
                                     this.sendOsInfo();
                                     break;
                                 case "restartwlan1":
+                                    //TODO: add ssid/password to wpa_supplicant instead of replacing
                                     logger.info("restarting wlan1");
                                     var self = this;
                                     exec("/home/pi/homeVisit/shellscripts/wlan1_conf " + msg.data.param.ssid + " " + msg.data.param.passwd, function (error, stdout, stderr) {
-                                        logger.info("exec1");
+                                        if (stderr) {
+                                            logger.error(stderr);
+                                        }
+                                        if (stdout) {
+                                            logger.info(stdout);
+                                        }
                                     });
                                     break;
                                 case "scanWifi":
