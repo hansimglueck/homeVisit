@@ -8,6 +8,32 @@
     }
 
     Queries.prototype = {
+        getRecordings: function (callback) {
+            mongoConnection(function (db) {
+                var recColl = db.collection('recordings');
+                recColl.aggregate([
+                    {
+                        $group: {
+                            _id: "$recordingId",
+                            sessionId: {$first: "$sessionId"},
+                            uploaded: {$max: {$eq: ["$name", "tawanUploadSuccess"]}},
+                            recordings: {$push: "$$CURRENT"},
+                            count: {$sum: 1},
+                            first: {$min: "$absTimestamp"},
+                            last: {$max: "$absTimestamp"}
+                        }
+                    },
+                    {
+                        $sort: {first: -1}
+                    }
+                ], function (err, result) {
+                    if (err) {
+                        console.log(err);
+                    }
+                    callback(err, result)
+                });
+            });
+        },
         getCompletedRecordings: function (callback) {
             mongoConnection(function (db) {
                 var recColl = db.collection('recordings');

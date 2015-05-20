@@ -120,6 +120,20 @@
                 }
             };
         })
+        .directive('recordings', function () {
+            return {
+                restrict: 'AE',
+                replace: 'true',
+                templateUrl: '/homevisit_components/views/recordings.html',
+                controller: function ($scope, Socket, gettextCatalog, Recordings) {
+                    $scope.isCollapsed = false;
+                    $scope.recordings = Recordings.get();
+                    $scope.getDate = function(ts) {
+                        return new Date(ts*1000);
+                    }
+                }
+            };
+        })
         .directive('keypad', function() {
             return {
                 restrict: 'E',

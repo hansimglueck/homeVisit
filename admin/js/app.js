@@ -19,7 +19,8 @@
         'hvSetFactory',
         'hvLanguage',
         'gettext',
-        'hvDirectives'
+        'hvDirectives',
+        'hvRecordingsFactory'
     ])
     .config(function ($routeProvider, $anchorScrollProvider) {
     //        $locationProvider.html5Mode(true);

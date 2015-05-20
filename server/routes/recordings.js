@@ -7,10 +7,9 @@
     var homevisitQueries = require('../../game/homevisitQueries.js')
 
     router.get('/', function (req, res, next) {
-
-        queryRecordings.then(function(recordings) {
+        homevisitQueries.getRecordings(function(err, recordings){
             res.json(recordings);
-        }).done();
+        });
     });
     router.get('/complete', function (req, res, next) {
         homevisitQueries.getCompletedRecordings(function(err, recordings){
