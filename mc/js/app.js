@@ -26,7 +26,8 @@ angular
         'gettext',
         'chart.js',
         'hvDirectives',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'hvBrainControl'
 
     ])
     .config(function ($routeProvider) {
@@ -74,13 +75,14 @@ angular
                 redirectTo: '/'
             });
     })
-    .run(function (Socket, Status, Deck, TeamActionInfo, gettextCatalog, gameSessionsFactory, Display) {
+    .run(function (Socket, Status, Deck, TeamActionInfo, gettextCatalog, gameSessionsFactory, Display, SystemInfo) {
         Socket.on('languageChange', function (data) {
             gettextCatalog.setCurrentLanguage(data.language);
         });
         Socket.connect('MC', function() {
             Socket.emit('getLanguage');
             Socket.emit('getGameSessions');
+            SystemInfo.start();
         });
         Status.start();
         Deck.start();

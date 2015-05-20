@@ -9,7 +9,7 @@
     </div>
     <ul class="list-group">
         <li class="list-group-item" ng-click="collapsed.server = !collapsed.server"
-            ng-class="{ 'text-danger': !socket.connected(), bubble: !dbStatus.socket.connected() }">
+            ng-class="{ 'text-danger': !socket.connected(), bubble: !systemInfo.dbStatus.socket.connected() }">
             <i class="fa fa-circle"
                ng-class="{'text-success': socket.server.connected, 'text-danger': !socket.server.connected}"></i>
 
@@ -24,11 +24,11 @@
             </ul>
         </li>
         <li class="list-group-item" ng-click="collapsed.db = !collapsed.db"
-            ng-class="{ 'text-danger': !dbStatus.connected, bubble: !dbStatus.connected }">
+            ng-class="{ 'text-danger': !systemInfo.dbStatus.connected, bubble: !systemInfo.dbStatus.connected }">
             <i class="fa fa-circle"
-               ng-class="{'text-success': dbStatus.connected, 'text-danger': !dbStatus.connected}"></i>
+               ng-class="{'text-success': systemInfo.dbStatus.connected, 'text-danger': !systemInfo.dbStatus.connected}"></i>
 
-            <span>DB: </span>{{dbStatus.connected ? "connected" : "not connected"}}
+            <span>DB: </span>{{systemInfo.dbStatus.connected ? "connected" : "not connected"}}
             <i class="pull-right glyphicon"
                ng-class="{'glyphicon-chevron-down': !collapsed.db, 'glyphicon-chevron-right': collapsed.db}"></i>
             <ul class="list-group" collapse="collapsed.db">
@@ -42,27 +42,28 @@
         <li class="list-group-item">
             <div ng-click="collapsed.wlan1 = !collapsed.wlan1">
                 <i class="fa fa-circle"
-                   ng-class="{'text-success': osInfo.online, 'text-danger': !osInfo.online}"
-                   ng-attr-title="{{osInfo.online && 'Online' || 'Offline' }}"></i>
-                <span>WiFi-Internet</span> {{printInterfaces('wlan1')}}
+                   ng-class="{'text-success': systemInfo.osInfo.online, 'text-danger': !systemInfo.osInfo.online}"
+                   ng-attr-title="{{systemInfo.osInfo.online && 'Online' || 'Offline' }}"></i>
+                <span>WiFi-Internet</span> {{printInterfaces('wlan1')}} <strong>{{systemInfo.wlan1Message.text}}</strong> <span ng-show="systemInfo.wlan1Message.spin"><i class="fa fa-lg fa-refresh fa-spin"></i></span>
                 <i class="pull-right glyphicon"
                    ng-class="{'glyphicon-chevron-down': !collapsed.wlan1, 'glyphicon-chevron-right': collapsed.wlan1}"></i>
             </div>
             <ul class="list-group" collapse="collapsed.wlan1">
                 <li class="list-group-item">
-                    <label for="raspi-wlan-ssid" translate>Wi-Fi name:</label>
-                    <input type="text" class="form-control" id="raspi-wlan-ssid" ng-model="wlanId">
-                <li class="list-group-item">
-                    <label for="raspi-wlan-pwd" translate>Wi-Fi password</label>
-                    <input type="password" class="form-control" id="raspi-wlan-pwd" ng-model="wlanPasswd"/>
-                </li>
-                <li class="list-group-item buttons">
-                    <button class="btn btn-danger" ng-click="restartWlan1()" translate>RESTART WI-FI</button>
+                    <h4>Available Networks:</h4>
+                    <p ng-repeat="wifi in systemInfo.wifiList track by $index">
+                        <button class="btn btn-default" ng-click="connectWifi($index)" translate>CONNECT</button>
+                        {{wifi}}
+                    </p>
+
+                    <p>
+                        <button class="btn btn-primary" ng-click="scanWifi()" translate>SCAN</button>
+                    </p>
                 </li>
             </ul>
         </li>
         <li class="list-group-item" ng-click="collapsed.osInfo = !collapsed.osInfo">
-            <span translate>OS Info for {{osInfo.hostname}}</span>
+            <span translate>OS Info for {{systemInfo.osInfo.hostname}}</span>
             <i class="pull-right glyphicon"
                ng-class="{'glyphicon-chevron-down': !collapsed.osInfo, 'glyphicon-chevron-right': collapsed.osInfo}"></i>
             <ul class="list-unstyled" collapse="collapsed.osInfo">
@@ -77,31 +78,32 @@
                         <tbody>
                         <tr>
                             <td translate>System</td>
-                            <td><samp>{{osInfo.hostname}} / {{osInfo.type}} {{osInfo.arch}}</samp></td>
+                            <td><samp>{{systemInfo.osInfo.hostname}} / {{systemInfo.osInfo.type}}
+                                {{systemInfo.osInfo.arch}}</samp></td>
                         </tr>
                         <tr>
                             <td translate>Uptime</td>
-                            <td>{{osInfo.uptime / 60 | number: 0}} min</td>
+                            <td>{{systemInfo.osInfo.uptime / 60 | number: 0}} min</td>
                         </tr>
                         <tr>
                             <td translate>Memory</td>
-                            <td>{{ osInfo.freemem/(1024*1024) | number: 2 }} MiB (free)</td>
+                            <td>{{ systemInfo.osInfo.freemem/(1024*1024) | number: 2 }} MiB (free)</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>{{ osInfo.totalmem/(1024*1024) | number: 2 }} MiB (total)</td>
+                            <td>{{ systemInfo.osInfo.totalmem/(1024*1024) | number: 2 }} MiB (total)</td>
                         </tr>
                         <tr>
                             <td translate>Load</td>
-                            <td>1min: {{osInfo.loadavg[0] | number: 2 }}</td>
+                            <td>1min: {{systemInfo.osInfo.loadavg[0] | number: 2 }}</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>5min: {{osInfo.loadavg[1] | number: 2 }}</td>
+                            <td>5min: {{systemInfo.osInfo.loadavg[1] | number: 2 }}</td>
                         </tr>
                         <tr>
                             <td></td>
-                            <td>15min: {{osInfo.loadavg[2] | number: 2 }}</td>
+                            <td>15min: {{systemInfo.osInfo.loadavg[2] | number: 2 }}</td>
                         </tr>
                         <tr>
                             <td translate>Interfaces</td>
@@ -111,8 +113,8 @@
                             <td translate>Online</td>
                             <td>
                                 <i class="fa fa-2x fa-circle"
-                                   ng-class="{'text-success': osInfo.online, 'text-danger': !osInfo.online}"
-                                   ng-attr-title="{{osInfo.online && 'Online' || 'Offline' }}"></i>
+                                   ng-class="{'text-success': systemInfo.osInfo.online, 'text-danger': !systemInfo.osInfo.online}"
+                                   ng-attr-title="{{systemInfo.osInfo.online && 'Online' || 'Offline' }}"></i>
                             </td>
                         </tr>
                         </tbody>
@@ -120,7 +122,7 @@
                 </li>
             </ul>
         </li>
-         <li class="list-group-item buttons panel-body">
+        <li class="list-group-item buttons panel-body">
             <button class="btn btn-danger" ng-click="shutdown(false)" translate>SHUTDOWN</button>
             <button class="btn btn-warning" ng-click="shutdown(true)" translate>REBOOT</button>
         </li>
