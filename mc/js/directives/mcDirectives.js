@@ -39,7 +39,8 @@
                     itemBlock: '=itemblock',
                     option: '=',
                     goto: '=',
-                    active: '='
+                    active: '=',
+                    index: '='
                 },
                 controller: function ($scope, Playback) {
                     $scope.playback = Playback.playback;
@@ -72,7 +73,7 @@
                     $scope.inlineDeckElements = [];
                 },
                 link: function (scope, element, attrs) {
-                    scope.$watch('item.type', function(newValue, oldValue) {
+                    scope.$watch('item.typeee', function(newValue, oldValue) {
                         if( oldValue === "inlineSwitch"){
                             deleteInlineDecks()
                         }
@@ -80,6 +81,7 @@
                             appendInlineDecks()
                         }
                     }, true);
+                    if (scope.item.type === "inlineSwitch") appendInlineDecks();
                     function appendInlineDecks() {
                         var el = element.find(".item-content");
                         scope.item.inlineDecks.forEach(function(inlineDeck, id){
@@ -90,11 +92,11 @@
                         $compile(element.contents())(scope)
                     }
                     function deleteInlineDecks() {
-                        scope.inlineDeckElements.forEach(function(element){
-                            element.remove();
+                        scope.inlineDeckElements.forEach(function(el){
+                            el.remove();
                         });
                         scope.inlineDeckElements = [];
-                        $compile(element.contents())(scope)
+                        //$compile(element.contents())(scope)
                     }
                 }
 

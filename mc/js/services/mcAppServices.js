@@ -409,9 +409,8 @@
                             for (var i = 0; i < indexArray.length; i++) {
                                 if (i === 0) {
                                     blockItem = deck.items[indexArray[i]];
-                                } else
-                                if (i%2 === 0) {
-                                    blockItem = blockItem.inlineDecks[indexArray[i-1]].items[indexArray[i]];
+                                } else if (i % 2 === 0) {
+                                    blockItem = blockItem.inlineDecks[indexArray[i - 1]].items[indexArray[i]];
                                 }
                             }
                             return blockItem;
@@ -419,6 +418,8 @@
                         block.indexBlock = goBlock;
                         return block;
                     });
+
+                    console.log(deckFactory.goList);
 
                     deckFactory.previous = deck.items[stepIndex - 1];
                     deckFactory.next = deck.items[stepIndex + 1];
@@ -435,8 +436,10 @@
                     //TODO: ist das die richtige art und weise, rauszufinden, ob es mc-notes (in der aktuellen sprache) gibt?
                     var popUp = false;
                     if (deckFactory.currentDetailed.mcnote) {
-                        if (deckFactory.currentDetailed.mcnote[lang].trim().length > 0) {
-                            popUp = true;
+                        if (deckFactory.currentDetailed.mcnote[lang]) {
+                            if (deckFactory.currentDetailed.mcnote[lang].trim().length > 0) {
+                                popUp = true;
+                            }
                         }
                     }
                     if (deckFactory.mcTasks.select) {
@@ -795,9 +798,9 @@
             });
         })
 
-        .factory('ScriptScroll', function($location, $anchorScroll) {
+        .factory('ScriptScroll', function ($location, $anchorScroll) {
             var scriptScroll = {};
-            scriptScroll.scrollToAct = function() {
+            scriptScroll.scrollToAct = function () {
                 var newHash = "script-list-active";
                 if ($location.hash() !== newHash) {
                     // set the $location.hash to `newHash` and
