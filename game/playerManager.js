@@ -122,7 +122,7 @@
         leaveGame: function (clientId) {
             var playerId = this.getPlayerIdForClientId(clientId);
             this.players[playerId].joined = false;
-            require('./raspiTools.js').changeMonitoringValue("player", 1);
+            require('./raspiTools.js').changeMonitoringValue("player", -1);
             this.sendPlayerStatus(playerId);
         },
         requestJoin: function (clientId, msg) {

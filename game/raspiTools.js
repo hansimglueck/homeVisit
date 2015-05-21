@@ -47,7 +47,8 @@
                 necessary: 8,
                 hint: "Turn on 8 Phones, connect them to WIFI and start/restart the homevisit-App"
             }
-        ]
+        ];
+        this.monitoringState = 666;
     }
 
     RaspiTools.prototype = {
@@ -285,10 +286,11 @@
                 ret += (m.state >= m.necessary) ? "OK" : "no good! - Try: "+ m.hint;
                 return ret;
             }).join("\n");
-            logger.warn(message);
-            if (print) {
+            if (print && (this.monitoringState !== monitoringState)) {
+                logger.warn(message);
                 wsManager.msgDevicesByRole("printer", "display", {type: "info", text: message});
             }
+            this.monitoringState = monitoringState;
             return monitoringState;
         }
 
