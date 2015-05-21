@@ -125,14 +125,18 @@
                                     break;
                                 case "scanWifi":
                                     logger.info("polling wifis");
-                                    var list = ["abc", "def"];
-                                    wsManager.msgDeviceByIds([clientId], "wifi-list", list);
-                                    //exec("sudo iwlist wlan1 scan | grep 'ESSID'", function (error, stdout, stderr) {
-                                    //    logger.info(stdout);
-                                    //    var list = stdout.split("\n");
-                                    //    logger.info(list);
-                                    //    wsManager.msgDeviceByIds([clientId], "wifi-list", list);
-                                    //});
+                                    //var list = ["abc", "def"];
+                                    //wsManager.msgDeviceByIds([clientId], "wifi-list", list);
+                                    exec("/home/pi/homeVisit/shellscripts/ssidscan.sh", function (error, stdout, stderr) {
+                                        logger.info(stdout);
+                                        var list = stdout.split("\n");
+                                        list = list.map(function(item){
+                                            return item.slice(1,-1);
+                                        });
+                                        delete list[list.length-1];
+                                        logger.info(list);
+                                        wsManager.msgDeviceByIds([clientId], "wifi-list", list);
+                                    });
                                     break;
                             }
                             break;
