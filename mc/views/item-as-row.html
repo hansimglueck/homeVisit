@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-1">
+        <i class="fa pull-right" ng-class="itemIcons[item.type] || 'fa-asterisk'"></i>
+        {{index}}
+    </div>
+    <div class="col-md-11">
+        <div class="item-content" ng-switch="item.type">
+            <div ng-switch-when="vote" translate><strong>{{ item.text[lang] }}</strong></div>
+            <div ng-switch-when="inlineSwitch">
+<!--
+                <item-block ng-repeat="inlineDeck in item.inlineDecks track by $index" itemblock="inlineDeck">
+                </item-block>
+    -->
+            </div>
+            <div ng-switch-when="results" translate>Results are displayed</div>
+            <div ng-switch-when="sound">
+                {{ item.text[lang] }}
+            </div>
+            <div ng-switch-when="cmd" translate>command: {{ item.text[lang] }}</div>
+            <div ng-switch-when="config" translate>{{ item.configField }}->{{item.value}}</div>
+            <div ng-switch-when="deal" translate>Players are dealing</div>
+            <div ng-switch-when="rating" translate>Players are rating others</div>
+            <div ng-switch-when="eval" translate>Special code is executed</div>
+            <div ng-switch-default class="text-scroller"><strong>{{ item.text[lang] }}</strong></div>
+        </div>
+    </div>
+</div>

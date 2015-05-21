@@ -70,11 +70,15 @@ angular
                 templateUrl: '/mc/views/results.html',
                 controller: 'ResultsController'
             })
+            .when('/script', {
+                templateUrl: '/mc/views/script.html',
+                controller: 'ScriptCtrl'
+            })
             .otherwise({
                 redirectTo: '/'
             });
     })
-    .run(function (Socket, Status, Deck, TeamActionInfo, gettextCatalog, gameSessionsFactory, Display) {
+    .run(function (Socket, Status, Deck, TeamActionInfo, gettextCatalog, gameSessionsFactory, Display, $anchorScroll) {
         Socket.on('languageChange', function (data) {
             gettextCatalog.setCurrentLanguage(data.language);
         });
@@ -87,6 +91,7 @@ angular
         TeamActionInfo.start();
         gameSessionsFactory.start();
         Display.start();
+        $anchorScroll.yOffset = 250;
     });
 
 })();
