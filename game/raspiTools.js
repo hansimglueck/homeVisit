@@ -281,9 +281,9 @@
             logger.debug(this.monitoringTable);
             logger.info("Monitoring found " + monitoringState + " open Necessitys");
 
-            var message = this.monitoringTable.map(function (m) {
+            var message = "SETUP-STATUS\n"+this.monitoringTable.map(function (m) {
                 var ret = m.name.toUpperCase()+ ": ";
-                ret += (m.state >= m.necessary) ? "OK" : "no good! - Try: "+ m.hint;
+                ret += (m.state >= m.necessary) ? "OK" : "no good! \n -> Hint: "+ m.hint;
                 return ret;
             }).join("\n");
             if (print && (this.monitoringState !== monitoringState)) {
