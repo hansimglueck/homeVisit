@@ -38,6 +38,7 @@
                         SystemInfo.scanWifi();
                     };
                     $scope.connectWifi = function (id) {
+                        $scope.collapsed.wlan1 = true;
                         showWifiModal(SystemInfo.wifiList[id]);
                     };
                     $scope.dbAction = function (action) {

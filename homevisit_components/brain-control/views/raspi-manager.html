@@ -60,16 +60,6 @@
                         <button class="btn btn-primary" ng-click="scanWifi()" translate>SCAN</button>
                     </p>
                 </li>
-                <li class="list-group-item">
-                    <label for="raspi-wlan-ssid" translate>Wi-Fi name:</label>
-                    <input type="text" class="form-control" id="raspi-wlan-ssid" ng-model="wlanId">
-                <li class="list-group-item">
-                    <label for="raspi-wlan-pwd" translate>Wi-Fi password</label>
-                    <input type="password" class="form-control" id="raspi-wlan-pwd" ng-model="wlanPasswd"/>
-                </li>
-                <li class="list-group-item buttons">
-                    <button class="btn btn-danger" ng-click="restartWlan1()" translate>RESTART WI-FI</button>
-                </li>
             </ul>
         </li>
         <li class="list-group-item" ng-click="collapsed.osInfo = !collapsed.osInfo">
