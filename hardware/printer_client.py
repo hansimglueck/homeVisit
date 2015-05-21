@@ -59,12 +59,12 @@ def cb(msg):
 		lines = unicode.splitlines(txt.count('\n'))
 
 		p.double_width(False)
-		p.set_linespacing(20)
+		p.set_linespacing(32)
 		char_count = 0
 	        for item in lines:
         		item = replaceSpecialChars(item)
         		unwrapped = item
-        		wrapped = textwrap.fill(unwrapped, 16)
+        		wrapped = textwrap.fill(unwrapped, 32)
         		char_count = char_count + len(wrapped)
         		p.print_text(wrapped)
         		p.print_text("\n")
