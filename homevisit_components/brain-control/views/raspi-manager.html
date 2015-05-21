@@ -44,7 +44,7 @@
                 <i class="fa fa-circle"
                    ng-class="{'text-success': systemInfo.osInfo.online, 'text-danger': !systemInfo.osInfo.online}"
                    ng-attr-title="{{systemInfo.osInfo.online && 'Online' || 'Offline' }}"></i>
-                <span>WiFi-Internet</span> {{printInterfaces('wlan1')}} <strong>{{systemInfo.wlan1Message.text}}</strong><span ng-show="systemInfo.wlan1Message.spin"><i class="fa fa-refresh fa-spin"></i></span>
+                <span>WiFi-Internet</span> {{printInterfaces('wlan1')}} <strong>{{systemInfo.wlan1Message.text}}</strong> <span ng-show="systemInfo.wlan1Message.spin"><i class="fa fa-lg fa-refresh fa-spin"></i></span>
                 <i class="pull-right glyphicon"
                    ng-class="{'glyphicon-chevron-down': !collapsed.wlan1, 'glyphicon-chevron-right': collapsed.wlan1}"></i>
             </div>

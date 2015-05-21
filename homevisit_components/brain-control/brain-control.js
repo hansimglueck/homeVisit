@@ -72,7 +72,7 @@
                             templateUrl: "/homevisit_components/brain-control/views/wifi-modal.html",
                             controller: function ($scope, ssid, close, $element) {
                                 $scope.ssid = ssid;
-                                $scope.password = "default";
+                                $scope.password = "";
                                 $scope.closeModal = function (password) {
                                     $element.modal('hide');
                                     //  Now close as normal, but give 500ms for bootstrap to animate
@@ -116,7 +116,7 @@
                     infoFactory.wlan1Message.spin = false;
                 });
                 Socket.on("wifi-message", function (data) {
-                    infoFactory.wlan1Message = data;
+                    infoFactory.wlan1Message.text = data;
                     infoFactory.wlan1Message.spin = false;
                 });
                 Socket.on("osinfo", function (data) {
@@ -131,7 +131,7 @@
             };
             infoFactory.scanWifi = function () {
                 Socket.emit("os", {cmd: "scanWifi"});
-                infoFactory.wlan1Message = "scanning for wifi";
+                infoFactory.wlan1Message.text = "scanning for wifi";
                 infoFactory.wlan1Message.spin = true;
             };
             infoFactory.restartServer = function () {
@@ -141,7 +141,7 @@
                 Socket.emit("os", {cmd: d});
             };
             infoFactory.restartWlan1 = function (wifi) {
-                infoFactory.wlan1Message = "Connecting to " + wifi.ssid + "...";
+                infoFactory.wlan1Message.text = "Connecting to " + wifi.ssid + "...";
                 infoFactory.wlan1Message.spin = true;
                 Socket.emit("os", {
                     cmd: "restartwlan1",
