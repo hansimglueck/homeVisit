@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="anchor-offset" ng-attr-id="{{active ? 'script-list-active' :''}}"></div>
+    <div class="col-md-1 script-list-buttons" ng-show="goto">
+        {{index}}<button class="btn btn-default" ng-click="playback('goto',itemBlock.indexBlock[0])" translate>GOTO</button>
+    </div>
+    <div class="col-md-1" ng-hide="goto">
+        OPT {{option}}
+    </div>
+    <div class="col-md-11">
+        <item-as-row class="row script-list-item-row" ng-repeat="blockItem in itemBlock track by $index" item="blockItem" index="itemBlock.indexBlock[$index]">
+        </item-as-row>
+    </div>
+</div>
