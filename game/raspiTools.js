@@ -118,6 +118,9 @@
                                         var success = false;
                                         if (stderr) {
                                             logger.error(stderr);
+                                            if (stderr.indexOf("bound to")!==-1) {
+                                                success = true;
+                                            }
                                         }
                                         if (stdout) {
                                             logger.info(stdout);

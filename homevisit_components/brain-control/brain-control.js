@@ -134,6 +134,7 @@
                 Socket.emit("os", {cmd: d});
             };
             infoFactory.restartWlan1 = function (wifi) {
+                infoFactory.wlan1Message = "Connecting to "+wifi+"...";
                 Socket.emit("os", {
                     cmd: "restartwlan1",
                     param: {ssid: wifi.ssid, passwd: wifi.password}
