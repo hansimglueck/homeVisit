@@ -69,14 +69,31 @@
                         'command': 'fa-clock-o',
                         'results': 'fa-pie-chart'
                     };
+                    $scope.inlineDeckElements = [];
                 },
                 link: function (scope, element, attrs) {
-                    if (scope.item.type === "inlineSwitch") {
-                        //if (scope.item.type === "inlineSwitch" && (parseInt(scope.index) > parseInt(scope.deck.index))) {
+                    scope.$watch('item.type', function(newValue, oldValue) {
+                        if( oldValue === "inlineSwitch"){
+                            deleteInlineDecks()
+                        }
+                        if( newValue === "inlineSwitch"){
+                            appendInlineDecks()
+                        }
+                    }, true);
+                    function appendInlineDecks() {
                         var el = element.find(".item-content");
                         scope.item.inlineDecks.forEach(function(inlineDeck, id){
-                            el.append("<div><item-block ng-show='mainIndex > deck.stepIndex' itemblock='item.inlineDecks["+id+"].items' option='"+id+"' goto='false'></item-block></div>");
+                            var newElement = angular.element("<div><item-block class='script-list-block-row' ng-show='mainIndex > deck.stepIndex' itemblock='item.inlineDecks["+id+"].items' option='"+id+"' goto='false'></item-block></div>");
+                            el.append(newElement);
+                            scope.inlineDeckElements.push(newElement);
                         });
+                        $compile(element.contents())(scope)
+                    }
+                    function deleteInlineDecks() {
+                        scope.inlineDeckElements.forEach(function(element){
+                            element.remove();
+                        });
+                        scope.inlineDeckElements = [];
                         $compile(element.contents())(scope)
                     }
                 }

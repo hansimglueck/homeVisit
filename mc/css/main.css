@@ -433,3 +433,7 @@ ul.follow-items > li {
     position: relative;
     top: -100px;
 }
+
+.script-list-buttons {
+    padding: 10px;
+}

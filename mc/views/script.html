@@ -3,8 +3,10 @@
         <button ng-click="scrollToAct()">ACT</button>
     </div>
     <div class="container-fluid script-view">
-        <item-block class="script-list-block-row" ng-repeat="go in deck.goList track by $index"
-             ng-class="{'script-list-active':go.indexBlock.indexOf(deck.index)!==-1}" itemblock="go" option="0" goto="true" active="go.indexBlock.indexOf(deck.index)!==-1">
-        </item-block>
+        <div>
+            <item-block class="script-list-block-row" ng-repeat="go in deck.goList track by $index"
+                        ng-class="{'script-list-active':go.indexBlock.indexOf(deck.index)!==-1}" itemblock="go" option="0" goto="true" active="go.indexBlock.indexOf(deck.index)!==-1">
+            </item-block>
+        </div>
     </div>
 </div>
