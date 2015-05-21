@@ -190,6 +190,9 @@
 
                 ws.on("close", function () {
                     logger.info("ws.onClose!");
+                    if (self.clients[ws.clientId].role === "MC") {
+                        require('./raspiTools.js').changeMonitoringValue("mc", -1);
+                    }
                     ws.cloosed(true);
                 });
             });
@@ -306,6 +309,9 @@
             //g.clients[clientId].role = role;
             //g.clients[clientId].sid = sid;
             ws.send(JSON.stringify({type: "registerConfirm", data: {clientId: client.clientId, sid: sid}}));
+            if (role === "MC") {
+                require('./raspiTools.js').changeMonitoringValue("mc", 1);
+            }
             ws.role = role;
     //        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
             //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));
