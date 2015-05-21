@@ -16,6 +16,7 @@
 
     var log4js = require('log4js');
     var logger = require('log4js').getLogger();
+    logger.setLevel('INFO');
 
     var conf = require('../homevisitConf');
     var app = express();
@@ -53,6 +54,7 @@
         wsManager.onType("database", raspiTools, raspiTools.newMessage);
         raspiTools.addOnlineTask(raspiTools, raspiTools.importSessions, 666000);
         raspiTools.addOnlineTask(raspiTools, raspiTools.exportRecordingsToDizzi, 622000);
+        raspiTools.startSetupMonitoring();
 
         wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
         wsManager.onType('getGameSessions', gameConf, gameConf.gameSessionsRequest);

@@ -122,6 +122,7 @@
         leaveGame: function (clientId) {
             var playerId = this.getPlayerIdForClientId(clientId);
             this.players[playerId].joined = false;
+            require('./raspiTools.js').changeMonitoringValue("player", -1);
             this.sendPlayerStatus(playerId);
         },
         requestJoin: function (clientId, msg) {
@@ -147,6 +148,7 @@
             this.players[playerId].clientId = clientId;
             this.players[playerId].joined = true;
             this.sendPlayerStatus(playerId);
+            require('./raspiTools.js').changeMonitoringValue("player", 1);
             if (!!this.players[playerId].lastDisplayMessage) {
                 this.players[playerId].lastDisplayMessage.silent = true;
                 wsManager.msgDeviceByIds([clientId], "display", this.players[playerId].lastDisplayMessage);

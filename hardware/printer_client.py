@@ -53,6 +53,31 @@ def cb(msg):
 	elif (msg["data"]["type"] == "results"):
 		print(msg)
 		printPiePartition(msg["data"]["data"])
+	elif (msg["data"]["type"] == "info"):
+		txt = msg["data"]["text"]
+		unicode = txt.encode('utf-8')
+		lines = unicode.splitlines(txt.count('\n'))
+
+		p.double_width(False)
+		p.set_linespacing(32)
+		char_count = 0
+	        for item in lines:
+        		item = replaceSpecialChars(item)
+        		unwrapped = item
+        		wrapped = textwrap.fill(unwrapped, 32)
+        		char_count = char_count + len(wrapped)
+        		p.print_text(wrapped)
+        		p.print_text("\n")
+        		wait = 0.008 * char_count
+        		time.sleep(wait)
+        		char_count = 0
+		p.double_width(False)
+		p.reset_linespacing()
+		p.print_text("\n\n\n\n")
+		p.print_text("--------------------------------\n")
+		p.print_text("\n\n")
+		p.linefeed()
+		p.linefeed()
 
 def replaceSpecialChars(txt):
 	### The "Ø" and "ø" only work with Norwegian character set, setup in printer_gs.py
