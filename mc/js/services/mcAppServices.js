@@ -343,7 +343,7 @@
 
             return playerNamesFactory;
         })
-        .factory('Deck', function (Socket, setFactory, $interval, ModalService, Status, gettextCatalog, Polls, PlayerNames) {
+        .factory('Deck', function (Socket, setFactory, $interval, ModalService, Status, gettextCatalog, Polls, PlayerNames, ScriptScroll) {
             var playbackStatus = {stepIndex: -1, type: "nix", deckId: null};
             // var deck = null;
             var deckFactory = {
@@ -357,7 +357,8 @@
                     go: true,
                     alert: true,
                     select: false
-                }
+                },
+                goList: null
             };
             deckFactory.nextJump = null;
 
@@ -369,8 +370,8 @@
 
             deckFactory.start = function () {
                 Socket.on("playBackStatus", function (status) {
+                    var lang = gettextCatalog.currentLanguage;
                     playbackStatus = status;
-                    console.log("got playbackStatus info: " + JSON.stringify(status));
 
                     var deck = setFactory.getDeckById(playbackStatus.deckId);
 
@@ -380,6 +381,7 @@
                     }
 
                     deckFactory.deck = deck;
+                    deckFactory.index = playbackStatus.stepIndex;
                     var stepIndex = parseInt(playbackStatus.stepIndex);
                     var inlineIndex = playbackStatus.stepIndex.toString().split(":");
 
@@ -388,9 +390,7 @@
 
                     deckFactory.current = deck.items[stepIndex];
                     deckFactory.currentDetailed = deck.items[stepIndex];
-                    console.log("------");
-                    console.log(inlineIndex);
-                    console.log(deckFactory.currentDetailed.inlineDecks);
+
                     if (inlineIndex.length >= 3) {
                         deckFactory.currentDetailed = deckFactory.currentDetailed.inlineDecks[inlineIndex[1]].items[inlineIndex[2]];
                     }
@@ -400,6 +400,26 @@
                     if (inlineIndex.length === 7) {
                         deckFactory.currentDetailed = deckFactory.currentDetailed.inlineDecks[inlineIndex[5]].items[inlineIndex[6]];
                     }
+
+                    deckFactory.goList = playbackStatus.goList;
+                    deckFactory.goList = deckFactory.goList.map(function (goBlock) {
+                        var block = goBlock.map(function (blockItemIndex) {
+                            var indexArray = blockItemIndex.toString().split(":");
+                            var blockItem = {};
+                            for (var i = 0; i < indexArray.length; i++) {
+                                if (i === 0) {
+                                    blockItem = deck.items[indexArray[i]];
+                                } else if (i % 2 === 0) {
+                                    blockItem = blockItem.inlineDecks[indexArray[i - 1]].items[indexArray[i]];
+                                }
+                            }
+                            return blockItem;
+                        });
+                        block.indexBlock = goBlock;
+                        return block;
+                    });
+
+                    console.log(deckFactory.goList);
 
                     deckFactory.previous = deck.items[stepIndex - 1];
                     deckFactory.next = deck.items[stepIndex + 1];
@@ -414,11 +434,12 @@
                         Status.deselectAll();
                     }
                     //TODO: ist das die richtige art und weise, rauszufinden, ob es mc-notes (in der aktuellen sprache) gibt?
-                    var lang = gettextCatalog.currentLanguage;
                     var popUp = false;
                     if (deckFactory.currentDetailed.mcnote) {
-                        if (deckFactory.currentDetailed.mcnote[lang].trim().length > 0) {
-                            popUp = true;
+                        if (deckFactory.currentDetailed.mcnote[lang]) {
+                            if (deckFactory.currentDetailed.mcnote[lang].trim().length > 0) {
+                                popUp = true;
+                            }
                         }
                     }
                     if (deckFactory.mcTasks.select) {
@@ -442,6 +463,7 @@
                         };
                         Socket.emit('pollResults', data);
                     }
+                    ScriptScroll.scrollToAct();
                 });
             };
 
@@ -472,7 +494,7 @@
             var displayFactory = {
                 displayData: []
             };
-            displayFactory.start = function() {
+            displayFactory.start = function () {
                 Socket.on('display', function (data) {
                     if (data) {
                         displayFactory.displayData = data;
@@ -575,6 +597,7 @@
                 }
                 showDisplayModal("views/results.html", "ResultsController");
             }
+
             function showVote(data) {
                 displayFactory.text = data.text;
                 displayFactory.type = "vote";
@@ -589,6 +612,7 @@
                 displayFactory.ratedVote = data.ratedVote;
                 showDisplayModal("views/vote.html", "VoteController");
             }
+
             function showDisplayModal(view, controller) {
                 // Just provide a template url, a controller and call 'showModal'.
                 ModalService.showModal({
@@ -603,6 +627,7 @@
 
 
             }
+
             return displayFactory;
         })
         .factory('TeamActionInfo', function (Socket, gettext, ModalService, gettextCatalog, playerColors, playerColornamesFactory) {
@@ -764,8 +789,26 @@
         })
         .factory('Recordings', function ($resource) {
             return $resource('/recordings/', null, {
-                'get': { method: 'GET', isArray: true }
+                'get': {method: 'GET', isArray: true}
             });
+        })
+
+        .factory('ScriptScroll', function ($location, $anchorScroll) {
+            var scriptScroll = {};
+            scriptScroll.scrollToAct = function () {
+                var newHash = "script-list-active";
+                if ($location.hash() !== newHash) {
+                    // set the $location.hash to `newHash` and
+                    // $anchorScroll will automatically scroll to it
+                    $location.hash(newHash);
+                } else {
+                    // call $anchorScroll() explicitly,
+                    // since $location.hash hasn't changed
+                    $anchorScroll();
+                }
+            };
+            return scriptScroll;
+
         });
 
 })();

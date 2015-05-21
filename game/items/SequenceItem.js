@@ -177,7 +177,7 @@
         getNext: function () {
             return this.next;
         },
-        getNextJump: function() {
+        getNextJump: function () {
             if (this.done && this.next !== null) {
                 return this.next.getNextJump();
             }
@@ -191,7 +191,7 @@
             }
             return null;
         },
-        jumpStep: function(param) {
+        jumpStep: function (param) {
             if (!this.done) {
                 if (this.previous !== null) {
                     this.previous.finish();
@@ -215,11 +215,15 @@
         },
         //falls nötig, kann dem step etwas param mitgegeben werden - zB der index eines go-buttons
         step: function (param) {
+            if (this.index === 0) {
+                this.goListArray = this.goList();
+            }
             if (!this.done) {
                 if (this.previous !== null) {
                     this.previous.finish();
                 }
                 this.done = true;
+                this.sendPlaybackStatus();
                 this.param = param;
                 var self = this;
 
@@ -238,11 +242,7 @@
                     itemRequire = require('./includes/default');
                 }
                 _.extend(this, itemRequire);
-                /*
-                 if (typeof itemRequire.executeItem !== "undefined") this.executeItem = itemRequire.executeItem;
-                 if (typeof itemRequire.getWsContent !== "undefined") this.getWsContent = itemRequire.getWsContent;
-                 if (typeof itemRequire.finishItem !== "undefined") this.finishItem = itemRequire.finishItem;
-                 */
+
                 this.timeout = setTimeout(function () {
                     self.execute.call(self);
                 }, this.wait * 1000);
@@ -304,11 +304,10 @@
         execute: function () {
             this.log("executing step " + this.index + ": " + this.type, true);
             this.executeTime = new Date();
-            this.sendPlaybackStatus();
             try {
                 this.executeItem();
-            } catch(e) {
-                this.log("ERROR in execute: "+ e.message);
+            } catch (e) {
+                this.log("ERROR in execute: " + e.message);
                 this.log(e.stack);
             }
             gameRecording.go(this);
@@ -374,7 +373,8 @@
                     type: this.type,
                     deckId: gameConf.conf.startDeckId,
                     clockSeconds: gameClock.getCurrentSeconds(),
-                    nextJump: this.getNextJump()
+                    nextJump: this.getNextJump(),
+                    goList: this.goList()
                 };
                 wsManager.msgDevicesByRole('master', 'playBackStatus', playbackStatus);
                 wsManager.msgDevicesByRole('MC', 'playBackStatus', playbackStatus);
@@ -422,9 +422,33 @@
                 return this.previous.getData();
             }
             return null;
+        },
+
+        goList: function (list) {
+            if (typeof list === "undefined") {
+                if (this.previous !== null) {
+                    return this.previous.goList();
+                } else {
+                    list = [];
+                }
+            }
+            if (this.trigger === "go") {
+                list.push([this.index]);
+            } else {
+                var x = list.length;
+                if (x > 0) {
+                    list[x - 1].push(this.index)
+                }
+            }
+            if (this.next !== null) {
+                list = this.next.goList(list);
+            }
+            return list;
         }
-    };
+    }
+    ;
 
     module.exports = SequenceItem;
 
-})();
+})
+();
