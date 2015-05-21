@@ -88,6 +88,7 @@
         },
         newMessage: function (clientId, role, msg) {
             if (typeof msg !== "undefined") {
+                var self = this;
                 try {
                     switch (msg.type) {
                         case "os":
@@ -113,7 +114,6 @@
                                 case "restartwlan1":
                                     //TODO: add ssid/password to wpa_supplicant instead of replacing
                                     logger.info("restarting wlan1");
-                                    var self = this;
                                     exec("/home/pi/homeVisit/shellscripts/wlan1_conf " + msg.data.param.ssid + " " + msg.data.param.passwd, function (error, stdout, stderr) {
                                         if (stderr) {
                                             logger.error(stderr);
@@ -130,10 +130,18 @@
                                     exec("/home/pi/homeVisit/shellscripts/ssidscan.sh", function (error, stdout, stderr) {
                                         logger.info(stdout);
                                         var list = stdout.split("\n");
-                                        list = list.map(function(item){
-                                            return item.slice(1,-1);
+                                        list = list.map(function (item) {
+                                            return item.slice(1, -1);
                                         });
-                                        delete list[list.length-1];
+                                        delete list[list.length - 1];
+                                        var temp = {};
+                                        for (var i = 0; i < list.length; i++) {
+                                            temp[list[i]] = true;
+                                        }
+                                        list = [];
+                                        for (var k in temp) {
+                                            list.push(k);
+                                        }
                                         logger.info(list);
                                         wsManager.msgDeviceByIds([clientId], "wifi-list", list);
                                     });
@@ -210,7 +218,7 @@
             });
         },
         exportRecordingsToDizzi: function () {
-            exec("sudo -u pi mongoexport -d homeVisit -c recordings | sudo -u pi ssh "+conf.dizziSSH+" mongoimport -d homeVisit -c recordings --upsert", function (error, stdout, stderr) {
+            exec("sudo -u pi mongoexport -d homeVisit -c recordings | sudo -u pi ssh " + conf.dizziSSH + " mongoimport -d homeVisit -c recordings --upsert", function (error, stdout, stderr) {
                 if (error) logger.error("Error in exportRecordingsToDizzi: " + error);
                 logger.info("Exported Recordings to dizzi " + stdout);
             });
