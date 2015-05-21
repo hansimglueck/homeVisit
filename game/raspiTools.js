@@ -114,13 +114,18 @@
                                 case "restartwlan1":
                                     //TODO: add ssid/password to wpa_supplicant instead of replacing
                                     logger.info("restarting wlan1");
-                                    exec("/home/pi/homeVisit/shellscripts/wlan1_conf " + msg.data.param.ssid + " " + msg.data.param.passwd, function (error, stdout, stderr) {
+                                    exec("/home/pi/homeVisit/shellscripts/wlan1_conf '" + msg.data.param.ssid + "' '" + msg.data.param.passwd+"'", function (error, stdout, stderr) {
+                                        var success = false;
                                         if (stderr) {
                                             logger.error(stderr);
                                         }
                                         if (stdout) {
                                             logger.info(stdout);
+                                            if (stdout.indexOf("bound to")!==-1) {
+                                                success = true;
+                                            }
                                         }
+                                        wsManager.msgDeviceByIds([clientId], "wifi-message", success ? "Connected to "+msg.data.param.ssid : "Could not connect to "+msg.data.param.ssid);
                                     });
                                     break;
                                 case "scanWifi":
@@ -133,7 +138,7 @@
                                         list = list.map(function (item) {
                                             return item.slice(1, -1);
                                         });
-                                        delete list[list.length - 1];
+                                        list.splice(list.length-1);
                                         var temp = {};
                                         for (var i = 0; i < list.length; i++) {
                                             temp[list[i]] = true;

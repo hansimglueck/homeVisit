@@ -103,10 +103,15 @@
             infoFactory.wifiList = [];
             infoFactory.osInfo = {};
             infoFactory.dbStatus = {};
+            infoFactory.wlan1Message = "";
 
             infoFactory.start = function () {
                 Socket.on("wifi-list", function (data) {
                     infoFactory.wifiList = data;
+                    infoFactory.wlan1Message = "";
+                });
+                Socket.on("wifi-message", function (data) {
+                    infoFactory.wlan1Message = data;
                 });
                 Socket.on("osinfo", function (data) {
                     infoFactory.osInfo = data;
@@ -120,7 +125,7 @@
             };
             infoFactory.scanWifi = function () {
                 Socket.emit("os", {cmd: "scanWifi"});
-                infoFactory.wifiList = ["scanning..."];
+                infoFactory.wlan1Message = "scanning for wifi...";
             };
             infoFactory.restartServer = function () {
                 Socket.emit("os", {cmd: "restartServer"});
