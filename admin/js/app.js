@@ -20,7 +20,9 @@
         'hvLanguage',
         'gettext',
         'hvDirectives',
-        'hvRecordingsFactory'
+        'hvRecordingsFactory',
+        'hvBrainControl',
+        'angularModalService'
     ])
     .config(function ($routeProvider, $anchorScrollProvider) {
     //        $locationProvider.html5Mode(true);
