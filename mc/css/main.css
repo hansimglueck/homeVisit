@@ -7,6 +7,7 @@ body {
     margin-bottom: 0px;
     height: 53px;
     overflow: hidden;
+    font-size: 1.2em;
 }
 
 .header > .navbar > .container {
