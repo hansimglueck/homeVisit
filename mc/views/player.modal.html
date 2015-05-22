@@ -1,0 +1,29 @@
+<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="myModalLabel" translate>Team</h2>
+            </div>
+            <div class="modal-body">
+                <h1 ng-style="{'color':playerColors[playerId]}" translate>Score for Player {{playerId}}</h1>
+                <br/>
+                <ul class="list-inline">
+                    <li class="list-group-item" ng-repeat="sc in [5,4,3,2,1,-1,-2,-3,-4,-5]">
+                        <button class="btn" ng-click="score(playerId, sc)">{{sc}}</button>
+                        <br/></li>
+                    <br/><br/>
+                    <li class="list-group-item">
+                        <button class="btn btn-default" ng-click="toggleSelected(playerId)">{{playerSelected()}}</button>
+                    </li>
+                </ul>
+                <div>
+                    <button class="btn btn-danger btn-big" ng-click="throwOut(playerId)" translate>throw out</button>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <h3 class="pull-left text-danger">{{message}}</h3>
+                <button type="button" class="btn btn-lg btn-primary" ng-click="closeModal()" translate>CLOSE</button>
+            </div>
+        </div>
+    </div>
+</div>
