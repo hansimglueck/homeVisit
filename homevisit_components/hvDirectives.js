@@ -126,7 +126,7 @@
                 replace: 'true',
                 templateUrl: '/homevisit_components/views/recordings.html',
                 controller: function ($scope, Socket, gettextCatalog, Recordings) {
-                    $scope.isCollapsed = false;
+                    $scope.isCollapsed = true;
                     $scope.recordings = Recordings.get();
                     $scope.getDate = function(ts) {
                         return new Date(ts*1000);

@@ -91,22 +91,23 @@
                     $scope.newDeck = {items: []}; // clear textbox
                 });
             };
-            // $scope.duplicateDeck = function (deckId) {
-            //     var newName = prompt(gettextCatalog.getString("Neuer Name?"));
-            //     var dupDeck = angular.copy($scope.decks[deckId]);
-            //     delete dupDeck._id;
-            //     dupDeck.items.forEach(function (item) {
-            //         delete item._id;
-            //         item.voteOptions.forEach(function (opt) {
-            //             delete opt._id;
-            //         });
-            //     });
-            //     dupDeck.title = newName;
-            //     setFactory.addDeck(dupDeck, function (ret) {
-            //         console.log("cb: " + ret);
-            //         $scope.decks.push(ret);
-            //     });
-            // };
+            $scope.duplicateDeck = function (deckId) {
+                var newName = prompt(gettextCatalog.getString("Neuer Name?"));
+                var dupDeck = angular.copy($scope.decks[deckId]);
+                delete dupDeck._id;
+                dupDeck.items.forEach(function (item) {
+                    delete item._id;
+                    //item.voteOptions.forEach(function (opt) {
+                    //    delete opt._id;
+                    //});
+                });
+                dupDeck.title = newName;
+                setFactory.addDeck(dupDeck, function (ret) {
+                    console.log("cb: ");
+                    console.dir(ret);
+                    $scope.decks.push(ret);
+                });
+            };
             $scope.deleteDeck = function (index) {
                 if (!confirm(gettextCatalog.getString("Really delete???"))) {
                     return;
