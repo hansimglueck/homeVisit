@@ -641,6 +641,7 @@
             };
             dealFactory.denyDealing = function () {
                 console.log("denying deals at all");
+                Home.doneTask();
                 Socket.emit("deal", {status: "denyDealing", player0Id: Status.player.playerId});
             };
             dealFactory.confirm = function () {
