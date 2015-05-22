@@ -132,7 +132,6 @@
             $scope.playerList = data.otherPlayers;
             $scope.playerColors = playerColors;
             $scope.ratings = data.avgRatings;
-            console.log("got player list: "+JSON.stringify($scope.playerList));
         });
     });
 
