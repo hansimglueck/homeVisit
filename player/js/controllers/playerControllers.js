@@ -86,6 +86,7 @@
                     opt.checked = false;
                 });
                 $scope.home.checked = 0;
+                Home.resetVote();
                 $location.path("/vote");
             };
 
