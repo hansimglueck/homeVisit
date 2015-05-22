@@ -43,7 +43,7 @@
 
 .script-view {
     overflow: scroll;
-    height: 400px;
+    height: 480px;
     font-size: 1.2em;
 }
 
@@ -112,7 +112,7 @@
 
 .anchor-offset {
     position: relative;
-    top: -100px;
+    top: -200px;
 }
 
 .script-list-buttons {

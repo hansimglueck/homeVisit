@@ -50,7 +50,7 @@
                         </p>
                     </li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" ng-controller="PlaybackCtrl" ng-hide="isActive('/players')">
+                <ul class="nav navbar-nav navbar-right" ng-controller="PlaybackCtrl" ng-hide="isActive('/players') || isActive('/script')">
                     <li>
                         <a class="btn btn-danger btn-alarm" ng-click="alert()" translate>ALARM</a>
                     </li>
