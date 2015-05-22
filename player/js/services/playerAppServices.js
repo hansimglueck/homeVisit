@@ -69,7 +69,13 @@
                     playerId: Status.player.playerId,
                     pollId: homeFactory.pollId
                 });
+                homeFactory.resetVote();
                 $location.path("/voteFinished");
+            };
+
+            homeFactory.resetVote = function () {
+                homeFactory.voteChoice = [];
+                homeFactory.voteChoiceText = [];
             };
 
             homeFactory.freeze = function () {
