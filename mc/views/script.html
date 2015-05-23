@@ -1,12 +1,13 @@
 <div class="script-page">
+    <div class="script-loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>
     <div class="container-fluid">
         <div class="script-top">
             <div class="script-player-view">
                 <div class="script-player" ng-click="playerDetails(player.playerId)"
                      ng-repeat="player in status.otherPlayers track by $index"
                      ng-style="{'top':playerPos[player.playerId].top, 'left':playerPos[player.playerId].left, 'background':playerColors[$index], 'color':awayColor(player.playerId)}"
-                     ng-class="{'dimm': !player.joined, 'script-onTurn': player.onTurn, 'script-upcoming': player.upcoming}">
-                    <div class="script-selection-div" ng-class="{'script-selected': player.selected}">
+                     ng-class="{'dimm': !player.joined, 'script-selected': player.selected}">
+                    <div class="script-selection-div" ng-class="{'script-onTurn': player.onTurn, 'script-upcoming': player.upcoming}">
                         <ul class="list-group list-unstyled">
                             <li class="list-group-item header">
                                 <div translate>Score: {{player.score}}</div>
@@ -51,7 +52,11 @@
                         </div>
                     </div>
                     <div class="col-md-1">
-                        <button class="btn btn-block btn-lg" ng-click="scrollToAct()"><-</button>
+                        <button class="btn btn-block btn-lg" ng-click="scrollToAct()"><i class="fa fa-indent fa-2x"></i></button>
+                        <!--
+                        <button class="btn btn-block btn-lg" ng-click="scrollToAct()">LESS</button>
+                        <button class="btn btn-block btn-lg" ng-click="scrollToAct()">MORE</button>
+                        -->
                     </div>
                 </div>
             </div>

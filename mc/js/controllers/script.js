@@ -2,16 +2,16 @@
     'use strict';
 
     angular.module('homeVisitMCApp')
-        .controller('ScriptCtrl', function ($scope, Deck, Playback, gettextCatalog, $anchorScroll, $location, ScriptScroll, Status, playerColors, ModalService,TeamActionInfo) {
+        .controller('ScriptCtrl', function ($scope, $timeout, Deck, Playback, gettextCatalog, $anchorScroll, $location, ScriptScroll, Status, playerColors, ModalService,TeamActionInfo) {
             $scope.playerColors = playerColors;
             $scope.playerPos = [
                 {top: 8, left: 15},
-                {top: 8, left: 240},
-                {top: 8, left: 465},
-                {top: 8, left: 690},
-                {top: 108, left: 690},
-                {top: 108, left: 465},
-                {top: 108, left: 240},
+                {top: 8, left: 265},
+                {top: 8, left: 515},
+                {top: 8, left: 765},
+                {top: 108, left: 765},
+                {top: 108, left: 515},
+                {top: 108, left: 265},
                 {top: 108, left: 15}
             ];
             $scope.status = Status;
@@ -33,7 +33,6 @@
             $scope.showInfoOfTeam = function (playerId) {
                 return TeamActionInfo.actionInfo[playerId];
             };
-
             function playerPopUp(playerId) {
                 ModalService.showModal({
                     templateUrl: "views/player.modal.html",

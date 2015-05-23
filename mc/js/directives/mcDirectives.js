@@ -39,8 +39,7 @@
                     itemBlock: '=itemblock',
                     option: '=',
                     goto: '=',
-                    active: '=',
-                    index: '='
+                    active: '='
                 },
                 controller: function ($scope, Playback) {
                     $scope.playback = Playback.playback;
@@ -70,33 +69,16 @@
                         'command': 'fa-clock-o',
                         'results': 'fa-pie-chart'
                     };
-                    $scope.inlineDeckElements = [];
                 },
                 link: function (scope, element, attrs) {
-                    scope.$watch('item.typeee', function(newValue, oldValue) {
-                        if( oldValue === "inlineSwitch"){
-                            deleteInlineDecks()
-                        }
-                        if( newValue === "inlineSwitch"){
-                            appendInlineDecks()
-                        }
-                    }, true);
                     if (scope.item.type === "inlineSwitch") appendInlineDecks();
                     function appendInlineDecks() {
                         var el = element.find(".item-content");
                         scope.item.inlineDecks.forEach(function(inlineDeck, id){
                             var newElement = angular.element("<div><item-block class='script-list-block-row' ng-show='mainIndex > deck.stepIndex' itemblock='item.inlineDecks["+id+"].items' option='"+id+"' goto='false'></item-block></div>");
                             el.append(newElement);
-                            scope.inlineDeckElements.push(newElement);
                         });
                         $compile(element.contents())(scope)
-                    }
-                    function deleteInlineDecks() {
-                        scope.inlineDeckElements.forEach(function(el){
-                            el.remove();
-                        });
-                        scope.inlineDeckElements = [];
-                        //$compile(element.contents())(scope)
                     }
                 }
 

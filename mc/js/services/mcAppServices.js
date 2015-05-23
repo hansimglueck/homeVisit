@@ -419,12 +419,11 @@
                         return block;
                     });
 
-                    console.log(deckFactory.goList);
 
                     deckFactory.previous = deck.items[stepIndex - 1];
                     deckFactory.next = deck.items[stepIndex + 1];
                     deckFactory.nextJump = status.nextJump;
-                    console.log("next Jump = " + deckFactory.nextJump);
+
                     deckFactory.clockSeconds = playbackStatus.clockSeconds;
                     deckFactory.mcTasks.go = deckFactory.currentDetailed.mcGo;
                     deckFactory.mcTasks.alert = deckFactory.currentDetailed.mcAlert;
@@ -679,6 +678,9 @@
         .factory('Playback', function (Socket, gettextCatalog, Deck) {
             var playbackFactory = {
                 playback: function (cmd, param) {
+                    if (cmd == "goto" && !confirm("You are leaving the predefined Sequence. You must have STRONG needs for this!")) {
+                        return;
+                    }
                     console.log("play clicked");
                     switch (cmd) {
                         case "restart":
