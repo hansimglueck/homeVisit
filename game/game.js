@@ -73,7 +73,7 @@
                         if (this.sequence !== null && this.play) {
                             this.step(param);
                         } else {
-                            require('./raspiTools.js').checkSetupMonitoring(true);
+                            require('./setupMonitoring.js').checkSetupMonitoring(true);
                         }
                         break;
 

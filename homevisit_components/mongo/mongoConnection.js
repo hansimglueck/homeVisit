@@ -15,10 +15,10 @@
         MongoClient.connect(mongoUri, function(err, conn) {
             if(err){
                 console.log(err.message);
-                require('../../game/raspiTools.js').changeMonitoringValue("db", false);
+                require('../../game/setupMonitoring.js').changeMonitoringValue("db", false);
                 return false;
             } else {
-                require('../../game/raspiTools.js').changeMonitoringValue("db", true);
+                require('../../game/setupMonitoring.js').changeMonitoringValue("db", true);
                 db = conn;
                 if (cb) {
                     cb(db);

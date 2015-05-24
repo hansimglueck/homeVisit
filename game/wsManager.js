@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     var hat = require('hat');
@@ -26,12 +26,12 @@
                 self: self
             });
         },
-        onType: function(type, self, callback) {
-           this.typeCallbacks.push({
-               fn: callback,
-               type: type,
-               self: self
-           });
+        onType: function (type, self, callback) {
+            this.typeCallbacks.push({
+                fn: callback,
+                type: type,
+                self: self
+            });
         },
         setSocketServer: function (wss) {
             this.wss = wss;
@@ -190,9 +190,6 @@
 
                 ws.on("close", function () {
                     logger.info("ws.onClose!");
-                    if (self.clients[ws.clientId].role === "MC") {
-                        require('./raspiTools.js').changeMonitoringValue("mc", -1);
-                    }
                     ws.cloosed(true);
                 });
             });
@@ -200,7 +197,7 @@
 
         },
 
-        forwardMessage: function(msg) {
+        forwardMessage: function (msg) {
             var recipient;
             if (typeof msg.recipient !== "undefined") {
                 recipient = msg.recipient;
@@ -253,7 +250,7 @@
             //1.Fall: gucke, ob du sid schon kennst, dann entsprechend den client raussuchen und sid zurückschicken
             //  wenn nicht: sid generieren, in array stecken, und rausschicken
             //2.Fall: nix machen
-            var dd= msg.data;
+            var dd = msg.data;
             var role = "unknown";
             var sid = "NN";
             var name = "NN";
@@ -309,16 +306,13 @@
             //g.clients[clientId].role = role;
             //g.clients[clientId].sid = sid;
             ws.send(JSON.stringify({type: "registerConfirm", data: {clientId: client.clientId, sid: sid}}));
-            if (role === "MC") {
-                require('./raspiTools.js').changeMonitoringValue("mc", 1);
-            }
             ws.role = role;
-    //        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
+            //        ws.send(JSON.stringify({type: "registerConfirm", data: {playerId: player.playerId, colors: player.colors}}));
             //if (role == 'player') ws.send(JSON.stringify({type:'rates', data: g.avgRating}));
             this.sendDeviceList();
         },
 
-        msgDevicesByRoleAndName: function(role, name, type, message) {
+        msgDevicesByRoleAndName: function (role, name, type, message) {
             this.clients.forEach(function each(client) {
                 if (client.role === role &&
                     client.connected &&
@@ -372,6 +366,8 @@
                     });
                 }
             }
+            require('./setupMonitoring.js').checkDevices(list);
+
             this.clients.forEach(function (client) {
                 if (client.role === "master" && client.connected) {
                     client.socket.send(JSON.stringify({

@@ -54,7 +54,9 @@
         wsManager.onType("database", raspiTools, raspiTools.newMessage);
         raspiTools.addOnlineTask(raspiTools, raspiTools.importSessions, 666000);
         raspiTools.addOnlineTask(raspiTools, raspiTools.exportRecordingsToDizzi, 622000);
-        raspiTools.startSetupMonitoring();
+
+        var setupMonitoring = require('../game/setupMonitoring.js');
+        setupMonitoring.startSetupMonitoring();
 
         wsManager.onType("getGameConf", gameConf, gameConf.confRequest);
         wsManager.onType('getGameSessions', gameConf, gameConf.gameSessionsRequest);
