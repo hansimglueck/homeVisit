@@ -24,7 +24,7 @@
                 return Deck.stepIndex + $scope.getFollowItems().length + 1;
             };
             $scope.scrollToAct = ScriptScroll.scrollToAct;
-            //ScriptScroll.scrollToAct();
+            ScriptScroll.scrollToAct();
             $scope.playerDetails = function (playerId) {
                 if (Status.otherPlayers[playerId].joined) {
                     playerPopUp(playerId);

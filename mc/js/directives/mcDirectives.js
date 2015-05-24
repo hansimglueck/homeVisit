@@ -41,7 +41,7 @@
                     goto: '=',
                     active: '='
                 },
-                controller: function ($scope, Playback) {
+                controller: function ($scope, Playback, gettextCatalog) {
                     $scope.playback = Playback.playback;
                 }
             };
@@ -53,7 +53,7 @@
                 templateUrl: '/mc/views/item-as-row.html',
                 scope: {
                     item: '=',
-                    index: '='
+                    index: '@'
                 },
                 controller: function ($scope, gettextCatalog, Deck) {
                     $scope.lang = gettextCatalog.currentLanguage;

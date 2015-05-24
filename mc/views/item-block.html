@@ -7,7 +7,7 @@
         OPT {{option}}
     </div>
     <div class="col-md-11">
-        <item-as-row class="row script-list-item-row" ng-repeat="blockItem in itemBlock track by $index" item="blockItem" index="itemBlock.indexBlock[$index]">
+        <item-as-row class="row script-list-item-row" ng-repeat="blockItem in itemBlock track by $index" item="blockItem" index="{{itemBlock.indexBlock[$index]}}">
         </item-as-row>
     </div>
 </div>
