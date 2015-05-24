@@ -14,6 +14,13 @@ body {
     width: auto !important;
 }
 
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    font-size: 1.2em;
+    color: black;
+    background: #bcbdb8;
+}
+
 .btn-alarm, .btn-go {
     color: white !important;
     padding-left: 40px !important;
