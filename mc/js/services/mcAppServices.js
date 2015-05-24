@@ -358,6 +358,7 @@
                     alert: true,
                     select: false
                 },
+                mcNote: "",
                 goList: null
             };
             deckFactory.nextJump = null;
@@ -437,6 +438,7 @@
                     if (deckFactory.currentDetailed.mcnote) {
                         if (deckFactory.currentDetailed.mcnote[lang]) {
                             if (deckFactory.currentDetailed.mcnote[lang].trim().length > 0) {
+                                deckFactory.mcNote = deckFactory.currentDetailed.mcnote[lang];
                                 popUp = true;
                             }
                         }
