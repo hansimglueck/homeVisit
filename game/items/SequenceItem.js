@@ -9,6 +9,7 @@
     var playerManager = require('../playerManager.js');
     var _ = require('underscore');
     var logger = require('log4js').getLogger("seqItem");
+    logger.setLevel("INFO");
 
     /*
      Ablauf:
@@ -228,11 +229,11 @@
                 var self = this;
 
                 // game officially starts at card number X!
-                if (this.index === 4) {
+                if (this.index === 3) {
                     gameClock.start();
                 }
 
-                this.log("stepped into " + this.index + ": " + this.type, true);
+                logger.debug("stepped into " + this.index + ": " + this.type, true);
                 //this.log("executing in " + this.wait + " sec");
                 var itemRequire = {};
                 try {

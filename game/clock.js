@@ -1,6 +1,6 @@
 (function() {
     'use strict';
-    var logger = require('log4js').getLogger();
+    var logger = require('log4js').getLogger("clock");
 
     function GameClock() {
         this.startTime = null;
@@ -19,6 +19,7 @@
         },
 
         getCurrentSeconds: function() {
+            logger.debug("startTime "+this.startTime);
             if (this.startTime === null) {
                 return 0;
             }

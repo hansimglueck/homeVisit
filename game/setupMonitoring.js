@@ -57,7 +57,7 @@
         },
         checkAP: function () {
             var self = this;
-            ping.sys.probe('192.168.0.1', function (isAlive) {
+            ping.sys.probe('10.0.0.2', function (isAlive) {
                 logger.debug("AP-Ping: " + isAlive);
                 self.apPingArr.push(isAlive);
                 self.apPingArr.shift();

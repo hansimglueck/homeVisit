@@ -717,7 +717,7 @@
             var clockFactory = {
 
                 getClock: function () {
-                    var secs = Deck.clockSeconds, minutes, hours;
+                    var secs = parseInt(Deck.clockSeconds), minutes, hours;
 
                     // test values here:
                     // secs = 0; // 0:10h
