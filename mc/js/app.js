@@ -27,7 +27,8 @@ angular
         'chart.js',
         'hvDirectives',
         'ui.bootstrap',
-        'hvBrainControl'
+        'hvBrainControl',
+        'hvGameControl'
 
     ])
     .config(function ($routeProvider) {
@@ -79,7 +80,7 @@ angular
                 redirectTo: '/'
             });
     })
-    .run(function (Socket, Status, Deck, TeamActionInfo, gettextCatalog, gameSessionsFactory, Display, SystemInfo, $anchorScroll) {
+    .run(function (Socket, Status, Deck, TeamActionInfo, gettextCatalog, gameSessionsFactory, Display, SystemInfo, $anchorScroll, GameControlFactory) {
         Socket.on('languageChange', function (data) {
             gettextCatalog.setCurrentLanguage(data.language);
         });
@@ -92,8 +93,9 @@ angular
         Deck.start();
         TeamActionInfo.start();
         gameSessionsFactory.start();
+        GameControlFactory.start();
         Display.start();
-        $anchorScroll.yOffset = 250;
+        //$anchorScroll.yOffset = 250;
     });
 
 })();

@@ -1,0 +1,20 @@
+<div class="modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title" id="myModalLabel" translate>Start Game</h2>
+            </div>
+            <div class="modal-body">
+                <p translate>Please choose the session for this Game.</p>
+                <form>
+                    <game-session-chooser></game-session-chooser>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <h3 class="pull-left text-danger">{{message}}</h3>
+                <button type="button" class="btn btn-lg btn-primary" ng-click="start()" translate>OK</button>
+                <button type="button" class="btn btn-lg btn-danger" data-dismiss="modal" translate>Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>

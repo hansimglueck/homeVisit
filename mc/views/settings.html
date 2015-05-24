@@ -6,11 +6,15 @@
                 <div class="panel-heading" ng-click="collapsed.info = !collapsed.info">
                     <h3 class="panel-title" translate>Hello, MC!</h3>
                 </div>
-                <div class="panel-body" collapse="collapsed.info">
+                <div class="panel-body" collapse="!collapsed.info">
                     <h3><strong>NEWS OF THE DAY!!!</strong></h3>
-                    <p><strong>There are some Questions for you to answer during the run: In the very beginning (just before the "START"-Printout) please answer the question concerning the weather.
-                    Also early in the game, you have to take note of the Hosts answer to how many people live here. Later you have to write down the suggested change og border.
+
+                    <p><strong>There are some Questions for you to answer during the run: In the very beginning (just
+                        before the "START"-Printout) please answer the question concerning the weather.
+                        Also early in the game, you have to take note of the Hosts answer to how many people live here.
+                        Later you have to write down the suggested change og border.
                         Have a look at your device - you can't miss it!</strong></p>
+
                     <p>You should already have set up the Brain and the Wifi Access-Point. (You can see the green dot
                         next
                         to
@@ -27,7 +31,9 @@
 
                     <p>Select your Game session to correctly record the outcomings of this homevisit - and you are ready
                         to go!</p>
-                    <p><strong>When you come to HAU1 at night, please charge the brain battery an TURN IT ON. It will then automatically upload the game data to the Website.</strong></p>
+
+                    <p><strong>When you come to HAU1 at night, please charge the brain battery an TURN IT ON. It will
+                        then automatically upload the game data to the Website.</strong></p>
                     <button class="pull-right btn btn-lg btn-default" ng-click="collapsed.info = !collapsed.info">
                         Collapse
                     </button>
@@ -37,29 +43,10 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <h2 class="panel-title" translate>Game settings</h2>
-                </div>
-                <ul class="list-group">
-                    <li class="list-group-item">
-                        <form>
-                            <language-chooser></language-chooser>
-                            <game-session-chooser></game-session-chooser>
-                        </form>
-
-                    </li>
-                    <li class="list-group-item">
-                        <button class="btn btn-danger btn-lg" ng-click="playback('restart')" translate>RESTART GAME
-                        </button>
-                    </li>
-                </ul>
-            </div>
-
-         </div>
+            <game-control></game-control>
+        </div>
         <div class="col-md-6">
             <raspi-manager></raspi-manager>
-
         </div>
     </div>
 </div>

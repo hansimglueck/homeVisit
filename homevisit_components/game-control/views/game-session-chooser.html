@@ -2,7 +2,7 @@
     <label translate>Game session</label>
     <select class="form-control"
             ng-model="sessions.currentSession"
-            ng-options="s.sessionId as sessions.getSessionName(s._id) for s in sessions.sessions | orderBy: 'date'"
+            ng-options="s.sessionId as sessions.getSessionName(s.sessionId) for s in sessions.sessions | orderBy: 'date'"
             ng-change="setSession()">
     </select>
     <p ng-if="!sessions.currentSession" class="text-danger" translate>Please select a session before starting the game!</p>

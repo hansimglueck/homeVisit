@@ -15,7 +15,7 @@
     var raspiTools = require('../game/raspiTools.js');
 
     var log4js = require('log4js');
-    var logger = require('log4js').getLogger();
+    var logger = log4js.getLogger('server');
     logger.setLevel('INFO');
 
     var conf = require('../homevisitConf');

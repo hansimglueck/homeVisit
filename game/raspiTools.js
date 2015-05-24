@@ -8,7 +8,8 @@
     var mongoUri = require('../homevisitConf').mongoUri;
     var wsManager = require('./wsManager.js');
     var conf = require('../homevisitConf');
-    var logger = require('log4js').getLogger();
+    var logger = require('log4js').getLogger('raspiTools');
+    logger.setLevel("INFO");
     var ping = require('ping');
 
 
@@ -147,21 +148,21 @@
                                 case "restartwlan1":
                                     //TODO: add ssid/password to wpa_supplicant instead of replacing
                                     logger.info("restarting wlan1");
-                                    exec("/home/pi/homeVisit/shellscripts/wlan1_conf '" + msg.data.param.ssid + "' '" + msg.data.param.passwd+"'", function (error, stdout, stderr) {
+                                    exec("/home/pi/homeVisit/shellscripts/wlan1_conf '" + msg.data.param.ssid + "' '" + msg.data.param.passwd + "'", function (error, stdout, stderr) {
                                         var success = false;
                                         if (stderr) {
                                             logger.error(stderr);
-                                            if (stderr.indexOf("bound to")!==-1) {
+                                            if (stderr.indexOf("bound to") !== -1) {
                                                 success = true;
                                             }
                                         }
                                         if (stdout) {
                                             logger.info(stdout);
-                                            if (stdout.indexOf("bound to")!==-1) {
+                                            if (stdout.indexOf("bound to") !== -1) {
                                                 success = true;
                                             }
                                         }
-                                        wsManager.msgDeviceByIds([clientId], "wifi-message", success ? "Connected to "+msg.data.param.ssid : "Could not connect to "+msg.data.param.ssid);
+                                        wsManager.msgDeviceByIds([clientId], "wifi-message", success ? "Connected to " + msg.data.param.ssid : "Could not connect to " + msg.data.param.ssid);
                                     });
                                     break;
                                 case "scanWifi":
@@ -174,7 +175,7 @@
                                         list = list.map(function (item) {
                                             return item.slice(1, -1);
                                         });
-                                        list.splice(list.length-1);
+                                        list.splice(list.length - 1);
                                         var temp = {};
                                         for (var i = 0; i < list.length; i++) {
                                             temp[list[i]] = true;
@@ -306,7 +307,7 @@
                     break;
             }
             if (monitoringItem.state !== oldState) {
-                this.checkSetupMonitoring(true);
+                this.checkSetupMonitoring();
             }
         },
         checkSetupMonitoring: function (print) {
@@ -317,15 +318,17 @@
             }).length;
             logger.debug(this.monitoringTable);
             logger.info("Monitoring found " + monitoringState + " open Necessitys");
-
-            var message = "SETUP-STATUS\n"+this.monitoringTable.map(function (m) {
-                var ret = m.name.toUpperCase()+ ": ";
-                ret += (m.state >= m.necessary) ? "OK" : "no good! \n -> Hint: "+ m.hint;
-                return ret;
-            }).join("\n");
-            if (print && (this.monitoringState !== monitoringState)) {
+            var message = "SETUP-STATUS\n" + this.monitoringTable.map(function (m) {
+                    var ret = m.name.toUpperCase() + ": ";
+                    ret += (m.state >= m.necessary) ? "OK" : "no good! \n -> Hint: " + m.hint;
+                    return ret;
+                }).join("\n");
+            if (this.monitoringState !== monitoringState || print) {
                 logger.warn(message);
-                wsManager.msgDevicesByRole("printer", "display", {type: "info", text: message});
+                if (!require('./game.js').play) {
+                    logger.info("printing setup-status");
+                    wsManager.msgDevicesByRole("printer", "display", {type: "info", text: message});
+                }
             }
             this.monitoringState = monitoringState;
             return monitoringState;

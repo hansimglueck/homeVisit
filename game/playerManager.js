@@ -5,7 +5,7 @@
     var gameConf = require('./gameConf');
     var gameRecording = require('./gameRecording');
     require('../homevisit_components/stringFormat');
-    var logger = require('log4js').getLogger();
+    var logger = require('log4js').getLogger("playerManager");
 
 
     var PlayerManager = function () {

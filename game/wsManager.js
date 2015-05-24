@@ -2,7 +2,7 @@
     'use strict';
 
     var hat = require('hat');
-    var logger = require('log4js').getLogger();
+    var logger = require('log4js').getLogger("wsManager");
 
 
     function WsManager() {

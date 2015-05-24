@@ -12,7 +12,7 @@
     var gameConf = require('./gameConf');
     var gameClock = require('./clock');
     var gameRecording = require('./gameRecording');
-    var logger = require('log4js').getLogger();
+    var logger = require('log4js').getLogger("game");
 
 
     function Game() {
@@ -57,6 +57,10 @@
                         this.start();
                         break;
 
+                    case "start":
+                        this.start();
+                        break;
+
                     case "stop":
                         this.stop();
                         break;
@@ -66,7 +70,11 @@
                             this.alertState = 2;
                             this.alert();
                         }
-                        this.step(param);
+                        if (this.sequence !== null && this.play) {
+                            this.step(param);
+                        } else {
+                            require('./raspiTools.js').checkSetupMonitoring(true);
+                        }
                         break;
 
                     case "jump":
@@ -74,28 +82,28 @@
                             this.alertState = 2;
                             this.alert();
                         }
-                        if (this.sequence !== null) {
+                        if (this.sequence !== null && this.play) {
                             this.sequence.jumpStep(parseInt(param));
                         }
                         break;
 
                     case "rego":
                         logger.info('rego');
-                        if (this.sequence !== null) {
+                        if (this.sequence !== null && this.play) {
                             this.sequence.restep(parseInt(param));
                         }
                         break;
 
                     case "goto":
                         logger.info('goto');
-                        if (this.sequence !== null) {
+                        if (this.sequence !== null && this.play) {
                             this.sequence.stepToIndex(0, parseInt(param));
                         }
                         break;
 
                     case "back":
                         logger.info('back');
-                        if (this.sequence !== null) {
+                        if (this.sequence !== null && this.play) {
                             this.sequence.back(parseInt(param));
                         }
                         break;
@@ -130,10 +138,20 @@
 
         log: function (message) {
             message = "GAME: " + message;
+            logger.info(message);
             wsManager.msgDevicesByRole("master", "log", message);
         },
 
         step: function (param, id) {
+            var self = this;
+            if (!this.sequence.step(param, id)) {
+                this.start(function () {
+                    self.sequence.reset();
+                    self.sequence.step(param, id);
+                });
+            }
+        },
+        step_old: function (param, id) {
             var self = this;
             if (this.sequence === null) {
                 this.start(function () {
@@ -170,7 +188,8 @@
                         }
                     });
                     g.prepareSequence(db, function (sequence) {
-                        //sequence.step();
+                        g.play = true;
+                        sequence.step(0);
                         //g.step("", 0);
                         sequence.sendPlaybackStatus();
                         if (callback) {
@@ -180,7 +199,11 @@
                 });
             });
             this.log("client started game");
-            //wsManager.msgDevicesByRole('player', 'rates', {avgRating: this.avgRatings});
+        },
+        stop: function () {
+            this.play = false;
+            this.log("Stopping Game");
+            this.sendPlayBackStatus(0, "MC");
         },
 
         prepareSequence: function (db, cb) {
@@ -217,8 +240,14 @@
             if (role !== "MC" && role !== "master") {
                 return;
             }
-            if (this.sequence !== null) {
+            if (this.sequence !== null && this.play) {
                 this.sequence.sendPlaybackStatus();
+            } else {
+                var playbackStatus = {
+                    stepIndex: -1
+                };
+                wsManager.msgDevicesByRole('master', 'playBackStatus', playbackStatus);
+                wsManager.msgDevicesByRole('MC', 'playBackStatus', playbackStatus);
             }
         },
 
@@ -237,7 +266,7 @@
                 this.recording.uploadAllNew();
                 //this.recording.upload(data.data.id, data.data.sid);
             } catch (e) {
-                logger.info("ERROR in uploadRecording: "+ e.stack);
+                logger.info("ERROR in uploadRecording: " + e.stack);
             }
         },
         vote: function (clientId, role, data) {

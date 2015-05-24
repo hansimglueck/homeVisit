@@ -749,46 +749,6 @@
 
             return clockFactory;
         })
-        .factory('gameSessionsFactory', function (Socket, $rootScope) {
-
-            var gameSessionsFactory = {
-                sessions: [],
-                currentSession: null,
-                sessionSet: false
-            };
-
-            gameSessionsFactory.getSessionName = function (id) {
-                for (var i = 0; i < gameSessionsFactory.sessions.length; i++) {
-                    var s = gameSessionsFactory.sessions[i];
-                    if (s._id === id) {
-                        var name = s.date + ' ' + s.city;
-                        if (typeof s.adresse !== 'undefined' && s.adresse.trim().length > 0) {
-                            name += ' - ' + s.adresse + ',';
-                        }
-                        if (typeof s.bezirk !== 'undefined' && s.bezirk.trim().length > 0) {
-                            name += ' (' + s.bezirk + ')';
-                        }
-                        return name;
-                    }
-                }
-            };
-
-            gameSessionsFactory.start = function () {
-                Socket.on('gameSessions', function (data) {
-                    gameSessionsFactory.sessions = data.sessions;
-                    if (typeof data.currentSession !== 'undefined' && data.currentSession !== null) {
-                        gameSessionsFactory.currentSession = data.currentSession;
-                    }
-                });
-            };
-
-            gameSessionsFactory.setSession = function () {
-                Socket.emit('setGameSession', gameSessionsFactory.currentSession);
-                $rootScope.$broadcast('sessionChange');
-                gameSessionsFactory.sessionSet = true;
-            };
-            return gameSessionsFactory;
-        })
         .factory('Recordings', function ($resource) {
             return $resource('/recordings/', null, {
                 'get': {method: 'GET', isArray: true}

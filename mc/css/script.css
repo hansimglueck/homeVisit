@@ -22,7 +22,6 @@
     left: 200px;
     top: 400px;
     font-size: 10em;
-    z-index: -1;
 }
 
 .script-clock {
@@ -54,7 +53,6 @@
     overflow: scroll;
     height: 480px;
     font-size: 1.2em;
-    z-index: 1;
 }
 
 .script-player {

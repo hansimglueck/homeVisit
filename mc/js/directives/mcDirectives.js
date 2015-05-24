@@ -84,19 +84,5 @@
 
             };
         })
-        .directive('gameSessionChooser', function () {
-            return {
-                restrict: 'E',
-                replace: 'true',
-                templateUrl: '/mc/views/game-session-chooser.html',
-                controller: function ($scope, gameSessionsFactory, $rootScope, Socket) {
-                    $scope.sessions = gameSessionsFactory;
-                    $scope.setSession = function () {
-                        gameSessionsFactory.setSession();
-                    };
-                },
-                scope: {}
-            };
-        });
-
+;
 })();

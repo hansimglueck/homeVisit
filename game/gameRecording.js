@@ -10,7 +10,7 @@
         mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
 
     var homevisitQueries = require("./homevisitQueries");
-    var logger = require('log4js').getLogger();
+    var logger = require('log4js').getLogger("recordings");
 
 
 

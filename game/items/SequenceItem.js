@@ -8,7 +8,7 @@
     var wsManager = require('../wsManager.js');
     var playerManager = require('../playerManager.js');
     var _ = require('underscore');
-    var logger = require('log4js').getLogger();
+    var logger = require('log4js').getLogger("seqItem");
 
     /*
      Ablauf:
@@ -233,7 +233,7 @@
                 }
 
                 this.log("stepped into " + this.index + ": " + this.type, true);
-                this.log("executing in " + this.wait + " sec");
+                //this.log("executing in " + this.wait + " sec");
                 var itemRequire = {};
                 try {
                     itemRequire = require('./includes/' + this.type);
@@ -343,7 +343,7 @@
                 return;
             }
             map.devices.forEach(function (dev) {
-                self.log("sending to " + dev + ": " + self.text);
+                self.log("sending to " + dev + ": " + self.getWsContent());
                 //statt device player wird der playerManager verwendet
                 //dieser bekommt das ganze item-objekt
                 //alle anderen devices bekommen nur, getWsContent()
@@ -386,7 +386,7 @@
                 this.next.finish();
             }
             else {
-                this.log("finishing step " + this.index + ": " + this.type, true);
+                //this.log("finishing step " + this.index + ": " + this.type, true);
                 clearTimeout(this.timeout);
                 this.finishItem();
             }
