@@ -201,9 +201,9 @@
                 homeFactory.ratedVote = result.ratedVote;
                 //"::::" erzeugt zwei Zeilenumbrüche in der Darstellung in der playerApp
                 if (resultType === "numberStats") {
-                     //send stats as array: [sum, avg]
+                    //send stats as array: [sum, avg]
                     resData = [
-                       // result.sum,
+                        // result.sum,
                         f(result.sum),
                         f(result.average),
                         f(result.minVal),
@@ -325,6 +325,7 @@
                 homeFactory.timedVote(homeFactory.freeze);
                 $location.path('/deal');
             }
+
             function f(s) {
                 return parseFloat(s).toLocaleString(
                         gettextCatalog.currentLanguage,
@@ -353,6 +354,8 @@
             statusFactory.playerOnTurn = null;
             statusFactory.gameEventTypes = [];
             statusFactory.playerAppIcons = [];
+            statusFactory.scoreBuckets = {};
+            statusFactory.maxMinScore = {min: 0, max: 0};
 
             //diese eigenschaft wird hier geführt, da sie im view
             //benötigt wird und sonst im digest-cycle immerwieder neu
@@ -376,6 +379,7 @@
                     statusFactory.availablePlayers = statusFactory.getAvailablePlayers();
                     statusFactory.playerOnTurn = statusFactory.getPlayerOnTurn();
                     statusFactory.otherJoinedPlayers = statusFactory.getOtherPlayers();
+                    statusFactory.fillScoreBuckets();
                 }
                 if (data.maxPlayers) {
                     statusFactory.maxPlayers = data.maxPlayers;
@@ -391,7 +395,7 @@
                     statusFactory.playerAppIcons.push({name: "deal", playerId: data.value});
                 }
                 if (data.type === "alliance") {
-                    var playerId = data.value.filter(function(id){
+                    var playerId = data.value.filter(function (id) {
                         return id !== statusFactory.player.playerId;
                     })[0];
                     statusFactory.playerAppIcons.push({name: "alliance", playerId: playerId});
@@ -475,6 +479,30 @@
                 else {
                     return null;
                 }
+            };
+            statusFactory.fillScoreBuckets = function () {
+                statusFactory.scoreBuckets = {};
+                statusFactory.otherPlayers.forEach(function (player) {
+                    if (!player.joined) return;
+                    if (typeof statusFactory.scoreBuckets[player.score] === "undefined") {
+                        statusFactory.scoreBuckets[player.score] = [player];
+                    } else {
+                        statusFactory.scoreBuckets[player.score].push(player);
+                    }
+                });
+                for (var sc in statusFactory.scoreBuckets) {
+                    if (statusFactory.scoreBuckets.hasOwnProperty(sc)) {
+                        statusFactory.scoreBuckets[sc] = statusFactory.scoreBuckets[sc].sort(function (a, b) {
+                            return (a.relations.length > 0 && b.relations.length === 0);
+                        });
+                        statusFactory.scoreBuckets[sc] = statusFactory.scoreBuckets[sc].sort(function (a, b) {
+                            return (a.playerId === statusFactory.player.playerId);
+                        });
+                    }
+                }
+                var scores = Object.keys(statusFactory.scoreBuckets);
+                statusFactory.maxMinScore.min = Math.min.apply(Math, scores);
+                statusFactory.maxMinScore.max = Math.max.apply(Math, scores);
             };
             return statusFactory;
 

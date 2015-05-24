@@ -107,30 +107,22 @@
     min-width: 25px;
     border-radius: 5px;
     text-align: right;
+    box-shadow: -1px 0.5px 0px white;
 }
 
 .my_score_label {
     position: absolute;
-    left: 20px;
-    top: -14px;
-    color: #fff;
-    padding: 1px 7px 1px 7px;
-    font-size: 0.8em;
-    margin-top: 4px;
-    border-radius: 5px;
-    text-align: right;
-    min-width: 25px;
-}
-
-.my_score_label_top {
-    position: absolute;
     /*height: 11px;*/
+    color: #fff;
     height: 20px;
     width: 30px;
     top: -14px;
     left: 20px;
     margin-top: 3px;
     border-radius: 5px;
+    font-size: 0.8em;
+    text-align: center;
+    line-height: 20px;
 }
 .my_score_label_bottom {
     position: absolute;

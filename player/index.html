@@ -94,19 +94,20 @@
                 <div id="baro_vert_line" ng-style="{'height': getBaroHeight()}"></div>
                 <!--<div id="baro_top_line"></div>-->
                 <!--<div id="baro_bottom_line" ng-style="{'top': getBaroHeight()}"></div>-->
-                <div class="baro_others_line" ng-repeat="player in status.otherJoinedPlayers track by $index"
-                     ng-style="{'top': getLinePos($index)}">
-                    <div class="score_label" ng-style="{'background':player.relations.length > 0 ? playerColors[player.playerId] : '#737373'}">
-                        {{player.score}}
+                <div class="baro_others_line" ng-repeat="(score, players) in status.scoreBuckets track by $index"
+                     ng-style="{'top': getLinePos(score)}">
+                    <div class="score_label"
+                         ng-repeat="player in players"
+                         ng-class="{'my_score_label':player.playerId === status.player.playerId}"
+                         ng-style="{'top': getLabelPos($index)[1], 'left': getLabelPos($index)[0], 'background':(player.relations.length > 0 || player.playerId === status.player.playerId) ? playerColors[player.playerId] : '#737373'}">
+                        {{score}}
                     </div>
                 </div>
-
+<!--
                 <div class="baro_my_line" ng-style="{'top': getMyLinePos()}">
-                    <div class="my_score_label_top" ng-style="{'background':myColor()}"></div>
-                    <div class="my_score_label">
-                        {{status.player.score}}
-                    </div>
+                    <div class="my_score_label" ng-style="{'background':myColor()}">{{status.player.score}}</div>
                 </div>
+    -->
                 <div id="baro_zero_line" ng-style="{'top': getPosHeight()}"></div>
                 <div id="baro_zero" ng-style="{'top': getPosHeight()}">0</div>
             </div>

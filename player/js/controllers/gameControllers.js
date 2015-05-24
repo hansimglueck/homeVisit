@@ -29,33 +29,18 @@
                 return $scope.baromaterHeight.toString() + "px";
             };
 
-            $scope.getLinePos = function (index) {
-                $scope.minScore = $scope.status.otherJoinedPlayers[0].score;
-                $scope.maxScore = $scope.status.otherJoinedPlayers[0].score;
-                for (var i = 0; i < $scope.status.otherJoinedPlayers.length; i++) {
-                    if ($scope.status.otherJoinedPlayers[i].score < $scope.minScore) {
-                        $scope.minScore = $scope.status.otherJoinedPlayers[i].score;
-                    }
-                    if ($scope.status.otherJoinedPlayers[i].score > $scope.maxScore) {
-                        $scope.maxScore = $scope.status.otherJoinedPlayers[i].score;
-                    }
-                }
-                if ($scope.status.player.score < $scope.minScore) {
-                    $scope.minScore = $scope.status.player.score;
-                }
-                if ($scope.status.player.score > $scope.maxScore) {
-                    $scope.maxScore = $scope.status.player.score;
-                }
-                var myScore = $scope.status.otherJoinedPlayers[index].score;
-                return ($scope.linePosFromScore(myScore)).toString() + "px";
+            $scope.getLinePos = function (score) {
+                return ($scope.linePosFromScore(score)).toString() + "px";
+            };
+            $scope.getLabelPos = function(index, length) {
+                return [(index*4+20)+"px", (-index*2-14)+"px"];
             };
             $scope.getMyLinePos = function () {
                 var myScore = $scope.status.player.score;
                 return ($scope.linePosFromScore(myScore)).toString() + "px";
             };
             $scope.linePosFromScore = function (myScore) {
-                var linePos = $scope.baromaterHeight - (myScore - $scope.minScore) * $scope.baromaterHeight / ($scope.maxScore - $scope.minScore);
-                return linePos;
+                return $scope.baromaterHeight - (myScore - Status.maxMinScore.min) * $scope.baromaterHeight / (Status.maxMinScore.max - Status.maxMinScore.min);
             };
 
             $scope.getPosHeight = function () {
