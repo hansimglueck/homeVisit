@@ -1,6 +1,7 @@
 (function() {
     'use strict';
     var logger = require('log4js').getLogger("clock");
+    logger.setLevel("INFO");
 
     function GameClock() {
         this.startTime = null;

@@ -6,7 +6,7 @@
     var gameRecording = require('./gameRecording');
     require('../homevisit_components/stringFormat');
     var logger = require('log4js').getLogger("playerManager");
-
+    logger.setLevel("INFO");
 
     var PlayerManager = function () {
         this.players = [];
@@ -569,7 +569,7 @@
         },
 
         getPlayerGroup: function (identifier) {
-            logger.info("getPlayerGroup " + identifier);
+            logger.debug("getPlayerGroup " + identifier);
             var ret;
             var self = this;
             var inverse = false;
@@ -637,7 +637,7 @@
             var ret2 = ret.filter(function (player) {
                 return player.joined;
             });
-            logger.info(ret2.map(function (player) {
+            logger.debug(ret2.map(function (player) {
                 return player.playerId;
             }));
             return ret2;
