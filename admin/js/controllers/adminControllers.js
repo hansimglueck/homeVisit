@@ -182,7 +182,7 @@
                 text: '',
                 device: ["default"]
             };
-
+            $scope.isCollapsed = true;
             $scope.all = {
                 collapsed: true
             };

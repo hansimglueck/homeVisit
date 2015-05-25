@@ -3,21 +3,29 @@
         <labeled-item-option field="inlineSwitchSource" title="Source" type="select" item="item"
                              saveitem="saveItem()"></labeled-item-option>
     </div>
-    <div class="panel panel-default" ng-repeat="deck in item.inlineDecks track by $index">
-        <div class="panel-heading">
-            <strong>Inline Deck {{$index}}</strong>
-
-            <div class="buttons pull-right">
-                <button class="btn btn-sm btn-danger" ng-click="deleteInlineDeck($index)"><span
-                        class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
-            </div>
-        </div>
-        <div class="panel-body">
-            <div class="inline-deck deck">
-                <div ng-include="'/admin/views/admin/show-deck.html'"></div>
-            </div>
+    <div class="panel-group">
+        <div ng-include="'/admin/views/admin/show-deck.html'" ng-repeat="deck in item.inlineDecks track by $index"
+             ng-controller="deckCtrl" ng-init="isCollapsed=false">
         </div>
     </div>
+    <!--
+    <show-deck ng-repeat="deck in item.inlineDecks track by $index"></show-deck>
+        <div class="panel panel-default" ng-repeat="deck in item.inlineDecks track by $index">
+            <div class="panel-heading">
+                <strong>Inline Deck {{$index}}</strong>
 
-    <button class="btn btn-primary" ng-click="addInlineSwitchOption()" translate>New Deck</button>
+                <div class="buttons pull-right">
+                    <button class="btn btn-sm btn-danger" ng-click="deleteInlineDeck($index)"><span
+                            class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="inline-deck deck">
+                    <div ng-include="'/admin/views/admin/show-deck.html'"></div>
+                </div>
+            </div>
+    </div>
+           -->
+
+    <button class="btn btn-primary" ng-click="addInlineSwitchOption()" translate>New Inline Deck</button>
 </div>

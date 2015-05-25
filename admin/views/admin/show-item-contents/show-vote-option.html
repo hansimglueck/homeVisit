@@ -1,31 +1,40 @@
 <tbody>
-    <tr>
-        <th translate>Option</th>
-        <th ng-show="item.type == 'switch'"></th>
-        <th ng-show="item.type == 'vote'" translate>Correct</th>
-        <th ng-show="item.type == 'vote'" translate>Score</th>
-    </tr>
-    <tr ng-repeat="voteOption in item.voteOptions track by $index">
-        <td>
-            <span editable-text="voteOption.text[lang]" e-name="text" onaftersave="saveVoteOption()">
-                  {{ voteOption.text[lang] || '-' }}
+<tr>
+    <th translate>Option</th>
+    <th ng-show="item.type == 'switch'"></th>
+    <th ng-show="item.type == 'vote'" translate>Correct</th>
+    <th ng-show="item.type == 'vote'" translate></th>
+</tr>
+<tr ng-repeat="voteOption in item.voteOptions track by $index">
+    <td>
+        ({{gettextCatalog.currentLanguage}})
+        <span editable-text="voteOption.text[gettextCatalog.currentLanguage]" e-name="text" onaftersave="saveVoteOption()">
+            {{ voteOption.text[gettextCatalog.currentLanguage] || '-' }}
+        </span>
+        <p ng-if="show && language !== gettextCatalog.currentLanguage"
+             ng-repeat="(language, show) in otherLanguages">
+            ({{language}}) <span editable-text="voteOption.text[language]" e-name="text" onaftersave="saveVoteOption()">
+            {{ voteOption.text[language] || '-' }}
             </span>
-        </td>
-        <td ng-show="item.type == 'vote'"><span editable-checkbox="voteOption.correctAnswer" e-name="correctAnswer" onaftersave="saveVoteOption()">
+        </p>
+
+    </td>
+    <td ng-show="item.type == 'vote'"><span editable-checkbox="voteOption.correctAnswer" e-name="correctAnswer"
+                                            onaftersave="saveVoteOption()">
           {{ voteOption.correctAnswer ? 'x':'-' }}
         </span>
-        </td>
-        <!--
-        <td ng-show="item.type == 'vote'">
-            <span editable-number="voteOption.score" e-name="score" onaftersave="saveVoteOption()">
-                  {{ voteOption.score || 'empty' }}
-            </span>
-        </td>
-        -->
-         <td style="white-space: nowrap">
-            <div class="buttons">
-                <button class="btn btn-sm btn-danger" ng-click="deleteVoteOption($index)" translate>Delete</button>
-            </div>
-        </td>
-    </tr>
+    </td>
+    <!--
+    <td ng-show="item.type == 'vote'">
+        <span editable-number="voteOption.score" e-name="score" onaftersave="saveVoteOption()">
+              {{ voteOption.score || 'empty' }}
+        </span>
+    </td>
+    -->
+    <td style="white-space: nowrap">
+        <div class="buttons">
+            <button class="btn btn-sm btn-danger" ng-click="deleteVoteOption($index)" translate>Delete</button>
+        </div>
+    </td>
+</tr>
 </tbody>

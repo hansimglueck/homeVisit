@@ -34,7 +34,8 @@
                         <li ng-repeat="device in gameConf.typeMapping[$index].devices track by $index">
                             <form editable-form name="deviceFrm" shown="device == ''">
                         <span class="device">
-                            <span ng-click="deviceFrm.$show()" e-form="deviceFrm" editable-text="gameConf.typeMapping[$parent.$index].devices[$index]"
+                            <span ng-click="deviceFrm.$show()" e-form="deviceFrm"
+                                  editable-text="gameConf.typeMapping[$parent.$index].devices[$index]"
                                   onbeforesave="" onaftersave="updateGameConf()">
                                 {{ device }}
                             </span>
@@ -54,5 +55,14 @@
     </li>
     <li class="list-group-item">
         <language-chooser></language-chooser>
+    </li>
+    <li class="list-group-item">
+        Also show:
+        <label ng-hide="gettextCatalog.currentLanguage === 'en'" translate>English
+            <input type="checkbox" ng-model="otherLanguages.en">
+        </label>
+        <label ng-hide="gettextCatalog.currentLanguage === 'de'" translate>German
+            <input type="checkbox" ng-model="otherLanguages.de">
+        </label>
     </li>
 </ul>

@@ -29,6 +29,14 @@
             return $resource('/nodes/', null, {
                 'get': { method: 'GET', isArray: true }
             });
-        });
+        })
+        .factory('OtherLanguages', function() {
+            var otherLanguages = {
+                de: false,
+                en: true
+            };
+            return otherLanguages;
+        })
+    ;
 
 })();

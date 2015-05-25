@@ -122,3 +122,31 @@ td.item-comment {
 .on-turn {
     background-color: rgba(255, 116, 0, 0.27);
 }
+
+.deck-body {
+    text-align: right;
+}
+
+.deck-table {
+    text-align: left;
+}
+
+.deck-title i{
+    display: none;
+}
+
+.deck-title:active {
+    text-decoration: none;
+    font-weight: bolder;
+}
+.deck-title:active i{
+    display: inline;
+}
+
+.collapse-all-link {
+    color: black;
+}
+.collapse-all-link:active i:before {
+    content: "\f1ce";
+    -webkit-animation: fa-spin 2s infinite linear;
+}

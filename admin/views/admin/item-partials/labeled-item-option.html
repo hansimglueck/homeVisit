@@ -1,12 +1,12 @@
 <span>
     <div class="labeled-option">
-        <div class="labeled-option-title">{{title}}</div>
+        <div class="labeled-option-title">{{title}} <span ng-if="type.indexOf('localized') > -1">({{gettextCatalog.currentLanguage}})</span></div>
         <div class="labeled-option-content" ng-switch="type">
             <div ng-switch-when="localized-textarea">
-            <span editable-textarea="item[field][lang]"
+            <span editable-textarea="item[field][gettextCatalog.currentLanguage]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
-                {{ item[field][lang] || '-' }}
+                {{ item[field][gettextCatalog.currentLanguage] || '-' }}
             </span>
             </div>
             <div ng-switch-when="textarea">
@@ -24,10 +24,10 @@
             </span>
         </div>
         <div ng-switch-when="localized-textarea_pre">
-            <span editable-textarea="item[field][lang]"
+            <span editable-textarea="item[field][gettextCatalog.currentLanguage]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
-           <pre><code>{{ item[field][lang] || '-' }}</code></pre>
+           <pre><code>{{ item[field][gettextCatalog.currentLanguage] || '-' }}</code></pre>
            </span>
             </div>
             <div ng-switch-when="select_editable">
@@ -46,10 +46,10 @@
                 </select>
             </div>
             <div ng-switch-when="localized-text">
-            <span editable-text="item[field][lang]"
+            <span editable-text="item[field][gettextCatalog.currentLanguage]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
-            {{ item[field][lang] || '-' }}</span>
+            {{ item[field][gettextCatalog.currentLanguage] || '-' }}</span>
             </div>
             <div ng-switch-when="text">
             <span editable-text="item[field]"
@@ -91,28 +91,30 @@
         </div>
     </div>
 
-    <div class="labeled-option" ng-if="lang!=='de' && type.indexOf('localized') > -1">
-        <div class="labeled-option-title">{{title}}(DE)</div>
+    <div class="labeled-option"
+         ng-if="type.indexOf('localized') > -1 && show && language !== gettextCatalog.currentLanguage"
+            ng-repeat="(language, show) in otherLanguages">
+        <div class="labeled-option-title">{{title}} ({{language}})</div>
         <div class="labeled-option-content" ng-switch="type">
             <div ng-switch-when="localized-textarea">
-            <span editable-textarea="item[field]['de']"
+            <span editable-textarea="item[field][language]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
-                {{ item[field]['de'] || '-' }}
+                {{ item[field][language] || '-' }}
             </span>
             </div>
             <div ng-switch-when="localized-textarea_pre">
-            <span editable-textarea="item[field]['de']"
+            <span editable-textarea="item[field][language]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
-           <pre><code>{{ item[field]['de'] || '-' }}</code></pre>
+           <pre><code>{{ item[field][language] || '-' }}</code></pre>
            </span>
             </div>
             <div ng-switch-when="localized-text">
-            <span editable-text="item[field]['de']"
+            <span editable-text="item[field][language]"
                   e-rows="7" e-cols="40" e-name="field"
                   onaftersave="saveitem()">
-            {{ item[field]['de'] || '-' }}</span>
+            {{ item[field][language] || '-' }}</span>
             </div>
         </div>
     </div>

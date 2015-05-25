@@ -16,7 +16,8 @@
             return {
                 restrict: 'AE',
                 replace: 'true',
-                templateUrl: baseUrl + '/admin/show-deck.html'
+                templateUrl: baseUrl + '/admin/show-deck.html',
+                controller: 'deckCtrl'
             };
         })
 
@@ -45,8 +46,10 @@
                 scope: {
                     item: '='
                 },
-                controller: function ($scope, gettextCatalog) {
+                controller: function ($scope, gettextCatalog, OtherLanguages) {
+                    $scope.otherLanguages = OtherLanguages;
                     $scope.lang = gettextCatalog.currentLanguage;
+                    $scope.gettextCatalog = gettextCatalog;
                     $scope.saveVoteOption = function () {
                         console.log('saveVoteOption');
                         console.log($scope.$parent.$index);
@@ -225,8 +228,10 @@
                     type: '@',
                     saveitem: '&'
                 },
-                controller: function ($scope, itemOptions, $filter, gettextCatalog) {
+                controller: function ($scope, itemOptions, $filter, gettextCatalog, OtherLanguages) {
+                    $scope.otherLanguages = OtherLanguages;
                     $scope.lang = gettextCatalog.currentLanguage;
+                    $scope.gettextCatalog = gettextCatalog;
                     $scope.itemOptions = itemOptions;
                     $scope.showTextForValue = function (item, option) {
                         var selected = [];

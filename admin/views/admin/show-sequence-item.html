@@ -9,10 +9,10 @@
                     <!--
                                    {{ name }}:{{$parent.name}}:{{$parent.$parent.name}}:{{$parent.$parent.$parent.name}}:{{$parent.$parent.$parent.$parent.name}}:{{$parent.$parent.$parent.$parent.$parent.name}}:{{$parent.$parent.$parent.$parent.$parent.$parent.name}}
                                    -->
-                <span ng-click="collapseAll()">
+                <a class="collapse-all-link" ng-click="collapseAll()">
                     <i ng-hide="all.collapsed" class="fa fa-caret-square-o-down"></i>
                     <i ng-show="all.collapsed" class="fa fa-caret-square-o-up"></i>
-                </span>
+                </a>
                 <span ng-hide="true" ng-click="scrollTo(deck._id)">
                     <i class="fa fa-long-arrow-up"></i>
                 </span>

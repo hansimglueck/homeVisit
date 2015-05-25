@@ -1,37 +1,25 @@
-<div ng-controller="deckCtrl">
-    <ul class="list-unstyled" ng-hide="deck.inline">
-        <li>{{deck.description}}</li>
-        <li ng-hide="true" translate>Total duration: {{getTimeForDeck()}}</li>
-        <li style="text-align: right">
-            <button class="btn btn-sm btn-danger" ng-click="deleteDeck($index)" translate>Delete deck</button>
-        </li>
-        <li style="text-align: right">
-            <button class="btn btn-sm btn-danger" ng-click="renameDeck($index)" translate>Rename deck</button>
-        </li>
-        <li style="text-align: right">
-            <button class="btn btn-sm btn-danger" ng-click="duplicateDeck($index)" translate>Duplicate deck</button>
-        </li>
-        <!-- <li style="text-align: right"> -->
-        <!--     <button class="btn btn-sm btn-default" href="#" ng-click="duplicateDeck($index)" translate>Duplicate deck</button> -->
-        <!-- </li> -->
-        <!-- <li style="text-align: right"> -->
-        <!--     <button class="btn btn-sm btn-default" href="#" ng-click="exportCSV($index)" translate>Export CSV</button> -->
-        <!-- </li> -->
-    </ul>
-    <div class="table deck-table">
-        <!--
-            <div translate>No.</div>
-            <div translate>Type</div>
-            <div translate>Trigger</div>
-            <div translate>Content</div>
-            <div translate>Comment</div>
-            <div translate>Action</div>
-            -->
-        <div ng-repeat="item in deck.items track by $index" show-sequence-item>
+<div class="panel panel-default">
+    <div class="panel-heading clearfix" ng-click="isCollapsed = !isCollapsed">
+        <a class="panel-title pull-left deck-title">Strang {{$index}}: {{ deck.title }} <i class="fa fa-circle-o-notch fa-spin"></i></a>
+
+        <div class="btn-group pull-right" ng-hide="deck.inline">
+            <button class="btn btn-sm btn-danger" ng-click="deleteDeck($index)" translate><span
+                    class="glyphicon glyphicon-remove"></span></button>
+            <button class="btn btn-sm btn-warning" ng-click="renameDeck($index)" translate>Rename</button>
+            <button class="btn btn-sm btn-success" ng-click="duplicateDeck($index)" translate>Duplicate</button>
         </div>
-        <div>
+        <div class="btn-group pull-right" ng-show="deck.inline">
+            <button class="btn btn-sm btn-danger" ng-click="deleteInlineDeck($index)" translate><span
+                    class="glyphicon glyphicon-remove"></span></button>
+        </div>
+    </div>
+    <div class="panel-body deck-body" ng-if="!isCollapsed">
+        <div class="table deck-table">
+            <div ng-repeat="item in deck.items track by $index" show-sequence-item>
+            </div>
+            <div>
                 <button class="btn btn-primary" ng-click="addItem()" translate>Add new item</button>
+            </div>
         </div>
     </div>
 </div>
-
