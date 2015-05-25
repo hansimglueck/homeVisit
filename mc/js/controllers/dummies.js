@@ -76,6 +76,7 @@
                 var name = prompt(gettextCatalog.getString('Change name'), PlayerNames.getNames()[nr]);
                 if (name != null){
                     PlayerNames.customPlayerNames[nr] = name;
+                    $scope.inGame[nr] = 1;
                 }
             };
             $scope.isInGame = function(playerIndex) {

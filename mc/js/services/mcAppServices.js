@@ -330,7 +330,7 @@
             // When there are less than 15 players, deactivate them to ignore them in matching calc
             // 1 if player is in game, 0 if player is absent
             playerNamesFactory.inGame = [
-                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
             ]
 
             playerNamesFactory.getPlayerCount = function () {
