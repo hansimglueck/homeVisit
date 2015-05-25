@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-05-19 19:08+0100\n"
+"PO-Revision-Date: 2015-05-25 20:24+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.7.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: player/partials/rating/rating.html:4
@@ -387,7 +387,7 @@ msgstr "Mein Vertrauen in die Demokratie"
 
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr "Mein Gewinn aus dem Spiel der Märkte"
+msgstr "Mein Vorteil aus dem Spiel der Märkte"
 
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
@@ -831,16 +831,15 @@ msgstr "Warten auf Antwort ..."
 
 #: mc/js/services/mcAppServices.js:122
 msgid "Who at the table has a job of which he or she can live?"
-msgstr ""
-"Wer am Tisch hat eine Arbeit, von der er oder sie leben kann?  (+ Rückfrage)"
+msgstr "Wer hat eine Arbeit, von der er / sie leben kann?  (+ Rückfrage)"
 
 #: mc/js/services/mcAppServices.js:86
 msgid "Who at this table has been class spokesman?"
-msgstr "Wer an diesem Tisch war einmal Klassensprecher?"
+msgstr "Wer war Klassensprecher?"
 
 #: mc/js/services/mcAppServices.js:95
 msgid "Who at this table has ever won a lot?"
-msgstr "Wer an diesem Tisch hat schon mal viel gewonnen?"
+msgstr "Wer hat schon mal das große Los gezogen?"
 
 #: mc/js/services/mcAppServices.js:158
 msgid "Who feels more as an European than a citizens of his country?"
@@ -852,14 +851,11 @@ msgstr "Wer findet die Menschen hier grundsätzlich vertrauenswürdig?"
 
 #: mc/js/services/mcAppServices.js:140
 msgid "Who had a physical conflict in the past 10 years?"
-msgstr ""
-"Wer hat in den vergangenen 10 Jahren einen Konflikt schon mal körperlich "
-"ausgetragen?"
+msgstr "Wer hat einen Konflikt schon mal körperlich ausgetragen?"
 
 #: mc/js/services/mcAppServices.js:149
 msgid "Who has ever consciously denied his national origin?"
-msgstr ""
-"Wer hat schon mal bewusst seine nationale Herkunft verleugnet?  (+ Rückfrage)"
+msgstr "Wer hat bewusst seine nationale Herkunft verleugnet?  (+ Rückfrage)"
 
 #: mc/js/services/mcAppServices.js:113
 msgid "Who is involved in a association or in an NGO?"
@@ -955,7 +951,7 @@ msgstr "Herkunft verleugnet"
 
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr "Gewinn aus Spiel der Märkte"
+msgstr "Vorteil aus Spiel der Märkte"
 
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
@@ -1045,7 +1041,7 @@ msgstr "Solidaritätsbereitschaft"
 
 #: mc/js/services/mcAppServices.js:96
 msgid "won a lot"
-msgstr "viel gewonnen"
+msgstr "das große Los"
 
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"
