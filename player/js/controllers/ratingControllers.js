@@ -21,7 +21,7 @@
 
             $scope.notBeingRatedMyself = function() {
                 for (var i = 0; i < $scope.playerIds.length; i++) {
-                    if ($scope.playerIds[i] === Status.player.playerId) {
+                    if (parseInt($scope.playerIds[i]) === Status.player.playerId) {
                         return false;
                     }
                 }
