@@ -459,6 +459,7 @@
                             playerNames.push(customNames[i] || name);
                         });
                         var data = {
+                            inGame: PlayerNames.inGame,
                             playerNames: playerNames,
                             answers: Polls.polls
                         };
