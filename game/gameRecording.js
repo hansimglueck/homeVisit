@@ -13,7 +13,6 @@
     var logger = require('log4js').getLogger("recordings");
 
 
-
     function GameRecording() {
         this.recordingId = null;
         this.clock = require('./clock');
@@ -151,7 +150,8 @@
                         res.on('data', function (chunk) {
                             logger.info('Response: ' + chunk);
                             success = chunk.indexOf("Error") === -1;
-                            finished = chunk.indexOf("</div>") !== -1;
+                            if (chunk.indexOf("</div>") !== -1) finished = true;
+                            if (chunk.indexOf("</html>") !== -1) finished = true;
                             if (!finished) return;
                             self.recordUpload(success ? "tawanUploadSuccess" : "tawanUploadError", id, sessionId);
                         });
@@ -168,8 +168,13 @@
             var self = this;
             homevisitQueries.getNewCompletedRecordings(function (error, recordings) {
                 logger.info(recordings);
+                //give one sec for each recording for nicer logs and not to stress the server...
+                var timeout = 0;
                 recordings.forEach(function (recording) {
-                    self.upload(recording._id, recording.sessionId);
+                    timeout += 1000;
+                    setTimeout(function () {
+                        self.upload(recording._id, recording.sessionId)
+                    }, timeout);
                 })
             });
         }
