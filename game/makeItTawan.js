@@ -1,5 +1,5 @@
 var homevisitQueries = require("./homevisitQueries");
-var logger = require('log4js').getLogger();
+var logger = require('log4js').getLogger("mit");
 
 
 function makeItTawan(recId, cb) {
@@ -53,6 +53,27 @@ function makeItTawan(recId, cb) {
                 return vote.choice;
             });
             return {id: poll.data.results.rid, data: array}
+        });
+        tawan = tawan.concat(tawan2);
+
+        //teams in game
+        var teamCntArray = recs.filter(function (rec) {
+            return rec.name === "poll" && rec.data.results.rid !== null && typeof rec.data.results.rid !== "undefined" && rec.data.results.rid === 106;
+        });
+        var teamCnt = 8;
+        if (teamCntArray.length > 0) {
+            teamCnt = teamCntArray[0].data.results.votes.length;
+        }
+
+        //börse
+        tawan2 = recs.filter(function (rec) {
+            return rec.name === "poll" && rec.data.uid === 111;
+        }).map(function (poll) {
+            var inRoulette = 0;
+            if (typeof poll.data.results !== "undefined" && typeof poll.data.results.positivePlayerIds !== "undefined") {
+                inRoulette = poll.data.results.positivePlayerIds.length;
+            }
+            return {id: 111, data: [inRoulette, teamCnt-inRoulette]};
         });
         tawan = tawan.concat(tawan2);
 
@@ -122,7 +143,6 @@ function makeItTawan(recId, cb) {
             }
         }
         tawan.push({id: 62, data: mythos});
-        logger.info(sid+" -> "+mythos);
 
         //weitere Felder
         tawan.push({id: 181, data: recId});
@@ -131,19 +151,34 @@ function makeItTawan(recId, cb) {
         var answers = recs.filter(function (rec) {
             return rec.name === "answers"
         });
-        if (answers.length > 0) answers[0].data.answers.forEach(function (answer) {
-            var array = [];
-            var cnt = (answer.type === "fingers") ? 6 : 2;
-            var j = 0;
-            for (var i = -1; i < cnt; i++) {
-                j = i;
-                if (i === -1) j = cnt;
-                array[j] = answer.answers.filter(function (a) {
-                    return a == i;
-                }).length;
+        var playerCnt = 15;
+        if (answers.length > 0) {
+            if (typeof answers[0].data.inGame === "undefined") {
+                answers[0].data.inGame = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+                answers[0].data.playerNames.forEach(function(playerName, id){
+                    if (playerName.indexOf("Spieler") !== 0 && playerName.indexOf("Player") !== 0) {
+                        answers[0].data.inGame[id] = 1;
+                    }
+                })
             }
-            tawan.push({id: answer.rid, data: array})
-        });
+            playerCnt = answers[0].data.inGame.reduce(function(prev, curr){
+                return prev+curr;
+            },0);
+            tawan.push({id: 182, data:playerCnt});
+            answers[0].data.answers.forEach(function (answer) {
+                var array = [];
+                var cnt = (answer.type === "fingers") ? 6 : 2;
+                var j = 0;
+                for (var i = -1; i < cnt; i++) {
+                    j = i;
+                    if (i === -1) j = cnt;
+                    array[j] = answer.answers.filter(function (a, id) {
+                        return (a === i) && (answers[0].data.inGame[id] === 1);
+                    }).length;
+                }
+                tawan.push({id: answer.rid, data: array})
+            });
+        }
         //console.dir(tawan);
         var realTawan = {'gruppe_ID': sid};
         tawan.forEach(function (t) {
