@@ -18,7 +18,11 @@
             } else {
                 $scope.playerIds = [];
             }
-
+            $scope.playerIds.forEach(function(i) {
+                if (parseInt($scope.playerIds[i]) === Status.player.playerId) {
+                    Home.doneTask();
+                }
+            });
             $scope.notBeingRatedMyself = function() {
                 for (var i = 0; i < $scope.playerIds.length; i++) {
                     if (parseInt($scope.playerIds[i]) === Status.player.playerId) {
