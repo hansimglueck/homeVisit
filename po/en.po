@@ -1048,7 +1048,7 @@ msgstr[1] ""
 #: player/js/services/playerAppServices.js:328
 #: player/partials/voteConfirm.html:2
 msgid "€"
-msgstr ""
+msgstr "NOK"
 
 #: mc/index.html:44
 msgid "← Select game session!"
