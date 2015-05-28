@@ -19,7 +19,7 @@
                 $scope.playerIds = [];
             }
             $scope.playerIds.forEach(function(i) {
-                if (parseInt($scope.playerIds[i]) === Status.player.playerId) {
+                if (parseInt(i) === Status.player.playerId) {
                     Home.doneTask();
                 }
             });
