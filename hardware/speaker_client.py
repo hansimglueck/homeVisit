@@ -2,10 +2,13 @@
 import time
 import os
 import ws
+import subprocess
 
 def playSoundfile(msg):
 	if msg["type"] != "display":
 		return
+	subprocess.call("pkill omx",shell=True)
+
 	filename = msg["data"]["text"]
 	print(filename)
 	if filename == "stop":
