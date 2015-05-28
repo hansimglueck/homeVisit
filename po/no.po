@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.7.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: player/partials/rating/rating.html:4
@@ -22,118 +22,125 @@ msgid ""
 "              </ul>\n"
 "              should get {{score}} point from you?"
 msgstr ""
+"<ul class=\"list-inline\">\n"
+"                <li ng-repeat=\"pid in playerIds\">\n"
+"                  <player-icon class=\"player-icon-big\" pid=\"pid\"></"
+"player-icon>\n"
+"                </li>\n"
+"              </ul>\n"
+"              bør få {{score}} punkt fra deg?"
 
 #: game/playerManager.js:850
 msgid "A new %s"
-msgstr ""
+msgstr "En ny %s"
 
 #: admin/views/master-buttons.html:13 mc/index.html:51
 #: mc/views/players.html:41
 msgid "ALARM"
-msgstr ""
+msgstr "ALARM"
 
 #: admin/views/admin/show-deck.html:30
 msgid "Add new item"
-msgstr ""
+msgstr "Legg til nytt element"
 
 #: homevisit_components/hvDirectives.js:78
 msgid "Are you sure?"
-msgstr ""
+msgstr "Er du sikker?"
 
 #: player/partials/results.html:22
 msgid "Average:"
-msgstr ""
+msgstr "Gjennomsnitt:"
 
 #: mc/views/results.html:28
 msgid "Average: {{display.data[1]}}"
-msgstr ""
+msgstr "Gjennomsnitt: {{display.data[1]}}"
 
 #: mc/js/controllers/players.js:58
 msgid "Away"
-msgstr ""
+msgstr "Borte"
 
 #: admin/views/master-buttons.html:12 mc/views/item.html:3
 msgid "BACK"
-msgstr ""
+msgstr "TILBAKE"
 
 #: mc/views/player.details.html:10
 msgid "BACK TO GAME!"
-msgstr ""
+msgstr "TILBAKE TIL SPILLET!"
 
 #: homevisit_components/views/raspi-manager.html:8
 msgid "BRAIN Control"
-msgstr ""
+msgstr "HJERNE Kontroll"
 
 #: player/partials/rating/rating.html:19
 msgid "Back"
-msgstr ""
+msgstr "Tilbake"
 
 #: homevisit_components/views/raspi-manager.html:37
 msgid "CONNECT DB"
-msgstr ""
+msgstr "CONNECT DB"
 
 #: admin/views/admin/move-item.html:23 mc/views/vote.html:58
 #: player/partials/deals/deal.new.html:14
 #: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:5
 msgid "Cancel"
-msgstr ""
+msgstr "Avbryt"
 
 #: mc/js/controllers/dummies.js:76
 msgid "Change name"
-msgstr ""
+msgstr "Endre navn"
 
 #: admin/views/player-list.html:10
 msgid "Change score"
-msgstr ""
+msgstr "Endre poengsum"
 
 #: admin/views/admin/move-item.html:5
 msgid "Choose target where item will be appended."
-msgstr ""
+msgstr "Velg målet hvor elementet vil bli tilføyd."
 
 #: player/partials/deals/deal.choosePlayer.html:2
 msgid "Choose team to offer treaty:"
-msgstr ""
+msgstr "Velg lag som tilbys avtale"
 
 #: admin/views/player-list.html:9
 msgid "Color"
-msgstr ""
+msgstr "Farge"
 
 #: mc/js/controllers/players.js:48
 msgid "Come Back!"
-msgstr ""
+msgstr "Kom tilbake!"
 
 #: mc/views/item.html:31
 msgid "Command"
-msgstr ""
+msgstr "Command"
 
 #: admin/partials/home.html:9 mc/views/item.html:32
 msgid "Configuration"
-msgstr ""
+msgstr "Konfigurasjon"
 
 #: mc/views/vote.html:54 player/partials/deals/deal.answer.html:10
 #: player/partials/rating/rating.html:13 player/partials/voteConfirm.html:4
 msgid "Confirm"
-msgstr ""
+msgstr "Bekrefte"
 
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:5
 msgid "Content"
-msgstr ""
+msgstr "Innhold"
 
 #: admin/views/admin/move-item.html:22
 msgid "Copy"
-msgstr ""
+msgstr "Kopier"
 
 #: admin/views/admin/show-item-contents/show-vote-option.html:5
 msgid "Correct"
-msgstr ""
+msgstr "Riktig"
 
 #: mc/views/results.html:11
 msgid "Correct: {{display.correctAnswer}}"
-msgstr ""
+msgstr "Riktig: {{display.correctAnswer}}"
 
 #: player/partials/results.html:3
 msgid "Correct: {{home.correctAnswer}}"
-msgstr ""
+msgstr "Riktig: {{home.correctAnswer}}"
 
 #: admin/views/game-conf.html:19
 msgid "Current deck:"
@@ -141,625 +148,628 @@ msgstr ""
 
 #: admin/views/master-buttons.html:2
 msgid "Current step:"
-msgstr ""
+msgstr "Gjeldende steg:"
 
 #: mc/views/item.html:7
 msgid "Current:"
-msgstr ""
+msgstr "Gjeldende:"
 
 #: homevisit_components/hvLanguage.js:10
 msgid "Czech"
-msgstr ""
+msgstr "Tsjekkisk"
 
 #: homevisit_components/hvLanguage.js:11
 msgid "Danish"
-msgstr ""
+msgstr "Dansk"
 
 #: mc/js/services/mcAppServices.js:640
 msgid "Deal with"
-msgstr ""
+msgstr "Håndtere"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:4
 msgid "Deck"
-msgstr ""
+msgstr "Deck"
 
 #: admin/partials/home.html:40
 msgid "Decks and items"
-msgstr ""
+msgstr "Decks og gjenstander"
 
 #: admin/views/game-conf.html:27
 msgid "Default mapping:"
-msgstr ""
+msgstr "Standard kartlegging"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:18
 #: admin/views/admin/show-item-contents/show-vote-option.html:27
 msgid "Delete"
-msgstr ""
+msgstr "Slett"
 
 #: admin/views/admin/show-deck.html:6
 msgid "Delete deck"
-msgstr ""
+msgstr "Slett deck"
 
 #: player/partials/deals/deal.answer.html:13
 msgid "Deny"
-msgstr ""
+msgstr "Nekt"
 
 #: admin/views/admin/edit-new-deck.html:9
 msgid "Description:"
-msgstr ""
+msgstr "Beskrivelse:"
 
 #: mc/js/controllers/notes.js:29 mc/js/controllers/players.js:35
 msgid "Deselect"
-msgstr ""
+msgstr "opphev valg/fjern markering"
 
 #: mc/views/players.html:20
 msgid "Details"
-msgstr ""
+msgstr "Detaljer"
 
 #: admin/partials/home.html:17
 msgid "Device Manager"
-msgstr ""
+msgstr "Enhetsbehandler"
 
 #: homevisit_components/hvDirectives.js:72
 msgid "Do you really want to restart the server?"
-msgstr ""
+msgstr "Er du sikker på at du vil restarte serveren?"
 
 #: player/partials/deals/deal.answer.html:7
 msgid "Do you want to accept this treaty?"
-msgstr ""
+msgstr "Vil dere godta avtalen?"
 
 #: mc/js/controllers/matching.js:216
 msgid "Doesn't match well. Should play alone."
-msgstr ""
+msgstr "Passer ikke godt. Burde spille alene."
 
 #: homevisit_components/hvLanguage.js:13
 msgid "Dutch"
-msgstr ""
+msgstr "Nederlandsk"
 
 #: player/partials/home.html:3
 msgid "EUROPE"
-msgstr ""
+msgstr "EUROPA"
 
 #: homevisit_components/hvLanguage.js:8
 msgid "English"
-msgstr ""
+msgstr "Engelsk"
 
 #: mc/views/dummies.html:71
 msgid "Fill the rest"
-msgstr ""
+msgstr "Fyll opp resten"
 
 #: homevisit_components/hvLanguage.js:12
 msgid "French"
-msgstr ""
+msgstr "Fransk"
 
-#: admin/views/master-buttons.html:6 mc/index.html:60 mc/views/players.html:40
+#: admin/views/master-buttons.html:6 mc/index.html:60
+#: mc/views/players.html:40
 msgid "GO"
-msgstr ""
+msgstr "GÅ"
 
 #: admin/views/master-buttons.html:7
 msgid "GO 2"
-msgstr ""
+msgstr "GÅ 2"
 
 #: admin/views/master-buttons.html:22
 msgid "GOTO"
-msgstr ""
+msgstr "GÅ TIL"
 
 #: mc/index.html:35
 msgid "Game"
-msgstr ""
+msgstr "Spill"
 
 #: mc/views/settings.html:61
 msgid "Game recordings"
-msgstr ""
+msgstr "Spillopptak"
 
 #: mc/views/game-session-chooser.html:2
 msgid "Game session"
-msgstr ""
+msgstr "Spilløkt"
 
 #: mc/views/settings.html:42
 msgid "Game settings"
-msgstr ""
+msgstr "Spillinnstillinger"
 
 #: admin/views/master-buttons.html:3
 msgid "Game stopped"
-msgstr ""
+msgstr "Spill stoppet"
 
 #: homevisit_components/hvLanguage.js:9
 msgid "German"
-msgstr ""
+msgstr "Tysk"
 
 #: mc/views/settings.html:7
 msgid "Hello, MC!"
-msgstr ""
+msgstr "Hallo, spilleder!"
 
 #: admin/views/admin/import-json.html:15
 msgid "Import"
-msgstr ""
+msgstr "Importer"
 
 #: admin/views/admin/show-set.html:15
 msgid "Import JSON"
-msgstr ""
+msgstr "Importer JSON"
 
 #: admin/views/admin/edit-new-deck.html:13
 msgid "Import:"
-msgstr ""
+msgstr "Importer:"
 
 #: homevisit_components/views/raspi-manager.html:107
 msgid "Interfaces"
-msgstr ""
+msgstr "Grensesnitt"
 
 #: admin/views/master-buttons.html:8
 msgid "JUMP"
-msgstr ""
+msgstr "HOPP OVER"
 
 #: admin/views/player-list.html:6
 msgid "Joined"
-msgstr ""
+msgstr "Tilknyttet"
 
 #: homevisit_components/views/language-chooser.html:2
 msgid "Language"
-msgstr ""
+msgstr "Språk"
 
 #: mc/js/controllers/players.js:50
 msgid "Leave Table!"
-msgstr ""
+msgstr "Forlat bordet!"
 
 #: homevisit_components/views/raspi-manager.html:95
 msgid "Load"
-msgstr ""
+msgstr "Laste"
 
 #: admin/partials/home.html:25
 msgid "Log"
-msgstr ""
+msgstr "log"
 
 #: mc/views/notes.html:5
 msgid "MC-Notes"
-msgstr ""
+msgstr "Spilledernotat"
 
 #: admin/views/admin/item-partials/item-mapping.html:2
 msgid "Mapped:"
-msgstr ""
+msgstr "Kartlagt:"
 
 #: mc/js/controllers/matching.js:218
 msgid "Matches best with the team of {{name1}} and {{name2}}."
-msgstr ""
+msgstr "Passer best sammen med laget til {{name1}} og {{name2}}."
 
 #: mc/index.html:38
 msgid "Matching"
-msgstr ""
+msgstr "Passer sammen"
 
 #: player/partials/results.html:30
 msgid "Max:"
-msgstr ""
+msgstr "Maks:"
 
 #: mc/views/results.html:30
 msgid "Max: {{display.data[3]}}"
-msgstr ""
+msgstr "Maks: {{display.data[3]}}"
 
 #: homevisit_components/views/raspi-manager.html:87
 msgid "Memory"
-msgstr ""
+msgstr "Minne"
 
 #: player/partials/deals/deal.messageSent.html:7
 msgid "Message sent"
-msgstr ""
+msgstr "Melding sendt"
 
 #: player/partials/results.html:26
 msgid "Min:"
-msgstr ""
+msgstr "Min:"
 
 #: mc/views/results.html:29
 msgid "Min: {{display.data[2]}}"
-msgstr ""
+msgstr "Min: {{display.data[2]}}"
 
 #: admin/views/admin/move-item.html:21
 msgid "Move"
-msgstr ""
+msgstr "Flytt"
 
 #: admin/views/admin/move-item.html:2
 msgid "Move item"
-msgstr ""
+msgstr "Flytt element"
 
 #: mc/js/controllers/players.js:56
 msgid "My Turn!"
-msgstr ""
+msgstr "Min tur!"
 
 #: mc/js/services/mcAppServices.js:194
 msgid "My ambition"
-msgstr ""
+msgstr "Mitt ambisjonsnivå"
 
 #: mc/js/services/mcAppServices.js:203
 msgid "My confidence in democracy"
-msgstr ""
+msgstr "Min tillit til demokratiet"
 
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr ""
+msgstr "Min profitt fra det frie markedet"
 
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
-msgstr ""
+msgstr "Min solidaritetssans"
 
 #: homevisit_components/hvDirectives.js:105
 msgid "N/A"
-msgstr ""
+msgstr "N/A"
 
 #: admin/views/master-mind.html:14
 msgid "Name"
-msgstr ""
+msgstr "Navn"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:22
 msgid "New Deck"
-msgstr ""
+msgstr "Ny Deck"
 
 #: admin/views/admin/show-set.html:12
 msgid "New deck"
-msgstr ""
+msgstr "Ny deck"
 
 #: admin/js/controllers/adminControllers.js:117
 msgid "New name for ?"
-msgstr ""
+msgstr "Nytt navn for ?"
 
 #: admin/views/admin/show-item-contents/show-switch-content.html:9
 #: admin/views/admin/show-item-contents/show-vote-content.html:16
 msgid "New option"
-msgstr ""
+msgstr "Nytt alternativ"
 
 #: admin/views/admin/import-json.html:12
 msgid "New title:"
-msgstr ""
+msgstr "Ny tittel:"
 
 #: player/partials/home.html:1
 msgid "Next"
-msgstr ""
+msgstr "Neste"
 
 #: mc/views/players.html:17
 msgid "Next!"
-msgstr ""
+msgstr "Neste!"
 
 #: game/polls/Agreement.js:16
 msgid "No"
-msgstr ""
+msgstr "Nei"
 
 #: player/partials/deals/deal.choosePlayer.html:8
 msgid "No Deal with me!"
-msgstr ""
+msgstr "Ingen avtale med meg!"
 
 #: admin/views/master-mind.html:28
 msgid "No connected nodes!"
-msgstr ""
+msgstr "Ingen tilknyttede punkter!"
 
 #: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
-msgstr ""
+msgstr "Ingen var slemme mot deg."
 
 #: admin/views/master-mind.html:8
 msgid "Node list"
-msgstr ""
+msgstr "Punktliste"
 
 #: homevisit_components/hvLanguage.js:14
 msgid "Norwegian"
-msgstr ""
+msgstr "Norsk"
 
 #: admin/js/controllers/adminControllers.js:357
 msgid "Not set"
-msgstr ""
+msgstr "Ikke satt"
 
 #: admin/js/controllers/adminControllers.js:20
 msgid "Null Problemo!"
-msgstr ""
+msgstr "Null problem!"
 
 #: mc/views/notes.html:23
 msgid "OK"
-msgstr ""
+msgstr "OK"
 
 #: homevisit_components/views/raspi-manager.html:65
 msgid "OS Info for {{osInfo.hostname}}"
-msgstr ""
+msgstr "OS Info for {{osInfo.hostname}}"
 
 #: homevisit_components/views/raspi-manager.html:111
 msgid "Online"
-msgstr ""
+msgstr "Online"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:3
 #: admin/views/admin/show-item-contents/show-vote-option.html:3
 msgid "Option"
-msgstr ""
+msgstr "Valg"
 
 #: admin/views/admin/show-item-contents/show-switch-content.html:3
 #: admin/views/admin/show-item-contents/show-vote-content.html:10
 msgid "Options"
-msgstr ""
+msgstr "Valgmuligheter"
 
 #: admin/partials/home.html:5
 msgid "Playback"
-msgstr ""
+msgstr "Playback"
 
 #: mc/views/dummies.html:124
 msgid "Player"
-msgstr ""
+msgstr "Spiller"
 
 #: mc/js/services/mcAppServices.js:316
 msgid "Player {{ playerNumber }}"
-msgstr ""
+msgstr "Spiller {{ playerNumber }}"
 
 #: mc/views/item.html:33
 msgid "Players are dealing"
-msgstr ""
+msgstr "Spillerne forhandler"
 
 #: mc/views/item.html:34
 msgid "Players are rating others"
-msgstr ""
+msgstr "Spillerne rangerer andre"
 
 #: mc/views/item.html:14
 msgid "Players are voting"
-msgstr ""
+msgstr "Spillerne stemmer"
 
 #: mc/views/notes.html:10
 msgid "Please Select:"
-msgstr ""
+msgstr "Vennligst velg:"
 
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
-msgstr ""
+msgstr "Vennligst ranger et lag! Gi {{score}} poeng!"
 
 #: mc/views/game-session-chooser.html:8
 msgid "Please select a session before starting the game!"
-msgstr ""
+msgstr "Vennligst velg en økt før spillet settes i gang!"
 
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr ""
+msgstr "Poeng gitt!"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
-msgstr ""
+msgstr "Polsk"
 
 #: mc/index.html:32
 msgid "Polls"
-msgstr ""
+msgstr "Avstemninger"
 
 #: admin/views/master-mind.html:15
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 #: homevisit_components/hvLanguage.js:16
 msgid "Portuguese"
-msgstr ""
+msgstr "Portugisisk"
 
 #: admin/views/admin/import-json.html:4
 msgid "Process"
-msgstr ""
+msgstr "Prosess"
 
 #: homevisit_components/hvDirectives.js:81
 msgid "REALLY REALLY SURE??????????"
-msgstr ""
+msgstr "VIRKELIG HELT SIKKER??????????"
 
 #: homevisit_components/views/raspi-manager.html:125
 msgid "REBOOT"
-msgstr ""
+msgstr "REBOOT"
 
 #: admin/views/master-buttons.html:11
 msgid "REGO"
-msgstr ""
+msgstr "REGO"
 
 #: admin/views/show-device-list.html:7
 msgid "RELOAD"
-msgstr ""
+msgstr "LAST PÅ NYTT"
 
 #: homevisit_components/views/raspi-manager.html:38
 msgid "REPAIR DB"
-msgstr ""
+msgstr "REPARER DB"
 
 #: admin/views/master-buttons.html:5
 msgid "RESTART"
-msgstr ""
+msgstr "RESTART"
 
 #: mc/views/settings.html:53
 msgid "RESTART GAME"
-msgstr ""
+msgstr "RESTART SPILL"
 
 #: homevisit_components/views/raspi-manager.html:22
 msgid "RESTART SERVER"
-msgstr ""
+msgstr "RESTART SERVER"
 
 #: homevisit_components/views/raspi-manager.html:60
 msgid "RESTART WI-FI"
-msgstr ""
+msgstr "RESTART WI-FI"
 
 #: admin/views/player-list.html:7
 msgid "Rank"
-msgstr ""
+msgstr "Plassering"
 
 #: mc/views/players.html:10 mc/views/players.html:15
 msgid "Rank: {{player.rank}}"
-msgstr ""
+msgstr "Plassering: {{player.rank}}"
 
 #: player/index.html:86 player/views/score-barometer.html:4
 msgid "Rank: {{status.player.rank}}"
-msgstr ""
+msgstr "Plassering: {{status.player.rank}}"
 
 #: homevisit_components/hvDirectives.js:94
 msgid "Really DB: {{action}}?"
-msgstr ""
+msgstr "Virkelig DB: {{action}}?"
 
 #: admin/js/controllers/adminControllers.js:111
 #: admin/js/controllers/adminControllers.js:269
 #: admin/js/controllers/masterControllers.js:93
 msgid "Really delete???"
-msgstr ""
+msgstr "Vil du virkelig slette???"
 
 #: mc/js/services/mcAppServices.js:667
 msgid "Really jump?"
-msgstr ""
+msgstr "Vil du virkelig hoppe over?"
 
 #: mc/js/services/mcAppServices.js:662
 msgid "Really restart?"
-msgstr ""
+msgstr "Vil du virkelig starte på nytt?"
 
 #: admin/views/master-mind.html:4
 #: homevisit_components/views/raspi-manager.html:4
 msgid "Refresh"
-msgstr ""
+msgstr "Oppdater"
 
 #: player/partials/deals/deal.wait.html:8
 msgid "Reject"
-msgstr ""
+msgstr "Avslå"
 
 #: admin/views/admin/show-deck.html:9
 msgid "Rename deck"
-msgstr ""
+msgstr "Gi deck nytt navn"
 
 #: player/partials/deals/deal.new.html:9
 msgid "Request"
-msgstr ""
+msgstr "Ønske"
 
 #: mc/views/item.html:29
 msgid "Results are displayed"
-msgstr ""
+msgstr "Resultater vises"
 
 #: mc/views/results.html:44 player/partials/results.html:47
 msgid "Results are weighted by ranking. See actual votes in braces."
-msgstr ""
+msgstr "Resultatene vektes etter plassering. Se faktiske stemmer i parantes."
 
 #: homevisit_components/views/raspi-manager.html:124
 msgid "SHUTDOWN"
-msgstr ""
+msgstr "AVSLUTNING"
 
 #: admin/views/admin/edit-new-deck.html:17
 msgid "Save"
-msgstr ""
+msgstr "Lagre"
 
 #: admin/views/admin/show-item-contents/show-vote-option.html:6
 #: admin/views/player-list.html:8 mc/js/services/mcAppServices.js:634
 msgid "Score"
-msgstr ""
+msgstr "Poengsum / stilling"
 
 #: mc/views/player.details.html:2
 msgid "Score for Player {{playerId}}"
-msgstr ""
+msgstr "Poengsum for spiller {{playerId}}"
 
 #: mc/views/players.html:14 mc/views/players.html:9
 msgid "Score: {{player.score}}"
-msgstr ""
+msgstr "Poengsum: {{player.score}}"
 
 #: player/index.html:87 player/views/score-barometer.html:5
 msgid "Score: {{status.player.score}}"
-msgstr ""
+msgstr "Poengsum: {{status.player.score}}"
 
 #: mc/js/controllers/notes.js:31 mc/js/controllers/players.js:37
 msgid "Select"
-msgstr ""
+msgstr "Velg"
 
 #: mc/index.html:41
 msgid "Settings"
-msgstr ""
+msgstr "Innstillinger"
 
 #: player/partials/black.html:1
 msgid ""
 "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
 "is reading:"
 msgstr ""
+"Kan dere være stille? Nå skal <player-icon pid=\"status.playerOnTurn\"></"
+"player-icon> lese:"
 
 #: admin/views/admin/show-sequence-item.html:36
 msgid "Silent"
-msgstr ""
+msgstr "Stille"
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
-msgstr ""
+msgstr "Lyd spilles av:"
 
 #: mc/views/vote.html:41
 msgid "Submit"
-msgstr ""
+msgstr "Send inn"
 
 #: homevisit_components/views/raspi-manager.html:79
 msgid "System"
-msgstr ""
+msgstr "System"
 
 #: admin/views/player-list.html:5
 msgid "Team ID"
-msgstr ""
+msgstr "Lag-ID"
 
 #: admin/partials/home.html:21
 msgid "Teams"
-msgstr ""
+msgstr "Lag"
 
 #: player/partials/rating/rating.score.html:2
 msgid "The MC has to select somebody!!"
-msgstr ""
+msgstr "Spilleder må velge noen!"
 
 #: game/polls/Agreement.js:39
 msgid "The alliance is fullfilled."
-msgstr ""
+msgstr "Alliansen er fullbyrdet."
 
 #: game/polls/Agreement.js:42
 msgid "The alliance is neglected."
-msgstr ""
+msgstr "Alliansen er forsømt."
 
 #: player/js/services/playerAppServices.js:629
 msgid "The deal was denied"
-msgstr ""
+msgstr "Avtalen ble avslått"
 
 #: game/items/includes/results.js:28
 msgid "The division of the cake"
-msgstr ""
+msgstr "Delingen av kaken"
 
 #: player/js/services/playerAppServices.js:633
 msgid "The other team is busy"
-msgstr ""
+msgstr "Det andre laget er opptatt"
 
 #: player/partials/assholes.html:15
 msgid "The worst team was not mean to you."
-msgstr ""
+msgstr "Det dårligste laget var ikke slemme mot deg/dere."
 
 #: player/partials/assholes.html:2
 msgid "These teams were mean to you:"
-msgstr ""
+msgstr "Disse lagene var slemme mot dere:"
 
 #: player/partials/assholes.html:4
 msgid "These worst team was mean to you:"
-msgstr ""
+msgstr "Det dårligste laget var slemt mot deg:"
 
 #: player/partials/deals/deal.finish.html:7
 msgid "This deal is active"
-msgstr ""
+msgstr "Denne avtalen er aktiv"
 
 #: mc/views/about.html:1
 msgid "This is the about view."
-msgstr ""
+msgstr "Dette er innholdsfortegnelsen."
 
 #: game/game.js:251 game/playerManager.js:165
 msgid "This poll doesn't exist!"
-msgstr ""
+msgstr "Denne avstemningen eksisterer ikke!"
 
 #: player/partials/deals/deal.details.html:38
 msgid "This treaty was ACCEPTED."
-msgstr ""
+msgstr "Denne avtalen ble AKSEPTERT."
 
 #: player/partials/deals/deal.details.html:39
 msgid "This treaty was DENIED."
-msgstr ""
+msgstr "Denne avtalen ble AVSLÅTT."
 
 #: admin/views/admin/edit-new-deck.html:5
 msgid "Title:"
-msgstr ""
+msgstr "Tittel:"
 
 #: admin/views/admin/show-deck.html:4
 msgid "Total duration: {{getTimeForDeck()}}"
-msgstr ""
+msgstr "Total varighet: {{getTimeForDeck()}}"
 
 #: player/partials/results.html:18
 msgid "Total:"
-msgstr ""
+msgstr "Totalt:"
 
 #: mc/views/results.html:27
 msgid "Total: {{display.data[0]}}"
-msgstr ""
+msgstr "Totalt: {{display.data[0]}}"
 
 #: player/partials/rating/rating.html:18
 msgid "Traitor! You can't score down your allied!"
-msgstr ""
+msgstr "Sviker! Du kan ikke gi din allierte lavere poeng!"
 
 #: player/partials/deals/deal.answer.html:3
 #: player/partials/deals/deal.details.html:3
@@ -768,282 +778,285 @@ msgstr ""
 #: player/partials/deals/deal.new.html:3
 #: player/partials/deals/deal.wait.html:3
 msgid "Treaty"
-msgstr ""
+msgstr "Avtale"
 
 #: player/partials/deals/deal.details.html:42
 msgid "Try Again"
-msgstr ""
+msgstr "Prøv igjen"
 
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:4
 msgid "Type"
-msgstr ""
+msgstr "Type"
 
 #: mc/views/settings.html:80
 msgid "Upload"
-msgstr ""
+msgstr "Last opp"
 
 #: homevisit_components/views/raspi-manager.html:83
 msgid "Uptime"
-msgstr ""
+msgstr "Oppetid"
 
 #: admin/views/master-content.html:8 mc/views/vote.html:20
 #: player/partials/vote.html:19
 msgid "VOTE"
-msgstr ""
+msgstr "STEM"
 
 #: mc/js/services/mcAppServices.js:628
 msgid "Voted for:"
-msgstr ""
+msgstr "Stemte for:"
 
 #: admin/views/admin/show-sequence-item.html:30
 msgid "Wait"
-msgstr ""
+msgstr "Vent"
 
 #: player/partials/rating/rating.score.html:26
 msgid "Waiting for being rated."
-msgstr ""
+msgstr "Venter på å bli rangért."
 
 #: player/partials/deals/deal.details.html:18
 msgid "Waiting for reply..."
-msgstr ""
+msgstr "Venter på svar…"
 
 #: player/partials/deals/deal.wait.html:7
 msgid "We are waiting for reply."
-msgstr ""
+msgstr "Vi venter på et svar."
 
 #: mc/js/services/mcAppServices.js:122
 msgid "Who at the table has a job of which he or she can live?"
-msgstr ""
+msgstr "Hvem ved border har en jobb han/hun kan leve av?"
 
 #: mc/js/services/mcAppServices.js:86
 msgid "Who at this table has been class spokesman?"
-msgstr ""
+msgstr "Hvem ved dette bordet har vært elevrådsrepresentant?"
 
 #: mc/js/services/mcAppServices.js:95
 msgid "Who at this table has ever won a lot?"
-msgstr ""
+msgstr "Hvem ved dette bordet har noensinne vunnet en stor premie?"
 
 #: mc/js/services/mcAppServices.js:158
 msgid "Who feels more as an European than a citizens of his country?"
 msgstr ""
+"Hvem føler seg mer som en europeer enn som en innbygger i sitt eget land?"
 
 #: mc/js/services/mcAppServices.js:176
 msgid "Who finds the people here in general trustworthy?"
-msgstr ""
+msgstr "Hvem tenker at personene i dette rommet er til å stole på?"
 
 #: mc/js/services/mcAppServices.js:140
 msgid "Who had a physical conflict in the past 10 years?"
 msgstr ""
+"Hvem har vært involverte i en fysisk konflikt eller slåsskamp i løpet av de "
+"10 siste årene?"
 
 #: mc/js/services/mcAppServices.js:149
 msgid "Who has ever consciously denied his national origin?"
-msgstr ""
+msgstr "Hvem har noensinne bevisst løyet om sin nasjonalitet?"
 
 #: mc/js/services/mcAppServices.js:113
 msgid "Who is involved in a association or in an NGO?"
-msgstr ""
+msgstr "Hvem er medlem av en forening, klubb eller ideell organisasjon?"
 
 #: mc/js/services/mcAppServices.js:167
 msgid "Who is scared of the future?"
-msgstr ""
+msgstr "Hvem er bekymret for fremtiden?"
 
 #: mc/js/services/mcAppServices.js:104
 msgid "Who was or is a member of a political party?"
-msgstr ""
+msgstr "Hvem var eller er medlem av et politisk parti?"
 
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr ""
+msgstr "Hvem jobber jevnlig i utlandet?"
 
 #: homevisit_components/views/raspi-manager.html:53
 msgid "Wi-Fi name:"
-msgstr ""
+msgstr "Wi-fi navn:"
 
 #: homevisit_components/views/raspi-manager.html:56
 msgid "Wi-Fi password"
-msgstr ""
+msgstr "Wi-Fi passord"
 
 #: game/polls/Agreement.js:12
 msgid "Yes"
-msgstr ""
+msgstr "Ja"
 
 #: game/playerManager.js:472
 msgid "You are NOT in the game!"
-msgstr ""
+msgstr "Du er IKKE med i spillet!"
 
 #: game/playerManager.js:481
 msgid "You are in the game!"
-msgstr ""
+msgstr "Du er med i spillet! "
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
-msgstr ""
+msgstr "Du er ikke deltaker i spillet! "
 
 #: mc/views/vote.html:47 player/partials/voteConfirm.html:1
 msgid "You are voting for:"
-msgstr ""
+msgstr "Dere stemmer på:"
 
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
-msgstr ""
+msgstr "Du kan stemme disse lagene opp eller ned."
 
 #: player/partials/deals/deal.noDealing.html:1
 msgid "You decided not to deal at all!"
-msgstr ""
+msgstr "Dere bestemte dere for ikke å forhandle i det hele tatt!"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
-msgstr ""
+msgstr "Tiden er ute. Ett poeng ned!"
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr ""
+msgstr "Ditt valg er sendt!"
 
 #: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
-msgstr ""
+msgstr "Tyngden av din stemme er avhengig av rangeringen din!"
 
 #: mc/js/services/mcAppServices.js:195
 msgid "ambition"
-msgstr ""
+msgstr "ambisjonsnivå"
 
 #: mc/js/services/mcAppServices.js:114
 msgid "association/NGO"
-msgstr ""
+msgstr "forening/ideell organisasjon"
 
 #: admin/js/controllers/adminControllers.js:343
 msgid "cancel"
-msgstr ""
+msgstr "avbryt"
 
 #: mc/js/services/mcAppServices.js:87
 msgid "class spokesman"
-msgstr ""
+msgstr "elevrådsrepresentant"
 
 #: mc/js/services/mcAppServices.js:204
 msgid "confidence in democracy"
-msgstr ""
+msgstr "tro på demokratiet"
 
 #: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:30
 msgid "dark blue"
-msgstr ""
+msgstr "mørkeblå"
 
 #: mc/js/services/mcAppServices.js:150
 msgid "denied origin"
-msgstr ""
+msgstr "nektet opphav (?)"
 
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr ""
+msgstr "inntjening"
 
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
-msgstr ""
+msgstr "føler seg som en europeer"
 
 #: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:33
 msgid "green"
-msgstr ""
+msgstr "grønn"
 
 #: game/playerManager.js:34 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
-msgstr ""
+msgstr "lyseblå"
 
 #: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
-msgstr ""
+msgstr "lilla"
 
 #: mc/js/services/mcAppServices.js:105
 msgid "member of political party"
-msgstr ""
+msgstr "medlem av et politisk parti"
 
 #: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
-msgstr ""
+msgstr "oransje"
 
 #: player/views/game-events.html:24
 msgid "other Player"
-msgstr ""
+msgstr "annen spiller"
 
 #: mc/js/services/mcAppServices.js:123
 msgid "paid job"
-msgstr ""
+msgstr "betalt jobb"
 
 #: mc/js/services/mcAppServices.js:141
 msgid "physical conflict"
-msgstr ""
+msgstr "fysisk konflikt"
 
 #: game/playerManager.js:40 homevisit_components/hvPlayerColors.js:35
 msgid "pink"
-msgstr ""
+msgstr "rosa"
 
 #: mc/js/services/mcAppServices.js:539
 #: player/js/services/playerAppServices.js:213
 msgid "point"
 msgid_plural "points"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "poeng"
+msgstr[1] "poeng"
 
 #: game/playerManager.js:33 homevisit_components/hvPlayerColors.js:28
 msgid "red"
-msgstr ""
+msgstr "rød"
 
 #: mc/js/services/mcAppServices.js:168
 msgid "scared of the future"
-msgstr ""
+msgstr "bekymret for fremtiden"
 
 #: admin/views/admin/show-sequence-item.html:33
 msgid "sec"
-msgstr ""
+msgstr "sekund"
 
 #: mc/views/player.details.html:14
 msgid "throw out"
-msgstr ""
+msgstr "kaste ut"
 
 #: mc/js/services/mcAppServices.js:634
 msgid "to"
-msgstr ""
+msgstr "til"
 
 #: mc/js/services/mcAppServices.js:177
 msgid "trustworthy"
-msgstr ""
+msgstr "til å stole på"
 
 #: mc/js/services/mcAppServices.js:548
 #: player/js/services/playerAppServices.js:230
 msgid "vote"
 msgid_plural "votes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "stemme"
+msgstr[1] "stemmer"
 
 #: mc/js/services/mcAppServices.js:621
 msgid "waiting ..."
-msgstr ""
+msgstr "venter..."
 
 #: mc/js/services/mcAppServices.js:186
 msgid "willingness of solidarity"
-msgstr ""
+msgstr "villighet til solidaritet"
 
 #: mc/js/services/mcAppServices.js:96
 msgid "won a lot"
-msgstr ""
+msgstr "har vunnet mye"
 
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"
-msgstr ""
+msgstr "jobber utenfor landet"
 
 #: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
-msgstr ""
+msgstr "gul"
 
 #: player/partials/assholes.html:9
 msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{minuspoints}} minuspoeng"
+msgstr[1] "{{minuspoints}} minuspoeng"
 
 #: homevisit_components/views/keyboard.html:4
 #: player/js/services/playerAppServices.js:328
 #: player/partials/voteConfirm.html:2
 msgid "€"
-msgstr "nkr"
+msgstr "NOK"
 
 #: mc/index.html:44
 msgid "← Select game session!"
