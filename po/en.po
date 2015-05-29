@@ -938,7 +938,7 @@ msgstr "denied origin"
 
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr "profit from free market"
+msgstr "profit"
 
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"

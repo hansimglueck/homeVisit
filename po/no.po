@@ -823,7 +823,7 @@ msgstr "Vi venter på et svar."
 
 #: mc/js/services/mcAppServices.js:122
 msgid "Who at the table has a job of which he or she can live?"
-msgstr "Hvem ved border har en jobb han/hun kan leve av?"
+msgstr "Hvem ved border har en jobb han/hun kan leve av? (+ videre spørsmål)"
 
 #: mc/js/services/mcAppServices.js:86
 msgid "Who at this table has been class spokesman?"
@@ -850,11 +850,14 @@ msgstr ""
 
 #: mc/js/services/mcAppServices.js:149
 msgid "Who has ever consciously denied his national origin?"
-msgstr "Hvem har noensinne bevisst løyet om sin nasjonalitet?"
+msgstr ""
+"Hvem har noensinne bevisst løyet om sin nasjonalitet?  (+ videre spørsmål)"
 
 #: mc/js/services/mcAppServices.js:113
 msgid "Who is involved in a association or in an NGO?"
-msgstr "Hvem er medlem av en forening, klubb eller ideell organisasjon?"
+msgstr ""
+"Hvem er medlem av en forening, klubb eller ideell organisasjon?  (+ videre "
+"spørsmål)"
 
 #: mc/js/services/mcAppServices.js:167
 msgid "Who is scared of the future?"
@@ -862,11 +865,11 @@ msgstr "Hvem er bekymret for fremtiden?"
 
 #: mc/js/services/mcAppServices.js:104
 msgid "Who was or is a member of a political party?"
-msgstr "Hvem var eller er medlem av et politisk parti?"
+msgstr "Hvem var eller er medlem av et politisk parti? (+ videre spørsmål)"
 
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr "Hvem jobber jevnlig i utlandet?"
+msgstr "Hvem jobber jevnlig i utlandet? (+ videre spørsmål)"
 
 #: homevisit_components/views/raspi-manager.html:53
 msgid "Wi-Fi name:"
@@ -942,11 +945,11 @@ msgstr "mørkeblå"
 
 #: mc/js/services/mcAppServices.js:150
 msgid "denied origin"
-msgstr "nektet opphav (?)"
+msgstr "løyet om nasjonalitet"
 
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr "inntjening"
+msgstr "profitt"
 
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
@@ -1001,7 +1004,7 @@ msgstr "rød"
 
 #: mc/js/services/mcAppServices.js:168
 msgid "scared of the future"
-msgstr "bekymret for fremtiden"
+msgstr "redd for fremtiden"
 
 #: admin/views/admin/show-sequence-item.html:33
 msgid "sec"
@@ -1017,7 +1020,7 @@ msgstr "til"
 
 #: mc/js/services/mcAppServices.js:177
 msgid "trustworthy"
-msgstr "til å stole på"
+msgstr "stoler på de andre"
 
 #: mc/js/services/mcAppServices.js:548
 #: player/js/services/playerAppServices.js:230
@@ -1036,7 +1039,7 @@ msgstr "villighet til solidaritet"
 
 #: mc/js/services/mcAppServices.js:96
 msgid "won a lot"
-msgstr "har vunnet mye"
+msgstr "har vunnet en jackpot"
 
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"
