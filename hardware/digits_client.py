@@ -159,6 +159,7 @@ while(True):
 			if (leise != 1):
 				if (fies == 1):
 					sendSound("alarm-fies-lauter.mp3")
+					client.send(type="forward", data={"type":"display","content":{"command":"alert","param":2}}, param={"role":"button","name":"gruen"})
 				else:
 					sendSound("mpg321 time_up.mp3")
 	if (mode == ""):
