@@ -510,7 +510,7 @@ msgstr ""
 
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr ""
+msgstr "Your vote was registered!"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"

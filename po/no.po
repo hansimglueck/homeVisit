@@ -517,7 +517,7 @@ msgstr "Vennligst velg en økt før spillet settes i gang!"
 
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr "Poeng gitt!"
+msgstr "Din stemme er registrert!"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
