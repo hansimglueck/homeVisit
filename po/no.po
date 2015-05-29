@@ -28,7 +28,7 @@ msgstr ""
 "player-icon>\n"
 "                </li>\n"
 "              </ul>\n"
-"              bør få {{score}} punkt fra deg?"
+"              bør få {{score}} poeng fra deg?"
 
 #: game/playerManager.js:850
 msgid "A new %s"
@@ -705,7 +705,7 @@ msgstr "Alliansen er fullbyrdet."
 
 #: game/polls/Agreement.js:42
 msgid "The alliance is neglected."
-msgstr "Alliansen er forsømt."
+msgstr "Allianseforslaget er ikke godtatt."
 
 #: player/js/services/playerAppServices.js:629
 msgid "The deal was denied"
@@ -769,7 +769,7 @@ msgstr "Totalt: {{display.data[0]}}"
 
 #: player/partials/rating/rating.html:18
 msgid "Traitor! You can't score down your allied!"
-msgstr "Sviker! Du kan ikke gi din allierte lavere poeng!"
+msgstr "Forræder! Du kan ikke gi din allierte minuspoeng!"
 
 #: player/partials/deals/deal.answer.html:3
 #: player/partials/deals/deal.details.html:3
@@ -823,7 +823,7 @@ msgstr "Vi venter på et svar."
 
 #: mc/js/services/mcAppServices.js:122
 msgid "Who at the table has a job of which he or she can live?"
-msgstr "Hvem ved border har en jobb han/hun kan leve av? (+ videre spørsmål)"
+msgstr "Hvem ved bordet har en jobb han/hun kan leve av? (+ videre spørsmål)"
 
 #: mc/js/services/mcAppServices.js:86
 msgid "Who at this table has been class spokesman?"
