@@ -122,8 +122,32 @@
         leaveGame: function (clientId) {
             var playerId = this.getPlayerIdForClientId(clientId);
             this.players[playerId].joined = false;
+            // distribute the points of this player to the others
+            this.distributePointsOf(playerId);
             require('./setupMonitoring.js').checkPlayers(this.players);
             this.sendPlayerStatus(playerId);
+        },
+        distributePointsOf: function (playerId) {
+            var pointsPool = this.players[playerId].score;
+            var luckyPlayerId = -1;
+            while (pointsPool > 0) {
+                luckyPlayerId = this.findBestPlayerBelowPositiveScore();
+                if (luckyPlayerId === -1) return;
+                this.players[luckyPlayerId].score = this.players[luckyPlayerId].score + 1;
+                pointsPool = pointsPool - 1;
+            }
+            this.players[playerId].score = 0;
+        },
+        findBestPlayerBelowPositiveScore: function () {
+            var bestNegScore = -1000;        // ridiculously low value
+            var id = -1;
+            for (var i = 0; i < this.players.length; i++) {
+                if (this.players[i].joined && this.players[i].score <= 0 && this.players[i].score > bestNegScore) {
+                    bestNegScore = this.players[i].score;
+                    id = i;
+                }
+            }
+            return id;
         },
         requestJoin: function (clientId, msg) {
             //var client = this.clients[clientId];
