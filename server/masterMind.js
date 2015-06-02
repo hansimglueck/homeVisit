@@ -7,7 +7,7 @@
     var exec = require('child_process').exec,
         Q = require('q'),
         CMD = 'netstat -ltn',
-        re = /0\.0\.0\.0:(110\d{2})/;
+        re = /0\.0\.0\.0:(1[12]0\d{2})/;
 
     function MasterMind() {}
 
@@ -28,7 +28,7 @@
                 for (var i = 0; i < lines.length; i++) {
                     var m = lines[i].match(re);
                     if (m !== null) {
-                        var port = parseInt(m[1]), index = port - 11000;
+                        var port = parseInt(m[1]), index = port % 1000;
                         nodes.push({
                             index: index,
                             name: 'homevisitpi%d'.format(index),
