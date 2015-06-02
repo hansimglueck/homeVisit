@@ -133,7 +133,8 @@
             while (pointsPool > 0) {
                 luckyPlayerId = this.findBestPlayerBelowPositiveScore();
                 if (luckyPlayerId === -1) return;
-                this.players[luckyPlayerId].score = this.players[luckyPlayerId].score + 1;
+                this.score(luckyPlayerId,1,"someone left", playerId);
+                //this.players[luckyPlayerId].score = this.players[luckyPlayerId].score + 1;
                 pointsPool = pointsPool - 1;
             }
             this.players[playerId].score = 0;
