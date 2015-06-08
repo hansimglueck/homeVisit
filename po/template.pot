@@ -4,11 +4,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
-#: admin/views/admin/show-deck.html:12
-#: admin/views/admin/show-deck.html:6
-msgid "<span class=\"glyphicon glyphicon-remove\"></span>"
-msgstr ""
-
 #: mc/views/item-as-row.html:8
 msgid "<strong>{{ item.text[lang] }}</strong>"
 msgstr ""

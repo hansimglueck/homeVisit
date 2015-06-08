@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-06-08 13:03+0100\n"
+"PO-Revision-Date: 2015-06-08 13:29+0100\n"
 "Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -11,10 +11,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: admin/views/admin/show-deck.html:12 admin/views/admin/show-deck.html:6
-msgid "<span class=\"glyphicon glyphicon-remove\"></span>"
-msgstr ""
 
 #: mc/views/item-as-row.html:8
 msgid "<strong>{{ item.text[lang] }}</strong>"

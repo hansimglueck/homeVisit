@@ -12,10 +12,6 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-#: admin/views/admin/show-deck.html:12 admin/views/admin/show-deck.html:6
-msgid "<span class=\"glyphicon glyphicon-remove\"></span>"
-msgstr ""
-
 #: mc/views/item-as-row.html:8
 msgid "<strong>{{ item.text[lang] }}</strong>"
 msgstr ""
