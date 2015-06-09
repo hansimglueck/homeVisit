@@ -12,10 +12,6 @@ msgstr ""
 "X-Generator: Poedit 1.5.5\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: mc/views/item-as-row.html:8
-msgid "<strong>{{ item.text[lang] }}</strong>"
-msgstr ""
-
 #: player/partials/rating/rating.html:4
 msgid ""
 "<ul class=\"list-inline\">\n"
@@ -76,12 +72,8 @@ msgstr ""
 msgid "CLOSE"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:55
+#: homevisit_components/brain-control/views/raspi-manager.html:54
 msgid "CONNECT"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:37
-msgid "CONNECT DB"
 msgstr ""
 
 #: admin/views/admin/move-item.html:23
@@ -244,14 +236,8 @@ msgstr ""
 msgid "EUROPE"
 msgstr ""
 
-#: homevisit_components/hvLanguage.js:8
+#: admin/views/game-conf.html:61 homevisit_components/hvLanguage.js:8
 msgid "English"
-msgstr ""
-
-#: admin/views/game-conf.html:61
-msgid ""
-"English\n"
-"            <input type=\"checkbox\" ng-model=\"otherLanguages.en\">"
 msgstr ""
 
 #: mc/views/dummies.html:71
@@ -293,14 +279,8 @@ msgstr ""
 msgid "Game stopped"
 msgstr ""
 
-#: homevisit_components/hvLanguage.js:9
+#: admin/views/game-conf.html:64 homevisit_components/hvLanguage.js:9
 msgid "German"
-msgstr ""
-
-#: admin/views/game-conf.html:64
-msgid ""
-"German\n"
-"            <input type=\"checkbox\" ng-model=\"otherLanguages.de\">"
 msgstr ""
 
 #: mc/views/settings.html:7
@@ -319,7 +299,7 @@ msgstr ""
 msgid "Import:"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:109
+#: homevisit_components/brain-control/views/raspi-manager.html:108
 msgid "Interfaces"
 msgstr ""
 
@@ -339,7 +319,7 @@ msgstr ""
 msgid "Leave Table!"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:97
+#: homevisit_components/brain-control/views/raspi-manager.html:96
 msgid "Load"
 msgstr ""
 
@@ -371,7 +351,7 @@ msgstr ""
 msgid "Max: {{display.data[3]}}"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:89
+#: homevisit_components/brain-control/views/raspi-manager.html:88
 msgid "Memory"
 msgstr ""
 
@@ -496,11 +476,11 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:66
+#: homevisit_components/brain-control/views/raspi-manager.html:65
 msgid "OS Info for {{systemInfo.osInfo.hostname}}"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:113
+#: homevisit_components/brain-control/views/raspi-manager.html:112
 msgid "Online"
 msgstr ""
 
@@ -582,7 +562,7 @@ msgstr ""
 msgid "REALLY REALLY SURE??????????"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:127
+#: homevisit_components/brain-control/views/raspi-manager.html:126
 msgid "REBOOT"
 msgstr ""
 
@@ -594,7 +574,7 @@ msgstr ""
 msgid "RELOAD"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:38
+#: homevisit_components/brain-control/views/raspi-manager.html:37
 msgid "REPAIR DB"
 msgstr ""
 
@@ -671,11 +651,11 @@ msgstr ""
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:60
+#: homevisit_components/brain-control/views/raspi-manager.html:59
 msgid "SCAN"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:126
+#: homevisit_components/brain-control/views/raspi-manager.html:125
 msgid "SHUTDOWN"
 msgstr ""
 
@@ -754,7 +734,7 @@ msgstr ""
 msgid "Sure you want to stop the game? This will finish the current recording."
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:80
+#: homevisit_components/brain-control/views/raspi-manager.html:79
 msgid "System"
 msgstr ""
 
@@ -859,7 +839,7 @@ msgstr ""
 msgid "Type"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:85
+#: homevisit_components/brain-control/views/raspi-manager.html:84
 msgid "Uptime"
 msgstr ""
 
@@ -1108,10 +1088,6 @@ msgstr ""
 
 #: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
-msgstr ""
-
-#: mc/views/item-as-row.html:20
-msgid "{{ item.configField }}->{{item.value}}"
 msgstr ""
 
 #: player/partials/assholes.html:9

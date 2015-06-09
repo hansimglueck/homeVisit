@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-06-08 13:29+0100\n"
+"PO-Revision-Date: 2015-06-09 13:58+0100\n"
 "Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -11,10 +11,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 1.5.5\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-#: mc/views/item-as-row.html:8
-msgid "<strong>{{ item.text[lang] }}</strong>"
-msgstr ""
 
 #: player/partials/rating/rating.html:4
 msgid ""
@@ -83,13 +79,9 @@ msgstr "Zurück"
 msgid "CLOSE"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:55
+#: homevisit_components/brain-control/views/raspi-manager.html:54
 #, fuzzy
 msgid "CONNECT"
-msgstr "VERBINDE MIT DATENBANK"
-
-#: homevisit_components/brain-control/views/raspi-manager.html:37
-msgid "CONNECT DB"
 msgstr "VERBINDE MIT DATENBANK"
 
 #: admin/views/admin/move-item.html:23
@@ -256,15 +248,9 @@ msgstr "Niederländisch"
 msgid "EUROPE"
 msgstr "EUROPA"
 
-#: homevisit_components/hvLanguage.js:8
+#: admin/views/game-conf.html:61 homevisit_components/hvLanguage.js:8
 msgid "English"
 msgstr "Englisch"
-
-#: admin/views/game-conf.html:61
-msgid ""
-"English\n"
-"            <input type=\"checkbox\" ng-model=\"otherLanguages.en\">"
-msgstr ""
 
 #: mc/views/dummies.html:71
 msgid "Fill the rest"
@@ -305,15 +291,9 @@ msgstr "Spielsitzung"
 msgid "Game stopped"
 msgstr "Spiel gestoppt"
 
-#: homevisit_components/hvLanguage.js:9
+#: admin/views/game-conf.html:64 homevisit_components/hvLanguage.js:9
 msgid "German"
 msgstr "Deutsch"
-
-#: admin/views/game-conf.html:64
-msgid ""
-"German\n"
-"            <input type=\"checkbox\" ng-model=\"otherLanguages.de\">"
-msgstr ""
 
 #: mc/views/settings.html:7
 msgid "Hello, MC!"
@@ -331,7 +311,7 @@ msgstr "JSON importieren"
 msgid "Import:"
 msgstr "Importieren:"
 
-#: homevisit_components/brain-control/views/raspi-manager.html:109
+#: homevisit_components/brain-control/views/raspi-manager.html:108
 msgid "Interfaces"
 msgstr "Schnittstellen"
 
@@ -351,7 +331,7 @@ msgstr "Sprache"
 msgid "Leave Table!"
 msgstr "Tisch verlassen!"
 
-#: homevisit_components/brain-control/views/raspi-manager.html:97
+#: homevisit_components/brain-control/views/raspi-manager.html:96
 msgid "Load"
 msgstr ""
 
@@ -385,7 +365,7 @@ msgstr ""
 msgid "Max: {{display.data[3]}}"
 msgstr "Max: {{home.data[3]}}"
 
-#: homevisit_components/brain-control/views/raspi-manager.html:89
+#: homevisit_components/brain-control/views/raspi-manager.html:88
 msgid "Memory"
 msgstr "Speicher"
 
@@ -512,12 +492,12 @@ msgstr "Null Problemo!"
 msgid "OK"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:66
+#: homevisit_components/brain-control/views/raspi-manager.html:65
 #, fuzzy
 msgid "OS Info for {{systemInfo.osInfo.hostname}}"
 msgstr "OS Info für {{osInfo.hostname}}"
 
-#: homevisit_components/brain-control/views/raspi-manager.html:113
+#: homevisit_components/brain-control/views/raspi-manager.html:112
 msgid "Online"
 msgstr ""
 
@@ -601,7 +581,7 @@ msgstr "Prozess"
 msgid "REALLY REALLY SURE??????????"
 msgstr "WIRKLICH WIRKLICH SICHER????????"
 
-#: homevisit_components/brain-control/views/raspi-manager.html:127
+#: homevisit_components/brain-control/views/raspi-manager.html:126
 msgid "REBOOT"
 msgstr ""
 
@@ -613,7 +593,7 @@ msgstr ""
 msgid "RELOAD"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:38
+#: homevisit_components/brain-control/views/raspi-manager.html:37
 msgid "REPAIR DB"
 msgstr ""
 
@@ -692,11 +672,11 @@ msgstr "Ergebnisse werden angezeigt"
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr "Ergebnisse sind nach Rang gewichtet. Die Stimmen stehen in Klammern."
 
-#: homevisit_components/brain-control/views/raspi-manager.html:60
+#: homevisit_components/brain-control/views/raspi-manager.html:59
 msgid "SCAN"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:126
+#: homevisit_components/brain-control/views/raspi-manager.html:125
 msgid "SHUTDOWN"
 msgstr ""
 
@@ -779,7 +759,7 @@ msgstr ""
 msgid "Sure you want to stop the game? This will finish the current recording."
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:80
+#: homevisit_components/brain-control/views/raspi-manager.html:79
 msgid "System"
 msgstr "System"
 
@@ -886,7 +866,7 @@ msgstr "Zurück"
 msgid "Type"
 msgstr "Art"
 
-#: homevisit_components/brain-control/views/raspi-manager.html:85
+#: homevisit_components/brain-control/views/raspi-manager.html:84
 msgid "Uptime"
 msgstr ""
 
@@ -1137,10 +1117,6 @@ msgstr "arbeitet im Ausland"
 msgid "yellow"
 msgstr "GELB"
 
-#: mc/views/item-as-row.html:20
-msgid "{{ item.configField }}->{{item.value}}"
-msgstr ""
-
 #: player/partials/assholes.html:9
 msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
@@ -1156,6 +1132,9 @@ msgstr ""
 #: mc/index.html:45
 msgid "← Select game session!"
 msgstr "← Spielsitzung wählen!"
+
+#~ msgid "CONNECT DB"
+#~ msgstr "VERBINDE MIT DATENBANK"
 
 #~ msgid "Delete deck"
 #~ msgstr "Lösche Strang"
