@@ -1048,7 +1048,7 @@ msgid "point"
 msgid_plural "points"
 msgstr[0] "punkt"
 msgstr[1] "punkty"
-msgstr[2] ""
+msgstr[2] "punktów"
 
 #: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:28
 msgid "red"
@@ -1080,7 +1080,7 @@ msgid "vote"
 msgid_plural "votes"
 msgstr[0] "drużyna"
 msgstr[1] "drużyny"
-msgstr[2] ""
+msgstr[2] "drużyn"
 
 #: mc/js/services/mcAppServices.js:647
 msgid "waiting ..."
@@ -1107,7 +1107,7 @@ msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
 msgstr[0] "{{minuspoints}} punkt ujemny"
 msgstr[1] "{{minuspoints}} punkty ujemne"
-msgstr[2] ""
+msgstr[2] "{{minuspoints}} punktów ujemnych"
 
 #: homevisit_components/views/keyboard.html:4
 #: player/js/services/playerAppServices.js:335
