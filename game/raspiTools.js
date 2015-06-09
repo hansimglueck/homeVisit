@@ -159,8 +159,6 @@
                         case "database":
                             logger.info("db command", msg);
                             switch (msg.data) {
-                                case "connect":
-                                    break;
                                 case "repair":
                                     exec("/home/pi/homeVisit/shellscripts/repair_db", function (error, stdout, stderr) {
                                         setTimeout(function () {
