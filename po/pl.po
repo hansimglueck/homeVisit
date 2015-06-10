@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: \n"
+"PO-Revision-Date: 2015-06-10 14:51+0200\n"
 "Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -38,7 +38,7 @@ msgstr "Nowy %s"
 #: admin/views/master-buttons.html:13 mc/index.html:52
 #: mc/views/players.html:41 mc/views/script.html:33
 msgid "ALARM"
-msgstr ""
+msgstr "ALARM"
 
 #: admin/views/admin/show-deck.html:21
 msgid "Add new item"
@@ -78,11 +78,11 @@ msgstr "Wróć"
 
 #: mc/views/player.modal.html:25
 msgid "CLOSE"
-msgstr ""
+msgstr "ZAMKNIJ"
 
 #: homevisit_components/brain-control/views/raspi-manager.html:54
 msgid "CONNECT"
-msgstr ""
+msgstr "POŁĄCZ"
 
 #: admin/views/admin/move-item.html:23
 #: homevisit_components/game-control/views/game-restart-modal.html:13
@@ -111,7 +111,7 @@ msgstr "Wybierz drużynę, z którą chcesz zawrzeć ugodę."
 
 #: homevisit_components/brain-control/views/wifi-modal.html:14
 msgid "Close"
-msgstr ""
+msgstr "Zamknij"
 
 #: admin/views/player-list.html:9
 msgid "Color"
@@ -234,7 +234,7 @@ msgstr "Brak porozumienia. Musi grać sam."
 
 #: admin/views/admin/show-deck.html:9
 msgid "Duplicate"
-msgstr ""
+msgstr "Skopiuj"
 
 #: homevisit_components/hvLanguage.js:13
 msgid "Dutch"
@@ -258,7 +258,7 @@ msgstr "Francuski"
 
 #: homevisit_components/game-control/views/game-control.html:3
 msgid "GAME"
-msgstr ""
+msgstr "GRA"
 
 #: admin/views/master-buttons.html:6 mc/index.html:61 mc/views/players.html:40
 #: mc/views/script.html:29
@@ -267,11 +267,11 @@ msgstr "IDŹ"
 
 #: admin/views/master-buttons.html:7
 msgid "GO 2"
-msgstr ""
+msgstr "IDŹ 2"
 
 #: admin/views/master-buttons.html:22 mc/views/item-block.html:4
 msgid "GOTO"
-msgstr ""
+msgstr "IDŹ DO"
 
 #: mc/index.html:36
 msgid "Game"
@@ -413,11 +413,11 @@ msgstr "Nazwa"
 
 #: admin/js/controllers/adminControllers.js:95
 msgid "Neuer Name?"
-msgstr ""
+msgstr "Nowa nazwa?"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:30
 msgid "New Inline Deck"
-msgstr ""
+msgstr "Nowy układ liniowy"
 
 #: admin/views/admin/show-set.html:8
 msgid "New deck"
@@ -532,7 +532,7 @@ msgstr "Proszę wybrać:"
 
 #: homevisit_components/game-control/views/game-settings-modal.html:8
 msgid "Please choose the session for this Game."
-msgstr ""
+msgstr "Proszę wybrać posiedzenie dla tej gry."
 
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
@@ -552,11 +552,11 @@ msgstr "Polski"
 
 #: mc/index.html:33
 msgid "Polls"
-msgstr ""
+msgstr "Wyniki"
 
 #: admin/views/master-mind.html:15
 msgid "Port"
-msgstr ""
+msgstr "Port"
 
 #: homevisit_components/hvLanguage.js:16
 msgid "Portuguese"
@@ -627,7 +627,7 @@ msgstr "Naprawdę uruchomić ponownie?"
 
 #: homevisit_components/views/recordings.html:8
 msgid "Recordings"
-msgstr ""
+msgstr "Nagrania"
 
 #: admin/views/master-mind.html:4
 #: homevisit_components/brain-control/views/raspi-manager.html:4
@@ -641,7 +641,7 @@ msgstr "Odrzuć"
 
 #: admin/views/admin/show-deck.html:8
 msgid "Rename"
-msgstr ""
+msgstr "Zmień nazwę"
 
 #: player/partials/deals/deal.new.html:9
 msgid "Request"
@@ -649,7 +649,7 @@ msgstr "Prośba"
 
 #: homevisit_components/game-control/views/game-restart-modal.html:5
 msgid "Restart Game"
-msgstr ""
+msgstr "Uruchom ponownie grę"
 
 #: mc/views/item-as-row.html:15 mc/views/item.html:29
 msgid "Results are displayed"
@@ -662,19 +662,19 @@ msgstr ""
 
 #: homevisit_components/brain-control/views/raspi-manager.html:59
 msgid "SCAN"
-msgstr ""
+msgstr "SKANUJ"
 
 #: homevisit_components/brain-control/views/raspi-manager.html:125
 msgid "SHUTDOWN"
-msgstr ""
+msgstr "ZAMKNIJ"
 
 #: homevisit_components/game-control/views/game-control.html:13
 msgid "START"
-msgstr ""
+msgstr "START"
 
 #: homevisit_components/game-control/views/game-control.html:19
 msgid "STOP"
-msgstr ""
+msgstr "STOP"
 
 #: admin/views/admin/edit-new-deck.html:17
 msgid "Save"
@@ -722,15 +722,15 @@ msgstr "Głos przywrócony:"
 
 #: mc/views/item-as-row.html:23
 msgid "Special code is executed"
-msgstr ""
+msgstr "Specjalny kod wprowadzony"
 
 #: homevisit_components/game-control/views/game-settings-modal.html:5
 msgid "Start Game"
-msgstr ""
+msgstr "Rozpocznij Grę"
 
 #: homevisit_components/game-control/views/game-stop-modal.html:5
 msgid "Stop Game"
-msgstr ""
+msgstr "Zatrzymaj Grę"
 
 #: mc/views/vote.html:41
 msgid "Submit"
@@ -738,11 +738,11 @@ msgstr "Zatwierdź"
 
 #: homevisit_components/game-control/views/game-restart-modal.html:7
 msgid "Sure you want to restart the game? This will start a new recording..."
-msgstr ""
+msgstr "Na pewno chcesz zacząć nową grę? To rozpocznie nowe nagranie..."
 
 #: homevisit_components/game-control/views/game-stop-modal.html:7
 msgid "Sure you want to stop the game? This will finish the current recording."
-msgstr ""
+msgstr "Na pewno chcesz skończyć grę? To zakończy bieżące nagranie..."
 
 #: homevisit_components/brain-control/views/raspi-manager.html:79
 msgid "System"
@@ -750,7 +750,7 @@ msgstr "System"
 
 #: mc/views/player.modal.html:5
 msgid "Team"
-msgstr ""
+msgstr "Drużyna"
 
 #: admin/views/player-list.html:5
 msgid "Team ID"
@@ -864,7 +864,7 @@ msgstr "Zagłosowano za:"
 
 #: homevisit_components/brain-control/views/wifi-modal.html:5
 msgid "WIFI login"
-msgstr ""
+msgstr "logowanie WIFI"
 
 #: admin/views/admin/show-sequence-item.html:30
 msgid "Wait"
@@ -984,7 +984,7 @@ msgstr "przewodniczący klasy"
 
 #: mc/views/item-as-row.html:19
 msgid "command: {{ item.text[lang] }}"
-msgstr ""
+msgstr "polecenie: {{ item.text[lang] }}"
 
 #: mc/js/services/mcAppServices.js:204
 msgid "confidence in democracy"
