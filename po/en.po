@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.7.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: player/partials/rating/rating.html:4
@@ -1106,7 +1106,7 @@ msgstr[1] ""
 #: player/js/services/playerAppServices.js:335
 #: player/partials/voteConfirm.html:2
 msgid "€"
-msgstr "NOK"
+msgstr "zł"
 
 #: mc/index.html:45
 msgid "← Select game session!"
