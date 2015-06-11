@@ -227,8 +227,8 @@
                                 console.warn('option.text is null!');
                                 return;
                             }
-                            if (option.text.length > 100) {
-                                t = option.text.substr(0, 100) + '...';
+                            if (option.text.length > 80) {
+                                t = option.text.substr(0, 80) + '...';
                             }
                             else {
                                 t = option.text;
