@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-06-11 19:25+0100\n"
+"PO-Revision-Date: 2015-06-11 19:54+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -144,15 +144,15 @@ msgstr "Kopiuj"
 
 #: admin/views/admin/show-item-contents/show-vote-option.html:5
 msgid "Correct"
-msgstr "Dobrze"
+msgstr "Prawidłowo"
 
 #: mc/views/results.html:11
 msgid "Correct: {{display.correctAnswer}}"
-msgstr "Dobrze: {{home, correctAnswer}}"
+msgstr "Prawidłowo: {{display.correctAnswer}}"
 
 #: player/partials/results.html:3
 msgid "Correct: {{home.correctAnswer}}"
-msgstr "Correct: {{home.correctAnswer}}"
+msgstr "Prawidłowo: {{home.correctAnswer}}"
 
 #: admin/views/game-conf.html:19
 msgid "Current deck:"
@@ -280,7 +280,7 @@ msgstr "Gra"
 #: homevisit_components/game-control/views/game-session-chooser.html:2
 #: homevisit_components/game-control/views/game-session-display.html:2
 msgid "Game session"
-msgstr "Posiedzenie gry"
+msgstr "Czas i miejsce gry"
 
 #: admin/views/master-buttons.html:3
 #: homevisit_components/game-control/views/game-control.html:9
@@ -357,7 +357,7 @@ msgstr "Max:"
 
 #: mc/views/results.html:30
 msgid "Max: {{display.data[3]}}"
-msgstr "Max: {{home.data[3]}}"
+msgstr "Max: {{display.data[3]}}"
 
 #: homevisit_components/brain-control/views/raspi-manager.html:88
 msgid "Memory"
@@ -373,7 +373,7 @@ msgstr "Min:"
 
 #: mc/views/results.html:29
 msgid "Min: {{display.data[2]}}"
-msgstr "Min: {{home.data[2]}}"
+msgstr "Min: {{display.data[2]}}"
 
 #: admin/views/admin/move-item.html:21
 msgid "Move"
