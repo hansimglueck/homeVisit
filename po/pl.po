@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-06-10 14:51+0200\n"
-"Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
+"PO-Revision-Date: 2015-06-11 19:25+0100\n"
+"Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: pl\n"
 "MIME-Version: 1.0\n"
@@ -417,7 +417,7 @@ msgstr "Nowa nazwa?"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:30
 msgid "New Inline Deck"
-msgstr "Nowy układ liniowy"
+msgstr "Nowy schowany układ"
 
 #: admin/views/admin/show-set.html:8
 msgid "New deck"
