@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-06-11 19:54+0100\n"
+"PO-Revision-Date: 2015-06-11 20:02+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -960,7 +960,7 @@ msgstr "Czas Minął. Odejmujemy 1 punkt."
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr "Głos się liczy!"
+msgstr "Twój Głosy jest przeliczany!"
 
 #: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
