@@ -80,7 +80,7 @@
     </div>
 
     <div class="app" ng-style="{'border-color':playerColors[status.player.playerId]}">
-        <div  class="score" ng-show="showScore()" ng-controller="ScoreController" ng-click="openGameEventModal()">
+        <div  class="score" ng-show="showScore()" ng-controller="ScoreController">
             <div id="score_stats">
                 <p class="score_stats_entry">
                     <span class="rank_display" translate>Rank: {{status.player.rank}}</span><br/>
