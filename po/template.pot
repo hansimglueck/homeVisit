@@ -4,6 +4,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
 
+#: player/partials/assholes.html:9
+msgid "{{minuspoints}} minus point"
+msgid_plural "{{minuspoints}} minus points"
+msgstr[0] ""
+msgstr[1] ""
+
+#: mc/index.html:45
+msgid "← Select game session!"
+msgstr ""
+
 #: player/partials/rating/rating.html:4
 msgid ""
 "<ul class=\"list-inline\">\n"
@@ -14,8 +24,18 @@ msgid ""
 "              should get {{score}} point from you?"
 msgstr ""
 
+#: homevisit_components/views/keyboard.html:4
+#: player/js/services/playerAppServices.js:335
+#: player/partials/voteConfirm.html:2
+msgid "€"
+msgstr ""
+
 #: game/playerManager.js:879
 msgid "A new %s"
+msgstr ""
+
+#: admin/views/admin/show-deck.html:21
+msgid "Add new item"
 msgstr ""
 
 #: admin/views/master-buttons.html:13
@@ -25,12 +45,16 @@ msgstr ""
 msgid "ALARM"
 msgstr ""
 
-#: admin/views/admin/show-deck.html:21
-msgid "Add new item"
+#: mc/js/services/mcAppServices.js:195
+msgid "ambition"
 msgstr ""
 
 #: homevisit_components/brain-control/brain-control.js:26
 msgid "Are you sure?"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:114
+msgid "association/NGO"
 msgstr ""
 
 #: player/partials/results.html:22
@@ -43,6 +67,10 @@ msgstr ""
 
 #: mc/js/controllers/players.js:58
 msgid "Away"
+msgstr ""
+
+#: player/partials/rating/rating.html:19
+msgid "Back"
 msgstr ""
 
 #: admin/views/master-buttons.html:12
@@ -58,16 +86,8 @@ msgstr ""
 msgid "BRAIN Control"
 msgstr ""
 
-#: player/partials/rating/rating.html:19
-msgid "Back"
-msgstr ""
-
-#: mc/views/player.modal.html:25
-msgid "CLOSE"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:54
-msgid "CONNECT"
+#: admin/js/controllers/adminControllers.js:344
+msgid "cancel"
 msgstr ""
 
 #: admin/views/admin/move-item.html:23
@@ -97,8 +117,16 @@ msgstr ""
 msgid "Choose team to offer treaty:"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:87
+msgid "class spokesman"
+msgstr ""
+
 #: homevisit_components/brain-control/views/wifi-modal.html:14
 msgid "Close"
+msgstr ""
+
+#: mc/views/player.modal.html:25
+msgid "CLOSE"
 msgstr ""
 
 #: admin/views/player-list.html:9
@@ -113,6 +141,14 @@ msgstr ""
 msgid "Command"
 msgstr ""
 
+#: mc/views/item-as-row.html:19
+msgid "command: {{ item.text[lang] }}"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:204
+msgid "confidence in democracy"
+msgstr ""
+
 #: admin/partials/home.html:9
 #: mc/views/item.html:32
 msgid "Configuration"
@@ -123,6 +159,10 @@ msgstr ""
 #: player/partials/rating/rating.html:13
 #: player/partials/voteConfirm.html:4
 msgid "Confirm"
+msgstr ""
+
+#: homevisit_components/brain-control/views/raspi-manager.html:54
+msgid "CONNECT"
 msgstr ""
 
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:5
@@ -169,6 +209,11 @@ msgstr ""
 msgid "Danish"
 msgstr ""
 
+#: game/playerManager.js:37
+#: homevisit_components/hvPlayerColors.js:30
+msgid "dark blue"
+msgstr ""
+
 #: mc/js/services/mcAppServices.js:666
 msgid "Deal with"
 msgstr ""
@@ -188,6 +233,10 @@ msgstr ""
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:18
 #: admin/views/admin/show-item-contents/show-vote-option.html:36
 msgid "Delete"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:150
+msgid "denied origin"
 msgstr ""
 
 #: player/partials/deals/deal.answer.html:13
@@ -232,13 +281,21 @@ msgstr ""
 msgid "Dutch"
 msgstr ""
 
-#: player/partials/home.html:3
-msgid "EUROPE"
+#: mc/js/services/mcAppServices.js:213
+msgid "earnings"
 msgstr ""
 
 #: admin/views/game-conf.html:61
 #: homevisit_components/hvLanguage.js:8
 msgid "English"
+msgstr ""
+
+#: player/partials/home.html:3
+msgid "EUROPE"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:159
+msgid "feeling European"
 msgstr ""
 
 #: mc/views/dummies.html:71
@@ -249,8 +306,27 @@ msgstr ""
 msgid "French"
 msgstr ""
 
+#: mc/index.html:36
+msgid "Game"
+msgstr ""
+
 #: homevisit_components/game-control/views/game-control.html:3
 msgid "GAME"
+msgstr ""
+
+#: homevisit_components/game-control/views/game-session-chooser.html:2
+#: homevisit_components/game-control/views/game-session-display.html:2
+msgid "Game session"
+msgstr ""
+
+#: admin/views/master-buttons.html:3
+#: homevisit_components/game-control/views/game-control.html:9
+msgid "Game stopped"
+msgstr ""
+
+#: admin/views/game-conf.html:64
+#: homevisit_components/hvLanguage.js:9
+msgid "German"
 msgstr ""
 
 #: admin/views/master-buttons.html:6
@@ -269,23 +345,9 @@ msgstr ""
 msgid "GOTO"
 msgstr ""
 
-#: mc/index.html:36
-msgid "Game"
-msgstr ""
-
-#: homevisit_components/game-control/views/game-session-chooser.html:2
-#: homevisit_components/game-control/views/game-session-display.html:2
-msgid "Game session"
-msgstr ""
-
-#: admin/views/master-buttons.html:3
-#: homevisit_components/game-control/views/game-control.html:9
-msgid "Game stopped"
-msgstr ""
-
-#: admin/views/game-conf.html:64
-#: homevisit_components/hvLanguage.js:9
-msgid "German"
+#: game/playerManager.js:40
+#: homevisit_components/hvPlayerColors.js:33
+msgid "green"
 msgstr ""
 
 #: mc/views/settings.html:7
@@ -308,12 +370,12 @@ msgstr ""
 msgid "Interfaces"
 msgstr ""
 
-#: admin/views/master-buttons.html:8
-msgid "JUMP"
-msgstr ""
-
 #: admin/views/player-list.html:6
 msgid "Joined"
+msgstr ""
+
+#: admin/views/master-buttons.html:8
+msgid "JUMP"
 msgstr ""
 
 #: homevisit_components/views/language-chooser.html:2
@@ -324,16 +386,22 @@ msgstr ""
 msgid "Leave Table!"
 msgstr ""
 
+#: game/playerManager.js:36
+#: homevisit_components/hvPlayerColors.js:29
+msgid "light blue"
+msgstr ""
+
+#: game/playerManager.js:41
+#: homevisit_components/hvPlayerColors.js:34
+msgid "lilac"
+msgstr ""
+
 #: homevisit_components/brain-control/views/raspi-manager.html:96
 msgid "Load"
 msgstr ""
 
 #: admin/partials/home.html:25
 msgid "Log"
-msgstr ""
-
-#: mc/views/notes.html:5
-msgid "MC-Notes"
 msgstr ""
 
 #: admin/views/admin/item-partials/item-mapping.html:2
@@ -354,6 +422,14 @@ msgstr ""
 
 #: mc/views/results.html:30
 msgid "Max: {{display.data[3]}}"
+msgstr ""
+
+#: mc/views/notes.html:5
+msgid "MC-Notes"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:105
+msgid "member of political party"
 msgstr ""
 
 #: homevisit_components/brain-control/views/raspi-manager.html:88
@@ -380,10 +456,6 @@ msgstr ""
 msgid "Move item"
 msgstr ""
 
-#: mc/js/controllers/players.js:56
-msgid "My Turn!"
-msgstr ""
-
 #: mc/js/services/mcAppServices.js:194
 msgid "My ambition"
 msgstr ""
@@ -394,6 +466,10 @@ msgstr ""
 
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
+msgstr ""
+
+#: mc/js/controllers/players.js:56
+msgid "My Turn!"
 msgstr ""
 
 #: mc/js/services/mcAppServices.js:185
@@ -412,12 +488,12 @@ msgstr ""
 msgid "Neuer Name?"
 msgstr ""
 
-#: admin/views/admin/show-item-contents/show-inline-switch-content.html:30
-msgid "New Inline Deck"
-msgstr ""
-
 #: admin/views/admin/show-set.html:8
 msgid "New deck"
+msgstr ""
+
+#: admin/views/admin/show-item-contents/show-inline-switch-content.html:30
+msgid "New Inline Deck"
 msgstr ""
 
 #: admin/js/controllers/adminControllers.js:118
@@ -445,12 +521,12 @@ msgstr ""
 msgid "No"
 msgstr ""
 
-#: player/partials/deals/deal.choosePlayer.html:8
-msgid "No Deal with me!"
-msgstr ""
-
 #: admin/views/master-mind.html:28
 msgid "No connected nodes!"
+msgstr ""
+
+#: player/partials/deals/deal.choosePlayer.html:8
+msgid "No Deal with me!"
 msgstr ""
 
 #: player/partials/assholes.html:14
@@ -481,10 +557,6 @@ msgstr ""
 msgid "OK"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:65
-msgid "OS Info for {{systemInfo.osInfo.hostname}}"
-msgstr ""
-
 #: homevisit_components/brain-control/views/raspi-manager.html:112
 msgid "Online"
 msgstr ""
@@ -497,6 +569,32 @@ msgstr ""
 #: admin/views/admin/show-item-contents/show-switch-content.html:3
 #: admin/views/admin/show-item-contents/show-vote-content.html:10
 msgid "Options"
+msgstr ""
+
+#: game/playerManager.js:38
+#: homevisit_components/hvPlayerColors.js:31
+msgid "orange"
+msgstr ""
+
+#: homevisit_components/brain-control/views/raspi-manager.html:65
+msgid "OS Info for {{systemInfo.osInfo.hostname}}"
+msgstr ""
+
+#: player/views/game-events.html:24
+msgid "other Player"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:123
+msgid "paid job"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:141
+msgid "physical conflict"
+msgstr ""
+
+#: game/playerManager.js:42
+#: homevisit_components/hvPlayerColors.js:35
+msgid "pink"
 msgstr ""
 
 #: admin/partials/home.html:5
@@ -525,10 +623,6 @@ msgstr ""
 msgid "Players are voting"
 msgstr ""
 
-#: mc/views/notes.html:10
-msgid "Please Select:"
-msgstr ""
-
 #: homevisit_components/game-control/views/game-settings-modal.html:8
 msgid "Please choose the session for this Game."
 msgstr ""
@@ -540,6 +634,17 @@ msgstr ""
 #: homevisit_components/game-control/views/game-session-chooser.html:8
 msgid "Please select a session before starting the game!"
 msgstr ""
+
+#: mc/views/notes.html:10
+msgid "Please Select:"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:562
+#: player/js/services/playerAppServices.js:219
+msgid "point"
+msgid_plural "points"
+msgstr[0] ""
+msgstr[1] ""
 
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
@@ -563,35 +668,6 @@ msgstr ""
 
 #: admin/views/admin/import-json.html:4
 msgid "Process"
-msgstr ""
-
-#: homevisit_components/brain-control/brain-control.js:29
-msgid "REALLY REALLY SURE??????????"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:126
-msgid "REBOOT"
-msgstr ""
-
-#: admin/views/master-buttons.html:11
-msgid "REGO"
-msgstr ""
-
-#: admin/views/show-device-list.html:7
-msgid "RELOAD"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:37
-msgid "REPAIR DB"
-msgstr ""
-
-#: admin/views/master-buttons.html:5
-#: homevisit_components/game-control/views/game-control.html:18
-msgid "RESTART"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:22
-msgid "RESTART SERVER"
 msgstr ""
 
 #: admin/views/player-list.html:7
@@ -623,12 +699,25 @@ msgstr ""
 msgid "Really jump?"
 msgstr ""
 
+#: homevisit_components/brain-control/brain-control.js:29
+msgid "REALLY REALLY SURE??????????"
+msgstr ""
+
 #: mc/js/services/mcAppServices.js:690
 msgid "Really restart?"
 msgstr ""
 
+#: homevisit_components/brain-control/views/raspi-manager.html:126
+msgid "REBOOT"
+msgstr ""
+
 #: homevisit_components/views/recordings.html:8
 msgid "Recordings"
+msgstr ""
+
+#: game/playerManager.js:35
+#: homevisit_components/hvPlayerColors.js:28
+msgid "red"
 msgstr ""
 
 #: admin/views/master-mind.html:4
@@ -637,20 +726,41 @@ msgstr ""
 msgid "Refresh"
 msgstr ""
 
+#: admin/views/master-buttons.html:11
+msgid "REGO"
+msgstr ""
+
 #: player/partials/deals/deal.wait.html:8
 msgid "Reject"
+msgstr ""
+
+#: admin/views/show-device-list.html:7
+msgid "RELOAD"
 msgstr ""
 
 #: admin/views/admin/show-deck.html:8
 msgid "Rename"
 msgstr ""
 
+#: homevisit_components/brain-control/views/raspi-manager.html:37
+msgid "REPAIR DB"
+msgstr ""
+
 #: player/partials/deals/deal.new.html:9
 msgid "Request"
 msgstr ""
 
+#: admin/views/master-buttons.html:5
+#: homevisit_components/game-control/views/game-control.html:18
+msgid "RESTART"
+msgstr ""
+
 #: homevisit_components/game-control/views/game-restart-modal.html:5
 msgid "Restart Game"
+msgstr ""
+
+#: homevisit_components/brain-control/views/raspi-manager.html:22
+msgid "RESTART SERVER"
 msgstr ""
 
 #: mc/views/item-as-row.html:15
@@ -663,24 +773,16 @@ msgstr ""
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr ""
 
+#: admin/views/admin/edit-new-deck.html:17
+msgid "Save"
+msgstr ""
+
 #: homevisit_components/brain-control/views/raspi-manager.html:59
 msgid "SCAN"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:125
-msgid "SHUTDOWN"
-msgstr ""
-
-#: homevisit_components/game-control/views/game-control.html:13
-msgid "START"
-msgstr ""
-
-#: homevisit_components/game-control/views/game-control.html:19
-msgid "STOP"
-msgstr ""
-
-#: admin/views/admin/edit-new-deck.html:17
-msgid "Save"
+#: mc/js/services/mcAppServices.js:168
+msgid "scared of the future"
 msgstr ""
 
 #: admin/views/player-list.html:8
@@ -704,6 +806,10 @@ msgstr ""
 msgid "Score: {{status.player.score}}"
 msgstr ""
 
+#: admin/views/admin/show-sequence-item.html:33
+msgid "sec"
+msgstr ""
+
 #: mc/js/controllers/notes.js:31
 #: mc/js/controllers/players.js:37
 #: mc/js/controllers/script.js:85
@@ -712,6 +818,10 @@ msgstr ""
 
 #: mc/index.html:42
 msgid "Settings"
+msgstr ""
+
+#: homevisit_components/brain-control/views/raspi-manager.html:125
+msgid "SHUTDOWN"
 msgstr ""
 
 #: player/partials/black.html:1
@@ -730,8 +840,16 @@ msgstr ""
 msgid "Special code is executed"
 msgstr ""
 
+#: homevisit_components/game-control/views/game-control.html:13
+msgid "START"
+msgstr ""
+
 #: homevisit_components/game-control/views/game-settings-modal.html:5
 msgid "Start Game"
+msgstr ""
+
+#: homevisit_components/game-control/views/game-control.html:19
+msgid "STOP"
 msgstr ""
 
 #: homevisit_components/game-control/views/game-stop-modal.html:5
@@ -766,10 +884,6 @@ msgstr ""
 msgid "Teams"
 msgstr ""
 
-#: player/partials/rating/rating.score.html:2
-msgid "The MC has to select somebody!!"
-msgstr ""
-
 #: game/polls/Agreement.js:39
 msgid "The alliance is fullfilled."
 msgstr ""
@@ -784,6 +898,10 @@ msgstr ""
 
 #: game/items/includes/results.js:28
 msgid "The division of the cake"
+msgstr ""
+
+#: player/partials/rating/rating.score.html:2
+msgid "The MC has to select somebody!!"
 msgstr ""
 
 #: player/js/services/playerAppServices.js:667
@@ -823,8 +941,17 @@ msgstr ""
 msgid "This treaty was DENIED."
 msgstr ""
 
+#: mc/views/player.details.html:14
+#: mc/views/player.modal.html:20
+msgid "throw out"
+msgstr ""
+
 #: admin/views/admin/edit-new-deck.html:5
 msgid "Title:"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:660
+msgid "to"
 msgstr ""
 
 #: player/partials/results.html:18
@@ -848,6 +975,10 @@ msgstr ""
 msgid "Treaty"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:177
+msgid "trustworthy"
+msgstr ""
+
 #: player/partials/deals/deal.details.html:42
 msgid "Try Again"
 msgstr ""
@@ -860,6 +991,13 @@ msgstr ""
 msgid "Uptime"
 msgstr ""
 
+#: mc/js/services/mcAppServices.js:571
+#: player/js/services/playerAppServices.js:236
+msgid "vote"
+msgid_plural "votes"
+msgstr[0] ""
+msgstr[1] ""
+
 #: admin/views/master-content.html:8
 #: mc/views/vote.html:20
 #: player/partials/vote.html:19
@@ -870,12 +1008,12 @@ msgstr ""
 msgid "Voted for:"
 msgstr ""
 
-#: homevisit_components/brain-control/views/wifi-modal.html:5
-msgid "WIFI login"
-msgstr ""
-
 #: admin/views/admin/show-sequence-item.html:30
 msgid "Wait"
+msgstr ""
+
+#: mc/js/services/mcAppServices.js:647
+msgid "waiting ..."
 msgstr ""
 
 #: player/partials/rating/rating.score.html:26
@@ -934,171 +1072,8 @@ msgstr ""
 msgid "Who works regularly outside the country?"
 msgstr ""
 
-#: game/polls/Agreement.js:12
-msgid "Yes"
-msgstr ""
-
-#: game/playerManager.js:501
-msgid "You are NOT in the game!"
-msgstr ""
-
-#: game/playerManager.js:510
-msgid "You are in the game!"
-msgstr ""
-
-#: player/views/not-joined.html:1
-msgid "You are not joined in the game!"
-msgstr ""
-
-#: mc/views/vote.html:47
-#: player/partials/voteConfirm.html:1
-msgid "You are voting for:"
-msgstr ""
-
-#: player/partials/rating/rating.score.html:4
-msgid "You can rate these Teams up or down!"
-msgstr ""
-
-#: player/partials/deals/deal.noDealing.html:1
-msgid "You decided not to deal at all!"
-msgstr ""
-
-#: player/partials/freeze.html:1
-msgid "Your Time is Up. Scored one down!"
-msgstr ""
-
-#: player/partials/voteFinished.html:1
-msgid "Your choice is sent!"
-msgstr ""
-
-#: player/partials/vote.html:6
-msgid "Your voting weight depends on your rank!"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:195
-msgid "ambition"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:114
-msgid "association/NGO"
-msgstr ""
-
-#: admin/js/controllers/adminControllers.js:344
-msgid "cancel"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:87
-msgid "class spokesman"
-msgstr ""
-
-#: mc/views/item-as-row.html:19
-msgid "command: {{ item.text[lang] }}"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:204
-msgid "confidence in democracy"
-msgstr ""
-
-#: game/playerManager.js:37
-#: homevisit_components/hvPlayerColors.js:30
-msgid "dark blue"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:150
-msgid "denied origin"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:213
-msgid "earnings"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:159
-msgid "feeling European"
-msgstr ""
-
-#: game/playerManager.js:40
-#: homevisit_components/hvPlayerColors.js:33
-msgid "green"
-msgstr ""
-
-#: game/playerManager.js:36
-#: homevisit_components/hvPlayerColors.js:29
-msgid "light blue"
-msgstr ""
-
-#: game/playerManager.js:41
-#: homevisit_components/hvPlayerColors.js:34
-msgid "lilac"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:105
-msgid "member of political party"
-msgstr ""
-
-#: game/playerManager.js:38
-#: homevisit_components/hvPlayerColors.js:31
-msgid "orange"
-msgstr ""
-
-#: player/views/game-events.html:24
-msgid "other Player"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:123
-msgid "paid job"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:141
-msgid "physical conflict"
-msgstr ""
-
-#: game/playerManager.js:42
-#: homevisit_components/hvPlayerColors.js:35
-msgid "pink"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:562
-#: player/js/services/playerAppServices.js:219
-msgid "point"
-msgid_plural "points"
-msgstr[0] ""
-msgstr[1] ""
-
-#: game/playerManager.js:35
-#: homevisit_components/hvPlayerColors.js:28
-msgid "red"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:168
-msgid "scared of the future"
-msgstr ""
-
-#: admin/views/admin/show-sequence-item.html:33
-msgid "sec"
-msgstr ""
-
-#: mc/views/player.details.html:14
-#: mc/views/player.modal.html:20
-msgid "throw out"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:660
-msgid "to"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:177
-msgid "trustworthy"
-msgstr ""
-
-#: mc/js/services/mcAppServices.js:571
-#: player/js/services/playerAppServices.js:236
-msgid "vote"
-msgid_plural "votes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: mc/js/services/mcAppServices.js:647
-msgid "waiting ..."
+#: homevisit_components/brain-control/views/wifi-modal.html:5
+msgid "WIFI login"
 msgstr ""
 
 #: mc/js/services/mcAppServices.js:186
@@ -1118,18 +1093,43 @@ msgstr ""
 msgid "yellow"
 msgstr ""
 
-#: player/partials/assholes.html:9
-msgid "{{minuspoints}} minus point"
-msgid_plural "{{minuspoints}} minus points"
-msgstr[0] ""
-msgstr[1] ""
-
-#: homevisit_components/views/keyboard.html:4
-#: player/js/services/playerAppServices.js:335
-#: player/partials/voteConfirm.html:2
-msgid "€"
+#: game/polls/Agreement.js:12
+msgid "Yes"
 msgstr ""
 
-#: mc/index.html:45
-msgid "← Select game session!"
+#: game/playerManager.js:510
+msgid "You are in the game!"
+msgstr ""
+
+#: game/playerManager.js:501
+msgid "You are NOT in the game!"
+msgstr ""
+
+#: player/views/not-joined.html:1
+msgid "You are not joined in the game!"
+msgstr ""
+
+#: mc/views/vote.html:47
+#: player/partials/voteConfirm.html:1
+msgid "You are voting for:"
+msgstr ""
+
+#: player/partials/rating/rating.score.html:4
+msgid "You can rate these Teams up or down!"
+msgstr ""
+
+#: player/partials/deals/deal.noDealing.html:1
+msgid "You decided not to deal at all!"
+msgstr ""
+
+#: player/partials/voteFinished.html:1
+msgid "Your choice is sent!"
+msgstr ""
+
+#: player/partials/freeze.html:1
+msgid "Your Time is Up. Scored one down!"
+msgstr ""
+
+#: player/partials/vote.html:6
+msgid "Your voting weight depends on your rank!"
 msgstr ""
