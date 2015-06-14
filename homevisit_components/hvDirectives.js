@@ -13,6 +13,7 @@
                 transclude: true,
                 controller: function ($scope, playerColors, playerColornamesFactory, playerTextColors, gettextCatalog) {
                     $scope.playerColors = playerColors;
+                    $scope.lang = gettextCatalog.currentLanguage;
                     $scope.playerColornames = playerColornamesFactory.playercolornames;
                     $scope.playerTextColors = playerTextColors;
                     $scope.getColorName = function (color) {

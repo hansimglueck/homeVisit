@@ -1027,7 +1027,7 @@ msgstr "członek partii"
 
 #: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
-msgstr "pomarańczowy"
+msgstr "pomarań- czowy"
 
 #: player/views/game-events.html:24
 msgid "other Player"
