@@ -139,7 +139,7 @@
                 Socket.emit("os", {cmd: "restartServer"});
             };
             infoFactory.shutdown = function (reboot) {
-                Socket.emit("os", {cmd: d});
+                Socket.emit("os", {cmd: reboot ? "reboot" : "shutdown"});
             };
             infoFactory.restartWlan1 = function (wifi) {
                 infoFactory.wlan1Message.text = "Connecting to " + wifi.ssid + "...";
