@@ -810,7 +810,7 @@
                     if (otherPlayerId === playerId) {
                         otherPlayerId = deal.player1Id;
                     }
-                    while (self.players[deal.player0Id].score - self.players[deal.player1Id].score > 4) {
+                    while (self.players[deal.player0Id].score - self.players[deal.player1Id].score > 3) {
                         self.players[deal.player0Id].score--;
                         self.sendGameEvent(deal.player0Id, "score", -1, "insurance", deal.player1Id);
                         gameRecording.score({
@@ -832,7 +832,7 @@
                             otherPlayerId: deal.player0Id
                         });
                     }
-                    while (self.players[deal.player1Id].score - self.players[deal.player0Id].score > 4) {
+                    while (self.players[deal.player1Id].score - self.players[deal.player0Id].score > 3) {
                         self.players[deal.player0Id].score++;
                         self.sendGameEvent(deal.player0Id, "score", 1, "insurance", deal.player1Id);
                         gameRecording.score({
