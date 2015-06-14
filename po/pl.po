@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-06-14 13:24+0100\n"
+"PO-Revision-Date: 2015-06-14 16:10+0100\n"
 "Last-Translator: Mirko Dietrich <mirko.dietrich-AT-l4m1-DOT-de>\n"
 "Language-Team: \n"
 "Language: pl\n"
@@ -885,7 +885,8 @@ msgstr "Oczekiwanie na odpowiedź. "
 
 #: mc/js/services/mcAppServices.js:122
 msgid "Who at the table has a job of which he or she can live?"
-msgstr "Kto ze zgromadzonych ma pracę, z której może się utrzymać?"
+msgstr ""
+"Kto ze zgromadzonych ma pracę, z której może się utrzymać? (+ zapytanie)"
 
 #: mc/js/services/mcAppServices.js:86
 msgid "Who at this table has been class spokesman?"
@@ -909,11 +910,12 @@ msgstr "Kto w ciągu ostatnich 10 lat brał udział w bójce?"
 
 #: mc/js/services/mcAppServices.js:149
 msgid "Who has ever consciously denied his national origin?"
-msgstr "Kto świadomie wyparł się swojej narodowości?"
+msgstr "Kto świadomie wyparł się swojej narodowości? (+ zapytanie)"
 
 #: mc/js/services/mcAppServices.js:113
 msgid "Who is involved in a association or in an NGO?"
-msgstr "Kto angażuje się w stowarzyszeniu lub organizacji pozarządowej?"
+msgstr ""
+"Kto angażuje się w stowarzyszeniu lub organizacji pozarządowej?  (+zapytanie)"
 
 #: mc/js/services/mcAppServices.js:167
 msgid "Who is scared of the future?"
@@ -921,11 +923,11 @@ msgstr "Kto się boi przyszłości?"
 
 #: mc/js/services/mcAppServices.js:104
 msgid "Who was or is a member of a political party?"
-msgstr "Kto był lub jest członkiem partii?"
+msgstr "Kto był lub jest członkiem partii? (+ zapytanie)"
 
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr "Komu zdarza się pracować za granica?"
+msgstr "Komu zdarza się pracować za granica? (+ zapytanie)"
 
 #: game/polls/Agreement.js:12
 msgid "Yes"
