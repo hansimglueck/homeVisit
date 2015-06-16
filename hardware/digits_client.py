@@ -108,6 +108,7 @@ def cb(msg):
 					sendSound("mpg321 alarm.mp3")
 			elif (al_state == 0):
 				if (mode != "countdown"):
+					sendSound("stopmpg321")
 					turnOff()
 
 
