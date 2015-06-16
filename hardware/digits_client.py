@@ -102,6 +102,7 @@ def cb(msg):
 					#blink(msg["data"]["param"])
 			elif (al_state == 2):
 				if (mode != "countdown"):
+					sendSound("mpg321 alarm3x.mp3")
 					blink(0.3)
 				else:
 					sendSound("mpg321 alarm.mp3")
@@ -181,7 +182,7 @@ while(True):
 			lightOn()
 			blink_toggle = 1
 			blink_toggle_timer = time.time()
-			sendSound("mpg321 alarm.mp3")
+			# sendSound("mpg321 alarm.mp3")
 
 
 	# Wait one second
