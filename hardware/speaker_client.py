@@ -7,8 +7,8 @@ import subprocess
 def newMessage(msg):
 	if msg["type"] != "display":
 		return
-	if (msg["data"]["type"] == "file"):
-		playSoundFile(msg["data"]["param"])
+	if (msg["data"]["type"] == "sound"):
+		playSoundFile(msg["data"]["text"])
 	elif (msg["data"]["type"] == "alert"):
 		print "Alert State="+msg["data"]["param"]
 
@@ -38,7 +38,7 @@ def stopmpg321():
 	os.system('sudo pkill mpg321')
 
 #der client wird in einem extra-thread gestartet...
-client = ws.Client(role="speaker", cb = playSoundfile)
+client = ws.Client(role="speaker", cb = newMessage)
 
 
 #damit das programm nicht stoppt
