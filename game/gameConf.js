@@ -10,7 +10,7 @@
     function GameConf() {
         this.conf = {};         //fixe Kongiguration wie startDeck, typeMapping
         this.defaultOptions = {
-            alertRecipients: 'button:gruen,digits'
+            alertRecipients: 'button:gruen,digits,speaker'
         };
         this.options = clone(this.defaultOptions);      //veränderliche optionen wie alertRecipients
         this.maxPlayerCnt = 8;

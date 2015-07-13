@@ -11,6 +11,15 @@ def newMessage(msg):
 		playSoundfile(msg["data"]["text"])
 	elif (msg["data"]["type"] == "alert"):
 		print "Alert State="+msg["data"]["param"]
+		alert(msg["data"]["param"])
+
+def alert(al_state):
+	if (al_state == 1):
+		playSoundfile("mpg321 alarm.mp3")
+	elif (al_state == 2):
+		playSoundfile("mpg321 alarm3x.mp3")
+	elif (al_state == 0):
+		stopmpg321()
 
 def playSoundfile(filename):
 	#print "pkill omx"

@@ -94,16 +94,16 @@ def cb(msg):
 		#print "type="+msg["type"]+" - param="+msg["data"]["param"]
 		al_state = msg["data"]["param"]
 		if (al_state == 1):
-			sendSound("mpg321 alarm.mp3")
+			#sendSound("mpg321 alarm.mp3")
 			if (mode != "countdown"):
 				turnOn()
 		elif (al_state == 2):
-			sendSound("mpg321 alarm3x.mp3")
+			#sendSound("mpg321 alarm3x.mp3")
 			if (mode != "countdown"):
 				blink(0.3)
 		elif (al_state == 0):
 			if (mode != "countdown"):
-				sendSound("stopmpg321")
+				#sendSound("stopmpg321")
 				turnOff()
 
 
