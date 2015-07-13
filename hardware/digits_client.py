@@ -120,7 +120,7 @@ def countdown(secs):
 	now = time_whole
 
 def sendSound(filepath):
-	client.send(type="forward", data={"type":"display","content":{"text":filepath}}, param={"role":"speaker","name":"NN"})
+	client.send(type="forward", data={"type":"display","content":{"type":"sound","text":filepath}}, param={"role":"speaker","name":"NN"})
 
 #der client wird in einem extra-thread gestartet...
 client = ws.Client(role="digits", cb = cb)
