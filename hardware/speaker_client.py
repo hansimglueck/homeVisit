@@ -7,6 +7,7 @@ import subprocess
 def playSoundfile(msg):
 	if msg["type"] != "display":
 		return
+	print "pkill omx"
 	subprocess.call("pkill omx",shell=True)
 
 	filename = msg["data"]["text"]
@@ -21,13 +22,14 @@ def playSoundfile(msg):
 		filename = filename[7:]
 		os.popen('mpg321 /home/pi/medien/sounds/' + filename + ' &')
 	else:
+		print "omx file"
 		os.popen('omxplayer /home/pi/medien/sounds/' + filename + ' &')
 
 def stopSound():
 	os.system("sudo pkill omxplayer");
 
 def stopmpg321():
-        os.system('sudo pkill mpg321')
+	os.system('sudo pkill mpg321')
 
 #der client wird in einem extra-thread gestartet...
 client = ws.Client(role="speaker", cb = playSoundfile)

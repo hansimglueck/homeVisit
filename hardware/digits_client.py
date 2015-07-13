@@ -72,44 +72,39 @@ def cb(msg):
 	global leise
 	print "digits cb got message"
 	#print("DIGITS GETS MSG TYPE: " + msg["type"])
-	if (msg["type"] == "display"):
-		if (msg["data"]["type"] == "cmd"):
-			### Dies ist ein Command-Item aus dem Strang
-			print "type="+msg["type"]+" - command="+msg["data"]["command"]
-			cmd = msg["data"]["command"]
-			#print("DIGITS GETS CMD: " + cmd)
-			if (cmd == "countdown" or cmd == "countdown_fies" or cmd == "countdown_leise"):
+	if (msg["type"] != "display"):
+		return
+	if (msg["data"]["type"] == "cmd"):
+		### Dies ist ein Command-Item aus dem Strang
+		print "type="+msg["type"]+" - command="+msg["data"]["command"]
+		cmd = msg["data"]["command"]
+		#print("DIGITS GETS CMD: " + cmd)
+		if (cmd == "countdown" or cmd == "countdown_fies" or cmd == "countdown_leise"):
+			sendSound("stopmpg321")
+			fies = 0
+			leise = 0
+			if (cmd == "countdown_fies"):
+				fies = 1
+			if (cmd == "countdown_leise"):
+				leise = 1
+				print("LEISE!")
+			countdown(int(msg["data"]["param"]))
+	elif (msg["data"]["type"] == "alert"):
+		### Dies ist die Alert-State-Nachricht vom Game: 0=aus, 1=an, 2=blink
+		#print "type="+msg["type"]+" - param="+msg["data"]["param"]
+		al_state = msg["data"]["param"]
+		if (al_state == 1):
+			sendSound("mpg321 alarm.mp3")
+			if (mode != "countdown"):
+				turnOn()
+		elif (al_state == 2):
+			sendSound("mpg321 alarm3x.mp3")
+			if (mode != "countdown"):
+				blink(0.3)
+		elif (al_state == 0):
+			if (mode != "countdown"):
 				sendSound("stopmpg321")
-				if (cmd == "countdown_fies"):
-					fies = 1
-					leise = 0
-				elif (cmd == "countdown_leise"):
-					leise = 1
-					fies = 0
-					print("LEISE!")
-				else:
-					fies = 0
-					leise = 0
-				countdown(int(msg["data"]["param"]))
-		elif (msg["data"]["type"] == "alert"):
-			### Dies ist die Alert-State-Nachricht vom Game: 0=aus, 1=an, 2=blink
-			#print "type="+msg["type"]+" - param="+msg["data"]["param"]
-			al_state = msg["data"]["param"]
-			if (al_state == 1):
-				sendSound("mpg321 alarm.mp3")
-				if (mode != "countdown"):
-					turnOn()
-					#blink(msg["data"]["param"])
-			elif (al_state == 2):
-				if (mode != "countdown"):
-					sendSound("mpg321 alarm3x.mp3")
-					blink(0.3)
-				else:
-					sendSound("mpg321 alarm.mp3")
-			elif (al_state == 0):
-				if (mode != "countdown"):
-					sendSound("stopmpg321")
-					turnOff()
+				turnOff()
 
 
 
