@@ -3,6 +3,7 @@
 
     module.exports = {
         executeItem: function () {
+            console.log("default include hier!");
             this.mapToDevice();
         },
         getWsContent: function() {
