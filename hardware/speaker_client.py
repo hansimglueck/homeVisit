@@ -4,13 +4,19 @@ import os
 import ws
 import subprocess
 
-def playSoundfile(msg):
+def newMessage(msg):
 	if msg["type"] != "display":
 		return
-	print "pkill omx"
-	subprocess.call("pkill omx",shell=True)
+	if (msg["data"]["type"] == "file"):
+		playSoundFile(msg["data"]["param"])
+	elif (msg["data"]["type"] == "alert"):
+		print "Alert State="+msg["data"]["param"]
 
-	filename = msg["data"]["text"]
+def playSoundfile(filename):
+	#print "pkill omx"
+	#subprocess.call("pkill omx",shell=True)
+
+	#filename = msg["data"]["text"]
 	print(filename)
 	if filename == "stop":
 		stopSound()
