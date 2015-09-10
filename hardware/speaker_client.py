@@ -10,7 +10,7 @@ def newMessage(msg):
 	if (msg["data"]["type"] == "sound"):
 		playSoundfile(msg["data"]["text"])
 	elif (msg["data"]["type"] == "alert"):
-		print "Alert State="+msg["data"]["param"]
+		print "Alert State="+str(msg["data"]["param"])
 		alert(msg["data"]["param"])
 
 def alert(al_state):
