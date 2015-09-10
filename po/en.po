@@ -1106,7 +1106,7 @@ msgstr[1] ""
 #: player/js/services/playerAppServices.js:335
 #: player/partials/voteConfirm.html:2
 msgid "€"
-msgstr "zł"
+msgstr "Dkk"
 
 #: mc/index.html:45
 msgid "← Select game session!"
