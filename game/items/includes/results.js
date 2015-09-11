@@ -87,7 +87,7 @@
                     case "guessedBest":
                         best = playerManager.getPlayerGroup("best")[0].playerId;
                         this.data.votes.forEach(function (vote) {
-                            score = 0;
+                            score = -1;
                             vote.choice.forEach(function (ch) {
                                 if (best === ch) {
                                     score = 3;
