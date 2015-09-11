@@ -147,11 +147,11 @@ msgstr "Korrekt"
 
 #: mc/views/results.html:11
 msgid "Correct: {{display.correctAnswer}}"
-msgstr "Korrekt: {{display.korrektSvar}}"
+msgstr "Korrekt: {{display.correctAnswer}}"
 
 #: player/partials/results.html:3
 msgid "Correct: {{home.correctAnswer}}"
-msgstr "Korrekt: {{hjem.Answer}}"
+msgstr "Korrekt: {{home.correctAnswer}}"
 
 #: admin/views/game-conf.html:19
 msgid "Current deck:"
@@ -344,7 +344,7 @@ msgstr "Kortlagt"
 
 #: mc/js/controllers/matching.js:218
 msgid "Matches best with the team of {{name1}} and {{name2}}."
-msgstr "Matcher bedst med hold {{navn1}} og  {{navn2}} "
+msgstr "Matcher bedst med hold {{name1}} og  {{name2}} "
 
 #: mc/index.html:39
 msgid "Matching"
@@ -511,7 +511,7 @@ msgstr "Spiller"
 
 #: mc/js/services/mcAppServices.js:316
 msgid "Player {{ playerNumber }}"
-msgstr "Spiller {{ spillerNummer }}"
+msgstr "Spiller {{ playerNumber }}"
 
 #: mc/views/item-as-row.html:21 mc/views/item.html:33
 msgid "Players are dealing"
@@ -535,7 +535,7 @@ msgstr "Vælg venligst længden af dette spil."
 
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
-msgstr "Vær venlig at udmærke et hold! Giv {{stilling}} point!"
+msgstr "Vær venlig at udmærke et hold! Giv {{score}} point!"
 
 #: homevisit_components/game-control/views/game-session-chooser.html:8
 msgid "Please select a session before starting the game!"
@@ -600,11 +600,11 @@ msgstr "Placering"
 
 #: mc/views/players.html:10 mc/views/players.html:15 mc/views/script.html:14
 msgid "Rank: {{player.rank}}"
-msgstr "Placering: {{spiller.placering}}"
+msgstr "Placering: {{player.rank}}"
 
 #: player/index.html:86 player/views/score-barometer.html:4
 msgid "Rank: {{status.player.rank}}"
-msgstr "Placering: {{status.spiller.placering}}"
+msgstr "Placering: {{status.player.rank}}"
 
 #: homevisit_components/brain-control/brain-control.js:45
 msgid "Really DB: {{action}}?"
@@ -685,15 +685,15 @@ msgstr "Stilling"
 
 #: mc/views/player.details.html:2 mc/views/player.modal.html:8
 msgid "Score for Player {{playerId}}"
-msgstr "Stilling for spillere {{spillerId}}"
+msgstr "Stilling for spillere {{playerId}}"
 
 #: mc/views/players.html:14 mc/views/players.html:9 mc/views/script.html:13
 msgid "Score: {{player.score}}"
-msgstr "Stilling: {{spiller.stilling}}"
+msgstr "Stilling: {{player.score}}"
 
 #: player/index.html:87 player/views/score-barometer.html:5
 msgid "Score: {{status.player.score}}"
-msgstr "Stilling: {{status.spiller.stilling}}"
+msgstr "Stilling: {{status.player.score}}"
 
 #: mc/js/controllers/notes.js:31 mc/js/controllers/players.js:37
 #: mc/js/controllers/script.js:85
@@ -709,7 +709,7 @@ msgid ""
 "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
 "is reading:"
 msgstr ""
-"Stilhed tak. Nu <spiller-icon pid=\"status.spillerOnTurn\"></spiller-icon> "
+"Stilhed tak. Nu <player-icon pid=\"status.playerOnTurn\"></player-icon> "
 "bliver læst:"
 
 #: admin/views/admin/show-sequence-item.html:36
