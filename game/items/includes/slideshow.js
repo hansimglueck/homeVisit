@@ -24,6 +24,7 @@
 
             return {
                 type: 'slideshow',
+                silent: this.silent,
                 images: images
             };
         }
