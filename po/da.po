@@ -106,7 +106,7 @@ msgstr "Vælg sted hvor enhed vil blive tilføjet"
 
 #: player/partials/deals/deal.choosePlayer.html:2
 msgid "Choose team to offer treaty:"
-msgstr "Vælg hold at tilbyde alliance"
+msgstr "Vælg hold at tilbyde aftale"
 
 #: homevisit_components/brain-control/views/wifi-modal.html:14
 msgid "Close"
@@ -225,7 +225,7 @@ msgstr "Vil du virkelig genstarte serveren?"
 
 #: player/partials/deals/deal.answer.html:7
 msgid "Do you want to accept this treaty?"
-msgstr "Vil du acceptere denne alliance?"
+msgstr "Vil du acceptere denne aftale?"
 
 #: mc/js/controllers/matching.js:216
 msgid "Doesn't match well. Should play alone."
@@ -396,7 +396,7 @@ msgstr "Min tiltro til demokratiet"
 
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr "Min profit fra det frie marked"
+msgstr "personlige gevinst af det frie marked"
 
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
@@ -709,8 +709,8 @@ msgid ""
 "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
 "is reading:"
 msgstr ""
-"Stilhed tak. Nu <player-icon pid=\"status.playerOnTurn\"></player-icon> "
-"bliver læst:"
+"Vær venligst stille. Nu læser <player-icon pid=\"status.playerOnTurn\"></player-icon> "
+
 
 #: admin/views/admin/show-sequence-item.html:36
 msgid "Silent"
@@ -813,11 +813,11 @@ msgstr "Denne meningsmåling eksisterer ikke!"
 
 #: player/partials/deals/deal.details.html:38
 msgid "This treaty was ACCEPTED."
-msgstr "Denne traktak blev ACCEPTERET."
+msgstr "Denne aftale blev ACCEPTERET."
 
 #: player/partials/deals/deal.details.html:39
 msgid "This treaty was DENIED."
-msgstr "Denne traktak blev AFVIST."
+msgstr "Denne aftale blev AFVIST."
 
 #: admin/views/admin/edit-new-deck.html:5
 msgid "Title:"
@@ -1002,7 +1002,7 @@ msgstr "fornægtet oprindelse"
 
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr "indtjening"
+msgstr "gevinst af frie marked"
 
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
@@ -1022,7 +1022,7 @@ msgstr "lilla"
 
 #: mc/js/services/mcAppServices.js:105
 msgid "member of political party"
-msgstr "partimedlem"
+msgstr "medlem af parti"
 
 #: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
@@ -1092,7 +1092,7 @@ msgstr "villighed til solidaritet"
 
 #: mc/js/services/mcAppServices.js:96
 msgid "won a lot"
-msgstr "vundet meget"
+msgstr "vundet i livets lotteri"
 
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"
