@@ -48,7 +48,7 @@
                    ng-class="{'glyphicon-chevron-down': !collapsed.wlan1, 'glyphicon-chevron-right': collapsed.wlan1}"></i>
             </div>
             <ul class="list-group" collapse="collapsed.wlan1">
-                <li class="list-group-item">
+                <li class="list-group-item network-list">
                     <h4>Available Networks:</h4>
                     <p ng-repeat="wifi in systemInfo.wifiList track by $index">
                         <button class="btn btn-default" ng-click="connectWifi($index)" translate>CONNECT</button>

@@ -103,3 +103,9 @@
     margin: 0 .25em 0.7em;
     width: 52px;
 }
+
+
+.network-list {
+    max-height: 300px;
+    overflow: scroll;
+}
