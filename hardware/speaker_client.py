@@ -35,10 +35,10 @@ def playSoundfile(filename):
 		return
 	elif filename.startswith( 'mpg321 ' ):
 		filename = filename[7:]
-		os.popen('mpg321 /home/pi/medien/sounds/' + filename + ' &')
+		os.popen('sudo pkill mpg321 && mpg321 /home/pi/medien/sounds/' + filename + ' &')
 	else:
 		print "omx file"
-		os.popen('omxplayer /home/pi/medien/sounds/' + filename + ' &')
+		os.popen('sudo pkill omxplayer && omxplayer /home/pi/medien/sounds/' + filename + ' &')
 
 def stopSound():
 	os.system("sudo pkill omxplayer");
