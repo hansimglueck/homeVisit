@@ -43,6 +43,8 @@ def sendGo():
 
 def sendShutDown():
 	print("System ausschalten!")
+	blink(0.1)
+	client.send(type="forward", data={"type":"display","content":{"text":"shutdown in progress. wait for the button to stop blinking..."}}, param={"role":"speaker","name":"NN"})
 	#p.print_text("G O N N A * S L E E P * N O W\n")
 	#p.print_text("* * * * * * B Y E * * * * * *\n")
 	#p.print_text("-----------------------------\n")
