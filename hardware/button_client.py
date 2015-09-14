@@ -44,7 +44,7 @@ def sendGo():
 def sendShutDown():
 	print("System ausschalten!")
 	blink(0.1)
-	client.send(type="forward", data={"type":"display","content":{"text":"shutdown in progress. wait for the button to stop blinking..."}}, param={"role":"speaker","name":"NN"})
+	client.send(type="forward", data={"type":"display","content":{"text":"shutdown in progress. wait for the button to stop blinking..."}}, param={"role":"printer"})
 	#p.print_text("G O N N A * S L E E P * N O W\n")
 	#p.print_text("* * * * * * B Y E * * * * * *\n")
 	#p.print_text("-----------------------------\n")
@@ -181,10 +181,10 @@ else:
 	if (stop_proc):
 		sendShutDown()
 		### shutdown system
-		command = "/usr/bin/sudo /sbin/shutdown -h now"
-		import subprocess
-		process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
-		output = process.communicate()[0]
-		print output
+		#command = "/usr/bin/sudo /sbin/shutdown -h now"
+		#import subprocess
+		#process = subprocess.Popen(command.split(), stdout=subprocess.PIPE)
+		#output = process.communicate()[0]
+		#print output
 
 finally: GPIO.cleanup()
