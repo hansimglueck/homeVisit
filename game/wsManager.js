@@ -317,7 +317,7 @@
                 if (client.role === role &&
                     client.connected &&
                     (client.name === name || typeof name === "undefined")) {
-                    logger.log("sending "+JSON.stringify({
+                    logger.debug("sending "+JSON.stringify({
                         type: type,
                         data: message
                     }));
@@ -335,7 +335,7 @@
             }
             this.clients.forEach(function each(client) {
                 if (client.role === role && client.connected) {
-                    logger.log("sending "+JSON.stringify({
+                    logger.debug("sending "+JSON.stringify({
                         type: type,
                         data: message
                     }));
@@ -356,7 +356,7 @@
                 });
                 //es dürfte nur einen geben...
                 if (clientsWithId.length > 0) {
-                    logger.log("sending "+JSON.stringify({
+                    logger.debug("sending "+JSON.stringify({
                         type: type,
                         data: message
                     }));
