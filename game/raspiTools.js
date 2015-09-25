@@ -116,6 +116,12 @@
                                     logger.info("restarting wlan1");
                                     exec("/home/pi/homeVisit/shellscripts/wlan1_conf '" + msg.data.param.ssid + "' '" + msg.data.param.passwd + "'", function (error, stdout, stderr) {
                                         var success = false;
+                                        if (error) {
+                                            logger.error(error);
+                                            if (stderr.indexOf("bound to") !== -1) {
+                                                success = false;
+                                            }
+                                        }
                                         if (stderr) {
                                             logger.error(stderr);
                                             if (stderr.indexOf("bound to") !== -1) {
