@@ -114,7 +114,9 @@
                                 case "restartwlan1":
                                     //TODO: add ssid/password to wpa_supplicant instead of replacing
                                     logger.info("restarting wlan1");
-                                    exec("/home/pi/homeVisit/shellscripts/wlan1_conf '" + msg.data.param.ssid + "' '" + msg.data.param.passwd + "'", function (error, stdout, stderr) {
+                                    var cmd = "/home/pi/homeVisit/shellscripts/wlan1_conf '" + msg.data.param.ssid + "' '" + msg.data.param.passwd + "'";
+                                    logger.info(cmd);
+                                    exec(cmd, function (error, stdout, stderr) {
                                         var success = false;
                                         if (error) {
                                             logger.error(error);
