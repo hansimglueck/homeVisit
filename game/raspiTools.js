@@ -117,6 +117,11 @@
                                     var cmd = "/home/pi/homeVisit/shellscripts/wlan1_conf '" + msg.data.param.ssid + "' '" + msg.data.param.passwd + "'";
                                     logger.info(cmd);
                                     exec(cmd, function (error, stdout, stderr) {
+                                        console.log('stdout: ' + stdout);
+                                        console.log('stderr: ' + stderr);
+                                        if (error !== null) {
+                                            console.log('exec error: ' + error);
+                                        }
                                         var success = false;
                                         if (error) {
                                             logger.error(error);
