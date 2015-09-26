@@ -1,7 +1,11 @@
 #!/bin/bash
 
-sudo sed -i.bak 's/^\(.*ssid=.\).*\(\x22\)/\1'${1}'\2/' /etc/wpa_supplicant/wpa_supplicant.conf
-sudo sed -i.bak 's/^\(.*psk=.\).*\(\x22\)/\1'${2}'\2/' /etc/wpa_supplicant/wpa_supplicant.conf
+SSID=${1}
+SSID=$(echo $SSID | sed -e 's/[\/&]/\\&/g')
+PASSWD=${2}
+PASSWD=$(echo $PASSWD | sed -e 's/[\/&]/\\&/g')
+sudo sed -i.bak "s/^\(.*ssid=.\).*\(\x22\)/\1$SSID\2/" /etc/wpa_supplicant/wpa_supplicant.conf
+sudo sed -i.bak "s/^\(.*psk=.\).*\(\x22\)/\1$PASSWD\2/" /etc/wpa_supplicant/wpa_supplicant.conf
 sudo ifdown wlan1
 sudo ifup wlan1
 
