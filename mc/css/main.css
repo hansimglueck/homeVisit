@@ -428,3 +428,19 @@ ul.follow-items > li {
     margin: 0.8em;
 }
 
+.popupChoice {
+    width: 200px;
+    margin: auto;
+}
+
+.dummy-head {
+    padding:2px;
+}
+
+.dummy-name {
+    max-width: 77px;
+    overflow: hidden;
+    display: inline-block;
+    font-size: 1.1em;
+    font-weight: bold;
+}

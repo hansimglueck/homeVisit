@@ -4,7 +4,7 @@
     'use strict';
 
     angular.module('homeVisitMCApp')
-        .controller('DummiesCtrl', function ($scope, Polls, PlayerNames, gettextCatalog) {
+        .controller('DummiesCtrl', function ($scope, Polls, ModalService, PlayerNames, gettextCatalog) {
             $scope.gettextCatalog = gettextCatalog;
             $scope.selectedRow = Polls.selectedPoll;
             $scope.playerNames = PlayerNames.getNames;
@@ -26,17 +26,43 @@
                 {top: 440, left: 20},
                 {top: 250, left: 20}
             ];
-            
+
+            $scope.hostId = 0;
             // When there are less than 15 players, deactivate them to ignore them in matching calc
             // 1 if player is in game, 0 if player is absent
             $scope.inGame = PlayerNames.inGame;
-            
+
             $scope.polls = Polls;
             $scope.selectRow = function(id){
                 $scope.selectedRow = id;
+                Polls.selectedPoll = id;
+                if (Polls.polls[id].type === "fingers" && $scope.isInGame($scope.hostId)) $scope.pollPopup();
                 //Polls.selectedPoll = id;
             };
+            $scope.setHost = function(hid) {
+                $scope.hostId = hid;
+            };
+            $scope.pollPopup = function() {
+                ModalService.showModal({
+                    templateUrl: "views/pollPopup.html",
+                    controller: "PollPopupController",
+                    inputs: {
+                        startId: $scope.hostId,
+                        selectAnswer: $scope.selectAnswer,
+                        isInGame: $scope.isInGame
+                    }
+                }).then(function (modal) {
+                    // The modal object has the element built, if this is a bootstrap modal
+                    // you can call 'modal' to show it, if it's a custom modal just show or hide
+                    // it as you need to.
+                    modal.element.modal({
+                        backdrop: 'static'
+                    });
+                });
+
+            };
             $scope.selectAnswer = function(did, aid) {
+                console.log("select answer "+aid+" for "+did);
                 if ($scope.inGame[did] === 0) {
                     return;
                 }
@@ -85,7 +111,7 @@
                 } else {
                     return false;
                 }
-            }
+            };
             $scope.toggleIsInGame = function(playerIndex) {
                 if ($scope.inGame[playerIndex] === 1) {
                     //$scope.polls.polls[$scope.selectedRow].answers[playerIndex] = -1;
