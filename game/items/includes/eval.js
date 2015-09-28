@@ -7,9 +7,8 @@
         executeItem: function () {
             /* jshint evil: true */
             logger.info(this.eval);
-            var lang = require('../../gameConf').conf.language;
             try {
-                eval(this.text[lang]);
+                eval("en");
             } catch (e) {
                 logger.error(e.stack);
             }
