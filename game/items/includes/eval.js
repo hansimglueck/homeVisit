@@ -8,7 +8,7 @@
             /* jshint evil: true */
             logger.info(this.eval);
             try {
-                eval("en");
+                eval(this.text["en"]);
             } catch (e) {
                 logger.error(e.stack);
             }
