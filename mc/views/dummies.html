@@ -3,12 +3,12 @@
          ng-style="{'top':dummy.top, 'left':dummy.left}"
          ng-class="{unknownAnswer: unanswered($index)}">
         <ul class="list-group list-unstyled">
-            <div class="container-fluid">
-                <span ng-click="toggleIsInGame($index)" class="fa fa-home fa-ban fa-2x ban_icon" ng-class="{banned_icon:!isInGame($index)}"></span>
-                <button class="btn btn-default" ng-class="{dummy_notingame:!isInGame($index)}" ng-click="setName($index)">
+            <div class="container-fluid dummy-head">
+                <span ng-click="toggleIsInGame($index)" class="pull-left fa fa-home fa-ban fa-2x ban_icon" ng-class="{banned_icon:!isInGame($index)}"></span>
+                <div class="dummy-name" ng-class="{dummy_notingame:!isInGame($index)}" ng-click="setName($index)">
                     {{ customPlayerNames[$index] || playerNames()[$index] }}
-                </button>
-                
+                </div>
+                <span ng-click="setHost($index)" class="pull-right fa fa-home fa-2x ban_icon" ng-class="{banned_icon:hostId==$index}"></span>
             </div>
             <li ng-if="polls.polls[selectedRow].type=='fingers'" class="">
                 <div class="container-fluid" ng-if="isInGame($index)">
@@ -64,7 +64,7 @@
             </li>
         </ul>
     </div>
-    
+
     <div class="dummy dummy_special"
          ng-style="{'top':60, 'left':20}">
         <ul class="list-group list-unstyled">
@@ -117,7 +117,7 @@
             </li>
         </ul>
     </div>
-    
+
     <div class="table-display">
         <table class="table table-bordered">
             <tr>
