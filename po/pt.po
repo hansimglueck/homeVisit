@@ -73,11 +73,11 @@ msgstr "Controlo do CÉREBRO XXX"
 
 #: player/partials/rating/rating.html:19
 msgid "Back"
-msgstr "Atrás / Para trás / Recuar XXX"
+msgstr "Recuar"
 
 #: mc/views/player.modal.html:25
 msgid "CLOSE"
-msgstr "ENCERRAR / FECHAR XXX"
+msgstr "FECHAR"
 
 #: homevisit_components/brain-control/views/raspi-manager.html:54
 msgid "CONNECT"
@@ -102,7 +102,7 @@ msgstr "Alterar pontuação"
 
 #: admin/views/admin/move-item.html:5
 msgid "Choose target where item will be appended."
-msgstr "Escolher destino XXX onde o item vai ser acrescentado XXX"
+msgstr "Escolher destino onde o item vai ser acrescentado"
 
 #: player/partials/deals/deal.choosePlayer.html:2
 msgid "Choose team to offer treaty:"
@@ -110,7 +110,7 @@ msgstr "Escolher equipa para propor acordo:"
 
 #: homevisit_components/brain-control/views/wifi-modal.html:14
 msgid "Close"
-msgstr "Encerrar / Fechar XXX"
+msgstr "Fechar"
 
 #: admin/views/player-list.html:9
 msgid "Color"
@@ -179,7 +179,7 @@ msgstr "Dinamarquês"
 
 #: mc/js/services/mcAppServices.js:666
 msgid "Deal with"
-msgstr "Negociar com XXX"
+msgstr "Negociar com"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:4
 msgid "Deck"
@@ -191,7 +191,7 @@ msgstr "Decks e itens"
 
 #: admin/views/game-conf.html:27
 msgid "Default mapping:"
-msgstr "Mapping por defeito: XXX"
+msgstr "Mapping por defeito:"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-option.html:18
 #: admin/views/admin/show-item-contents/show-vote-option.html:36
@@ -229,11 +229,11 @@ msgstr "Quer aceitar este acordo?"
 
 #: mc/js/controllers/matching.js:216
 msgid "Doesn't match well. Should play alone."
-msgstr "Não combina bem XXX. Deverá jogar sozinho XXX."
+msgstr "Não combina bem. Deverá jogar sozinho."
 
 #: admin/views/admin/show-deck.html:9
 msgid "Duplicate"
-msgstr "Duplicar/Duplicado   XXX"
+msgstr "Duplicar"
 
 #: homevisit_components/hvLanguage.js:13
 msgid "Dutch"
@@ -262,15 +262,15 @@ msgstr "JOGO"
 #: admin/views/master-buttons.html:6 mc/index.html:61 mc/views/players.html:40
 #: mc/views/script.html:29
 msgid "GO"
-msgstr "GO XXX"
+msgstr "GO"
 
 #: admin/views/master-buttons.html:7
 msgid "GO 2"
-msgstr "IR PARA XXX"
+msgstr "GO 2"
 
 #: admin/views/master-buttons.html:22 mc/views/item-block.html:4
 msgid "GOTO"
-msgstr "IR PARA XXX"
+msgstr "IR PARA"
 
 #: mc/index.html:36
 msgid "Game"
@@ -279,12 +279,12 @@ msgstr "Jogo"
 #: homevisit_components/game-control/views/game-session-chooser.html:2
 #: homevisit_components/game-control/views/game-session-display.html:2
 msgid "Game session"
-msgstr "Sessão de jogo XXX"
+msgstr "Sessão de jogo"
 
 #: admin/views/master-buttons.html:3
 #: homevisit_components/game-control/views/game-control.html:9
 msgid "Game stopped"
-msgstr "Jogo interrompido / terminado XXX"
+msgstr "Jogo terminado"
 
 #: admin/views/game-conf.html:64 homevisit_components/hvLanguage.js:9
 msgid "German"
@@ -316,7 +316,7 @@ msgstr "SALTAR"
 
 #: admin/views/player-list.html:6
 msgid "Joined"
-msgstr "Ligado / Combinado / Acompanhado XXX"
+msgstr "Ligado"
 
 #: homevisit_components/views/language-chooser.html:2
 msgid "Language"
@@ -328,7 +328,7 @@ msgstr "Abandonar a mesa!"
 
 #: homevisit_components/brain-control/views/raspi-manager.html:96
 msgid "Load"
-msgstr "Carregar XXX"
+msgstr "Carregar"
 
 #: admin/partials/home.html:25
 msgid "Log"
@@ -344,11 +344,11 @@ msgstr "Mapped:"
 
 #: mc/js/controllers/matching.js:218
 msgid "Matches best with the team of {{name1}} and {{name2}}."
-msgstr "Combina melhor XXX com a equipa de {{name1}} e de {{name2}} "
+msgstr "Combina melhor com a equipa de {{name1}} e de {{name2}} "
 
 #: mc/index.html:39
 msgid "Matching"
-msgstr "A combinar XXX"
+msgstr "Combinar"
 
 #: player/partials/results.html:30
 msgid "Max:"
@@ -396,11 +396,11 @@ msgstr "A minha confiança na democracia"
 
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr "O que ganho XXX com o livre funcionamento dos mercados XXX"
+msgstr "O benefício pessoal que retiro da economía de mercado"
 
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
-msgstr "A minha vontade de ser solidário/solidária XXX"
+msgstr "O meu sentido de solidariedade"
 
 #: homevisit_components/brain-control/brain-control.js:55
 msgid "N/A"
@@ -416,7 +416,7 @@ msgstr "Novo nome?"
 
 #: admin/views/admin/show-item-contents/show-inline-switch-content.html:30
 msgid "New Inline Deck"
-msgstr "Novo deck em linha XXX"
+msgstr "New Inline Deck"
 
 #: admin/views/admin/show-set.html:8
 msgid "New deck"
@@ -449,15 +449,15 @@ msgstr "Não"
 
 #: player/partials/deals/deal.choosePlayer.html:8
 msgid "No Deal with me!"
-msgstr "Não há acordo XXX comigo!"
+msgstr "Não quero fazer nenhum acordo!"
 
 #: admin/views/master-mind.html:28
 msgid "No connected nodes!"
-msgstr "Não há nodes XXX ligados! XXX"
+msgstr "No connected nodes!"
 
 #: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
-msgstr "Ninguém foi mau XXX para ti/vocês XXX."
+msgstr "Ninguém foi mau para vocês."
 
 #: admin/views/master-mind.html:8
 msgid "Node list"
@@ -469,11 +469,11 @@ msgstr "Norueguês"
 
 #: admin/js/controllers/adminControllers.js:358
 msgid "Not set"
-msgstr "Não está ajustado / marcado / regulado XXX"
+msgstr "Not set"
 
 #: admin/js/controllers/adminControllers.js:20
 msgid "Null Problemo!"
-msgstr "Sem problema! XXX"
+msgstr "Sem problema!"
 
 #: homevisit_components/brain-control/views/wifi-modal.html:13
 #: homevisit_components/game-control/views/game-restart-modal.html:12
@@ -485,7 +485,7 @@ msgstr "OK"
 
 #: homevisit_components/brain-control/views/raspi-manager.html:65
 msgid "OS Info for {{systemInfo.osInfo.hostname}}"
-msgstr "Informação SO para XXX {{systemInfo.osInfo.hostname}}"
+msgstr "Informação SO para {{systemInfo.osInfo.hostname}}"
 
 #: homevisit_components/brain-control/views/raspi-manager.html:112
 msgid "Online"
@@ -503,7 +503,7 @@ msgstr "Opções"
 
 #: admin/partials/home.html:5
 msgid "Playback"
-msgstr "Repetição / Reprodução XXX"
+msgstr "Playback"
 
 #: mc/views/dummies.html:124
 msgid "Player"
@@ -515,11 +515,11 @@ msgstr "Jogador {{ playerNumber }}"
 
 #: mc/views/item-as-row.html:21 mc/views/item.html:33
 msgid "Players are dealing"
-msgstr "Os jogadores estão a negociar XXX"
+msgstr "Os jogadores estão a negociar"
 
 #: mc/views/item-as-row.html:22 mc/views/item.html:34
 msgid "Players are rating others"
-msgstr "Os jogadores estão a avaliar XXX outros"
+msgstr "Os jogadores estão a avaliar outros"
 
 #: mc/views/item.html:14
 msgid "Players are voting"
@@ -535,7 +535,7 @@ msgstr "Por favor escolha a sessão para este jogo."
 
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
-msgstr "Por favor avalie XXX uma equipa! Atribua {{score}} ponto! XXX "
+msgstr "Por favor avalie uma equipa! Atribua {{score}} ponto!"
 
 #: homevisit_components/game-control/views/game-session-chooser.html:8
 msgid "Please select a session before starting the game!"
@@ -579,11 +579,11 @@ msgstr "REGO"
 
 #: admin/views/show-device-list.html:7
 msgid "RELOAD"
-msgstr "RECARREGAR XXX"
+msgstr "RELOAD"
 
 #: homevisit_components/brain-control/views/raspi-manager.html:37
 msgid "REPAIR DB"
-msgstr "REPARAR DB/BD (base de dados)    XXX"
+msgstr "REPARAR BASE DE DADOS"
 
 #: admin/views/master-buttons.html:5
 #: homevisit_components/game-control/views/game-control.html:18
@@ -608,7 +608,7 @@ msgstr "Classificação: {{status.player.rank}}"
 
 #: homevisit_components/brain-control/brain-control.js:45
 msgid "Really DB: {{action}}?"
-msgstr "Quer mesmo {{action}} DB/BD (base de dados)? XXX"
+msgstr "Quer mesmo {{action}} base de dados?"
 
 #: admin/js/controllers/adminControllers.js:112
 #: admin/js/controllers/adminControllers.js:270
@@ -626,13 +626,13 @@ msgstr "Quer mesmo recomeçar?"
 
 #: homevisit_components/views/recordings.html:8
 msgid "Recordings"
-msgstr "Gravações XXX"
+msgstr "Recordings"
 
 #: admin/views/master-mind.html:4
 #: homevisit_components/brain-control/views/raspi-manager.html:4
 #: homevisit_components/views/recordings.html:4
 msgid "Refresh"
-msgstr "Atualizar XXX"
+msgstr "Atualizar"
 
 #: player/partials/deals/deal.wait.html:8
 msgid "Reject"
@@ -640,7 +640,7 @@ msgstr "Rejeitar"
 
 #: admin/views/admin/show-deck.html:8
 msgid "Rename"
-msgstr "Atribuir novo nome XXX"
+msgstr "Rename"
 
 #: player/partials/deals/deal.new.html:9
 msgid "Request"
