@@ -2,12 +2,12 @@
 
 <table class="table" ng-if="!isCollapsed">
     <tr>
-        <th translate>Team ID</th>
-        <th translate>Joined</th>
-        <th translate>Rank</th>
-        <th translate>Score</th>
-        <th translate>Color</th>
-        <th translate>Change score</th>
+        <th>Team ID</th>
+        <th>Joined</th>
+        <th>Rank</th>
+        <th>Score</th>
+        <th>Color</th>
+        <th>Change score</th>
     </tr>
     <tr ng-repeat="player in playerList track by $index" ng-click="isCollapsed = !isCollapsed" ng-class="{ 'on-turn': player.onTurn }">
         <td>{{player.playerId}}</td>

@@ -4,7 +4,7 @@
         {{key}} <span class="badge pull-right">{{ value.length }}</span>
 
         <ul class="list-unstyled" collapse="isCollapsed">
-            <li><a class="pull-right" ng-click="forceReload(key)" translate>RELOAD</a></li>
+            <li><a class="pull-right" ng-click="forceReload(key)">RELOAD</a></li>
             <li ng-repeat="v in value">
                 {{v.id}} - {{v.role}}
             </li>

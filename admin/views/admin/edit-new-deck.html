@@ -2,19 +2,19 @@
 <form novalidate name="deckForm">
     <table class="table">
         <tr>
-            <td translate>Title:</td>
+            <td>Title:</td>
             <td><input type="text" ng-model="newDeck.title"/></td>
         </tr>
         <tr>
-            <td translate>Description:</td>
+            <td>Description:</td>
             <td><textarea ng-model="newDeck.description" cols="40" rows="5"/></td>
         </tr>
         <tr>
-            <td translate>Import:</td>
+            <td>Import:</td>
             <td><textarea ng-model="newDeck.import" cols="40" rows="5"/></td>
         </tr>
         <tr>
-            <td></td><td><button ng-click="addDeck()" translate>Save</button></td>
+            <td></td><td><button ng-click="addDeck()">Save</button></td>
         </tr>
     </table>
 </form>

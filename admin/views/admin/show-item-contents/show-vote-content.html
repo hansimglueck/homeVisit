@@ -7,13 +7,13 @@
     <labeled-item-option ng-show="item.voteType=='countryChoice'" field="language" title="Language" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
     <labeled-item-option ng-show="item.voteType == 'customMultipleOptions' || item.voteType=='countryChoice'" field="voteMulti" title="Vote count" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
     <div class="labeled-option" ng-show="(item.voteType == 'customOptions' || item.voteType == 'customMultipleOptions')">
-        <div class="labeled-option-title" translate>Options</div>
+        <div class="labeled-option-title">Options</div>
         <div class="labeled-option-content">
             <table class="table">
                 <tbody show-vote-option item="item">
                 </tbody>
             </table>
-            <button class="btn btn-primary" ng-click="addVoteOption($index)" translate>New option</button>
+            <button class="btn btn-primary" ng-click="addVoteOption($index)">New option</button>
         </div>
     </div>
 </div>

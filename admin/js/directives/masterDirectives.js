@@ -26,13 +26,6 @@
                 templateUrl: baseUrl + '/log-display.html'
             };
         })
-        .directive('masterContent', function() {
-            return {
-                restrict: 'AE',
-                replace: 'true',
-                templateUrl: baseUrl + '/master-content.html'
-            };
-        })
         .directive('gameConf', function() {
             return {
                 restrict: 'AE',

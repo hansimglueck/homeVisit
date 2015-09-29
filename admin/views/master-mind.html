@@ -1,18 +1,18 @@
 <div class="panel panel-default panel-primary" ng-controller="MasterMindCtrl">
   <div class="panel-heading">
     <div class="pull-right">
-      <button title="{{ 'Refresh' | translate }}" class="btn btn-sm btn-default"><i class="fa fa-refresh" ng-click="requestNodesUpdate()"></i>
+      <button title="Refresh" class="btn btn-sm btn-default"><i class="fa fa-refresh" ng-click="requestNodesUpdate()"></i>
       </button>
       <a href="https://github.com/hansimglueck/homeVisit/wiki/Raspi-remote-admin#to-access-the-raspi" class="btn btn-sm btn-default" target="_blank"><i class="fa fa-question"></i></a>
     </div>
-    <h3 class="panel-title" translate>Node list</h3>
+    <h3 class="panel-title">Node list</h3>
   </div>
   <div class="panel-body">
     <table class="table">
       <thead>
         <tr>
-          <th translate>Name</th>
-          <th translate>Port</th>
+          <th>Name</th>
+          <th>Port</th>
         </tr>
       </thead>
       <tbody>
@@ -25,7 +25,7 @@
         </tr>
         <tr ng-if="nodes.length < 1">
           <td colspan="2">
-            <span translate>No connected nodes!</span>
+            <span>No connected nodes!</span>
           </td>
         </tr>
       </tbody>

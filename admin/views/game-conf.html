@@ -16,7 +16,7 @@
         </li>
         -->
     <li class="list-group-item">
-        <span translate>Current deck:</span>
+        <span>Current deck:</span>
     <span editable-select="gameConf.startDeckId" e-ng-options="s._id as s.title for s in decks"
           onaftersave="updateGameConf({startDeckId:$data})">
           {{ showDeck(gameConf) }}
@@ -24,7 +24,7 @@
     </li>
     <li class="list-group-item">
         <div>
-            <div><h5 translate>Default mapping:</h5></div>
+            <div><h5>Default mapping:</h5></div>
             <ul class="list-group">
                 <li class="list-group-item" ng-repeat="type in itemTypes track by $index" ng-show="type.mappable">
                     <ul class="list-inline">
@@ -58,10 +58,10 @@
     </li>
     <li class="list-group-item">
         Also show:
-        <label ng-hide="gettextCatalog.currentLanguage === 'en'"><translate>English</translate>
+        <label ng-hide="gettextCatalog.currentLanguage === 'en'">English
             <input type="checkbox" ng-model="otherLanguages.en">
         </label>
-        <label ng-hide="gettextCatalog.currentLanguage === 'de'"><translate>German</translate>
+        <label ng-hide="gettextCatalog.currentLanguage === 'de'">German
             <input type="checkbox" ng-model="otherLanguages.de">
         </label>
     </li>
