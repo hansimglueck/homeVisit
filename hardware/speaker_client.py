@@ -8,20 +8,23 @@ def newMessage(msg):
 	if msg["type"] != "display":
 		return
 	if (msg["data"]["type"] == "sound"):
-		playSoundfile(msg["data"]["text"])
+		vol = 100;
+		if ("volume" in msg["data"]):
+			vol = msg["data"]["volume"]
+		playSoundfile(msg["data"]["text"], vol)
 	elif (msg["data"]["type"] == "alert"):
 		print "Alert State="+str(msg["data"]["param"])
 		alert(msg["data"]["param"])
 
 def alert(al_state):
 	if (al_state == 1):
-		playSoundfile("mpg321 alarm.mp3")
+		playSoundfile("mpg321 alarm.mp3", 50)
 	elif (al_state == 2):
-		playSoundfile("mpg321 alarm3x.mp3")
+		playSoundfile("mpg321 alarm3x.mp3", 50)
 	elif (al_state == 0):
 		stopmpg321()
 
-def playSoundfile(filename):
+def playSoundfile(filename, volume):
 	#print "pkill omx"
 	#subprocess.call("pkill omx",shell=True)
 
@@ -35,13 +38,13 @@ def playSoundfile(filename):
 		return
 	elif filename.startswith( 'mpg321 ' ):
 		filename = filename[7:]
-		os.popen('sudo pkill mpg321; mpg321 /home/pi/medien/sounds/' + filename + ' &')
+		os.popen('mpg321 -g50 /home/pi/medien/sounds/' + filename + ' &')
 	else:
-		print "omx file"
-		os.popen('sudo pkill omxplayer; omxplayer /home/pi/medien/sounds/' + filename + ' &')
+		print "ex-omx file"
+		os.popen('mpg321 -g'+volume+' /home/pi/medien/sounds/' + filename + ' &')
 
 def stopSound():
-	os.system("sudo pkill omxplayer");
+	os.system("sudo pkill mpg321");
 
 def stopmpg321():
 	os.system('sudo pkill mpg321')
