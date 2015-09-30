@@ -876,7 +876,7 @@
                 self.sendGameEvent(playerId,
                     relation.type,
                     relation.playerIds,
-                    self.gettext.gettext('A new %s').format(relation.type)
+                    'A new '+relation.type
                 );
             });
             this.sendPlayerStatus(-1);

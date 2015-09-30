@@ -1,22 +1,22 @@
 <div class="panel panel-default">
     <div class="panel-heading">
-        <h1 class="panel-title" translate>GAME</h1>
+        <h1 class="panel-title">GAME</h1>
     </div>
     <div class="panel-body">
-        <label translate>Current step</label>
+        <label>Current step</label>
         <div class="well well-sm" ng-hide="gameControl.intIndex < 0">{{gameControl.stepIndex}}
             ({{gameControl.type}})</div>
-        <pre ng-show="gameControl.intIndex < 0" translate>Game stopped</pre>
+        <pre ng-show="gameControl.intIndex < 0">Game stopped</pre>
 
         <div class="form-group" ng-if="gameControl.intIndex < 0">
             <language-chooser></language-chooser>
-            <button class="btn btn-success" ng-click="start()" translate>START</button>
+            <button class="btn btn-success" ng-click="start()">START</button>
         </div>
         <div class="form-group" ng-if="gameControl.intIndex >= 0">
             <game-session-display></game-session-display>
             <language-chooser></language-chooser>
-            <button class="btn btn-warning" ng-click="restart()" translate>RESTART</button>
-            <button class="btn btn-danger" ng-click="stop()" translate>STOP</button>
+            <button class="btn btn-warning" ng-click="restart()">RESTART</button>
+            <button class="btn btn-danger" ng-click="stop()">STOP</button>
         </div>
     </div>
 </div>

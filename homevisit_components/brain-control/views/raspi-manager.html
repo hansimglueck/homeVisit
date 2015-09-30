@@ -1,11 +1,11 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="pull-right">
-            <button title="{{ 'Refresh' | translate }}" class="btn btn-sm btn-default"><i class="fa fa-refresh"
+            <button title="Refresh" class="btn btn-sm btn-default"><i class="fa fa-refresh"
                                                                                           ng-click="requestServerInfo()"></i>
             </button>
         </div>
-        <h1 class="panel-title" translate>BRAIN Control</h1>
+        <h1 class="panel-title">BRAIN Control</h1>
     </div>
     <ul class="list-group">
         <li class="list-group-item" ng-click="collapsed.server = !collapsed.server"
@@ -19,7 +19,7 @@
             <ul class="list-group" collapse="collapsed.server">
                 <li class="list-group-item"></li>
                 <li class="list-group-item buttons">
-                    <button class="btn btn-danger" ng-click="restartServer()" translate>RESTART SERVER</button>
+                    <button class="btn btn-danger" ng-click="restartServer()">RESTART SERVER</button>
                 </li>
             </ul>
         </li>
@@ -34,7 +34,7 @@
             <ul class="list-group" collapse="collapsed.db">
                 <li class="list-group-item"></li>
                 <li class="list-group-item buttons">
-                    <button class="btn btn-info" ng-click="dbAction('repair')" translate>REPAIR DB</button>
+                    <button class="btn btn-info" ng-click="dbAction('repair')">REPAIR DB</button>
                 </li>
             </ul>
         </li>
@@ -51,18 +51,18 @@
                 <li class="list-group-item network-list">
                     <h4>Available Networks:</h4>
                     <p ng-repeat="wifi in systemInfo.wifiList track by $index">
-                        <button class="btn btn-default" ng-click="connectWifi($index)" translate>CONNECT</button>
+                        <button class="btn btn-default" ng-click="connectWifi($index)">CONNECT</button>
                         {{wifi}}
                     </p>
 
                     <p>
-                        <button class="btn btn-primary" ng-click="scanWifi()" translate>SCAN</button>
+                        <button class="btn btn-primary" ng-click="scanWifi()">SCAN</button>
                     </p>
                 </li>
             </ul>
         </li>
         <li class="list-group-item" ng-click="collapsed.osInfo = !collapsed.osInfo">
-            <span translate>OS Info for {{systemInfo.osInfo.hostname}}</span>
+            <span>OS Info for {{systemInfo.osInfo.hostname}}</span>
             <i class="pull-right glyphicon"
                ng-class="{'glyphicon-chevron-down': !collapsed.osInfo, 'glyphicon-chevron-right': collapsed.osInfo}"></i>
             <ul class="list-unstyled" collapse="collapsed.osInfo">
@@ -76,16 +76,16 @@
                         </thead>
                         <tbody>
                         <tr>
-                            <td translate>System</td>
+                            <td>System</td>
                             <td><samp>{{systemInfo.osInfo.hostname}} / {{systemInfo.osInfo.type}}
                                 {{systemInfo.osInfo.arch}}</samp></td>
                         </tr>
                         <tr>
-                            <td translate>Uptime</td>
+                            <td>Uptime</td>
                             <td>{{systemInfo.osInfo.uptime / 60 | number: 0}} min</td>
                         </tr>
                         <tr>
-                            <td translate>Memory</td>
+                            <td>Memory</td>
                             <td>{{ systemInfo.osInfo.freemem/(1024*1024) | number: 2 }} MiB (free)</td>
                         </tr>
                         <tr>
@@ -93,7 +93,7 @@
                             <td>{{ systemInfo.osInfo.totalmem/(1024*1024) | number: 2 }} MiB (total)</td>
                         </tr>
                         <tr>
-                            <td translate>Load</td>
+                            <td>Load</td>
                             <td>1min: {{systemInfo.osInfo.loadavg[0] | number: 2 }}</td>
                         </tr>
                         <tr>
@@ -105,11 +105,11 @@
                             <td>15min: {{systemInfo.osInfo.loadavg[2] | number: 2 }}</td>
                         </tr>
                         <tr>
-                            <td translate>Interfaces</td>
+                            <td>Interfaces</td>
                             <td>{{printInterfaces()}}</td>
                         </tr>
                         <tr>
-                            <td translate>Online</td>
+                            <td>Online</td>
                             <td>
                                 <i class="fa fa-2x fa-circle"
                                    ng-class="{'text-success': systemInfo.osInfo.online, 'text-danger': !systemInfo.osInfo.online}"
@@ -122,8 +122,8 @@
             </ul>
         </li>
         <li class="list-group-item buttons panel-body">
-            <button class="btn btn-danger" ng-click="shutdown(false)" translate>SHUTDOWN</button>
-            <button class="btn btn-warning" ng-click="shutdown(true)" translate>REBOOT</button>
+            <button class="btn btn-danger" ng-click="shutdown(false)">SHUTDOWN</button>
+            <button class="btn btn-warning" ng-click="shutdown(true)">REBOOT</button>
         </li>
     </ul>
 </div>

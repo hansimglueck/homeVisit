@@ -1,11 +1,11 @@
 <div class="panel panel-default">
     <div class="panel-heading">
         <div class="pull-right">
-            <button title="{{ 'Refresh' | translate }}" class="btn btn-sm btn-default"><i class="fa fa-refresh"
+            <button title="Refresh" class="btn btn-sm btn-default"><i class="fa fa-refresh"
                                                                                           ng-click="requestRecordings()"></i>
             </button>
         </div>
-        <h1 class="panel-title" ng-click="isCollapsed = !isCollapsed" translate>Recordings</h1>
+        <h1 class="panel-title" ng-click="isCollapsed = !isCollapsed">Recordings</h1>
     </div>
     <ul class="list-group" ng-show="!isCollapsed">
         <li class="list-group-item" ng-repeat="recording in recordings track by $index">

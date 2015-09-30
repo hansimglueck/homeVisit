@@ -17,16 +17,16 @@
                     };
                     $scope.socket = Socket;
                     $scope.restartServer = function () {
-                        if (!confirm(gettextCatalog.getString('Do you really want to restart the server?'))) {
+                        if (!confirm('Do you really want to restart the server?')) {
                             return;
                         }
                         SystemInfo.restartServer();
                     };
                     $scope.shutdown = function (reboot) {
-                        if (!confirm(gettextCatalog.getString('Are you sure?'))) {
+                        if (!confirm('Are you sure?')) {
                             return;
                         }
-                        if (!confirm(gettextCatalog.getString('REALLY REALLY SURE??????????'))) {
+                        if (!confirm('REALLY REALLY SURE??????????')) {
                             return;
                         }
                         SystemInfo.shutdown(reboot);
@@ -42,7 +42,7 @@
                         showWifiModal(SystemInfo.wifiList[id]);
                     };
                     $scope.dbAction = function (action) {
-                        if (!confirm(gettextCatalog.getString('Really DB: {{action}}?', {action: action}))) {
+                        if (!confirm('Really DB: '+action+'?')) {
                             return;
                         }
                         SystemInfo.dbAction(action);
@@ -52,7 +52,7 @@
                     };
                     $scope.printInterfaces = function (iname) {
                         if (typeof SystemInfo.osInfo.interfaces === "undefined") {
-                            return gettextCatalog.getString("N/A");
+                            return "N/A";
                         }
                         var interfaces = "";
                         Object.keys(SystemInfo.osInfo.interfaces).forEach(function (i, name) {

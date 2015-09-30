@@ -1,9 +1,9 @@
 <div class="form-group">
-    <label translate>Game session</label>
+    <label>Game session</label>
     <select class="form-control"
             ng-model="sessions.currentSession"
             ng-options="s.sessionId as sessions.getSessionName(s.sessionId) for s in sessions.sessions | orderBy: 'date'"
             ng-change="setSession()">
     </select>
-    <p ng-if="!sessions.currentSession" class="text-danger" translate>Please select a session before starting the game!</p>
+    <p ng-if="!sessions.currentSession" class="text-danger">Please select a session before starting the game!</p>
 </div>
