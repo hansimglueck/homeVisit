@@ -1,5 +1,5 @@
 <div>
-    <h1 ng-style="{'color':playerColors[playerId]}" translate>Score for Player {{playerId}}</h1>
+    <h1 ng-style="{'color':playerColors[playerId]}">Score for Player {{playerId}}</h1>
     <br/>
     <ul class="list-inline">
         <li class="list-group-item" ng-repeat="sc in [5,4,3,2,1,-1,-2,-3,-4,-5]">
@@ -7,10 +7,10 @@
             <br/></li>
         <br/><br/>
         <li class="list-group-item">
-            <a class="btn btn-danger btn-big" ng-href="#/players/playback" translate>BACK TO GAME!</a>
+            <a class="btn btn-danger btn-big" ng-href="#/players/playback">BACK TO GAME!</a>
         </li>
     </ul>
     <div>
-        <button class="btn btn-danger btn-big" ng-click="throwOut(playerId)" translate>throw out</button>
+        <button class="btn btn-danger btn-big" ng-click="throwOut(playerId)">throw out</button>
     </div>
 </div>

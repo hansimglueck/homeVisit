@@ -10,8 +10,8 @@
                     <div class="script-selection-div" ng-class="{'script-onTurn': player.onTurn, 'script-upcoming': player.upcoming}">
                         <ul class="list-group list-unstyled">
                             <li class="list-group-item header">
-                                <div translate>Score: {{player.score}}</div>
-                                <div translate>Rank: {{player.rank}}</div>
+                                <div>Score: {{player.score}}</div>
+                                <div>Rank: {{player.rank}}</div>
                                 <div>{{myTurn(player.playerId)}}</div>
                             </li>
                             <li class="list-group-item content">
@@ -28,10 +28,10 @@
                 <div class="script-clock">{{ clock.getClock() }}</div>
                 <button class="btn btn-block btn-success btn-go" ng-show="deck.mcTasks.go"
                         ng-click="playback('go', 0)"
-                        translate>GO
+                        >GO
                 </button>
                 <button class="btn btn-block btn-danger btn-alarm" ng-show="deck.mcTasks.alert" ng-click="alert()"
-                        translate>ALARM
+                        >ALARM
                 </button>
                 <button class="btn btn-block btn-warning btn-alarm" ng-show="deck.mcTasks.jump"
                         ng-click="playback('jump', 0)">JUMP

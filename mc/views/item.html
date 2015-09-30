@@ -1,10 +1,10 @@
 <li class="list-group-item game_sequence_item game_sequence_item_current">
     <div class="header" ng-if="getIndex() >= 0 && getIndex() < deck.stepCount">
-        <button class="btn btn-default" ng-click="playback('back','0')" ng-if="isPrevious()" translate>BACK</button>
+        <button class="btn btn-default" ng-click="playback('back','0')" ng-if="isPrevious()">BACK</button>
         <button class="btn btn-default" ng-click="playback('rego','0')" ng-if="isCurrent()">REGO</button>
         <label class="sequence-type">{{ getItem().type }}</label>
         <label class="sequence-label">
-            <span translate ng-if="isCurrent()">Current:</span>
+            <span ng-if="isCurrent()">Current:</span>
             <span>{{ getIndex() + 1 }}</span><span ng-if="isCurrent()"> / {{ deck.stepCount }}</span>
         </label>
     </div>

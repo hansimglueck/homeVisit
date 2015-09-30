@@ -1,7 +1,7 @@
 <div class="row">
     <div class="anchor-offset" ng-attr-id="{{active ? 'script-list-active' :''}}"></div>
     <div class="col-md-1 script-list-buttons" ng-show="goto">
-        {{index}}<button class="btn btn-default" ng-click="playback('goto',itemBlock.indexBlock[0])" translate>GOTO</button>
+        {{index}}<button class="btn btn-default" ng-click="playback('goto',itemBlock.indexBlock[0])">GOTO</button>
     </div>
     <div class="col-md-1" ng-hide="goto">
         OPT {{option}}

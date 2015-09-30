@@ -16,7 +16,7 @@
             <div ng-switch-when="sound">
                 {{ item.text[lang] }}
             </div>
-            <div ng-switch-when="cmd" translate>command: {{ item.text[lang] }}</div>
+            <div ng-switch-when="cmd">command: {{ item.text[lang] }}</div>
             <div ng-switch-when="config">{{ item.configField }}->{{item.value}}</div>
             <div ng-switch-when="deal" translate>Players are dealing</div>
             <div ng-switch-when="rating" translate>Players are rating others</div>

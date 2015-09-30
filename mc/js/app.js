@@ -60,10 +60,6 @@ angular
                 templateUrl: '/mc/views/deck.html',
                 controller: 'DeckCtrl'
             })
-            .when('/about', {
-                templateUrl: '/mc/views/about.html',
-                controller: 'MatchingCtrl'
-            })
             .when('/settings', {
                 templateUrl: '/mc/views/settings.html',
                 controller: 'PlaybackCtrl'

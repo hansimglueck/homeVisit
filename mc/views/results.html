@@ -8,7 +8,7 @@
             <div class="modal-body">
                 <div class="results">
                     <div class="results-text">
-                        <div class="correct-answer" ng-if="display.correctAnswer !== ''" translate>Correct: {{display.correctAnswer}}</div>
+                        <div class="correct-answer" ng-if="display.correctAnswer !== ''">Correct: {{display.correctAnswer}}</div>
                     </div>
 
                     <div class="results-content" ng-if="display.resultType == 'europeMap'">
@@ -24,10 +24,10 @@
 
                     <ul class="list-unstyled results-content noflex" ng-if="display.resultType == 'numberStats'">
                         Hello Numbers
-                        <li translate>Total: {{display.data[0]}}</li>
-                        <li translate>Average: {{display.data[1]}}</li>
-                        <li translate>Min: {{display.data[2]}}</li>
-                        <li translate>Max: {{display.data[3]}}</li>
+                        <li><span translate-comment="of a portion of numbers" translate>Total: </span>{{display.data[0]}}</li>
+                        <li><span translate-comment="of a portion of numbers" translate>Average: </span>{{display.data[1]}}</li>
+                        <li><span translate-comment="of a portion of numbers" translate>Min: </span>{{display.data[2]}}</li>
+                        <li><span translate-comment="of a portion of numbers" translate>Max: </span>{{display.data[3]}}</li>
                     </ul>
 
                     <div class="results-content"  ng-if="['europeMap','numberStats'].indexOf(display.resultType) == -1">

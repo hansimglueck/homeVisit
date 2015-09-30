@@ -30,26 +30,26 @@
             <div class="collapse navbar-collapse" id="js-navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li ng-class="{active: isActive('/polls')}">
-                        <a href="#/polls" translate>Polls</a>
+                        <a href="#/polls">Polls</a>
                     </li>
                     <li ng-class="{active: isActive('/script')}">
-                        <a ng-href="#/script" translate>Game</a>
+                        <a ng-href="#/script">Game</a>
                     </li>
                     <li ng-class="{active: isActive('/matching')}">
-                        <a ng-href="#/matching" translate>Matching</a>
+                        <a ng-href="#/matching">Matching</a>
                     </li>
                     <li ng-class="{active: isActive('/settings')}">
-                        <a ng-href="#/settings" translate>Settings</a>
+                        <a ng-href="#/settings">Settings</a>
                     </li>
                     <li ng-controller="PlaybackCtrl">
-                        <p ng-if="!session.currentSession" class="navbar-text session-warning" translate>
+                        <p ng-if="!session.currentSession" class="navbar-text session-warning">
                             ← Select game session!
                         </p>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right" ng-controller="PlaybackCtrl" ng-hide="isActive('/players') || isActive('/script')">
                     <li>
-                        <a class="btn btn-danger btn-alarm" ng-click="alert()" translate>ALARM</a>
+                        <a class="btn btn-danger btn-alarm" ng-click="alert()">ALARM</a>
                     </li>
                     <li>
                         <p class="navbar-text">&nbsp;</p>
@@ -58,7 +58,7 @@
                         <p class="navbar-text">&nbsp;</p>
                     </li>
                     <li>
-                        <a class="btn btn-success btn-go" ng-click="playback('go', 0)" translate>GO</a>
+                        <a class="btn btn-success btn-go" ng-click="playback('go', 0)">GO</a>
                     </li>
                 </ul>
             </div>
