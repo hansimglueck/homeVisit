@@ -101,10 +101,10 @@ class ThermalPrinter(object):
         self.printer.write(chr(35))
         self.printer.write(chr((printDensity << 4) | printBreakTime))
 	
-	# Select character code table 437 - the 850 for more special characters does not work as expected
+	# Select character code table "850" for more special characters - different from how it is specified in the manual
 	self.printer.write(self._ESC)
         self.printer.write(chr(116))
-        self.printer.write(chr(0))
+        self.printer.write(chr(2))
 	
 	# Select an internal character set: Norway
 	self.printer.write(self._ESC)
