@@ -18,9 +18,9 @@ def newMessage(msg):
 
 def alert(al_state):
 	if (al_state == 1):
-		playSoundfile("mpg321 alarm.mp3", 30)
+		playSoundfile("alarm.mp3", 12)
 	elif (al_state == 2):
-		playSoundfile("mpg321 alarm3x.mp3", 30)
+		playSoundfile("alarm3x.mp3", 12)
 	elif (al_state == 0):
 		stopmpg321()
 
@@ -41,7 +41,9 @@ def playSoundfile(filename, volume):
 		os.popen('mpg321 -g50 /home/pi/medien/sounds/' + filename + ' &')
 	else:
 		print "ex-omx file"
-		os.popen('mpg321 -g'+volume+' /home/pi/medien/sounds/' + filename + ' &')
+		cmd = 'mpg321 -g'+str(volume)+' /home/pi/medien/sounds/' + filename + ' &'
+		print cmd
+		os.popen(cmd)
 
 def stopSound():
 	os.system("sudo pkill mpg321");
