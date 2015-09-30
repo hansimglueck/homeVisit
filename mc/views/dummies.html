@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="dummy" ng-repeat="dummy in dummies track by $index"
          ng-style="{'top':dummy.top, 'left':dummy.left}"
-         ng-class="{unknownAnswer: unanswered($index)}">
+         ng-class="{unknownAnswer: unanswered($index), selectedDummy: polls.did==$index}">
         <ul class="list-group list-unstyled">
             <div class="container-fluid dummy-head">
                 <span ng-click="toggleIsInGame($index)" class="pull-left fa fa-home fa-ban fa-2x ban_icon" ng-class="{banned_icon:!isInGame($index)}"></span>

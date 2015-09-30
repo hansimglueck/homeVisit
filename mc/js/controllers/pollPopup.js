@@ -9,24 +9,26 @@
             $scope.lang = gettextCatalog.currentLanguage;
             $scope.playerNames = PlayerNames;
             $scope.status = Status;
-            $scope.did = startId;
+            Polls.did = startId;
             $scope.selectAnswer = function(did, aid) {
                 selectAnswer(did,aid);
                 $scope.changeDummy(1);
             };
 
             $scope.changeDummy = function(diff) {
-                $scope.did += diff + 15;
-                $scope.did %= 15;
-
+                Polls.did += diff + 15;
+                Polls.did %= 15;
                 //TODO: prevent from recursion, if there is no inGame-dummy
-                if (!isInGame($scope.did)) {
+                if (!isInGame(Polls.did)) {
                     $scope.changeDummy(diff);
                 }
-
+                if (Polls.did == startId) {
+                    $scope.closeModal();
+                }
             };
             $scope.closeModal = function () {
                 $element.modal('hide');
+                Polls.did = -1;
                 //  Now close as normal, but give 500ms for bootstrap to animate
                 close(null, 500);
             };

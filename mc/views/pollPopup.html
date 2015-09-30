@@ -1,4 +1,4 @@
-<div class="modal">
+<div class="modal" id="pollpopup">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -8,43 +8,43 @@
             <div class="modal-body">
                 <p class="text-center">
                     <button type="button" class="btn btn-lg btn-primary" ng-click="changeDummy(-1)"><</button>
-                    {{ playerNames.customPlayerNames[did] || playerNames.getNames()[did] }}
+                    {{ playerNames.customPlayerNames[polls.did] || playerNames.getNames()[polls.did] }}
                     <button type="button" class="btn btn-lg btn-primary" ng-click="changeDummy(1)">></button>
                 </p>
                 <div ng-if="polls.polls[selectedRow].type=='fingers'" class="popupChoice">
                     <div class="container-fluid">
                         <div class="row">
                             <div class="col-xs-4">
-                                <div ng-click="selectAnswer(did,0)" class="finger"
-                                     ng-class="{selectedFinger_neg:polls.polls[selectedRow].answers[did]==0}">0
-                                </div>
+                                <button ng-click="selectAnswer(polls.did,0)" class="finger"
+                                     ng-class="{selectedFinger_neg:polls.polls[selectedRow].answers[polls.did]==0}">0
+                                </button>
                             </div>
                             <div class="col-xs-4">
-                                <div ng-click="selectAnswer(did,1)" class="finger"
-                                     ng-class="{selectedFinger_neg:polls.polls[selectedRow].answers[did]==1}">1
-                                </div>
+                                <button ng-click="selectAnswer(polls.did,1)" class="finger"
+                                     ng-class="{selectedFinger_neg:polls.polls[selectedRow].answers[polls.did]==1}">1
+                                </button>
                             </div>
                             <div class="col-xs-4">
-                                <div ng-click="selectAnswer(did,2)" class="finger"
-                                     ng-class="{selectedFinger_neg:polls.polls[selectedRow].answers[did]==2}">2
-                                </div>
+                                <button ng-click="selectAnswer(polls.did,2)" class="finger"
+                                     ng-class="{selectedFinger_neg:polls.polls[selectedRow].answers[polls.did]==2}">2
+                                </button>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-xs-4">
-                                <div ng-click="selectAnswer(did,3)" class="finger"
-                                     ng-class="{selectedFinger_pos:polls.polls[selectedRow].answers[did]==3}">3
-                                </div>
+                                <button ng-click="selectAnswer(polls.did,3)" class="finger"
+                                     ng-class="{selectedFinger_pos:polls.polls[selectedRow].answers[polls.did]==3}">3
+                                </button>
                             </div>
                             <div class="col-xs-4">
-                                <div ng-click="selectAnswer(did,4)" class="finger"
-                                     ng-class="{selectedFinger_pos:polls.polls[selectedRow].answers[did]==4}">4
-                                </div>
+                                <button ng-click="selectAnswer(polls.did,4)" class="finger"
+                                     ng-class="{selectedFinger_pos:polls.polls[selectedRow].answers[polls.did]==4}">4
+                                </button>
                             </div>
                             <div class="col-xs-4">
-                                <div ng-click="selectAnswer(did,5)" class="finger"
-                                     ng-class="{selectedFinger_pos:polls.polls[selectedRow].answers[did]==5}">5
-                                </div>
+                                <button ng-click="selectAnswer(polls.did,5)" class="finger"
+                                     ng-class="{selectedFinger_pos:polls.polls[selectedRow].answers[polls.did]==5}">5
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -52,13 +52,13 @@
                 <div ng-if="polls.polls[selectedRow].type=='binary'" class="popupChoice">
                     <div class="container-fluid">
                         <div class="col-xs-6">
-                            <div ng-click="selectAnswer(did,1)" class="binary"
-                                 ng-class="{selectedFinger_pos:polls.polls[selectedRow].answers[did]==1}">+
+                            <div ng-click="selectAnswer(polls.did,1)" class="binary"
+                                 ng-class="{selectedFinger_pos:polls.polls[selectedRow].answers[polls.did]==1}">+
                             </div>
                         </div>
                         <div class="col-xs-6">
-                            <div ng-click="selectAnswer(did,0)" class="binary"
-                                 ng-class="{selectedFinger_neg:polls.polls[selectedRow].answers[did]==0}">-
+                            <div ng-click="selectAnswer(polls.did,0)" class="binary"
+                                 ng-class="{selectedFinger_neg:polls.polls[selectedRow].answers[polls.did]==0}">-
                             </div>
                         </div>
                     </div>

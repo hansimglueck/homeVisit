@@ -444,3 +444,17 @@ ul.follow-items > li {
     font-size: 1.1em;
     font-weight: bold;
 }
+
+#pollpopup {
+    top: 20%;
+}
+
+#pollpopup .finger {
+    width: 60px;
+    height: 60px;
+    border: none;
+}
+
+.selectedDummy {
+    background-color: brown;
+}
