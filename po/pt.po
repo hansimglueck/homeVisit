@@ -28,11 +28,11 @@ msgstr ""
 "player-icon>\n"
 "                </li>\n"
 "              </ul>\n"
-"             deveria receber {{score}} ponto de si? XXX"
+"             deveria receber {{score}} ponto de si?"
 
 #: game/playerManager.js:879
 msgid "A new %s"
-msgstr "Um novo %s / Uma nova %s XXX"
+msgstr "Uma nova %s"
 
 #: admin/views/master-buttons.html:13 mc/index.html:52 mc/views/players.html:41
 #: mc/views/script.html:33
@@ -57,19 +57,19 @@ msgstr "Média: {{display.data[1]}}"
 
 #: mc/js/controllers/players.js:58
 msgid "Away"
-msgstr "Para fora / Para longe XXX"
+msgstr "Para fora"
 
 #: admin/views/master-buttons.html:12 mc/views/item.html:3
 msgid "BACK"
-msgstr "ATRÁS / PARA TRÁS / RECUAR XXX"
+msgstr "RECUAR"
 
 #: mc/views/player.details.html:10
 msgid "BACK TO GAME!"
-msgstr "VOLTAR AO JOGO / DE VOLTA AO JOGO XXX"
+msgstr "VOLTAR AO JOGO"
 
 #: homevisit_components/brain-control/views/raspi-manager.html:8
 msgid "BRAIN Control"
-msgstr "Controlo do CÉREBRO XXX"
+msgstr "Controlo do CÉREBRO"
 
 #: player/partials/rating/rating.html:19
 msgid "Back"
@@ -118,7 +118,7 @@ msgstr "Cor"
 
 #: mc/js/controllers/players.js:48
 msgid "Come Back!"
-msgstr "Regressar / Voltar atrás XXXX"
+msgstr "Regressar"
 
 #: mc/views/item.html:31
 msgid "Command"
@@ -147,7 +147,7 @@ msgstr "Correto"
 
 #: mc/views/results.html:11
 msgid "Correct: {{display.correctAnswer}}"
-msgstr "Correto: {{display.correctAnswer}}"
+msgstr "A resposta correta é: {{display.correctAnswer}}"
 
 #: player/partials/results.html:3
 msgid "Correct: {{home.correctAnswer}}"
@@ -159,11 +159,11 @@ msgstr "Deck atual:"
 
 #: homevisit_components/game-control/views/game-control.html:6
 msgid "Current step"
-msgstr "Passo XXX atual"
+msgstr "Passo  aual"
 
 #: admin/views/master-buttons.html:2
 msgid "Current step:"
-msgstr "Passo XXX atual:"
+msgstr "Passo atual:"
 
 #: mc/views/item.html:7
 msgid "Current:"
@@ -348,7 +348,7 @@ msgstr "Combina melhor com a equipa de {{name1}} e de {{name2}} "
 
 #: mc/index.html:39
 msgid "Matching"
-msgstr "Combinar"
+msgstr "Combinações"
 
 #: player/partials/results.html:30
 msgid "Max:"
@@ -376,11 +376,11 @@ msgstr "Mín.: {{display.data[2]}}"
 
 #: admin/views/admin/move-item.html:21
 msgid "Move"
-msgstr "Deslocar/Mover XXX"
+msgstr "Deslocar"
 
 #: admin/views/admin/move-item.html:2
 msgid "Move item"
-msgstr "Deslocar/Mover XXX o item"
+msgstr "Deslocar o item"
 
 #: mc/js/controllers/players.js:56
 msgid "My Turn!"
@@ -396,7 +396,7 @@ msgstr "A minha confiança na democracia"
 
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr "O benefício pessoal que retiro da economía de mercado"
+msgstr "O benefício pessoal que retiro da economia de mercado"
 
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
@@ -437,11 +437,11 @@ msgstr "Novo título:"
 
 #: player/partials/home.html:1
 msgid "Next"
-msgstr "Seguinte/Próximo(a)/A seguir XXX"
+msgstr "Seguinte"
 
 #: mc/views/players.html:17
 msgid "Next!"
-msgstr "Seguinte!/Próximo(a)!/A seguir! XXX"
+msgstr "Seguinte!"
 
 #: game/polls/Agreement.js:16
 msgid "No"
@@ -596,15 +596,15 @@ msgstr "REINICIAR SERVIDOR"
 
 #: admin/views/player-list.html:7
 msgid "Rank"
-msgstr "Classificação"
+msgstr "Ranking"
 
 #: mc/views/players.html:10 mc/views/players.html:15 mc/views/script.html:14
 msgid "Rank: {{player.rank}}"
-msgstr "Classificação: {{player.rank}}"
+msgstr "Rank: {{player.rank}}"
 
 #: player/index.html:86 player/views/score-barometer.html:4
 msgid "Rank: {{status.player.rank}}"
-msgstr "Classificação: {{status.player.rank}}"
+msgstr "Ranking: {{status.player.rank}}"
 
 #: homevisit_components/brain-control/brain-control.js:45
 msgid "Really DB: {{action}}?"
@@ -644,7 +644,7 @@ msgstr "Rename"
 
 #: player/partials/deals/deal.new.html:9
 msgid "Request"
-msgstr "Requerer/Pedir XXX"
+msgstr "Propor acordo"
 
 #: homevisit_components/game-control/views/game-restart-modal.html:5
 msgid "Restart Game"
@@ -652,17 +652,16 @@ msgstr "Recomeçar o Jogo"
 
 #: mc/views/item-as-row.html:15 mc/views/item.html:29
 msgid "Results are displayed"
-msgstr "Exibição dos resultados XXX"
+msgstr "Exibição dos resultados"
 
 #: mc/views/results.html:44 player/partials/results.html:47
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr ""
-"Os resultados estão ordenados XXX por classificação XXX. Ver votações XXX "
-"entre chavetas."
+"Os resultados estão ordenados por classificação. Ver votações entre parêntesis."
 
 #: homevisit_components/brain-control/views/raspi-manager.html:59
 msgid "SCAN"
-msgstr "PROCURAR XXX"
+msgstr "PROCURAR"
 
 #: homevisit_components/brain-control/views/raspi-manager.html:125
 msgid "SHUTDOWN"
@@ -682,7 +681,7 @@ msgstr "Guardar"
 
 #: admin/views/player-list.html:8 mc/js/services/mcAppServices.js:660
 msgid "Score"
-msgstr "Pontuação"
+msgstr "Pontos"
 
 #: mc/views/player.details.html:2 mc/views/player.modal.html:8
 msgid "Score for Player {{playerId}}"
@@ -703,7 +702,7 @@ msgstr "Selecionar"
 
 #: mc/index.html:42
 msgid "Settings"
-msgstr "Opções/Definições XXX"
+msgstr "Definições"
 
 #: player/partials/black.html:1
 msgid ""
@@ -711,19 +710,19 @@ msgid ""
 "is reading:"
 msgstr ""
 "Silêncio, por favor. Neste momento <player-icon pid=\"status.playerOnTurn"
-"\"></player-icon> está a ler:"
+"\"></player-icon> está a ler"
 
 #: admin/views/admin/show-sequence-item.html:36
 msgid "Silent"
-msgstr "Silencioso/Em silêncio XXX"
+msgstr "Em silêncio"
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
-msgstr "Som está a tocar: XXX"
+msgstr "Som está a tocar:"
 
 #: mc/views/item-as-row.html:23
 msgid "Special code is executed"
-msgstr "Um código especial está a ser executado XXX"
+msgstr "Um código especial está a ser executado"
 
 #: homevisit_components/game-control/views/game-settings-modal.html:5
 msgid "Start Game"
@@ -735,7 +734,7 @@ msgstr "Parar o Jogo"
 
 #: mc/views/vote.html:41
 msgid "Submit"
-msgstr "Submeter XXX"
+msgstr "Submeter"
 
 #: homevisit_components/game-control/views/game-restart-modal.html:7
 msgid "Sure you want to restart the game? This will start a new recording..."
@@ -769,15 +768,15 @@ msgstr "O MC tem de escolher alguém!!"
 
 #: game/polls/Agreement.js:39
 msgid "The alliance is fullfilled."
-msgstr "A aliança está formada. XXX"
+msgstr "A aliança está formada."
 
 #: game/polls/Agreement.js:42
 msgid "The alliance is neglected."
-msgstr "A aliança foi recusada/negligenciada. XXX"
+msgstr "A aliança foi recusada."
 
 #: player/js/services/playerAppServices.js:663
 msgid "The deal was denied"
-msgstr "O acordo XXX foi negado."
+msgstr "O acordo foi negado."
 
 #: game/items/includes/results.js:28
 msgid "The division of the cake"
@@ -789,27 +788,27 @@ msgstr "A outra equipa está ocupada"
 
 #: player/partials/assholes.html:15
 msgid "The worst team was not mean to you."
-msgstr "A pior equipa não foi má XXX para si/vocês XXX."
+msgstr "A pior equipa não foi má para vocês."
 
 #: player/partials/assholes.html:2
 msgid "These teams were mean to you:"
-msgstr "Estas equipas foram más XXX para si/vocês XXX:"
+msgstr "Estas equipas foram más para vocês:"
 
 #: player/partials/assholes.html:4
 msgid "These worst team was mean to you:"
-msgstr "Esta/A XXX pior equipa foi má XXX para si/vocês XXX:"
+msgstr "A pior equipa foi má para vocês:"
 
 #: player/partials/deals/deal.finish.html:7
 msgid "This deal is active"
-msgstr "Este acordo XXX está ativo."
+msgstr "Este acordo está ativo."
 
 #: mc/views/about.html:1
 msgid "This is the about view."
-msgstr "Esta é a vista de detalhe XXX."
+msgstr "Esta é a vista de detalhe."
 
 #: game/game.js:281 game/playerManager.js:194
 msgid "This poll doesn't exist!"
-msgstr "Esta votação XXX não existe!"
+msgstr "Esta votação não existe!"
 
 #: player/partials/deals/deal.details.html:38
 msgid "This treaty was ACCEPTED."
@@ -833,7 +832,7 @@ msgstr "Total: {{display.data[0]}}"
 
 #: player/partials/rating/rating.html:18
 msgid "Traitor! You can't score down your allied!"
-msgstr "Traidor! Não se pode baixar a pontuação XXX do seu XXX aliado!"
+msgstr "Traidor! Não se pode baixar a pontuação do seu aliado!"
 
 #: player/partials/deals/deal.answer.html:3
 #: player/partials/deals/deal.details.html:3
@@ -849,7 +848,7 @@ msgstr "Tentar Novamente"
 
 #: admin/views/admin/show-item-contents/show-player-direct-content.html:4
 msgid "Type"
-msgstr "Tipo / Digitar     XXX"
+msgstr "Tipo"
 
 #: homevisit_components/brain-control/views/raspi-manager.html:84
 msgid "Uptime"
@@ -874,7 +873,7 @@ msgstr "Esperar"
 
 #: player/partials/rating/rating.score.html:26
 msgid "Waiting for being rated."
-msgstr "À espera de ser avaliado. XXX"
+msgstr "À espera de ser avaliado."
 
 #: player/partials/deals/deal.details.html:18
 msgid "Waiting for reply..."
@@ -887,8 +886,7 @@ msgstr "Estamos à espera de uma resposta."
 #: mc/js/services/mcAppServices.js:122
 msgid "Who at the table has a job of which he or she can live?"
 msgstr ""
-"Dos presentes nesta mesa, quem é que tem um trabalho do qual ganha o seu "
-"sustento?"
+"Dos presentes nesta mesa, quem é que tem um trabalho do qual consegue viver?"
 
 #: mc/js/services/mcAppServices.js:86
 msgid "Who at this table has been class spokesman?"
@@ -915,8 +913,7 @@ msgstr ""
 #: mc/js/services/mcAppServices.js:149
 msgid "Who has ever consciously denied his national origin?"
 msgstr ""
-"Quem é que já negou conscientemente o seu país de origem/a sua nacionalidade "
-"XXX?"
+"Quem é que já omitiu conscientemente a sua nacionalidade?"
 
 #: mc/js/services/mcAppServices.js:113
 msgid "Who is involved in a association or in an NGO?"
@@ -940,41 +937,41 @@ msgstr "Sim"
 
 #: game/playerManager.js:501
 msgid "You are NOT in the game!"
-msgstr "Vocês XXX NÃO estão XXX a participar no jogo! XXX"
+msgstr "Vocês NÃO estão a participar no jogo!"
 
 #: game/playerManager.js:510
 msgid "You are in the game!"
-msgstr "Vocês XXX estão XXX a participar no jogo! XXX"
+msgstr "Vocês estão a participar no jogo!"
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
 msgstr ""
-"Vocês XXX não estão XXX a participar no jogo acompanhado/acompanhados! XXX"
+"Vocês não estão a participar no jogo!"
 
 #: mc/views/vote.html:47 player/partials/voteConfirm.html:1
 msgid "You are voting for:"
-msgstr "Estão XXX a votar em/para: XXX"
+msgstr "A sua resposta é:"
 
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
 msgstr ""
-"Pode atribuir pontos XXX positivos XXX ou negativos XXX a estas equipas!"
+"Pode atribuir pontos positivos ou negativos a estas equipas!"
 
 #: player/partials/deals/deal.noDealing.html:1
 msgid "You decided not to deal at all!"
-msgstr "Vocês XXX decidiram XXX nem sequer negociar! XXX"
+msgstr "Vocês decidiram nem sequer negociar!"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
-msgstr "Acabou o vosso XXX  tempo. Perderam XXX um ponto! XXX"
+msgstr "Acabou o vosso tempo. Perderam um ponto!"
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr "A vossa XXX escolha foi enviada!"
+msgstr "A vossa escolha foi enviada!"
 
 #: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
-msgstr "O peso do vosso XXX voto depende da vossa XXX pontuação!"
+msgstr "O peso do vosso voto depende da vossa pontuação!"
 
 #: mc/js/services/mcAppServices.js:195
 msgid "ambition"
@@ -1006,15 +1003,15 @@ msgstr "azul-escuro"
 
 #: mc/js/services/mcAppServices.js:150
 msgid "denied origin"
-msgstr "negou/mentiu XXX (sobre) XXX o país de origem"
+msgstr "omitiu consc. a nacionalidade"
 
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr "ganhos XXX"
+msgstr "benefício pessoal da econ. mercado"
 
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
-msgstr "sentir-se europeu"
+msgstr "sente-se europeu"
 
 #: game/playerManager.js:40 homevisit_components/hvPlayerColors.js:33
 msgid "green"
@@ -1042,11 +1039,11 @@ msgstr "outro Jogador"
 
 #: mc/js/services/mcAppServices.js:123
 msgid "paid job"
-msgstr "emprego / trabalho pago XXX"
+msgstr "trabalho pago"
 
 #: mc/js/services/mcAppServices.js:141
 msgid "physical conflict"
-msgstr "conflito com recurso à força física XXX"
+msgstr "conflito com recurso à força física"
 
 #: game/playerManager.js:42 homevisit_components/hvPlayerColors.js:35
 msgid "pink"
@@ -1069,7 +1066,7 @@ msgstr "com medo do futuro"
 
 #: admin/views/admin/show-sequence-item.html:33
 msgid "sec"
-msgstr "seg XXX"
+msgstr "seg"
 
 #: mc/views/player.details.html:14 mc/views/player.modal.html:20
 msgid "throw out"
@@ -1077,11 +1074,11 @@ msgstr "expulsar"
 
 #: mc/js/services/mcAppServices.js:660
 msgid "to"
-msgstr "para XXX"
+msgstr "para"
 
 #: mc/js/services/mcAppServices.js:177
 msgid "trustworthy"
-msgstr "digno/digna XXX de confiança"
+msgstr "digno de confiança"
 
 #: mc/js/services/mcAppServices.js:571
 #: player/js/services/playerAppServices.js:236
@@ -1096,11 +1093,11 @@ msgstr "à espera ..."
 
 #: mc/js/services/mcAppServices.js:186
 msgid "willingness of solidarity"
-msgstr "vontade de ser solidário/solidária XXX"
+msgstr "vontade de ser solidário"
 
 #: mc/js/services/mcAppServices.js:96
 msgid "won a lot"
-msgstr "ganhou XXX a lotaria ou o jackpot"
+msgstr "saiu-lhe a sorte grande"
 
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"

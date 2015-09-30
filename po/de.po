@@ -149,7 +149,7 @@ msgstr "Richtig"
 #: mc/views/results.html:11
 #, fuzzy
 msgid "Correct: {{display.correctAnswer}}"
-msgstr "Richtig: {{home.correctAnswer}}"
+msgstr "Richtig ist: {{home.correctAnswer}}"
 
 #: player/partials/results.html:3
 msgid "Correct: {{home.correctAnswer}}"

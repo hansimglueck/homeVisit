@@ -139,7 +139,7 @@ msgid "Correct"
 msgstr ""
 
 #: mc/views/results.html:11
-msgid "Correct: {{display.correctAnswer}}"
+msgid "The correct answer is: {{display.correctAnswer}}"
 msgstr ""
 
 #: player/partials/results.html:3
