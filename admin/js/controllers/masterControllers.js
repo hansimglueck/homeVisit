@@ -99,7 +99,7 @@
         };
 
         $scope.removeDeviceFromType = function (typeId, devId) {
-            if (!confirm(gettextCatalog.getString('Really delete???'))) {
+            if (!confirm('Really delete???')) {
                 return;
             }
             var updatedTypeMapping = angular.copy($scope.gameConf.typeMapping);

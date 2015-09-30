@@ -17,7 +17,7 @@
             $scope.decks = setFactory.decks;
             $scope.newDeck = {items: []};
 
-            $scope.error = gettextCatalog.getString("Null Problemo!");
+            $scope.error = "No problems";
             $scope.name = "set";
             $scope.$on('decksLoaded', function () {
                 console.log("decks changed. new length:" + $scope.decks.length);
@@ -92,7 +92,7 @@
                 });
             };
             $scope.duplicateDeck = function (deckId) {
-                var newName = prompt(gettextCatalog.getString("Neuer Name?"));
+                var newName = prompt("New Name?");
                 var dupDeck = angular.copy($scope.decks[deckId]);
                 delete dupDeck._id;
                 dupDeck.items.forEach(function (item) {
@@ -109,13 +109,13 @@
                 });
             };
             $scope.deleteDeck = function (index) {
-                if (!confirm(gettextCatalog.getString("Really delete???"))) {
+                if (!confirm("Really delete???")) {
                     return;
                 }
                 setFactory.deleteDeck(index);
             };
             $scope.renameDeck = function (deckId) {
-                var newName = prompt(gettextCatalog.getString("New name for "+$scope.decks[deckId].title+"?"));
+                var newName = prompt("New name for "+$scope.decks[deckId].title+"?");
                 $scope.decks[deckId].title = newName;
                 $scope.updateDeck($scope.decks[deckId]);
             };
@@ -267,7 +267,7 @@
                 return $scope.updateDeck($scope.deck);
             };
             $scope.deleteItem = function (deckId, index) {
-                if (!confirm(gettextCatalog.getString("Really delete???"))) {
+                if (!confirm("Really delete???")) {
                     return;
                 }
 
@@ -341,7 +341,7 @@
                 $modalInstance.close($scope.result);
             };
             $scope.cancel = function () {
-                $modalInstance.dismiss(gettextCatalog.getString('cancel'));
+                $modalInstance.dismiss('cancel');
             };
 
         })
@@ -355,7 +355,7 @@
                 if (typeof item !== 'undefined' && item !== null && item[option]) {
                     selected = $filter('filter')($scope.itemOptions[option], {value: item[option]}, true);
                 }
-                return selected.length ? selected[0].text : gettextCatalog.getString('Not set');
+                return selected.length ? selected[0].text : 'Not set';
             };
             $scope.isMappable = function (option) {
                 var selected = [];

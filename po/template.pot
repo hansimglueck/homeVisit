@@ -3,6 +3,12 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 1.7.6\n"
 
 #. everything in curly braces has to stay as is
 #: player/partials/assholes.html:9
@@ -18,16 +24,9 @@ msgstr[1] ""
 msgid "€"
 msgstr ""
 
-#: game/playerManager.js:879
-msgid "A new %s"
-msgstr ""
-
+#. keyword for the poll "My level of ambition"
 #: mc/js/services/mcAppServices.js:195
 msgid "ambition"
-msgstr ""
-
-#: homevisit_components/brain-control/brain-control.js:26
-msgid "Are you sure?"
 msgstr ""
 
 #: mc/js/services/mcAppServices.js:114
@@ -35,8 +34,7 @@ msgid "association/NGO"
 msgstr ""
 
 #. of a portion of numbers
-#: mc/views/results.html:27
-#: player/partials/results.html:22
+#: mc/views/results.html:27 player/partials/results.html:22
 msgid "Average:"
 msgstr ""
 
@@ -48,21 +46,12 @@ msgstr ""
 msgid "Back"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:8
-msgid "BRAIN Control"
-msgstr ""
-
 #: admin/js/controllers/adminControllers.js:344
 msgid "cancel"
 msgstr ""
 
-#: homevisit_components/game-control/views/game-restart-modal.html:13
-#: homevisit_components/game-control/views/game-settings-modal.html:16
-#: homevisit_components/game-control/views/game-stop-modal.html:13
-#: mc/views/vote.html:58
-#: player/partials/deals/deal.new.html:14
-#: player/partials/rating/rating.html:15
-#: player/partials/voteConfirm.html:5
+#: mc/views/vote.html:58 player/partials/deals/deal.new.html:14
+#: player/partials/rating/rating.html:15 player/partials/voteConfirm.html:5
 msgid "Cancel"
 msgstr ""
 
@@ -76,10 +65,6 @@ msgstr ""
 
 #: mc/js/services/mcAppServices.js:87
 msgid "class spokesman"
-msgstr ""
-
-#: homevisit_components/brain-control/views/wifi-modal.html:14
-msgid "Close"
 msgstr ""
 
 #: mc/js/controllers/players.js:48
@@ -98,23 +83,13 @@ msgstr ""
 msgid "Configuration"
 msgstr ""
 
-#: mc/views/vote.html:54
-#: player/partials/deals/deal.answer.html:10
-#: player/partials/rating/rating.html:14
-#: player/partials/voteConfirm.html:4
+#: mc/views/vote.html:54 player/partials/deals/deal.answer.html:10
+#: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:4
 msgid "Confirm"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:54
-msgid "CONNECT"
 msgstr ""
 
 #: admin/views/admin/show-item-contents/show-vote-option.html:5
 msgid "Correct"
-msgstr ""
-
-#: homevisit_components/game-control/views/game-control.html:6
-msgid "Current step"
 msgstr ""
 
 #: homevisit_components/hvLanguage.js:10
@@ -125,8 +100,7 @@ msgstr ""
 msgid "Danish"
 msgstr ""
 
-#: game/playerManager.js:37
-#: homevisit_components/hvPlayerColors.js:30
+#: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:30
 msgid "dark blue"
 msgstr ""
 
@@ -146,15 +120,9 @@ msgstr ""
 msgid "Deny"
 msgstr ""
 
-#: mc/js/controllers/notes.js:29
-#: mc/js/controllers/players.js:35
-#: mc/js/controllers/pollPopup.js:41
-#: mc/js/controllers/script.js:83
+#: mc/js/controllers/notes.js:29 mc/js/controllers/players.js:35
+#: mc/js/controllers/pollPopup.js:41 mc/js/controllers/script.js:83
 msgid "Deselect"
-msgstr ""
-
-#: homevisit_components/brain-control/brain-control.js:20
-msgid "Do you really want to restart the server?"
 msgstr ""
 
 #: player/partials/deals/deal.answer.html:7
@@ -194,19 +162,6 @@ msgstr ""
 msgid "French"
 msgstr ""
 
-#: homevisit_components/game-control/views/game-control.html:3
-msgid "GAME"
-msgstr ""
-
-#: homevisit_components/game-control/views/game-session-chooser.html:2
-#: homevisit_components/game-control/views/game-session-display.html:2
-msgid "Game session"
-msgstr ""
-
-#: homevisit_components/game-control/views/game-control.html:9
-msgid "Game stopped"
-msgstr ""
-
 #: homevisit_components/hvLanguage.js:9
 msgid "German"
 msgstr ""
@@ -216,13 +171,8 @@ msgstr ""
 msgid "gets one Point"
 msgstr ""
 
-#: game/playerManager.js:40
-#: homevisit_components/hvPlayerColors.js:33
+#: game/playerManager.js:40 homevisit_components/hvPlayerColors.js:33
 msgid "green"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:108
-msgid "Interfaces"
 msgstr ""
 
 #: homevisit_components/views/language-chooser.html:2
@@ -233,18 +183,12 @@ msgstr ""
 msgid "Leave Table!"
 msgstr ""
 
-#: game/playerManager.js:36
-#: homevisit_components/hvPlayerColors.js:29
+#: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
 msgstr ""
 
-#: game/playerManager.js:41
-#: homevisit_components/hvPlayerColors.js:34
+#: game/playerManager.js:41 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:96
-msgid "Load"
 msgstr ""
 
 #. A Team...
@@ -257,8 +201,7 @@ msgid "Matches best with the team of {{name1}} and {{name2}}."
 msgstr ""
 
 #. of a portion of numbers
-#: mc/views/results.html:29
-#: player/partials/results.html:30
+#: mc/views/results.html:29 player/partials/results.html:30
 msgid "Max:"
 msgstr ""
 
@@ -266,17 +209,12 @@ msgstr ""
 msgid "member of political party"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:88
-msgid "Memory"
-msgstr ""
-
 #: player/partials/deals/deal.messageSent.html:7
 msgid "Message sent"
 msgstr ""
 
 #. of a portion of numbers
-#: mc/views/results.html:28
-#: player/partials/results.html:26
+#: mc/views/results.html:28 player/partials/results.html:26
 msgid "Min:"
 msgstr ""
 
@@ -296,13 +234,11 @@ msgstr ""
 msgid "My Turn!"
 msgstr ""
 
+#. same as "My sense of solidarity" from the script
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
 msgstr ""
 
-#: homevisit_components/brain-control/brain-control.js:55
-msgid "N/A"
-msgstr ""
 
 #: admin/js/controllers/adminControllers.js:95
 msgid "Neuer Name?"
@@ -336,28 +272,12 @@ msgstr ""
 msgid "Null Problemo!"
 msgstr ""
 
-#: homevisit_components/brain-control/views/wifi-modal.html:13
-#: homevisit_components/game-control/views/game-restart-modal.html:12
-#: homevisit_components/game-control/views/game-settings-modal.html:15
-#: homevisit_components/game-control/views/game-stop-modal.html:12
-msgid "OK"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:112
-msgid "Online"
-msgstr ""
-
 #: admin/views/admin/show-item-contents/show-vote-option.html:3
 msgid "Option"
 msgstr ""
 
-#: game/playerManager.js:38
-#: homevisit_components/hvPlayerColors.js:31
+#: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:65
-msgid "OS Info for {{systemInfo.osInfo.hostname}}"
 msgstr ""
 
 #: mc/js/services/mcAppServices.js:123
@@ -368,8 +288,7 @@ msgstr ""
 msgid "physical conflict"
 msgstr ""
 
-#: game/playerManager.js:42
-#: homevisit_components/hvPlayerColors.js:35
+#: game/playerManager.js:42 homevisit_components/hvPlayerColors.js:35
 msgid "pink"
 msgstr ""
 
@@ -381,13 +300,11 @@ msgstr ""
 msgid "Player {{ playerNumber }}"
 msgstr ""
 
-#: mc/views/item-as-row.html:21
-#: mc/views/item.html:33
+#: mc/views/item-as-row.html:21 mc/views/item.html:33
 msgid "Players are dealing"
 msgstr ""
 
-#: mc/views/item-as-row.html:22
-#: mc/views/item.html:34
+#: mc/views/item-as-row.html:22 mc/views/item.html:34
 msgid "Players are rating others"
 msgstr ""
 
@@ -402,10 +319,6 @@ msgstr ""
 #. Leave {{score}} as is
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
-msgstr ""
-
-#: homevisit_components/game-control/views/game-session-chooser.html:8
-msgid "Please select a session before starting the game!"
 msgstr ""
 
 #. select from a list
@@ -437,10 +350,6 @@ msgstr ""
 msgid "Rank:"
 msgstr ""
 
-#: homevisit_components/brain-control/brain-control.js:45
-msgid "Really DB: {{action}}?"
-msgstr ""
-
 #: admin/js/controllers/adminControllers.js:112
 #: admin/js/controllers/adminControllers.js:270
 #: admin/js/controllers/masterControllers.js:102
@@ -451,68 +360,28 @@ msgstr ""
 msgid "Really jump?"
 msgstr ""
 
-#: homevisit_components/brain-control/brain-control.js:29
-msgid "REALLY REALLY SURE??????????"
-msgstr ""
-
 #: mc/js/services/mcAppServices.js:691
 msgid "Really restart?"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:126
-msgid "REBOOT"
-msgstr ""
-
-#: homevisit_components/views/recordings.html:8
-msgid "Recordings"
-msgstr ""
-
-#: game/playerManager.js:35
-#: homevisit_components/hvPlayerColors.js:28
+#: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:28
 msgid "red"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:4
-#: homevisit_components/views/recordings.html:4
-msgid "Refresh"
 msgstr ""
 
 #: player/partials/deals/deal.wait.html:8
 msgid "Reject"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:37
-msgid "REPAIR DB"
-msgstr ""
-
 #: player/partials/deals/deal.new.html:9
 msgid "Request"
 msgstr ""
 
-#: homevisit_components/game-control/views/game-control.html:18
-msgid "RESTART"
-msgstr ""
-
-#: homevisit_components/game-control/views/game-restart-modal.html:5
-msgid "Restart Game"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:22
-msgid "RESTART SERVER"
-msgstr ""
-
-#: mc/views/item-as-row.html:15
-#: mc/views/item.html:29
+#: mc/views/item-as-row.html:15 mc/views/item.html:29
 msgid "Results are displayed"
 msgstr ""
 
-#: mc/views/results.html:43
-#: player/partials/results.html:47
+#: mc/views/results.html:43 player/partials/results.html:47
 msgid "Results are weighted by ranking. See actual votes in braces."
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:59
-msgid "SCAN"
 msgstr ""
 
 #: mc/js/services/mcAppServices.js:168
@@ -527,15 +396,9 @@ msgstr ""
 msgid "Score:"
 msgstr ""
 
-#: mc/js/controllers/notes.js:31
-#: mc/js/controllers/players.js:37
-#: mc/js/controllers/pollPopup.js:43
-#: mc/js/controllers/script.js:85
+#: mc/js/controllers/notes.js:31 mc/js/controllers/players.js:37
+#: mc/js/controllers/pollPopup.js:43 mc/js/controllers/script.js:85
 msgid "Select"
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:125
-msgid "SHUTDOWN"
 msgstr ""
 
 #. html-code has to stay as is
@@ -551,22 +414,6 @@ msgstr ""
 msgid "Special code is executed"
 msgstr ""
 
-#: homevisit_components/game-control/views/game-control.html:13
-msgid "START"
-msgstr ""
-
-#: homevisit_components/game-control/views/game-settings-modal.html:5
-msgid "Start Game"
-msgstr ""
-
-#: homevisit_components/game-control/views/game-control.html:19
-msgid "STOP"
-msgstr ""
-
-#: homevisit_components/game-control/views/game-stop-modal.html:5
-msgid "Stop Game"
-msgstr ""
-
 #: mc/views/vote.html:41
 msgid "Submit"
 msgstr ""
@@ -577,10 +424,6 @@ msgstr ""
 
 #: homevisit_components/game-control/views/game-stop-modal.html:7
 msgid "Sure you want to stop the game? This will finish the current recording."
-msgstr ""
-
-#: homevisit_components/brain-control/views/raspi-manager.html:79
-msgid "System"
 msgstr ""
 
 #: game/polls/Agreement.js:39
@@ -629,8 +472,7 @@ msgstr ""
 msgid "This deal is active"
 msgstr ""
 
-#: game/game.js:281
-#: game/playerManager.js:194
+#: game/game.js:281 game/playerManager.js:194
 msgid "This poll doesn't exist!"
 msgstr ""
 
@@ -647,8 +489,7 @@ msgid "to"
 msgstr ""
 
 #. of a portion of numbers
-#: mc/views/results.html:26
-#: player/partials/results.html:18
+#: mc/views/results.html:26 player/partials/results.html:18
 msgid "Total:"
 msgstr ""
 
@@ -673,10 +514,6 @@ msgstr ""
 msgid "Try Again"
 msgstr ""
 
-#: homevisit_components/brain-control/views/raspi-manager.html:84
-msgid "Uptime"
-msgstr ""
-
 #: mc/js/services/mcAppServices.js:572
 #: player/js/services/playerAppServices.js:236
 msgid "vote"
@@ -684,8 +521,7 @@ msgid_plural "votes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mc/views/vote.html:20
-#: player/partials/vote.html:19
+#: mc/views/vote.html:20 player/partials/vote.html:19
 msgid "VOTE"
 msgstr ""
 
@@ -753,10 +589,6 @@ msgstr ""
 msgid "Who works regularly outside the country?"
 msgstr ""
 
-#: homevisit_components/brain-control/views/wifi-modal.html:5
-msgid "WIFI login"
-msgstr ""
-
 #: mc/js/services/mcAppServices.js:186
 msgid "willingness of solidarity"
 msgstr ""
@@ -769,8 +601,7 @@ msgstr ""
 msgid "working outside the country"
 msgstr ""
 
-#: game/playerManager.js:39
-#: homevisit_components/hvPlayerColors.js:32
+#: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
 msgstr ""
 
@@ -790,8 +621,7 @@ msgstr ""
 msgid "You are not joined in the game!"
 msgstr ""
 
-#: mc/views/vote.html:47
-#: player/partials/voteConfirm.html:1
+#: mc/views/vote.html:47 player/partials/voteConfirm.html:1
 msgid "You are voting for:"
 msgstr ""
 

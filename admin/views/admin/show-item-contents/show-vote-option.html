@@ -1,9 +1,9 @@
 <tbody>
 <tr>
-    <th translate>Option</th>
+    <th>Option</th>
     <th ng-show="item.type == 'switch'"></th>
-    <th ng-show="item.type == 'vote'" translate>Correct</th>
-    <th ng-show="item.type == 'vote'" translate></th>
+    <th ng-show="item.type == 'vote'">Correct</th>
+    <th ng-show="item.type == 'vote'"></th>
 </tr>
 <tr ng-repeat="voteOption in item.voteOptions track by $index">
     <td>
@@ -33,7 +33,7 @@
     -->
     <td style="white-space: nowrap">
         <div class="buttons">
-            <button class="btn btn-sm btn-danger" ng-click="deleteVoteOption($index)" translate>Delete</button>
+            <button class="btn btn-sm btn-danger" ng-click="deleteVoteOption($index)">Delete</button>
         </div>
     </td>
 </tr>
