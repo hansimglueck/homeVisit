@@ -36,7 +36,7 @@ def sendGo():
 		return
 	print "Go"
 	print("GO GO GO")
-	os.popen('mpg321 /home/pi/medien/sounds/button-11.mp3 &')
+	os.popen('mpg321 -g30 /home/pi/medien/sounds/button-11.mp3 &')
 	client.send(type="playbackAction", data="go", param=sending_param)
 	#client.send(type="forward", data={"type":"display","content":{"text":"mpg321 button-11.mp3"}}, param={"role":"speaker","name":"NN"})
 	#client.send(type="forward", data={"type":"display","content":{"command":"countdown","param":10}}, param={"role":"digits","name":"NN"})

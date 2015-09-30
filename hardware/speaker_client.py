@@ -18,9 +18,9 @@ def newMessage(msg):
 
 def alert(al_state):
 	if (al_state == 1):
-		playSoundfile("mpg321 alarm.mp3", 50)
+		playSoundfile("mpg321 alarm.mp3", 30)
 	elif (al_state == 2):
-		playSoundfile("mpg321 alarm3x.mp3", 50)
+		playSoundfile("mpg321 alarm3x.mp3", 30)
 	elif (al_state == 0):
 		stopmpg321()
 
