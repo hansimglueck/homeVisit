@@ -26,7 +26,9 @@
                 playerId: bestWorst,
                 silent: this.silent,
                 text: this.text[lang],
-                time: this.time
+                time: this.time,
+                posText: (typeof this.posText !== "undefined") ? this.posText[lang] : "",
+                negText: (typeof this.negText !== "undefined") ? this.negText[lang] : ""
             };
         }
     };

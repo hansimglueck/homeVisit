@@ -1,13 +1,14 @@
 <div>
     <div ng-switch="traitor">
         <div ng-switch-when="false">
-            <div translate>
-              <ul class="list-inline">
-                <li ng-repeat="pid in playerIds">
-                  <player-icon class="player-icon-big" pid="pid"></player-icon>
-                </li>
-              </ul>
-              should get {{score}} point from you?
+            <div>
+                <ul class="list-inline">
+                    <li ng-repeat="pid in playerIds">
+                        <player-icon class="player-icon-big" pid="pid"></player-icon>
+                    </li>
+                </ul>
+                <span ng-if="score>0" translate-comment="A Team..." translate> gets one Point</span>
+                <span ng-if="score<0" translate-comment="A Team..." translate> looses one Point</span>
             </div>
             <div>
                 <button class="btn btn-primary btn-lg" ng-click="confirm()" translate>Confirm</button>
