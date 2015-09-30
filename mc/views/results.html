@@ -23,11 +23,10 @@
                     </div>
 
                     <ul class="list-unstyled results-content noflex" ng-if="display.resultType == 'numberStats'">
-                        Hello Numbers
-                        <li><span translate-comment="of a portion of numbers" translate>Total: </span>{{display.data[0]}}</li>
-                        <li><span translate-comment="of a portion of numbers" translate>Average: </span>{{display.data[1]}}</li>
-                        <li><span translate-comment="of a portion of numbers" translate>Min: </span>{{display.data[2]}}</li>
-                        <li><span translate-comment="of a portion of numbers" translate>Max: </span>{{display.data[3]}}</li>
+                        <li><span translate-comment="of a portion of numbers" translate>Total:</span> {{display.data[0]}}</li>
+                        <li><span translate-comment="of a portion of numbers" translate>Average:</span> {{display.data[1]}}</li>
+                        <li><span translate-comment="of a portion of numbers" translate>Min:</span> {{display.data[2]}}</li>
+                        <li><span translate-comment="of a portion of numbers" translate>Max:</span> {{display.data[3]}}</li>
                     </ul>
 
                     <div class="results-content"  ng-if="['europeMap','numberStats'].indexOf(display.resultType) == -1">
