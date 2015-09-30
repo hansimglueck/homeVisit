@@ -216,6 +216,7 @@
                     //answers: [0,0,1,1,1,0,2,0,2,5,5,0,2,2,-1]
                 }
             ];
+            pollFactory.did = -1;
             return pollFactory;
         })
         .factory('Teams', function () {
