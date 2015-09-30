@@ -292,6 +292,8 @@
             function showRating(data) {
                 homeFactory.type = "rating";
                 homeFactory.time = parseInt(data.time);
+                homeFactory.posText = data.posText;
+                homeFactory.negText = data.negText;
                 homeFactory.timedVote(homeFactory.freeze);
                 var path = "/rating";
                 if (data.ratingType === "allTeams") {

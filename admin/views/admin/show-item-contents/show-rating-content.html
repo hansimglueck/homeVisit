@@ -4,5 +4,7 @@
     <labeled-item-option field="time" title="Time" type="text" item="item" saveitem="saveItem()"></labeled-item-option>
     <labeled-item-option ng-show="item.ratingType=='allTeams'" field="posNeg" title="Rating" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
     <labeled-item-option ng-show="item.ratingType=='oneTeam'" field="bestWorst" title="Which team" type="select" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option ng-show="item.ratingType=='oneTeam'" field="posText" title="plus-Text" type="localized-textarea" item="item" saveitem="saveItem()"></labeled-item-option>
+    <labeled-item-option ng-show="item.ratingType=='oneTeam'" field="negText" title="minus-Text" type="localized-textarea" item="item" saveitem="saveItem()"></labeled-item-option>
 </div>
 
