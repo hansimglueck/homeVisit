@@ -151,7 +151,7 @@ msgstr "A resposta correta é: {{display.correctAnswer}}"
 
 #: player/partials/results.html:3
 msgid "Correct: {{home.correctAnswer}}"
-msgstr "Correto: {{home.correctAnswer}}"
+msgstr "A resposta correta é: {{home.correctAnswer}}"
 
 #: admin/views/game-conf.html:19
 msgid "Current deck:"
@@ -689,11 +689,11 @@ msgstr "Pontuação para jogador {{playerId}}"
 
 #: mc/views/players.html:14 mc/views/players.html:9 mc/views/script.html:13
 msgid "Score: {{player.score}}"
-msgstr "Pontuação: {{player.score}}"
+msgstr "Pontos: {{player.score}}"
 
 #: player/index.html:87 player/views/score-barometer.html:5
 msgid "Score: {{status.player.score}}"
-msgstr "Pontuação: {{status.player.score}}"
+msgstr "Pontos: {{status.player.score}}"
 
 #: mc/js/controllers/notes.js:31 mc/js/controllers/players.js:37
 #: mc/js/controllers/script.js:85
