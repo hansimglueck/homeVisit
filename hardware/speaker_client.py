@@ -49,6 +49,7 @@ def stopSound():
 def stopmpg321():
 	os.system('sudo pkill mpg321')
 
+os.popen('amixer cset numid=1 100% &')
 #der client wird in einem extra-thread gestartet...
 client = ws.Client(role="speaker", cb = newMessage)
 
