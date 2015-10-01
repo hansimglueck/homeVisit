@@ -26,7 +26,7 @@
 
             <div class="script-playback-controls" ng-controller="PlaybackCtrl">
                 <div class="script-clock">{{ clock.getClock() }}</div>
-                <button class="btn btn-block btn-success btn-go" ng-show="deck.mcTasks.go"
+                <button class="btn btn-block btn-go" id="go-button" ng-show="deck.mcTasks.go"
                         ng-click="playback('go', 0)"
                         >GO
                 </button>

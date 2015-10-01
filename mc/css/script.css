@@ -119,3 +119,20 @@
 .script-list-buttons {
     padding: 10px;
 }
+
+
+.btn-go {
+    background: #5cb85c;
+}
+
+.btn-go.ng-hide-add {
+    transition: all linear 0.3s;
+}
+
+.btn-go.ng-hide-remove {
+    transition: all linear 1s;
+}
+
+.btn-go.ng-hide {
+    background: yellow;
+}

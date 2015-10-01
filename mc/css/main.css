@@ -34,7 +34,7 @@ body {
 }
 
 .btn-go:active, .btn-go:hover {
-    background-color: #5cb85c !important;
+/*    background-color: #5cb85c !important; */
 }
 
 .btn-skip {
