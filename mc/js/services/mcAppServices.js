@@ -315,9 +315,8 @@
                     for (var i = 0; i < 15; i++) {
                         pn.push(
                             gettextCatalog.getString(
-                                'Player {{ playerNumber }}',
-                                {playerNumber: i}
-                            )
+                                'Player'
+                            ) + " " + i
                         );
                     }
                     return pn;
