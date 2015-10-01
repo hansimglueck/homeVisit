@@ -148,7 +148,7 @@ msgstr ""
 msgid "EUROPE"
 msgstr ""
 
-Keyword for poll "Who feels more European than as a citizen of their own country?"
+#. Keyword for poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
 msgstr ""
@@ -224,17 +224,17 @@ msgstr ""
 msgid "Min:"
 msgstr ""
 
-#. Same as poll "My level of ambition"
+#. Short form of poll "My level of ambition"
 #: mc/js/services/mcAppServices.js:194
 msgid "My ambition"
 msgstr ""
 
-#. Same as poll "My trust in democracy"
+#. Short form of poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:203
 msgid "My confidence in democracy"
 msgstr ""
 
-#. Same as poll "My benefit from the free market"
+#. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
 msgstr ""
@@ -243,7 +243,7 @@ msgstr ""
 msgid "My Turn!"
 msgstr ""
 
-#. Same as poll "My sense of solidarity"
+#. Short form of poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
 msgstr ""
