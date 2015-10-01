@@ -6,7 +6,7 @@
     var gameRecording = require('./gameRecording');
     require('../homevisit_components/stringFormat');
     var logger = require('log4js').getLogger("playerManager");
-    logger.setLevel("INFO");
+    logger.setLevel("DEBUG");
 
     var PlayerManager = function () {
         this.players = [];
@@ -204,13 +204,16 @@
             poll.vote(data);
         },
         rate: function (clientId, data) {
-            var playerId = data.playerId;
-            var rate = data.rate;
-            this.rating[playerId] = rate;
-            logger.info("rate: " + this.rating);
-            this.calcAvgRate();
-
-            this.broadcastMessage('rates', {avgRatings: this.avgRatings});
+            logger.debug("got rate from player"+data.player0Id);
+            var pollId = data.pollId;
+            var item = this.polls[pollId];
+            if (typeof item === "undefined") {
+                this.sendMessage(data.player0Id, "display", {
+                    text: this.gettext.gettext("This poll doesn't exist!")
+                });
+                return;
+            }
+            item.rate(data);
         },
         //deals werden immer komplett versendet mit unique .id
         //wenn es den deal noch nicht gibt im deal-array, dann füge ihn ein, sonst update ihn.
@@ -370,7 +373,8 @@
                         this.eval(item.text);
                         break;
                     case "rating":
-                        this.deliverMessage(device, "display", item.getWsContent());
+                        this.polls[item.id] = item;
+                        item.requiredActions += this.deliverMessage(device, "display", item.getWsContent());
                         break;
                     case "deal":
                         this.deliverMessage(device, "display", item.getWsContent());

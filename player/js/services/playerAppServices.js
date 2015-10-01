@@ -294,6 +294,7 @@
                 homeFactory.time = parseInt(data.time);
                 homeFactory.posText = data.posText;
                 homeFactory.negText = data.negText;
+                homeFactory.pollId = data.pollId;
                 homeFactory.timedVote(homeFactory.freeze);
                 var path = "/rating";
                 if (data.ratingType === "allTeams") {

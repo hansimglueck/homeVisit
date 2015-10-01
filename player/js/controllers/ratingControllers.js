@@ -50,7 +50,7 @@
             $scope.confirm = function () {
                 Home.doneTask();
                 $scope.playerIds.forEach(function (playerId) {
-                    Socket.emit("score", {playerId: playerId, score: $scope.score, reason: "rating", otherPlayerId:Status.player.playerId});
+                    Socket.emit("rate", {player1Id: playerId, score: $scope.score, reason: "rating", player0Id:Status.player.playerId, pollId:Home.pollId});
                 });
 
                 $location.path("/rating/done");
