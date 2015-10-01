@@ -6,7 +6,7 @@
     var gameRecording = require('./gameRecording');
     require('../homevisit_components/stringFormat');
     var logger = require('log4js').getLogger("playerManager");
-    logger.setLevel("INFO");
+    logger.setLevel("DEBUG");
 
     var PlayerManager = function () {
         this.players = [];
@@ -22,6 +22,7 @@
         this.relations = {};
         this.gameEvents = [];
         this.gettext = require('./gettext');
+        this.actualItem = {};
     };
 
     PlayerManager.prototype = {
@@ -204,18 +205,22 @@
             poll.vote(data);
         },
         rate: function (clientId, data) {
-            var playerId = data.playerId;
-            var rate = data.rate;
-            this.rating[playerId] = rate;
-            logger.info("rate: " + this.rating);
-            this.calcAvgRate();
-
-            this.broadcastMessage('rates', {avgRatings: this.avgRatings});
+            logger.debug("got rate from player"+data.player0Id);
+            var pollId = data.pollId;
+            var item = this.polls[pollId];
+            if (typeof item === "undefined") {
+                this.sendMessage(data.player0Id, "display", {
+                    text: this.gettext.gettext("This poll doesn't exist!")
+                });
+                return;
+            }
+            item.rate(data);
         },
         //deals werden immer komplett versendet mit unique .id
         //wenn es den deal noch nicht gibt im deal-array, dann füge ihn ein, sonst update ihn.
         //je nach state an .playerId0 oder .playerId1 schicken
         deal: function (clientId, deal) {
+            var that = this;
             switch (deal.status) {
                 case "request":
                     if (this.players[deal.player1Id].busy) {
@@ -249,6 +254,13 @@
                         playerIds: [parseInt(deal.player0Id), parseInt(deal.player1Id)],
                         state: 'confirmed'
                     });
+                    this.actualItem.requiredActions -= 2;
+                    if (this.actualItem.requiredActions <= 1) {
+                        this.actualItem.requiredActions = 66;
+                        setTimeout(function () {
+                            that.actualItem.step();
+                        }, 1000);
+                    }
                     break;
                 default:
                 case "deny":
@@ -270,6 +282,13 @@
                     this.deals[deal.id] = deal;
                     this.players[deal.player0Id].busy = true;
                     wsManager.msgDevicesByRole("MC", "insurance", {type:"denyDealing", player0Id:deal.player0Id});
+                    this.actualItem.requiredActions -= 1;
+                    if (this.actualItem.requiredActions <= 1) {
+                        this.actualItem.requiredActions = 66;
+                        setTimeout(function () {
+                            that.actualItem.step();
+                        }, 1000);
+                    }
                     break;
             }
             this.sendPlayerStatus(-1);
@@ -370,10 +389,12 @@
                         this.eval(item.text);
                         break;
                     case "rating":
-                        this.deliverMessage(device, "display", item.getWsContent());
+                        this.polls[item.id] = item;
+                        item.requiredActions += this.deliverMessage(device, "display", item.getWsContent());
                         break;
                     case "deal":
-                        this.deliverMessage(device, "display", item.getWsContent());
+                        this.actualItem = item;
+                        item.requiredActions = this.deliverMessage(device, "display", item.getWsContent());
                         break;
                     case "agreement":
                         this.polls[item.poll.id] = item.poll;
