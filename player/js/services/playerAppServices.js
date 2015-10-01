@@ -88,6 +88,15 @@
                 $location.path("freeze");
             };
 
+            homeFactory.freezeRating = function () {
+                Socket.emit("rate", {
+                    player0Id: Status.player.playerId,
+                    reason: "timeout",
+                    pollId: homeFactory.pollId
+                });
+                $location.path("freeze");
+            };
+
             homeFactory.cancelCountdown = function () {
 
                 if (homeFactory.timeout) {
@@ -295,7 +304,7 @@
                 homeFactory.posText = data.posText;
                 homeFactory.negText = data.negText;
                 homeFactory.pollId = data.pollId;
-                homeFactory.timedVote(homeFactory.freeze);
+                homeFactory.timedVote(homeFactory.freezeRating);
                 var path = "/rating";
                 if (data.ratingType === "allTeams") {
                     path += "/player";
