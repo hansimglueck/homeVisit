@@ -38,7 +38,7 @@ def playSoundfile(filename, volume):
 		return
 	elif filename.startswith( 'mpg321 ' ):
 		filename = filename[7:]
-		os.popen('mpg321 -g50 /home/pi/medien/sounds/' + filename + ' &')
+		os.popen('mpg321 -g20 /home/pi/medien/sounds/' + filename + ' &')
 	else:
 		print "ex-omx file"
 		cmd = 'mpg321 -g'+str(volume)+' /home/pi/medien/sounds/' + filename + ' &'
