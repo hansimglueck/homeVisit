@@ -240,6 +240,8 @@
                     this.sendMessage(deal.player1Id, "deal", deal);
                     this.sendGameEvent(deal.player0Id, "insurance", deal.player1Id, "");
                     this.sendGameEvent(deal.player1Id, "insurance", deal.player0Id, "");
+                    wsManager.msgDevicesByRole("MC", "insurance", {type:"confirm", player0Id:deal.player0Id, player1Id:deal.player1Id});
+
                     this.calcInsurance(deal.player0Id);
                     this.calcInsurance(deal.player1Id);
                     gameRecording.deal({
@@ -267,6 +269,7 @@
                     deal.id = newDealId;
                     this.deals[deal.id] = deal;
                     this.players[deal.player0Id].busy = true;
+                    wsManager.msgDevicesByRole("MC", "insurance", {type:"denyDealing", player0Id:deal.player0Id});
                     break;
             }
             this.sendPlayerStatus(-1);
@@ -738,10 +741,6 @@
             });
             if (reason === "rating") {
                 wsManager.msgDevicesByRole("MC", "score", event);
-            }
-
-            if (type === "insurance") {
-                wsManager.msgDevicesByRole("MC", "insurance", event);
             }
 
         },

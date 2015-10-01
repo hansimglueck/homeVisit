@@ -492,7 +492,7 @@
 
             return deckFactory;
         })
-        .factory('Display', function(Socket, ModalService, gettextCatalog, playerColors, playerColornamesFactory) {
+        .factory('Display', function (Socket, ModalService, gettextCatalog, playerColors, playerColornamesFactory) {
             var displayFactory = {
                 displayData: []
             };
@@ -663,7 +663,13 @@
                 Socket.on("insurance", function (msg) {
                     console.log("DEAL EMPFANGEN");
                     //console.log(msg);
-                    teamActionInfo.actionInfo[msg.playerId] = gettext("Deal with ") + playerColornamesFactory.playercolornames[msg.value];
+                    if (msg.type === "confirm") {
+                        teamActionInfo.actionInfo[msg.player0Id] = gettext("Deal with ") + playerColornamesFactory.playercolornames[msg.player1Id];
+                        teamActionInfo.actionInfo[msg.player1Id] = gettext("Deal with ") + playerColornamesFactory.playercolornames[msg.player0Id];
+                    }
+                    if (msg.type === "denyDealing") {
+                        teamActionInfo.actionInfo[msg.player0Id] = gettext("Not Dealing");
+                    }
                 });
 
 

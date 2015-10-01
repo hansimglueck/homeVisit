@@ -3,6 +3,7 @@
 
     var hat = require('hat');
     var logger = require('log4js').getLogger("wsManager");
+    logger.setLevel('INFO');
 
 
     function WsManager() {
