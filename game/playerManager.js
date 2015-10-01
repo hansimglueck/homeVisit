@@ -22,6 +22,7 @@
         this.relations = {};
         this.gameEvents = [];
         this.gettext = require('./gettext');
+        this.actualItem = {};
     };
 
     PlayerManager.prototype = {
@@ -219,6 +220,7 @@
         //wenn es den deal noch nicht gibt im deal-array, dann füge ihn ein, sonst update ihn.
         //je nach state an .playerId0 oder .playerId1 schicken
         deal: function (clientId, deal) {
+            var that = this;
             switch (deal.status) {
                 case "request":
                     if (this.players[deal.player1Id].busy) {
@@ -252,6 +254,13 @@
                         playerIds: [parseInt(deal.player0Id), parseInt(deal.player1Id)],
                         state: 'confirmed'
                     });
+                    this.actualItem.requiredActions -= 2;
+                    if (this.actualItem.requiredActions <= 1) {
+                        this.actualItem.requiredActions = 66;
+                        setTimeout(function () {
+                            that.actualItem.step();
+                        }, 1000);
+                    }
                     break;
                 default:
                 case "deny":
@@ -273,6 +282,13 @@
                     this.deals[deal.id] = deal;
                     this.players[deal.player0Id].busy = true;
                     wsManager.msgDevicesByRole("MC", "insurance", {type:"denyDealing", player0Id:deal.player0Id});
+                    this.actualItem.requiredActions -= 1;
+                    if (this.actualItem.requiredActions <= 1) {
+                        this.actualItem.requiredActions = 66;
+                        setTimeout(function () {
+                            that.actualItem.step();
+                        }, 1000);
+                    }
                     break;
             }
             this.sendPlayerStatus(-1);
@@ -377,7 +393,8 @@
                         item.requiredActions += this.deliverMessage(device, "display", item.getWsContent());
                         break;
                     case "deal":
-                        this.deliverMessage(device, "display", item.getWsContent());
+                        this.actualItem = item;
+                        item.requiredActions = this.deliverMessage(device, "display", item.getWsContent());
                         break;
                     case "agreement":
                         this.polls[item.poll.id] = item.poll;
