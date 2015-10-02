@@ -23,6 +23,7 @@
             }
             console.log("noch " + this.requiredActions);
             if (this.requiredActions === 0) {
+                this.requiredActions = 66;
                 var that = this;
                 setTimeout(function () {
                     that.step();
