@@ -692,7 +692,7 @@
                     if (cmd == "goto" && !confirm("You are leaving the predefined Sequence. You must have STRONG needs for this!")) {
                         return;
                     }
-                    console.log("play clicked");
+                    console.log("clicked: "+cmd);
                     switch (cmd) {
                         case "restart":
                             if (!confirm(gettextCatalog.getString('Really restart?'))) {

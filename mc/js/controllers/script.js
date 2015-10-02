@@ -18,7 +18,13 @@
             $scope.lang = gettextCatalog.currentLanguage;
             $scope.deck = Deck;
             $scope.goList = Deck.goList;
-            $scope.playback = Playback.playback;
+            $scope.playback = function(cmd, param) {
+                if (cmd === "go" && !Deck.mcTasks.go) {
+                    console.log("TOO MUCH GO CLICKED!!!");
+                    return;
+                }
+                Playback.playback(cmd, param);
+            };
             $scope.alert = Playback.alert;
             $scope.skipStep = function () {
                 return Deck.stepIndex + $scope.getFollowItems().length + 1;
