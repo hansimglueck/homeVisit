@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('homeVisitMCApp')
-        .controller('ScriptCtrl', function ($scope, $timeout, Deck, Playback, gettextCatalog, $anchorScroll, $location, ScriptScroll, Status, playerColors, ModalService,TeamActionInfo) {
+        .controller('ScriptCtrl', function ($scope, $timeout, Deck, Clock, Playback, gettextCatalog, $anchorScroll, $location, ScriptScroll, Status, playerColors, ModalService,TeamActionInfo) {
             $scope.playerColors = playerColors;
             $scope.playerPos = [
                 {top: 8, left: 15},
@@ -17,6 +17,8 @@
             $scope.status = Status;
             $scope.lang = gettextCatalog.currentLanguage;
             $scope.deck = Deck;
+            $scope.clock = Clock;
+
             $scope.goList = Deck.goList;
             $scope.playback = function(cmd, param) {
                 if (cmd === "go" && !Deck.mcTasks.go) {
