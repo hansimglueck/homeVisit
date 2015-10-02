@@ -4,12 +4,27 @@
     var fs = require('fs');
     var logger = require('log4js').getLogger();
 
+    /**
+     * Randomize array element order in-place.
+     * Using Durstenfeld shuffle algorithm.
+     */
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+        return array;
+    }
+
+
     module.exports = {
         executeItem: function () {
             this.mapToDevice();
         },
         getWsContent: function() {
-            var lang = require('../../gameConf').conf.language, images = [], folder;
+            var lang = "en", images = [], folder;
             if (typeof this.text[lang] !== 'undefined') {
                 folder = this.text[lang];
                 try {
@@ -25,7 +40,7 @@
             return {
                 type: 'slideshow',
                 silent: this.silent,
-                images: images
+                images: shuffleArray(images)
             };
         }
     };
