@@ -63,9 +63,7 @@
             }
         });
         return {
-            voteOptions: this.voteOptions.sort(function(a, b) {
-                return b.result - a.result;
-            }),
+            voteOptions: this.voteOptions,
             votes: this.votes,
             complete: !this.open,
             ratedVote: this.ratedVote,
