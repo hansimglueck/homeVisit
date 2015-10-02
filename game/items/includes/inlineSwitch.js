@@ -10,7 +10,9 @@
                 this.log("source = previousStep");
                 var data = this.previous.getData();
                 if (data !== null) {
-                    option = data.complete ? data.voteOptions[0].value : -1;
+                    option = data.complete ? data.voteOptions.sort(function(a, b) {
+                        return b.result - a.result;
+                    })[0].value : -1;
                 }
             }
             this.log("looking for deck for option " + option);
