@@ -115,7 +115,7 @@
                             break;
                     }
                 } catch (e) {
-                    logger.error("ERROR in playerManager.newMessage! " + e.stack);
+                    logger.error("ERROR in playerManager.playerMessage! " + e.stack);
                 }
             }
         },
@@ -349,11 +349,11 @@
                             this.leaveGame(this.players[data.id].clientId);
                             break;
                         default:
-                            logger.info("unknown message-type");
+                            //logger.info("unknown message-type");
                             break;
                     }
                 } catch (e) {
-                    logger.info("ERROR in playerManager.newMessage! " + e.stack);
+                    logger.error("ERROR in playerManager.setStatusMessage! " + e.stack);
                 }
             }
             this.sendPlayerStatus(-1);

@@ -187,7 +187,7 @@
                             break;
 
                         default:
-                            logger.info("RaspiTools: unknown message-type");
+                            //logger.info("RaspiTools: unknown message-type");
                             break;
                     }
                 } catch (e) {

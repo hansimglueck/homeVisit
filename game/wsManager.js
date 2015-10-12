@@ -129,8 +129,8 @@
                         var clientId = ws.clientId;
                         var d = new Date();
                         var now = d.getTime();
-                        logger.info("closed: websocket connection closed " + (now - lastPing));
-                        logger.info("closed: ws.id=" + ws._ultron.id);
+                        logger.info("closed: websocket connection closed after millis: " + (now - lastPing));
+                        logger.info("closed: ws.clientId="+ws.clientId+", role="+ws.role+", ws._ultron.id=" + ws._ultron.id);
                         self.clients[clientId].connected = false;
                         self.applyRoleCallbacks(ws, {type: "disconnected"});
                         self.sendDeviceList();
@@ -172,7 +172,7 @@
                                     break;
 
                                 default:
-                                    logger.info("unknown message-type");
+                                    //logger.info("unknown message-type");
                                     break;
 
                             }
@@ -235,7 +235,8 @@
                     try {
                         cb.fn.call(cb.self, ws.clientId, ws.role, msg);
                     } catch (e) {
-                        logger.info("ERROR in wsManager.applyTypeCallback: " + e.stack);
+                        logger.error("ERROR in .applyTypeCallback with ws.clientId=" + ws.clientId+", Role="+ws.role);
+                        logger.error(e.stack);
                     }
                 }
             });
