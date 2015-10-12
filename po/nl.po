@@ -315,7 +315,7 @@ msgstr[1] ""
 #. message after someone distributed a point (score)
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr "Punt gegeven!"
+msgstr "Besluit gemaakt!"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
@@ -626,7 +626,7 @@ msgstr "Jij doet niet mee aan het spel!"
 
 #: mc/views/vote.html:47 player/partials/voteConfirm.html:1
 msgid "You are voting for:"
-msgstr "Jij stemt op:"
+msgstr "Jij stemt voor:"
 
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
