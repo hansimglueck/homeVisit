@@ -12,6 +12,7 @@ p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
 def cb(msg):
 	if msg["type"] == "registerConfirm":
 		#erstmal hallo sagen
+		print_sample()
 		welcome_text = "HOWDY \n I AM ALIVE \n MY NAME IS "+socket.gethostname()+"\n you can now start MC-APP"
 		msg = {"type":"display", "data":{"type":"card","text":welcome_text}}
 	if msg["type"] != "display":
@@ -78,6 +79,22 @@ def cb(msg):
 		p.print_text("\n\n")
 		p.linefeed()
 		p.linefeed()
+
+def print_sample():
+	p.print_text(" \x90 \x91 \x92 \x93 \x94 \x95 \x96 \x97 \x98 \x99 \x9A \x9B \x9C \x9D \x9E \x9F")
+	p.print_text("\n")
+	p.print_text(" \xA0 \xA1 \xA2 \xA3 \xA4 \xA5 \xA6 \xA7 \xA8 \xA9 \xAA \xAB \xAC \xAD \xAE \xAF")
+	p.print_text("\n")
+	p.print_text(" \xB0 \xB1 \xB2 \xB3 \xB4 \xB5 \xB6 \xB7 \xB8 \xB9 \xBA \xBB \xBC \xBD \xBE \xBF")
+	p.print_text("\n")
+	p.print_text(" \xC0 \xC1 \xC2 \xC3 \xC4 \xC5 \xC6 \xC7 \xC8 \xC9 \xCA \xCB \xCC \xCD \xCE \xCF")
+	p.print_text("\n")
+	p.print_text(" \xD0 \xD1 \xD2 \xD3 \xD4 \xD5 \xD6 \xD7 \xD8 \xD9 \xDA \xDB \xDC \xDD \xDE \xDF")
+	p.print_text("\n")
+	p.print_text(" \xE0 \xE1 \xE2 \xE3 \xE4 \xE5 \xE6 \xE7 \xE8 \xE9 \xEA \xEB \xEC \xED \xEE \xEF")
+	p.print_text("\n")
+	p.print_text(" \xF0 \xF1 \xF2 \xF3 \xF4 \xF5 \xF6 \xF7 \xF8 \xF9 \xFA \xFB \xFC \xFD \xFE \xFF")
+	p.print_text("\n")
 
 def replaceSpecialChars(txt):
 	### The "Ø" and "ø" only work with Norwegian character set, setup in printer_gs.py
