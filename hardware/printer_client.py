@@ -12,7 +12,7 @@ p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
 def cb(msg):
 	if msg["type"] == "registerConfirm":
 		#erstmal hallo sagen
-		print_sample()
+		#print_sample()
 		welcome_text = "HOWDY \n I AM ALIVE \n MY NAME IS "+socket.gethostname()+"\n you can now start MC-APP"
 		msg = {"type":"display", "data":{"type":"card","text":welcome_text}}
 	if msg["type"] != "display":
