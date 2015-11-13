@@ -75,6 +75,10 @@ p.reset()
 p.double_width(True)
 p.set_linespacing(32)
 
+print "mode: "+mode
+print "start_table: "+start_table
+print "stop_table: "+stop_table
+
 for i in xrange(start_table,stop_table):
         # Select character code table "850" for more special characters - different from how it is specified in the manual
         p.printer.write(p._ESC)
@@ -83,5 +87,10 @@ for i in xrange(start_table,stop_table):
         p.print_text("CHARACTER CODE\nTABLE "+str(i))
         p.linefeed()
         p.linefeed()
-        print_sample_wide()
+        if (mode=="small"):
+          print_sample_wide()
+        elif (mode=="wide"):
+          print_sample_wide()
+        if (mode=="detail"):
+          print_sample_wide()
 	time.sleep(2)
