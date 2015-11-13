@@ -88,9 +88,9 @@ for i in xrange(start_table,stop_table):
         p.linefeed()
         p.linefeed()
         if (mode=="small"):
-          print_sample_wide()
+          print_sample()
         elif (mode=="wide"):
           print_sample_wide()
         if (mode=="detail"):
-          print_sample_wide()
+          print_sample_detail()
 	time.sleep(2)
