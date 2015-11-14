@@ -8,13 +8,18 @@ import ws
 import socket
 import sys
 
-cmdargs = str(sys.argv)
+if (len(sys.argv) < 3 or sys.argv[1] not in ["small","wide","detail"]):
+	print "usage: python sample_print.py small/wide/detail start_table [stop_table]"
+	quit()
 
 mode = str(sys.argv[1])
 start_table = int(sys.argv[2])
-stop_table = int(sys.argv[3])
+if (len(sys.argv) == 3):
+	stop_table = int(sys.argv[2])+1
+else:
+	stop_table = int(sys.argv[3])
 
-p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
+p=printer_gs.ThermalPrinter(heatTime=45, serialport="/dev/ttyAMA0")
 
 def print_sample():
         for i in xrange(16):
@@ -57,14 +62,20 @@ def print_sample_wide():
 	p.linefeed()
 
 def print_sample_detail():
-	for i in xrange(128, 136):
-		if (i%2 == 0):
-			p.print_text("\n")
-		p.inverse_on()
-		p.print_text(hex(i)[2:].upper())
-		p.inverse_off()
-		p.print_text(" ")
-		p.printer.write(chr(i))
+	for i in xrange(128, 255):
+		if (i == 175):
+			time.sleep(4)
+		if (i not in range(1760,2240)):
+			if (i%2 == 0):
+				p.print_text("\n")
+			p.inverse_on()
+			p.bold_on()
+			p.print_text(hex(i)[2:].upper())
+			p.inverse_off()
+			p.bold_off()
+			p.print_text(" ")
+			p.printer.write(chr(i))
+			p.print_text(" ")
 	p.linefeed()
 	p.linefeed()
 	p.linefeed()
@@ -76,8 +87,8 @@ p.double_width(True)
 p.set_linespacing(32)
 
 print "mode: "+mode
-print "start_table: "+start_table
-print "stop_table: "+stop_table
+print "start_table: "+str(start_table)
+print "stop_table: "+str(stop_table)
 
 for i in xrange(start_table,stop_table):
         # Select character code table "850" for more special characters - different from how it is specified in the manual

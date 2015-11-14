@@ -103,7 +103,7 @@
         },
         languageChange: function() {
             var self = this;
-            ['master', 'MC', 'player'].forEach(function(role) {
+            ['master', 'MC', 'player', 'printer'].forEach(function(role) {
                 wsManager.msgDevicesByRole(role, 'languageChange', {
                     language: self.conf.language
                 });
