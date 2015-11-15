@@ -29,6 +29,9 @@ def cb(msg):
 		welcome_text = "HOWDY \n I AM ALIVE \n MY NAME IS "+socket.gethostname()+"\n you can now start MC-APP"
 		msg = {"type":"display", "data":{"type":"card","text":welcome_text}}
 	if msg["type"] == "languageChange":
+		if "language" not in msg["data"]:
+			print "got no language-string"
+			return
 		setLanguage(msg["data"]["language"])
 	if msg["type"] != "display":
 		return

@@ -45,6 +45,8 @@
                         });
                     }
                     else {
+			//TODO: since conf is not implemented as promise, we have to send the language to the printer, when we get it from the database (later then the printer requests it...)
+			self.languageChange();
                         if (cb) {
                             cb();
                         }
