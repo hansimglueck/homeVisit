@@ -9,662 +9,630 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
+"X-Generator: Poedit 1.8.6\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-
-msgid ""
-msgstr ""
-"Content-Type: text/plain; charset=UTF-8\n"
-"Content-Transfer-Encoding: 8bit\n"
-"Project-Id-Version: \n"
 
 #. everything in curly braces has to stay as is
 #: player/partials/assholes.html:9
 msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{minuspoints}} mínusový bod"
+msgstr[1] "{{minuspoints}} mínusové body"
+msgstr[2] "{{minuspoints}} mínusových bodů"
 
 #. the local currency symbol
 #: homevisit_components/views/keyboard.html:4
 #: player/js/services/playerAppServices.js:337
 #: player/partials/voteConfirm.html:2
 msgid "€"
-msgstr ""
+msgstr "Kč"
 
 #. Keyword for Poll "My level of ambition"
 #: mc/js/services/mcAppServices.js:195
 msgid "ambition"
-msgstr ""
+msgstr "ambice"
 
 #. Keyword for Poll "Who is in an association, club or NGO?"
 #: mc/js/services/mcAppServices.js:114
 msgid "association/NGO"
-msgstr ""
+msgstr "spolek/nestátní nezisková organizace"
 
 #. of a portion of numbers
-#: mc/views/results.html:27
-#: player/partials/results.html:22
+#: mc/views/results.html:27 player/partials/results.html:22
 msgid "Average:"
-msgstr ""
+msgstr "Průměr:"
 
 #. Button to set a player idle
 #: mc/js/controllers/players.js:58
 msgid "Away"
-msgstr ""
+msgstr "Ven"
 
 #. step back in a sequence of screens
 #: player/partials/rating/rating.html:20
 msgid "Back"
-msgstr ""
+msgstr "Zpět"
 
 #. Cancel-Button
-#: mc/views/vote.html:58
-#: player/partials/deals/deal.new.html:14
-#: player/partials/rating/rating.html:15
-#: player/partials/voteConfirm.html:5
+#: mc/views/vote.html:58 player/partials/deals/deal.new.html:14
+#: player/partials/rating/rating.html:15 player/partials/voteConfirm.html:5
 msgid "Cancel"
-msgstr ""
+msgstr "Storno"
 
 #: mc/js/controllers/dummies.js:102
 msgid "Change name"
-msgstr ""
+msgstr "Změnit jméno"
 
 #: player/partials/deals/deal.choosePlayer.html:2
 msgid "Choose team to offer treaty:"
-msgstr ""
+msgstr "Výběr týmu k nabídnutí dohody:"
 
 #. Keyword for poll "Who at this table was a class representative or spokesman at school?"
 #: mc/js/services/mcAppServices.js:87
 msgid "class spokesman"
-msgstr ""
+msgstr "předseda třídy"
 
 #: mc/js/controllers/players.js:48
 msgid "Come Back!"
-msgstr ""
+msgstr "Vrať se zpět!"
 
 #: mc/views/item.html:31
 msgid "Command"
-msgstr ""
+msgstr "Proveď"
 
 #. Keyword for poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:204
 msgid "confidence in democracy"
-msgstr ""
+msgstr "důvěra k demokracii"
 
 #: mc/views/item.html:32
 msgid "Configuration"
-msgstr ""
+msgstr "Konfigurace"
 
 #. Confirm-Button
-#: mc/views/vote.html:54
-#: player/partials/deals/deal.answer.html:10
-#: player/partials/rating/rating.html:14
-#: player/partials/voteConfirm.html:4
+#: mc/views/vote.html:54 player/partials/deals/deal.answer.html:10
+#: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:4
 msgid "Confirm"
-msgstr ""
+msgstr "Potvrdit"
 
 #: homevisit_components/hvLanguage.js:10
 msgid "Czech"
-msgstr ""
+msgstr "český"
 
 #: homevisit_components/hvLanguage.js:11
 msgid "Danish"
-msgstr ""
+msgstr "dánský"
 
-#: game/playerManager.js:37
-#: homevisit_components/hvPlayerColors.js:30
+#: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:30
 msgid "dark blue"
-msgstr ""
+msgstr "Tmavě modří"
 
 #: mc/js/services/mcAppServices.js:667
 msgid "Deal with"
-msgstr ""
+msgstr "Jednej s"
 
 #. Keyword for poll "Who has ever lied about their national identity?"
 #: mc/js/services/mcAppServices.js:150
 msgid "denied origin"
-msgstr ""
+msgstr "zapření národního původu"
 
 #: player/partials/deals/deal.answer.html:13
 msgid "Deny"
-msgstr ""
+msgstr "Odmítnout"
 
-#: mc/js/controllers/notes.js:29
-#: mc/js/controllers/players.js:35
-#: mc/js/controllers/pollPopup.js:41
-#: mc/js/controllers/script.js:83
+#: mc/js/controllers/notes.js:29 mc/js/controllers/players.js:35
+#: mc/js/controllers/pollPopup.js:41 mc/js/controllers/script.js:83
 msgid "Deselect"
-msgstr ""
+msgstr "Zrušit výběr"
 
 #: player/partials/deals/deal.answer.html:7
 msgid "Do you want to accept this treaty?"
-msgstr ""
+msgstr "Přijmeš tuto dohodu?"
 
 #: mc/js/controllers/matching.js:216
 msgid "Doesn't match well. Should play alone."
-msgstr ""
+msgstr "Neshodujeme se. Měl/a by hrát sám/sama."
 
 #: homevisit_components/hvLanguage.js:13
 msgid "Dutch"
-msgstr ""
+msgstr "holandský"
 
 #. Keyword for poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr ""
+msgstr "výdělek"
 
 #: homevisit_components/hvLanguage.js:8
 msgid "English"
-msgstr ""
+msgstr "anglický"
 
 #: player/partials/home.html:3
 msgid "EUROPE"
-msgstr ""
+msgstr "EVROPA"
 
 #. Keyword for poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
-msgstr ""
+msgstr "Považovat se za Evropana"
 
 #. ... of a form
 #: mc/views/dummies.html:71
 msgid "Fill the rest"
-msgstr ""
+msgstr "Vyplň zbytek"
 
 #: homevisit_components/hvLanguage.js:12
 msgid "French"
-msgstr ""
+msgstr "francouzský"
 
 #: homevisit_components/hvLanguage.js:9
 msgid "German"
-msgstr ""
+msgstr "německý"
 
 #. A Team...
 #: player/partials/rating/rating.html:10
 msgid "gets one Point"
-msgstr ""
+msgstr "získává bod"
 
-#: game/playerManager.js:40
-#: homevisit_components/hvPlayerColors.js:33
+#: game/playerManager.js:40 homevisit_components/hvPlayerColors.js:33
 msgid "green"
-msgstr ""
+msgstr "Zelení"
 
 #: homevisit_components/views/language-chooser.html:2
 msgid "Language"
-msgstr ""
+msgstr "jazyk"
 
 #: mc/js/controllers/players.js:50
 msgid "Leave Table!"
-msgstr ""
+msgstr "Opusť stůl!"
 
-#: game/playerManager.js:36
-#: homevisit_components/hvPlayerColors.js:29
+#: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
-msgstr ""
+msgstr "Světle modří"
 
-#: game/playerManager.js:41
-#: homevisit_components/hvPlayerColors.js:34
+#: game/playerManager.js:41 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
-msgstr ""
+msgstr "Fialoví"
 
 #. A Team...
 #: player/partials/rating/rating.html:11
 msgid "looses one Point"
-msgstr ""
+msgstr "ztrácí jeden bod"
 
 #: mc/js/controllers/matching.js:218
 msgid "Matches best with the team of {{name1}} and {{name2}}."
-msgstr ""
+msgstr "Shoduje se nejvíc s týmem  {{name1}} a {{name2}}."
 
 #. of a portion of numbers
-#: mc/views/results.html:29
-#: player/partials/results.html:30
+#: mc/views/results.html:29 player/partials/results.html:30
 msgid "Max:"
-msgstr ""
+msgstr "Maximum:"
 
 #. Keyword for poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:105
 msgid "member of political party"
-msgstr ""
+msgstr "člen politické strany"
 
 #: player/partials/deals/deal.messageSent.html:7
 msgid "Message sent"
-msgstr ""
+msgstr "Zpráva odeslána"
 
 #. of a portion of numbers
-#: mc/views/results.html:28
-#: player/partials/results.html:26
+#: mc/views/results.html:28 player/partials/results.html:26
 msgid "Min:"
-msgstr ""
+msgstr "Minimum:"
 
 #. Short form of poll "My level of ambition"
 #: mc/js/services/mcAppServices.js:194
 msgid "My ambition"
-msgstr ""
+msgstr "Moje ambice"
 
 #. Short form of poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:203
 msgid "My confidence in democracy"
-msgstr ""
+msgstr "Moje důvěra k demokracii"
 
 #. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr ""
+msgstr "Můj prospěch z volného trhu"
 
 #: mc/js/controllers/players.js:56
 msgid "My Turn!"
-msgstr ""
+msgstr "Jsem na řadě!"
 
 #. Short form of poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
-msgstr ""
+msgstr "Moje ochota k solidaritě"
 
 #: game/polls/Agreement.js:16
 msgid "No"
-msgstr ""
+msgstr "Ne"
 
 #: player/partials/deals/deal.choosePlayer.html:8
 msgid "No Deal with me!"
-msgstr ""
+msgstr "Se mnou ne!"
 
 #: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
-msgstr ""
+msgstr "Nikdo se k Tobě nechoval špatně. "
 
 #: homevisit_components/hvLanguage.js:14
 msgid "Norwegian"
-msgstr ""
+msgstr "Norský"
 
-#: game/playerManager.js:38
-#: homevisit_components/hvPlayerColors.js:31
+#: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
-msgstr ""
+msgstr "Oranžoví"
 
 #: mc/js/services/mcAppServices.js:123
 msgid "paid job"
-msgstr ""
+msgstr "placená práce"
 
 #: mc/js/services/mcAppServices.js:141
 msgid "physical conflict"
-msgstr ""
+msgstr "fyzický konflikt"
 
-#: game/playerManager.js:42
-#: homevisit_components/hvPlayerColors.js:35
+#: game/playerManager.js:42 homevisit_components/hvPlayerColors.js:35
 msgid "pink"
-msgstr ""
+msgstr "Růžoví"
 
-#: mc/views/dummies.html:124
-#: mc/js/services/mcAppServices.js:317
+#: mc/views/dummies.html:124 mc/js/services/mcAppServices.js:317
 msgid "Player"
-msgstr ""
+msgstr "Hráč"
 
-#: mc/views/item-as-row.html:21
-#: mc/views/item.html:33
+#: mc/views/item-as-row.html:21 mc/views/item.html:33
 msgid "Players are dealing"
-msgstr ""
+msgstr "Hráči vyjednavájí "
 
-#: mc/views/item-as-row.html:22
-#: mc/views/item.html:34
+#: mc/views/item-as-row.html:22 mc/views/item.html:34
 msgid "Players are rating others"
-msgstr ""
+msgstr "Hráči se navzájem hodnotí"
 
 #: mc/views/item.html:14
 msgid "Players are voting"
-msgstr ""
+msgstr "Hráči volí"
 
 #: homevisit_components/game-control/views/game-settings-modal.html:8
 msgid "Please choose the session for this Game."
-msgstr ""
+msgstr "Vybírej prosím termín této hry."
 
 #. Leave {{score}} as is
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
-msgstr ""
+msgstr "Ohodnoť nějaký tým! Dej {{score}} bod"
 
 #. select from a list
 #: mc/views/notes.html:10
 msgid "Please Select:"
-msgstr ""
+msgstr "Vyber prosím:"
 
 #: mc/js/services/mcAppServices.js:563
 #: player/js/services/playerAppServices.js:219
 msgid "point"
 msgid_plural "points"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "bod"
+msgstr[1] "body"
+msgstr[2] "bodů"
 
 #. message after someone distributed a point (score)
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr ""
+msgstr "Bod přidělen!"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
-msgstr ""
+msgstr "polský"
 
 #: homevisit_components/hvLanguage.js:16
 msgid "Portuguese"
-msgstr ""
+msgstr "portugalský"
 
 #: player/index.html:86
 msgid "Rank:"
-msgstr ""
+msgstr "Pozice: "
 
 #: mc/js/services/mcAppServices.js:696
 msgid "Really jump?"
-msgstr ""
+msgstr "Opravdu přeskočit?"
 
 #: mc/js/services/mcAppServices.js:691
 msgid "Really restart?"
-msgstr ""
+msgstr "Opravdu restartovat?"
 
-#: game/playerManager.js:35
-#: homevisit_components/hvPlayerColors.js:28
+#: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:28
 msgid "red"
-msgstr ""
+msgstr "Červení"
 
 #: player/partials/deals/deal.wait.html:8
 msgid "Reject"
-msgstr ""
+msgstr "Zamítnout"
 
 #: player/partials/deals/deal.new.html:9
 msgid "Request"
-msgstr ""
+msgstr "Žádost"
 
-#: mc/views/item-as-row.html:15
-#: mc/views/item.html:29
+#: mc/views/item-as-row.html:15 mc/views/item.html:29
 msgid "Results are displayed"
-msgstr ""
+msgstr "Výsledky jsou zobrazeny"
 
-#: mc/views/results.html:43
-#: player/partials/results.html:47
+#: mc/views/results.html:43 player/partials/results.html:47
 msgid "Results are weighted by ranking. See actual votes in braces."
-msgstr ""
+msgstr "Výsledky jsou násobeny podle umístění. Aktuální hlasy v závorkách."
 
 #: mc/js/services/mcAppServices.js:168
 msgid "scared of the future"
-msgstr ""
+msgstr "bojící se budoucnosti"
 
 #: mc/js/services/mcAppServices.js:661
 msgid "Score"
-msgstr ""
+msgstr "Počet bodů"
 
 #: player/index.html:87
 msgid "Score:"
-msgstr ""
+msgstr "Počet bodů:"
 
-#: mc/js/controllers/notes.js:31
-#: mc/js/controllers/players.js:37
-#: mc/js/controllers/pollPopup.js:43
-#: mc/js/controllers/script.js:85
+#: mc/js/controllers/notes.js:31 mc/js/controllers/players.js:37
+#: mc/js/controllers/pollPopup.js:43 mc/js/controllers/script.js:85
 msgid "Select"
-msgstr ""
+msgstr "Vyber"
 
 #. html-code has to stay as is (is displaying an icon inline)
 #: player/partials/black.html:1
 msgid "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> is reading:"
-msgstr ""
+msgstr "Ticho prosím. Hráč <player-icon pid=\"status.playerOnTurn\"></player-icon> čte:"
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
-msgstr ""
+msgstr "Hraje zvuk:"
 
 #: mc/views/item-as-row.html:23
 msgid "Special code is executed"
-msgstr ""
+msgstr "Zvláštní kód je vykonán."
 
 #: mc/views/vote.html:41
 msgid "Submit"
-msgstr ""
+msgstr "Podat"
 
 #: homevisit_components/game-control/views/game-restart-modal.html:7
 msgid "Sure you want to restart the game? This will start a new recording..."
-msgstr ""
+msgstr "Chceš opravdu restartovat hru? Toto spustí nový záznam..."
 
 #: homevisit_components/game-control/views/game-stop-modal.html:7
 msgid "Sure you want to stop the game? This will finish the current recording."
-msgstr ""
+msgstr "Chceš opravdu ukončit hru? Toto ukončí aktuální záznam."
 
 #: game/polls/Agreement.js:39
 msgid "The alliance is fullfilled."
-msgstr ""
+msgstr "Aliance je uzavřena."
 
 #. actually: "The alliance is rejected."
 #: game/polls/Agreement.js:42
 msgid "The alliance is neglected."
-msgstr ""
+msgstr "Aliance je odmítnuta."
 
 #: player/partials/results.html:3
 msgid "The correct answer is:"
-msgstr ""
+msgstr "Správná odpověď je:"
 
 #: player/js/services/playerAppServices.js:665
 msgid "The deal was denied"
-msgstr ""
+msgstr "Dohoda byla odmítnuta."
 
 #: game/items/includes/results.js:28
 msgid "The division of the cake"
-msgstr ""
+msgstr "Rozdělení koláče"
 
 #: player/partials/rating/rating.score.html:2
 msgid "The MC has to select somebody!!"
-msgstr ""
+msgstr "MC musí někoho vybrat!!"
 
 #: player/js/services/playerAppServices.js:669
 msgid "The other team is busy"
-msgstr ""
+msgstr "Druhý tým pracuje"
 
 #. they took points from you
 #: player/partials/assholes.html:4
 msgid "The worst team was mean to you:"
-msgstr ""
+msgstr "Nejhorší tým se vůči Tobě zachoval špatně:"
 
 #: player/partials/assholes.html:15
 msgid "The worst team was not mean to you."
-msgstr ""
+msgstr "Nejhorší tým se vůči Tobě nezachoval špatně."
 
 #. they took points from you
 #: player/partials/assholes.html:2
 msgid "These teams were mean to you:"
-msgstr ""
+msgstr "Následující týmy se vůči Tobě zachovaly špatně:"
 
 #: player/partials/deals/deal.finish.html:7
 msgid "This deal is active"
-msgstr ""
+msgstr "Tato dohoda je platná"
 
-#: game/game.js:281
-#: game/playerManager.js:194
+#: game/game.js:281 game/playerManager.js:194
 msgid "This poll doesn't exist!"
-msgstr ""
+msgstr "Tato volba neexistuje!"
 
 #: player/partials/deals/deal.details.html:38
 msgid "This treaty was ACCEPTED."
-msgstr ""
+msgstr "Tato dohoda byla PŘIJATA."
 
 #: player/partials/deals/deal.details.html:39
 msgid "This treaty was DENIED."
-msgstr ""
+msgstr "Tato dohoda byla ZAMÍTNUTA."
 
 #. like in "Score 3 points to Team Red"
 #: mc/js/services/mcAppServices.js:661
 msgid "to"
-msgstr ""
+msgstr "pro"
 
 #. of a portion of numbers
-#: mc/views/results.html:26
-#: player/partials/results.html:18
+#: mc/views/results.html:26 player/partials/results.html:18
 msgid "Total:"
-msgstr ""
+msgstr "Celkem:"
 
 #: player/partials/rating/rating.html:19
 msgid "Traitor! You can't score down your allied!"
-msgstr ""
+msgstr "Zrádce! Nemůžeš ubrat body svému spojenci!"
 
 #: player/partials/deals/deal.answer.html:3
 #: player/partials/deals/deal.details.html:3
 #: player/partials/deals/deal.finish.html:3
 #: player/partials/deals/deal.messageSent.html:3
-#: player/partials/deals/deal.new.html:3
-#: player/partials/deals/deal.wait.html:3
+#: player/partials/deals/deal.new.html:3 player/partials/deals/deal.wait.html:3
 msgid "Treaty"
-msgstr ""
+msgstr "Dohoda"
 
 #. Keyword for poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:177
 msgid "trustworthy"
-msgstr ""
+msgstr "spolehlivý"
 
 #: player/partials/deals/deal.details.html:42
 msgid "Try Again"
-msgstr ""
+msgstr "Zkus to znova"
 
 #: mc/js/services/mcAppServices.js:572
 #: player/js/services/playerAppServices.js:236
 msgid "vote"
 msgid_plural "votes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "hlas"
+msgstr[1] "hlasy"
+msgstr[2] "hlasů"
 
-#: mc/views/vote.html:20
-#: player/partials/vote.html:19
+#: mc/views/vote.html:20 player/partials/vote.html:19
 msgid "VOTE"
-msgstr ""
+msgstr "VOLBA"
 
 #: mc/js/services/mcAppServices.js:655
 msgid "Voted for:"
-msgstr ""
+msgstr "Hlasoval/a pro:"
 
 #: mc/js/services/mcAppServices.js:648
 msgid "waiting ..."
-msgstr ""
+msgstr "čekám ..."
 
 #: player/partials/rating/rating.score.html:26
 msgid "Waiting for being rated."
-msgstr ""
+msgstr "Čekám na hodnocení. "
 
 #: player/partials/deals/deal.details.html:18
 msgid "Waiting for reply..."
-msgstr ""
+msgstr "Čekám na odpověď..."
 
 #: player/partials/deals/deal.wait.html:7
 msgid "We are waiting for reply."
-msgstr ""
+msgstr "Čekáme na odpověď."
 
 #. Brief form of poll "Who at the table has a job that pays enough that they can live from it?"
 #: mc/js/services/mcAppServices.js:122
 msgid "Who at the table has a job of which he or she can live?"
-msgstr ""
+msgstr "Kdo u tohoto stolu má práci která ho uživí?"
 
 #. Brief form of poll "Who at this table was a class representative or spokesman at school?"
 #: mc/js/services/mcAppServices.js:86
 msgid "Who at this table has been class spokesman?"
-msgstr ""
+msgstr "Kdo u tohoto stolu byl předsedou třídy?"
 
 #. Brief form of poll "Who at this table has ever hit the jackpot?"
 #: mc/js/services/mcAppServices.js:95
 msgid "Who at this table has ever won a lot?"
-msgstr ""
+msgstr "Kdo u tohoto stolu už někdy vyhrál hlavní cenu?"
 
 #. Brief form of poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:158
 msgid "Who feels more as an European than a citizens of his country?"
-msgstr ""
+msgstr "Kdo se cítí být více Evropanem, než občanem vlastní země?"
 
 #. Brief form of poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:176
 msgid "Who finds the people here in general trustworthy?"
-msgstr ""
+msgstr "Kdo považuje tyto lidi za důvěrohodné? "
 
 #. Brief form of poll "In the last ten years, who has gotten into a physical conflict or fight with someone?"
 #: mc/js/services/mcAppServices.js:140
 msgid "Who had a physical conflict in the past 10 years?"
-msgstr ""
+msgstr "Kdo v posledních 10 letech řešil konfilkt tělesně?"
 
 #. Brief form of poll "Who has ever lied about their national identity?"
 #: mc/js/services/mcAppServices.js:149
 msgid "Who has ever consciously denied his national origin?"
-msgstr ""
+msgstr "Kdo už někdy vědomě zapřel svou národnost?"
 
 #. Brief form of poll "Who is in an association, club or NGO?"
 #: mc/js/services/mcAppServices.js:113
 msgid "Who is involved in a association or in an NGO?"
-msgstr ""
+msgstr "Kdo se angažuje v nějakým spolku nebo NGO?"
 
 #. Brief form of poll "Who is afraid of the future?"
 #: mc/js/services/mcAppServices.js:167
 msgid "Who is scared of the future?"
-msgstr ""
+msgstr "Kdo se bojí budoucnosti?"
 
 #. Brief form of Poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:104
 msgid "Who was or is a member of a political party?"
-msgstr ""
+msgstr "Kdo je členem politické strany?"
 
 #. Brief form of Poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr ""
+msgstr "Kdo pravidelně pracuje v zahraničí?"
 
 #. Keyword for poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:186
 msgid "willingness of solidarity"
-msgstr ""
+msgstr "ochota k solidaritě"
 
 #. Keyword for poll "Who at this table has ever hit the jackpot?"
 #: mc/js/services/mcAppServices.js:96
 msgid "won a lot"
-msgstr ""
+msgstr "vyhrál hodně"
 
 #. Keyword for poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"
-msgstr ""
+msgstr "pracuje v zahraničí"
 
-#: game/playerManager.js:39
-#: homevisit_components/hvPlayerColors.js:32
+#: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
-msgstr ""
+msgstr "Žlutí"
 
 #: game/polls/Agreement.js:12
 msgid "Yes"
-msgstr ""
+msgstr "Ano"
 
 #: game/playerManager.js:510
 msgid "You are in the game!"
-msgstr ""
+msgstr "Jsi ve hře!"
 
 #: game/playerManager.js:501
 msgid "You are NOT in the game!"
-msgstr ""
+msgstr "NEJSI ve hře!"
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
-msgstr ""
+msgstr "Nejsi zapojen do hry!"
 
-#: mc/views/vote.html:47
-#: player/partials/voteConfirm.html:1
+#: mc/views/vote.html:47 player/partials/voteConfirm.html:1
 msgid "You are voting for:"
-msgstr ""
+msgstr "Hlasuješ pro:"
 
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
-msgstr ""
+msgstr "Tyto týmy můžeš posunout nahoru nebo dolů!"
 
 #: player/partials/deals/deal.noDealing.html:1
 msgid "You decided not to deal at all!"
-msgstr ""
+msgstr "Rozhodl/a ses neudělat žádnou akci!"
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr ""
+msgstr "Tvoje volba je odeslána!"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
-msgstr ""
+msgstr "Tvůj čas vypršel. Ztrácíš 1 bod!"
 
 #: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
-msgstr ""
+msgstr "Váha Tvých hlasů závisí na Tvém umístění."
