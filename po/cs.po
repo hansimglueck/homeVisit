@@ -126,7 +126,7 @@ msgstr "Zrušit výběr"
 
 #: player/partials/deals/deal.answer.html:7
 msgid "Do you want to accept this treaty?"
-msgstr "Přijmeš tuto dohodu?"
+msgstr "Přijmete tuto dohodu?"
 
 #: mc/js/controllers/matching.js:216
 msgid "Doesn't match well. Should play alone."
@@ -139,7 +139,7 @@ msgstr "holandský"
 #. Keyword for poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr "výdělek"
+msgstr "prospěch z volného trhu"
 
 #: homevisit_components/hvLanguage.js:8
 msgid "English"
@@ -250,15 +250,15 @@ msgstr "Ne"
 
 #: player/partials/deals/deal.choosePlayer.html:8
 msgid "No Deal with me!"
-msgstr "Se mnou ne!"
+msgstr "S námi ne!"
 
 #: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
-msgstr "Nikdo se k Tobě nechoval špatně. "
+msgstr "Nikdo se k vám nezachoval špatně. "
 
 #: homevisit_components/hvLanguage.js:14
 msgid "Norwegian"
-msgstr "Norský"
+msgstr "norský"
 
 #: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
@@ -290,16 +290,16 @@ msgstr "Hráči se navzájem hodnotí"
 
 #: mc/views/item.html:14
 msgid "Players are voting"
-msgstr "Hráči volí"
+msgstr "Hráči hlasují"
 
 #: homevisit_components/game-control/views/game-settings-modal.html:8
 msgid "Please choose the session for this Game."
-msgstr "Vybírej prosím termín této hry."
+msgstr "Vyber prosím termín této hry."
 
 #. Leave {{score}} as is
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
-msgstr "Ohodnoť nějaký tým! Dej {{score}} bod"
+msgstr "Obodujte jeden z týmů! Dejte {{score}} bod"
 
 #. select from a list
 #: mc/views/notes.html:10
@@ -317,7 +317,7 @@ msgstr[2] "bodů"
 #. message after someone distributed a point (score)
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr "Bod přidělen!"
+msgstr "Zápis bodů!"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
@@ -369,7 +369,7 @@ msgstr "Počet bodů"
 
 #: player/index.html:87
 msgid "Score:"
-msgstr "Počet bodů:"
+msgstr "Body:"
 
 #: mc/js/controllers/notes.js:31 mc/js/controllers/players.js:37
 #: mc/js/controllers/pollPopup.js:43 mc/js/controllers/script.js:85
@@ -379,7 +379,7 @@ msgstr "Vyber"
 #. html-code has to stay as is (is displaying an icon inline)
 #: player/partials/black.html:1
 msgid "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> is reading:"
-msgstr "Ticho prosím. Hráč <player-icon pid=\"status.playerOnTurn\"></player-icon> čte:"
+msgstr "Ticho prosím. <player-icon pid=\"status.playerOnTurn\"></player-icon> čtou:"
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
@@ -408,7 +408,7 @@ msgstr "Aliance je uzavřena."
 #. actually: "The alliance is rejected."
 #: game/polls/Agreement.js:42
 msgid "The alliance is neglected."
-msgstr "Aliance je odmítnuta."
+msgstr "Aliance je zamítnuta."
 
 #: player/partials/results.html:3
 msgid "The correct answer is:"
@@ -416,7 +416,7 @@ msgstr "Správná odpověď je:"
 
 #: player/js/services/playerAppServices.js:665
 msgid "The deal was denied"
-msgstr "Dohoda byla odmítnuta."
+msgstr "Dohoda byla zamítnuta."
 
 #: game/items/includes/results.js:28
 msgid "The division of the cake"
@@ -433,16 +433,16 @@ msgstr "Druhý tým pracuje"
 #. they took points from you
 #: player/partials/assholes.html:4
 msgid "The worst team was mean to you:"
-msgstr "Nejhorší tým se vůči Tobě zachoval špatně:"
+msgstr "Nejhorší tým se vůči vám zachoval špatně:"
 
 #: player/partials/assholes.html:15
 msgid "The worst team was not mean to you."
-msgstr "Nejhorší tým se vůči Tobě nezachoval špatně."
+msgstr "Nejhorší tým se vůči vám nezachoval špatně."
 
 #. they took points from you
 #: player/partials/assholes.html:2
 msgid "These teams were mean to you:"
-msgstr "Následující týmy se vůči Tobě zachovaly špatně:"
+msgstr "Následující týmy se vůči vám zachovaly špatně:"
 
 #: player/partials/deals/deal.finish.html:7
 msgid "This deal is active"
@@ -489,7 +489,7 @@ msgstr "spolehlivý"
 
 #: player/partials/deals/deal.details.html:42
 msgid "Try Again"
-msgstr "Zkus to znova"
+msgstr "Zkuste to znova"
 
 #: mc/js/services/mcAppServices.js:572
 #: player/js/services/playerAppServices.js:236
@@ -501,11 +501,11 @@ msgstr[2] "hlasů"
 
 #: mc/views/vote.html:20 player/partials/vote.html:19
 msgid "VOTE"
-msgstr "VOLBA"
+msgstr "HLASUJTE"
 
 #: mc/js/services/mcAppServices.js:655
 msgid "Voted for:"
-msgstr "Hlasoval/a pro:"
+msgstr "Hlasovali pro:"
 
 #: mc/js/services/mcAppServices.js:648
 msgid "waiting ..."
@@ -513,7 +513,7 @@ msgstr "čekám ..."
 
 #: player/partials/rating/rating.score.html:26
 msgid "Waiting for being rated."
-msgstr "Čekám na hodnocení. "
+msgstr "Čeká se na ohodnocení."
 
 #: player/partials/deals/deal.details.html:18
 msgid "Waiting for reply..."
@@ -586,7 +586,7 @@ msgstr "ochota k solidaritě"
 #. Keyword for poll "Who at this table has ever hit the jackpot?"
 #: mc/js/services/mcAppServices.js:96
 msgid "won a lot"
-msgstr "vyhrál hodně"
+msgstr "vyhrál/a hodně"
 
 #. Keyword for poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:132
@@ -603,36 +603,36 @@ msgstr "Ano"
 
 #: game/playerManager.js:510
 msgid "You are in the game!"
-msgstr "Jsi ve hře!"
+msgstr "Jste ve hře!"
 
 #: game/playerManager.js:501
 msgid "You are NOT in the game!"
-msgstr "NEJSI ve hře!"
+msgstr "NEJSTE ve hře!"
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
-msgstr "Nejsi zapojen do hry!"
+msgstr "Nejste zapojeni do hry!"
 
 #: mc/views/vote.html:47 player/partials/voteConfirm.html:1
 msgid "You are voting for:"
-msgstr "Hlasuješ pro:"
+msgstr "Hlasujete pro:"
 
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
-msgstr "Tyto týmy můžeš posunout nahoru nebo dolů!"
+msgstr "Tyto týmy můžete posunout nahoru nebo dolů!"
 
 #: player/partials/deals/deal.noDealing.html:1
 msgid "You decided not to deal at all!"
-msgstr "Rozhodl/a ses neudělat žádnou akci!"
+msgstr "Rozhodli jste se neudělat žádnou akci!"
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr "Tvoje volba je odeslána!"
+msgstr "Vaše volba je odeslána!"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
-msgstr "Tvůj čas vypršel. Ztrácíš 1 bod!"
+msgstr "Váš čas vypršel. Ztrácíte 1 bod!"
 
 #: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
-msgstr "Váha Tvých hlasů závisí na Tvém umístění."
+msgstr "Váha vašich hlasů odpovídá vašemu umístění."
