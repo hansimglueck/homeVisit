@@ -108,6 +108,11 @@
 
             homeFactory.start = function () {
                 Socket.on('display', function (data) {
+
+                    if (data.type === "sound") {
+                        playSound(data.text);
+                        return;
+                    }
                     if (data.type !== "alert") {
                         homeFactory.done = false;
                     }
@@ -143,9 +148,6 @@
                                     break;
                                 case "card":
                                     showCard();
-                                    break;
-                                case "sound":
-                                    playSound(data.text);
                                     break;
                                 case "browser":
                                     homeFactory.type = "browser";
