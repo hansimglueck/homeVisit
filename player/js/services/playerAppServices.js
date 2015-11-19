@@ -144,6 +144,9 @@
                                 case "card":
                                     showCard();
                                     break;
+                                case "sound":
+                                    playSound(data.text);
+                                    break;
                                 case "browser":
                                     homeFactory.type = "browser";
                                     break;
@@ -329,6 +332,15 @@
                 homeFactory.type = "card";
                 console.log("we have to show a card!");
                 $location.path('/card');
+            }
+
+            function playSound(fileName) {
+                console.log("we have to play a sound");
+                if (fileName === "stop") {
+                    fxService.stopVolatileSound();
+                } else {
+                    fxService.playVolatileSound(fileName);
+                }
             }
 
             function showDeal(data) {
@@ -554,6 +566,7 @@
             fxService.class = {
                 background: "transparent"
             };
+            fxService.volatileSound = null;
 
             fxService.scoreAlert = function (score) {
                 console.log("FX-Service got score: " + score);
@@ -605,6 +618,14 @@
                 console.log("cancelling countdown");
                 $interval.cancel(fxService.interval);
                 fxService.countdown.count = 0;
+            };
+            fxService.playVolatileSound = function (fileName) {
+                fxService.volatileSound = ngAudio.load("sounds/"+fileName);
+                fxService.volatileSound.loop = true;
+                fxService.volatileSound.play();
+            };
+            fxService.stopVolatileSound = function () {
+                fxService.volatileSound.stop();
             };
             fxService.playSound = function (id) {
                 console.log("fxService.play " + id);
