@@ -69,9 +69,12 @@
                         //checke, welche votes die voteOption[0] der results (sortiert) in der choice haben
                         //und verteile +1 dafür, -1 für die anderen
                         //TODO: bei mehr al zwei gleichguten Antworten werden nur zwei berücksichtigt...
-                        best = [this.data.voteOptions[0].value];
-                        if (typeof this.data.voteOptions[1] !== "undefined") if (this.data.voteOptions[0].votes === this.data.voteOptions[1].votes) {
-                            best.push(this.data.voteOptions[1].value);
+                        var sorted = this.data.voteOptions.sort(function(a, b) {
+                            return b.result - a.result;
+                        });
+                        best = [sorted[0].value];
+                        if (typeof sorted[1] !== "undefined") if (sorted[0].votes === sorted[1].votes) {
+                            best.push(sorted[1].value);
                         }
                         this.data.votes.forEach(function (vote) {
                             score = -1;
