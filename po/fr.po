@@ -9,7 +9,7 @@ msgstr ""
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "X-Generator: Poedit 1.5.4\n"
-"Language: French\n"
+"Language: fr\n"
 
 #. everything in curly braces has to stay as is
 #: player/partials/assholes.html:9
