@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.5\n"
+"X-Generator: Poedit 1.8.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. everything in curly braces has to stay as is
@@ -527,7 +527,7 @@ msgstr "Attendre..."
 
 #: player/partials/rating/rating.score.html:26
 msgid "Waiting for being rated."
-msgstr "Attendre d'être évalué."
+msgstr "En cours d’évaluation…"
 
 #: player/partials/deals/deal.details.html:18
 msgid "Waiting for reply..."
@@ -641,7 +641,7 @@ msgstr "Vous avez décidé de ne conclure aucun accord."
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr "La voix est compté!"
+msgstr "La voix est comptée!"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
