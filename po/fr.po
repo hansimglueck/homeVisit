@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.5\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. everything in curly braces has to stay as is
@@ -34,7 +34,7 @@ msgstr "Ambition"
 #. Keyword for Poll "Who is in an association, club or NGO?"
 #: mc/js/services/mcAppServices.js:114
 msgid "association/NGO"
-msgstr "Association/ONG"
+msgstr "Association/Club/ONG"
 
 #. of a portion of numbers
 #: mc/views/results.html:27 player/partials/results.html:22
@@ -74,9 +74,8 @@ msgid "class spokesman"
 msgstr "délégué de classe"
 
 #: mc/js/controllers/players.js:48
-#, fuzzy
 msgid "Come Back!"
-msgstr "Revenez!"
+msgstr "Revenez !"
 
 #: mc/views/item.html:31
 #, fuzzy
@@ -86,7 +85,7 @@ msgstr "Signal"
 #. Keyword for poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:204
 msgid "confidence in democracy"
-msgstr "confiance en la démocratie"
+msgstr "confiance en la Démocratie"
 
 #: mc/views/item.html:32
 msgid "Configuration"
@@ -117,7 +116,7 @@ msgstr "Négocier avec"
 #. Keyword for poll "Who has ever lied about their national identity?"
 #: mc/js/services/mcAppServices.js:150
 msgid "denied origin"
-msgstr "Nié son pays d'origine"
+msgstr "Cacher sa nationalité"
 
 #: player/partials/deals/deal.answer.html:13
 msgid "Deny"
@@ -134,6 +133,7 @@ msgid "Do you want to accept this treaty?"
 msgstr "Souhaitez-vous accepter cet accord ?"
 
 #: mc/js/controllers/matching.js:216
+#, fuzzy
 msgid "Doesn't match well. Should play alone."
 msgstr "Pas d'accord trouvé. Devrait jouer seul."
 
@@ -143,9 +143,8 @@ msgstr "Nearlandais"
 
 #. Keyword for poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:213
-#, fuzzy
 msgid "earnings"
-msgstr "Profit dans le jeu des marchés libres"
+msgstr "Profit dans le jeu du libre marché"
 
 #: homevisit_components/hvLanguage.js:8
 msgid "English"
@@ -188,7 +187,7 @@ msgstr "Langue"
 
 #: mc/js/controllers/players.js:50
 msgid "Leave Table!"
-msgstr "Quittez la table!"
+msgstr "Quittez la table !"
 
 #: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
@@ -204,6 +203,7 @@ msgid "looses one Point"
 msgstr "perd un point"
 
 #: mc/js/controllers/matching.js:218
+#, fuzzy
 msgid "Matches best with the team of {{name1}} and {{name2}}."
 msgstr "Correspond le mieux à l'équipe de {{name1}} et {{name2}}."
 
@@ -234,22 +234,21 @@ msgstr "Mon ambition"
 #. Short form of poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:203
 msgid "My confidence in democracy"
-msgstr "Ma confiance en la démocratie"
+msgstr "Ma confiance en la Démocratie"
 
 #. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
-#, fuzzy
 msgid "My earnings from the game of the markets"
-msgstr "Le profit que je tire du jeu des marchés"
+msgstr "Le profit que je tire du libre marché"
 
 #: mc/js/controllers/players.js:56
 msgid "My Turn!"
-msgstr "Mon tour! C'est à moi!"
+msgstr "Mon tour ! C'est à moi !"
 
 #. Short form of poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
-msgstr "Mon engagement solidaire"
+msgstr "Mon sens de la solidarité"
 
 #: game/polls/Agreement.js:16
 msgid "No"
@@ -257,7 +256,7 @@ msgstr "Non"
 
 #: player/partials/deals/deal.choosePlayer.html:8
 msgid "No Deal with me!"
-msgstr "Pas d'accord avec nous!"
+msgstr "Pas d'accord avec nous !"
 
 #: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
@@ -302,17 +301,17 @@ msgstr "Les équipes votent"
 #: homevisit_components/game-control/views/game-settings-modal.html:8
 #, fuzzy
 msgid "Please choose the session for this Game."
-msgstr "S'il vous pait choisissez la session avant que le jeu ne démarre  !!  Bitte Spielsitzung einstellen bevor das Spiel startet!   ?????????"
+msgstr "S'il vous pait choisissez la session avant que le jeu ne démarre  !!"
 
 #. Leave {{score}} as is
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
-msgstr "Retirez {{score}} point!"
+msgstr "Retirez {{score}} point !"
 
 #. select from a list
 #: mc/views/notes.html:10
 msgid "Please Select:"
-msgstr "faites un choix/ choisissez :"
+msgstr "faites un choix"
 
 #: mc/js/services/mcAppServices.js:563
 #: player/js/services/playerAppServices.js:219
@@ -340,11 +339,11 @@ msgstr "Place :"
 
 #: mc/js/services/mcAppServices.js:696
 msgid "Really jump?"
-msgstr "Sauter vraiment?"
+msgstr "Sauter vraiment ?"
 
 #: mc/js/services/mcAppServices.js:691
 msgid "Really restart?"
-msgstr "Vraiment recommencer?"
+msgstr "Vraiment recommencer ?"
 
 #: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:28
 msgid "red"
@@ -366,7 +365,7 @@ msgstr "Les résultats sont affichés"
 #: mc/views/results.html:43 player/partials/results.html:47
 #, fuzzy
 msgid "Results are weighted by ranking. See actual votes in braces."
-msgstr "Les résultats pèsent selon leur classement. Les voix sont indiqués entre parenthèses. "
+msgstr "La valeur des résultats dépend du rang dans le classement. Les voix sont indiqués entre parenthèses. "
 
 #: mc/js/services/mcAppServices.js:168
 msgid "scared of the future"
@@ -407,11 +406,12 @@ msgstr "Soumettre"
 #: homevisit_components/game-control/views/game-restart-modal.html:7
 #, fuzzy
 msgid "Sure you want to restart the game? This will start a new recording..."
-msgstr "Êtes-vous sûr/certain de vouloir recommence/relancer/ réinitialiser le jeu? Ceci démarrera un  nouvel enregistrement .... "
+msgstr "Êtes-vous certain de vouloir recommence/relancer/ réinitialiser le jeu? Ceci démarrera un  nouvel enregistrement .... "
 
 #: homevisit_components/game-control/views/game-stop-modal.html:7
+#, fuzzy
 msgid "Sure you want to stop the game? This will finish the current recording."
-msgstr "Êtes-vous sûr/certain de vouloir arrêter le jeu? Ceci arrêtera/terminera un l'enregistrement actuel.... "
+msgstr "Êtes-vous certain de vouloir arrêter le jeu? Ceci arrêtera/terminera un l'enregistrement actuel.... "
 
 #: game/polls/Agreement.js:39
 msgid "The alliance is fullfilled."
@@ -436,7 +436,7 @@ msgstr "Le partage du gâteau"
 
 #: player/partials/rating/rating.score.html:2
 msgid "The MC has to select somebody!!"
-msgstr "Le MC doit choisir quelqu'un!!"
+msgstr "Le MC doit choisir quelqu'un !!"
 
 #: player/js/services/playerAppServices.js:669
 msgid "The other team is busy"
@@ -461,6 +461,7 @@ msgid "This deal is active"
 msgstr "L'accord a été conclu."
 
 #: game/game.js:281 game/playerManager.js:194
+#, fuzzy
 msgid "This poll doesn't exist!"
 msgstr "Cette question/ n'existe pas."
 
@@ -484,7 +485,7 @@ msgstr "Total:"
 
 #: player/partials/rating/rating.html:19
 msgid "Traitor! You can't score down your allied!"
-msgstr "Traitre! Vous ne pouvez pas évaluer vos alliés de façon négative!"
+msgstr "Traitre ! Vous ne pouvez pas évaluer vos alliés de façon négative !"
 
 #: player/partials/deals/deal.answer.html:3
 #: player/partials/deals/deal.details.html:3
@@ -523,74 +524,76 @@ msgstr "A voté pour:"
 
 #: mc/js/services/mcAppServices.js:648
 msgid "waiting ..."
-msgstr "Attendre..."
+msgstr "En cours"
 
 #: player/partials/rating/rating.score.html:26
 msgid "Waiting for being rated."
 msgstr "En cours d’évaluation…"
 
 #: player/partials/deals/deal.details.html:18
+#, fuzzy
 msgid "Waiting for reply..."
 msgstr "Attendre une réponse ..."
 
 #: player/partials/deals/deal.wait.html:7
+#, fuzzy
 msgid "We are waiting for reply."
 msgstr "Nous attendons une réponse."
 
 #. Brief form of poll "Who at the table has a job that pays enough that they can live from it?"
 #: mc/js/services/mcAppServices.js:122
 msgid "Who at the table has a job of which he or she can live?"
-msgstr "Qui autour de cette table a un travail qui lui permet d'en vivre?"
+msgstr "Qui, autour de cette table, a un travail qui lui permet d'en vivre ?"
 
 #. Brief form of poll "Who at this table was a class representative or spokesman at school?"
 #: mc/js/services/mcAppServices.js:86
 msgid "Who at this table has been class spokesman?"
-msgstr "Qui autour de cette table a été délégué de classe?"
+msgstr "Qui, autour de cette table, a été délégué de classe ?"
 
 #. Brief form of poll "Who at this table has ever hit the jackpot?"
 #: mc/js/services/mcAppServices.js:95
 msgid "Who at this table has ever won a lot?"
-msgstr "Qui autour de cette table a gagné le gros lot?"
+msgstr "Qui, autour de cette table, a gagné le gros lot ?"
 
 #. Brief form of poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:158
 msgid "Who feels more as an European than a citizens of his country?"
-msgstr "Qui se sent plus européen que citoyen de son pays?"
+msgstr "Qui se sent plus européen que citoyen de son pays ?"
 
 #. Brief form of poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:176
 msgid "Who finds the people here in general trustworthy?"
-msgstr "Qui pense que les personnes autour de cette table sont fondamentalement dignes de confiance?"
+msgstr "Qui pense que les personnes autour de cette table sont fondamentalement dignes de confiance ?"
 
 #. Brief form of poll "In the last ten years, who has gotten into a physical conflict or fight with someone?"
 #: mc/js/services/mcAppServices.js:140
 msgid "Who had a physical conflict in the past 10 years?"
-msgstr "Au cours des 10 dernières années qui s'est battu physiquement lors d'un conflit?"
+msgstr "Au cours des 10 dernières années qui s'est battu physiquement lors d'un conflit ?"
 
 #. Brief form of poll "Who has ever lied about their national identity?"
 #: mc/js/services/mcAppServices.js:149
 msgid "Who has ever consciously denied his national origin?"
-msgstr "Qui a intentionnellement nié son pays d'origine?"
+msgstr "Qui a intentionnellement nié a nationalité ?"
 
 #. Brief form of poll "Who is in an association, club or NGO?"
 #: mc/js/services/mcAppServices.js:113
 msgid "Who is involved in a association or in an NGO?"
-msgstr "Qui est engagé dans une association ou une ONG?"
+msgstr "Qui est engagé dans une association, un club ou une ONG ?"
 
 #. Brief form of poll "Who is afraid of the future?"
 #: mc/js/services/mcAppServices.js:167
 msgid "Who is scared of the future?"
-msgstr "Qui a peur de l'avenir?"
+msgstr "Qui a peur de l'avenir ?"
 
 #. Brief form of Poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:104
 msgid "Who was or is a member of a political party?"
-msgstr "Qui est ou a été membre d'un parti politique?"
+msgstr "Qui est ou a été membre d'un parti politique ?"
 
 #. Brief form of Poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr "Qui travaille régulièrement hors du pays?"
+msgstr "Qui travaille régulièrement hors du pays ?"
 
 #. Keyword for poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:186
@@ -617,15 +620,15 @@ msgstr "Oui"
 
 #: game/playerManager.js:510
 msgid "You are in the game!"
-msgstr "Vous misez un point!"
+msgstr "Vous misez un point !"
 
 #: game/playerManager.js:501
 msgid "You are NOT in the game!"
-msgstr "Vous ne misez aucun point!"
+msgstr "Vous ne misez aucun point !"
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
-msgstr "Vous ne participez pas au jeu!"
+msgstr "Vous ne participez pas au jeu !"
 
 #: mc/views/vote.html:47 player/partials/voteConfirm.html:1
 msgid "You are voting for:"
@@ -633,7 +636,7 @@ msgstr "Vous votez pour:"
 
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
-msgstr "Tu peux évaluer cette équipe de façon négative ou positive!"
+msgstr "Tu peux évaluer cette équipe de façon négative ou positive !"
 
 #: player/partials/deals/deal.noDealing.html:1
 msgid "You decided not to deal at all!"
@@ -641,12 +644,12 @@ msgstr "Vous avez décidé de ne conclure aucun accord."
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr "La voix est comptée!"
+msgstr "La voix est comptée !"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
-msgstr "Le temps est écoulé. Un point en moins!"
+msgstr "Le temps est écoulé. Un point en moins !"
 
 #: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
-msgstr "La valeur des votes dépend de votre rang actuel!"
+msgstr "La valeur des votes dépend de votre rang actuel !"
