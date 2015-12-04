@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.8.5\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
 #. everything in curly braces has to stay as is
@@ -72,16 +72,16 @@ msgstr "délégué de classe"
 
 #: mc/js/controllers/players.js:48
 msgid "Come Back!"
-msgstr "Revenez !"
+msgstr "Revenez!"
 
 #: mc/views/item.html:31
 msgid "Command"
-msgstr "Command"
+msgstr "Commande"
 
 #. Keyword for poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:204
 msgid "confidence in democracy"
-msgstr "confiance en la démocratie"
+msgstr "confiance en la Démocratie"
 
 #: mc/views/item.html:32
 msgid "Configuration"
@@ -112,7 +112,7 @@ msgstr "Négocier avec"
 #. Keyword for poll "Who has ever lied about their national identity?"
 #: mc/js/services/mcAppServices.js:150
 msgid "denied origin"
-msgstr "Nié son pays d'origine"
+msgstr "Nié son pays d'origine ou sa nationalité"
 
 #: player/partials/deals/deal.answer.html:13
 msgid "Deny"
@@ -129,7 +129,7 @@ msgstr "Souhaitez-vous accepter cet accord ?"
 
 #: mc/js/controllers/matching.js:216
 msgid "Doesn't match well. Should play alone."
-msgstr "Pas d'accord trouvé. Devrait jouer seul."
+msgstr "Pas d'accord trouvé. Jouera seul."
 
 #: homevisit_components/hvLanguage.js:13
 msgid "Dutch"
@@ -138,7 +138,7 @@ msgstr "Nearlandais"
 #. Keyword for poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr "Profit dans le jeu des marchés libres"
+msgstr "Profit dans le jeu du libre marchés."
 
 #: homevisit_components/hvLanguage.js:8
 msgid "English"
@@ -227,12 +227,12 @@ msgstr "Mon ambition"
 #. Short form of poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:203
 msgid "My confidence in democracy"
-msgstr "Ma confiance en la démocratie"
+msgstr "Ma confiance en la Démocratie"
 
 #. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr "Le profit que je tire du jeu des marchés"
+msgstr "Le profit que je tire du jeu du libre marché"
 
 #: mc/js/controllers/players.js:56
 msgid "My Turn!"
@@ -241,7 +241,7 @@ msgstr "Mon tour! C'est à moi!"
 #. Short form of poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
-msgstr "Mon engagement solidaire"
+msgstr "Mon sens de la solidarité"
 
 #: game/polls/Agreement.js:16
 msgid "No"
@@ -293,17 +293,17 @@ msgstr "Les équipes votent"
 
 #: homevisit_components/game-control/views/game-settings-modal.html:8
 msgid "Please choose the session for this Game."
-msgstr "S'il vous pait choisissez la session avant que le jeu ne démarre  !!"
+msgstr "S'il vous pait choisissez la session avant que le jeu ne démarre!!"
 
 #. Leave {{score}} as is
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
-msgstr "Retirez {{score}} point!"
+msgstr "Évaluez une équipe. Retirez {{score}} point!"
 
 #. select from a list
 #: mc/views/notes.html:10
 msgid "Please Select:"
-msgstr "faites un choix/ choisissez :"
+msgstr "Faites un choix:"
 
 #: mc/js/services/mcAppServices.js:563
 #: player/js/services/playerAppServices.js:219
@@ -315,7 +315,7 @@ msgstr[1] "points"
 #. message after someone distributed a point (score)
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr "Le point a été compté !"
+msgstr "Le point a été compté!"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
@@ -327,7 +327,7 @@ msgstr "Portugais"
 
 #: player/index.html:86
 msgid "Rank:"
-msgstr "Place :"
+msgstr "Place:"
 
 #: mc/js/services/mcAppServices.js:696
 msgid "Really jump?"
@@ -355,7 +355,7 @@ msgstr "Les résultats sont affichés"
 
 #: mc/views/results.html:43 player/partials/results.html:47
 msgid "Results are weighted by ranking. See actual votes in braces."
-msgstr "La valeur des résultats dépend du rang dans classement. Les voix sont indiqués entre parenthèses."
+msgstr "La valeur des résultats dépend du rang dans le classement. Les voix sont indiqués entre parenthèses."
 
 #: mc/js/services/mcAppServices.js:168
 msgid "scared of the future"
@@ -377,7 +377,7 @@ msgstr "Choisir"
 #. html-code has to stay as is (is displaying an icon inline)
 #: player/partials/black.html:1
 msgid "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> is reading:"
-msgstr "Silence s'il vous plait. Maintenant le joueur <player-icon pid=\"status.playerOnTurn\"></player-icon> va lire."
+msgstr "Silence s'il vous plait. Maintenant le joueur <player-icon pid=\"status.playerOnTurn\"></player-icon> va lire:"
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
@@ -393,7 +393,7 @@ msgstr "Soumettre"
 
 #: homevisit_components/game-control/views/game-restart-modal.html:7
 msgid "Sure you want to restart the game? This will start a new recording..."
-msgstr "Êtes-vous sûr de vouloir relancer le jeu? Ceci démarrera un  nouvel enregistrement .... "
+msgstr "Êtes-vous sûr de vouloir relancer le jeu? Ceci démarrera un nouvel enregistrement .... "
 
 #: homevisit_components/game-control/views/game-stop-modal.html:7
 msgid "Sure you want to stop the game? This will finish the current recording."
@@ -414,7 +414,7 @@ msgstr "La bonne réponse est:"
 
 #: player/js/services/playerAppServices.js:665
 msgid "The deal was denied"
-msgstr "L'accord n'a pu être conclu"
+msgstr "L'accord n'a pu être conclu."
 
 #: game/items/includes/results.js:28
 msgid "The division of the cake"
@@ -426,7 +426,7 @@ msgstr "Le MC doit choisir quelqu'un!!"
 
 #: player/js/services/playerAppServices.js:669
 msgid "The other team is busy"
-msgstr "L'autre équipe est occupé."
+msgstr "L'autre équipe est occupée."
 
 #. they took points from you
 #: player/partials/assholes.html:4
@@ -448,7 +448,7 @@ msgstr "L'accord a été conclu."
 
 #: game/game.js:281 game/playerManager.js:194
 msgid "This poll doesn't exist!"
-msgstr "Cette question/ n'existe pas."
+msgstr "Cette question n'existe pas."
 
 #: player/partials/deals/deal.details.html:38
 msgid "This treaty was ACCEPTED."
@@ -484,7 +484,7 @@ msgstr "Accord"
 #. Keyword for poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:177
 msgid "trustworthy"
-msgstr "Digne de confaince"
+msgstr "Digne de confiance"
 
 #: player/partials/deals/deal.details.html:42
 msgid "Try Again"
@@ -507,7 +507,7 @@ msgstr "A voté pour:"
 
 #: mc/js/services/mcAppServices.js:648
 msgid "waiting ..."
-msgstr "en cours …"
+msgstr "Attendre..."
 
 #: player/partials/rating/rating.score.html:26
 msgid "Waiting for being rated."
@@ -579,7 +579,7 @@ msgstr "Qui travaille régulièrement hors du pays?"
 #. Keyword for poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:186
 msgid "willingness of solidarity"
-msgstr "Mon sens de la solidarité"
+msgstr "Mon sens de la Solidarité"
 
 #. Keyword for poll "Who at this table has ever hit the jackpot?"
 #: mc/js/services/mcAppServices.js:96
@@ -617,7 +617,7 @@ msgstr "Vous votez pour:"
 
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
-msgstr "Tu peux évaluer cette équipe de façon négative ou positive!"
+msgstr "Vous pouvez évaluer cette équipe de façon négative ou positive!"
 
 #: player/partials/deals/deal.noDealing.html:1
 msgid "You decided not to deal at all!"
