@@ -8,7 +8,7 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
-"X-Generator: Poedit 1.8.1\n"
+"X-Generator: Poedit 1.5.4\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "Language: nl\n"
 
@@ -189,7 +189,7 @@ msgstr "lichtblauw"
 
 #: game/playerManager.js:41 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
-msgstr "lila"
+msgstr "paars"
 
 #. A Team...
 #: player/partials/rating/rating.html:11
