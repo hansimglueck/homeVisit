@@ -1,6 +1,8 @@
 import os
 import printer_gs, textwrap
-import Image, ImageDraw
+from PIL import Image
+from PIL import ImageDraw
+#import Image, ImageDraw
 
 filepath = str(sys.argv[1])
 
