@@ -2,6 +2,8 @@ import os
 import printer_gs, textwrap
 import Image, ImageDraw
 
+filepath = str(sys.argv[1])
+
 ### This is for saving img data into a file
 def parsePictureFile(filename):
 	p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
@@ -22,3 +24,6 @@ def printFromDataFile(filename):
 	p.linefeed()
 	p.linefeed()
 	p.linefeed()
+
+print("Converting file: " + filepath)
+parsePictureFile(filepath)
