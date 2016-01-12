@@ -81,7 +81,10 @@ class ThermalPrinter(object):
     # clear, but the slower printing speed.
 
     def __init__(self, heatTime=80, heatInterval=2, heatingDots=7, serialport=SERIALPORT):
-        self.printer = serial.Serial(serialport, self.BAUDRATE, timeout=self.TIMEOUT)
+    ### LONGER HEATTIME FOR BITMAP PRINTING ONLY ##################################################
+    ### def __init__(self, heatTime=130, heatInterval=2, heatingDots=7, serialport=SERIALPORT): ###
+    ###############################################################################################    
+	self.printer = serial.Serial(serialport, self.BAUDRATE, timeout=self.TIMEOUT)
         self.printer.write(self._ESC) # ESC - command
         self.printer.write(chr(64)) # @   - initialize
         self.printer.write(self._ESC) # ESC - command
