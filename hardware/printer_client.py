@@ -49,8 +49,10 @@ def cb(msg):
 		### DATA FILE NAME
 		### FILES SHALL BE LOCATED IN FOLDER "medien/pics"
 		
-		if (lines[0] == "***PIC***"):
-			p.print_from_file("../../medien/pics/" + str(lines[1]))
+		if (lines[0].startswith("***PIC***")):
+			#p.print_from_file("/home/pi/medien/pics/test1_data")
+			p.print_from_file("/home/pi/medien/pics/" + str(lines[1]))
+			#p.print_text("PRINT THE PIC DATA:  "+"../../medien/pics/"+str(lines[1])+"\n")
 		else:
 			for item in lines:
 				#print item

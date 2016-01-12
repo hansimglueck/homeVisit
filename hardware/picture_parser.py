@@ -27,5 +27,5 @@ def printFromDataFile(filename):
 	p.linefeed()
 
 print("Converting file: " + filepath)
-#parsePictureFile(filepath)
-printFromDataFile(filepath)
+parsePictureFile(filepath)
+#printFromDataFile(filepath)
