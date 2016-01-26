@@ -1,8 +1,8 @@
-(function() {
+(function () {
     'use strict';
 
     angular.module('hvLanguage', [])
-        .factory('languageFactory', function(gettextCatalog) {
+        .factory('languageFactory', function (gettextCatalog) {
 
             var languages = [
                 ['en', gettextCatalog.getString('English')],
@@ -13,7 +13,8 @@
                 ['nl', gettextCatalog.getString('Dutch')],
                 ['no', gettextCatalog.getString('Norwegian')],
                 ['pl', gettextCatalog.getString('Polish')],
-                ['pt', gettextCatalog.getString('Portuguese')]
+                ['pt', gettextCatalog.getString('Portuguese')],
+                ['gl', gettextCatalog.getString('Galician')]
             ];
 
             var languageFactory = {};
@@ -22,7 +23,7 @@
 
             return languageFactory;
         })
-        .directive('languageChooser', function() {
+        .directive('languageChooser', function () {
             return {
                 restrict: 'E',
                 replace: 'true',
@@ -30,7 +31,7 @@
                 controller: function ($scope, Socket, languageFactory, gettextCatalog) {
                     $scope.gettextCatalog = gettextCatalog;
                     $scope.languages = languageFactory.availableLanguages;
-                    $scope.changeLanguage = function() {
+                    $scope.changeLanguage = function () {
                         Socket.emit('changeLanguage', gettextCatalog.getCurrentLanguage());
                     };
                 },
