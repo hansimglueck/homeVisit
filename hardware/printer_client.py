@@ -11,16 +11,16 @@ p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
 specialChars = {'“':'\x22', '”':'\x22', '„':'\x22', '‟':'\x22', '‹':'\x3C', '›':'\x3E', '–':'-', 'Œ':'OE', 'œ':'oe'}
 
 def setLanguage(lang):
-	if lang in ["en","de","da","fr","nl","no","pt"]:
-		p.setCodeTable(2)
-		specialCharsTable2 = {'«':'\xAE', '»':'\xAF', 'Ä':'\x8E', 'ä':'\x84', 'Ö':'\x99', 'ö':'\x94', 'Ü':'\x9A', 'ü':'\x81', 'ß':'\xE1', 'Ç':'\x80', 'ç':'\x87', 'É':'\x90', 'é':'\x82', 'Â':'\xB6', 'â':'\x83', 'À':'\xB7', 'à':'\x85', 'Å':'\x8F', 'å':'\x86', 'Ê':'\xD2', 'ê':'\x88', 'Ë':'\xD3', 'ë':'\x89', 'È':'\xD4', 'è':'\x8A', 'Ï':'\xD8', 'ï':'\x8B', 'Î':'\xD7', 'î':'\x8C', 'Ì':'\x8D', 'ì':'\x8D', 'Æ':'\x92', 'æ':'\x91', 'Ô':'\xE2', 'ô':'\x93', 'Ò':'\xE3', 'ò':'\x95', 'Û':'\xEA', 'û':'\x96', 'Ù':'\xEB', 'ù':'\x97', 'Á':'\xB5', 'á':'\xA0', 'Í':'\xD6', 'í':'\xA1', 'Ó':'\xE0', 'ó':'\xA2', 'Ú':'\xE9', 'ú':'\xA3', 'Ñ':'\xA5', 'ñ':'\xA4', '¡':'\xAD', '¿':'\xA8', 'Ø':'\x9D', 'ø':'\x9B', 'Ã':'\xC7', 'ã':'\xC6', 'Õ':'\xE5', 'õ':'\xE4'}
-		specialChars.update(specialCharsTable2)
-	elif lang in ["cs","pl"]:
+	if lang in ["cs","pl"]:
 		p.setCodeTable(18)
 		specialCharsLang = {}
 		specialCharsTable18 = {'«':'\xAE', '»':'\xAF', 'á':'\xA0', 'č':'\x9F', 'ď':'\xD4', 'é':'\x82', 'ě':'\xD8', 'í':'\x92', 'ň':'\xE5', 'ó':'\xA2', 'ř':'\xFD', 'š':'\xE7', 'ť':'\x9C', 'ú':'\xA3', 'ů':'\x85', 'ý':'\xEC', 'ž':'\xA7', 'Á':'\xB5', 'Č':'\xAC', 'Ď':'\xD2', 'É':'\x90', 'Ě':'\xB7', 'Í':'\xD6', 'Ň':'\xD5', 'Ó':'\xE0', 'Ř':'\xFC', 'Š':'\xE6', 'Ť':'\x9B', 'Ú':'\xE9', 'Ů':'\xDE', 'Ý':'\xED', 'Ž':'\xA6', 'ą':'\xA5', 'ć':'\x86', 'ę':'\xA9', 'ł':'\x88', 'ń':'\xE4', 'ó':'\xA2', 'ś':'\x98', 'ź':'\xAB', 'ż':'\xBE', 'Ą':'\xA4', 'Ć':'\x8F', 'Ę':'\xA8', 'Ł':'\x9D', 'Ń':'\xE3', 'Ó':'\xE0', 'Ś':'\x97', 'Ź':'\x8D', 'Ż':'\xBD'}
 		specialChars.update(specialCharsTable18)
-	
+	else:
+		p.setCodeTable(2)
+		specialCharsTable2 = {'«':'\xAE', '»':'\xAF', 'Ä':'\x8E', 'ä':'\x84', 'Ö':'\x99', 'ö':'\x94', 'Ü':'\x9A', 'ü':'\x81', 'ß':'\xE1', 'Ç':'\x80', 'ç':'\x87', 'É':'\x90', 'é':'\x82', 'Â':'\xB6', 'â':'\x83', 'À':'\xB7', 'à':'\x85', 'Å':'\x8F', 'å':'\x86', 'Ê':'\xD2', 'ê':'\x88', 'Ë':'\xD3', 'ë':'\x89', 'È':'\xD4', 'è':'\x8A', 'Ï':'\xD8', 'ï':'\x8B', 'Î':'\xD7', 'î':'\x8C', 'Ì':'\x8D', 'ì':'\x8D', 'Æ':'\x92', 'æ':'\x91', 'Ô':'\xE2', 'ô':'\x93', 'Ò':'\xE3', 'ò':'\x95', 'Û':'\xEA', 'û':'\x96', 'Ù':'\xEB', 'ù':'\x97', 'Á':'\xB5', 'á':'\xA0', 'Í':'\xD6', 'í':'\xA1', 'Ó':'\xE0', 'ó':'\xA2', 'Ú':'\xE9', 'ú':'\xA3', 'Ñ':'\xA5', 'ñ':'\xA4', '¡':'\xAD', '¿':'\xA8', 'Ø':'\x9D', 'ø':'\x9B', 'Ã':'\xC7', 'ã':'\xC6', 'Õ':'\xE5', 'õ':'\xE4'}
+		specialChars.update(specialCharsTable2)
+
 def cb(msg):
 	if msg["type"] == "registerConfirm":
 		client.send(type="getLanguage")
@@ -42,13 +42,13 @@ def cb(msg):
 		p.double_width(True)
 		p.set_linespacing(35)
 		char_count = 0
-		
+
 		### QUICK'N'DIRTY PICTURE PRINT
 		### USAGE: CARD ITEM WITH:
 		### ***PIC***
 		### DATA FILE NAME
 		### FILES SHALL BE LOCATED IN FOLDER "medien/pics"
-		
+
 		if (lines[0].startswith("***PIC***")):
 			#p.print_from_file("/home/pi/medien/pics/test1_data")
 			p.print_from_file("/home/pi/medien/pics/" + str(lines[1]))
