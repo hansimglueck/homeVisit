@@ -315,7 +315,7 @@ msgstr[1] "puntos"
 #. message after someone distributed a point (score)
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr "Punto dados"
+msgstr "Puntuación enviada"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
