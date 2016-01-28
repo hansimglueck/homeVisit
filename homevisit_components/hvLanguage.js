@@ -4,6 +4,8 @@
     angular.module('hvLanguage', [])
         .factory('languageFactory', function (gettextCatalog) {
 
+            // new language hast to be defined here and in game/gettext.js!!
+
             var languages = [
                 ['en', gettextCatalog.getString('English')],
                 ['de', gettextCatalog.getString('German')],
