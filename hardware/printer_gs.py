@@ -80,7 +80,7 @@ class ThermalPrinter(object):
     # blank page may occur. The more heating interval, the more
     # clear, but the slower printing speed.
 
-    def __init__(self, heatTime=80, heatInterval=2, heatingDots=7, serialport=SERIALPORT):
+    def __init__(self, heatTime=60, heatInterval=2, heatingDots=7, serialport=SERIALPORT):
     ### LONGER HEATTIME FOR BITMAP PRINTING ONLY ##################################################
     ### def __init__(self, heatTime=130, heatInterval=2, heatingDots=7, serialport=SERIALPORT): ###
     ###############################################################################################    

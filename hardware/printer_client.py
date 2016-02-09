@@ -10,7 +10,7 @@ import socket
 p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
 specialChars = {'“':'\x22', '”':'\x22', '„':'\x22', '‟':'\x22', '‹':'\x3C', '›':'\x3E', '–':'-', 'Œ':'OE', 'œ':'oe'}
 
-doubleWidth = False
+doubleWidth = True
 aTable = {
 1575:{'glyphs':[0xA8,0xA8,0xC7,0xC7],'connectionType':1},
 1576:{'glyphs':[0xA9,0xC8,0xC8,0xA9],'connectionType':3},
@@ -44,7 +44,12 @@ aTable = {
 32	:{'glyphs':[0x20,0x20,0x20,0x20],'connectionType':0},
 1570:{'glyphs':[0xA2,0xA2,0xC2,0xC2],'connectionType':1},
 1571:{'glyphs':[0xA5,0xA5,0xC3,0xC3],'connectionType':1},
-1548:{'glyphs':[0xAC,0xAC,0xAC,0xAC],'connectionType':0}
+1548:{'glyphs':[0xAC,0xAC,0xAC,0xAC],'connectionType':0},
+46:{'glyphs':[0x2E,0x2E,0x2E,0x2E],'connectionType':0},
+58:{'glyphs':[0x3A,0x3A,0x3A,0x3A],'connectionType':0},
+1609:{'glyphs':[0xF5,0xC6,0xC6,0xE9],'connectionType':1},
+8211:{'glyphs':[0x2D,0x2D,0x2D,0x2D],'connectionType':0},
+1574:{'glyphs':[0x23,0xC6,0xC6,0x23],'connectionType':3}
 }
 
 def setLanguage(lang):
