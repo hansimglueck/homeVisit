@@ -10,6 +10,43 @@ import socket
 p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
 specialChars = {'“':'\x22', '”':'\x22', '„':'\x22', '‟':'\x22', '‹':'\x3C', '›':'\x3E', '–':'-', 'Œ':'OE', 'œ':'oe'}
 
+doubleWidth = False
+aTable = {
+1575:{'glyphs':[0xA8,0xA8,0xC7,0xC7],'connectionType':1},
+1576:{'glyphs':[0xA9,0xC8,0xC8,0xA9],'connectionType':3},
+1578:{'glyphs':[0xAA,0xCA,0xCA,0xAA],'connectionType':3},
+1579:{'glyphs':[0xAB,0xCB,0xCB,0xAB],'connectionType':3},
+1580:{'glyphs':[0xAD,0xCC,0xCC,0xAD],'connectionType':3},
+1581:{'glyphs':[0xAE,0xCD,0xCD,0xAE],'connectionType':3},
+1582:{'glyphs':[0xAF,0xCE,0xCE,0xAF],'connectionType':3},
+1583:{'glyphs':[0xCF,0xCF,0xCF,0xCF],'connectionType':1},
+1584:{'glyphs':[0xD0,0xD0,0xD0,0xD0],'connectionType':1},
+1585:{'glyphs':[0xD1,0xD1,0xD1,0xD1],'connectionType':1},
+1586:{'glyphs':[0xD2,0xD2,0xD2,0xD2],'connectionType':1},
+1587:{'glyphs':[0xBC,0xD3,0xD3,0xBC],'connectionType':3},
+1588:{'glyphs':[0xBD,0xD4,0xD4,0xBD],'connectionType':3},
+1589:{'glyphs':[0xBE,0xD5,0xD5,0xBE],'connectionType':3},
+1590:{'glyphs':[0xEB,0xD6,0xD6,0xEB],'connectionType':3},
+1591:{'glyphs':[0xD7,0xD7,0xD7,0xD7],'connectionType':3},
+1592:{'glyphs':[0xD8,0xD8,0xD8,0xD8],'connectionType':3},
+1593:{'glyphs':[0xC5,0xEC,0xD9,0xDF],'connectionType':3},
+1594:{'glyphs':[0xED,0xF7,0xDA,0xEE],'connectionType':3},
+1601:{'glyphs':[0xBA,0xE1,0xE1,0xBA],'connectionType':3},
+1602:{'glyphs':[0xF8,0xE2,0xE2,0xF8],'connectionType':3},
+1603:{'glyphs':[0xFC,0xE3,0xE3,0xFC],'connectionType':3},
+1604:{'glyphs':[0xFB,0xE4,0xE4,0xFB],'connectionType':3},
+1605:{'glyphs':[0xEF,0xE5,0xE5,0xEF],'connectionType':3},
+1606:{'glyphs':[0xF2,0xE6,0xE6,0xF2],'connectionType':3},
+1607:{'glyphs':[0xF3,0xF4,0xE7,0xF3],'connectionType':3},
+1608:{'glyphs':[0xE8,0xE8,0xE8,0xE8],'connectionType':1},
+1610:{'glyphs':[0xF6,0xEA,0xEA,0xFD],'connectionType':3},
+1577:{'glyphs':[0xC9,0xC9,0xC9,0xC9],'connectionType':1},
+32	:{'glyphs':[0x20,0x20,0x20,0x20],'connectionType':0},
+1570:{'glyphs':[0xA2,0xA2,0xC2,0xC2],'connectionType':1},
+1571:{'glyphs':[0xA5,0xA5,0xC3,0xC3],'connectionType':1},
+1548:{'glyphs':[0xAC,0xAC,0xAC,0xAC],'connectionType':0}
+}
+
 def setLanguage(lang):
 	if lang in ["cs","pl"]:
 		p.setCodeTable(18)
@@ -27,6 +64,7 @@ def cb(msg):
 		#erstmal hallo sagen
 		#print_sample()
 		welcome_text = "HOWDY \n I AM ALIVE \n MY NAME IS "+socket.gethostname()+"\n you can now start MC-APP"
+		welcome_text = ""
 		msg = {"type":"display", "data":{"type":"card","text":welcome_text}}
 	if msg["type"] == "languageChange":
 		if "language" not in msg["data"]:
@@ -36,12 +74,62 @@ def cb(msg):
 	if msg["type"] != "display":
 		return
 	if (msg["data"]["type"] == "card"):
-		txt = msg["data"]["text"]
-		unicode = txt.encode('utf-8')
-		lines = unicode.splitlines(txt.count('\n'))
-		p.double_width(True)
+		p.double_width(doubleWidth)
 		p.set_linespacing(35)
-		char_count = 0
+		p.setCodeTable(22)		
+
+		txt = msg["data"]["text"]
+		if doubleWidth: 
+			lineLength = 16
+		else:
+			lineLength = 32
+		lines = textwrap.wrap(txt, lineLength)
+		for line in lines:
+			connStatus = 0
+			lineBuffer = []
+			for i in range(len(line)):
+				x = line[i]
+				next = 32
+				if i < len(line)-1:
+					next = ord(line[i+1])
+				#print x, ord(x)
+				glyph = 0x84
+				if ord(x) in aTable:
+					nextConnType = 0
+					if next in aTable:
+						nextConnType = aTable[next]['connectionType'] & 1
+						#print "next ",next, " in Table with connType ", aTable[next]['connectionType'], "->", nextConnType
+
+					if connStatus == 0:
+						glyphType = 3
+						if nextConnType == 1:
+							glyphType = 2
+					else:
+        	                                glyphType = 0
+						if nextConnType == 1:
+                        	                        glyphType = 1
+
+					char = aTable[ord(x)]
+					glyph = char['glyphs'][glyphType]
+					connStatus = char['connectionType']&2
+				else:
+					print "NOT FOUND!!!", ord(x)
+				#print connStatus, nextConnType,glyphType, hex(glyph)[2:].upper()
+				lineBuffer.append(glyph)
+		
+			#fill with spaces
+			for i in range(len(line), lineLength):
+				lineBuffer.append(0x20)
+			lineBuffer.reverse();
+
+			for y in lineBuffer:
+				p.printer.write(chr(y))
+
+			time.sleep(0.008)
+
+		p.linefeed()
+		p.linefeed()
+		p.linefeed()
 
 		### QUICK'N'DIRTY PICTURE PRINT
 		### USAGE: CARD ITEM WITH:
@@ -49,26 +137,30 @@ def cb(msg):
 		### DATA FILE NAME
 		### FILES SHALL BE LOCATED IN FOLDER "medien/pics"
 
-		if (lines[0].startswith("***PIC***")):
-			#p.print_from_file("/home/pi/medien/pics/test1_data")
-			p.print_from_file("/home/pi/medien/pics/" + str(lines[1]))
-			#p.print_text("PRINT THE PIC DATA:  "+"../../medien/pics/"+str(lines[1])+"\n")
-		else:
-			for item in lines:
-				#print item
-				item = replaceSpecialChars(item)
-				unwrapped = item
-				wrapped = textwrap.fill(unwrapped, 16)
-				char_count = char_count + len(wrapped)
-				#print "printing: "+wrapped
-				p.print_text(wrapped)
-				p.print_text("\n")
-				wait = 0.008 * char_count
-				#print(char_count)
-				#print"->"
-				#print(wait)
-				time.sleep(wait)
-				char_count = 0
+		#if (lines[0].startswith("***PIC***")):
+		#	#p.print_from_file("/home/pi/medien/pics/test1_data")
+		#	p.print_from_file("/home/pi/medien/pics/" + str(lines[1]))
+		#	#p.print_text("PRINT THE PIC DATA:  "+"../../medien/pics/"+str(lines[1])+"\n")
+		#else:
+		unicode = txt.encode('utf-8')
+		lines = unicode.splitlines(txt.count('\n'))
+		char_count = 0
+		for item in lines:
+			break
+			#print item
+			item = replaceSpecialChars(item)
+			unwrapped = item
+			wrapped = textwrap.fill(unwrapped, 16)
+			char_count = char_count + len(wrapped)
+			#print "printing: "+wrapped
+			p.print_text(wrapped)
+			p.print_text("\n")
+			wait = 0.008 * char_count
+			#print(char_count)
+			#print"->"
+			#print(wait)
+			time.sleep(wait)
+			char_count = 0
 		#unwrapped = txt
 		#wrapped = textwrap.fill(unwrapped, 16)
 		#p.print_text(wrapped)
