@@ -58,8 +58,10 @@ aTable = {
 1563:{'glyphs':[0xC1,0xC1,0xC1,0xC1],'connectionType':0},
 1567:{'glyphs':[0xBF,0xBF,0xBF,0xBF],'connectionType':0}
 }
+language = "en"
 
 def setLanguage(lang):
+	language = lang
 	if lang in ["cs","pl"]:
 		p.setCodeTable(18)
 		specialCharsLang = {}
@@ -91,45 +93,43 @@ def cb(msg):
 		p.setCodeTable(22)
 
 		txt = msg["data"]["text"]
-		if lang == "ar":
-		  printArabic(txt)
+		if language == "ar":
+			printArabic(txt)
 
-	  else:
+	  	else:
+			### QUICK'N'DIRTY PICTURE PRINT
+			### USAGE: CARD ITEM WITH:
+			### ***PIC***	
+			### DATA FILE NAME
+			### FILES SHALL BE LOCATED IN FOLDER "medien/pics"
 
-      ### QUICK'N'DIRTY PICTURE PRINT
-      ### USAGE: CARD ITEM WITH:
-      ### ***PIC***
-      ### DATA FILE NAME
-      ### FILES SHALL BE LOCATED IN FOLDER "medien/pics"
-
-      #if (lines[0].startswith("***PIC***")):
-      #	#p.print_from_file("/home/pi/medien/pics/test1_data")
-      #	p.print_from_file("/home/pi/medien/pics/" + str(lines[1]))
-      #	#p.print_text("PRINT THE PIC DATA:  "+"../../medien/pics/"+str(lines[1])+"\n")
-      #else:
-      unicode = txt.encode('utf-8')
-      lines = unicode.splitlines(txt.count('\n'))
-      char_count = 0
-      for item in lines:
-        break
-        #print item
-        item = replaceSpecialChars(item)
-        unwrapped = item
-        wrapped = textwrap.fill(unwrapped, 16)
-        char_count = char_count + len(wrapped)
-        #print "printing: "+wrapped
-        p.print_text(wrapped)
-        p.print_text("\n")
-        wait = 0.008 * char_count
-        #print(char_count)
-        #print"->"
-        #print(wait)
-        time.sleep(wait)
-        char_count = 0
-      #unwrapped = txt
-      #wrapped = textwrap.fill(unwrapped, 16)
-      #p.print_text(wrapped)
-      #p.print_text("\n")
+			#if (lines[0].startswith("***PIC***")):
+			#	#p.print_from_file("/home/pi/medien/pics/test1_data")
+			#	p.print_from_file("/home/pi/medien/pics/" + str(lines[1]))
+			#	#p.print_text("PRINT THE PIC DATA:  "+"../../medien/pics/"+str(lines[1])+"\n")
+			#else:
+			unicode = txt.encode('utf-8')
+			lines = unicode.splitlines(txt.count('\n'))
+			char_count = 0
+			for item in lines:
+				#print item
+				item = replaceSpecialChars(item)
+				unwrapped = item
+				wrapped = textwrap.fill(unwrapped, 16)
+				char_count = char_count + len(wrapped)
+				#print "printing: "+wrapped
+				p.print_text(wrapped)
+				p.print_text("\n")
+				wait = 0.008 * char_count
+				#print(char_count)
+				#print"->"
+				#print(wait)
+				time.sleep(wait)
+				char_count = 0	
+				#unwrapped = txt
+			#wrapped = textwrap.fill(unwrapped, 16)
+			#p.print_text(wrapped)
+			#p.print_text("\n")
       
 		p.double_width(False)
 		p.reset_linespacing()
@@ -204,9 +204,9 @@ def printArabic(txt):
 						if nextConnType == 1:
 							glyphType = 2
 					else:
-        	  glyphType = 0
+        	  				glyphType = 0
 						if nextConnType == 1:
-              glyphType = 1
+              						glyphType = 1
 
 					char = aTable[ord(x)]
 					glyph = char['glyphs'][glyphType]
