@@ -88,105 +88,49 @@ def cb(msg):
 	if (msg["data"]["type"] == "card"):
 		p.double_width(doubleWidth)
 		p.set_linespacing(35)
-		p.setCodeTable(22)		
+		p.setCodeTable(22)
 
 		txt = msg["data"]["text"]
-		if doubleWidth: 
-			lineLength = 16
-		else:
-			lineLength = 32
-		
-		# replace lam-aleef
-		lamalef = unichr(1604)+unichr(1575)
-		lamalefhamzah = unichr(1604)+unichr(1571)
-		lamalefmadda = unichr(1604)+unichr(1570)
-		txt = txt.replace(lamalef,unichr(0xfefb))
-		txt = txt.replace(lamalefhamzah,unichr(0xfef8))
-		txt = txt.replace(lamalefmadda,unichr(0xfef5))
-		lines = textwrap.wrap(txt, lineLength)
+		if lang == "ar":
+		  printArabic(txt)
 
-		for line in lines:
-			connStatus = 0
-			lineBuffer = []
-			for i in range(len(line)):
-				x = line[i]
-				next = 32
-				if i < len(line)-1:
-					next = ord(line[i+1])
-				#print x, ord(x)
-				glyph = 0x84
-				if ord(x) in aTable:
-					nextConnType = 0
-					if next in aTable:
-						nextConnType = aTable[next]['connectionType'] & 1
-						#print "next ",next, " in Table with connType ", aTable[next]['connectionType'], "->", nextConnType
+	  else:
 
-					if connStatus == 0:
-						glyphType = 3
-						if nextConnType == 1:
-							glyphType = 2
-					else:
-        	                                glyphType = 0
-						if nextConnType == 1:
-                        	                        glyphType = 1
+      ### QUICK'N'DIRTY PICTURE PRINT
+      ### USAGE: CARD ITEM WITH:
+      ### ***PIC***
+      ### DATA FILE NAME
+      ### FILES SHALL BE LOCATED IN FOLDER "medien/pics"
 
-					char = aTable[ord(x)]
-					glyph = char['glyphs'][glyphType]
-					connStatus = char['connectionType']&2
-					lineBuffer.append(glyph)
-				else:
-					print "NOT FOUND!!!", ord(x)
-				#print connStatus, nextConnType,glyphType, hex(glyph)[2:].upper()
-		
-			#fill with spaces
-			glyphcount = len(lineBuffer)
-			for i in range(glyphcount, lineLength):
-				lineBuffer.append(0x20)
-			lineBuffer.reverse();
-
-			for y in lineBuffer:
-				p.printer.write(chr(y))
-
-			time.sleep(0.008)
-
-		p.linefeed()
-		p.linefeed()
-		p.linefeed()
-
-		### QUICK'N'DIRTY PICTURE PRINT
-		### USAGE: CARD ITEM WITH:
-		### ***PIC***
-		### DATA FILE NAME
-		### FILES SHALL BE LOCATED IN FOLDER "medien/pics"
-
-		#if (lines[0].startswith("***PIC***")):
-		#	#p.print_from_file("/home/pi/medien/pics/test1_data")
-		#	p.print_from_file("/home/pi/medien/pics/" + str(lines[1]))
-		#	#p.print_text("PRINT THE PIC DATA:  "+"../../medien/pics/"+str(lines[1])+"\n")
-		#else:
-		unicode = txt.encode('utf-8')
-		lines = unicode.splitlines(txt.count('\n'))
-		char_count = 0
-		for item in lines:
-			break
-			#print item
-			item = replaceSpecialChars(item)
-			unwrapped = item
-			wrapped = textwrap.fill(unwrapped, 16)
-			char_count = char_count + len(wrapped)
-			#print "printing: "+wrapped
-			p.print_text(wrapped)
-			p.print_text("\n")
-			wait = 0.008 * char_count
-			#print(char_count)
-			#print"->"
-			#print(wait)
-			time.sleep(wait)
-			char_count = 0
-		#unwrapped = txt
-		#wrapped = textwrap.fill(unwrapped, 16)
-		#p.print_text(wrapped)
-		#p.print_text("\n")
+      #if (lines[0].startswith("***PIC***")):
+      #	#p.print_from_file("/home/pi/medien/pics/test1_data")
+      #	p.print_from_file("/home/pi/medien/pics/" + str(lines[1]))
+      #	#p.print_text("PRINT THE PIC DATA:  "+"../../medien/pics/"+str(lines[1])+"\n")
+      #else:
+      unicode = txt.encode('utf-8')
+      lines = unicode.splitlines(txt.count('\n'))
+      char_count = 0
+      for item in lines:
+        break
+        #print item
+        item = replaceSpecialChars(item)
+        unwrapped = item
+        wrapped = textwrap.fill(unwrapped, 16)
+        char_count = char_count + len(wrapped)
+        #print "printing: "+wrapped
+        p.print_text(wrapped)
+        p.print_text("\n")
+        wait = 0.008 * char_count
+        #print(char_count)
+        #print"->"
+        #print(wait)
+        time.sleep(wait)
+        char_count = 0
+      #unwrapped = txt
+      #wrapped = textwrap.fill(unwrapped, 16)
+      #p.print_text(wrapped)
+      #p.print_text("\n")
+      
 		p.double_width(False)
 		p.reset_linespacing()
 		p.print_text("\n\n\n\n\n\n\n")
@@ -222,6 +166,66 @@ def cb(msg):
 		p.print_text("\n\n")
 		p.linefeed()
 		p.linefeed()
+
+
+def printArabic(txt):
+		if doubleWidth:
+			lineLength = 16
+		else:
+			lineLength = 32
+
+		# replace lam-aleef
+		lamalef = unichr(1604)+unichr(1575)
+		lamalefhamzah = unichr(1604)+unichr(1571)
+		lamalefmadda = unichr(1604)+unichr(1570)
+		txt = txt.replace(lamalef,unichr(0xfefb))
+		txt = txt.replace(lamalefhamzah,unichr(0xfef8))
+		txt = txt.replace(lamalefmadda,unichr(0xfef5))
+		lines = textwrap.wrap(txt, lineLength)
+
+		for line in lines:
+			connStatus = 0
+			lineBuffer = []
+			for i in range(len(line)):
+				x = line[i]
+				next = 32
+				if i < len(line)-1:
+					next = ord(line[i+1])
+				#print x, ord(x)
+				glyph = 0x84
+				if ord(x) in aTable:
+					nextConnType = 0
+					if next in aTable:
+						nextConnType = aTable[next]['connectionType'] & 1
+						#print "next ",next, " in Table with connType ", aTable[next]['connectionType'], "->", nextConnType
+
+					if connStatus == 0:
+						glyphType = 3
+						if nextConnType == 1:
+							glyphType = 2
+					else:
+        	  glyphType = 0
+						if nextConnType == 1:
+              glyphType = 1
+
+					char = aTable[ord(x)]
+					glyph = char['glyphs'][glyphType]
+					connStatus = char['connectionType']&2
+					lineBuffer.append(glyph)
+				else:
+					print "NOT FOUND!!!", ord(x)
+				#print connStatus, nextConnType,glyphType, hex(glyph)[2:].upper()
+
+			#fill with spaces
+			glyphcount = len(lineBuffer)
+			for i in range(glyphcount, lineLength):
+				lineBuffer.append(0x20)
+			lineBuffer.reverse();
+
+			for y in lineBuffer:
+				p.printer.write(chr(y))
+
+			time.sleep(0.008)
 
 
 def replaceSpecialChars(txt):
