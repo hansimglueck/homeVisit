@@ -16,8 +16,6 @@ p.double_width(True)
 p.set_linespacing(32)
 p.setCodeTable(20)
 
-p.print_text("hallo123 ")
-p.print_text("\x91\x97")
 p.linefeed()
 p.linefeed()
 p.linefeed()
@@ -26,35 +24,32 @@ p.printer.write(p._ESC)
 p.printer.write(chr(37))
 p.printer.write(chr(1))
 
-p.printer.write(p._ESC)
-p.printer.write(chr(38))
-p.printer.write(chr(3))
-p.printer.write(chr(51))
-p.printer.write(chr(52))
-p.printer.write(chr(12))
-for i in range(0,6):
-        print i
-        p.printer.write(chr(255))
-        p.printer.write(chr(0))
-        p.printer.write(chr(0))
-        p.printer.write(chr(0))
-        p.printer.write(chr(0))
-        p.printer.write(chr(255))
-        time.sleep(0.1)
+p.print_text("testext start ")
+p.linefeed()
+for i in range(0,10):
+	p.printer.write(p._ESC)
+	p.printer.write(chr(38))
+	p.printer.write(chr(3))
+	p.printer.write(chr(51))
+	p.printer.write(chr(51))
+	p.printer.write(chr(12))
+	for j in range(0,6):
+        	p.printer.write(chr(255))
+        	p.printer.write(chr(i*20))
+        	p.printer.write(chr(i*20))
+        	p.printer.write(chr(i*20))
+        	p.printer.write(chr(i*20))
+        	p.printer.write(chr(255))
+        	#time.sleep(0.1)
 
-p.printer.write(chr(0))
-for i in range(0,6):
-	print i
-	p.printer.write(chr(0))
-	p.printer.write(chr(0))
-	p.printer.write(chr(0))
-	p.printer.write(chr(0))
-	p.printer.write(chr(0))
-	p.printer.write(chr(0))
-	time.sleep(0.1)
+	p.print_text("3")
+	print "print"
+	p.linefeed()
 
-p.print_text("hallo2345 ")
-p.print_text("\x50")
+
+p.print_text("testext end ")
+
+
 p.linefeed()
 p.linefeed()
 p.linefeed()

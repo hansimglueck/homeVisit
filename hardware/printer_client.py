@@ -10,9 +10,10 @@ import socket
 p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
 specialChars = {'“':'\x22', '”':'\x22', '„':'\x22', '‟':'\x22', '‹':'\x3C', '›':'\x3E', '–':'-', 'Œ':'OE', 'œ':'oe'}
 
-doubleWidth = True
+doubleWidth = False
 aTable = {
 1575:{'glyphs':[0xA8,0xA8,0xC7,0xC7],'connectionType':1},
+1573:{'glyphs':[0xA8,0xA8,0xC7,0xC7],'connectionType':1},
 1576:{'glyphs':[0xA9,0xC8,0xC8,0xA9],'connectionType':3},
 1578:{'glyphs':[0xAA,0xCA,0xCA,0xAA],'connectionType':3},
 1579:{'glyphs':[0xAB,0xCB,0xCB,0xAB],'connectionType':3},
@@ -49,7 +50,13 @@ aTable = {
 58:{'glyphs':[0x3A,0x3A,0x3A,0x3A],'connectionType':0},
 1609:{'glyphs':[0xF5,0xC6,0xC6,0xE9],'connectionType':1},
 8211:{'glyphs':[0x2D,0x2D,0x2D,0x2D],'connectionType':0},
-1574:{'glyphs':[0x23,0xC6,0xC6,0x23],'connectionType':3}
+1574:{'glyphs':[0x23,0xC6,0xC6,0x23],'connectionType':3},
+0xFEFB:{'glyphs':[0x9F,0x9F,0x9D,0x9D],'connectionType':1},
+0xFEF8:{'glyphs':[0x9A,0x9A,0x99,0x99],'connectionType':1},
+0xFEF5:{'glyphs':[0xFA,0xFA,0xF9,0xF9],'connectionType':1},
+1569:{'glyphs':[0xC1,0xC1,0xC1,0xC1],'connectionType':0},
+1563:{'glyphs':[0xC1,0xC1,0xC1,0xC1],'connectionType':0},
+1567:{'glyphs':[0xBF,0xBF,0xBF,0xBF],'connectionType':0}
 }
 
 def setLanguage(lang):
@@ -88,7 +95,16 @@ def cb(msg):
 			lineLength = 16
 		else:
 			lineLength = 32
+		
+		# replace lam-aleef
+		lamalef = unichr(1604)+unichr(1575)
+		lamalefhamzah = unichr(1604)+unichr(1571)
+		lamalefmadda = unichr(1604)+unichr(1570)
+		txt = txt.replace(lamalef,unichr(0xfefb))
+		txt = txt.replace(lamalefhamzah,unichr(0xfef8))
+		txt = txt.replace(lamalefmadda,unichr(0xfef5))
 		lines = textwrap.wrap(txt, lineLength)
+
 		for line in lines:
 			connStatus = 0
 			lineBuffer = []
@@ -117,13 +133,14 @@ def cb(msg):
 					char = aTable[ord(x)]
 					glyph = char['glyphs'][glyphType]
 					connStatus = char['connectionType']&2
+					lineBuffer.append(glyph)
 				else:
 					print "NOT FOUND!!!", ord(x)
 				#print connStatus, nextConnType,glyphType, hex(glyph)[2:].upper()
-				lineBuffer.append(glyph)
 		
 			#fill with spaces
-			for i in range(len(line), lineLength):
+			glyphcount = len(lineBuffer)
+			for i in range(glyphcount, lineLength):
 				lineBuffer.append(0x20)
 			lineBuffer.reverse();
 
