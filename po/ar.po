@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-03-29 12:29+0100\n"
+"PO-Revision-Date: 2016-03-30 12:57+0100\n"
 "Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -367,7 +367,7 @@ msgstr ""
 
 #: player/index.html:87
 msgid "Score:"
-msgstr ""
+msgstr "نتيجتي :"
 
 #: mc/js/controllers/notes.js:31 mc/js/controllers/players.js:37
 #: mc/js/controllers/pollPopup.js:43 mc/js/controllers/script.js:85
@@ -529,7 +529,7 @@ msgstr ""
 #. Brief form of poll "Who at this table was a class representative or spokesman at school?"
 #: mc/js/services/mcAppServices.js:86
 msgid "Who at this table has been class spokesman?"
-msgstr ""
+msgstr "وكان الذين في هذا الجدول المتحدث باسم الطبقة؟"
 
 #. Brief form of poll "Who at this table has ever hit the jackpot?"
 #: mc/js/services/mcAppServices.js:95
