@@ -51,11 +51,11 @@ aTable = {
 1609:{'glyphs':[0xF5,0xC6,0xC6,0xE9],'connectionType':1},
 8211:{'glyphs':[0x2D,0x2D,0x2D,0x2D],'connectionType':0},
 1574:{'glyphs':[0x23,0xC6,0xC6,0x23],'connectionType':3},
-0xFEFB:{'glyphs':[0x9F,0x9F,0x9D,0x9D],'connectionType':1},
+0xFEFB:{'glyphs':[0x9E,0x9E,0x9D,0x9D],'connectionType':1},
 0xFEF8:{'glyphs':[0x9A,0x9A,0x99,0x99],'connectionType':1},
 0xFEF5:{'glyphs':[0xFA,0xFA,0xF9,0xF9],'connectionType':1},
 1569:{'glyphs':[0xC1,0xC1,0xC1,0xC1],'connectionType':0},
-1563:{'glyphs':[0xC1,0xC1,0xC1,0xC1],'connectionType':0},
+1563:{'glyphs':[0xBB,0xBB,0xBB,0xBB],'connectionType':0},
 1567:{'glyphs':[0xBF,0xBF,0xBF,0xBF],'connectionType':0}
 }
 language = "en"
@@ -198,7 +198,10 @@ def printArabic(txt):
 					next = ord(line[i+1])
 				#print x, ord(x)
 				glyph = 0x84
-				if ord(x) in aTable:
+				if ord(x) <= 80:
+					lineBuffer.append(ord(x))
+					connStatus = 0	
+				elif ord(x) in aTable:
 					nextConnType = 0
 					if next in aTable:
 						nextConnType = aTable[next]['connectionType'] & 1
