@@ -118,3 +118,8 @@ body {
 div.fadeShow-container div.image {
     background-size: auto 100%;
 }
+
+
+.arabic {
+    text-align: right;
+}

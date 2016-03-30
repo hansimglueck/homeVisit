@@ -83,8 +83,8 @@
         <div  class="score" ng-show="showScore()" ng-controller="ScoreController">
             <div id="score_stats">
                 <p class="score_stats_entry">
-                    <span class="rank_display" translate>Rank: {{status.player.rank}}</span><br/>
-                    <span class="score_display" translate>Score: {{status.player.score}}</span><br/>
+                    <span class="rank_display" translate>Rank:</span> {{translateInt(status.player.rank)}}<br/>
+                    <span class="score_display" translate>Score:</span> {{translateInt(status.player.score)}}<br/>
             <span ng-repeat="icon in status.playerAppIcons">
                 <player-app-icon-full icon="icon.name" pid="icon.playerId"></player-app-icon-full>
             </span>
@@ -100,7 +100,7 @@
                          ng-repeat="player in players"
                          ng-class="{'my_score_label':player.playerId === status.player.playerId}"
                          ng-style="{'top': getLabelPos($index)[1], 'left': getLabelPos($index)[0], 'background':(player.relations.length > 0 || player.playerId === status.player.playerId) ? playerColors[player.playerId] : '#737373'}">
-                        {{score}}
+                        {{translateInt(score)}}
                     </div>
                 </div>
 <!--
@@ -109,7 +109,7 @@
                 </div>
     -->
                 <div id="baro_zero_line" ng-style="{'top': getPosHeight()}"></div>
-                <div id="baro_zero" ng-style="{'top': getPosHeight()}">0</div>
+                <div id="baro_zero" ng-style="{'top': getPosHeight()}">{{translateInt(0)}}</div>
             </div>
         </div>
 

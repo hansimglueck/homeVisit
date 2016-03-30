@@ -2,18 +2,26 @@
     'use strict';
 
     angular.module("playerControllers", [])
-        .controller('MainController', function ($scope, Status, playerColors, fxService) {
+        .controller('MainController', function ($scope, Status, playerColors, fxService, gettextCatalog) {
             $scope.status = Status;
             $scope.fxService = fxService;
             $scope.player = Status.player;
             $scope.playerColors = playerColors;
             $scope.turn = navigator.platform.indexOf("arm") > -1;
+            $scope.gettextCatalog = gettextCatalog;
+            $scope.lang = gettextCatalog.currentLanguage;
             console.log("onAndroid=");
             console.log($scope.turn);
             $scope.$on("disconnected", function () {
                 console.log("MainController got 'disconnected'");
                 $scope.status.resetPlayer();
             });
+
+            $scope.translateInt = function(x) {
+                return parseInt(x).toLocaleString(
+                    gettextCatalog.currentLanguage
+                );
+            };
         })
         .controller('HomeController', function ($scope, $location, Status, Home, Rating, Socket, playerColors, ngAudio, europeSvgData) {
             $scope.europeSVG = europeSvgData;

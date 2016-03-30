@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2015-10-08 15:15+0100\n"
+"PO-Revision-Date: 2016-03-29 12:29+0100\n"
 "Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -37,8 +37,7 @@ msgid "association/NGO"
 msgstr ""
 
 #. of a portion of numbers
-#: mc/views/results.html:27
-#: player/partials/results.html:22
+#: mc/views/results.html:27 player/partials/results.html:22
 msgid "Average:"
 msgstr ""
 
@@ -53,10 +52,8 @@ msgid "Back"
 msgstr ""
 
 #. Cancel-Button
-#: mc/views/vote.html:58
-#: player/partials/deals/deal.new.html:14
-#: player/partials/rating/rating.html:15
-#: player/partials/voteConfirm.html:5
+#: mc/views/vote.html:58 player/partials/deals/deal.new.html:14
+#: player/partials/rating/rating.html:15 player/partials/voteConfirm.html:5
 msgid "Cancel"
 msgstr ""
 
@@ -91,10 +88,8 @@ msgid "Configuration"
 msgstr ""
 
 #. Confirm-Button
-#: mc/views/vote.html:54
-#: player/partials/deals/deal.answer.html:10
-#: player/partials/rating/rating.html:14
-#: player/partials/voteConfirm.html:4
+#: mc/views/vote.html:54 player/partials/deals/deal.answer.html:10
+#: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:4
 msgid "Confirm"
 msgstr ""
 
@@ -106,8 +101,7 @@ msgstr ""
 msgid "Danish"
 msgstr ""
 
-#: game/playerManager.js:37
-#: homevisit_components/hvPlayerColors.js:30
+#: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:30
 msgid "dark blue"
 msgstr ""
 
@@ -124,10 +118,8 @@ msgstr ""
 msgid "Deny"
 msgstr ""
 
-#: mc/js/controllers/notes.js:29
-#: mc/js/controllers/players.js:35
-#: mc/js/controllers/pollPopup.js:41
-#: mc/js/controllers/script.js:83
+#: mc/js/controllers/notes.js:29 mc/js/controllers/players.js:35
+#: mc/js/controllers/pollPopup.js:41 mc/js/controllers/script.js:83
 msgid "Deselect"
 msgstr ""
 
@@ -179,8 +171,7 @@ msgstr ""
 msgid "gets one Point"
 msgstr ""
 
-#: game/playerManager.js:40
-#: homevisit_components/hvPlayerColors.js:33
+#: game/playerManager.js:40 homevisit_components/hvPlayerColors.js:33
 msgid "green"
 msgstr ""
 
@@ -192,13 +183,11 @@ msgstr ""
 msgid "Leave Table!"
 msgstr ""
 
-#: game/playerManager.js:36
-#: homevisit_components/hvPlayerColors.js:29
+#: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
 msgstr ""
 
-#: game/playerManager.js:41
-#: homevisit_components/hvPlayerColors.js:34
+#: game/playerManager.js:41 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
 msgstr ""
 
@@ -212,8 +201,7 @@ msgid "Matches best with the team of {{name1}} and {{name2}}."
 msgstr ""
 
 #. of a portion of numbers
-#: mc/views/results.html:29
-#: player/partials/results.html:30
+#: mc/views/results.html:29 player/partials/results.html:30
 msgid "Max:"
 msgstr ""
 
@@ -227,8 +215,7 @@ msgid "Message sent"
 msgstr ""
 
 #. of a portion of numbers
-#: mc/views/results.html:28
-#: player/partials/results.html:26
+#: mc/views/results.html:28 player/partials/results.html:26
 msgid "Min:"
 msgstr ""
 
@@ -272,8 +259,7 @@ msgstr ""
 msgid "Norwegian"
 msgstr ""
 
-#: game/playerManager.js:38
-#: homevisit_components/hvPlayerColors.js:31
+#: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
 msgstr ""
 
@@ -285,23 +271,19 @@ msgstr ""
 msgid "physical conflict"
 msgstr ""
 
-#: game/playerManager.js:42
-#: homevisit_components/hvPlayerColors.js:35
+#: game/playerManager.js:42 homevisit_components/hvPlayerColors.js:35
 msgid "pink"
 msgstr ""
 
-#: mc/views/dummies.html:124
-#: mc/js/services/mcAppServices.js:317
+#: mc/views/dummies.html:124 mc/js/services/mcAppServices.js:317
 msgid "Player"
 msgstr ""
 
-#: mc/views/item-as-row.html:21
-#: mc/views/item.html:33
+#: mc/views/item-as-row.html:21 mc/views/item.html:33
 msgid "Players are dealing"
 msgstr ""
 
-#: mc/views/item-as-row.html:22
-#: mc/views/item.html:34
+#: mc/views/item-as-row.html:22 mc/views/item.html:34
 msgid "Players are rating others"
 msgstr ""
 
@@ -345,7 +327,7 @@ msgstr ""
 
 #: player/index.html:86
 msgid "Rank:"
-msgstr ""
+msgstr "أمسكت"
 
 #: mc/js/services/mcAppServices.js:696
 msgid "Really jump?"
@@ -355,8 +337,7 @@ msgstr ""
 msgid "Really restart?"
 msgstr ""
 
-#: game/playerManager.js:35
-#: homevisit_components/hvPlayerColors.js:28
+#: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:28
 msgid "red"
 msgstr ""
 
@@ -368,13 +349,11 @@ msgstr ""
 msgid "Request"
 msgstr ""
 
-#: mc/views/item-as-row.html:15
-#: mc/views/item.html:29
+#: mc/views/item-as-row.html:15 mc/views/item.html:29
 msgid "Results are displayed"
 msgstr ""
 
-#: mc/views/results.html:43
-#: player/partials/results.html:47
+#: mc/views/results.html:43 player/partials/results.html:47
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr ""
 
@@ -390,10 +369,8 @@ msgstr ""
 msgid "Score:"
 msgstr ""
 
-#: mc/js/controllers/notes.js:31
-#: mc/js/controllers/players.js:37
-#: mc/js/controllers/pollPopup.js:43
-#: mc/js/controllers/script.js:85
+#: mc/js/controllers/notes.js:31 mc/js/controllers/players.js:37
+#: mc/js/controllers/pollPopup.js:43 mc/js/controllers/script.js:85
 msgid "Select"
 msgstr ""
 
@@ -469,8 +446,7 @@ msgstr ""
 msgid "This deal is active"
 msgstr ""
 
-#: game/game.js:281
-#: game/playerManager.js:194
+#: game/game.js:281 game/playerManager.js:194
 msgid "This poll doesn't exist!"
 msgstr ""
 
@@ -488,8 +464,7 @@ msgid "to"
 msgstr ""
 
 #. of a portion of numbers
-#: mc/views/results.html:26
-#: player/partials/results.html:18
+#: mc/views/results.html:26 player/partials/results.html:18
 msgid "Total:"
 msgstr ""
 
@@ -522,8 +497,7 @@ msgid_plural "votes"
 msgstr[0] ""
 msgstr[1] ""
 
-#: mc/views/vote.html:20
-#: player/partials/vote.html:19
+#: mc/views/vote.html:20 player/partials/vote.html:19
 msgid "VOTE"
 msgstr ""
 
@@ -617,8 +591,7 @@ msgstr ""
 msgid "working outside the country"
 msgstr ""
 
-#: game/playerManager.js:39
-#: homevisit_components/hvPlayerColors.js:32
+#: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
 msgstr ""
 
@@ -638,8 +611,7 @@ msgstr ""
 msgid "You are not joined in the game!"
 msgstr ""
 
-#: mc/views/vote.html:47
-#: player/partials/voteConfirm.html:1
+#: mc/views/vote.html:47 player/partials/voteConfirm.html:1
 msgid "You are voting for:"
 msgstr ""
 
