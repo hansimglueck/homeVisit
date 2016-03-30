@@ -186,7 +186,12 @@ def printArabic(txt):
 		txt = txt.replace(lamalef,unichr(0xfefb))
 		txt = txt.replace(lamalefhamzah,unichr(0xfef8))
 		txt = txt.replace(lamalefmadda,unichr(0xfef5))
-		lines = textwrap.wrap(txt, lineLength)
+
+		lines = []
+		lines0 = txt.splitlines(txt.count('\n'))
+		for line0 in lines0:
+			lines1 = textwrap.wrap(line0, lineLength)
+			lines.extend(lines1)
 
 		for line in lines:
 			connStatus = 0
@@ -198,7 +203,8 @@ def printArabic(txt):
 					next = ord(line[i+1])
 				#print x, ord(x)
 				glyph = 0x84
-				if ord(x) <= 80:
+				
+				if ord(x) <= 0x80:
 					lineBuffer.append(ord(x))
 					connStatus = 0	
 				elif ord(x) in aTable:
