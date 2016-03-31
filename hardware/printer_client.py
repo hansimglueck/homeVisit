@@ -56,11 +56,23 @@ aTable = {
 0xFEF5:{'glyphs':[0xFA,0xFA,0xF9,0xF9],'connectionType':1},
 1569:{'glyphs':[0xC1,0xC1,0xC1,0xC1],'connectionType':0},
 1563:{'glyphs':[0xBB,0xBB,0xBB,0xBB],'connectionType':0},
-1567:{'glyphs':[0xBF,0xBF,0xBF,0xBF],'connectionType':0}
+1567:{'glyphs':[0xBF,0xBF,0xBF,0xBF],'connectionType':0},
+1632:{'glyphs':[0xB0,0xB0,0xB0,0xB0],'connectionType':0},
+1633:{'glyphs':[0xB1,0xB1,0xB1,0xB1],'connectionType':0},
+1634:{'glyphs':[0xB2,0xB2,0xB2,0xB2],'connectionType':0},
+1635:{'glyphs':[0xB3,0xB3,0xB3,0xB3],'connectionType':0},
+1636:{'glyphs':[0xB4,0xB4,0xB4,0xB4],'connectionType':0},
+1637:{'glyphs':[0xB5,0xB5,0xB5,0xB5],'connectionType':0},
+1638:{'glyphs':[0xB6,0xB6,0xB6,0xB6],'connectionType':0},
+1639:{'glyphs':[0xB7,0xB7,0xB7,0xB7],'connectionType':0},
+1640:{'glyphs':[0xB8,0xB8,0xB8,0xB8],'connectionType':0},
+1641:{'glyphs':[0xB9,0xB9,0xB9,0xB9],'connectionType':0},
+1572:{'glyphs':[0xC4,0xC4,0xC4,0xC4],'connectionType':1}
 }
 language = "en"
 
 def setLanguage(lang):
+	global doubleWidth
 	global language
 	language = lang
 	if lang in ["cs","pl"]:
@@ -182,8 +194,10 @@ def printArabic(txt):
 		# replace lam-aleef
 		lamalef = unichr(1604)+unichr(1575)
 		lamalefhamzah = unichr(1604)+unichr(1571)
+		lamalefhamzahbelow = unichr(1604)+unichr(1573)
 		lamalefmadda = unichr(1604)+unichr(1570)
 		txt = txt.replace(lamalef,unichr(0xfefb))
+		txt = txt.replace(lamalefhamzahbelow,unichr(0xfefb))
 		txt = txt.replace(lamalefhamzah,unichr(0xfef8))
 		txt = txt.replace(lamalefmadda,unichr(0xfef5))
 
