@@ -2,14 +2,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-03-30 19:09+0200\n"
+"PO-Revision-Date: 2016-04-01 11:57+0100\n"
 "Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
 "Language-Team: \n"
 "Language: ar\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.8.7\n"
+"X-Generator: Poedit 1.7.6\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. everything in curly braces has to stay as is
@@ -476,7 +476,8 @@ msgstr "خونة! ما ينفعش تاخدوا نقطة من الفريق الي
 #: player/partials/deals/deal.details.html:3
 #: player/partials/deals/deal.finish.html:3
 #: player/partials/deals/deal.messageSent.html:3
-#: player/partials/deals/deal.new.html:3 player/partials/deals/deal.wait.html:3
+#: player/partials/deals/deal.new.html:3
+#: player/partials/deals/deal.wait.html:3
 msgid "Treaty"
 msgstr "إتفاقية"
 
@@ -573,7 +574,7 @@ msgstr "مين هنا فكر قبل كده إنه ينضم لحزب سياسي؟
 #. Brief form of Poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr "مين هنا بيشتغل بره الحي الي هو عايش فيه ؟  "
+msgstr "مين هنا بيشتغل بره الحي الي هو عايش فيه؟"
 
 #. Keyword for poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:186
