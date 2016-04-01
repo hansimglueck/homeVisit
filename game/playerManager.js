@@ -634,6 +634,9 @@
                 param = parseInt(identifier.substring(4));
                 identifier = identifier.substring(0, 4);
             }
+            var joined = this.players.filter(function (player) {
+                return player.joined;
+            }).length;
             switch (identifier) {
                 case "act":
                 case "active":
@@ -661,9 +664,6 @@
                     });
                     break;
                 case "worst":
-                    var joined = this.players.filter(function (player) {
-                        return player.joined;
-                    }).length;
                     ret = this.players.filter(function (player) {
                         return player.rank === joined ^ inverse;
                     });
@@ -674,6 +674,9 @@
                     });
                     break;
                 case "rank":
+                    if (param <= 0) {
+                        param = joined + param;
+                    }
                     ret = this.players.filter(function (player) {
                         return player.rank === param ^ inverse;
                     });
