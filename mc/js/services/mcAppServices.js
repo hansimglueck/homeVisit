@@ -100,7 +100,7 @@
                 },
                 {
                     // 2
-                    rid: 15,
+                    rid: 1015,
                     question: gettext('Who was or is a member of a political party?'),
                     note: gettext('member of political party'),
                     type: 'binary',
@@ -127,7 +127,7 @@
                 },
                 {
                     // 5
-                    rid: 19,
+                    rid: 1019,
                     question: gettext('Who works regularly outside the country?'),
                     note: gettext('working outside the country'),
                     type: 'binary',
@@ -154,7 +154,7 @@
                 },
                 {
                     // 8
-                    rid: 22,
+                    rid: 1022,
                     question: gettext('Who feels more as an European than a citizens of his country?'),
                     note: gettext('feeling European'),
                     type: 'binary',
