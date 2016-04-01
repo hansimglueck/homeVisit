@@ -5,7 +5,7 @@
     </div>
     <div class="col-md-11">
         <div class="item-content" ng-switch="item.type">
-            <div ng-switch-when="vote"><strong>{{ item.text[lang] }}</strong></div>
+            <div ng-switch-when="vote"><strong dir="auto">{{ item.text[lang] }}</strong></div>
             <div ng-switch-when="inlineSwitch">
 <!--
                 <item-block ng-repeat="inlineDeck in item.inlineDecks track by $index" itemblock="inlineDeck">
@@ -21,7 +21,7 @@
             <div ng-switch-when="deal" translate>Players are dealing</div>
             <div ng-switch-when="rating" translate>Players are rating others</div>
             <div ng-switch-when="eval" translate>Special code is executed</div>
-            <div ng-switch-default class="text-scroller"><strong>{{ item.text[lang] }}</strong></div>
+            <div ng-switch-default class="text-scroller"><strong dir="auto">{{ item.text[lang] }}</strong></div>
         </div>
     </div>
 </div>
