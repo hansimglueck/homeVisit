@@ -33,14 +33,14 @@
                     playerId: i,
                     clientId: -1,
                     playercolor: [
-                        this.gettext.gettext('red'),
-                        this.gettext.gettext('light blue'),
-                        this.gettext.gettext('dark blue'),
-                        this.gettext.gettext('orange'),
-                        this.gettext.gettext('yellow'),
-                        this.gettext.gettext('green'),
-                        this.gettext.gettext('lilac'),
-                        this.gettext.gettext('pink')
+                        'red',
+                        'light blue',
+                        'dark blue',
+                        'orange',
+                        'yellow',
+                        'green',
+                        'lilac',
+                        'pink'
                     ][i],
                     joined: false,
                     busy: false,
