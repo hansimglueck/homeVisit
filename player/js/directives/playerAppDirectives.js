@@ -49,7 +49,7 @@
                 link: function(scope, element, attrs) {
                     console.log("text="+scope.text);
                     scope.$watch( 'text' , function(html){
-                        element.html("<div>"+html+"</div>");
+                        element.html("<div dir='auto'>"+html+"</div>");
                         $compile(element.contents())(scope);
                     });
                     console.log(element);
