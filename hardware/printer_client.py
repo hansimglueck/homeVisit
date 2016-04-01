@@ -202,10 +202,12 @@ def printArabic(txt):
 		txt = txt.replace(lamalefmadda,unichr(0xfef5))
 
 		lines = []
-		lines0 = txt.splitlines(txt.count('\n'))
+		lines0 = txt.splitlines()
 		for line0 in lines0:
 			lines1 = textwrap.wrap(line0, lineLength)
 			lines.extend(lines1)
+			if (lines1 == []):
+				lines.append(" ")
 
 		for line in lines:
 			connStatus = 0
@@ -253,6 +255,7 @@ def printArabic(txt):
 			for y in lineBuffer:
 				p.printer.write(chr(y))
 
+			p.print_text("\n")
 			time.sleep(0.008)
 
 
@@ -305,18 +308,26 @@ def printPiePartition(data):
 		playercolor_uni = playercolor.encode('utf-8')
 		playercolor_uni = replaceSpecialChars(playercolor_uni)
 		lines = int(all_lines * percentage)
-		if (lines <= 2):
+		if (lines <= 4):
 			p.print_text(part["percent"] + " %")
 			p.print_text("\n")
-			p.print_text(playercolor_uni)
+			if (language == "ar"):
+				printArabic(playercolor)
+			else:
+				p.print_text(playercolor_uni)
+				p.print_text("\n\n")
 			p.print_text("\n")
 			p.print_text(cutline)
 		else:
 			p.print_text(part["percent"] + " %")
 			p.print_text("\n")
-			p.print_text(playercolor_uni)
+                        if (language == "ar"):
+                                printArabic(playercolor)                
+                        else:
+                                p.print_text(playercolor_uni)
+				p.print_text("\n\n")
 			p.print_text("\n")
-			for x in range(0, lines-2):
+			for x in range(0, lines-4):
 				p.print_text("\n")
 			p.print_text(cutline)
 
