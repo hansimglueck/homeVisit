@@ -24,7 +24,7 @@ msgstr[1] ""
 #: player/js/services/playerAppServices.js:337
 #: player/partials/voteConfirm.html:2
 msgid "€"
-msgstr "EGP"
+msgstr ""
 
 #. Keyword for Poll "My level of ambition"
 #: mc/js/services/mcAppServices.js:195
@@ -151,7 +151,7 @@ msgstr ""
 #. Keyword for poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
-msgstr "was in tahrir square"
+msgstr "feels European"
 
 #. ... of a form
 #: mc/views/dummies.html:71
@@ -208,7 +208,7 @@ msgstr ""
 #. Keyword for poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:105
 msgid "member of political party"
-msgstr "joining political party"
+msgstr "political party member"
 
 #: player/partials/deals/deal.messageSent.html:7
 msgid "Message sent"
@@ -546,7 +546,7 @@ msgstr "Who at this table has ever hit the jackpot?"
 #. Brief form of poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:158
 msgid "Who feels more as an European than a citizens of his country?"
-msgstr "Who was in Tahrir Square?"
+msgstr "Who feels more European than as a citizen of their own country?"
 
 #. Brief form of poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:176
@@ -576,12 +576,12 @@ msgstr "Who is worried about the future?"
 #. Brief form of Poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:104
 msgid "Who was or is a member of a political party?"
-msgstr "Who has thought of joining a political party?"
+msgstr "Who has been a member of a political party? (+ further enquiry)"
 
 #. Brief form of Poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr "Work outside of the neighbourhood you live in?"
+msgstr "Who works often outside of the country? (+ further enquiry)"
 
 #. Keyword for poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:186
@@ -596,7 +596,7 @@ msgstr "jackpot"
 #. Keyword for poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"
-msgstr "works outside own neighbourhood"
+msgstr "works outside of the country"
 
 #: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
