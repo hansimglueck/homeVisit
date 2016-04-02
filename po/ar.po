@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-04-01 11:57+0100\n"
+"PO-Revision-Date: 2016-04-02 11:25+0100\n"
 "Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -63,7 +63,7 @@ msgstr "غير الإسم"
 
 #: player/partials/deals/deal.choosePlayer.html:2
 msgid "Choose team to offer treaty:"
-msgstr "إختار فريق لعمل الإتفاقية:"
+msgstr "إختار فريق لعمل جمعية:"
 
 #. Keyword for poll "Who at this table was a class representative or spokesman at school?"
 #: mc/js/services/mcAppServices.js:87
@@ -103,7 +103,7 @@ msgstr "دنيماركي"
 
 #: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:30
 msgid "dark blue"
-msgstr "كحلي"
+msgstr "الكحلي"
 
 #: mc/js/services/mcAppServices.js:667
 msgid "Deal with"
@@ -112,7 +112,7 @@ msgstr "تعامل مع"
 #. Keyword for poll "Who has ever lied about their national identity?"
 #: mc/js/services/mcAppServices.js:150
 msgid "denied origin"
-msgstr "كذب عن أصله"
+msgstr "كذب عن جنسيته"
 
 #: player/partials/deals/deal.answer.html:13
 msgid "Deny"
@@ -138,7 +138,7 @@ msgstr "هولندي"
 #. Keyword for poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr "مكسب"
+msgstr "مستفيد من الرأسمالية "
 
 #: homevisit_components/hvLanguage.js:8
 msgid "English"
@@ -173,7 +173,7 @@ msgstr "يكسبوا نقطة"
 
 #: game/playerManager.js:40 homevisit_components/hvPlayerColors.js:33
 msgid "green"
-msgstr "أخضر"
+msgstr "الأخضر"
 
 #: homevisit_components/views/language-chooser.html:2
 msgid "Language"
@@ -185,11 +185,11 @@ msgstr "قوموا من على الطربيزة"
 
 #: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
-msgstr "لبني"
+msgstr "اللبني"
 
 #: game/playerManager.js:41 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
-msgstr "موڤ"
+msgstr "البنفسجي"
 
 #. A Team...
 #: player/partials/rating/rating.html:11
@@ -232,7 +232,7 @@ msgstr "ثقتي في الديموقراطية"
 #. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr "مكسبي من لعبة السوق"
+msgstr "إستفادتي من النظام الرأسمالي"
 
 #: mc/js/controllers/players.js:56
 msgid "My Turn!"
@@ -249,7 +249,7 @@ msgstr "لأ"
 
 #: player/partials/deals/deal.choosePlayer.html:8
 msgid "No Deal with me!"
-msgstr "مافيش إتفاق معايا"
+msgstr "مش عاوزين نعمل جمعية"
 
 #: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
@@ -261,7 +261,7 @@ msgstr "نرويجي"
 
 #: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
-msgstr "برتقالي"
+msgstr "البرتقالي"
 
 #: mc/js/services/mcAppServices.js:123
 msgid "paid job"
@@ -273,7 +273,7 @@ msgstr "خناقة فيها ضرب"
 
 #: game/playerManager.js:42 homevisit_components/hvPlayerColors.js:35
 msgid "pink"
-msgstr "وردي"
+msgstr "الوردي"
 
 #: mc/views/dummies.html:124 mc/js/services/mcAppServices.js:317
 msgid "Player"
@@ -315,7 +315,7 @@ msgstr[1] ""
 #. message after someone distributed a point (score)
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr "أخدوا نقطة"
+msgstr "كسبوا نقطة"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
@@ -339,7 +339,7 @@ msgstr "إعادة البدء ؟"
 
 #: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:28
 msgid "red"
-msgstr "أحمر"
+msgstr "الأحمر"
 
 #: player/partials/deals/deal.wait.html:8
 msgid "Reject"
@@ -377,7 +377,7 @@ msgstr "إختار"
 #. html-code has to stay as is (is displaying an icon inline)
 #: player/partials/black.html:1
 msgid "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> is reading:"
-msgstr "هدوء من فضلكم"
+msgstr "هدوء من فضلكم <player-icon pid=\"status.playerOnTurn\"></player-icon> بيقرأ"
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
@@ -484,7 +484,7 @@ msgstr "إتفاقية"
 #. Keyword for poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:177
 msgid "trustworthy"
-msgstr "جدير بالثقة"
+msgstr "عنده ثقة في اآخرين"
 
 #: player/partials/deals/deal.details.html:42
 msgid "Try Again"
@@ -574,17 +574,17 @@ msgstr "مين هنا فكر قبل كده إنه ينضم لحزب سياسي؟
 #. Brief form of Poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr "مين هنا بيشتغل بره الحي الي هو عايش فيه؟"
+msgstr "مين هنا بيشتغل بره الحي الي هو عايش فيه ؟"
 
 #. Keyword for poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:186
 msgid "willingness of solidarity"
-msgstr "إستعداد للتضامن"
+msgstr "إحساس للتضامن"
 
 #. Keyword for poll "Who at this table has ever hit the jackpot?"
 #: mc/js/services/mcAppServices.js:96
 msgid "won a lot"
-msgstr "كسب كتير"
+msgstr "كسب جايزة كبيرة"
 
 #. Keyword for poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:132
@@ -601,11 +601,11 @@ msgstr "أه"
 
 #: game/playerManager.js:510
 msgid "You are in the game!"
-msgstr "إنت في اللعبة"
+msgstr "رهان"
 
 #: game/playerManager.js:501
 msgid "You are NOT in the game!"
-msgstr "إنت مش في اللعبه"
+msgstr "مافيش رهان"
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
@@ -613,7 +613,7 @@ msgstr "إنت مش مشارك في اللعبة"
 
 #: mc/views/vote.html:47 player/partials/voteConfirm.html:1
 msgid "You are voting for:"
-msgstr "إنتخبت:"
+msgstr "فريقكم إختار:"
 
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
@@ -625,7 +625,7 @@ msgstr "إختارتم ما تعملوش جمعية"
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr "الإختيار إتبعت!"
+msgstr "الإجابة إتبعتت!"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
