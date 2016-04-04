@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-04-04 11:06+0100\n"
+"PO-Revision-Date: 2016-04-04 16:31+0100\n"
 "Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -16,8 +16,8 @@ msgstr ""
 #: player/partials/assholes.html:9
 msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
-msgstr[0] "ناقص نقطة"
-msgstr[1] ""
+msgstr[0] "ناقص {{minuspoints}} نقطة"
+msgstr[1] "ناقص {{minuspoints}} نقط"
 
 #. the local currency symbol
 #: homevisit_components/views/keyboard.html:4
@@ -310,12 +310,12 @@ msgstr "إختار"
 msgid "point"
 msgid_plural "points"
 msgstr[0] "نقطة"
-msgstr[1] ""
+msgstr[1] "نقط"
 
 #. message after someone distributed a point (score)
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr "كسبوا نقطة"
+msgstr "الإجابة إتبعتت!"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
@@ -494,8 +494,8 @@ msgstr "حاول تاني"
 #: player/js/services/playerAppServices.js:236
 msgid "vote"
 msgid_plural "votes"
-msgstr[0] "تصويت"
-msgstr[1] ""
+msgstr[0] "صوت"
+msgstr[1] "أصوات"
 
 #: mc/views/vote.html:20 player/partials/vote.html:19
 msgid "VOTE"
