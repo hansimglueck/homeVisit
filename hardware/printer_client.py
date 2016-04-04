@@ -73,6 +73,7 @@ language = "en"
 
 def setLanguage(lang):
 	global doubleWidth
+	doubleWidth = True
 	global language
 	language = lang
 	if lang in ["cs","pl"]:
@@ -81,6 +82,7 @@ def setLanguage(lang):
 		specialCharsTable18 = {'«':'\xAE', '»':'\xAF', 'á':'\xA0', 'č':'\x9F', 'ď':'\xD4', 'é':'\x82', 'ě':'\xD8', 'í':'\x92', 'ň':'\xE5', 'ó':'\xA2', 'ř':'\xFD', 'š':'\xE7', 'ť':'\x9C', 'ú':'\xA3', 'ů':'\x85', 'ý':'\xEC', 'ž':'\xA7', 'Á':'\xB5', 'Č':'\xAC', 'Ď':'\xD2', 'É':'\x90', 'Ě':'\xB7', 'Í':'\xD6', 'Ň':'\xD5', 'Ó':'\xE0', 'Ř':'\xFC', 'Š':'\xE6', 'Ť':'\x9B', 'Ú':'\xE9', 'Ů':'\xDE', 'Ý':'\xED', 'Ž':'\xA6', 'ą':'\xA5', 'ć':'\x86', 'ę':'\xA9', 'ł':'\x88', 'ń':'\xE4', 'ó':'\xA2', 'ś':'\x98', 'ź':'\xAB', 'ż':'\xBE', 'Ą':'\xA4', 'Ć':'\x8F', 'Ę':'\xA8', 'Ł':'\x9D', 'Ń':'\xE3', 'Ó':'\xE0', 'Ś':'\x97', 'Ź':'\x8D', 'Ż':'\xBD'}
 		specialChars.update(specialCharsTable18)
 	elif lang=="ar":
+		doubleWidth = False
 		p.setCodeTable(22)
 	else:
 		p.setCodeTable(2)
