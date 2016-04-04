@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: \n"
-"PO-Revision-Date: 2016-04-02 11:25+0100\n"
+"PO-Revision-Date: 2016-04-04 11:06+0100\n"
 "Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
 "Language-Team: \n"
 "Language: ar\n"
@@ -377,7 +377,7 @@ msgstr "إختار"
 #. html-code has to stay as is (is displaying an icon inline)
 #: player/partials/black.html:1
 msgid "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> is reading:"
-msgstr "هدوء من فضلكم <player-icon pid=\"status.playerOnTurn\"></player-icon> بيقرأ"
+msgstr "هدوء من فضلكم. الفريق <player-icon pid=\"status.playerOnTurn\"></player-icon> بيقرأ."
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
@@ -593,7 +593,7 @@ msgstr "بيشتغل بره الحي الي ساكن فيه"
 
 #: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
-msgstr "أصفر"
+msgstr "الأصفر"
 
 #: game/polls/Agreement.js:12
 msgid "Yes"
