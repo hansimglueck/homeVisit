@@ -1,12 +1,12 @@
 <div ng-class="{ smaller: smaller }">
-    <div class="left-pane">
+    <div class="left-pane" dir="auto">
         <ul class="list-unstyled">
             <li>{{home.text}} <player-app-icon icon="home.icon"></player-app-icon>
             </li>
             <li ng-if="home.ratedVote" class="red" translate>Your voting weight depends on your rank!</li>
         </ul>
     </div>
-    <div class="right-pane">
+    <div class="right-pane" dir="auto">
         <div>
             <div ng-if="['customOptions', 'customMultipleOptions', 'countryChoice'].indexOf(home.voteType) != -1" ng-switch="home.limit > 1">
                 <ul class="list-unstyled wide-list" ng-switch-when="false">
