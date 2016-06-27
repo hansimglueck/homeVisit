@@ -81,7 +81,10 @@ class ThermalPrinter(object):
     # clear, but the slower printing speed.
 
     def __init__(self, heatTime=80, heatInterval=2, heatingDots=7, serialport=SERIALPORT):
-        self.printer = serial.Serial(serialport, self.BAUDRATE, timeout=self.TIMEOUT)
+    ### LONGER HEATTIME FOR BITMAP PRINTING ONLY ##################################################
+    ### def __init__(self, heatTime=130, heatInterval=2, heatingDots=7, serialport=SERIALPORT): ###
+    ###############################################################################################    
+	self.printer = serial.Serial(serialport, self.BAUDRATE, timeout=self.TIMEOUT)
         self.printer.write(self._ESC) # ESC - command
         self.printer.write(chr(64)) # @   - initialize
         self.printer.write(self._ESC) # ESC - command
@@ -348,7 +351,7 @@ class ThermalPrinter(object):
         return black_and_white_pixels
 
 
-    def print_bitmap(self, pixels, w, h, output_png=False):
+    def print_bitmap(self, pixels, w, h, picfilename, output_png=False):
         """ Best to use images that have a pixel width of 384 as this corresponds
             to the printer row width.
 
@@ -401,9 +404,10 @@ class ThermalPrinter(object):
         # output the array all at once to the printer
         # might be better to send while printing when dealing with
         # very large arrays...
-	with open('wiener_kongress_data', 'wb') as f:
+	with open(picfilename, 'wb') as f:
 		pickle.dump(print_bytes, f)
-	print "Data saved into file"
+	print "Data saved into file:"
+	print picfilename
 
         #for b in print_bytes:
             #self.printer.write(chr(b))

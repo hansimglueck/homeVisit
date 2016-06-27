@@ -33,14 +33,14 @@
                     playerId: i,
                     clientId: -1,
                     playercolor: [
-                        this.gettext.gettext('red'),
-                        this.gettext.gettext('light blue'),
-                        this.gettext.gettext('dark blue'),
-                        this.gettext.gettext('orange'),
-                        this.gettext.gettext('yellow'),
-                        this.gettext.gettext('green'),
-                        this.gettext.gettext('lilac'),
-                        this.gettext.gettext('pink')
+                        'red',
+                        'light blue',
+                        'dark blue',
+                        'orange',
+                        'yellow',
+                        'green',
+                        'lilac',
+                        'pink'
                     ][i],
                     joined: false,
                     busy: false,
@@ -602,7 +602,7 @@
             //                this.broadcastMessage(type, {type: "black"});
 
             if (typeof content.text !== "undefined") {
-                content.text = content.text.replace(/<player:([!]*\w*)>/g, function (match, $1) {
+                content.text = content.text.replace(/<player:(.*?)>/g, function (match, $1) {
                     var players = self.getPlayerGroup($1);
                     return players.map(function (player) {
                         return "<player-icon pid='" + player.playerId + "'></player-icon>";
@@ -634,6 +634,9 @@
                 param = parseInt(identifier.substring(4));
                 identifier = identifier.substring(0, 4);
             }
+            var joined = this.players.filter(function (player) {
+                return player.joined;
+            }).length;
             switch (identifier) {
                 case "act":
                 case "active":
@@ -661,9 +664,6 @@
                     });
                     break;
                 case "worst":
-                    var joined = this.players.filter(function (player) {
-                        return player.joined;
-                    }).length;
                     ret = this.players.filter(function (player) {
                         return player.rank === joined ^ inverse;
                     });
@@ -674,6 +674,9 @@
                     });
                     break;
                 case "rank":
+                    if (param <= 0) {
+                        param = joined + param;
+                    }
                     ret = this.players.filter(function (player) {
                         return player.rank === param ^ inverse;
                     });

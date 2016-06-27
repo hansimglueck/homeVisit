@@ -86,6 +86,11 @@
                 Socket.emit("setPlayerStatus", {cmd: "toggleSelected", id: id});
                 $scope.closeModal();
             };
+            $scope.setAsNext = function (id) {
+                console.log("set player ",id," as next on turn");
+                Socket.emit("setPlayerStatus", {cmd: "setUpcoming", id: id});
+                $scope.closeModal();
+            };
             $scope.playerSelected = function () {
                 if (Status.otherPlayers[$scope.playerId].selected) {
                     return gettextCatalog.getString('Deselect');
