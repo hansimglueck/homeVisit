@@ -16,7 +16,8 @@
                 ['no', gettextCatalog.getString('Norwegian')],
                 ['pl', gettextCatalog.getString('Polish')],
                 ['pt', gettextCatalog.getString('Portuguese')],
-                ['gl', gettextCatalog.getString('Galician')]
+                ['gl', gettextCatalog.getString('Galician')],
+		['it', gettextCatalog.getString('Italian')]
             ];
 
             var languageFactory = {};
