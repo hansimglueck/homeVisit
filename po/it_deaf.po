@@ -1,0 +1,649 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2016-06-29 12:34+0100\n"
+"Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. everything in curly braces has to stay as is
+#: player/partials/assholes.html:9
+msgid "{{minuspoints}} minus point"
+msgid_plural "{{minuspoints}} minus points"
+msgstr[0] "punto in meno"
+msgstr[1] "punti in meno"
+
+#. the local currency symbol
+#: homevisit_components/views/keyboard.html:4
+#: player/js/services/playerAppServices.js:337
+#: player/partials/voteConfirm.html:2
+msgid "‚Ç¨"
+msgstr "€"
+
+#. Keyword for Poll "My level of ambition"
+#: mc/js/services/mcAppServices.js:195
+msgid "ambition"
+msgstr "ambizione"
+
+#. Keyword for Poll "Who is in an association, club or NGO?"
+#: mc/js/services/mcAppServices.js:114
+msgid "association/NGO"
+msgstr "associazione/ONG"
+
+#. of a portion of numbers
+#: mc/views/results.html:27 player/partials/results.html:22
+msgid "Average:"
+msgstr "Media"
+
+#. Button to set a player idle
+#: mc/js/controllers/players.js:58
+msgid "Away"
+msgstr "Espulso"
+
+#. step back in a sequence of screens
+#: player/partials/rating/rating.html:20
+msgid "Back"
+msgstr "Ritorno"
+
+#. Cancel-Button
+#: mc/views/vote.html:58 player/partials/deals/deal.new.html:14
+#: player/partials/rating/rating.html:15 player/partials/voteConfirm.html:5
+msgid "Cancel"
+msgstr "Cancellare"
+
+#: mc/js/controllers/dummies.js:102
+msgid "Change name"
+msgstr "Cambiare il nome"
+
+#: player/partials/deals/deal.choosePlayer.html:2
+msgid "Choose team to offer treaty:"
+msgstr "Scegliete la squadra con la quale concludere un accordo"
+
+#. Keyword for poll "Who at this table was a class representative or spokesman at school?"
+#: mc/js/services/mcAppServices.js:87
+msgid "class spokesman"
+msgstr "rappresentante di classe"
+
+#: mc/js/controllers/players.js:48
+msgid "Come Back!"
+msgstr "Tornate!"
+
+#: mc/views/item.html:31
+msgid "Command"
+msgstr "Comando"
+
+#. Keyword for poll "My trust in democracy"
+#: mc/js/services/mcAppServices.js:204
+msgid "confidence in democracy"
+msgstr "fiducia nella democrazia"
+
+#: mc/views/item.html:32
+msgid "Configuration"
+msgstr "Configurazione"
+
+#. Confirm-Button
+#: mc/views/vote.html:54 player/partials/deals/deal.answer.html:10
+#: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:4
+msgid "Confirm"
+msgstr "Conferma"
+
+#: homevisit_components/hvLanguage.js:10
+msgid "Czech"
+msgstr "Ceco"
+
+#: homevisit_components/hvLanguage.js:11
+msgid "Danish"
+msgstr "Danese"
+
+#: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:30
+msgid "dark blue"
+msgstr "blu scuro"
+
+#: mc/js/services/mcAppServices.js:667
+msgid "Deal with"
+msgstr "Negoziare con"
+
+#. Keyword for poll "Who has ever lied about their national identity?"
+#: mc/js/services/mcAppServices.js:150
+msgid "denied origin"
+msgstr "ha negato il proprio paese d'origine"
+
+#: player/partials/deals/deal.answer.html:13
+msgid "Deny"
+msgstr "Negare"
+
+#: mc/js/controllers/notes.js:29 mc/js/controllers/players.js:35
+#: mc/js/controllers/pollPopup.js:41 mc/js/controllers/script.js:83
+msgid "Deselect"
+msgstr "Deselezionare"
+
+#: player/partials/deals/deal.answer.html:7
+msgid "Do you want to accept this treaty?"
+msgstr "Desiderate accettare questo accordo?"
+
+#: mc/js/controllers/matching.js:216
+msgid "Doesn't match well. Should play alone."
+msgstr "Nessun accordo trovato. Giocherà da solo"
+
+#: homevisit_components/hvLanguage.js:13
+msgid "Dutch"
+msgstr "Olandese"
+
+#. Keyword for poll "My benefit from the free market"
+#: mc/js/services/mcAppServices.js:213
+msgid "earnings"
+msgstr "profitti"
+
+#: homevisit_components/hvLanguage.js:8
+msgid "English"
+msgstr "Inglese"
+
+#: player/partials/home.html:3
+msgid "EUROPE"
+msgstr "EUROPA"
+
+#. Keyword for poll "Who feels more European than as a citizen of their own country?"
+#: mc/js/services/mcAppServices.js:159
+msgid "feeling European"
+msgstr "si sente Europeo"
+
+#. ... of a form
+#: mc/views/dummies.html:71
+msgid "Fill the rest"
+msgstr "Completare il resto"
+
+#: homevisit_components/hvLanguage.js:12
+msgid "French"
+msgstr "Francese"
+
+#: homevisit_components/hvLanguage.js:9
+msgid "German"
+msgstr "Tedesco"
+
+#. A Team...
+#: player/partials/rating/rating.html:10
+msgid "gets one Point"
+msgstr "ottiene un punto"
+
+#: game/playerManager.js:40 homevisit_components/hvPlayerColors.js:33
+msgid "green"
+msgstr "verde"
+
+#: homevisit_components/views/language-chooser.html:2
+msgid "Language"
+msgstr "Lingua"
+
+#: mc/js/controllers/players.js:50
+msgid "Leave Table!"
+msgstr "Lasciate il tavolo!"
+
+#: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:29
+msgid "light blue"
+msgstr "blu chiaro"
+
+#: game/playerManager.js:41 homevisit_components/hvPlayerColors.js:34
+msgid "lilac"
+msgstr "lillà"
+
+#. A Team...
+#: player/partials/rating/rating.html:11
+msgid "looses one Point"
+msgstr "perde un punto"
+
+#: mc/js/controllers/matching.js:218
+msgid "Matches best with the team of {{name1}} and {{name2}}."
+msgstr "corrisponde meglio alla squadra di {{name1}} e {{name2}}"
+
+#. of a portion of numbers
+#: mc/views/results.html:29 player/partials/results.html:30
+msgid "Max:"
+msgstr "Max"
+
+#. Keyword for poll "Has anyone here ever been a member of a political party?"
+#: mc/js/services/mcAppServices.js:105
+msgid "member of political party"
+msgstr "membro di un partito politico"
+
+#: player/partials/deals/deal.messageSent.html:7
+msgid "Message sent"
+msgstr "Messaggio inviato"
+
+#. of a portion of numbers
+#: mc/views/results.html:28 player/partials/results.html:26
+msgid "Min:"
+msgstr "Min"
+
+#. Short form of poll "My level of ambition"
+#: mc/js/services/mcAppServices.js:194
+msgid "My ambition"
+msgstr "La mia ambizione"
+
+#. Short form of poll "My trust in democracy"
+#: mc/js/services/mcAppServices.js:203
+msgid "My confidence in democracy"
+msgstr "La mia fiducia nella democrazia"
+
+#. Short form of poll "My benefit from the free market"
+#: mc/js/services/mcAppServices.js:212
+msgid "My earnings from the game of the markets"
+msgstr "I miei profitti dal libero mercato"
+
+#: mc/js/controllers/players.js:56
+msgid "My Turn!"
+msgstr "Il mio turno!"
+
+#. Short form of poll "My sense of solidarity"
+#: mc/js/services/mcAppServices.js:185
+msgid "My willingness of solidarity"
+msgstr "Il mio senso di solidarietà"
+
+#: game/polls/Agreement.js:16
+msgid "No"
+msgstr "No"
+
+#: player/partials/deals/deal.choosePlayer.html:8
+msgid "No Deal with me!"
+msgstr "Nessun accordo con noi"
+
+#: player/partials/assholes.html:14
+msgid "Nobody was mean to you."
+msgstr "Nessuno vi ha tolto dei punti"
+
+#: homevisit_components/hvLanguage.js:14
+msgid "Norwegian"
+msgstr "Norvegese"
+
+#: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:31
+msgid "orange"
+msgstr "arancio"
+
+#: mc/js/services/mcAppServices.js:123
+msgid "paid job"
+msgstr "lavoro remunerato"
+
+#: mc/js/services/mcAppServices.js:141
+msgid "physical conflict"
+msgstr "conflitto fisico"
+
+#: game/playerManager.js:42 homevisit_components/hvPlayerColors.js:35
+msgid "pink"
+msgstr "rosa"
+
+#: mc/views/dummies.html:124 mc/js/services/mcAppServices.js:317
+msgid "Player"
+msgstr "Giocatore"
+
+#: mc/views/item-as-row.html:21 mc/views/item.html:33
+msgid "Players are dealing"
+msgstr "I giocatori stanno negoziando"
+
+#: mc/views/item-as-row.html:22 mc/views/item.html:34
+msgid "Players are rating others"
+msgstr "I giocatori stanno valutando gli altri"
+
+#: mc/views/item.html:14
+msgid "Players are voting"
+msgstr "I giocatori stanno votando"
+
+#: homevisit_components/game-control/views/game-settings-modal.html:8
+msgid "Please choose the session for this Game."
+msgstr "Per favore, scegliete la sessione per questo gioco"
+
+#. Leave {{score}} as is
+#: player/partials/rating/rating.player.html:2
+msgid "Please rate a team! Give {{score}} point!"
+msgstr "Valutate una squadra! Date {{score}} punto"
+
+#. select from a list
+#: mc/views/notes.html:10
+msgid "Please Select:"
+msgstr "Fate una scelta"
+
+#: mc/js/services/mcAppServices.js:563
+#: player/js/services/playerAppServices.js:219
+msgid "point"
+msgid_plural "points"
+msgstr[0] "punto"
+msgstr[1] "punti"
+
+#. message after someone distributed a point (score)
+#: player/partials/rating/rating.done.html:1
+msgid "Point given!"
+msgstr "Punto assegnato!"
+
+#: homevisit_components/hvLanguage.js:15
+msgid "Polish"
+msgstr "Polacco"
+
+#: homevisit_components/hvLanguage.js:16
+msgid "Portuguese"
+msgstr "Portoghese"
+
+#: player/index.html:86
+msgid "Rank:"
+msgstr "Posizione"
+
+#: mc/js/services/mcAppServices.js:696
+msgid "Really jump?"
+msgstr "Saltare davvero?"
+
+#: mc/js/services/mcAppServices.js:691
+msgid "Really restart?"
+msgstr "Ricominciare davvero?"
+
+#: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:28
+msgid "red"
+msgstr "rosso"
+
+#: player/partials/deals/deal.wait.html:8
+msgid "Reject"
+msgstr "Rifiutare"
+
+#: player/partials/deals/deal.new.html:9
+msgid "Request"
+msgstr "Domanda"
+
+#: mc/views/item-as-row.html:15 mc/views/item.html:29
+msgid "Results are displayed"
+msgstr "I risultati sono affissi"
+
+#: mc/views/results.html:43 player/partials/results.html:47
+msgid "Results are weighted by ranking. See actual votes in braces."
+msgstr ""
+"Il valore dei risultati dipende dalla posizione in classifica. I voti sono "
+"indicati tra parentesi"
+
+#: mc/js/services/mcAppServices.js:168
+msgid "scared of the future"
+msgstr "Paura del futuro"
+
+#: mc/js/services/mcAppServices.js:661
+msgid "Score"
+msgstr "Punti"
+
+#: player/index.html:87
+msgid "Score:"
+msgstr "Punti"
+
+#: mc/js/controllers/notes.js:31 mc/js/controllers/players.js:37
+#: mc/js/controllers/pollPopup.js:43 mc/js/controllers/script.js:85
+msgid "Select"
+msgstr "Selezionare"
+
+#. html-code has to stay as is (is displaying an icon inline)
+#: player/partials/black.html:1
+msgid ""
+"Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
+"is reading:"
+msgstr ""
+"Silenzio, per favore. Adesso <player-icon pid=\"status.playerOnTurn\"></"
+"player-icon> leggerà"
+
+#: mc/views/item.html:30
+msgid "Sound is playing:"
+msgstr "Viene diffuso un suono"
+
+#: mc/views/item-as-row.html:23
+msgid "Special code is executed"
+msgstr "Viene eseguito un codice speciale"
+
+#: mc/views/vote.html:41
+msgid "Submit"
+msgstr "Sottoporre"
+
+#: homevisit_components/game-control/views/game-restart-modal.html:7
+msgid "Sure you want to restart the game? This will start a new recording..."
+msgstr ""
+"Siete sicuri di voler ricominciare il gioco? Questo farà partire una nuova "
+"registrazione..."
+
+#: homevisit_components/game-control/views/game-stop-modal.html:7
+msgid "Sure you want to stop the game? This will finish the current recording."
+msgstr ""
+"Siete sicuri di voler fermare il gioco? Questo fermerà la registrazione "
+"corrente"
+
+#: game/polls/Agreement.js:39
+msgid "The alliance is fullfilled."
+msgstr "L'alleanza è stretta"
+
+#. actually: "The alliance is rejected."
+#: game/polls/Agreement.js:42
+msgid "The alliance is neglected."
+msgstr "L'alleanza è stata rifiutata"
+
+#: player/partials/results.html:3
+msgid "The correct answer is:"
+msgstr "La risposta corretta è:"
+
+#: player/js/services/playerAppServices.js:665
+msgid "The deal was denied"
+msgstr "L'accordo non è stato concluso"
+
+#: game/items/includes/results.js:28
+msgid "The division of the cake"
+msgstr "La ripartizione della torta"
+
+#: player/partials/rating/rating.score.html:2
+msgid "The MC has to select somebody!!"
+msgstr "Il MC deve scegliere qualcuno!"
+
+#: player/js/services/playerAppServices.js:669
+msgid "The other team is busy"
+msgstr "L'altra squadra è occupata"
+
+#. they took points from you
+#: player/partials/assholes.html:4
+msgid "The worst team was mean to you:"
+msgstr "La squadra peggiore è stata meschina con voi"
+
+#: player/partials/assholes.html:15
+msgid "The worst team was not mean to you."
+msgstr "La squadra peggiore non è stata meschina con voi"
+
+#. they took points from you
+#: player/partials/assholes.html:2
+msgid "These teams were mean to you:"
+msgstr "Queste squadre sono state meschine con voi"
+
+#: player/partials/deals/deal.finish.html:7
+msgid "This deal is active"
+msgstr "L'accordo è stato concluso"
+
+#: game/game.js:281 game/playerManager.js:194
+msgid "This poll doesn't exist!"
+msgstr "Questa domanda non esiste"
+
+#: player/partials/deals/deal.details.html:38
+msgid "This treaty was ACCEPTED."
+msgstr "Questo accordo è stato ACCETTATO"
+
+#: player/partials/deals/deal.details.html:39
+msgid "This treaty was DENIED."
+msgstr "Questo accordo è stato NEGATO"
+
+#. like in "Score 3 points to Team Red"
+#: mc/js/services/mcAppServices.js:661
+msgid "to"
+msgstr "per"
+
+#. of a portion of numbers
+#: mc/views/results.html:26 player/partials/results.html:18
+msgid "Total:"
+msgstr "Totale"
+
+#: player/partials/rating/rating.html:19
+msgid "Traitor! You can't score down your allied!"
+msgstr "Traditori! Non potete valutare i vostri alleati in modo negativo!"
+
+#: player/partials/deals/deal.answer.html:3
+#: player/partials/deals/deal.details.html:3
+#: player/partials/deals/deal.finish.html:3
+#: player/partials/deals/deal.messageSent.html:3
+#: player/partials/deals/deal.new.html:3
+#: player/partials/deals/deal.wait.html:3
+msgid "Treaty"
+msgstr "Accordo"
+
+#. Keyword for poll "Who thinks that the people at this table are reliable?"
+#: mc/js/services/mcAppServices.js:177
+msgid "trustworthy"
+msgstr "degno di fiducia"
+
+#: player/partials/deals/deal.details.html:42
+msgid "Try Again"
+msgstr "Prova ancora!"
+
+#: mc/js/services/mcAppServices.js:572
+#: player/js/services/playerAppServices.js:236
+msgid "vote"
+msgid_plural "votes"
+msgstr[0] "voto"
+msgstr[1] "voti"
+
+#: mc/views/vote.html:20 player/partials/vote.html:19
+msgid "VOTE"
+msgstr "VOTO"
+
+#: mc/js/services/mcAppServices.js:655
+msgid "Voted for:"
+msgstr "Ha votato per"
+
+#: mc/js/services/mcAppServices.js:648
+msgid "waiting ..."
+msgstr "In attesa..."
+
+#: player/partials/rating/rating.score.html:26
+msgid "Waiting for being rated."
+msgstr "In corso di valutazione"
+
+#: player/partials/deals/deal.details.html:18
+msgid "Waiting for reply..."
+msgstr "In attesa di risposta"
+
+#: player/partials/deals/deal.wait.html:7
+msgid "We are waiting for reply."
+msgstr "Stiamo aspettando una risposta"
+
+#. Brief form of poll "Who at the table has a job that pays enough that they can live from it?"
+#: mc/js/services/mcAppServices.js:122
+msgid "Who at the table has a job of which he or she can live?"
+msgstr "Chi intorno a questo tavolo ha un lavoro di cui riesce a vivere?"
+
+#. Brief form of poll "Who at this table was a class representative or spokesman at school?"
+#: mc/js/services/mcAppServices.js:86
+msgid "Who at this table has been class spokesman?"
+msgstr "Chi intorno a questo tavolo è stato rappresentante di classe"
+
+#. Brief form of poll "Who at this table has ever hit the jackpot?"
+#: mc/js/services/mcAppServices.js:95
+msgid "Who at this table has ever won a lot?"
+msgstr "Chi intorno a questo tavolo ha già vinto la lotteria?"
+
+#. Brief form of poll "Who feels more European than as a citizen of their own country?"
+#: mc/js/services/mcAppServices.js:158
+msgid "Who feels more as an European than a citizens of his country?"
+msgstr "Chi si sente più Europeo che cittadino del proprio paese?"
+
+#. Brief form of poll "Who thinks that the people at this table are reliable?"
+#: mc/js/services/mcAppServices.js:176
+msgid "Who finds the people here in general trustworthy?"
+msgstr ""
+"Chi pensa che le persone intorno a questo tavolo siano in generale degne di "
+"fiducia?"
+
+#. Brief form of poll "In the last ten years, who has gotten into a physical conflict or fight with someone?"
+#: mc/js/services/mcAppServices.js:140
+msgid "Who had a physical conflict in the past 10 years?"
+msgstr "Negli ultimi 10 anni, chi ha preso parte a un conflitto fisico?"
+
+#. Brief form of poll "Who has ever lied about their national identity?"
+#: mc/js/services/mcAppServices.js:149
+msgid "Who has ever consciously denied his national origin?"
+msgstr "Chi ha mai negato consapevolmente il proprio paese d'origine?"
+
+#. Brief form of poll "Who is in an association, club or NGO?"
+#: mc/js/services/mcAppServices.js:113
+msgid "Who is involved in a association or in an NGO?"
+msgstr "Chi fa parte di una associazione o di una ONG?"
+
+#. Brief form of poll "Who is afraid of the future?"
+#: mc/js/services/mcAppServices.js:167
+msgid "Who is scared of the future?"
+msgstr "Chi ha paura del futuro?"
+
+#. Brief form of Poll "Has anyone here ever been a member of a political party?"
+#: mc/js/services/mcAppServices.js:104
+msgid "Who was or is a member of a political party?"
+msgstr "Chi è stato o è membro di un partito politico?"
+
+#. Brief form of Poll "Do you often work outside of the country you live in?"
+#: mc/js/services/mcAppServices.js:131
+msgid "Who works regularly outside the country?"
+msgstr "Chi lavora regolarmente fuori dal paese?"
+
+#. Keyword for poll "My sense of solidarity"
+#: mc/js/services/mcAppServices.js:186
+msgid "willingness of solidarity"
+msgstr "senso di solidarietà"
+
+#. Keyword for poll "Who at this table has ever hit the jackpot?"
+#: mc/js/services/mcAppServices.js:96
+msgid "won a lot"
+msgstr "vinto alla lotteria"
+
+#. Keyword for poll "Do you often work outside of the country you live in?"
+#: mc/js/services/mcAppServices.js:132
+msgid "working outside the country"
+msgstr "lavora fuori dal paese"
+
+#: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
+msgid "yellow"
+msgstr "giallo"
+
+#: game/polls/Agreement.js:12
+msgid "Yes"
+msgstr "Sì"
+
+#: game/playerManager.js:510
+msgid "You are in the game!"
+msgstr "Siete nel gioco!"
+
+#: game/playerManager.js:501
+msgid "You are NOT in the game!"
+msgstr "NON siete nel gioco!"
+
+#: player/views/not-joined.html:1
+msgid "You are not joined in the game!"
+msgstr "Non partecipate al gioco!"
+
+#: mc/views/vote.html:47 player/partials/voteConfirm.html:1
+msgid "You are voting for:"
+msgstr "Votate per:"
+
+#: player/partials/rating/rating.score.html:4
+msgid "You can rate these Teams up or down!"
+msgstr "Potete valutare questa squadra in maniera positiva o negativa!"
+
+#: player/partials/deals/deal.noDealing.html:1
+msgid "You decided not to deal at all!"
+msgstr "Avete deciso di non concludere alcun accordo"
+
+#: player/partials/voteFinished.html:1
+msgid "Your choice is sent!"
+msgstr "La vostra scelta è stata inviata"
+
+#: player/partials/freeze.html:1
+msgid "Your Time is Up. Scored one down!"
+msgstr "Tempo scaduto. Un punto in meno!"
+
+#: player/partials/vote.html:6
+msgid "Your voting weight depends on your rank!"
+msgstr ""
+"Il valore dei vostri voti dipende dalla vostra posizione in classifica!"
