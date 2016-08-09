@@ -382,8 +382,8 @@ msgid ""
 "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
 "is reading:"
 msgstr ""
-"Silence s’il vous plait. Maintenant le joueur <player-icon pid=“status."
-"playerOnTurn”></player-icon> va lire."
+"Silence s’il vous plait. Maintenant le joueur <player-icon pid=\"status."
+"playerOnTurn\"></player-icon> va lire."
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
