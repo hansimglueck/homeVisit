@@ -146,106 +146,106 @@ msgstr "Anglais"
 
 #: player/partials/home.html:3
 msgid "EUROPE"
-msgstr "EUROPE "
+msgstr "EUROPE"
 
 #. Keyword for poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
-msgstr "se sent Européen "
+msgstr "se sent Européen"
 
 #. ... of a form
 #: mc/views/dummies.html:71
 msgid "Fill the rest"
-msgstr "Compléter le reste "
+msgstr "Compléter le reste"
 
 #: homevisit_components/hvLanguage.js:12
 msgid "French"
-msgstr "Français "
+msgstr "Français"
 
 #: homevisit_components/hvLanguage.js:9
 msgid "German"
-msgstr "Allemand "
+msgstr "Allemand"
 
 #. A Team...
 #: player/partials/rating/rating.html:10
 msgid "gets one Point"
-msgstr "obtient un point "
+msgstr "obtient un point"
 
 #: game/playerManager.js:40 homevisit_components/hvPlayerColors.js:33
 msgid "green"
-msgstr "VERT "
+msgstr "VERT"
 
 #: homevisit_components/views/language-chooser.html:2
 msgid "Language"
-msgstr "Langue "
+msgstr "Langue"
 
 #: mc/js/controllers/players.js:50
 msgid "Leave Table!"
-msgstr "Quittez la table! "
+msgstr "Quittez la table!"
 
 #: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
-msgstr "BLEU CLAIR "
+msgstr "BLEU CLAIR"
 
 #: game/playerManager.js:41 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
-msgstr "LILAS "
+msgstr "LILAS"
 
 #. A Team...
 #: player/partials/rating/rating.html:11
 msgid "looses one Point"
-msgstr "perd un point "
+msgstr "perd un point"
 
 #: mc/js/controllers/matching.js:218
 msgid "Matches best with the team of {{name1}} and {{name2}}."
-msgstr "Correspond le mieux à l'équipe de {{name1}} et {{name2}}. "
+msgstr "Correspond le mieux à l'équipe de {{name1}} et {{name2}}."
 
 #. of a portion of numbers
 #: mc/views/results.html:29 player/partials/results.html:30
 msgid "Max:"
-msgstr "Max: "
+msgstr "Max:"
 
 #. Keyword for poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:105
 msgid "member of political party"
-msgstr "membre d'un parti politique "
+msgstr "membre d'un parti politique"
 
 #: player/partials/deals/deal.messageSent.html:7
 msgid "Message sent"
-msgstr "Message envoyé "
+msgstr "Message envoyé"
 
 #. of a portion of numbers
 #: mc/views/results.html:28 player/partials/results.html:26
 msgid "Min:"
-msgstr "Min: "
+msgstr "Min:"
 
 #. Short form of poll "My level of ambition"
 #: mc/js/services/mcAppServices.js:194
 msgid "My ambition"
-msgstr "Mon ambition "
+msgstr "Mon ambition"
 
 #. Short form of poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:203
 msgid "My confidence in democracy"
-msgstr "Ma confiance en la Démocratie "
+msgstr "Ma confiance en la Démocratie"
 
 #. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr "Le profit que je tire du jeu du libre marché "
+msgstr "Le profit que je tire du jeu du libre marché"
 
 #: mc/js/controllers/players.js:56
 msgid "My Turn!"
-msgstr "Mon tour! C'est à moi! "
+msgstr "Mon tour! C'est à moi!"
 
 #. Short form of poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
-msgstr "Mon sens de la solidarité "
+msgstr "Mon sens de la solidarité"
 
 #: game/polls/Agreement.js:16
 msgid "No"
-msgstr ""
+msgstr "Non"
 
 #: player/partials/deals/deal.choosePlayer.html:8
 msgid "No Deal with me!"
@@ -253,7 +253,7 @@ msgstr "Pas d'accord avec nous!"
 
 #: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
-msgstr "Personne ne vous a enlevé des points. "
+msgstr "Personne ne vous a enlevé des points."
 
 #: homevisit_components/hvLanguage.js:14
 msgid "Norwegian"
@@ -265,45 +265,45 @@ msgstr "ORANGE"
 
 #: mc/js/services/mcAppServices.js:123
 msgid "paid job"
-msgstr "travail rémunéré "
+msgstr "travail rémunéré"
 
 #: mc/js/services/mcAppServices.js:141
 msgid "physical conflict"
-msgstr "s'est battu physiquement "
+msgstr "s'est battu physiquement"
 
 #: game/playerManager.js:42 homevisit_components/hvPlayerColors.js:35
 msgid "pink"
-msgstr "ROSE "
+msgstr "ROSE"
 
 #: mc/views/dummies.html:124 mc/js/services/mcAppServices.js:317
 msgid "Player"
-msgstr "Joueur "
+msgstr "Joueur"
 
 #: mc/views/item-as-row.html:21 mc/views/item.html:33
 msgid "Players are dealing"
-msgstr "Les équipes négocient "
+msgstr "Les équipes négocient"
 
 #: mc/views/item-as-row.html:22 mc/views/item.html:34
 msgid "Players are rating others"
-msgstr "Les équipes évaluent les autres "
+msgstr "Les équipes évaluent les autres"
 
 #: mc/views/item.html:14
 msgid "Players are voting"
-msgstr "Les équipes votent "
+msgstr "Les équipes votent"
 
 #: homevisit_components/game-control/views/game-settings-modal.html:8
 msgid "Please choose the session for this Game."
-msgstr "S'il vous pait choisissez la session avant que le jeu ne démarre!! "
+msgstr "S'il vous pait choisissez la session avant que le jeu ne démarre!!"
 
 #. Leave {{score}} as is
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
-msgstr "Évaluez une équipe. Retirez {{score}} point! "
+msgstr "Évaluez une équipe. Retirez {{score}} point!"
 
 #. select from a list
 #: mc/views/notes.html:10
 msgid "Please Select:"
-msgstr "Faites un choix: "
+msgstr "Faites un choix:"
 
 #: mc/js/services/mcAppServices.js:563
 #: player/js/services/playerAppServices.js:219
@@ -315,66 +315,66 @@ msgstr[1] "points"
 #. message after someone distributed a point (score)
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr "Le point a été compté! "
+msgstr "Le point a été compté!"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
-msgstr "Polonais "
+msgstr "Polonais"
 
 #: homevisit_components/hvLanguage.js:16
 msgid "Portuguese"
-msgstr "Portugais "
+msgstr "Portugais"
 
 #: player/index.html:86
 msgid "Rank:"
-msgstr "Place: "
+msgstr "Place:"
 
 #: mc/js/services/mcAppServices.js:696
 msgid "Really jump?"
-msgstr "Sauter vraiment? "
+msgstr "Sauter vraiment?"
 
 #: mc/js/services/mcAppServices.js:691
 msgid "Really restart?"
-msgstr "Vraiment recommencer? "
+msgstr "Vraiment recommencer?"
 
 #: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:28
 msgid "red"
-msgstr "ROUGE "
+msgstr "ROUGE"
 
 #: player/partials/deals/deal.wait.html:8
 msgid "Reject"
-msgstr "Rejeter "
+msgstr "Rejeter"
 
 #: player/partials/deals/deal.new.html:9
 msgid "Request"
-msgstr "Demande "
+msgstr "Demande"
 
 #: mc/views/item-as-row.html:15 mc/views/item.html:29
 msgid "Results are displayed"
-msgstr "Les résultats sont affichés "
+msgstr "Les résultats sont affichés"
 
 #: mc/views/results.html:43 player/partials/results.html:47
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr ""
 "La valeur des résultats dépend du rang dans le classement. Les voix sont "
-"indiqués entre parenthèses. "
+"indiqués entre parenthèses."
 
 #: mc/js/services/mcAppServices.js:168
 msgid "scared of the future"
-msgstr "Peur de l'avenir "
+msgstr "Peur de l'avenir"
 
 #: mc/js/services/mcAppServices.js:661
 msgid "Score"
-msgstr "Points "
+msgstr "Points"
 
 #: player/index.html:87
 msgid "Score:"
-msgstr "points: "
+msgstr "points:"
 
 #: mc/js/controllers/notes.js:31 mc/js/controllers/players.js:37
 #: mc/js/controllers/pollPopup.js:43 mc/js/controllers/script.js:85
 msgid "Select"
-msgstr "Choisir "
+msgstr "Choisir"
 
 #. html-code has to stay as is (is displaying an icon inline)
 #: player/partials/black.html:1
@@ -382,26 +382,26 @@ msgid ""
 "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
 "is reading:"
 msgstr ""
-"Silence s'il vous plait. Maintenant le joueur <player-icon pid=\"status."
-"playerOnTurn\"></player-icon> va lire: "
+"Silence s’il vous plait. Maintenant le joueur <player-icon pid=“status."
+"playerOnTurn”></player-icon> va lire."
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
-msgstr "Un son est diffusé "
+msgstr "Un son est diffusé"
 
 #: mc/views/item-as-row.html:23
 msgid "Special code is executed"
-msgstr "Des calculs spécifiques sont exécutés "
+msgstr "Des calculs spécifiques sont exécutés"
 
 #: mc/views/vote.html:41
 msgid "Submit"
-msgstr "Soumettre "
+msgstr "Soumettre"
 
 #: homevisit_components/game-control/views/game-restart-modal.html:7
 msgid "Sure you want to restart the game? This will start a new recording..."
 msgstr ""
 "Êtes-vous sûr de vouloir relancer le jeu? Ceci démarrera un nouvel "
-"enregistrement ....  "
+"enregistrement ...."
 
 #: homevisit_components/game-control/views/game-stop-modal.html:7
 msgid "Sure you want to stop the game? This will finish the current recording."
@@ -416,7 +416,7 @@ msgstr "L'alliance a été nouée."
 #. actually: "The alliance is rejected."
 #: game/polls/Agreement.js:42
 msgid "The alliance is neglected."
-msgstr "L'alliance a été rejeté. "
+msgstr "L'alliance a été rejeté."
 
 #: player/partials/results.html:3
 msgid "The correct answer is:"
