@@ -4,6 +4,8 @@
     angular.module('homeVisitMCApp')
         .controller('ScriptCtrl', function ($scope, $timeout, Deck, Clock, Playback, gettextCatalog, $anchorScroll, $location, ScriptScroll, Status, playerColors, ModalService,TeamActionInfo) {
             $scope.playerColors = playerColors;
+            $scope.pageUp = false;
+            $timeout(function(){$scope.pageUp=true;},0);
             $scope.playerPos = [
                 {top: 8, left: 15},
                 {top: 8, left: 265},

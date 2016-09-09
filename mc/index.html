@@ -30,16 +30,16 @@
             <div class="collapse navbar-collapse" id="js-navbar-collapse">
                 <ul class="nav navbar-nav">
                     <li ng-class="{active: isActive('/polls')}">
-                        <a href="#/polls">Polls</a>
+                        <a ng-click="hi('polls')" href="#/polls">Polls</a>
                     </li>
                     <li ng-class="{active: isActive('/script')}">
-                        <a ng-href="#/script">Game</a>
+                        <a ng-click="hi('game')" ng-href="#/script">Game</a>
                     </li>
                     <li ng-class="{active: isActive('/matching')}">
-                        <a ng-href="#/matching">Matching</a>
+                        <a ng-click="hi('matching')" ng-href="#/matching">Matching</a>
                     </li>
                     <li ng-class="{active: isActive('/settings')}">
-                        <a ng-href="#/settings">Settings</a>
+                        <a ng-click="hi('settings')" ng-href="#/settings">Settings</a>
                     </li>
                     <li ng-controller="PlaybackCtrl">
                         <p ng-if="!session.currentSession" class="navbar-text session-warning">

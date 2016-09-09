@@ -7,7 +7,8 @@
                      ng-repeat="player in status.otherPlayers track by $index"
                      ng-style="{'top':playerPos[player.playerId].top, 'left':playerPos[player.playerId].left, 'background':playerColors[$index], 'color':awayColor(player.playerId)}"
                      ng-class="{'dimm': !player.joined, 'script-selected': player.selected}">
-                    <div class="script-selection-div" ng-class="{'script-onTurn': player.onTurn, 'script-upcoming': player.upcoming}">
+                    <div class="script-selection-div"
+                         ng-class="{'script-onTurn': player.onTurn, 'script-upcoming': player.upcoming}">
                         <ul class="list-group list-unstyled">
                             <li class="list-group-item header">
                                 <div>Score: {{player.score}}</div>
@@ -28,10 +29,10 @@
                 <div class="script-clock">{{ clock.getClock() }}</div>
                 <button class="btn btn-block btn-go" id="go-button" ng-show="deck.mcTasks.go"
                         ng-click="playback('go', 0)"
-                        >GO
+                >GO
                 </button>
                 <button class="btn btn-block btn-danger btn-alarm" ng-show="deck.mcTasks.alert" ng-click="alert()"
-                        >ALARM
+                >ALARM
                 </button>
                 <button class="btn btn-block btn-warning btn-alarm" ng-show="deck.mcTasks.jump"
                         ng-click="playback('jump', 0)">JUMP
@@ -42,26 +43,30 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-11">
-                        <div class="script-view">
-                            <item-block class="script-list-block-row"
-                                        ng-repeat="go in deck.goList track by go.indexBlock[0]"
-                                        ng-class="{'script-list-active':go.indexBlock.indexOf(deck.index)!==-1}"
-                                        itemblock="go"
-                                        option="0" goto="true" active="go.indexBlock.indexOf(deck.index)!==-1">
-                            </item-block>
+                        <div ng-switch="pageUp" class="script-view">
+                            <div ng-switch-when="true">
+                                <item-block class="script-list-block-row"
+                                            ng-repeat="go in deck.goList track by go.indexBlock[0]"
+                                            ng-class="{'script-list-active':go.indexBlock.indexOf(deck.index)!==-1}"
+                                            itemblock="go"
+                                            option="0" goto="true" active="go.indexBlock.indexOf(deck.index)!==-1">
+                                </item-block>
+                            </div>
+                            <div ng-switch-default>LOADING SCRIPT...</div>
                         </div>
-                    </div>
-                    <div class="col-md-1">
-                        <button class="btn btn-block btn-lg" ng-click="scrollToAct()"><i class="fa fa-indent fa-2x"></i></button>
-                        <!--
-                        <button class="btn btn-block btn-lg" ng-click="scrollToAct()">LESS</button>
-                        <button class="btn btn-block btn-lg" ng-click="scrollToAct()">MORE</button>
-                        -->
+                        <div class="col-md-1">
+                            <button class="btn btn-block btn-lg" ng-click="scrollToAct()"><i
+                                    class="fa fa-indent fa-2x"></i></button>
+                            <!--
+                            <button class="btn btn-block btn-lg" ng-click="scrollToAct()">LESS</button>
+                            <button class="btn btn-block btn-lg" ng-click="scrollToAct()">MORE</button>
+                            -->
+                        </div>
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
-
 </div>
