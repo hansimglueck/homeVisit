@@ -1,4 +1,4 @@
-(function() {
+(function () {
     'use strict';
 
     var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
@@ -34,7 +34,7 @@
                             language: 'en',
                             session: null
                         };
-                        db.collection('gameconfs').insertOne(self.conf, function(err, conf) {
+                        db.collection('gameconfs').insertOne(self.conf, function (err, conf) {
                             if (err !== null) {
                                 throw new Error(err.stack);
                             }
@@ -45,8 +45,8 @@
                         });
                     }
                     else {
-			//TODO: since conf is not implemented as promise, we have to send the language to the printer, when we get it from the database (later then the printer requests it...)
-			self.languageChange();
+                        //TODO: since conf is not implemented as promise, we have to send the language to the printer, when we get it from the database (later then the printer requests it...)
+                        self.languageChange();
                         if (cb) {
                             cb();
                         }
@@ -55,23 +55,23 @@
                 });
             });
         },
-        setOption: function(field, value) {
+        setOption: function (field, value) {
             this.options[field] = value;
         },
-        getOption: function(field) {
+        getOption: function (field) {
             if (typeof this.options[field] !== "undefined") {
                 return this.options[field];
             }
             return false;
         },
-        confRequest: function(clientId, role, message) {
+        confRequest: function (clientId, role, message) {
             var self = this;
             wsManager.msgDeviceByIds([clientId], "gameConf", {startDeckId: self.conf.startDeckId});
         },
-        gameSessionsRequest: function(clientId, role) {
+        gameSessionsRequest: function (clientId, role) {
             var self = this;
             mongoConnection(function (db) {
-                db.collection('sessions').find().toArray(function(err, sessions) {
+                db.collection('sessions').find().toArray(function (err, sessions) {
                     if (err !== null) {
                         throw new Error(err.stack);
                     }
@@ -82,13 +82,13 @@
                 });
             });
         },
-        setGameSession: function(clientId, role, data) {
+        setGameSession: function (clientId, role, data) {
             var sessionId = data.data, self = this;
             mongoConnection(function (db) {
                 db.collection('gameconfs').updateOne(
-                    { _id: self.conf._id },
-                    { $set: { session: sessionId } }, {},
-                    function(err, conf) {
+                    {_id: self.conf._id},
+                    {$set: {session: sessionId}}, {},
+                    function (err, conf) {
                         if (err !== null) {
                             throw new Error(err.stack);
                         }
@@ -98,25 +98,25 @@
                 );
             });
         },
-        languageRequest: function(clientId, role) {
+        languageRequest: function (clientId, role) {
             wsManager.msgDeviceByIds([clientId], 'languageChange', {
                 language: this.conf.language
             });
         },
-        languageChange: function() {
+        languageChange: function () {
             var self = this;
-            ['master', 'MC', 'player', 'printer'].forEach(function(role) {
+            ['master', 'MC', 'player', 'printer'].forEach(function (role) {
                 wsManager.msgDevicesByRole(role, 'languageChange', {
                     language: self.conf.language
                 });
             });
         },
-        changeLanguage: function(clientId, role, data) {
+        changeLanguage: function (clientId, role, data) {
             var self = this;
             this.conf.language = data.data;
             this.gettext.textdomain(this.conf.language);
             mongoConnection(function (db) {
-                db.collection('gameconfs').updateOne({ _id: self.conf._id }, { $set: { language: self.conf.language } }, {}, function(err, conf) {
+                db.collection('gameconfs').updateOne({_id: self.conf._id}, {$set: {language: self.conf.language}}, {}, function (err, conf) {
                     if (err !== null) {
                         throw new Error(err.stack);
                     }

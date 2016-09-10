@@ -71,7 +71,11 @@
     // load game conf
     mongoConnection(function (db) {
         logger.info("Database connection established");
-        gameConf.syncFromDb();
+        gameConf.syncFromDb(function() {
+            if (true) {
+                game.start();
+            }
+        });
     });
 
     // app views
