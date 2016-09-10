@@ -1,5 +1,5 @@
 <div class="script-page">
-    <div class="script-loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>
+    <!--<div class="script-loading"><i class="fa fa-circle-o-notch fa-spin"></i></div>-->
     <div class="container-fluid">
         <div class="script-top">
             <div class="script-player-view">
@@ -41,10 +41,10 @@
         </div>
         <div>
             <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-11">
-                        <div ng-switch="pageUp" class="script-view">
-                            <div ng-switch-when="true">
+                <div class="row" ng-switch="pageUp">
+                    <div ng-switch-when="true">
+                        <div class="col-md-11">
+                            <div class="script-view">
                                 <item-block class="script-list-block-row"
                                             ng-repeat="go in deck.goList track by go.indexBlock[0]"
                                             ng-class="{'script-list-active':go.indexBlock.indexOf(deck.index)!==-1}"
@@ -52,21 +52,22 @@
                                             option="0" goto="true" active="go.indexBlock.indexOf(deck.index)!==-1">
                                 </item-block>
                             </div>
-                            <div ng-switch-default>LOADING SCRIPT...</div>
                         </div>
                         <div class="col-md-1">
                             <button class="btn btn-block btn-lg" ng-click="scrollToAct()"><i
                                     class="fa fa-indent fa-2x"></i></button>
-                            <!--
-                            <button class="btn btn-block btn-lg" ng-click="scrollToAct()">LESS</button>
-                            <button class="btn btn-block btn-lg" ng-click="scrollToAct()">MORE</button>
-                            -->
+                        </div>
+                    </div>
+                    <div ng-switch-default>
+                        <div class="col-md-12">
+                            <div>LOADING SCRIPT... <i class="fa fa-lg fa-spinner fa-spin"></i></div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
 
     </div>
+
+</div>
 </div>
