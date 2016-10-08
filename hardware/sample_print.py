@@ -22,7 +22,8 @@ else:
 p=printer_gs.ThermalPrinter(heatTime=45, serialport="/dev/ttyAMA0")
 
 def print_sample():
-        for i in xrange(16):
+        p.double_width(False);
+	for i in xrange(16):
                 p.print_text(" ")
                 p.inverse_on()
                 p.print_text(hex(i)[2:].upper())
