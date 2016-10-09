@@ -64,6 +64,7 @@ msgstr ""
 msgid "Come Back!"
 msgstr ""
 
+#. Type of
 #: mc/views/item.html:31
 msgid "Command"
 msgstr ""
@@ -98,6 +99,7 @@ msgstr ""
 msgid "dark blue"
 msgstr ""
 
+#.
 #: mc/js/services/mcAppServices.js:667
 msgid "Deal with"
 msgstr ""
@@ -259,6 +261,7 @@ msgstr ""
 msgid "paid job"
 msgstr ""
 
+#. Keyword for Poll "Who had a physical conflict in the past 10 years?"
 #: mc/js/services/mcAppServices.js:141
 msgid "physical conflict"
 msgstr ""
