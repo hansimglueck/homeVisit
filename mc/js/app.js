@@ -40,18 +40,6 @@ angular
                 templateUrl: '/mc/views/dummies.html',
                 controller: 'DummiesCtrl'
             })
-            .when('/players', {
-                templateUrl: '/mc/views/players.html',
-                controller: 'PlayersCtrl'
-            })
-            .when('/players/playback', {
-                templateUrl: '/mc/views/players.html',
-                controller: 'PlayersCtrl'
-            })
-            .when('/players/:playerId', {
-                templateUrl: '/mc/views/players.html',
-                controller: 'PlayersCtrl'
-            })
             .when('/matching', {
                 templateUrl: '/mc/views/matching.html',
                 controller: 'MatchingCtrl'

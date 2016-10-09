@@ -34,11 +34,6 @@ msgstr ""
 msgid "Average:"
 msgstr ""
 
-#. Button to set a player idle
-#: mc/js/controllers/players.js:58
-msgid "Away"
-msgstr ""
-
 #. step back in a sequence of screens
 #: player/partials/rating/rating.html:20
 msgid "Back"
@@ -117,7 +112,6 @@ msgid "Deny"
 msgstr ""
 
 #: mc/js/controllers/notes.js:29
-#: mc/js/controllers/players.js:35
 #: mc/js/controllers/pollPopup.js:41
 #: mc/js/controllers/script.js:83
 msgid "Deselect"
@@ -180,10 +174,6 @@ msgstr ""
 msgid "Language"
 msgstr ""
 
-#: mc/js/controllers/players.js:50
-msgid "Leave Table!"
-msgstr ""
-
 #: game/playerManager.js:36
 #: homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
@@ -237,10 +227,6 @@ msgstr ""
 #. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr ""
-
-#: mc/js/controllers/players.js:56
-msgid "My Turn!"
 msgstr ""
 
 #. Short form of poll "My sense of solidarity"
@@ -383,7 +369,6 @@ msgid "Score:"
 msgstr ""
 
 #: mc/js/controllers/notes.js:31
-#: mc/js/controllers/players.js:37
 #: mc/js/controllers/pollPopup.js:43
 #: mc/js/controllers/script.js:85
 msgid "Select"
