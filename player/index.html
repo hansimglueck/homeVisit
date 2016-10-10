@@ -83,8 +83,8 @@
         <div  class="score" ng-show="showScore()" ng-controller="ScoreController">
             <div id="score_stats">
                 <p class="score_stats_entry">
-                    <span class="rank_display" translate>Rank: {{status.player.rank}}</span><br/>
-                    <span class="score_display" translate>Score: {{status.player.score}}</span><br/>
+                    <span class="rank_display" translate>Rank: </span> {{status.player.rank}}<br/>
+                    <span class="score_display" translate>Score: </span> {{status.player.score}}<br/>
             <span ng-repeat="icon in status.playerAppIcons">
                 <player-app-icon-full icon="icon.name" pid="icon.playerId"></player-app-icon-full>
             </span>

@@ -329,7 +329,7 @@ msgstr "португальский"
 
 #: player/index.html:86
 msgid "Rank:"
-msgstr "Рейтинг"
+msgstr "Рейтинг:"
 
 #: mc/js/services/mcAppServices.js:696
 msgid "Really jump?"
@@ -635,4 +635,4 @@ msgstr "Ваше время вышло. Минус одно очко."
 
 #: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
-msgstr "Вес вашего голоса зависти от места в рейтинге."
+msgstr "Вес вашего голоса зависит от места в рейтинге."
