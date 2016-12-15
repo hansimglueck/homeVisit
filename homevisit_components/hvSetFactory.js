@@ -58,8 +58,12 @@
             var id = updatedDeck._id;
             delete updatedDeck._id;   //sonst macht mongoDB auf dem raspi stunk
             console.log(updatedDeck);
-            return Resource.update({id: id}, updatedDeck, function (err) {
-                if (err) {
+            return Resource.update({id: id}, updatedDeck, function (data) {
+                if (data) {
+                    console.info(data);
+                    // data is the result-object from mongo like: Resource {ok: 1, nModified: 1, n: 1, $promise: Promise, $resolved: true}
+                } else {
+                    console.error("no db-result received! db-connection lost?")
                 }
             }).$promise;
         };
