@@ -18,6 +18,9 @@
     var logger = log4js.getLogger('server');
     logger.setLevel('INFO');
 
+    var serverLogger = log4js.getLogger('httpServer');
+    serverLogger.setLevel('ERROR');
+
     var conf = require('../homevisitConf');
     var app = express();
 
@@ -80,7 +83,7 @@
 
     // middlewares
 //    app.use(logger('dev'));
-    app.use(log4js.connectLogger(logger, { level: 'auto' }));
+    app.use(log4js.connectLogger(serverLogger, { level: 'auto', nolog: 'favicon.ico'}));
     app.use(bodyParser.json({ limit: '50mb' }));
     app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
     app.use(cookieParser());
