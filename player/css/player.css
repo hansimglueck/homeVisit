@@ -50,6 +50,11 @@ body {
     font-size: 1.5em;
 }
 
+.smaller {
+    font-size: 0.9em;
+    line-height: 0.9;
+}
+
 
 
 .rotDiv {

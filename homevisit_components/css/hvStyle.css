@@ -53,8 +53,10 @@
 
 .player-icon-text {
     width: 100%;
-    font-size: 0.7em;
+    font-size: 0.5em;
     text-align: center;
+    transform: rotate(-35deg);
+    font-weight: bold;
 }
 
 .player-icon-text-pl {
