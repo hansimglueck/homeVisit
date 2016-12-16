@@ -6,6 +6,8 @@
     var clone = require('clone');
     var logger = require('log4js').getLogger();
 
+    var sessionRestriction = {$or:[{$and:[{city:'Moskau'},{date:{$gt:new Date(Date.now()-7*24*60*60*1000).toISOString()}}]}, {sessionId:1}]};
+
 
     function GameConf() {
         this.conf = {};         //fixe Kongiguration wie startDeck, typeMapping
@@ -45,8 +47,8 @@
                         });
                     }
                     else {
-			//TODO: since conf is not implemented as promise, we have to send the language to the printer, when we get it from the database (later then the printer requests it...)
-			self.languageChange();
+                        //TODO: since conf is not implemented as promise, we have to send the language to the printer, when we get it from the database (later then the printer requests it...)
+                        self.languageChange();
                         if (cb) {
                             cb();
                         }
@@ -71,7 +73,7 @@
         gameSessionsRequest: function(clientId, role) {
             var self = this;
             mongoConnection(function (db) {
-                db.collection('sessions').find().toArray(function(err, sessions) {
+                db.collection('sessions').find(sessionRestriction).toArray(function(err, sessions) {
                     if (err !== null) {
                         throw new Error(err.stack);
                     }
