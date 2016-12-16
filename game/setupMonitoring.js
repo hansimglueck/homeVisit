@@ -25,13 +25,6 @@
                 hint: "Start/Restart the MC-App"
             },
             {
-                name: 'db',
-                type: 'state',
-                state: false,
-                necessary: true,
-                hint: "Use Repair-DB in Brain-Control"
-            },
-            {
                 name: 'player',
                 type: 'count',
                 state: 0,
