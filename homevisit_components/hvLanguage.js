@@ -19,7 +19,8 @@
                 ['gl', gettextCatalog.getString('Galician')],
                 ['it', gettextCatalog.getString('Italian')],
                 ['ru', gettextCatalog.getString('Russian')],
-		        ['fr_CH', gettextCatalog.getString('SwissFrench')]
+		        ['fr_CH', gettextCatalog.getString('SwissFrench')],
+		        ['en_US', gettextCatalog.getString('English (US)')],
             ];
 
             var languageFactory = {};
