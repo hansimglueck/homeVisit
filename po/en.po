@@ -5,12 +5,12 @@ msgstr ""
 "PO-Revision-Date: \n"
 "Last-Translator: Mirko Dietrich <mirko<AT>l4m1<DOT>de>\n"
 "Language-Team: \n"
-"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.7.6\n"
+"X-Generator: Poedit 1.8.1\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: en\n"
 
 #. everything in curly braces has to stay as is
 #: player/partials/assholes.html:9
@@ -24,7 +24,7 @@ msgstr[1] ""
 #: player/js/services/playerAppServices.js:337
 #: player/partials/voteConfirm.html:2
 msgid "€"
-msgstr ""
+msgstr "$"
 
 #. Keyword for Poll "My level of ambition"
 #: mc/js/services/mcAppServices.js:195
@@ -34,7 +34,7 @@ msgstr "ambition"
 #. Keyword for Poll "Who is in an association, club or NGO?"
 #: mc/js/services/mcAppServices.js:114
 msgid "association/NGO"
-msgstr "association/NGO"
+msgstr ""
 
 #. of a portion of numbers
 #: mc/views/results.html:27 player/partials/results.html:22
@@ -68,7 +68,7 @@ msgstr ""
 #. Keyword for poll "Who at this table was a class representative or spokesman at school?"
 #: mc/js/services/mcAppServices.js:87
 msgid "class spokesman"
-msgstr "class representative"
+msgstr "class representative "
 
 #: mc/js/controllers/players.js:48
 msgid "Come Back!"
@@ -151,7 +151,7 @@ msgstr ""
 #. Keyword for poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
-msgstr "feels European"
+msgstr "feeling citizen of state"
 
 #. ... of a form
 #: mc/views/dummies.html:71
@@ -208,7 +208,7 @@ msgstr ""
 #. Keyword for poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:105
 msgid "member of political party"
-msgstr "political party member"
+msgstr "donated for political party"
 
 #: player/partials/deals/deal.messageSent.html:7
 msgid "Message sent"
@@ -227,7 +227,7 @@ msgstr "My level of ambition"
 #. Short form of poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:203
 msgid "My confidence in democracy"
-msgstr "My trust in democracy"
+msgstr "My Trust in democracy"
 
 #. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
@@ -355,7 +355,7 @@ msgstr ""
 
 #: mc/views/results.html:43 player/partials/results.html:47
 msgid "Results are weighted by ranking. See actual votes in braces."
-msgstr "Results are weighted by rank. See actual votes in brackets."
+msgstr "Results are weighted by ranking. See actual votes in brackets."
 
 #: mc/js/services/mcAppServices.js:168
 msgid "scared of the future"
@@ -388,7 +388,6 @@ msgid "Sound is playing:"
 msgstr ""
 
 #: mc/views/item-as-row.html:23
-#, fuzzy
 msgid "Special code is executed"
 msgstr "The alliance is rejected."
 
@@ -475,7 +474,7 @@ msgstr ""
 
 #: player/partials/rating/rating.html:19
 msgid "Traitor! You can't score down your allied!"
-msgstr "Traitor! You can't deduct points from your allies!"
+msgstr "or! You can't deduct points from your allies!"
 
 #: player/partials/deals/deal.answer.html:3
 #: player/partials/deals/deal.details.html:3
@@ -546,7 +545,7 @@ msgstr "Who at this table has ever hit the jackpot?"
 #. Brief form of poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:158
 msgid "Who feels more as an European than a citizens of his country?"
-msgstr "Who feels more European than as a citizen of their own country?"
+msgstr "Feeling more a citizen of your state than of the US"
 
 #. Brief form of poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:176
@@ -576,12 +575,12 @@ msgstr "Who is worried about the future?"
 #. Brief form of Poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:104
 msgid "Who was or is a member of a political party?"
-msgstr "Who has been a member of a political party? (+ further enquiry)"
+msgstr "Who donated money for a political party?"
 
 #. Brief form of Poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr "Who works often outside of the country? (+ further enquiry)"
+msgstr "Who works often outside of the home state?"
 
 #. Keyword for poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:186
@@ -596,7 +595,7 @@ msgstr "jackpot"
 #. Keyword for poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"
-msgstr "works outside of the country"
+msgstr "works outside of the home state"
 
 #: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
@@ -642,9 +641,8 @@ msgstr "Your time is up. One point deducted."
 msgid "Your voting weight depends on your rank!"
 msgstr "The weight of your vote depends on your rank!"
 
-#, fuzzy
-#~ msgid "Recordings"
-#~ msgstr "profit"
+msgid "Recordings"
+msgstr "Recordings"
 
-#~ msgid "Mein Ehrgeiz"
-#~ msgstr "My ambition"
+msgid "Mein Ehrgeiz"
+msgstr ""
