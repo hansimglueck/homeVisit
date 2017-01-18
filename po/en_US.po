@@ -151,7 +151,7 @@ msgstr ""
 #. Keyword for poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
-msgstr "feels American"
+msgstr "feeling citizen of state"
 
 #. ... of a form
 #: mc/views/dummies.html:71
@@ -208,7 +208,7 @@ msgstr ""
 #. Keyword for poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:105
 msgid "member of political party"
-msgstr "political party member"
+msgstr "donated for political party"
 
 #: player/partials/deals/deal.messageSent.html:7
 msgid "Message sent"
@@ -545,7 +545,7 @@ msgstr "Who at this table has ever hit the jackpot?"
 #. Brief form of poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:158
 msgid "Who feels more as an European than a citizens of his country?"
-msgstr "Who feels more European than as a citizen of their own country?"
+msgstr "Feeling more a citizen of your state than of the US"
 
 #. Brief form of poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:176
@@ -575,12 +575,12 @@ msgstr "Who is worried about the future?"
 #. Brief form of Poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:104
 msgid "Who was or is a member of a political party?"
-msgstr "Who has been a member of a political party? (+ further enquiry)"
+msgstr "Who donated money for a political party?"
 
 #. Brief form of Poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr "Who works often outside of the country? (+ further enquiry)"
+msgstr "Who works often outside of the home state?"
 
 #. Keyword for poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:186
@@ -595,7 +595,7 @@ msgstr "jackpot"
 #. Keyword for poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"
-msgstr "works outside of the country"
+msgstr "works outside of the home state"
 
 #: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
