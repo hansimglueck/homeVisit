@@ -5,6 +5,7 @@
     var wsManager = require('./wsManager.js');
     var clone = require('clone');
     var logger = require('log4js').getLogger();
+    var sessionRestriction = {$or:[{$and:[{city:'Santa Barbara'},{date:{$gt:new Date(Date.now()-7*24*60*60*1000).toISOString()}}]}, {sessionId:1}]};
 
 
     function GameConf() {
@@ -71,7 +72,7 @@
         gameSessionsRequest: function(clientId, role) {
             var self = this;
             mongoConnection(function (db) {
-                db.collection('sessions').find().toArray(function(err, sessions) {
+                db.collection('sessions').find(sessionRestriction).toArray(function(err, sessions) {
                     if (err !== null) {
                         throw new Error(err.stack);
                     }
