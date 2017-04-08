@@ -48,6 +48,13 @@ body {
     padding: 0;
 }
 
+@media print {
+    .app-content {
+        width: 100%;
+        size: 0.2em;
+    }
+}
+
 .dummy {
     border-radius: 10px;
     position: absolute;
