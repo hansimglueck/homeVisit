@@ -154,7 +154,7 @@
                 },
                 {
                     // 8
-                    rid: 22,
+                    rid: 4022,
                     question: gettext('Who feels more as an European than a citizens of his country?'),
                     note: gettext('feeling European'),
                     type: 'binary',
