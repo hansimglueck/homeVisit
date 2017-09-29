@@ -21,6 +21,7 @@
                 ['ru', gettextCatalog.getString('Russian')],
 		        ['fr_CH', gettextCatalog.getString('SwissFrench')],
 		        ['en_US', gettextCatalog.getString('English (US)')],
+                ['pt_BR', gettextCatalog.getString('Portuguese (BR)')],
             ];
 
             var languageFactory = {};

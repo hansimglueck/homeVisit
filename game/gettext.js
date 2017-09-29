@@ -7,7 +7,7 @@
     var gt = new Gettext();
     var poPath = __dirname + '/../po/';
 
-    ['en', 'de', 'cs', 'da', 'fr', 'nl', 'no', 'pl', 'pt', 'gl', 'it', 'ru', 'fr_CH','en_US'].forEach(function(langCode) {
+    ['en', 'de', 'cs', 'da', 'fr', 'nl', 'no', 'pl', 'pt', 'gl', 'it', 'ru', 'fr_CH','en_US', 'pt_BR'].forEach(function(langCode) {
         gt.addTextdomain(langCode, fs.readFileSync(poPath + langCode + '.po'));
     });
 
