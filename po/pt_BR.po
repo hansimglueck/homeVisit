@@ -8,7 +8,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.4\n"
+"X-Generator: Poedit 1.8.1\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 "Language: pt_BR\n"
 
@@ -485,7 +485,8 @@ msgstr "Traidor! Você não pode baixar a pontuação do seu aliado!"
 #: player/partials/deals/deal.details.html:3
 #: player/partials/deals/deal.finish.html:3
 #: player/partials/deals/deal.messageSent.html:3
-#: player/partials/deals/deal.new.html:3 player/partials/deals/deal.wait.html:3
+#: player/partials/deals/deal.new.html:3
+#: player/partials/deals/deal.wait.html:3
 msgid "Treaty"
 msgstr "Acordo"
 
@@ -636,7 +637,7 @@ msgstr "Vocês decidiram não negociar!"
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr "A vossa escolha foi enviada!"
+msgstr "A sua escolha foi enviada!"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
