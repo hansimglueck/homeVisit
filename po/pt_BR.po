@@ -138,7 +138,7 @@ msgstr "Holandês"
 #. Keyword for poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr "benefício pessoal com mercado informal"
+msgstr "benefício burlando alguma lei"
 
 #: homevisit_components/hvLanguage.js:8
 msgid "English"
@@ -232,7 +232,7 @@ msgstr "A minha confiança na democracia"
 #. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr "O benefício pessoal com o mercado informal"
+msgstr "O benefício burlando alguma lei"
 
 #: mc/js/controllers/players.js:56
 msgid "My Turn!"
