@@ -127,7 +127,7 @@
                 },
                 {
                     // 5
-                    rid: 19,
+                    rid: 4019,
                     question: gettext('Who works regularly outside the country?'),
                     note: gettext('working outside the country'),
                     type: 'binary',
@@ -145,7 +145,7 @@
                 },
                 {
                     // 7
-                    rid: 21,
+                    rid: 4021,
                     question: gettext('Who has ever consciously denied his national origin?'),
                     note: gettext('denied origin'),
                     type: 'binary',
@@ -208,7 +208,7 @@
                 },
                 {
                     // 14
-                    rid: 32,
+                    rid: 4032,
                     question: gettext('My earnings from the game of the markets'),
                     note: gettext('earnings'),
                     type: 'fingers',
