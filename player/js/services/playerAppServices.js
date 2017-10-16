@@ -340,7 +340,7 @@
 
             function f(s) {
                 return parseFloat(s).toLocaleString(
-                        gettextCatalog.currentLanguage,
+                        gettextCatalog.currentLanguage.replace(/_/g , "-"),
                         {
                             maximumFractionDigits: 2,
                             minimumFractionDigits: 2
