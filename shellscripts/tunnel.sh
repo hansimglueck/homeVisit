@@ -14,7 +14,7 @@ if [ -e ~/homeVisit/DIZZICONF ]; then
 
     # start tunnel
     echo Starting tunnel to ${DIZZIHOST} ${port}
-    /usr/bin/autossh -fN -o "ServerAliveInterval=30" -o "ServerAliveCountMax=99999" -R ${port}:localhost:22 ${DIZZIHOST}
+    /usr/bin/autossh -p2213 -fN -o "ServerAliveInterval=30" -o "ServerAliveCountMax=99999" -R ${port}:localhost:22 ${DIZZIHOST}
 else
     echo "DIZZICONF not found!"
 fi
