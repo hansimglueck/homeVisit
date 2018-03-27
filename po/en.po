@@ -390,7 +390,7 @@ msgstr ""
 #: mc/views/item-as-row.html:23
 #, fuzzy
 msgid "Special code is executed"
-msgstr "The alliance is rejected."
+msgstr ""
 
 #: mc/views/vote.html:41
 msgid "Submit"
