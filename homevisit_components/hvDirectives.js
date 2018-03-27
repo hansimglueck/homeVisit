@@ -23,6 +23,24 @@
                 templateUrl: '/homevisit_components/views/player-icon.html'
             };
         })
+        .directive('ownPlayerIcon', function () {
+            return {
+                restrict: 'AE',
+                replace: 'true',
+                transclude: true,
+                controller: function ($scope, playerColors, playerColornamesFactory, playerTextColors, gettextCatalog, Status) {
+                    $scope.playerId = Status.player.playerId;
+                    $scope.playerColors = playerColors;
+                    $scope.lang = gettextCatalog.currentLanguage;
+                    $scope.playerColornames = playerColornamesFactory.playercolornames;
+                    $scope.playerTextColors = playerTextColors;
+                    $scope.getColorName = function (color) {
+                        return gettextCatalog.getString(color);
+                    }
+                },
+                templateUrl: '/homevisit_components/views/player-icon.html'
+            };
+        })
         .directive('playerAppIconFull', function () {
             return {
                 restrict: 'AE',
