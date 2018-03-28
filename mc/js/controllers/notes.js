@@ -2,8 +2,9 @@
     'use strict';
 
     angular.module('homeVisitMCApp')
-        .controller('NotesController', function ($scope, Deck, gettextCatalog, close, $element, Status) {
+        .controller('NotesController', function ($scope, Deck, gettextCatalog, close, $element, Status, $sce) {
             $scope.deck = Deck;
+            $scope.thisCanBeusedInsideNgBindHtml = $sce.trustAsHtml($scope.deck.mcNote);
             $scope.lang = gettextCatalog.currentLanguage;
             $scope.status = Status;
             $scope.closeModal = function () {
