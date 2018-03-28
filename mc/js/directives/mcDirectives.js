@@ -55,7 +55,7 @@
                     item: '=',
                     index: '@'
                 },
-                controller: function ($scope, gettextCatalog, Deck) {
+                controller: function ($scope, gettextCatalog, Deck, $log) {
                     $scope.lang = gettextCatalog.currentLanguage;
                     $scope.deck = Deck;
                     $scope.mainIndex = parseInt($scope.index);
@@ -69,6 +69,11 @@
                         'command': 'fa-clock-o',
                         'results': 'fa-pie-chart'
                     };
+                    //console.log($scope.item.type);
+                    //$log.warn($scope.item.text[$scope.lang]);
+                    //console.log($scope.item.text[$scope.lang]);
+                    $scope.text = (typeof $scope.item.text === "undefined") ? "" : (typeof $scope.item.text[$scope.lang] === "undefined" || $scope.item.text[$scope.lang] == "") ?
+                        $scope.item.text['en'] : $scope.item.text[$scope.lang];
                 },
                 link: function (scope, element, attrs) {
                     if (scope.item.type === "inlineSwitch") appendInlineDecks();
