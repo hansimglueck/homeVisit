@@ -310,6 +310,7 @@
         .factory('PlayerNames', function (gettextCatalog) {
             var playerNamesFactory = {
                 customPlayerNames: [],
+                hostId: 0,
                 getNames: function () {
                     var pn = [];
                     for (var i = 0; i < 15; i++) {

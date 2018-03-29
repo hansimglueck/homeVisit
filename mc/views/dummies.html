@@ -8,7 +8,7 @@
                 <div class="dummy-name" ng-class="{dummy_notingame:!isInGame($index)}" ng-click="setName($index)">
                     {{ customPlayerNames[$index] || playerNames()[$index] }}
                 </div>
-                <span ng-click="setHost($index)" class="pull-right fa fa-home fa-2x ban_icon" ng-class="{banned_icon:hostId==$index}"></span>
+                <span ng-click="setHost($index)" class="pull-right fa fa-home fa-2x ban_icon" ng-class="{banned_icon:p.hostId==$index}"></span>
             </div>
             <li ng-if="polls.polls[selectedRow].type=='fingers'" class="">
                 <div class="container-fluid" ng-if="isInGame($index)">
