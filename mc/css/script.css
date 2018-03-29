@@ -102,7 +102,7 @@
     background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 12px, rgba(0, 0, 0, 0.8) 20px);
 }
 
-.script-upcoming {
+.script-upcoming-deprecated {
     background: repeating-linear-gradient(45deg, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0) 18px, rgba(0, 0, 0, 0.2) 20px);
 }
 
