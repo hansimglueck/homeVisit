@@ -26,8 +26,8 @@
                 {top: 440, left: 20},
                 {top: 250, left: 20}
             ];
+            $scope.p = PlayerNames;
 
-            $scope.hostId = 0;
             // When there are less than 15 players, deactivate them to ignore them in matching calc
             // 1 if player is in game, 0 if player is absent
             $scope.inGame = PlayerNames.inGame;
@@ -36,18 +36,18 @@
             $scope.selectRow = function(id){
                 $scope.selectedRow = id;
                 Polls.selectedPoll = id;
-                if (Polls.polls[id].type === "fingers" && $scope.isInGame($scope.hostId)) $scope.pollPopup();
+                if (Polls.polls[id].type === "fingers" && $scope.isInGame(PlayerNames.hostId)) $scope.pollPopup();
                 //Polls.selectedPoll = id;
             };
             $scope.setHost = function(hid) {
-                $scope.hostId = hid;
+                PlayerNames.hostId = hid;
             };
             $scope.pollPopup = function() {
                 ModalService.showModal({
                     templateUrl: "views/pollPopup.html",
                     controller: "PollPopupController",
                     inputs: {
-                        startId: $scope.hostId,
+                        startId: PlayerNames.hostId,
                         selectAnswer: $scope.selectAnswer,
                         isInGame: $scope.isInGame
                     }
