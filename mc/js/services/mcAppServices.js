@@ -127,7 +127,7 @@
                 },
                 {
                     // 5
-                    rid: 19,
+                    rid: 2019,
                     question: gettext('Who works regularly outside the country?'),
                     note: gettext('working outside the country'),
                     type: 'binary',
@@ -154,7 +154,7 @@
                 },
                 {
                     // 8
-                    rid: 22,
+                    rid: 4022,
                     question: gettext('Who feels more as an European than a citizens of his country?'),
                     note: gettext('feeling European'),
                     type: 'binary',
