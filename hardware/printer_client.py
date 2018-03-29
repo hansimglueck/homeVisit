@@ -146,7 +146,9 @@ def printPiePartition(data):
 	### Kuchenumfang 2 rund gross ca. 76 cm --- 1 Zeile = 0.44 cm ---> ca. 173 Zeilen
 	### Kuchenumfang 3 rund klein ca. 57 cm --- 1 Zeile = 0.44 cm ---> ca. 130 Zeilen
 
-	all_lines = 130
+	### original: all_lines = 130
+	### for australia:
+	all_lines = 138
 
 	###parts = txt.split()
 
