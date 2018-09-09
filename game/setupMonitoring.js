@@ -15,7 +15,7 @@
                 type: 'state',
                 state: false,
                 necessary: true,
-                hint: "Plug the AP"
+                hint: "Plug the AP near the table"
             },
             {
                 name: 'mc',
@@ -29,7 +29,7 @@
                 type: 'count',
                 state: 0,
                 necessary: 8,
-                hint: "Turn on 8 Phones, connect them to WIFI and start/restart the homevisit-App"
+                hint: "Turn on 8 Phones  (keep them charging battery). connect them to WIFI and start/restart the homevisit-App."
             }
         ];
         this.monitoringState = 666;
