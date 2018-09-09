@@ -29,7 +29,7 @@
                 type: 'count',
                 state: 0,
                 necessary: 8,
-                hint: "Turn on 8 Phones  (keep them charging battery). connect them to WIFI and start/restart the homevisit-App."
+                hint: "Turn on 8 Phones and charge the batteries. connect them to WIFI and start/restart the homevisit-App."
             }
         ];
         this.monitoringState = 666;
