@@ -102,10 +102,10 @@ def setLanguage(lang):
                                         'ά': '\xe1',
                                         'έ': '\xe2',
                                         'ή': '\xe3',
-                                        'ί': '\xe4',
-                                        'ό': '\xe5',
-                                        'ύ': '\xe6',
-                                        'ώ': '\xe7'
+                                        'ί': '\xe6',
+                                        'ό': '\xe6',
+                                        'ύ': '\xe7',
+                                        'ώ': '\xe9'
                              }
                 specialChars.update(specialCharsTable24)
 	else:
