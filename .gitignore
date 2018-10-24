@@ -41,4 +41,5 @@ bower_components
 npm-debug.log
 *.pyc
 *.mo
+config_local.py
 DIZZICONF

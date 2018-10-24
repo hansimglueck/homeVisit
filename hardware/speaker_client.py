@@ -3,6 +3,7 @@ import time
 import os
 import ws
 import subprocess
+import config
 
 def newMessage(msg):
 	if msg["type"] != "display":
@@ -25,6 +26,8 @@ def alert(al_state):
 		stopmpg321()
 
 def playSoundfile(filename, volume):
+	if config.HARDWARE['speaker'] == 'anker':
+    volume = int(volume) / 4
 	#print "pkill omx"
 	#subprocess.call("pkill omx",shell=True)
 
@@ -38,7 +41,11 @@ def playSoundfile(filename, volume):
 		return
 	elif filename.startswith( 'mpg321 ' ):
 		filename = filename[7:]
-		os.popen('mpg321 -g20 /home/pi/medien/sounds/' + filename + ' &')
+  	if config.HARDWARE['speaker'] == 'anker':
+	    os.popen('mpg321 -g10 /home/pi/medien/sounds/' + filename + ' &')
+	  else:
+	    os.popen('mpg321 -g20 /home/pi/medien/sounds/' + filename + ' &')
+
 	else:
 		print "ex-omx file"
 		cmd = 'mpg321 -g'+str(volume)+' /home/pi/medien/sounds/' + filename + ' &'
