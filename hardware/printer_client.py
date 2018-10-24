@@ -99,13 +99,15 @@ def setLanguage(lang):
                                         'Ό': '\xee',
                                         'Ύ': '\xef',
                                         'Ώ': '\xf0',
+                                        'Ϊ': '\xf4',
                                         'ά': '\xe1',
                                         'έ': '\xe2',
                                         'ή': '\xe3',
-                                        'ί': '\xe6',
+                                        'ί': '\xe5',
                                         'ό': '\xe6',
                                         'ύ': '\xe7',
-                                        'ώ': '\xe9'
+                                        'ώ': '\xe9',
+                                        'ϊ': '\xe4'
                              }
                 specialChars.update(specialCharsTable24)
 	else:
