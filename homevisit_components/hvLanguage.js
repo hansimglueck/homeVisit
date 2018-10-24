@@ -22,7 +22,7 @@
 		        ['fr_CH', gettextCatalog.getString('SwissFrench')],
                 ['en_US', gettextCatalog.getString('English (US)')],
                 ['tr_CY', gettextCatalog.getString('Turkish (Cyprus)')],
-                ['el_CY', gettextCatalog.getString('Greek (Cyprus')]
+                ['el_CY', gettextCatalog.getString('Greek (Cyprus)')]
             ];
 
             var languageFactory = {};
