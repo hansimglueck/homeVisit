@@ -27,7 +27,7 @@ def alert(al_state):
 
 def playSoundfile(filename, volume):
 	if config.HARDWARE['speaker'] == 'anker':
-    volume = int(volume) / 4
+		volume = int(volume) / 4
 	#print "pkill omx"
 	#subprocess.call("pkill omx",shell=True)
 
@@ -41,10 +41,10 @@ def playSoundfile(filename, volume):
 		return
 	elif filename.startswith( 'mpg321 ' ):
 		filename = filename[7:]
-  	if config.HARDWARE['speaker'] == 'anker':
-	    os.popen('mpg321 -g10 /home/pi/medien/sounds/' + filename + ' &')
-	  else:
-	    os.popen('mpg321 -g20 /home/pi/medien/sounds/' + filename + ' &')
+  		if config.HARDWARE['speaker'] == 'anker':
+			os.popen('mpg321 -g10 /home/pi/medien/sounds/' + filename + ' &')
+		else:
+			os.popen('mpg321 -g20 /home/pi/medien/sounds/' + filename + ' &')
 
 	else:
 		print "ex-omx file"
