@@ -16,8 +16,8 @@ msgstr ""
 #: player/partials/assholes.html:9
 msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{minuspoints}} αρνητικός βαθμός"
+msgstr[1] "{{minuspoints}} αρνητικοί βαθμοί"
 
 #. the local currency symbol
 #: homevisit_components/views/keyboard.html:4
@@ -29,41 +29,41 @@ msgstr ""
 #. Keyword for Poll "My level of ambition"
 #: mc/js/services/mcAppServices.js:195
 msgid "ambition"
-msgstr ""
+msgstr "Φιλοδοξία"
 
 #. Keyword for Poll "Who is in an association, club or NGO?"
 #: mc/js/services/mcAppServices.js:114
 msgid "association/NGO"
-msgstr ""
+msgstr "Σύλλογος/ΜΚΟ"
 
 #. of a portion of numbers
 #: mc/views/results.html:27 player/partials/results.html:22
 msgid "Average:"
-msgstr ""
+msgstr "Μέσος όρος:"
 
 #. step back in a sequence of screens
 #: player/partials/rating/rating.html:20
 msgid "Back"
-msgstr ""
+msgstr "Επιστροφή"
 
 #. Cancel-Button
 #: mc/views/vote.html:58 player/partials/deals/deal.new.html:14
 #: player/partials/rating/rating.html:15 player/partials/voteConfirm.html:5
 msgid "Cancel"
-msgstr ""
+msgstr "Ακύρωση"
 
 #: mc/js/controllers/dummies.js:102
 msgid "Change name"
-msgstr ""
+msgstr "Αλλαγή ονόματος"
 
 #: player/partials/deals/deal.choosePlayer.html:2
 msgid "Choose team to offer treaty:"
-msgstr ""
+msgstr "Κάντε μια συμφωνία με ποιον;"
 
 #. Keyword for poll "Who at this table was a class representative or spokesman at school?"
 #: mc/js/services/mcAppServices.js:87
 msgid "class spokesman"
-msgstr ""
+msgstr "εκπρόσωπος της τάξης"
 
 #: mc/js/controllers/players.js:48
 msgid "Come Back!"
@@ -77,7 +77,7 @@ msgstr ""
 #. Keyword for poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:204
 msgid "confidence in democracy"
-msgstr ""
+msgstr "εμπιστοσύνη στη Δημοκρατία"
 
 #: mc/views/item.html:32
 msgid "Configuration"
@@ -87,7 +87,7 @@ msgstr ""
 #: mc/views/vote.html:54 player/partials/deals/deal.answer.html:10
 #: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:4
 msgid "Confirm"
-msgstr ""
+msgstr "Επιβεβαίωση"
 
 #: homevisit_components/hvLanguage.js:10
 msgid "Czech"
@@ -99,7 +99,7 @@ msgstr ""
 
 #: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:30
 msgid "dark blue"
-msgstr ""
+msgstr "Σκούρο Μπλε"
 
 #.
 #: mc/js/services/mcAppServices.js:667
@@ -109,11 +109,11 @@ msgstr ""
 #. Keyword for poll "Who has ever lied about their national identity?"
 #: mc/js/services/mcAppServices.js:150
 msgid "denied origin"
-msgstr ""
+msgstr "άρνηση προέλευσης"
 
 #: player/partials/deals/deal.answer.html:13
 msgid "Deny"
-msgstr ""
+msgstr "Απόρριψη"
 
 #: mc/js/controllers/notes.js:29 mc/js/controllers/pollPopup.js:41
 #: mc/js/controllers/script.js:83
@@ -122,7 +122,7 @@ msgstr ""
 
 #: player/partials/deals/deal.answer.html:7
 msgid "Do you want to accept this treaty?"
-msgstr ""
+msgstr "Θέλετε να αποδεχθείτε αυτή τη συμφωνία;"
 
 #: mc/js/controllers/matching.js:216
 msgid "Doesn't match well. Should play alone."
@@ -135,7 +135,7 @@ msgstr ""
 #. Keyword for poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr ""
+msgstr "Ώφελος"
 
 #: homevisit_components/hvLanguage.js:8
 msgid "English"
@@ -143,12 +143,12 @@ msgstr ""
 
 #: player/partials/home.html:3
 msgid "EUROPE"
-msgstr ""
+msgstr "ΕΥΡΩΠΗ"
 
 #. Keyword for poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
-msgstr ""
+msgstr "αισθάνομαι ευρωπαϊος"
 
 #. ... of a form
 #: mc/views/dummies.html:71
@@ -166,11 +166,11 @@ msgstr ""
 #. A Team...
 #: player/partials/rating/rating.html:10
 msgid "gets one Point"
-msgstr ""
+msgstr "παίρνει ένα βαθμό"
 
 #: game/playerManager.js:40 homevisit_components/hvPlayerColors.js:33
 msgid "green"
-msgstr ""
+msgstr "πράσινο"
 
 #: homevisit_components/views/language-chooser.html:2
 msgid "Language"
@@ -178,16 +178,16 @@ msgstr ""
 
 #: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
-msgstr ""
+msgstr "Γαλάζιο"
 
 #: game/playerManager.js:41 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
-msgstr ""
+msgstr "Λιλά"
 
 #. A Team...
 #: player/partials/rating/rating.html:11
 msgid "looses one Point"
-msgstr ""
+msgstr "χάνει ένα βαθμό"
 
 #: mc/js/controllers/matching.js:218
 msgid "Matches best with the team of {{name1}} and {{name2}}."
@@ -196,12 +196,12 @@ msgstr ""
 #. of a portion of numbers
 #: mc/views/results.html:29 player/partials/results.html:30
 msgid "Max:"
-msgstr ""
+msgstr "Μέγιστο:"
 
 #. Keyword for poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:105
 msgid "member of political party"
-msgstr ""
+msgstr "μέλος πολιτικού κόμματος"
 
 #: player/partials/deals/deal.messageSent.html:7
 msgid "Message sent"
@@ -210,39 +210,39 @@ msgstr ""
 #. of a portion of numbers
 #: mc/views/results.html:28 player/partials/results.html:26
 msgid "Min:"
-msgstr ""
+msgstr "Ελάχιστο:"
 
 #. Short form of poll "My level of ambition"
 #: mc/js/services/mcAppServices.js:194
 msgid "My ambition"
-msgstr ""
+msgstr "Φιλοδοξία"
 
 #. Short form of poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:203
 msgid "My confidence in democracy"
-msgstr ""
+msgstr "εμπιστοσύνη στη Δημοκρατία"
 
 #. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr ""
+msgstr "Το όφελος μου από την ελεύθερη αγορά"
 
 #. Short form of poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
-msgstr ""
+msgstr "Το επίπεδο της αλληλεγγύης μου"
 
 #: game/polls/Agreement.js:16
 msgid "No"
-msgstr ""
+msgstr "Οχι"
 
 #: player/partials/deals/deal.choosePlayer.html:8
 msgid "No Deal with me!"
-msgstr ""
+msgstr "Καμία συμφωνία με μένα!"
 
 #: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
-msgstr ""
+msgstr "Κανείς δεν ήταν κακός απέναντι σάς"
 
 #: homevisit_components/hvLanguage.js:14
 msgid "Norwegian"
@@ -250,20 +250,20 @@ msgstr ""
 
 #: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
-msgstr ""
+msgstr "πορτοκαλί"
 
 #: mc/js/services/mcAppServices.js:123
 msgid "paid job"
-msgstr ""
+msgstr "αμειβόμενη εργασία"
 
 #. Keyword for Poll "Who had a physical conflict in the past 10 years?"
 #: mc/js/services/mcAppServices.js:141
 msgid "physical conflict"
-msgstr ""
+msgstr "Φυσική σύγκρουση"
 
 #: game/playerManager.js:42 homevisit_components/hvPlayerColors.js:35
 msgid "pink"
-msgstr ""
+msgstr "ροζ"
 
 #: mc/views/dummies.html:124 mc/js/services/mcAppServices.js:317
 msgid "Player"
@@ -299,13 +299,13 @@ msgstr ""
 #: player/js/services/playerAppServices.js:219
 msgid "point"
 msgid_plural "points"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Βαθμός"
+msgstr[1] "Βαθμοί"
 
 #. message after someone distributed a point (score)
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr ""
+msgstr "Έδωσες βαθμό"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
@@ -317,7 +317,7 @@ msgstr ""
 
 #: player/index.html:86
 msgid "Rank:"
-msgstr ""
+msgstr "θέση:"
 
 #: mc/js/services/mcAppServices.js:696
 msgid "Really jump?"
@@ -329,7 +329,7 @@ msgstr ""
 
 #: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:28
 msgid "red"
-msgstr ""
+msgstr "κόκκινο"
 
 #: player/partials/deals/deal.wait.html:8
 msgid "Reject"
@@ -345,19 +345,19 @@ msgstr ""
 
 #: mc/views/results.html:43 player/partials/results.html:47
 msgid "Results are weighted by ranking. See actual votes in braces."
-msgstr ""
+msgstr "Αποτέλεσμα εξαρτάρτε από την ψηφοφορία"
 
 #: mc/js/services/mcAppServices.js:168
 msgid "scared of the future"
-msgstr ""
+msgstr "φοβάται το μέλλον"
 
 #: mc/js/services/mcAppServices.js:661
 msgid "Score"
-msgstr ""
+msgstr "Βαθμολογία"
 
 #: player/index.html:87
 msgid "Score:"
-msgstr ""
+msgstr "Βαθμολογία:"
 
 #: mc/js/controllers/notes.js:31 mc/js/controllers/pollPopup.js:43
 #: mc/js/controllers/script.js:85
@@ -370,6 +370,8 @@ msgid ""
 "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
 "is reading:"
 msgstr ""
+"Ησύχια παρακαλώ. Τώρα <player-icon pid=\"status.playerOnTurn\"></player-"
+"icon> διαβάζει"
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
@@ -393,24 +395,24 @@ msgstr ""
 
 #: game/polls/Agreement.js:39
 msgid "The alliance is fullfilled."
-msgstr ""
+msgstr "Η συμμαχία πραγματοποιήθηκε"
 
 #. actually: "The alliance is rejected."
 #: game/polls/Agreement.js:42
 msgid "The alliance is neglected."
-msgstr ""
+msgstr "Η συμμαχία απορίφθηκε"
 
 #: player/partials/results.html:3
 msgid "The correct answer is:"
-msgstr ""
+msgstr "Η σωστή απάντηση είναι"
 
 #: player/js/services/playerAppServices.js:665
 msgid "The deal was denied"
-msgstr ""
+msgstr "Η συμφωνία απορρήφθηκε"
 
 #: game/items/includes/results.js:28
 msgid "The division of the cake"
-msgstr ""
+msgstr "Το μοίρασμα του κέικ"
 
 #: player/partials/rating/rating.score.html:2
 msgid "The MC has to select somebody!!"
@@ -432,11 +434,11 @@ msgstr ""
 #. they took points from you
 #: player/partials/assholes.html:2
 msgid "These teams were mean to you:"
-msgstr ""
+msgstr "Αυτές οι ομάδες ήταν κακές μαζί σου"
 
 #: player/partials/deals/deal.finish.html:7
 msgid "This deal is active"
-msgstr ""
+msgstr "Η συμφωνία είναι ενεργή"
 
 #: game/game.js:281 game/playerManager.js:194
 msgid "This poll doesn't exist!"
@@ -453,16 +455,16 @@ msgstr ""
 #. like in "Score 3 points to Team Red"
 #: mc/js/services/mcAppServices.js:661
 msgid "to"
-msgstr ""
+msgstr "στην"
 
 #. of a portion of numbers
 #: mc/views/results.html:26 player/partials/results.html:18
 msgid "Total:"
-msgstr ""
+msgstr "Σύνολο"
 
 #: player/partials/rating/rating.html:19
 msgid "Traitor! You can't score down your allied!"
-msgstr ""
+msgstr "Προδότη! Δεν μπορείς να αφαιρέσεις βαθμούς με τη συμμαχία σου"
 
 #: player/partials/deals/deal.answer.html:3
 #: player/partials/deals/deal.details.html:3
@@ -470,23 +472,23 @@ msgstr ""
 #: player/partials/deals/deal.messageSent.html:3
 #: player/partials/deals/deal.new.html:3 player/partials/deals/deal.wait.html:3
 msgid "Treaty"
-msgstr ""
+msgstr "συμφωνία"
 
 #. Keyword for poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:177
 msgid "trustworthy"
-msgstr ""
+msgstr "Αξιόπιστος"
 
 #: player/partials/deals/deal.details.html:42
 msgid "Try Again"
-msgstr ""
+msgstr "Δοκίμασε ξανά"
 
 #: mc/js/services/mcAppServices.js:572
 #: player/js/services/playerAppServices.js:236
 msgid "vote"
 msgid_plural "votes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ψηφοφορία"
+msgstr[1] "Ψηφοφορίες"
 
 #: mc/views/vote.html:20 player/partials/vote.html:19
 msgid "VOTE"
@@ -502,7 +504,7 @@ msgstr ""
 
 #: player/partials/rating/rating.score.html:26
 msgid "Waiting for being rated."
-msgstr ""
+msgstr "Περίμενε να βαθμολογηθείς"
 
 #: player/partials/deals/deal.details.html:18
 msgid "Waiting for reply..."
@@ -570,25 +572,25 @@ msgstr ""
 #. Keyword for poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:186
 msgid "willingness of solidarity"
-msgstr ""
+msgstr "Αξιοπιστία"
 
 #. Keyword for poll "Who at this table has ever hit the jackpot?"
 #: mc/js/services/mcAppServices.js:96
 msgid "won a lot"
-msgstr ""
+msgstr "Τζάκποτ"
 
 #. Keyword for poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"
-msgstr ""
+msgstr "Δουλεύει στο εξωτερικό"
 
 #: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
-msgstr ""
+msgstr "κίτρινο"
 
 #: game/polls/Agreement.js:12
 msgid "Yes"
-msgstr ""
+msgstr "ναι"
 
 #: game/playerManager.js:510
 msgid "You are in the game!"
@@ -604,7 +606,7 @@ msgstr ""
 
 #: mc/views/vote.html:47 player/partials/voteConfirm.html:1
 msgid "You are voting for:"
-msgstr ""
+msgstr "Ψηφίζεις για:"
 
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
@@ -612,11 +614,11 @@ msgstr ""
 
 #: player/partials/deals/deal.noDealing.html:1
 msgid "You decided not to deal at all!"
-msgstr ""
+msgstr "Αποφάσισες να μην διαπραγματευτείς"
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr ""
+msgstr "Η αποφάση σου έχει σταλέι"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
@@ -624,4 +626,4 @@ msgstr ""
 
 #: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
-msgstr ""
+msgstr "Η βαθμολογία σου εξαρτάτε από την κατάταξη σου"
