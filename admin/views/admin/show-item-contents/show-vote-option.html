@@ -8,19 +8,19 @@
 <tr ng-repeat="voteOption in item.voteOptions track by $index">
     <td>
         ({{gettextCatalog.currentLanguage}})
-        <span editable-text="voteOption.text[gettextCatalog.currentLanguage]" e-name="text" onaftersave="saveVoteOption()">
+        <span editable-text="voteOption.text[gettextCatalog.currentLanguage]" e-name="text" onaftersave="saveVoteOption()" e-ng-disabled="!socket.server.connected">
             {{ voteOption.text[gettextCatalog.currentLanguage] || '-' }}
         </span>
         <p ng-if="show && language !== gettextCatalog.currentLanguage"
              ng-repeat="(language, show) in otherLanguages">
-            ({{language}}) <span editable-text="voteOption.text[language]" e-name="text" onaftersave="saveVoteOption()">
+            ({{language}}) <span editable-text="voteOption.text[language]" e-name="text" onaftersave="saveVoteOption()" e-ng-disabled="!socket.server.connected">
             {{ voteOption.text[language] || '-' }}
             </span>
         </p>
 
     </td>
     <td ng-show="item.type == 'vote'"><span editable-checkbox="voteOption.correctAnswer" e-name="correctAnswer"
-                                            onaftersave="saveVoteOption()">
+                                            onaftersave="saveVoteOption()" e-ng-disabled="!socket.server.connected">
           {{ voteOption.correctAnswer ? 'x':'-' }}
         </span>
     </td>

@@ -5,28 +5,32 @@
             <div ng-switch-when="localized-textarea">
             <span editable-textarea="item[field][gettextCatalog.currentLanguage]"
                   e-rows="7" e-cols="40" e-name="field"
-                  onaftersave="saveitem()">
+                  onaftersave="saveitem()"
+                  e-ng-disabled="!socket.server.connected">
                 {{ item[field][gettextCatalog.currentLanguage] || '-' }}
             </span>
             </div>
             <div ng-switch-when="textarea">
             <span editable-textarea="item[field]"
                   e-rows="7" e-cols="40" e-name="field"
-                  onaftersave="saveitem()">
+                  onaftersave="saveitem()"
+                  e-ng-disabled="!socket.server.connected">
                 {{ item[field] || '-' }}
             </span>
         </div>
         <div ng-switch-when="number">
             <span editable-number="item[field]"
                   e-rows="7" e-cols="40" e-name="field"
-                  onaftersave="saveitem()">
+                  onaftersave="saveitem()"
+                  e-ng-disabled="!socket.server.connected">
                 {{ item[field] || '-' }}
             </span>
         </div>
         <div ng-switch-when="localized-textarea_pre">
             <span editable-textarea="item[field][gettextCatalog.currentLanguage]"
                   e-rows="7" e-cols="40" e-name="field"
-                  onaftersave="saveitem()">
+                  onaftersave="saveitem()"
+                  e-ng-disabled="!socket.server.connected">
            <pre><code>{{ item[field][gettextCatalog.currentLanguage] || '-' }}</code></pre>
            </span>
             </div>
@@ -34,7 +38,7 @@
            <span editable-select="item[field]" e-name="field"
                  onaftersave="saveitem()"
                  e-ng-options="s.value as s.text for s in itemOptions[field]"
-                   >
+                 e-ng-disabled="!socket.server.connected"  >
                 {{ showTextForValue(item, field) }}
             </span>
             </div>
@@ -48,13 +52,15 @@
             <div ng-switch-when="localized-text">
             <span editable-text="item[field][gettextCatalog.currentLanguage]"
                   e-rows="7" e-cols="40" e-name="field"
-                  onaftersave="saveitem()">
+                  onaftersave="saveitem()"
+                  e-ng-disabled="!socket.server.connected">
             {{ item[field][gettextCatalog.currentLanguage] || '-' }}</span>
             </div>
             <div ng-switch-when="text">
             <span editable-text="item[field]"
                   e-rows="7" e-cols="40" e-name="field"
-                  onaftersave="saveitem()">
+                  onaftersave="saveitem()"
+                  e-ng-disabled="!socket.server.connected">
             {{ item[field] || '-' }}</span>
             </div>
             <div ng-switch-when="checkbox">
@@ -64,7 +70,8 @@
             <div ng-switch-when="checkbox_editable">
             <span editable-checkbox="item[field]"
                   e-rows="7" e-cols="40" e-name="field"
-                  onaftersave="saveitem()">
+                  onaftersave="saveitem()"
+                  e-ng-disabled="!socket.server.connected">
             {{ item[field] || '-' }}</span>
             </div>
             <div ng-switch-when="tags">
@@ -99,21 +106,24 @@
             <div ng-switch-when="localized-textarea">
             <span editable-textarea="item[field][language]"
                   e-rows="7" e-cols="40" e-name="field"
-                  onaftersave="saveitem()">
+                  onaftersave="saveitem()"
+                  e-ng-disabled="!socket.server.connected">
                 {{ item[field][language] || '-' }}
             </span>
             </div>
             <div ng-switch-when="localized-textarea_pre">
             <span editable-textarea="item[field][language]"
                   e-rows="7" e-cols="40" e-name="field"
-                  onaftersave="saveitem()">
+                  onaftersave="saveitem()"
+                  e-ng-disabled="!socket.server.connected">
            <pre><code>{{ item[field][language] || '-' }}</code></pre>
            </span>
             </div>
             <div ng-switch-when="localized-text">
             <span editable-text="item[field][language]"
                   e-rows="7" e-cols="40" e-name="field"
-                  onaftersave="saveitem()">
+                  onaftersave="saveitem()"
+                  e-ng-disabled="!socket.server.connected">
             {{ item[field][language] || '-' }}</span>
             </div>
         </div>

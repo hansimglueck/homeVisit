@@ -46,7 +46,7 @@
                 scope: {
                     item: '='
                 },
-                controller: function ($scope, gettextCatalog, OtherLanguages) {
+                controller: function ($scope, gettextCatalog, OtherLanguages, Socket) {
                     $scope.otherLanguages = OtherLanguages;
                     $scope.lang = gettextCatalog.currentLanguage;
                     $scope.gettextCatalog = gettextCatalog;
@@ -60,6 +60,7 @@
                         $scope.$parent.deck.items[$scope.$parent.$index].voteOptions.splice(i, 1);
                         $scope.$parent.updateDeck($scope.$parent.deck);
                     };
+                    $scope.socket = Socket;
                 }
             };
         })
@@ -228,7 +229,7 @@
                     type: '@',
                     saveitem: '&'
                 },
-                controller: function ($scope, itemOptions, $filter, gettextCatalog, OtherLanguages) {
+                controller: function ($scope, itemOptions, $filter, gettextCatalog, OtherLanguages, Socket) {
                     $scope.otherLanguages = OtherLanguages;
                     $scope.lang = gettextCatalog.currentLanguage;
                     $scope.gettextCatalog = gettextCatalog;
@@ -247,7 +248,7 @@
                     $scope.removeTag = function (field, id) {
                         $scope.item[field].splice(id, 1);
                     };
-
+                    $scope.socket = Socket;
                 },
 
                 templateUrl: baseUrl + '/admin/item-partials/labeled-item-option.html'
