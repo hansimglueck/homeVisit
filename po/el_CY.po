@@ -99,7 +99,7 @@ msgstr ""
 
 #: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:30
 msgid "dark blue"
-msgstr "Σκούρο Μπλε"
+msgstr "σκούρο μπλε"
 
 #.
 #: mc/js/services/mcAppServices.js:667
@@ -317,7 +317,7 @@ msgstr ""
 
 #: player/index.html:86
 msgid "Rank:"
-msgstr "θέση:"
+msgstr "Θέση:"
 
 #: mc/js/services/mcAppServices.js:696
 msgid "Really jump?"
@@ -333,11 +333,11 @@ msgstr "κόκκινο"
 
 #: player/partials/deals/deal.wait.html:8
 msgid "Reject"
-msgstr ""
+msgstr "Απόρριψη"
 
 #: player/partials/deals/deal.new.html:9
 msgid "Request"
-msgstr ""
+msgstr "Αίτημα"
 
 #: mc/views/item-as-row.html:15 mc/views/item.html:29
 msgid "Results are displayed"
@@ -353,11 +353,11 @@ msgstr "φοβάται το μέλλον"
 
 #: mc/js/services/mcAppServices.js:661
 msgid "Score"
-msgstr "Βαθμολογία"
+msgstr "Βαθμοί"
 
 #: player/index.html:87
 msgid "Score:"
-msgstr "Βαθμολογία:"
+msgstr "Βαθμοί:"
 
 #: mc/js/controllers/notes.js:31 mc/js/controllers/pollPopup.js:43
 #: mc/js/controllers/script.js:85
@@ -400,7 +400,7 @@ msgstr "Η συμμαχία πραγματοποιήθηκε"
 #. actually: "The alliance is rejected."
 #: game/polls/Agreement.js:42
 msgid "The alliance is neglected."
-msgstr "Η συμμαχία απορίφθηκε"
+msgstr "Η συμμαχία απορρίφθηκε"
 
 #: player/partials/results.html:3
 msgid "The correct answer is:"
@@ -512,7 +512,7 @@ msgstr ""
 
 #: player/partials/deals/deal.wait.html:7
 msgid "We are waiting for reply."
-msgstr ""
+msgstr "Περιμένε για απαντήση"
 
 #. Brief form of poll "Who at the table has a job that pays enough that they can live from it?"
 #: mc/js/services/mcAppServices.js:122
@@ -590,15 +590,15 @@ msgstr "κίτρινο"
 
 #: game/polls/Agreement.js:12
 msgid "Yes"
-msgstr "ναι"
+msgstr "Ναι"
 
 #: game/playerManager.js:510
 msgid "You are in the game!"
-msgstr ""
+msgstr "Είσαι στο παιχνίδι!"
 
 #: game/playerManager.js:501
 msgid "You are NOT in the game!"
-msgstr ""
+msgstr "ΔΕΝ είσαι στο παιχνίδι!"
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
@@ -622,7 +622,7 @@ msgstr "Η αποφάση σου έχει σταλέι"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
-msgstr ""
+msgstr "Ο χρόνος σας έληξε. Ένας βαθμός αφαιρέρηκε!"
 
 #: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
