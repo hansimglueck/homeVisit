@@ -36,7 +36,7 @@ def setLanguage(lang):
                                         'ü': '\x81',
                                         'Ü': '\x9a',
                                         'ı': '\x8d',
-                                        'I': '\x49'
+                                        'İ': '\xad'
                                         }
                 specialChars.update(specialCharsTable29)
 	elif lang in ["el_CY"]:
