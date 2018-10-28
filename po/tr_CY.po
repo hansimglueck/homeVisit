@@ -16,8 +16,8 @@ msgstr ""
 #: player/partials/assholes.html:9
 msgid "{{minuspoints}} minus point"
 msgid_plural "{{minuspoints}} minus points"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "{{minuspoints}} eksi puan"
+msgstr[1] "{{minuspoints}} eksi puanlar"
 
 #. the local currency symbol
 #: homevisit_components/views/keyboard.html:4
@@ -29,340 +29,342 @@ msgstr "TL"
 #. Keyword for Poll "My level of ambition"
 #: mc/js/services/mcAppServices.js:195
 msgid "ambition"
-msgstr ""
+msgstr "hırs"
 
 #. Keyword for Poll "Who is in an association, club or NGO?"
 #: mc/js/services/mcAppServices.js:114
 msgid "association/NGO"
-msgstr ""
+msgstr "dernek/STO"
 
 #. of a portion of numbers
 #: mc/views/results.html:27 player/partials/results.html:22
 msgid "Average:"
-msgstr ""
+msgstr "Ortalama: "
 
 #. step back in a sequence of screens
 #: player/partials/rating/rating.html:20
 msgid "Back"
-msgstr ""
+msgstr "Geri"
 
 #. Cancel-Button
 #: mc/views/vote.html:58 player/partials/deals/deal.new.html:14
 #: player/partials/rating/rating.html:15 player/partials/voteConfirm.html:5
 msgid "Cancel"
-msgstr ""
+msgstr "İptal"
 
 #: mc/js/controllers/dummies.js:102
 msgid "Change name"
-msgstr ""
+msgstr "İsmi değiştir"
 
 #: player/partials/deals/deal.choosePlayer.html:2
 msgid "Choose team to offer treaty:"
-msgstr ""
+msgstr "Anlaşma önermek istediğiniz takımı seçin"
 
 #. Keyword for poll "Who at this table was a class representative or spokesman at school?"
 #: mc/js/services/mcAppServices.js:87
 msgid "class spokesman"
-msgstr ""
+msgstr "sınıf temsilcisi"
 
 #: mc/js/controllers/players.js:48
 msgid "Come Back!"
-msgstr ""
+msgstr "Geri gel!"
 
 #. Type of
 #: mc/views/item.html:31
 msgid "Command"
-msgstr ""
+msgstr "Komut"
 
 #. Keyword for poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:204
 msgid "confidence in democracy"
-msgstr ""
+msgstr "demokrasiye olan güven"
 
 #: mc/views/item.html:32
 msgid "Configuration"
-msgstr ""
+msgstr "Kurulum"
 
 #. Confirm-Button
 #: mc/views/vote.html:54 player/partials/deals/deal.answer.html:10
 #: player/partials/rating/rating.html:14 player/partials/voteConfirm.html:4
 msgid "Confirm"
-msgstr ""
+msgstr "Onayla"
 
 #: homevisit_components/hvLanguage.js:10
 msgid "Czech"
-msgstr ""
+msgstr "Çek"
 
 #: homevisit_components/hvLanguage.js:11
 msgid "Danish"
-msgstr ""
+msgstr "Danimarkalı"
 
 #: game/playerManager.js:37 homevisit_components/hvPlayerColors.js:30
 msgid "dark blue"
-msgstr ""
+msgstr "koyu mavi"
 
 #.
 #: mc/js/services/mcAppServices.js:667
 msgid "Deal with"
-msgstr ""
+msgstr "ile ilgilenmek"
 
 #. Keyword for poll "Who has ever lied about their national identity?"
 #: mc/js/services/mcAppServices.js:150
 msgid "denied origin"
-msgstr ""
+msgstr "kökenini inkar"
 
 #: player/partials/deals/deal.answer.html:13
 msgid "Deny"
-msgstr ""
+msgstr "inkar"
 
 #: mc/js/controllers/notes.js:29 mc/js/controllers/pollPopup.js:41
 #: mc/js/controllers/script.js:83
 msgid "Deselect"
-msgstr ""
+msgstr "seçme"
 
 #: player/partials/deals/deal.answer.html:7
 msgid "Do you want to accept this treaty?"
-msgstr ""
+msgstr "Bu anlaşmayı kabul etmek istiyor musunuz?"
 
 #: mc/js/controllers/matching.js:216
 msgid "Doesn't match well. Should play alone."
-msgstr ""
+msgstr "İyi eşleşme olmadı. Yalnız oynamalı."
 
 #: homevisit_components/hvLanguage.js:13
 msgid "Dutch"
-msgstr ""
+msgstr "Hollandalı"
 
 #. Keyword for poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr ""
+msgstr "kazanç"
 
 #: homevisit_components/hvLanguage.js:8
 msgid "English"
-msgstr ""
+msgstr "İngilizce"
 
 #: player/partials/home.html:3
 msgid "EUROPE"
-msgstr ""
+msgstr "AVRUPA"
 
 #. Keyword for poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
-msgstr ""
+msgstr "Avrupalı hissetmek"
 
 #. ... of a form
 #: mc/views/dummies.html:71
 msgid "Fill the rest"
-msgstr ""
+msgstr "Gerisini doldurun"
 
 #: homevisit_components/hvLanguage.js:12
 msgid "French"
-msgstr ""
+msgstr "Fransız"
 
 #: homevisit_components/hvLanguage.js:9
 msgid "German"
-msgstr ""
+msgstr "Alman"
 
 #. A Team...
 #: player/partials/rating/rating.html:10
 msgid "gets one Point"
-msgstr ""
+msgstr "bir puan kazanır"
 
 #: game/playerManager.js:40 homevisit_components/hvPlayerColors.js:33
 msgid "green"
-msgstr ""
+msgstr "yeşil"
 
 #: homevisit_components/views/language-chooser.html:2
 msgid "Language"
-msgstr ""
+msgstr "Dil"
 
 #: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
-msgstr ""
+msgstr "açık mavi"
 
 #: game/playerManager.js:41 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
-msgstr ""
+msgstr "lila"
 
 #. A Team...
 #: player/partials/rating/rating.html:11
 msgid "looses one Point"
-msgstr ""
+msgstr "bir puan kaybeder"
 
 #: mc/js/controllers/matching.js:218
 msgid "Matches best with the team of {{name1}} and {{name2}}."
-msgstr ""
+msgstr "En iyi, takım {{name1}} ve {{name2}} ile eşleşir."
 
 #. of a portion of numbers
 #: mc/views/results.html:29 player/partials/results.html:30
 msgid "Max:"
-msgstr ""
+msgstr "En çok:"
 
 #. Keyword for poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:105
 msgid "member of political party"
-msgstr ""
+msgstr "siyasi parti üyesi"
 
 #: player/partials/deals/deal.messageSent.html:7
 msgid "Message sent"
-msgstr ""
+msgstr "Mesaj gönderildi"
 
 #. of a portion of numbers
 #: mc/views/results.html:28 player/partials/results.html:26
 msgid "Min:"
-msgstr ""
+msgstr "En az:"
 
 #. Short form of poll "My level of ambition"
 #: mc/js/services/mcAppServices.js:194
 msgid "My ambition"
-msgstr ""
+msgstr "Benim hırsım"
 
 #. Short form of poll "My trust in democracy"
 #: mc/js/services/mcAppServices.js:203
 msgid "My confidence in democracy"
-msgstr ""
+msgstr "Benim demokrasiye olan güvenim"
 
 #. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr ""
+msgstr "Benim piyasa oyunlarından kazancım"
 
 #. Short form of poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:185
 msgid "My willingness of solidarity"
-msgstr ""
+msgstr "Benim dayanışma isteğim"
 
 #: game/polls/Agreement.js:16
 msgid "No"
-msgstr ""
+msgstr "Hayır"
 
 #: player/partials/deals/deal.choosePlayer.html:8
 msgid "No Deal with me!"
-msgstr ""
+msgstr "Benimle anlaşma yok!"
 
 #: player/partials/assholes.html:14
 msgid "Nobody was mean to you."
-msgstr ""
+msgstr "Kimse size kötü davranmadı."
 
 #: homevisit_components/hvLanguage.js:14
 msgid "Norwegian"
-msgstr ""
+msgstr "Norveçli"
 
 #: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
-msgstr ""
+msgstr "turuncu"
 
 #: mc/js/services/mcAppServices.js:123
 msgid "paid job"
-msgstr ""
+msgstr "ödemeli iş"
 
 #. Keyword for Poll "Who had a physical conflict in the past 10 years?"
 #: mc/js/services/mcAppServices.js:141
 msgid "physical conflict"
-msgstr ""
+msgstr "fiziksel çatışma"
 
 #: game/playerManager.js:42 homevisit_components/hvPlayerColors.js:35
 msgid "pink"
-msgstr ""
+msgstr "pembe"
 
 #: mc/views/dummies.html:124 mc/js/services/mcAppServices.js:317
 msgid "Player"
-msgstr ""
+msgstr "Oyuncu"
 
 #: mc/views/item-as-row.html:21 mc/views/item.html:33
 msgid "Players are dealing"
-msgstr ""
+msgstr "Oyuncular arıyor"
 
 #: mc/views/item-as-row.html:22 mc/views/item.html:34
 msgid "Players are rating others"
-msgstr ""
+msgstr "Oyuncular diğerlerini değerlendiriyor"
 
 #: mc/views/item.html:14
 msgid "Players are voting"
-msgstr ""
+msgstr "Oyuncular oy veriyor"
 
 #: homevisit_components/game-control/views/game-settings-modal.html:8
 msgid "Please choose the session for this Game."
-msgstr ""
+msgstr "Lütfen bu oyun için seansı seçiniz."
 
 #. Leave {{score}} as is
 #: player/partials/rating/rating.player.html:2
 msgid "Please rate a team! Give {{score}} point!"
-msgstr ""
+msgstr "Lütfen bir takımı değerlendirin! {{score}} puan verin!"
 
 #. select from a list
 #: mc/views/notes.html:10
 msgid "Please Select:"
-msgstr ""
+msgstr "Lütfen Seçin: "
 
 #: mc/js/services/mcAppServices.js:563
 #: player/js/services/playerAppServices.js:219
 msgid "point"
 msgid_plural "points"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "puan"
+msgstr[1] "puan"
 
 #. message after someone distributed a point (score)
 #: player/partials/rating/rating.done.html:1
 msgid "Point given!"
-msgstr ""
+msgstr "Puan verildi!"
 
 #: homevisit_components/hvLanguage.js:15
 msgid "Polish"
-msgstr ""
+msgstr "Polonyalı"
 
 #: homevisit_components/hvLanguage.js:16
 msgid "Portuguese"
-msgstr ""
+msgstr "Portekizli"
 
 #: player/index.html:86
 msgid "Rank:"
-msgstr ""
+msgstr "Sıralama:"
 
 #: mc/js/services/mcAppServices.js:696
 msgid "Really jump?"
-msgstr ""
+msgstr "Gerçekten zıplayacak mısınız?"
 
 #: mc/js/services/mcAppServices.js:691
 msgid "Really restart?"
-msgstr ""
+msgstr "Gerçekten baştan başlayacak mısınız?"
 
 #: game/playerManager.js:35 homevisit_components/hvPlayerColors.js:28
 msgid "red"
-msgstr ""
+msgstr "kırmızı"
 
 #: player/partials/deals/deal.wait.html:8
 msgid "Reject"
-msgstr ""
+msgstr "Ret"
 
 #: player/partials/deals/deal.new.html:9
 msgid "Request"
-msgstr ""
+msgstr "İstek"
 
 #: mc/views/item-as-row.html:15 mc/views/item.html:29
 msgid "Results are displayed"
-msgstr ""
+msgstr "Sonuçlar görüntüleniyor"
 
 #: mc/views/results.html:43 player/partials/results.html:47
 msgid "Results are weighted by ranking. See actual votes in braces."
 msgstr ""
+"Sonuçlar sıralama dikkate alınarak gösteriliyor. Gerçek oyları parantez için "
+"görebilirsiniz."
 
 #: mc/js/services/mcAppServices.js:168
 msgid "scared of the future"
-msgstr ""
+msgstr "gelecekten korkuyor"
 
 #: mc/js/services/mcAppServices.js:661
 msgid "Score"
-msgstr ""
+msgstr "Skor"
 
 #: player/index.html:87
 msgid "Score:"
-msgstr ""
+msgstr "Skor:"
 
 #: mc/js/controllers/notes.js:31 mc/js/controllers/pollPopup.js:43
 #: mc/js/controllers/script.js:85
 msgid "Select"
-msgstr ""
+msgstr "Seç"
 
 #. html-code has to stay as is (is displaying an icon inline)
 #: player/partials/black.html:1
@@ -370,99 +372,104 @@ msgid ""
 "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> "
 "is reading:"
 msgstr ""
+"Sessizlik lütfen. Şimdi <player-icon pid=\"status.playerOnTurn\"></player-"
+"icon> okuyır:"
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
-msgstr ""
+msgstr "Ses çalıyor:"
 
 #: mc/views/item-as-row.html:23
 msgid "Special code is executed"
-msgstr ""
+msgstr "Özel kod işleme alındı"
 
 #: mc/views/vote.html:41
 msgid "Submit"
-msgstr ""
+msgstr "Gönder"
 
 #: homevisit_components/game-control/views/game-restart-modal.html:7
 msgid "Sure you want to restart the game? This will start a new recording..."
 msgstr ""
+"Oyunu yeniden başlatmak istediğinizden emin misiniz? Bu yeni bir kayıt "
+"başlatacak..."
 
 #: homevisit_components/game-control/views/game-stop-modal.html:7
 msgid "Sure you want to stop the game? This will finish the current recording."
 msgstr ""
+"Oyunu durdurmak istediğinizden emin misiniz? Bu şu anki kaydı sona erdirecek."
 
 #: game/polls/Agreement.js:39
 msgid "The alliance is fullfilled."
-msgstr ""
+msgstr "İttifak amacına ulaştı."
 
 #. actually: "The alliance is rejected."
 #: game/polls/Agreement.js:42
 msgid "The alliance is neglected."
-msgstr ""
+msgstr "İttifak göz ardı ediliyor."
 
 #: player/partials/results.html:3
 msgid "The correct answer is:"
-msgstr ""
+msgstr "Doğru cevap:"
 
 #: player/js/services/playerAppServices.js:665
 msgid "The deal was denied"
-msgstr ""
+msgstr "Anlaşma reddedildi"
 
 #: game/items/includes/results.js:28
 msgid "The division of the cake"
-msgstr ""
+msgstr "Kekin paylaşımı"
 
 #: player/partials/rating/rating.score.html:2
 msgid "The MC has to select somebody!!"
-msgstr ""
+msgstr "MC'nin birini seçmesi gerekiyor!!"
 
 #: player/js/services/playerAppServices.js:669
 msgid "The other team is busy"
-msgstr ""
+msgstr "Diğer takım meşgul"
 
 #. they took points from you
 #: player/partials/assholes.html:4
 msgid "The worst team was mean to you:"
-msgstr ""
+msgstr "En kötü takım size kötü davrandı:"
 
 #: player/partials/assholes.html:15
 msgid "The worst team was not mean to you."
-msgstr ""
+msgstr "En kötü takım size kötü davranmadı."
 
 #. they took points from you
 #: player/partials/assholes.html:2
 msgid "These teams were mean to you:"
-msgstr ""
+msgstr "Bu takımlar size kötü davrandı:"
 
 #: player/partials/deals/deal.finish.html:7
 msgid "This deal is active"
-msgstr ""
+msgstr "Anlaşma aktif"
 
 #: game/game.js:281 game/playerManager.js:194
 msgid "This poll doesn't exist!"
-msgstr ""
+msgstr "Bu anket yok!"
 
 #: player/partials/deals/deal.details.html:38
 msgid "This treaty was ACCEPTED."
-msgstr ""
+msgstr "Bu anlaşma KABUL EDİLDİ."
 
 #: player/partials/deals/deal.details.html:39
 msgid "This treaty was DENIED."
-msgstr ""
+msgstr "Bu anlaşma REDDEDİLDİ."
 
 #. like in "Score 3 points to Team Red"
 #: mc/js/services/mcAppServices.js:661
 msgid "to"
-msgstr ""
+msgstr "a"
 
 #. of a portion of numbers
 #: mc/views/results.html:26 player/partials/results.html:18
 msgid "Total:"
-msgstr ""
+msgstr "Toplam:"
 
 #: player/partials/rating/rating.html:19
 msgid "Traitor! You can't score down your allied!"
-msgstr ""
+msgstr "Hain! İttifakınızın puanını düşüremezsiniz!"
 
 #: player/partials/deals/deal.answer.html:3
 #: player/partials/deals/deal.details.html:3
@@ -470,158 +477,158 @@ msgstr ""
 #: player/partials/deals/deal.messageSent.html:3
 #: player/partials/deals/deal.new.html:3 player/partials/deals/deal.wait.html:3
 msgid "Treaty"
-msgstr ""
+msgstr "Anlaşma"
 
 #. Keyword for poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:177
 msgid "trustworthy"
-msgstr ""
+msgstr "güvenilir"
 
 #: player/partials/deals/deal.details.html:42
 msgid "Try Again"
-msgstr ""
+msgstr "Yeniden Deneyin"
 
 #: mc/js/services/mcAppServices.js:572
 #: player/js/services/playerAppServices.js:236
 msgid "vote"
 msgid_plural "votes"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "oy"
+msgstr[1] "oylar"
 
 #: mc/views/vote.html:20 player/partials/vote.html:19
 msgid "VOTE"
-msgstr ""
+msgstr "OY VER"
 
 #: mc/js/services/mcAppServices.js:655
 msgid "Voted for:"
-msgstr ""
+msgstr "Oy verdiği:"
 
 #: mc/js/services/mcAppServices.js:648
 msgid "waiting ..."
-msgstr ""
+msgstr "bekliyor.."
 
 #: player/partials/rating/rating.score.html:26
 msgid "Waiting for being rated."
-msgstr ""
+msgstr "Değerlendirilmek için bekliyor."
 
 #: player/partials/deals/deal.details.html:18
 msgid "Waiting for reply..."
-msgstr ""
+msgstr "Yanıt için bekliyor..."
 
 #: player/partials/deals/deal.wait.html:7
 msgid "We are waiting for reply."
-msgstr ""
+msgstr "Yanıt için bekliyoruz."
 
 #. Brief form of poll "Who at the table has a job that pays enough that they can live from it?"
 #: mc/js/services/mcAppServices.js:122
 msgid "Who at the table has a job of which he or she can live?"
-msgstr ""
+msgstr "Bu masadakilerden kimin yaşayabileceği kadar kazandıran bir işi var?"
 
 #. Brief form of poll "Who at this table was a class representative or spokesman at school?"
 #: mc/js/services/mcAppServices.js:86
 msgid "Who at this table has been class spokesman?"
-msgstr ""
+msgstr "Bu masadakilerden kimler sınıf temsilciliği yaptı?"
 
 #. Brief form of poll "Who at this table has ever hit the jackpot?"
 #: mc/js/services/mcAppServices.js:95
 msgid "Who at this table has ever won a lot?"
-msgstr ""
+msgstr "Bu masadakilerden kimler daha önce herhangi bir çekiliş kazandı?"
 
 #. Brief form of poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:158
 msgid "Who feels more as an European than a citizens of his country?"
-msgstr ""
+msgstr "Kim kendi ülkesinden çok Avrupalı olarak hissediyor?"
 
 #. Brief form of poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:176
 msgid "Who finds the people here in general trustworthy?"
-msgstr ""
+msgstr "Kim buradaki insanları genel olarak güvenilir buluyor?"
 
 #. Brief form of poll "In the last ten years, who has gotten into a physical conflict or fight with someone?"
 #: mc/js/services/mcAppServices.js:140
 msgid "Who had a physical conflict in the past 10 years?"
-msgstr ""
+msgstr "Kim son 10 yılda fiziksel bir tartışmaya girdi?"
 
 #. Brief form of poll "Who has ever lied about their national identity?"
 #: mc/js/services/mcAppServices.js:149
 msgid "Who has ever consciously denied his national origin?"
-msgstr ""
+msgstr "Kim daha önce bilinçli olarak ulusal kökenini reddetti?"
 
 #. Brief form of poll "Who is in an association, club or NGO?"
 #: mc/js/services/mcAppServices.js:113
 msgid "Who is involved in a association or in an NGO?"
-msgstr ""
+msgstr "Kimler bir derneğe ya da STO'ya üyedir?"
 
 #. Brief form of poll "Who is afraid of the future?"
 #: mc/js/services/mcAppServices.js:167
 msgid "Who is scared of the future?"
-msgstr ""
+msgstr "Kimler gelecekten korkuyor?"
 
 #. Brief form of Poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:104
 msgid "Who was or is a member of a political party?"
-msgstr ""
+msgstr "Kimler daha önceden ya da şu anda siyasi parti üyeliği yapmıştır?"
 
 #. Brief form of Poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr ""
+msgstr "Kimler düzenli olarak yurtdışında çalışıyor?"
 
 #. Keyword for poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:186
 msgid "willingness of solidarity"
-msgstr ""
+msgstr "dayanışma isteği"
 
 #. Keyword for poll "Who at this table has ever hit the jackpot?"
 #: mc/js/services/mcAppServices.js:96
 msgid "won a lot"
-msgstr ""
+msgstr "çekiliş kazandı"
 
 #. Keyword for poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"
-msgstr ""
+msgstr "ülke dışında çalışıyor"
 
 #: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
-msgstr ""
+msgstr "sarı"
 
 #: game/polls/Agreement.js:12
 msgid "Yes"
-msgstr ""
+msgstr "Evet"
 
 #: game/playerManager.js:510
 msgid "You are in the game!"
-msgstr ""
+msgstr "Oyundasınız!"
 
 #: game/playerManager.js:501
 msgid "You are NOT in the game!"
-msgstr ""
+msgstr "Oyunda DEĞİLSİNİZ!"
 
 #: player/views/not-joined.html:1
 msgid "You are not joined in the game!"
-msgstr ""
+msgstr "Oyuna katılmadınız!"
 
 #: mc/views/vote.html:47 player/partials/voteConfirm.html:1
 msgid "You are voting for:"
-msgstr ""
+msgstr "Bunun için oy veriyorsunuz:"
 
 #: player/partials/rating/rating.score.html:4
 msgid "You can rate these Teams up or down!"
-msgstr ""
+msgstr "Bu takımları yukarıya çıkarabilir ya da aşağıya düşürebilirsiniz!"
 
 #: player/partials/deals/deal.noDealing.html:1
 msgid "You decided not to deal at all!"
-msgstr ""
+msgstr "Herhangi bir anlaşma yapmama kararı aldınız!"
 
 #: player/partials/voteFinished.html:1
 msgid "Your choice is sent!"
-msgstr ""
+msgstr "Seçiminiz gönderildi!"
 
 #: player/partials/freeze.html:1
 msgid "Your Time is Up. Scored one down!"
-msgstr ""
+msgstr "Süreniz sona erdi. Bir puan kaybettiniz!"
 
 #: player/partials/vote.html:6
 msgid "Your voting weight depends on your rank!"
-msgstr ""
+msgstr "Oyunuzun ağırlığı sıralamanıza bağlıdır!"
