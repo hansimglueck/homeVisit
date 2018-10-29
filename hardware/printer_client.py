@@ -156,9 +156,9 @@ def cb(msg):
 				unwrapped = item
 				wrapped = textwrap.fill(unwrapped, 16)
 				char_count = char_count + len(wrapped)
-				print "printing: "+wrapped
-				for x in wrapped:
-					print x, ord(x)
+				#print "printing: "+wrapped
+				#for x in wrapped:
+					#print x, ord(x)
 				p.print_text(wrapped)
 				p.print_text("\n")
 				wait = 0.008 * char_count
