@@ -323,10 +323,14 @@
                         type: type,
                         data: message
                     }));
-                    client.socket.send(JSON.stringify({
-                        type: type,
-                        data: message
-                    }));
+                    try {
+                        client.socket.send(JSON.stringify({
+                            type: type,
+                            data: message
+                        }));
+                    } catch (e) {
+                        logger.error("Error in Websocket " + e.message);
+                    }
                 }
             });
         },
@@ -341,7 +345,11 @@
                         type: type,
                         data: message
                     }));
-                    client.socket.send(JSON.stringify({type: type, data: message}));
+                    try {
+                        client.socket.send(JSON.stringify({type: type, data: message}));
+                    } catch (e) {
+                        logger.error("Error in Websocket " + e.message);
+                    }
                     //self.log(-1, "sent to client " + client.clientId + ":" + JSON.stringify({type: type, data: message}))
                 }
             });
@@ -362,10 +370,14 @@
                         type: type,
                         data: message
                     }));
-                    clientsWithId[0].socket.send(JSON.stringify({
-                        type: type,
-                        data: message
-                    }));
+                    try {
+                        clientsWithId[0].socket.send(JSON.stringify({
+                            type: type,
+                            data: message
+                        }));
+                    } catch (e) {
+                        logger.error("Error in Websocket " + e.message);
+                    }
                 }
             });
         },
@@ -384,10 +396,14 @@
 
             this.clients.forEach(function (client) {
                 if (client.role === "master" && client.connected) {
-                    client.socket.send(JSON.stringify({
-                        type: "DeviceList",
-                        data: list
-                    }));
+                    try {
+                        client.socket.send(JSON.stringify({
+                            type: "DeviceList",
+                            data: list
+                        }));
+                    } catch (e) {
+                        logger.error("Error in Websocket " + e.message);
+                    }
                 }
             });
         }
