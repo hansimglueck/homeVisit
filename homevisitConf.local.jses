@@ -1,8 +1,0 @@
-module.exports = {
-    port: 3000,
-    websitePostUrl: 'http://rimini:qmdm0kiR@homevisiteurope.org/admin/import.php?action=save_session',
-    dizziSSH: '-p2213 homevisit@dizzi.biz',
-    sessionsUrl: 'http://rimini:qmdm0kiR@homevisiteurope.org/admin/session_id.php',
-    pathToApp: '/Users/Claes/homeVisit/',
-    masterMind: false
-};
