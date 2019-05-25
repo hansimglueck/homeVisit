@@ -1,3 +1,0 @@
-HARDWARE = {
-    'speaker': 'anker'
-}
