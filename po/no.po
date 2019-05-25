@@ -393,7 +393,7 @@ msgstr "Lyd spilles av:"
 #: mc/views/item-as-row.html:23
 #, fuzzy
 msgid "Special code is executed"
-msgstr "Allianseforslaget er ikke godtatt."
+msgstr ""
 
 #: mc/views/vote.html:41
 msgid "Submit"
