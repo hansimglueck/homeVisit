@@ -2,7 +2,7 @@
     'use strict';
     var mit = require('./makeItTawan');
 
-    var http = require('http'),
+    var http = require('https'),
         url = require('url'),
         querystring = require('querystring'),
         Q = require('q'),

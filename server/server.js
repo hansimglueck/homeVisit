@@ -8,6 +8,7 @@
     //var logger = require('morgan');
     var cookieParser = require('cookie-parser');
     var bodyParser = require('body-parser');
+    var basicAuth = require('express-basic-auth');
 
     var mongoConnection = require('../homevisit_components/mongo/mongoConnection.js');
     var playerManager = require('../game/playerManager.js');
@@ -78,8 +79,19 @@
     app.set('views', __dirname + '/views');
     app.set('view engine', 'ejs');
 
+    function getUnauthorizedResponse(req) {
+        return req.auth ?
+            ('Credentials ' + req.auth.user + ':' + req.auth.password + ' rejected') :
+            'No credentials provided'
+    }
     // middlewares
 //    app.use(logger('dev'));
+    app.use(basicAuth({
+        users: { 'homevisit': '!o:kUtis2' },
+        unauthorizedResponse: getUnauthorizedResponse,
+	challenge: true,
+	realm: "homeVisit"
+    }));
     app.use(log4js.connectLogger(logger, { level: 'auto' }));
     app.use(bodyParser.json({ limit: '50mb' }));
     app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
