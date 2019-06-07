@@ -4,7 +4,7 @@
 (function() {
     'use strict';
 
-    var http = require('http'),
+    var http = require('https'),
         Q = require('q'),
         _ = require('underscore'),
         mongoConnection = require('./mongoConnection');
