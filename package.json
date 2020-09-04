@@ -13,7 +13,7 @@
     "hat": "0.0.3",
     "is-online": "^3.2.0",
     "log4js": "^0.6.25",
-    "mongodb": "~2.0.27",
+    "mongodb": "~3.6.1",
     "morgan": "~1.5.1",
     "node-gettext": "~1.0.1",
     "ping": "^0.1.10",
