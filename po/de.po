@@ -34,7 +34,7 @@ msgstr "Ehrgeiz"
 #. Keyword for Poll "Who is in an association, club or NGO?"
 #: mc/js/services/mcAppServices.js:114
 msgid "association/NGO"
-msgstr "Verein/NGO"
+msgstr "Verein/Organisation"
 
 #. of a portion of numbers
 #: mc/views/results.html:27 player/partials/results.html:22
@@ -112,7 +112,7 @@ msgstr "Abkommen mit"
 #. Keyword for poll "Who has ever lied about their national identity?"
 #: mc/js/services/mcAppServices.js:150
 msgid "denied origin"
-msgstr "Herkunft verleugnet"
+msgstr "Herkunft unwohl"
 
 #: player/partials/deals/deal.answer.html:13
 msgid "Deny"
@@ -138,7 +138,7 @@ msgstr "Niederländisch"
 #. Keyword for poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:213
 msgid "earnings"
-msgstr "Vorteil aus Spiel der Märkte"
+msgstr "gerne Kapitalismus"
 
 #: homevisit_components/hvLanguage.js:8
 msgid "English"
@@ -151,7 +151,7 @@ msgstr "EUROPA"
 #. Keyword for poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:159
 msgid "feeling European"
-msgstr "gefühlter Europäer"
+msgstr "Zuhause Europa"
 
 #. ... of a form
 #: mc/views/dummies.html:71
@@ -208,7 +208,7 @@ msgstr ""
 #. Keyword for poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:105
 msgid "member of political party"
-msgstr "Parteimitglied"
+msgstr "Politikinteresse"
 
 #: player/partials/deals/deal.messageSent.html:7
 msgid "Message sent"
@@ -232,7 +232,7 @@ msgstr "Mein Vertrauen in die Demokratie"
 #. Short form of poll "My benefit from the free market"
 #: mc/js/services/mcAppServices.js:212
 msgid "My earnings from the game of the markets"
-msgstr "Mein Vorteil aus dem Spiel der Märkte"
+msgstr "Ich lebe gern im Kapitalismus"
 
 #: mc/js/controllers/players.js:56
 msgid "My Turn!"
@@ -489,7 +489,7 @@ msgstr "Abkommen"
 #. Keyword for poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:177
 msgid "trustworthy"
-msgstr "vertrauenswürdig"
+msgstr "ehrlich"
 
 #: player/partials/deals/deal.details.html:42
 msgid "Try Again"
@@ -529,7 +529,7 @@ msgstr "Warten auf Antwort ..."
 #. Brief form of poll "Who at the table has a job that pays enough that they can live from it?"
 #: mc/js/services/mcAppServices.js:122
 msgid "Who at the table has a job of which he or she can live?"
-msgstr "Wer hat eine Arbeit, von der er / sie leben kann?  (+ Rückfrage)"
+msgstr "Wer hat bereits für Geld gearbeitet?  (+ Rückfrage)"
 
 #. Brief form of poll "Who at this table was a class representative or spokesman at school?"
 #: mc/js/services/mcAppServices.js:86
@@ -544,12 +544,12 @@ msgstr "Wer hat schon mal das große Los gezogen?"
 #. Brief form of poll "Who feels more European than as a citizen of their own country?"
 #: mc/js/services/mcAppServices.js:158
 msgid "Who feels more as an European than a citizens of his country?"
-msgstr "Wer fühlt sich mehr als Europäer denn als Bürger seines Landes?"
+msgstr "Wer bezeichnet eher Europa als Deutschland als Zuhause?"
 
 #. Brief form of poll "Who thinks that the people at this table are reliable?"
 #: mc/js/services/mcAppServices.js:176
 msgid "Who finds the people here in general trustworthy?"
-msgstr "Wer findet die Menschen hier grundsätzlich vertrauenswürdig?"
+msgstr "Wer glaubt, dass die Fragen hier am Tisch von den meisten ehrlich beantwortet werden?"
 
 #. Brief form of poll "In the last ten years, who has gotten into a physical conflict or fight with someone?"
 #: mc/js/services/mcAppServices.js:140
@@ -559,12 +559,12 @@ msgstr "Wer hat einen Konflikt schon mal körperlich ausgetragen?"
 #. Brief form of poll "Who has ever lied about their national identity?"
 #: mc/js/services/mcAppServices.js:149
 msgid "Who has ever consciously denied his national origin?"
-msgstr "Wer hat bewusst seine nationale Herkunft verleugnet?  (+ Rückfrage)"
+msgstr "Wer hat sich schon mal mit seiner nationalen Herkunft unwohl gefühlt?  (+ Rückfrage)"
 
 #. Brief form of poll "Who is in an association, club or NGO?"
 #: mc/js/services/mcAppServices.js:113
 msgid "Who is involved in a association or in an NGO?"
-msgstr "Wer engagiert sich in einem Verein oder in einer NGO?  (+ Rückfrage)"
+msgstr "Wer engagiert sich in einem Verein oder einer Organisation? (+ Rückfrage)"
 
 #. Brief form of poll "Who is afraid of the future?"
 #: mc/js/services/mcAppServices.js:167
@@ -574,12 +574,12 @@ msgstr "Wer hat Angst vor der Zukunft?"
 #. Brief form of Poll "Has anyone here ever been a member of a political party?"
 #: mc/js/services/mcAppServices.js:104
 msgid "Who was or is a member of a political party?"
-msgstr "Wer war oder ist Parteimitglied?  (+ Rückfrage)"
+msgstr "Wer interessiert sich für Politik? (+ Rückfrage)"
 
 #. Brief form of Poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:131
 msgid "Who works regularly outside the country?"
-msgstr "Wer arbeitet regelmäßig außerhalb des Landes?  (+ Rückfrage)"
+msgstr "Wer hat schon länger in einem anderen Land gelebt?  (+ Rückfrage)"
 
 #. Keyword for poll "My sense of solidarity"
 #: mc/js/services/mcAppServices.js:186
@@ -594,7 +594,7 @@ msgstr "das große Los"
 #. Keyword for poll "Do you often work outside of the country you live in?"
 #: mc/js/services/mcAppServices.js:132
 msgid "working outside the country"
-msgstr "arbeitet im Ausland"
+msgstr "im Ausland gelebt"
 
 #: game/playerManager.js:39 homevisit_components/hvPlayerColors.js:32
 msgid "yellow"
