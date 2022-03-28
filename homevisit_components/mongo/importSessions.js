@@ -10,6 +10,8 @@
         mongoConnection = require('./mongoConnection');
     require('../stringFormat');
     require('colors');
+    var logger = require('log4js').getLogger('importSessions');
+    logger.setLevel("INFO");
 
     // parse args
     var args = process.argv.slice(2), url = args[0];
@@ -43,7 +45,9 @@
                     jsonData += chunk;
                 })
                 .on('end', function() {
-                    httpDeferred.resolve(JSON.parse(jsonData));
+                    var fixedJson = jsonData.replace(/\}\,[^]\]/, '}]');
+                    logger.info(fixedJson);
+                    httpDeferred.resolve(JSON.parse(fixedJson));
                 });
         }).on('error', function(e) {
             httpDeferred.reject(new Error(e));
