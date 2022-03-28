@@ -11,6 +11,8 @@
     var logger = require('log4js').getLogger('raspiTools');
     logger.setLevel("INFO");
 
+    process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
+
     function RaspiTools() {
         this.onlineTasks = [];
         this.onlineStateArr = [false, false, false];
