@@ -166,12 +166,12 @@
                 for (var i = 0; i < gameSessionsFactory.sessions.length; i++) {
                     var s = gameSessionsFactory.sessions[i];
                     if (s.sessionId === id) {
-                        var name = s.date + ' ' + s.city;
-                        if (typeof s.adresse !== 'undefined' && s.adresse.trim().length > 0) {
-                            name += ' - ' + s.adresse + ',';
+                        var name = s.date + ' ' + s.uhrzeit + ' ' + s.city;
+                        if (typeof s.schule !== 'undefined' && s.schule.trim().length > 0) {
+                            name += ' - ' + s.schule;
                         }
-                        if (typeof s.bezirk !== 'undefined' && s.bezirk.trim().length > 0) {
-                            name += ' (' + s.bezirk + ')';
+                        if (typeof s.adresse !== 'undefined' && s.adresse.trim().length > 0) {
+                            name += ' - ' + s.adresse;
                         }
                         return name;
                     }
