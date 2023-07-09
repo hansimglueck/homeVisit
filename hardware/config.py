@@ -1,16 +1,20 @@
 ########### HARDWARE CONFIGURATION ###########
 
 # To use special code for Anker-speaker
+# or the larger Kuchenform
 # create file config_local.py:
 #HARDWARE = {
-#    'speaker': 'anker'
+#    'speaker': 'anker',
+#    'bigPan': True
 #}
+
 
 ##########################################
 
 
 HARDWARE = {
-    'speaker': 'default'
+    'speaker': 'default',
+    'bigPan': False
 }
 
 try:

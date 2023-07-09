@@ -1,1 +1,0 @@
-{options : { "create" : "decks" }, indexes:[{ "v" : 1, "key" : { "_id" : 1 }, "ns" : "homeVisit.decks", "name" : "_id_" }]}
