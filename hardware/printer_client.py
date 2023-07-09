@@ -6,6 +6,7 @@ import json
 import printer_gs, textwrap
 import ws
 import socket
+import config
 
 p=printer_gs.ThermalPrinter(serialport="/dev/ttyAMA0")
 specialChars = {'“':'\x22', '”':'\x22', '„':'\x22', '‟':'\x22', '‹':'\x3C', '›':'\x3E', '–':'-', 'Œ':'OE', 'œ':'oe'}
@@ -237,7 +238,10 @@ def printPiePartition(data):
 	### Kuchenumfang 2 rund gross ca. 76 cm --- 1 Zeile = 0.44 cm ---> ca. 173 Zeilen
 	### Kuchenumfang 3 rund klein ca. 57 cm --- 1 Zeile = 0.44 cm ---> ca. 130 Zeilen
 
-	all_lines = 130
+	if (config.HARDWARE['bigPan']):
+		all_lines = 140
+	else:
+		all_lines = 130
 
 	###parts = txt.split()
 
