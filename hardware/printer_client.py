@@ -240,6 +240,8 @@ def printPiePartition(data):
 
 	if (config.HARDWARE['bigPan']):
 		all_lines = 140
+	elif (config.HARDWARE['veryBigPan']):
+		all_lines = 150
 	else:
 		all_lines = 130
 
