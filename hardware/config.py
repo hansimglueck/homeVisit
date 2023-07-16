@@ -14,7 +14,8 @@
 
 HARDWARE = {
     'speaker': 'default',
-    'bigPan': False
+    'bigPan': False,
+    'veryBigPan': False
 }
 
 try:
