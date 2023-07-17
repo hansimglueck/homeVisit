@@ -1,4 +1,5 @@
 HARDWARE = {
     'speaker': 'blue',
-    'bigPan': True
+    'bigPan': False,
+    'veryBigPan': True
 }
