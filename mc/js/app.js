@@ -44,6 +44,10 @@ angular
                 templateUrl: '/mc/views/matching.html',
                 controller: 'MatchingCtrl'
             })
+            .when('/matchingNew', {
+                templateUrl: '/mc/views/matchingNew.html',
+                controller: 'MatchingNewCtrl'
+            })
             .when('/deck', {
                 templateUrl: '/mc/views/deck.html',
                 controller: 'DeckCtrl'

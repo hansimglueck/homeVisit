@@ -102,7 +102,7 @@
                         }
                     }
                 }
-                //console.log($scope.matchMatrix);
+                console.log($scope.matchMatrix);
                 return $scope.matchMatrix;
             };
             
@@ -203,8 +203,8 @@
                 var playerIndex = index;
                 var bestMatch = 0;
                 var bestPartnerIndex = -1;
-                console.log("Matchmatrix: " + $scope.matchMatrix);
-                console.log("playerindex: " + playerIndex);
+                // console.log("Matchmatrix: " + $scope.matchMatrix);
+                // console.log("playerindex: " + playerIndex);
                 for (var playerY = 0; playerY < $scope.matchMatrix[playerIndex].length; playerY++) {
                     console.log("matchlast i: " + playerIndex);
                     if (playerY !== playerIndex && $scope.matchMatrix[playerIndex][playerY] > bestMatch) {

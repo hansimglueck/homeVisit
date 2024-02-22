@@ -86,8 +86,8 @@
                     question: gettext('Who at this table has been class spokesman?'),
                     note: gettext('class spokesman'),
                     type: 'binary',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [1,1,-1,1,1,1,1,1,-1,1,1,1,1,1,-1]
+                    //answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [1,1,0,1,1,1,1,1,0,1,1,1,1,1,0]
                 },
                 {
                     // 1
@@ -95,8 +95,8 @@
                     question: gettext('Who at this table has ever won a lot?'),
                     note: gettext('won a lot'),
                     type: 'binary',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [1,1,1,1,1,-1,-1,-1,-1,-1,1,-1,-1,-1,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [1,1,1,1,1,0,0,0,0,0,1,0,0,0,0]
                 },
                 {
                     // 2
@@ -104,8 +104,8 @@
                     question: gettext('Who was or is a member of a political party?'),
                     note: gettext('member of political party'),
                     type: 'binary',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,1,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [0,0,0,0,0,0,0,0,0,0,0,0,1,1,0]
                 },
                 {
                     // 3
@@ -113,8 +113,8 @@
                     question: gettext('Who is involved in a association or in an NGO?'),
                     note: gettext('association/NGO'),
                     type: 'binary',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [1,1,-1,-1,1,-1,1,1,-1,-1,-1,1,1,1,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [1,1,0,0,1,0,1,1,0,0,0,1,1,1,0]
                 },
                 {
                     // 4
@@ -122,8 +122,8 @@
                     question: gettext('Who at the table has a job of which he or she can live?'),
                     note: gettext('paid job'),
                     type: 'binary',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [0,0,0,0,0,0,0,0,0,0,0,0,0,1,0]
                 },
                 {
                     // 5
@@ -131,8 +131,8 @@
                     question: gettext('Who works regularly outside the country?'),
                     note: gettext('working outside the country'),
                     type: 'binary',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [-1,-1,-1,-1,1,-1,1,-1,-1,-1,-1,1,-1,-1,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [0,0,0,0,1,0,1,0,0,0,0,1,0,0,0]
                 },
                 {
                     // 6
@@ -140,8 +140,8 @@
                     question: gettext('Who had a physical conflict in the past 10 years?'),
                     note: gettext('physical conflict'),
                     type: 'binary',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [-1,-1,0,0,-1,-1,-1,0,-1,-1,-1,-1,-1,-1,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
                 },
                 {
                     // 7
@@ -149,8 +149,8 @@
                     question: gettext('Who has ever consciously denied his national origin?'),
                     note: gettext('denied origin'),
                     type: 'binary',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [1,1,-1,-1,1,1,1,-1,1,-1,1,-1,-1,-1,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [1,1,0,0,1,1,1,0,1,0,1,0,0,0,0]
                 },
                 {
                     // 8
@@ -158,8 +158,8 @@
                     question: gettext('Who feels more as an European than a citizens of his country?'),
                     note: gettext('feeling European'),
                     type: 'binary',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [1,-1,-1,-1,-1,-1,-1,-1,-1,-1,1,-1,-1,1,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [1,0,0,0,0,0,0,0,0,0,1,0,0,1,0]
                 },
                 {
                     // 9
@@ -167,8 +167,8 @@
                     question: gettext('Who is scared of the future?'),
                     note: gettext('scared of the future'),
                     type: 'binary',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [-1,1,-1,1,-1,1,1,1,-1,-1,-1,1,-1,1,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [0,1,0,1,0,1,1,1,0,0,0,1,0,1,0]
                 },
                 {
                     // 10
@@ -176,8 +176,8 @@
                     question: gettext('Who finds the people here in general trustworthy?'),
                     note: gettext('trustworthy'),
                     type: 'binary',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [-1,1,-1,-1,-1,1,-1,1,1,-1,-1,-1,1,1,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [0,1,0,0,0,1,0,1,1,0,0,0,1,1,0]
                 },
                 {
                     // 11
@@ -185,8 +185,8 @@
                     question: gettext('My willingness of solidarity'),
                     note: gettext('willingness of solidarity'),
                     type: 'fingers',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [-1,3,3,-1,3,-1,-1,-1,3,-1,-1,-1,3,-1,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [0,3,3,0,3,0,0,0,3,0,0,0,3,0,0]
                 },
                 {
                     // 12
@@ -194,8 +194,8 @@
                     question: gettext('My ambition'),
                     note: gettext('ambition'),
                     type: 'fingers',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [4,5,0,5,4,3,3,2,4,5,3,4,5,4,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [4,5,0,5,4,3,3,2,4,5,3,4,5,4,-1]
                 },
                 {
                     // 13
@@ -203,8 +203,8 @@
                     question: gettext('My confidence in democracy'),
                     note: gettext('confidence in democracy'),
                     type: 'fingers',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [1,2,1,3,2,2,3,2,3,2,4,2,4,2,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [1,2,1,3,2,2,3,2,3,2,4,2,4,2,-1]
                 },
                 {
                     // 14
@@ -212,8 +212,8 @@
                     question: gettext('My earnings from the game of the markets'),
                     note: gettext('earnings'),
                     type: 'fingers',
-                    answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
-                    //answers: [0,0,1,1,1,0,2,0,2,5,5,0,2,2,-1]
+                    // answers: [-1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1, -1]
+                    answers: [0,0,1,1,1,0,2,0,2,5,5,0,2,2,-1]
                 }
             ];
             pollFactory.did = -1;
@@ -317,7 +317,7 @@
                         pn.push(
                             gettextCatalog.getString(
                                 'Player'
-                            ) + " " + i
+                            ) + " " + (i+1)
                         );
                     }
                     return pn;
@@ -330,8 +330,11 @@
 
             // When there are less than 15 players, deactivate them to ignore them in matching calc
             // 1 if player is in game, 0 if player is absent
+            // playerNamesFactory.inGame = [
+            //     0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+            // ]
             playerNamesFactory.inGame = [
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+                1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1
             ]
 
             playerNamesFactory.getPlayerCount = function () {
