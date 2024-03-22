@@ -11,7 +11,8 @@
 
     var homevisitQueries = require("./homevisitQueries");
     var logger = require('log4js').getLogger("recordings");
-
+    
+    process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
 
     function GameRecording() {
         this.recordingId = null;
@@ -130,7 +131,9 @@
                     var json = JSON.stringify(tawan);
                     //kann scheinbar keinen objekt mit objekten drin stringifien...
                     logger.info(json);
-                    var postData = querystring.stringify({json_daten: json, valide_test: "valide_test"});
+                    var postData = querystring.stringify({post_schulvisit: json});
+		    logger.info(postData);
+//                    var postData = querystring.stringify({json_daten: json, valide_test: "valide_test"});
                     var opts = {
                         host: u.host,
                         path: u.path,
@@ -141,7 +144,7 @@
                             'Content-Length': postData.length
                         }
                     };
-
+                    logger.info(opts);
                     var req = http.request(opts, function (res) {
                         res.setEncoding('utf8');
                         var success = true;

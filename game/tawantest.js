@@ -1,2 +1,2 @@
 var mit = require('./makeItTawan');
-mit("401324d273ff20ac476b3fbceea6d91b", "3", function(x){console.log(x)})
+mit("9e96e72a44fd051d2573c1d3119aec86", function(x){console.log(x)})
