@@ -5,7 +5,7 @@
     var wsManager = require('./wsManager.js');
     var clone = require('clone');
     var logger = require('log4js').getLogger();
-    var sessionRestriction = {$or:[{date:{$gt:new Date(Date.now()-7*24*60*60*1000).toISOString()}}, {sessionId:1}]};
+    var sessionRestriction = {$or:[{date:{$gt:new Date(Date.now()-7*24*60*60*1000).toISOString()}}, {sessionId:1}, {sessionId:'1'}]};
 
     function GameConf() {
         this.conf = {};         //fixe Kongiguration wie startDeck, typeMapping
