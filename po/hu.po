@@ -367,7 +367,7 @@ msgstr "Kiválasztás"
 #. html-code has to stay as is (is displaying an icon inline)
 #: player/partials/black.html:1
 msgid "Silence please. Now <player-icon pid=\"status.playerOnTurn\"></player-icon> is reading:"
-msgstr "Csendet kérünk. Most <player-icon pid=“status.playerOnTurn”></player-icon> olvas:"
+msgstr "Csendet kérünk. Most <player-icon pid=\"status.playerOnTurn\"></player-icon> olvas:"
 
 #: mc/views/item.html:30
 msgid "Sound is playing:"
