@@ -178,7 +178,7 @@ msgstr "Nyelv"
 
 #: game/playerManager.js:36 homevisit_components/hvPlayerColors.js:29
 msgid "light blue"
-msgstr "világoskék"
+msgstr "világos- kék"
 
 #: game/playerManager.js:41 homevisit_components/hvPlayerColors.js:34
 msgid "lilac"
@@ -250,7 +250,7 @@ msgstr "Norvég"
 
 #: game/playerManager.js:38 homevisit_components/hvPlayerColors.js:31
 msgid "orange"
-msgstr "narancssárga"
+msgstr "narancs"
 
 #: mc/js/services/mcAppServices.js:123
 msgid "paid job"
