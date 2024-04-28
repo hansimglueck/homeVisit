@@ -166,6 +166,9 @@
                 for (var i = 0; i < gameSessionsFactory.sessions.length; i++) {
                     var s = gameSessionsFactory.sessions[i];
                     if (s.sessionId === id) {
+                        if (typeof s.uhrzeit == "undefined") {
+                            s.uhrzeit = "";
+                        }
                         var name = id + ': '+s.date + ' ' + s.uhrzeit + ' ' + s.city;
                         if (typeof s.schule !== 'undefined' && s.schule.trim().length > 0) {
                             name += ' - ' + s.schule;
