@@ -9,6 +9,7 @@
             var languages = [
                 ['en', gettextCatalog.getString('English')],
                 ['de', gettextCatalog.getString('German')],
+                ['hu', gettextCatalog.getString('Hungarian')],
                 ['cs', gettextCatalog.getString('Czech')],
                 ['da', gettextCatalog.getString('Danish')],
                 ['fr', gettextCatalog.getString('French')],

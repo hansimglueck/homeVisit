@@ -40,8 +40,7 @@
             return {
                 type: 'slideshow',
                 silent: this.silent,
-                images: images
-                // images: shuffleArray(images)
+                images: shuffleArray(images)
             };
         }
     };

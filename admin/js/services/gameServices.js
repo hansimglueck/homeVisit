@@ -33,7 +33,8 @@
         .factory('OtherLanguages', function() {
             var otherLanguages = {
                 de: false,
-                en: true
+                en: true,
+                hu: false
             };
             return otherLanguages;
         })
