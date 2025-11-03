@@ -230,7 +230,8 @@ def setLanguage(lang):
 										'Ã':'\xC7', 
 										'ã':'\xC6', 
 										'Õ':'\xE5', 
-										'õ':'\xE4'}
+										'õ':'\xE4',
+										'·':'\xFA'}
 		specialChars.update(specialCharsTable2)
 
 def cb(msg):
